@@ -1,0 +1,33 @@
+## Interface: 16001, 11509, 120100
+## Title: |cffffd100Forever Safari|r
+## Notes: Hemet Nesingwary's Junior Safari League! Capture wild beasts, discover movepools, evolve companions, and battle across Azeroth!
+## Author: Forever Safari Team
+## Version: 1.0.0
+## SavedVariables: ForeverSafariDB, ForeverSafariSettings
+## IconTexture: Interface\Icons\Ability_Hunter_BeastTaming
+
+Core\Constants.lua
+Data\CreatureDB.lua
+Data\MoveDB.lua
+Data\EvolutionDB.lua
+Core\Database.lua
+Core\StatEngine.lua
+Core\CaptureEngine.lua
+Core\BattleEngine.lua
+Core\QuestHooks.lua
+Core\Comms.lua
+
+UI\Theme.lua
+UI\Toast.lua
+UI\MinimapButton.lua
+UI\SafariMailFrame.lua
+UI\DispatchLetterFrame.lua
+UI\InspectorFrame.lua
+UI\CatalystLootFrame.lua
+UI\CaptureHUD.lua
+UI\ShopFrame.lua
+UI\SafariBagFrame.lua
+UI\JournalFrame.lua
+UI\BattleFrame.lua
+
+ForeverSafari.lua

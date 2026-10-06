@@ -1,0 +1,15 @@
+# World of Warcraft / OS ignores
+.DS_Store
+Thumbs.db
+*.bak
+*.orig
+*~
+
+# IDE files
+.vscode/
+.idea/
+
+# Local build artifacts
+*.zip
+dist/
+release/
