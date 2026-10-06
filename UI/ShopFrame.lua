@@ -170,8 +170,7 @@ function Shop:OnGossipShow()
         if DB and DB.HealTeam then
             local team = DB:GetTeam()
             local needsHealing = false
-            for _, mobId in ipairs(team) do
-                local m = DB:GetMobById(mobId)
+            for _, m in ipairs(team) do
                 if m and (not m.currentHP or m.currentHP < (m.maxHP or 10)) then
                     needsHealing = true
                     break

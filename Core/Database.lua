@@ -952,8 +952,8 @@ end
 function DB:HealTeam(silent)
     local team = DB:GetTeam()
     local healedCount = 0
-    for _, mobId in ipairs(team) do
-        if DB:HealMob(mobId) then
+    for _, mob in ipairs(team) do
+        if mob and DB:HealMob(mob.id) then
             healedCount = healedCount + 1
         end
     end
