@@ -93,9 +93,20 @@ end
 -- =========================================================================
 function Shop:IsAtAuthorizedVendor()
     local unit = UnitExists("npc") and "npc" or (UnitExists("target") and "target" or nil)
-    
+
+    -- Strict title matching: only Pet Trainers and Innkeepers qualify.
+    local function classify(text)
+        local lower = string.lower(text)
+        if string.find(lower, "pet trainer", 1, true) or string.find(lower, "beast trainer", 1, true) or string.find(lower, "pet master", 1, true) then
+            return "Pet Trainer"
+        elseif string.find(lower, "innkeeper", 1, true) then
+            return "Innkeeper"
+        end
+        return nil
+    end
+
     if unit then
-        -- 1. Scan Unit Tooltip for Innkeeper / Pet Trainer / Stable Master titles
+        -- 1. Scan Unit Tooltip subtitle
         local tooltip = ForeverSafariTooltipScan or CreateFrame("GameTooltip", "ForeverSafariTooltipScan", nil, "GameTooltipTemplate")
         tooltip:SetOwner(WorldFrame, "ANCHOR_NONE")
         tooltip:ClearLines()
@@ -105,12 +116,8 @@ function Shop:IsAtAuthorizedVendor()
             if line then
                 local text = line:GetText()
                 if text and not isSecret(text) then
-                    local lower = string.lower(text)
-                    if string.find(lower, "pet trainer") or string.find(lower, "battle pet") or string.find(lower, "pet master") or string.find(lower, "beast trainer") or string.find(lower, "trainer") or string.find(lower, "stable master") or string.find(lower, "stablemaster") or string.find(lower, "stable") then
-                        return true, "Pet Trainer"
-                    elseif string.find(lower, "innkeeper") or string.find(lower, "taverner") or string.find(lower, "barkeeper") or string.find(lower, "inn") then
-                        return true, "Innkeeper"
-                    end
+                    local vType = classify(text)
+                    if vType then return true, vType end
                 end
             end
         end
@@ -118,39 +125,21 @@ function Shop:IsAtAuthorizedVendor()
         -- 2. Check Unit Name
         local unitName = UnitName(unit)
         if unitName and not isSecret(unitName) then
-            local lower = string.lower(unitName)
-            if string.find(lower, "pet trainer") or string.find(lower, "battle pet") or string.find(lower, "pet master") or string.find(lower, "beast trainer") or string.find(lower, "stable master") or string.find(lower, "stablemaster") then
-                return true, "Pet Trainer"
-            elseif string.find(lower, "innkeeper") then
-                return true, "Innkeeper"
-            end
+            local vType = classify(unitName)
+            if vType then return true, vType end
         end
     end
 
-    -- 3. Check Gossip Options
+    -- 3. Innkeeper gossip option ("Make this inn your home")
     if C_GossipInfo and C_GossipInfo.GetOptions then
         local options = C_GossipInfo.GetOptions()
         if options then
             for _, opt in ipairs(options) do
                 local name = opt.name or opt.title or ""
-                local lower = string.lower(name)
-                if string.find(lower, "pet") or string.find(lower, "train") or string.find(lower, "stable") or string.find(lower, "beast") then
-                    return true, "Pet Trainer"
-                elseif string.find(lower, "inn") or string.find(lower, "home") or string.find(lower, "bind") or string.find(lower, "hearthstone") then
+                if name ~= "" and not isSecret(name) and string.find(string.lower(name), "inn your home", 1, true) then
                     return true, "Innkeeper"
                 end
             end
-        end
-    end
-
-    -- 4. Check Gossip Text
-    local gText = (C_GossipInfo and C_GossipInfo.GetText and C_GossipInfo.GetText()) or (GetGossipText and GetGossipText()) or ""
-    if gText and not isSecret(gText) and gText ~= "" then
-        local lower = string.lower(gText)
-        if string.find(lower, "pet") or string.find(lower, "train") or string.find(lower, "stable") or string.find(lower, "beast") or string.find(lower, "tame") then
-            return true, "Pet Trainer"
-        elseif string.find(lower, "inn") or string.find(lower, "hearthstone") or string.find(lower, "home") or string.find(lower, "bed") or string.find(lower, "rest") or string.find(lower, "tavern") then
-            return true, "Innkeeper"
         end
     end
 
