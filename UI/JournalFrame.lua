@@ -1277,7 +1277,8 @@ function Journal:OpenTrainingDrawer(slotIndex)
                     DB:SetMobAbility(selectedMobId, trainingSlotIndex, moveKey)
                     PlaySound(1194)
                     drawer:Hide()
-                    Journal:UpdateDossier()
+                    Journal:UpdateShowcase()
+                    Journal:UpdateUI()
                     if ForeverSafari.Toast then
                         ForeverSafari.Toast:ShowReward("Ability Learned!", string.format("Taught %s to %s!", moveData.name, mName))
                     end

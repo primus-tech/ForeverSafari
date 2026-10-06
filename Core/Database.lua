@@ -157,7 +157,33 @@ end
 
 function DB:ValidateAndRepairSignatures()
     if not ForeverSafariDB.collection then return end
+    local abilitiesDB = ForeverSafari.Constants and ForeverSafari.Constants.ABILITIES or {}
+
     for _, mob in ipairs(ForeverSafariDB.collection) do
+        -- Heal empty or invalid abilities on existing companions
+        if not mob.abilities or #mob.abilities == 0 then
+            if ForeverSafari.StatEngine and ForeverSafari.StatEngine.GenerateAbilities then
+                mob.abilities = ForeverSafari.StatEngine:GenerateAbilities(mob.creatureType, mob.family)
+            else
+                mob.abilities = { (mob.creatureType == "Beast" and "Bite") or "Tackle" }
+            end
+        else
+            for i, moveKey in ipairs(mob.abilities) do
+                if not abilitiesDB[moveKey] then
+                    mob.abilities[i] = (mob.creatureType == "Beast" and "Bite") or "Tackle"
+                end
+            end
+        end
+
+        -- Guarantee all companion moves are unlocked in Trainer Grimoire
+        if mob.abilities then
+            for _, moveKey in ipairs(mob.abilities) do
+                if abilitiesDB[moveKey] then
+                    DB:UnlockAbility(moveKey, mob.name, true)
+                end
+            end
+        end
+
         local expectedSig = DB:GenerateSignature(mob)
         if not mob.sig or mob.sig ~= expectedSig then
             -- If tampered or legacy, recompute legal bounds

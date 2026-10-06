@@ -744,6 +744,26 @@ C.ABILITIES = {
         icon = "Interface\\Icons\\Ability_Druid_FerociousBite",
         description = "Sinks sharp fangs into the enemy, dealing beast damage."
     },
+    ["Poison_Sting"] = {
+        name = "Poison Sting",
+        type = "Beast",
+        power = 40,
+        accuracy = 95,
+        cooldown = 0,
+        maxUses = 12,
+        icon = "Interface\\Icons\\Ability_Hunter_Quickshot",
+        description = "Stabs the target with a venomous barb, dealing beast poison damage."
+    },
+    ["Claw_Frenzy"] = {
+        name = "Claw Frenzy",
+        type = "Beast",
+        power = 45,
+        accuracy = 95,
+        cooldown = 0,
+        maxUses = 12,
+        icon = "Interface\\Icons\\Ability_GhoulFrenzy",
+        description = "Rakes the foe repeatedly with razor claws."
+    },
     ["Ravage"] = {
         name = "Savage Ravage",
         type = "Beast",
@@ -751,7 +771,7 @@ C.ABILITIES = {
         accuracy = 85,
         cooldown = 3,
         maxUses = 4,
-        icon = "Interface\\Icons\\Ability_GhoulFrenzy",
+        icon = "Interface\\Icons\\Ability_Druid_Ravage",
         description = "A vicious assault that tears into the target's flesh."
     },
     ["Furious_Howl"] = {
@@ -832,6 +852,16 @@ C.ABILITIES = {
         maxUses = 10,
         icon = "Interface\\Icons\\Spell_Fire_Fireball",
         description = "Blasts the target with an explosion of pure flame."
+    },
+    ["Flame_Breath"] = {
+        name = "Flame Breath",
+        type = "Elemental",
+        power = 48,
+        accuracy = 95,
+        cooldown = 0,
+        maxUses = 12,
+        icon = "Interface\\Icons\\Spell_Fire_Fire",
+        description = "Exhales a burst of elemental flame."
     },
     ["Frost_Nova"] = {
         name = "Frost Nova",
@@ -1007,6 +1037,16 @@ C.ABILITIES = {
         icon = "Interface\\Icons\\Ability_Hunter_RocketBarrage",
         description = "Fires a miniature salvo of explosive micro-missiles."
     },
+    ["Cog_Strike"] = {
+        name = "Cog Strike",
+        type = "Mechanical",
+        power = 40,
+        accuracy = 100,
+        cooldown = 0,
+        maxUses = 12,
+        icon = "Interface\\Icons\\Trade_Engineering",
+        description = "Strikes with whirling steel gears and mechanical precision."
+    },
     ["Overclock"] = {
         name = "Overclock",
         type = "Mechanical",
@@ -1051,6 +1091,16 @@ C.ABILITIES = {
         icon = "Interface\\Icons\\Spell_Shadow_ShadowBolt",
         description = "Hurls a bolt of dark energy at the foe."
     },
+    ["Shadow_Fang"] = {
+        name = "Shadow Fang",
+        type = "Undead",
+        power = 45,
+        accuracy = 95,
+        cooldown = 0,
+        maxUses = 12,
+        icon = "Interface\\Icons\\Spell_Shadow_FingerOfDeath",
+        description = "Bites with shadowy ethereal fangs."
+    },
     ["Drain_Life"] = {
         name = "Drain Life",
         type = "Undead",
@@ -1089,14 +1139,14 @@ C.ABILITIES = {
 -- Move Pools for the 9 Types
 C.TYPE_MOVE_POOLS = {
     ["Aquatic"]     = { "Water_Jet", "Aqua_Ring", "Surge", "Cleansing_Rain" },
-    ["Beast"]       = { "Bite", "Furious_Howl", "Ravage", "Survival_Instincts" },
+    ["Beast"]       = { "Bite", "Poison_Sting", "Claw_Frenzy", "Furious_Howl", "Ravage", "Survival_Instincts" },
     ["Dragonkin"]   = { "Dragon_Breath", "Tail_Sweep", "Roar_of_Aspects", "Scale_Armor" },
-    ["Elemental"]   = { "Fire_Blast", "Frost_Nova", "Earth_Shock", "Elemental_Surge" },
+    ["Elemental"]   = { "Fire_Blast", "Flame_Breath", "Frost_Nova", "Earth_Shock", "Elemental_Surge" },
     ["Flying"]      = { "Peck", "Tailwind", "Alpha_Strike", "Predatory_Dive" },
-    ["Humanoid"]    = { "Mortal_Strike", "Shield_Block", "Battle_Shout", "First_Aid" },
+    ["Humanoid"]    = { "Mortal_Strike", "Shield_Block", "Battle_Shout", "First_Aid", "Tackle" },
     ["Magic"]       = { "Arcane_Blast", "Mana_Barrier", "Nether_Surge", "Amplify_Magic" },
-    ["Mechanical"]  = { "Spark_Blast", "Overclock", "Rocket_Salvo", "Self_Repair" },
-    ["Undead"]      = { "Shadow_Bolt", "Plague_Touch", "Drain_Life", "Cannibalize" }
+    ["Mechanical"]  = { "Spark_Blast", "Cog_Strike", "Overclock", "Rocket_Salvo", "Self_Repair" },
+    ["Undead"]      = { "Shadow_Bolt", "Shadow_Fang", "Plague_Touch", "Drain_Life", "Cannibalize" }
 }
 
 -- Iconic Azeroth Species Bestiary Catalog for ForeverSafari Field Guide 3D Paperdoll Browsing

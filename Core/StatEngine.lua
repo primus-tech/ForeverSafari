@@ -112,24 +112,41 @@ function SE:GenerateAbilities(creatureType, family)
     local abilities = {}
     
     -- Assign family-specific starter moves
-    if family == "Canine" then
+    if family == "Canine" or family == "Wolf" or family == "Fox" then
         table.insert(abilities, "Bite")
-    elseif family == "Feline" or family == "Raptor" then
+    elseif family == "Feline" or family == "Cat" or family == "Raptor" then
         table.insert(abilities, "Claw_Frenzy")
-    elseif family == "Bear" or family == "Boar" or family == "Kodo" then
-        table.insert(abilities, "Tackle")
     elseif family == "Spider" or family == "Scorpid" then
         table.insert(abilities, "Poison_Sting")
-    elseif family == "Bat" or family == "Undead" then
+    elseif family == "Bear" or family == "Boar" or family == "Kodo" or family == "Gorilla" or family == "Tallstrider" then
+        table.insert(abilities, "Tackle")
+    elseif family == "Bat" then
         table.insert(abilities, "Shadow_Fang")
-    elseif family == "Elemental" then
-        table.insert(abilities, "Flame_Breath")
-    elseif family == "Mechanical" then
-        table.insert(abilities, "Cog_Strike")
-    elseif family == "Aquatic" or family == "Reptile" then
+    elseif family == "Crab" or family == "Crocolisk" or family == "Aquatic" or creatureType == "Aquatic" then
         table.insert(abilities, "Water_Jet")
+    elseif creatureType == "Dragonkin" then
+        table.insert(abilities, "Tail_Sweep")
+    elseif creatureType == "Elemental" then
+        table.insert(abilities, "Flame_Breath")
+    elseif creatureType == "Flying" then
+        table.insert(abilities, "Peck")
+    elseif creatureType == "Humanoid" then
+        table.insert(abilities, "Mortal_Strike")
+    elseif creatureType == "Magic" then
+        table.insert(abilities, "Arcane_Blast")
+    elseif creatureType == "Mechanical" then
+        table.insert(abilities, "Cog_Strike")
+    elseif creatureType == "Undead" then
+        table.insert(abilities, "Shadow_Fang")
+    elseif creatureType == "Beast" then
+        table.insert(abilities, "Bite")
     else
         table.insert(abilities, "Tackle")
+    end
+
+    -- Safety guarantee: ensures at least 1 legal, registered ability always exists
+    if #abilities == 0 or not C.ABILITIES or not C.ABILITIES[abilities[1]] then
+        abilities = { "Tackle" }
     end
 
     return abilities
