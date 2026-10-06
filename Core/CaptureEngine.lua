@@ -92,8 +92,8 @@ function CE:CanInitiateSnare(unit)
     if isSecret(name) then name = "Wild Creature" end
     local creatureType = C.NormalizeCreatureType(rawType, name)
 
-    if C.ELIGIBLE_CAPTURE_TYPES and not C.ELIGIBLE_CAPTURE_TYPES[creatureType] and creatureType == "Unknown" then
-        return false, "Quarry is ineligible for field research."
+    if rawType == "Humanoid" or rawType == "Giant" or creatureType == "Humanoid" or (C.ELIGIBLE_CAPTURE_TYPES and not C.ELIGIBLE_CAPTURE_TYPES[creatureType]) then
+        return false, "Humanoids and civilized targets cannot be snared!"
     end
 
     return true, "Eligible"

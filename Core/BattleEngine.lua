@@ -594,6 +594,13 @@ function BE:ThrowCageInCombat(cageId)
     local enemy = BE.State.enemyMob
     if not enemy then return end
 
+    if enemy.creatureType == "Humanoid" or (C.ELIGIBLE_CAPTURE_TYPES and not C.ELIGIBLE_CAPTURE_TYPES[enemy.creatureType]) then
+        BE.State.dialogueText = "Humanoids cannot be captured!"
+        BE:AddLog("|cffff4444Humanoids and civilized targets cannot be captured!|r")
+        if ForeverSafari.BattleFrame then ForeverSafari.BattleFrame:UpdateUI() end
+        return
+    end
+
     DB:RemoveItem(cageId, 1)
     local cageData = C.CAGES[cageId] or C.CAGES["copper_cage"]
     local hpPct = (enemy.currentHP / enemy.maxHP) * 100

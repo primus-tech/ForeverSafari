@@ -411,9 +411,6 @@ function C.NormalizeCreatureType(rawType, mobName)
     elseif clean == "flying" then
         return "Flying"
     elseif clean == "humanoid" or clean == "giant" then
-        if mobName and string.find(string.lower(mobName), "murloc") then
-            return "Aquatic"
-        end
         return "Humanoid"
     elseif clean == "magic" or clean == "demon" or clean == "aberration" then
         return "Magic"
@@ -428,7 +425,7 @@ end
 
 -- Default 3D Model Display IDs for the 9 Types and Iconic Mobs (CreatureDisplayInfo IDs)
 C.DEFAULT_DISPLAY_IDS = {
-    ["Aquatic"]     = 1042, -- Murloc
+    ["Aquatic"]     = 1153, -- Crawler / Sea Crab
     ["Beast"]       = 903,  -- Elwynn Timber Wolf / Forest Wolf
     ["Dragonkin"]   = 300,  -- Black Whelp
     ["Elemental"]   = 114,  -- Fire Elemental
@@ -528,7 +525,7 @@ C.CAGES = {
     }
 }
 
--- Eligible Wild Creature Types for Field Snaring
+-- Eligible Wild Creature Types for Field Snaring (Humanoids are strictly prohibited)
 C.ELIGIBLE_CAPTURE_TYPES = {
     ["Aquatic"] = true,
     ["Beast"] = true,
@@ -536,7 +533,7 @@ C.ELIGIBLE_CAPTURE_TYPES = {
     ["Dragonkin"] = true,
     ["Elemental"] = true,
     ["Flying"] = true,
-    ["Humanoid"] = true,
+    ["Humanoid"] = false,
     ["Magical"] = true,
     ["Mechanical"] = true,
     ["Undead"] = true,
