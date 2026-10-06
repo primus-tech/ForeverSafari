@@ -1,6 +1,6 @@
 --[[
     Forever Safari: Minimap Button
-    Provides quick access to the Field Guide Journal, Safari Supplies, and displays active companion overview on hover.
+    Provides quick access to the Field Guide Journal, Safari Bag, Safari Dispatch, and displays active companion overview on hover.
     Reflects the 4 core stats (Health, Attack, Defense, Speed).
 ]]
 
@@ -41,16 +41,16 @@ function MB:Initialize()
     -- Click Handlers
     btn:SetScript("OnClick", function(self, button)
         if IsShiftKeyDown() or button == "MiddleButton" then
-            if ForeverSafari.SafariBagFrame then
-                ForeverSafari.SafariBagFrame:Toggle()
+            if ForeverSafari.SafariMailFrame then
+                ForeverSafari.SafariMailFrame:ToggleStandalone()
             end
         elseif button == "LeftButton" then
             if ForeverSafari.JournalFrame then
                 ForeverSafari.JournalFrame:Toggle()
             end
         elseif button == "RightButton" then
-            if ForeverSafari.ShopFrame then
-                ForeverSafari.ShopFrame:Toggle()
+            if ForeverSafari.SafariBagFrame then
+                ForeverSafari.SafariBagFrame:Toggle()
             end
         end
     end)
@@ -97,8 +97,8 @@ function MB:Initialize()
 
         GameTooltip:AddLine(" ")
         GameTooltip:AddLine("|cff00ff00<Left Click>|r Open Field Guide & Team")
-        GameTooltip:AddLine("|cff00ff00<Right Click>|r Open Safari Supplies Shop")
-        GameTooltip:AddLine("|cff00ff00<Middle Click>|r or |cff00ff00<Shift-Click>|r Open Safari Bag")
+        GameTooltip:AddLine("|cff00ff00<Right Click>|r Open Virtual Safari Bag")
+        GameTooltip:AddLine("|cff00ff00<Middle Click>|r or |cff00ff00<Shift-Click>|r Safari Dispatch & Bounties")
         GameTooltip:AddLine("|cffaaaaaa<Drag>|r Move Minimap Button")
         GameTooltip:Show()
     end)
