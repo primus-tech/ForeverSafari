@@ -40,12 +40,22 @@ function Mail:OnMailboxOpen()
 
     -- Create or attach custom Tab 3 to MailFrame
     if not mailTabBtn then
-        mailTabBtn = CreateFrame("Button", "ForeverSafariMailTab", MailFrame, "CharacterFrameTabButtonTemplate")
+        local ok, btn = pcall(CreateFrame, "Button", "ForeverSafariMailTab", MailFrame, "PanelTabButtonTemplate")
+        if not ok or not btn then
+            btn = CreateFrame("Button", "ForeverSafariMailTab", MailFrame, "BackdropTemplate")
+            Theme:ApplyButtonBackdrop(btn)
+        end
+        mailTabBtn = btn
         mailTabBtn:SetText("Safari Dispatch")
+        if PanelTemplates_TabResize then
+            pcall(PanelTemplates_TabResize, mailTabBtn, 0)
+        end
         
         -- Anchor tab to MailFrameTab2
         if MailFrameTab2 then
             mailTabBtn:SetPoint("LEFT", MailFrameTab2, "RIGHT", -14, 0)
+        elseif MailFrameTab1 then
+            mailTabBtn:SetPoint("LEFT", MailFrameTab1, "RIGHT", -14, 0)
         else
             mailTabBtn:SetPoint("BOTTOMLEFT", MailFrame, "BOTTOMLEFT", 130, -30)
         end
@@ -116,11 +126,15 @@ end
 function Mail:UpdateTabVisuals(selectedTab)
     if not mailTabBtn then return end
     if selectedTab == 3 then
-        PanelTemplates_SelectTab(mailTabBtn)
-        if MailFrameTab1 then PanelTemplates_DeselectTab(MailFrameTab1) end
-        if MailFrameTab2 then PanelTemplates_DeselectTab(MailFrameTab2) end
+        if PanelTemplates_SelectTab then
+            pcall(PanelTemplates_SelectTab, mailTabBtn)
+        end
+        if MailFrameTab1 and PanelTemplates_DeselectTab then pcall(PanelTemplates_DeselectTab, MailFrameTab1) end
+        if MailFrameTab2 and PanelTemplates_DeselectTab then pcall(PanelTemplates_DeselectTab, MailFrameTab2) end
     else
-        PanelTemplates_DeselectTab(mailTabBtn)
+        if PanelTemplates_DeselectTab then
+            pcall(PanelTemplates_DeselectTab, mailTabBtn)
+        end
     end
 end
 
@@ -149,6 +163,9 @@ function Mail:UpdateTabBadge()
         mailTabBtn:SetText("|cff00ff00* Safari Dispatch *|r")
     else
         mailTabBtn:SetText("Safari Dispatch")
+    end
+    if PanelTemplates_TabResize then
+        pcall(PanelTemplates_TabResize, mailTabBtn, 0)
     end
 end
 
