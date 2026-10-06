@@ -611,7 +611,7 @@ end
 
 function DB:GetTeam()
     local team = {}
-    for _, id in ipairs(ForeverSafariDB.team) do
+    for _, id in ipairs(ForeverSafariDB.team or {}) do
         local mob = DB:GetMobById(id)
         if mob then
             table.insert(team, mob)
@@ -622,8 +622,9 @@ end
 
 function DB:GetActiveMob()
     local team = DB:GetTeam()
+    if #team == 0 then return nil end
     local slot = ForeverSafariDB.activeSlot or 1
-    if slot > #team then
+    if slot > #team or slot < 1 then
         slot = 1
         ForeverSafariDB.activeSlot = 1
     end
@@ -631,38 +632,99 @@ function DB:GetActiveMob()
 end
 
 function DB:SetActiveSlot(slot)
-    if slot >= 1 and slot <= 4 then
+    local team = DB:GetTeam()
+    if slot >= 1 and slot <= #team then
         ForeverSafariDB.activeSlot = slot
+        if ForeverSafari.JournalFrame and ForeverSafari.JournalFrame:IsShown() then
+            ForeverSafari.JournalFrame:UpdateUI()
+        end
     end
 end
 
 function DB:SetTeamSlot(slotIndex, mobId)
-    if slotIndex < 1 or slotIndex > 4 then return end
+    if slotIndex < 1 or slotIndex > 4 or not mobId then return end
+    if not DB:GetMobById(mobId) then return end
+
+    ForeverSafariDB.team = ForeverSafariDB.team or {}
+
+    -- Check if mob is already in another slot
+    local existingIndex = nil
     for i, id in ipairs(ForeverSafariDB.team) do
         if id == mobId then
-            table.remove(ForeverSafariDB.team, i)
+            existingIndex = i
             break
         end
     end
-    ForeverSafariDB.team[slotIndex] = mobId
+
+    if existingIndex then
+        -- If already in that exact slot, do nothing
+        if existingIndex == slotIndex then return end
+        -- Swap slots if target slot has a companion
+        if ForeverSafariDB.team[slotIndex] then
+            local temp = ForeverSafariDB.team[slotIndex]
+            ForeverSafariDB.team[slotIndex] = mobId
+            ForeverSafariDB.team[existingIndex] = temp
+        else
+            -- Move to target slot
+            table.remove(ForeverSafariDB.team, existingIndex)
+            table.insert(ForeverSafariDB.team, slotIndex, mobId)
+        end
+    else
+        -- If target slot is within or directly adjacent to current team length
+        if slotIndex <= #ForeverSafariDB.team then
+            ForeverSafariDB.team[slotIndex] = mobId
+        else
+            table.insert(ForeverSafariDB.team, mobId)
+        end
+    end
+
     DB:ValidateTeam()
     if ForeverSafari.JournalFrame and ForeverSafari.JournalFrame:IsShown() then
         ForeverSafari.JournalFrame:UpdateUI()
     end
 end
 
+function DB:SwapTeamSlots(slot1, slot2)
+    if slot1 < 1 or slot1 > 4 or slot2 < 1 or slot2 > 4 or slot1 == slot2 then return end
+    ForeverSafariDB.team = ForeverSafariDB.team or {}
+    local m1 = ForeverSafariDB.team[slot1]
+    local m2 = ForeverSafariDB.team[slot2]
+    if m1 and m2 then
+        ForeverSafariDB.team[slot1] = m2
+        ForeverSafariDB.team[slot2] = m1
+        DB:ValidateTeam()
+        if ForeverSafari.JournalFrame and ForeverSafari.JournalFrame:IsShown() then
+            ForeverSafari.JournalFrame:UpdateUI()
+        end
+    end
+end
+
+function DB:RemoveTeamSlot(slotIndex)
+    ForeverSafariDB.team = ForeverSafariDB.team or {}
+    if #ForeverSafariDB.team <= 1 then return end -- Keep at least 1 companion
+    if slotIndex >= 1 and slotIndex <= #ForeverSafariDB.team then
+        table.remove(ForeverSafariDB.team, slotIndex)
+        DB:ValidateTeam()
+        if ForeverSafari.JournalFrame and ForeverSafari.JournalFrame:IsShown() then
+            ForeverSafari.JournalFrame:UpdateUI()
+        end
+    end
+end
+
 function DB:ValidateTeam()
     local validTeam = {}
+    local seen = {}
     for _, id in ipairs(ForeverSafariDB.team or {}) do
-        if DB:GetMobById(id) then
+        if DB:GetMobById(id) and not seen[id] then
             table.insert(validTeam, id)
+            seen[id] = true
         end
     end
     if #validTeam == 0 and #ForeverSafariDB.collection > 0 then
         table.insert(validTeam, ForeverSafariDB.collection[1].id)
     end
     ForeverSafariDB.team = validTeam
-    if ForeverSafariDB.activeSlot > #ForeverSafariDB.team then
+    if (ForeverSafariDB.activeSlot or 1) > #ForeverSafariDB.team or (ForeverSafariDB.activeSlot or 1) < 1 then
         ForeverSafariDB.activeSlot = 1
     end
 end

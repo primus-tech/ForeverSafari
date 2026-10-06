@@ -643,7 +643,26 @@ function Journal:BuildDossierPanel(panel)
     setActiveBtn:SetPoint("BOTTOMLEFT", abandonBtn, "TOPLEFT", 0, 4)
     setActiveBtn:SetScript("OnClick", function()
         if selectedMobId then
-            DB:SetTeamSlot(1, selectedMobId)
+            local inTeamSlot = nil
+            for idx, id in ipairs(ForeverSafariDB.team or {}) do
+                if id == selectedMobId then
+                    inTeamSlot = idx
+                    break
+                end
+            end
+            if inTeamSlot then
+                DB:SetActiveSlot(inTeamSlot)
+            else
+                local team = ForeverSafariDB.team or {}
+                if #team < 4 then
+                    table.insert(ForeverSafariDB.team, selectedMobId)
+                    DB:SetActiveSlot(#ForeverSafariDB.team)
+                else
+                    local activeSlot = ForeverSafariDB.activeSlot or 1
+                    ForeverSafariDB.team[activeSlot] = selectedMobId
+                end
+                DB:ValidateTeam()
+            end
             Journal:UpdateUI()
             PlaySound(856)
         end
@@ -785,7 +804,26 @@ function Journal:BuildGridView(parent)
         leaderBtn:SetPoint("BOTTOMRIGHT", card, "BOTTOMRIGHT", -8, 8)
         leaderBtn:SetScript("OnClick", function()
             if card.mobId then
-                DB:SetTeamSlot(1, card.mobId)
+                local inTeamSlot = nil
+                for idx, id in ipairs(ForeverSafariDB.team or {}) do
+                    if id == card.mobId then
+                        inTeamSlot = idx
+                        break
+                    end
+                end
+                if inTeamSlot then
+                    DB:SetActiveSlot(inTeamSlot)
+                else
+                    local team = ForeverSafariDB.team or {}
+                    if #team < 4 then
+                        table.insert(ForeverSafariDB.team, card.mobId)
+                        DB:SetActiveSlot(#ForeverSafariDB.team)
+                    else
+                        local activeSlot = ForeverSafariDB.activeSlot or 1
+                        ForeverSafariDB.team[activeSlot] = card.mobId
+                    end
+                    DB:ValidateTeam()
+                end
                 Journal:UpdateUI()
                 PlaySound(856)
             end
@@ -885,6 +923,27 @@ function Journal:UpdateGridView()
                 card:SetBackdropBorderColor(0.0, 1.0, 0.6, 1.0)
             else
                 card:SetBackdropBorderColor(0.2, 0.28, 0.38, 0.7)
+            end
+
+            if card.LeaderBtn then
+                local inTeamSlot = nil
+                for idx, id in ipairs(ForeverSafariDB.team or {}) do
+                    if id == mob.id then
+                        inTeamSlot = idx
+                        break
+                    end
+                end
+                local activeSlot = ForeverSafariDB.activeSlot or 1
+                if inTeamSlot and inTeamSlot == activeSlot then
+                    card.LeaderBtn:SetText("|cff00ff00Active Leader|r")
+                    card.LeaderBtn:Disable()
+                elseif inTeamSlot then
+                    card.LeaderBtn:SetText(string.format("Make Leader (#%d)", inTeamSlot))
+                    card.LeaderBtn:Enable()
+                else
+                    card.LeaderBtn:SetText("+ Add to Party")
+                    card.LeaderBtn:Enable()
+                end
             end
 
             card:Show()
@@ -1154,15 +1213,52 @@ function Journal:BuildTeamDock(parent)
         slot.HP = sHp
 
         slot:EnableMouse(true)
-        slot:SetScript("OnMouseDown", function()
+        slot:SetScript("OnMouseDown", function(self, button)
             local team = DB:GetTeam()
             local member = team[i]
-            if member then
-                selectedMobId = member.id
-                Journal:SetTab("SHOWCASE")
-                PlaySound(856)
+            if button == "RightButton" then
+                if selectedMobId then
+                    DB:SetTeamSlot(i, selectedMobId)
+                    PlaySound(856)
+                end
+            else
+                if member then
+                    DB:SetActiveSlot(i)
+                    selectedMobId = member.id
+                    Journal:SetTab("SHOWCASE")
+                    Journal:UpdateUI()
+                    PlaySound(856)
+                elseif selectedMobId then
+                    DB:SetTeamSlot(i, selectedMobId)
+                    DB:SetActiveSlot(i)
+                    Journal:UpdateUI()
+                    PlaySound(856)
+                end
             end
         end)
+
+        slot:SetScript("OnEnter", function(self)
+            local team = DB:GetTeam()
+            local member = team[i]
+            local activeSlot = ForeverSafariDB.activeSlot or 1
+            GameTooltip:SetOwner(self, "ANCHOR_TOP")
+            if member then
+                local pName = member.nickname ~= "" and member.nickname or member.name
+                GameTooltip:AddLine(string.format("Party Slot %d: %s", i, pName), 1, 1, 1)
+                GameTooltip:AddLine(string.format("Level %d %s | %d/%d HP", member.level, member.creatureType, member.currentHP, member.maxHP), 0.8, 0.8, 0.8)
+                if i == activeSlot then
+                    GameTooltip:AddLine("|cff00ff00[Active Battle Leader]|r", 0, 1, 0)
+                else
+                    GameTooltip:AddLine("|cffaaaaaaLeft-Click: Set as Active Battle Leader|r", 0.7, 0.7, 0.7)
+                end
+                GameTooltip:AddLine("|cffaaaaaaRight-Click: Replace with Selected Companion|r", 0.7, 0.7, 0.7)
+            else
+                GameTooltip:AddLine(string.format("Party Slot %d (Empty)", i), 1, 1, 1)
+                GameTooltip:AddLine("|cffaaaaaaClick to assign selected companion to this slot|r", 0.7, 0.7, 0.7)
+            end
+            GameTooltip:Show()
+        end)
+        slot:SetScript("OnLeave", function() GameTooltip:Hide() end)
 
         parent.TeamSlots[i] = slot
     end
@@ -1592,6 +1688,27 @@ function Journal:UpdateShowcase()
                 mCard.Info:SetText("|cffaaaaaaClick to train|r")
                 mCard:Show()
             end
+        end
+    end
+
+    if panel.SetActiveBtn then
+        local inTeamSlot = nil
+        for idx, id in ipairs(ForeverSafariDB.team or {}) do
+            if id == mob.id then
+                inTeamSlot = idx
+                break
+            end
+        end
+        local activeSlot = ForeverSafariDB.activeSlot or 1
+        if inTeamSlot and inTeamSlot == activeSlot then
+            panel.SetActiveBtn:SetText("|cff00ff00[Active Leader]|r")
+            panel.SetActiveBtn:Disable()
+        elseif inTeamSlot then
+            panel.SetActiveBtn:SetText(string.format("Make Leader (Slot %d)", inTeamSlot))
+            panel.SetActiveBtn:Enable()
+        else
+            panel.SetActiveBtn:SetText("+ Add to Party")
+            panel.SetActiveBtn:Enable()
         end
     end
 end

@@ -31,6 +31,7 @@ BE.State = {
     enemyMob = nil,
     isPvP = false,
     turn = "player", -- "player" or "enemy"
+    forcedSwitch = false,
     round = 1,
     buffs = {
         player = {},
@@ -87,6 +88,42 @@ function BE:TickCooldowns(side)
     end
 end
 
+-- Check if player has any conscious companion on team
+function BE:HasConsciousTeamMember()
+    local team = DB:GetTeam()
+    for _, mob in ipairs(team) do
+        if (mob.currentHP or 0) > 0 then
+            return true
+        end
+    end
+    return false
+end
+
+-- Handle Player Companion Faint
+function BE:HandlePlayerFaint()
+    local player = BE.State.playerMob
+    local pName = (player and player.nickname ~= "" and player.nickname) or (player and player.name) or "Your companion"
+    if player then
+        player.currentHP = 0
+    end
+
+    if not BE:HasConsciousTeamMember() then
+        BE:HandleDefeat()
+        return
+    end
+
+    BE.State.forcedSwitch = true
+    BE.State.turn = "player"
+    BE.State.dialogueText = string.format("%s fainted! Choose your next companion!", pName)
+    BE:AddLog(string.format("|cffff4444%s fainted! Choose your next companion!|r", pName))
+    PlaySound(847)
+
+    if ForeverSafari.BattleFrame then
+        ForeverSafari.BattleFrame:SetMenuMode("PARTY")
+        ForeverSafari.BattleFrame:UpdateUI()
+    end
+end
+
 -- Start a Wild Battle against targeted unit or generated mob
 function BE:StartWildBattle(unit)
     unit = unit or "target"
@@ -97,8 +134,21 @@ function BE:StartWildBattle(unit)
     end
 
     if (activeMob.currentHP or 0) <= 0 then
-        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Your active companion is fainted! Use a Revival Crystal or Healing Salve.|r")
-        return false
+        -- Attempt to auto-promote first conscious team member
+        local team = DB:GetTeam()
+        local foundConscious = nil
+        for slotIdx, mob in ipairs(team) do
+            if (mob.currentHP or 0) > 0 then
+                foundConscious = mob
+                DB:SetActiveSlot(slotIdx)
+                activeMob = mob
+                break
+            end
+        end
+        if not foundConscious then
+            DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444All companions in your party have fainted! Visit an Innkeeper, Pet Trainer, or use a Revival Crystal.|r")
+            return false
+        end
     end
 
     local name = UnitName(unit)
@@ -249,7 +299,7 @@ function BE:ExecutePlayerMove(moveKey)
         BE.State.passives.undeadImmortal.player = 0
         player.currentHP = 0
         BE:AddLog(string.format("|cff9966cc%s's Unholy Immortality has expired!|r", pName))
-        BE:HandleDefeat()
+        BE:HandlePlayerFaint()
         return
     end
 
@@ -336,8 +386,7 @@ function BE:ExecuteEnemyTurn()
     -- Check if player fainted
     if player.currentHP <= 0 then
         if not BE:CheckDefeatPassives(player, "player") then
-            player.currentHP = 0
-            BE:HandleDefeat()
+            BE:HandlePlayerFaint()
             return
         end
     end
@@ -596,10 +645,18 @@ end
 
 -- Switch active companion mid-battle
 function BE:SwitchPlayerMob(mobId)
-    if not BE.State.inBattle or BE.State.turn ~= "player" then return end
+    if not BE.State.inBattle then return end
+    if BE.State.turn ~= "player" and not BE.State.forcedSwitch then return end
+
     local newMob = DB:GetMobById(mobId)
-    if not newMob or newMob.currentHP <= 0 then
+    if not newMob or (newMob.currentHP or 0) <= 0 then
         BE.State.dialogueText = "That companion has fainted!"
+        if ForeverSafari.BattleFrame then ForeverSafari.BattleFrame:UpdateUI() end
+        return
+    end
+
+    if BE.State.playerMob and newMob.id == BE.State.playerMob.id and (BE.State.playerMob.currentHP or 0) > 0 then
+        BE.State.dialogueText = "That companion is already in battle!"
         if ForeverSafari.BattleFrame then ForeverSafari.BattleFrame:UpdateUI() end
         return
     end
@@ -608,18 +665,29 @@ function BE:SwitchPlayerMob(mobId)
     BE:InitMoveStates(newMob, "player")
 
     local pName = newMob.nickname ~= "" and newMob.nickname or newMob.name
-    BE.State.dialogueText = string.format("Go! %s!", pName)
     BE:AddLog(string.format("Switched to |cff00ff99%s|r (Level %d %s)!", pName, newMob.level, newMob.creatureType))
 
     if ForeverSafari.BattleFrame then
         ForeverSafari.BattleFrame:UpdateModels()
-        ForeverSafari.BattleFrame:UpdateUI()
     end
 
-    BE.State.turn = "enemy"
-    C_Timer.After(1.4, function()
-        BE:ExecuteEnemyTurn()
-    end)
+    if BE.State.forcedSwitch then
+        BE.State.forcedSwitch = false
+        BE.State.turn = "player"
+        BE.State.dialogueText = string.format("Go! %s! What will %s do?", pName, pName)
+        if ForeverSafari.BattleFrame then
+            ForeverSafari.BattleFrame:SetMenuMode("MAIN")
+        end
+    else
+        BE.State.turn = "enemy"
+        BE.State.dialogueText = string.format("Go! %s!", pName)
+        if ForeverSafari.BattleFrame then
+            ForeverSafari.BattleFrame:SetMenuMode("MAIN")
+        end
+        C_Timer.After(1.4, function()
+            BE:ExecuteEnemyTurn()
+        end)
+    end
 end
 
 -- Handle Battle Victory

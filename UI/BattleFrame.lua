@@ -383,16 +383,25 @@ function BF:BuildPartyMenu(parent)
 
     -- Back Button
     local backBtn = CreateFrame("Button", nil, p, "UIPanelButtonTemplate")
-    backBtn:SetSize(65, 18)
+    backBtn:SetSize(80, 18)
     backBtn:SetPoint("BOTTOMRIGHT", p, "BOTTOMRIGHT", -4, 0)
     backBtn:SetText("< BACK")
-    backBtn:SetScript("OnClick", function() BF:SetMenuMode("MAIN") end)
+    backBtn:SetScript("OnClick", function()
+        if not BE.State.forcedSwitch then
+            BF:SetMenuMode("MAIN")
+        end
+    end)
+    p.BackBtn = backBtn
 
     p:Hide()
 end
 
 -- Switch Menu Sub-Panels
 function BF:SetMenuMode(mode)
+    if BE.State.forcedSwitch and mode ~= "PARTY" then
+        return
+    end
+
     menuMode = mode
     frame.MainMenu:Hide()
     frame.FightMenu:Hide()
@@ -574,6 +583,17 @@ function BF:UpdateUI()
         end
     end
 
+    -- Update Party Menu Back Button
+    if frame.PartyMenu and frame.PartyMenu.BackBtn then
+        if BE.State.forcedSwitch then
+            frame.PartyMenu.BackBtn:Disable()
+            frame.PartyMenu.BackBtn:SetText("SELECT PET")
+        else
+            frame.PartyMenu.BackBtn:Enable()
+            frame.PartyMenu.BackBtn:SetText("< BACK")
+        end
+    end
+
     -- Update Party Buttons
     local team = DB:GetTeam()
     for i = 1, 4 do
@@ -581,18 +601,24 @@ function BF:UpdateUI()
         local mob = team[i]
         if mob then
             btn.mobId = mob.id
-            btn.Title:SetText(string.format("%s (Lv %d)", mob.nickname ~= "" and mob.nickname or mob.name, mob.level))
-            if mob.id == player.id then
+            local pName = mob.nickname ~= "" and mob.nickname or mob.name
+            if player and mob.id == player.id then
                 btn:Disable()
-                btn.Title:SetText(string.format("|cff00ff00%s (Active)|r", mob.nickname ~= "" and mob.nickname or mob.name))
-            elseif mob.currentHP <= 0 then
+                if (mob.currentHP or 0) <= 0 then
+                    btn.Title:SetText(string.format("|cffff4444%s (KO'd)|r", pName))
+                else
+                    btn.Title:SetText(string.format("|cff00ff00%s (Active)|r", pName))
+                end
+            elseif (mob.currentHP or 0) <= 0 then
                 btn:Disable()
-                btn.Title:SetText(string.format("|cffff4444%s (Fnt)|r", mob.nickname ~= "" and mob.nickname or mob.name))
+                btn.Title:SetText(string.format("|cffff4444%s (KO'd)|r", pName))
             else
                 btn:Enable()
+                btn.Title:SetText(string.format("|cffffffff%s|r |cff00ff99Lv%d (%d/%d)|r", pName, mob.level, mob.currentHP, mob.maxHP))
             end
             btn:Show()
         else
+            btn.mobId = nil
             btn:Hide()
         end
     end
