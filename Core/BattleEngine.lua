@@ -124,6 +124,69 @@ function BE:HandlePlayerFaint()
     end
 end
 
+-- Handle Enemy Companion Faint (PvE ends immediately; PvP prompts for next mob)
+function BE:HandleEnemyFaint()
+    local enemy = BE.State.enemyMob
+    local eName = enemy and enemy.name or "Enemy target"
+    if enemy then enemy.currentHP = 0 end
+
+    -- 1. PvE Wild / Dungeon Encounter: Battle ends immediately with Victory!
+    if not BE.State.isPvP then
+        BE:HandleVictory()
+        return
+    end
+
+    -- 2. PvP Duel: Check if opponent has remaining conscious team members
+    local hasRemaining = false
+    if BE.State.enemyTeam then
+        for _, mob in ipairs(BE.State.enemyTeam) do
+            if (mob.currentHP or 0) > 0 then
+                hasRemaining = true
+                break
+            end
+        end
+    end
+
+    if not hasRemaining then
+        -- All opponent companions fainted: Victory!
+        BE:HandleVictory()
+        return
+    end
+
+    -- Opponent has remaining companions: Prompt for their next companion
+    BE.State.turn = "enemy"
+    BE.State.dialogueText = string.format("Opponent's %s fainted! Waiting for opponent's next companion...", eName)
+    BE:AddLog(string.format("|cffff4444Opponent's %s fainted! Waiting for opponent to switch...|r", eName))
+
+    if ForeverSafari.Comms and BE.State.opponentName then
+        ForeverSafari.Comms:SendMessage("OPPONENT_FAINTED", "", BE.State.opponentName)
+    end
+
+    if ForeverSafari.BattleFrame then
+        ForeverSafari.BattleFrame:UpdateUI()
+    end
+end
+
+-- Switch enemy companion during PvP duel
+function BE:SwitchEnemyMob(newMob)
+    if not BE.State.inBattle or not BE.State.isPvP then return end
+    if not newMob or (newMob.currentHP or 0) <= 0 then return end
+
+    BE.State.enemyMob = newMob
+    BE:InitMoveStates(newMob, "enemy")
+
+    local eName = newMob.nickname ~= "" and newMob.nickname or newMob.name
+    BE.State.dialogueText = string.format("Opponent sent out %s!", eName)
+    BE:AddLog(string.format("Opponent sent out |cffff6666%s|r (Level %d %s)!", eName, newMob.level, newMob.creatureType))
+
+    if ForeverSafari.BattleFrame then
+        ForeverSafari.BattleFrame:UpdateModels()
+        ForeverSafari.BattleFrame:UpdateUI()
+    end
+
+    BE.State.turn = "player"
+end
+
 -- Start a Wild Battle against targeted unit or generated mob
 function BE:StartWildBattle(unit)
     unit = unit or "target"
@@ -306,8 +369,7 @@ function BE:ExecutePlayerMove(moveKey)
     -- Check if enemy fainted
     if enemy.currentHP <= 0 then
         if not BE:CheckDefeatPassives(enemy, "enemy") then
-            enemy.currentHP = 0
-            BE:HandleVictory()
+            BE:HandleEnemyFaint()
             return
         end
     end
@@ -379,7 +441,7 @@ function BE:ExecuteEnemyTurn()
         BE.State.passives.undeadImmortal.enemy = 0
         enemy.currentHP = 0
         BE:AddLog(string.format("|cff9966ccWild %s's Unholy Immortality has expired!|r", enemy.name))
-        BE:HandleVictory()
+        BE:HandleEnemyFaint()
         return
     end
 
