@@ -539,7 +539,9 @@ function Mail:UpdateUI()
                 end
                 if currentDispatch.rewards and currentDispatch.rewards.items then
                     for _, itm in ipairs(currentDispatch.rewards.items) do
-                        local itmData = C.ITEMS[itm.id] or C.CAGES[itm.id] or {}
+                        local itemsDB = C.SAFARI_ITEMS or C.ITEMS or {}
+                        local cagesDB = C.CAGES or {}
+                        local itmData = itemsDB[itm.id] or cagesDB[itm.id] or {}
                         GameTooltip:AddDoubleLine(itmData.name or itm.id, string.format("x%d", itm.count), 0.8, 0.9, 1, 1, 1, 1)
                     end
                 end

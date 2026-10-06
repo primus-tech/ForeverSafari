@@ -343,6 +343,7 @@ C.SAFARI_ITEMS = {
     ["food_avian"]        = { name = "Crisp Bird Wing",        category = "Family Nourishment", icon = "INV_Misc_Food_17", quality = 2, color = "1eff00", family = "Avian", desc = "Plump bird wing. Right-Click to feed an Avian companion for +25 Attunement." },
     ["food_wind serpent"] = { name = "Serpent Scale Essence",  category = "Family Nourishment", icon = "INV_Misc_MonsterScales_02", quality = 2, color = "1eff00", family = "Wind Serpent", desc = "Sparkling essence. Right-Click to feed a Wind Serpent for +25 Attunement." },
 }
+C.ITEMS = C.SAFARI_ITEMS
 
 -- 🥩 Family Nourishment Loot Tables (Harvested from wild encounters)
 C.FAMILY_NOURISHMENT = {
