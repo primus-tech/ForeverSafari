@@ -139,8 +139,9 @@
 ## 📍 Phase 10: Gossip Store & Strict Vendor Specialization (Completed ✅)
 * [x] **Zero Out-of-World Store Access**:
   * Shop opening from field commands, bags, and journals removed. Access is strictly gated through NPC gossip interaction.
-* [x] **Stable Master Specialization (Safari Nets & Capture Gear)**:
+* [x] **Pet Trainer Specialization (Safari Nets & Capture Gear — Universal Class Access)**:
   * Gossip Button: `[ 🐾 Browse Safari Nets & Gear ]`
+  * Accessible to all classes (Hunters and non-hunters alike).
   * Offers Copper, Iron, Mithril Safari Nets, Arcanite Capsules, Revival Crystals, and Salves.
 * [x] **Innkeeper Specialization (Safari Treats & Food Provisions)**:
   * Gossip Button: `[ 🍖 Browse Safari Treats & Food Provisions ]`

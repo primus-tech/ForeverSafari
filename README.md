@@ -93,9 +93,10 @@ Companions progress through bonding, feeding, and battlefield survival rather th
 * **Nesingwary Field Bounties**: Official dispatches distribute quest bounties (Field Stalking, Wild Nourishment, Apex Rares, Dungeon Catalysts) with live objective tracking and reward claiming.
 * **Standalone Field Reader**: Accessible anywhere via `/fsmail` or `/safari mail`.
 
-### 9. Innkeeper & Stable Master Vendor Specialization (Gossip Box Only)
+### 9. Innkeeper & Pet Trainer Vendor Specialization (Gossip Box Only)
 * **Zero Out-of-World Access**: Supply and food purchases cannot be made out in the field. Store interfaces are accessed **exclusively by clicking gossip menu options** when interacting with authorized NPCs in town.
-* **Stable Masters (Safari Nets & Capture Gear)**:
+* **Pet Trainers (Safari Nets & Capture Gear — Universal Class Access)**:
+  * **Accessible to ALL Classes**: Non-Hunter classes (Warriors, Mages, Rogues, Priests, Warlocks, Paladins, Shamans, Druids) and Hunters alike can interact with town Pet Trainers to access the gossip window.
   * Gossip Option: `[ 🐾 Browse Safari Nets & Gear ]`
   * Inventory: Copper, Iron, Mithril Safari Nets, Arcanite Capsules, Revival Crystals, and Salves.
 * **Innkeepers (Safari Treats & Food Provisions)**:

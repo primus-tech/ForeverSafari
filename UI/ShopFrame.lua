@@ -1,7 +1,7 @@
 --[[
     Forever Safari: Nesingwary Safari Merchant System
     STRICTLY RESTRICTED: Shop access is ONLY granted via clicking the gossip interaction
-    at Stable Masters (for Safari Nets & Gear) and Innkeepers (for Safari Treats & Food Provisions).
+    at Pet Trainers (for Safari Nets & Gear) and Innkeepers (for Safari Treats & Food Provisions).
 ]]
 
 local addonName, ns = ...
@@ -82,7 +82,7 @@ function Shop:Initialize()
     scrollFrame:SetScrollChild(content)
     frame.Content = content
 
-    -- Register Gossip Events for Stable Master & Innkeeper Detection
+    -- Register Gossip Events for Pet Trainer & Innkeeper Detection
     Shop:RegisterGossipEvents()
 
     frame:Hide()
@@ -95,7 +95,7 @@ function Shop:IsAtAuthorizedVendor()
     local unit = UnitExists("npc") and "npc" or (UnitExists("target") and "target" or nil)
     
     if unit then
-        -- 1. Scan Unit Tooltip for Innkeeper / Stable Master titles
+        -- 1. Scan Unit Tooltip for Innkeeper / Pet Trainer / Stable Master titles
         local tooltip = ForeverSafariTooltipScan or CreateFrame("GameTooltip", "ForeverSafariTooltipScan", nil, "GameTooltipTemplate")
         tooltip:SetOwner(WorldFrame, "ANCHOR_NONE")
         tooltip:ClearLines()
@@ -106,8 +106,8 @@ function Shop:IsAtAuthorizedVendor()
                 local text = line:GetText()
                 if text and not isSecret(text) then
                     local lower = string.lower(text)
-                    if string.find(lower, "stable master") or string.find(lower, "stablemaster") or string.find(lower, "stable") then
-                        return true, "Stable Master"
+                    if string.find(lower, "pet trainer") or string.find(lower, "battle pet") or string.find(lower, "pet master") or string.find(lower, "beast trainer") or string.find(lower, "trainer") or string.find(lower, "stable master") or string.find(lower, "stablemaster") or string.find(lower, "stable") then
+                        return true, "Pet Trainer"
                     elseif string.find(lower, "innkeeper") or string.find(lower, "taverner") or string.find(lower, "barkeeper") or string.find(lower, "inn") then
                         return true, "Innkeeper"
                     end
@@ -119,8 +119,8 @@ function Shop:IsAtAuthorizedVendor()
         local unitName = UnitName(unit)
         if unitName and not isSecret(unitName) then
             local lower = string.lower(unitName)
-            if string.find(lower, "stable master") or string.find(lower, "stablemaster") then
-                return true, "Stable Master"
+            if string.find(lower, "pet trainer") or string.find(lower, "battle pet") or string.find(lower, "pet master") or string.find(lower, "beast trainer") or string.find(lower, "stable master") or string.find(lower, "stablemaster") then
+                return true, "Pet Trainer"
             elseif string.find(lower, "innkeeper") then
                 return true, "Innkeeper"
             end
@@ -134,8 +134,8 @@ function Shop:IsAtAuthorizedVendor()
             for _, opt in ipairs(options) do
                 local name = opt.name or opt.title or ""
                 local lower = string.lower(name)
-                if string.find(lower, "stable") or string.find(lower, "pet") then
-                    return true, "Stable Master"
+                if string.find(lower, "pet") or string.find(lower, "train") or string.find(lower, "stable") or string.find(lower, "beast") then
+                    return true, "Pet Trainer"
                 elseif string.find(lower, "inn") or string.find(lower, "home") or string.find(lower, "bind") or string.find(lower, "hearthstone") then
                     return true, "Innkeeper"
                 end
@@ -147,9 +147,9 @@ function Shop:IsAtAuthorizedVendor()
     local gText = (C_GossipInfo and C_GossipInfo.GetText and C_GossipInfo.GetText()) or (GetGossipText and GetGossipText()) or ""
     if gText and not isSecret(gText) and gText ~= "" then
         local lower = string.lower(gText)
-        if string.find(lower, "stable") or string.find(lower, "beast") then
-            return true, "Stable Master"
-        elseif string.find(lower, "inn") or string.find(lower, "hearthstone") or string.find(lower, "home") or string.find(lower, "bed") or string.find(lower, "rest") then
+        if string.find(lower, "pet") or string.find(lower, "train") or string.find(lower, "stable") or string.find(lower, "beast") or string.find(lower, "tame") then
+            return true, "Pet Trainer"
+        elseif string.find(lower, "inn") or string.find(lower, "hearthstone") or string.find(lower, "home") or string.find(lower, "bed") or string.find(lower, "rest") or string.find(lower, "tavern") then
             return true, "Innkeeper"
         end
     end
@@ -175,7 +175,7 @@ function Shop:OnGossipShow()
     local isAuthorized, vType = Shop:IsAtAuthorizedVendor()
     if isAuthorized then
         Shop.isAtVendor = true
-        Shop.vendorType = vType or "Stable Master"
+        Shop.vendorType = vType or "Pet Trainer"
 
         -- Create or Attach Gossip Menu Button to GossipFrame
         if GossipFrame then
@@ -218,7 +218,7 @@ function Shop:OnGossipShow()
                         GameTooltip:AddLine("Authorized Innkeeper merchant. Purchase Safari Treats, Feasts, and fresh diets.", 1, 1, 1, true)
                     else
                         GameTooltip:AddLine("Nesingwary Safari Supplies", 1, 0.82, 0)
-                        GameTooltip:AddLine("Authorized Stable Master merchant. Purchase Safari Nets, capsules, and gear.", 1, 1, 1, true)
+                        GameTooltip:AddLine("Authorized Pet Trainer merchant. Purchase Safari Nets, capsules, and gear.", 1, 1, 1, true)
                     end
                     GameTooltip:Show()
                 end)
@@ -258,7 +258,7 @@ function Shop:OnGossipClosed()
 end
 
 -- =========================================================================
--- 🛒 SHOP ITEMS (STABLE MASTER GEAR vs INNKEEPER FOOD)
+-- 🛒 SHOP ITEMS (PET TRAINER GEAR vs INNKEEPER FOOD)
 -- =========================================================================
 function Shop:BuildShopItems()
     local content = frame.Content
@@ -321,10 +321,10 @@ function Shop:BuildShopItems()
             end
         end
     else
-        -- STABLE MASTER: Nets, Capsules & Field Gear
+        -- PET TRAINER: Nets, Capsules & Field Gear
         frame.Header.Title:SetText("Nesingwary Safari Supplies")
-        frame.VendorStatus:SetText("|cff00ff00[ Stable Master — Nets & Gear ]|r")
-        frame.BannerText:SetText("|cff00ff99🐾 Licensed Stable Master: Stock up on field research nets, capsules, and revival gear.|r")
+        frame.VendorStatus:SetText("|cff00ff00[ Pet Trainer — Nets & Gear ]|r")
+        frame.BannerText:SetText("|cff00ff99🐾 Licensed Pet Trainer: Stock up on field research nets, capsules, and revival gear.|r")
 
         local sec1 = content:CreateFontString(nil, "OVERLAY", "GameFontHighlightLarge")
         sec1:SetPoint("TOPLEFT", 6, yOffset)
@@ -416,7 +416,7 @@ function Shop:BuyItem(itemId, count, unitPrice, itemName)
     -- Enforce Vendor Presence
     local isAuthorized, vType = Shop:IsAtAuthorizedVendor()
     if not isAuthorized and not Shop.isAtVendor then
-        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Purchases restricted! You must speak with an Innkeeper or Stable Master.|r")
+        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Purchases restricted! You must speak with an Innkeeper or Pet Trainer.|r")
         PlaySound(847)
         if frame and frame:IsShown() then frame:Hide() end
         return
@@ -468,16 +468,16 @@ end
 function Shop:ShowShop(fromVendor)
     local isAuth, vType = Shop:IsAtAuthorizedVendor()
     if not isAuth and not fromVendor then
-        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Store access is restricted! Speak with a Stable Master (for Safari Nets & Gear) or an Innkeeper (for Safari Treats & Food Provisions).|r")
+        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Store access is restricted! Speak with a Pet Trainer (for Safari Nets & Gear) or an Innkeeper (for Safari Treats & Food Provisions).|r")
         if ForeverSafari.Toast then
-            ForeverSafari.Toast:ShowAlert("Vendor Required", "Speak to a Stable Master or Innkeeper!")
+            ForeverSafari.Toast:ShowAlert("Vendor Required", "Speak to a Pet Trainer or Innkeeper!")
         end
         PlaySound(847)
         return false
     end
 
     Shop.isAtVendor = true
-    Shop.vendorType = vType or Shop.vendorType or "Stable Master"
+    Shop.vendorType = vType or Shop.vendorType or "Pet Trainer"
 
     if not frame then Shop:Initialize() end
     Shop:BuildShopItems()
@@ -490,9 +490,9 @@ end
 function Shop:Toggle()
     local isAuth, vType = Shop:IsAtAuthorizedVendor()
     if not isAuth then
-        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Store access is restricted! Speak with a Stable Master (for Safari Nets & Gear) or an Innkeeper (for Safari Treats & Food Provisions).|r")
+        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Store access is restricted! Speak with a Pet Trainer (for Safari Nets & Gear) or an Innkeeper (for Safari Treats & Food Provisions).|r")
         if ForeverSafari.Toast then
-            ForeverSafari.Toast:ShowAlert("Vendor Required", "Speak to a Stable Master or Innkeeper!")
+            ForeverSafari.Toast:ShowAlert("Vendor Required", "Speak to a Pet Trainer or Innkeeper!")
         end
         PlaySound(847)
         return false

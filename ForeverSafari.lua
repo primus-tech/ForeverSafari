@@ -97,9 +97,9 @@ local function HandleSlash(msg)
         if ForeverSafari.ShopFrame and ForeverSafari.ShopFrame.IsAtAuthorizedVendor and ForeverSafari.ShopFrame:IsAtAuthorizedVendor() then
             Shop:Toggle()
         else
-            DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Store access is restricted! Speak with a Stable Master (for Safari Nets & Gear) or an Innkeeper (for Safari Treats & Food Provisions).|r")
+            DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Store access is restricted! Speak with a Pet Trainer (for Safari Nets & Gear) or an Innkeeper (for Safari Treats & Food Provisions).|r")
             if ForeverSafari.Toast then
-                ForeverSafari.Toast:ShowAlert("Vendor Required", "Speak to a Stable Master or Innkeeper!")
+                ForeverSafari.Toast:ShowAlert("Vendor Required", "Speak to a Pet Trainer or Innkeeper!")
             end
             PlaySound(847)
         end
@@ -133,9 +133,9 @@ SlashCmdList["FSSHOP"] = function()
     if ForeverSafari.ShopFrame and ForeverSafari.ShopFrame.IsAtAuthorizedVendor and ForeverSafari.ShopFrame:IsAtAuthorizedVendor() then
         Shop:Toggle()
     else
-        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Store access is restricted! Speak with a Stable Master (for Safari Nets & Gear) or an Innkeeper (for Safari Treats & Food Provisions).|r")
+        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Store access is restricted! Speak with a Pet Trainer (for Safari Nets & Gear) or an Innkeeper (for Safari Treats & Food Provisions).|r")
         if ForeverSafari.Toast then
-            ForeverSafari.Toast:ShowAlert("Vendor Required", "Speak to a Stable Master or Innkeeper!")
+            ForeverSafari.Toast:ShowAlert("Vendor Required", "Speak to a Pet Trainer or Innkeeper!")
         end
         PlaySound(847)
     end
