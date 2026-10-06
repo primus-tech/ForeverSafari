@@ -31,7 +31,7 @@ function HUD:Initialize()
     if frame then return end
 
     frame = CreateFrame("Frame", "ForeverSafariCaptureHUDFrame", UIParent, "BackdropTemplate")
-    frame:SetSize(330, 148)
+    frame:SetSize(365, 148)
     frame:SetPoint("TOP", UIParent, "TOP", 0, -180)
     frame:SetMovable(true)
     frame:EnableMouse(true)
@@ -100,7 +100,7 @@ function HUD:Initialize()
 
     -- Stalking Range / Channel CastBar (Dual Purpose StatusBar)
     local radarBar = CreateFrame("StatusBar", nil, frame)
-    radarBar:SetSize(306, 20)
+    radarBar:SetSize(341, 20)
     radarBar:SetPoint("TOPLEFT", 12, -48)
     radarBar:SetStatusBarTexture("Interface\\TargetingFrame\\UI-StatusBar")
     radarBar:SetStatusBarColor(0.2, 0.8, 0.4)
@@ -127,14 +127,14 @@ function HUD:Initialize()
     -- Net Selection Container & Action Buttons
     frame.CageButtons = {}
     local cageTypes = { "copper_cage", "iron_cage", "mithril_cage", "arcanite_capsule" }
-    local btnSize = 32
-    local startX = 12
+    local btnSize = 30
+    local startX = 10
 
     for i, cageId in ipairs(cageTypes) do
         local cageData = C.CAGES[cageId] or {}
         local cBtn = CreateFrame("Button", "ForeverSafariHUDNet" .. i, frame, "BackdropTemplate")
         cBtn:SetSize(btnSize, btnSize)
-        cBtn:SetPoint("BOTTOMLEFT", startX + (i - 1) * (btnSize + 6), 10)
+        cBtn:SetPoint("BOTTOMLEFT", startX + (i - 1) * (btnSize + 5), 10)
 
         Theme:ApplyCardBackdrop(cBtn)
 
@@ -181,9 +181,9 @@ function HUD:Initialize()
 
     -- Stalk & Snare Action Button
     local actionBtn = CreateFrame("Button", "ForeverSafariHUDActionBtn", frame, "UIPanelButtonTemplate")
-    actionBtn:SetSize(136, 32)
-    actionBtn:SetPoint("BOTTOMRIGHT", -12, 10)
-    actionBtn:SetText("STALK & SNARE")
+    actionBtn:SetSize(102, 30)
+    actionBtn:SetPoint("BOTTOMRIGHT", -10, 10)
+    actionBtn:SetText("SNARE")
     actionBtn:SetScript("OnClick", function()
         if CE:IsChanneling() then
             CE:CancelSnareChannel("Cancelled by player.")
@@ -193,6 +193,33 @@ function HUD:Initialize()
         HUD:UpdateUI()
     end)
     frame.ActionBtn = actionBtn
+
+    -- Turn-Based Battle Action Button
+    local battleBtn = CreateFrame("Button", "ForeverSafariHUDBattleBtn", frame, "UIPanelButtonTemplate")
+    battleBtn:SetSize(96, 30)
+    battleBtn:SetPoint("BOTTOMRIGHT", actionBtn, "BOTTOMLEFT", -6, 0)
+    battleBtn:SetText("⚔️ BATTLE")
+    battleBtn:SetScript("OnClick", function()
+        if CE:IsChanneling() then
+            CE:CancelSnareChannel("Engaged in battle.")
+        end
+        if ForeverSafari.BattleEngine then
+            ForeverSafari.BattleEngine:StartWildBattle("target")
+        end
+    end)
+    battleBtn:SetScript("OnEnter", function(self)
+        GameTooltip:SetOwner(self, "ANCHOR_TOP")
+        GameTooltip:AddLine("⚔️ Engage in Wild Battle", 1, 0.82, 0)
+        GameTooltip:AddLine("Challenge this wild creature to a turn-based battle with your active companion.", 1, 1, 1, true)
+        GameTooltip:AddLine(" ")
+        GameTooltip:AddLine("Victory Rewards:", 0, 1, 0.6)
+        GameTooltip:AddLine("• +35 Attunement Loyalty for your active companion", 0.8, 0.9, 1)
+        GameTooltip:AddLine("• Harvested Wild Family Meats / Diets", 0.8, 0.9, 1)
+        GameTooltip:AddLine("• +1 to +3 Safari Tokens", 1, 0.82, 0)
+        GameTooltip:Show()
+    end)
+    battleBtn:SetScript("OnLeave", function() GameTooltip:Hide() end)
+    frame.BattleBtn = battleBtn
 
     -- Register Target Events & Distance Poller
     local eventFrame = CreateFrame("Frame", nil, frame)
@@ -312,15 +339,33 @@ function HUD:UpdateUI()
             frame.ActionBtn:SetText("NO NETS")
         elseif distTier == "OUT_OF_RANGE" then
             frame.ActionBtn:Disable()
-            frame.ActionBtn:SetText("OUT OF RANGE")
+            frame.ActionBtn:SetText("TOO FAR")
         else
             frame.ActionBtn:Enable()
-            frame.ActionBtn:SetText("STALK & SNARE")
+            frame.ActionBtn:SetText("SNARE")
         end
     else
         -- Active Channeling mode
         frame.ActionBtn:Enable()
-        frame.ActionBtn:SetText("|cffff4444CANCEL SNARE|r")
+        frame.ActionBtn:SetText("|cffff4444CANCEL|r")
+    end
+
+    -- Battle Button state
+    if frame.BattleBtn then
+        local activeMob = DB:GetActiveMob()
+        if not activeMob then
+            frame.BattleBtn:Disable()
+            frame.BattleBtn:SetText("NO SQUAD")
+        elseif (activeMob.currentHP or 0) <= 0 then
+            frame.BattleBtn:Disable()
+            frame.BattleBtn:SetText("FAINTED")
+        elseif CE:IsChanneling() then
+            frame.BattleBtn:Disable()
+            frame.BattleBtn:SetText("⚔️ BATTLE")
+        else
+            frame.BattleBtn:Enable()
+            frame.BattleBtn:SetText("⚔️ BATTLE")
+        end
     end
 
     -- Update Cage/Net buttons

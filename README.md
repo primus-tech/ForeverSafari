@@ -121,7 +121,11 @@ Forever Safari decouples creature capturing completely from world-mob HP, transf
 * 🌿 **Zero Kill Guilt & 100% Mob Preservation**: The live creature in the world remains **100% untouched, at full health, and un-tagged**.
 * 🏹 **Hunter Coexistence**: A Hunter camping *Broken Tooth* or *Humar the Pridelord* can let an expedition researcher channel their net first. The researcher catalogs the companion into their Safari Bag, and the rare beast is still standing right there at 100% health for the Hunter to cast *Tame Beast*.
 * 🎯 **Level-Agnostic Stalking**: High-level characters can stalk a Level 10 Duskbat without any risk of one-shotting it with auto-attacks or damage auras.
-* 🔭 **Proximity & Stalking Radar**:
+* 🔭 **Proximity & Stalking Radar HUD (`UI/CaptureHUD.lua`)**:
+  * Automatically pops when targeting any eligible wild creature in the world.
+  * **Dual Action Buttons**:
+    * **`[ ⚔️ BATTLE ]`**: Instantly launches turn-based companion combat without typing slash commands.
+    * **`[ SNARE ]`**: Initiates channeled stalking snare to capture the quarry without dealing live damage.
   * **Close Stalk (~10 yards)**: High risk, optimal focus granting a **+25% Catch Power Bonus** (`1.25x`).
   * **Standard Perimeter (15–28 yards)**: Safe stalking distance (`1.0x`).
   * **Beyond Perimeter (>28 yards)**: Out of range; close distance to begin channeling.
