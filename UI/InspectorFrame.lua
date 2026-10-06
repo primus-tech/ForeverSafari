@@ -224,6 +224,8 @@ function Inspector:InspectCompanion(companionData)
     elseif frame.model.SetCreatureByDisplayID then
         frame.model:SetCreatureByDisplayID(dispId)
     end
+    if frame.model.SetPortraitZoom then frame.model:SetPortraitZoom(0) end
+    if frame.model.SetCamDistanceScale then frame.model:SetCamDistanceScale(1.0) end
     frame.model:SetRotation(0.3)
 
     -- Stats

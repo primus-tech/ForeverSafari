@@ -39,16 +39,21 @@ local function SetModelCreature(modelFrame, displayId)
     elseif modelFrame.SetCreatureByDisplayID then
         modelFrame:SetCreatureByDisplayID(displayId)
     end
-    if modelFrame.SetPosition then
-        modelFrame:SetPosition(0, 0, 0)
+    if modelFrame.SetPortraitZoom then
+        modelFrame:SetPortraitZoom(0)
     end
-    if modelFrame.SetCamera then
-        modelFrame:SetCamera(0)
+    if modelFrame.SetCamDistanceScale then
+        modelFrame:SetCamDistanceScale(1.0)
     end
     if modelFrame.SetModelScale then
         modelFrame:SetModelScale(modelFrame.zoom or 1.0)
     end
-    modelFrame:SetAnimation(0)
+    if modelFrame.SetRotation then
+        modelFrame:SetRotation(modelFrame.rotation or math.rad(25))
+    end
+    if modelFrame.SetAnimation then
+        modelFrame:SetAnimation(0)
+    end
 end
 
 -- Helper to make any PlayerModel frame smoothly rotatable with left-drag and zoomable with mouse wheel

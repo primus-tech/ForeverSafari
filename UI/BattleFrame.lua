@@ -425,8 +425,8 @@ function BF:UpdateModels()
         elseif frame.EnemyModel.SetCreatureByDisplayID then
             frame.EnemyModel:SetCreatureByDisplayID(enemyDisplay)
         end
-        if frame.EnemyModel.SetPosition then frame.EnemyModel:SetPosition(0, 0, 0) end
-        if frame.EnemyModel.SetCamera then frame.EnemyModel:SetCamera(0) end
+        if frame.EnemyModel.SetPortraitZoom then frame.EnemyModel:SetPortraitZoom(0) end
+        if frame.EnemyModel.SetCamDistanceScale then frame.EnemyModel:SetCamDistanceScale(1.0) end
         frame.EnemyModel:SetRotation(math.rad(-35))
         frame.EnemyModel:SetAnimation(0)
         frame.EnemyModel:Show()
@@ -441,8 +441,8 @@ function BF:UpdateModels()
         elseif frame.PlayerModel.SetCreatureByDisplayID then
             frame.PlayerModel:SetCreatureByDisplayID(playerDisplay)
         end
-        if frame.PlayerModel.SetPosition then frame.PlayerModel:SetPosition(0, 0, 0) end
-        if frame.PlayerModel.SetCamera then frame.PlayerModel:SetCamera(0) end
+        if frame.PlayerModel.SetPortraitZoom then frame.PlayerModel:SetPortraitZoom(0) end
+        if frame.PlayerModel.SetCamDistanceScale then frame.PlayerModel:SetCamDistanceScale(1.0) end
         frame.PlayerModel:SetRotation(math.rad(145))
         frame.PlayerModel:SetAnimation(0)
         frame.PlayerModel:Show()
