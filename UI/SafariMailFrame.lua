@@ -46,16 +46,16 @@ function Mail:OnMailboxOpen()
             Theme:ApplyButtonBackdrop(btn)
         end
         mailTabBtn = btn
-        mailTabBtn:SetText("Safari Dispatch")
+        mailTabBtn:SetText("Safari")
         if PanelTemplates_TabResize then
             pcall(PanelTemplates_TabResize, mailTabBtn, 0)
         end
         
         -- Anchor tab to MailFrameTab2
         if MailFrameTab2 then
-            mailTabBtn:SetPoint("LEFT", MailFrameTab2, "RIGHT", -14, 0)
+            mailTabBtn:SetPoint("LEFT", MailFrameTab2, "RIGHT", -12, 0)
         elseif MailFrameTab1 then
-            mailTabBtn:SetPoint("LEFT", MailFrameTab1, "RIGHT", -14, 0)
+            mailTabBtn:SetPoint("LEFT", MailFrameTab1, "RIGHT", -12, 0)
         else
             mailTabBtn:SetPoint("BOTTOMLEFT", MailFrame, "BOTTOMLEFT", 130, -30)
         end
@@ -79,11 +79,17 @@ function Mail:OnMailboxOpen()
         end
     end
 
-    -- Create inner Mail Container inside MailFrame
+    -- Create inner Mail Container inside MailFrame (anchored snugly to MailFrame Inset)
     if not mailContainer then
         mailContainer = CreateFrame("Frame", "ForeverSafariMailContainer", MailFrame, "BackdropTemplate")
-        mailContainer:SetSize(338, 390)
-        mailContainer:SetPoint("TOPLEFT", MailFrame, "TOPLEFT", 16, -65)
+        local inset = (MailFrame and (MailFrame.Inset or MailFrameInset))
+        if inset then
+            mailContainer:SetPoint("TOPLEFT", inset, "TOPLEFT", 4, -4)
+            mailContainer:SetPoint("BOTTOMRIGHT", inset, "BOTTOMRIGHT", -4, 4)
+        else
+            mailContainer:SetPoint("TOPLEFT", MailFrame, "TOPLEFT", 14, -62)
+            mailContainer:SetPoint("BOTTOMRIGHT", MailFrame, "BOTTOMRIGHT", -14, 28)
+        end
         mailContainer:SetFrameLevel(MailFrame:GetFrameLevel() + 5)
         mailContainer:Hide()
 
@@ -160,9 +166,9 @@ function Mail:UpdateTabBadge()
     end
 
     if hasUnclaimedOrUnread then
-        mailTabBtn:SetText("|cff00ff00* Safari Dispatch *|r")
+        mailTabBtn:SetText("|cff00ff00Safari (!)|r")
     else
-        mailTabBtn:SetText("Safari Dispatch")
+        mailTabBtn:SetText("Safari")
     end
     if PanelTemplates_TabResize then
         pcall(PanelTemplates_TabResize, mailTabBtn, 0)
@@ -172,8 +178,9 @@ end
 function Mail:BuildMailContent(parent)
     -- Left Panel: Dispatches List
     local leftPanel = CreateFrame("Frame", nil, parent, "BackdropTemplate")
-    leftPanel:SetSize(130, 380)
+    leftPanel:SetWidth(112)
     leftPanel:SetPoint("TOPLEFT", parent, "TOPLEFT", 0, 0)
+    leftPanel:SetPoint("BOTTOMLEFT", parent, "BOTTOMLEFT", 0, 0)
     leftPanel:SetBackdrop({
         bgFile = "Interface\\Buttons\\WHITE8X8",
         edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
@@ -184,35 +191,52 @@ function Mail:BuildMailContent(parent)
     parent.LeftPanel = leftPanel
 
     local listTitle = leftPanel:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
-    listTitle:SetPoint("TOPLEFT", 8, -8)
+    listTitle:SetPoint("TOPLEFT", 6, -6)
     listTitle:SetText("|cffffd100Dispatches|r")
+
+    -- Scrollable container for dispatch list
+    local leftScroll = CreateFrame("ScrollFrame", nil, leftPanel)
+    leftScroll:SetPoint("TOPLEFT", 4, -20)
+    leftScroll:SetPoint("BOTTOMRIGHT", -4, 4)
+    leftScroll:EnableMouseWheel(true)
+
+    local scrollChild = CreateFrame("Frame", nil, leftScroll)
+    scrollChild:SetSize(104, 280)
+    leftScroll:SetScrollChild(scrollChild)
+
+    leftScroll:SetScript("OnMouseWheel", function(self, delta)
+        local cur = self:GetVerticalScroll()
+        local maxScroll = math.max(0, scrollChild:GetHeight() - self:GetHeight())
+        local newScroll = math.min(maxScroll, math.max(0, cur - (delta * 28)))
+        self:SetVerticalScroll(newScroll)
+    end)
 
     parent.letterButtons = {}
     local dispatches = C.NESINGWARY_DISPATCHES or {}
     for i, dispatch in ipairs(dispatches) do
-        local btn = CreateFrame("Button", nil, leftPanel, "BackdropTemplate")
-        btn:SetSize(116, 64)
-        btn:SetPoint("TOPLEFT", 7, -24 - ((i - 1) * 68))
+        local btn = CreateFrame("Button", nil, scrollChild, "BackdropTemplate")
+        btn:SetSize(104, 52)
+        btn:SetPoint("TOPLEFT", scrollChild, "TOPLEFT", 0, -((i - 1) * 56))
         btn.letterId = dispatch.id
 
         Theme:ApplyCardBackdrop(btn)
 
         local icon = btn:CreateTexture(nil, "ARTWORK")
-        icon:SetSize(24, 24)
-        icon:SetPoint("TOPLEFT", 6, -6)
+        icon:SetSize(20, 20)
+        icon:SetPoint("TOPLEFT", 4, -4)
         icon:SetTexture(dispatch.icon or "Interface\\Icons\\INV_Box_01")
         icon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
         btn.Icon = icon
 
         local title = btn:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
-        title:SetPoint("TOPLEFT", 34, -6)
-        title:SetPoint("TOPRIGHT", -4, -6)
+        title:SetPoint("TOPLEFT", 26, -4)
+        title:SetPoint("TOPRIGHT", -2, -4)
         title:SetJustifyH("LEFT")
         title:SetText(dispatch.title)
         btn.Title = title
 
         local statusText = btn:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
-        statusText:SetPoint("BOTTOMLEFT", 6, 6)
+        statusText:SetPoint("BOTTOMLEFT", 4, 4)
         statusText:SetText("|cffaaaaaaLetter|r")
         btn.StatusText = statusText
 
@@ -225,16 +249,17 @@ function Mail:BuildMailContent(parent)
 
         parent.letterButtons[i] = btn
     end
+    scrollChild:SetHeight(#dispatches * 56 + 10)
 
     -- Right Panel: Antique Parchment Reader & Reward Tray
     local rightPanel = CreateFrame("Frame", nil, parent, "BackdropTemplate")
-    rightPanel:SetSize(202, 380)
-    rightPanel:SetPoint("TOPLEFT", leftPanel, "TOPRIGHT", 6, 0)
+    rightPanel:SetPoint("TOPLEFT", leftPanel, "TOPRIGHT", 4, 0)
+    rightPanel:SetPoint("BOTTOMRIGHT", parent, "BOTTOMRIGHT", 0, 0)
     rightPanel:SetBackdrop({
         bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background-Dark",
         edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
-        edgeSize = 12,
-        insets = { left = 3, right = 3, top = 3, bottom = 3 },
+        edgeSize = 10,
+        insets = { left = 2, right = 2, top = 2, bottom = 2 },
     })
     rightPanel:SetBackdropColor(0.08, 0.09, 0.12, 0.95)
     rightPanel:SetBackdropBorderColor(1.0, 0.82, 0.0, 0.8)
@@ -242,30 +267,30 @@ function Mail:BuildMailContent(parent)
 
     -- Wax Seal Crest
     local seal = rightPanel:CreateTexture(nil, "ARTWORK")
-    seal:SetSize(36, 36)
-    seal:SetPoint("TOPRIGHT", -10, -10)
+    seal:SetSize(28, 28)
+    seal:SetPoint("TOPRIGHT", -6, -6)
     seal:SetTexture("Interface\\Icons\\Ability_Hunter_BeastTaming")
     seal:SetTexCoord(0.08, 0.92, 0.08, 0.92)
     rightPanel.Seal = seal
 
     -- Letter Header
     local docTitle = rightPanel:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-    docTitle:SetPoint("TOPLEFT", 10, -10)
-    docTitle:SetPoint("TOPRIGHT", -50, -10)
+    docTitle:SetPoint("TOPLEFT", 8, -6)
+    docTitle:SetPoint("TOPRIGHT", -36, -6)
     docTitle:SetJustifyH("LEFT")
     rightPanel.DocTitle = docTitle
 
     local senderText = rightPanel:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
-    senderText:SetPoint("TOPLEFT", docTitle, "BOTTOMLEFT", 0, -4)
+    senderText:SetPoint("TOPLEFT", docTitle, "BOTTOMLEFT", 0, -2)
     rightPanel.SenderText = senderText
 
     -- Parchment Body Text (Scrollable)
     local bodyScroll = CreateFrame("ScrollFrame", nil, rightPanel, "UIPanelScrollFrameTemplate")
-    bodyScroll:SetPoint("TOPLEFT", 10, -56)
-    bodyScroll:SetPoint("BOTTOMRIGHT", -26, 110)
+    bodyScroll:SetPoint("TOPLEFT", 6, -42)
+    bodyScroll:SetPoint("BOTTOMRIGHT", -20, 88)
 
     local bodyContent = CreateFrame("Frame", nil, bodyScroll)
-    bodyContent:SetSize(166, 300)
+    bodyContent:SetSize(160, 200)
     bodyScroll:SetScrollChild(bodyContent)
 
     local bodyText = bodyContent:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
@@ -278,23 +303,30 @@ function Mail:BuildMailContent(parent)
 
     -- Bottom Tray: Attachment / Quest Objective & Action Button
     local tray = CreateFrame("Frame", nil, rightPanel, "BackdropTemplate")
-    tray:SetSize(190, 96)
-    tray:SetPoint("BOTTOMLEFT", 6, 6)
+    tray:SetPoint("BOTTOMLEFT", 4, 4)
+    tray:SetPoint("BOTTOMRIGHT", -4, 4)
+    tray:SetHeight(80)
     Theme:ApplyCardBackdrop(tray)
     rightPanel.Tray = tray
 
     local trayTitle = tray:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
-    trayTitle:SetPoint("TOPLEFT", 8, -6)
+    trayTitle:SetPoint("TOPLEFT", 6, -5)
+    trayTitle:SetPoint("TOPRIGHT", -6, -5)
+    trayTitle:SetJustifyH("LEFT")
     trayTitle:SetText("Parcel Attachment / Objective:")
     tray.Title = trayTitle
 
     local progressText = tray:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
-    progressText:SetPoint("TOPLEFT", 8, -22)
+    progressText:SetPoint("TOPLEFT", 6, -18)
+    progressText:SetPoint("TOPRIGHT", -6, -18)
+    progressText:SetJustifyH("LEFT")
     progressText:SetText("Progress: 0/3")
     tray.ProgressText = progressText
 
-    local actionBtn = Theme:CreateButton(tray, "CLAIM", 174, 28, true)
-    actionBtn:SetPoint("BOTTOM", 0, 8)
+    local actionBtn = Theme:CreateButton(tray, "CLAIM", 160, 24, true)
+    actionBtn:SetPoint("BOTTOM", 0, 6)
+    actionBtn:SetPoint("LEFT", 6, 0)
+    actionBtn:SetPoint("RIGHT", -6, 0)
     tray.ActionBtn = actionBtn
 end
 
