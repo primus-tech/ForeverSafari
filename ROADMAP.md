@@ -126,9 +126,10 @@
 * [x] **Safari Journal Field Directives (Tab 4 — `/safari` / `/safari bounties`)**:
   * Live field tracker for all Nesingwary research directives, target quotas, progress bars, and objective dossiers.
   * Allows players to check requirements anywhere in the wild while exploring.
-* [x] **Blizzard MailFrame Custom Tab ("Safari")**:
+* [x] **Blizzard MailFrame Custom Tab ("Safari") & Authentic Two-Window Architecture**:
   * Seamless custom tab docked directly to Blizzard's physical `MailFrame` (`MAIL_SHOW` / `MAIL_CLOSED`).
-  * Dynamic unread / unclaimed quest alert badge (`|cff00ff00Safari (!)|r`).
+  * Full-width inbox column with mail items, sender names, subject titles, and dynamic status badges (`[ 📦 Unopened Parcel ]`, `[ ✔ Ready to Claim ]`, `[ ✉️ New ]`).
+  * Secondary sidecar `OpenMail` window attached to `MailFrame` with custom gold/dark styling, scrollable parchment body, item tooltip previews, and one-click unbox/claim action buttons.
 * [x] **First-Load Starter Companion Crate Unboxing**:
   * First-login parcel from Hemet Nesingwary delivering the racial starter companion crate and 5x Copper Safari Nets (0 free tokens).
 * [x] **Official Nesingwary Field Bounties & Turn-Ins**:

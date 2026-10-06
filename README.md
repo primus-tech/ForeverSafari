@@ -84,10 +84,12 @@ Companions progress through bonding, feeding, and battlefield survival rather th
   * 🍖 **Consumables**: Safari Treats (+50 Attunement), Grand Safari Feasts (+100 Attunement to full team), Safari Healing Salves (100% HP heal), and Revival Crystals.
 * **Context-Sensitive Actions**: Right-Clicking items in the bag automatically equips nets, feeds or heals your active companion, or opens the 3D Metamorphosis pedestal. Shift-Clicking any item links it directly into chat.
 
-### 8. Physical Mailbox Hub & Official Correspondence ("Safari Dispatch")
+### 8. Physical Mailbox Hub & Authentic Two-Window Mail System ("Safari Dispatch")
 * **Blizzard Mailbox Tab ("Safari")**: Authentic custom tab attached directly to Blizzard's `MailFrame` (`MAIL_SHOW`).
+* **Full-Width Inbox Column**: Displays a full-width list of received Nesingwary dispatches and field bounties with sender names, titles, status tags (`[ 📦 Unopened Parcel ]`, `[ ✔ Ready to Claim ]`, `[ ✉️ New ]`), and row hover highlights.
+* **Secondary Sidecar OpenMail Window**: Clicking any dispatch opens a dedicated `OpenMail` window attached to the side of `MailFrame`, styled with Nesingwary gold/dark theme, antique parchment letter body, and a parcel attachment tray with tooltips and one-click unbox/claim actions.
 * **First-Load Starter Parcel**: Recruits unbox their racial companion starter kit and 5x Copper Safari Nets (0 free token handouts) directly from Hemet Nesingwary's welcome dispatch.
-* **Field Research Bounty Turn-Ins**: Official dispatches distribute research bounties (Field Stalking, Wild Nourishment, Apex Rares, Dungeon Catalysts). Players track requirements in the Field Guide Journal and must return to a **physical town mailbox** to unbox parcels and collect their earned Safari Tokens and supplies.
+* **Field Research Bounty Turn-Ins**: Completed bounties are unboxed and turned in at a physical town mailbox to collect earned Safari Tokens and supplies.
 
 ### 9. Innkeeper & Pet Trainer Vendor Specialization (Gossip Box Only)
 * **Zero Out-of-World Access**: Supply and food purchases cannot be made out in the field. Store interfaces are accessed **exclusively by clicking gossip menu options** when interacting with authorized NPCs in town.

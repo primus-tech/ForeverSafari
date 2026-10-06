@@ -1,8 +1,9 @@
 --[[
     Forever Safari: Nesingwary Mailbox Dispatch & Quest Hub
-    Adds an authentic custom tab to the Blizzard MailFrame ("Safari Dispatch").
-    Distributes official Nesingwary Junior Safari League correspondence, the first-load starter companion crate,
-    and field research quest bounties.
+    Adds an authentic custom tab to the Blizzard MailFrame ("Safari").
+    Acts like a standard WoW Mail Inbox with a full-width column of received dispatches.
+    Clicking any dispatch opens a secondary sidecar window ("Open Mail") with custom Nesingwary styling,
+    parchment letter body, and attachment unbox/claim tray.
 ]]
 
 local addonName, ns = ...
@@ -16,9 +17,10 @@ local DB = ns.Database
 local Theme = ns.Theme
 
 local mailContainer = nil
-local standaloneFrame = nil
+local openMailFrame = nil
 local mailTabBtn = nil
 local selectedLetterId = 1
+local listButtons = {}
 
 function Mail:Initialize()
     -- Register Blizzard Mailbox Events
@@ -64,22 +66,24 @@ function Mail:OnMailboxOpen()
             Mail:SelectSafariTab()
         end)
 
-        -- Hook standard Blizzard tabs to hide our Safari Mail pane
+        -- Hook standard Blizzard tabs to hide our Safari Mail pane and sidecar window
         if MailFrameTab1 then
             MailFrameTab1:HookScript("OnClick", function()
                 if mailContainer then mailContainer:Hide() end
+                if openMailFrame then openMailFrame:Hide() end
                 Mail:UpdateTabVisuals(1)
             end)
         end
         if MailFrameTab2 then
             MailFrameTab2:HookScript("OnClick", function()
                 if mailContainer then mailContainer:Hide() end
+                if openMailFrame then openMailFrame:Hide() end
                 Mail:UpdateTabVisuals(2)
             end)
         end
     end
 
-    -- Create inner Mail Container inside MailFrame (anchored snugly to MailFrame Inset)
+    -- Create inner Mail Container inside MailFrame (covering the main Inbox area)
     if not mailContainer then
         mailContainer = CreateFrame("Frame", "ForeverSafariMailContainer", MailFrame, "BackdropTemplate")
         local inset = (MailFrame and (MailFrame.Inset or MailFrameInset))
@@ -93,7 +97,12 @@ function Mail:OnMailboxOpen()
         mailContainer:SetFrameLevel(MailFrame:GetFrameLevel() + 5)
         mailContainer:Hide()
 
-        Mail:BuildMailContent(mailContainer)
+        Mail:BuildInboxList(mailContainer)
+    end
+
+    -- Create secondary sidecar OpenMail window
+    if not openMailFrame then
+        Mail:BuildOpenMailFrame()
     end
 
     mailTabBtn:Show()
@@ -102,8 +111,9 @@ function Mail:OnMailboxOpen()
     -- Auto-select Safari Dispatch tab if starter kit is waiting to be unboxed!
     if not DB:IsStarterClaimed() then
         C_Timer.After(0.1, function()
-            if MailFrame:IsShown() and not DB:IsStarterClaimed() then
+            if MailFrame and MailFrame:IsShown() and not DB:IsStarterClaimed() then
                 Mail:SelectSafariTab()
+                Mail:OpenLetter(1)
             end
         end)
     end
@@ -112,6 +122,9 @@ end
 function Mail:OnMailboxClose()
     if mailContainer then
         mailContainer:Hide()
+    end
+    if openMailFrame then
+        openMailFrame:Hide()
     end
 end
 
@@ -175,259 +188,408 @@ function Mail:UpdateTabBadge()
     end
 end
 
-function Mail:BuildMailContent(parent)
-    -- Left Panel: Dispatches List
-    local leftPanel = CreateFrame("Frame", nil, parent, "BackdropTemplate")
-    leftPanel:SetWidth(112)
-    leftPanel:SetPoint("TOPLEFT", parent, "TOPLEFT", 0, 0)
-    leftPanel:SetPoint("BOTTOMLEFT", parent, "BOTTOMLEFT", 0, 0)
-    leftPanel:SetBackdrop({
-        bgFile = "Interface\\Buttons\\WHITE8X8",
-        edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
-        edgeSize = 10,
-    })
-    leftPanel:SetBackdropColor(0.06, 0.08, 0.12, 0.9)
-    leftPanel:SetBackdropBorderColor(0.3, 0.4, 0.5, 0.7)
-    parent.LeftPanel = leftPanel
+-- =========================================================================
+-- 📬 VIEW 1: FULL-WIDTH INBOX COLUMN (Drives MailFrame Interior)
+-- =========================================================================
+function Mail:BuildInboxList(parent)
+    Theme:ApplyCardBackdrop(parent)
 
-    local listTitle = leftPanel:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
-    listTitle:SetPoint("TOPLEFT", 6, -6)
-    listTitle:SetText("|cffffd100Dispatches|r")
+    -- Header Banner
+    local headerBar = CreateFrame("Frame", nil, parent, "BackdropTemplate")
+    headerBar:SetHeight(38)
+    headerBar:SetPoint("TOPLEFT", 4, -4)
+    headerBar:SetPoint("TOPRIGHT", -4, -4)
+    Theme:ApplyCardBackdrop(headerBar, true)
 
-    -- Scrollable container for dispatch list
-    local leftScroll = CreateFrame("ScrollFrame", nil, leftPanel)
-    leftScroll:SetPoint("TOPLEFT", 4, -20)
-    leftScroll:SetPoint("BOTTOMRIGHT", -4, 4)
-    leftScroll:EnableMouseWheel(true)
+    local headIcon = headerBar:CreateTexture(nil, "ARTWORK")
+    headIcon:SetSize(24, 24)
+    headIcon:SetPoint("LEFT", 8, 0)
+    headIcon:SetTexture("Interface\\Icons\\INV_Letter_15")
+    headIcon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
 
-    local scrollChild = CreateFrame("Frame", nil, leftScroll)
-    scrollChild:SetSize(104, 280)
-    leftScroll:SetScrollChild(scrollChild)
+    local headTitle = headerBar:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
+    headTitle:SetPoint("LEFT", headIcon, "RIGHT", 8, 0)
+    headTitle:SetText("|cffffd100Hemet's Expedition Dispatches|r")
 
-    leftScroll:SetScript("OnMouseWheel", function(self, delta)
-        local cur = self:GetVerticalScroll()
-        local maxScroll = math.max(0, scrollChild:GetHeight() - self:GetHeight())
-        local newScroll = math.min(maxScroll, math.max(0, cur - (delta * 28)))
-        self:SetVerticalScroll(newScroll)
-    end)
+    local countText = headerBar:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+    countText:SetPoint("RIGHT", -10, 0)
+    headerBar.CountText = countText
+    parent.HeaderBar = headerBar
 
-    parent.letterButtons = {}
+    -- Scrollable Container for Full-Width Dispatch Rows
+    local scrollFrame = CreateFrame("ScrollFrame", "ForeverSafariMailScrollFrame", parent, "UIPanelScrollFrameTemplate")
+    scrollFrame:SetPoint("TOPLEFT", headerBar, "BOTTOMLEFT", 0, -6)
+    scrollFrame:SetPoint("BOTTOMRIGHT", parent, "BOTTOMRIGHT", -26, 6)
+
+    local scrollChild = CreateFrame("Frame", "ForeverSafariMailScrollChild", scrollFrame)
+    scrollChild:SetSize(280, 400)
+    scrollFrame:SetScrollChild(scrollChild)
+    parent.ScrollChild = scrollChild
+
+    listButtons = {}
     local dispatches = C.NESINGWARY_DISPATCHES or {}
+
     for i, dispatch in ipairs(dispatches) do
-        local btn = CreateFrame("Button", nil, scrollChild, "BackdropTemplate")
-        btn:SetSize(104, 52)
+        local btn = CreateFrame("Button", "ForeverSafariMailItem" .. i, scrollChild, "BackdropTemplate")
+        btn:SetSize(280, 52)
         btn:SetPoint("TOPLEFT", scrollChild, "TOPLEFT", 0, -((i - 1) * 56))
         btn.letterId = dispatch.id
 
         Theme:ApplyCardBackdrop(btn)
 
+        -- Highlight Texture
+        local hl = btn:CreateTexture(nil, "HIGHLIGHT")
+        hl:SetAllPoints()
+        hl:SetTexture("Interface\\QuestFrame\\UI-QuestLogTitleHighlight")
+        hl:SetVertexColor(1, 0.82, 0, 0.25)
+        btn.Highlight = hl
+
+        -- Icon (Left)
         local icon = btn:CreateTexture(nil, "ARTWORK")
-        icon:SetSize(20, 20)
-        icon:SetPoint("TOPLEFT", 4, -4)
+        icon:SetSize(36, 36)
+        icon:SetPoint("LEFT", 6, 0)
         icon:SetTexture(dispatch.icon or "Interface\\Icons\\INV_Box_01")
         icon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
         btn.Icon = icon
 
-        local title = btn:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
-        title:SetPoint("TOPLEFT", 26, -4)
-        title:SetPoint("TOPRIGHT", -2, -4)
+        local iconBorder = btn:CreateTexture(nil, "OVERLAY")
+        iconBorder:SetSize(38, 38)
+        iconBorder:SetPoint("CENTER", icon, "CENTER", 0, 0)
+        iconBorder:SetTexture("Interface\\Tooltips\\UI-Tooltip-Border")
+        iconBorder:SetVertexColor(0.8, 0.7, 0.3, 0.8)
+
+        -- Sender Name (Top Line)
+        local sender = btn:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+        sender:SetPoint("TOPLEFT", icon, "TOPRIGHT", 8, -2)
+        sender:SetPoint("TOPRIGHT", -8, -2)
+        sender:SetJustifyH("LEFT")
+        sender:SetText("|cffffd100" .. (dispatch.sender or "Expedition") .. "|r")
+        btn.Sender = sender
+
+        -- Subject Title (Middle Line)
+        local title = btn:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+        title:SetPoint("TOPLEFT", sender, "BOTTOMLEFT", 0, -2)
+        title:SetPoint("TOPRIGHT", -8, -2)
         title:SetJustifyH("LEFT")
-        title:SetText(dispatch.title)
+        title:SetText(dispatch.title or "Safari Dispatch")
         btn.Title = title
 
+        -- Status Badge (Bottom Line / Right)
         local statusText = btn:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
-        statusText:SetPoint("BOTTOMLEFT", 4, 4)
-        statusText:SetText("|cffaaaaaaLetter|r")
+        statusText:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -2)
+        statusText:SetJustifyH("LEFT")
         btn.StatusText = statusText
 
         btn:SetScript("OnClick", function(self)
-            selectedLetterId = self.letterId
-            DB:MarkLetterRead(self.letterId)
-            Mail:UpdateUI()
-            PlaySound(844)
+            Mail:OpenLetter(self.letterId)
         end)
 
-        parent.letterButtons[i] = btn
+        btn:SetScript("OnEnter", function(self)
+            self:SetBackdropBorderColor(1.0, 0.82, 0.0, 1.0)
+        end)
+
+        btn:SetScript("OnLeave", function(self)
+            if self.letterId == selectedLetterId and openMailFrame and openMailFrame:IsShown() then
+                self:SetBackdropBorderColor(1.0, 0.82, 0.0, 1.0)
+            else
+                self:SetBackdropBorderColor(0.2, 0.28, 0.38, 0.7)
+            end
+        end)
+
+        listButtons[i] = btn
     end
+
     scrollChild:SetHeight(#dispatches * 56 + 10)
+    scrollChild:SetWidth(parent:GetWidth() > 50 and (parent:GetWidth() - 30) or 280)
+end
 
-    -- Right Panel: Antique Parchment Reader & Reward Tray
-    local rightPanel = CreateFrame("Frame", nil, parent, "BackdropTemplate")
-    rightPanel:SetPoint("TOPLEFT", leftPanel, "TOPRIGHT", 4, 0)
-    rightPanel:SetPoint("BOTTOMRIGHT", parent, "BOTTOMRIGHT", 0, 0)
-    rightPanel:SetBackdrop({
-        bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background-Dark",
-        edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
-        edgeSize = 10,
-        insets = { left = 2, right = 2, top = 2, bottom = 2 },
-    })
-    rightPanel:SetBackdropColor(0.08, 0.09, 0.12, 0.95)
-    rightPanel:SetBackdropBorderColor(1.0, 0.82, 0.0, 0.8)
-    parent.RightPanel = rightPanel
+-- =========================================================================
+-- ✉️ VIEW 2: SECONDARY WOW-STYLE OPEN MAIL WINDOW (Attached Sidecar)
+-- =========================================================================
+function Mail:BuildOpenMailFrame()
+    openMailFrame = CreateFrame("Frame", "ForeverSafariOpenMailFrame", UIParent, "BackdropTemplate")
+    openMailFrame:SetSize(340, 440)
+    openMailFrame:SetFrameStrata("HIGH")
+    openMailFrame:SetMovable(true)
+    openMailFrame:EnableMouse(true)
+    openMailFrame:RegisterForDrag("LeftButton")
+    openMailFrame:SetClampedToScreen(true)
 
-    -- Wax Seal Crest
-    local seal = rightPanel:CreateTexture(nil, "ARTWORK")
-    seal:SetSize(28, 28)
-    seal:SetPoint("TOPRIGHT", -6, -6)
+    -- Anchor sidecar directly to the right of MailFrame (Classic WoW OpenMail layout)
+    openMailFrame:SetPoint("TOPLEFT", MailFrame, "TOPRIGHT", -32, 0)
+
+    Theme:ApplyFrameBackdrop(openMailFrame, true)
+
+    openMailFrame:SetScript("OnDragStart", function(self) self:StartMoving() end)
+    openMailFrame:SetScript("OnDragStop", function(self) self:StopMovingOrSizing() end)
+
+    -- Standard Close Button
+    local closeBtn = CreateFrame("Button", nil, openMailFrame, "UIPanelCloseButton")
+    closeBtn:SetPoint("TOPRIGHT", -2, -2)
+    closeBtn:SetScript("OnClick", function()
+        openMailFrame:Hide()
+        Mail:UpdateUI()
+    end)
+    openMailFrame.CloseButton = closeBtn
+
+    -- Decorative Crest / Wax Seal
+    local seal = openMailFrame:CreateTexture(nil, "ARTWORK")
+    seal:SetSize(30, 30)
+    seal:SetPoint("TOPLEFT", 12, -10)
     seal:SetTexture("Interface\\Icons\\Ability_Hunter_BeastTaming")
     seal:SetTexCoord(0.08, 0.92, 0.08, 0.92)
-    rightPanel.Seal = seal
+    openMailFrame.Seal = seal
 
-    -- Letter Header
-    local docTitle = rightPanel:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-    docTitle:SetPoint("TOPLEFT", 8, -6)
-    docTitle:SetPoint("TOPRIGHT", -36, -6)
-    docTitle:SetJustifyH("LEFT")
-    rightPanel.DocTitle = docTitle
+    -- Window Title
+    local winTitle = openMailFrame:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
+    winTitle:SetPoint("TOPLEFT", seal, "TOPRIGHT", 8, 2)
+    winTitle:SetText("|cffffd100Nesingwary Expedition Mail|r")
 
-    local senderText = rightPanel:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
-    senderText:SetPoint("TOPLEFT", docTitle, "BOTTOMLEFT", 0, -2)
-    rightPanel.SenderText = senderText
+    local winSubtitle = openMailFrame:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+    winSubtitle:SetPoint("TOPLEFT", winTitle, "BOTTOMLEFT", 0, -2)
+    winSubtitle:SetText("Official Safari League Correspondence")
+    winSubtitle:SetTextColor(0.7, 0.8, 0.9)
 
-    -- Parchment Body Text (Scrollable)
-    local bodyScroll = CreateFrame("ScrollFrame", nil, rightPanel, "UIPanelScrollFrameTemplate")
-    bodyScroll:SetPoint("TOPLEFT", 6, -42)
-    bodyScroll:SetPoint("BOTTOMRIGHT", -20, 88)
+    -- Header Info Card (Sender & Subject)
+    local headerCard = Theme:CreateCard(openMailFrame, 316, 52)
+    headerCard:SetPoint("TOPLEFT", 12, -44)
+    headerCard:SetPoint("TOPRIGHT", -12, -44)
+    openMailFrame.HeaderCard = headerCard
+
+    local senderText = headerCard:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    senderText:SetPoint("TOPLEFT", 8, -6)
+    senderText:SetPoint("TOPRIGHT", -8, -6)
+    senderText:SetJustifyH("LEFT")
+    headerCard.SenderText = senderText
+
+    local subjectText = headerCard:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    subjectText:SetPoint("TOPLEFT", senderText, "BOTTOMLEFT", 0, -4)
+    subjectText:SetPoint("TOPRIGHT", -8, -4)
+    subjectText:SetJustifyH("LEFT")
+    headerCard.SubjectText = subjectText
+
+    -- Letter Body Scroll Area (Antique Parchment Style)
+    local bodyCard = Theme:CreateCard(openMailFrame, 316, 210)
+    bodyCard:SetPoint("TOPLEFT", headerCard, "BOTTOMLEFT", 0, -6)
+    bodyCard:SetPoint("BOTTOMRIGHT", -12, 114)
+    bodyCard:SetBackdropColor(0.05, 0.07, 0.09, 0.95)
+
+    local bodyScroll = CreateFrame("ScrollFrame", "ForeverSafariOpenMailScroll", bodyCard, "UIPanelScrollFrameTemplate")
+    bodyScroll:SetPoint("TOPLEFT", 8, -8)
+    bodyScroll:SetPoint("BOTTOMRIGHT", -24, 8)
 
     local bodyContent = CreateFrame("Frame", nil, bodyScroll)
-    bodyContent:SetSize(160, 200)
+    bodyContent:SetSize(280, 200)
     bodyScroll:SetScrollChild(bodyContent)
 
-    local bodyText = bodyContent:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+    local bodyText = bodyContent:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     bodyText:SetPoint("TOPLEFT", 0, 0)
     bodyText:SetPoint("TOPRIGHT", 0, 0)
     bodyText:SetJustifyH("LEFT")
-    bodyText:SetTextColor(0.9, 0.9, 0.9)
-    rightPanel.BodyText = bodyText
-    rightPanel.BodyContent = bodyContent
+    bodyText:SetTextColor(0.88, 0.90, 0.92)
+    bodyText:SetSpacing(3)
+    openMailFrame.BodyText = bodyText
+    openMailFrame.BodyContent = bodyContent
 
-    -- Bottom Tray: Attachment / Quest Objective & Action Button
-    local tray = CreateFrame("Frame", nil, rightPanel, "BackdropTemplate")
-    tray:SetPoint("BOTTOMLEFT", 4, 4)
-    tray:SetPoint("BOTTOMRIGHT", -4, 4)
-    tray:SetHeight(80)
-    Theme:ApplyCardBackdrop(tray)
-    rightPanel.Tray = tray
+    -- Bottom Attachment & Claim Tray (Styled like WoW OpenMail package box)
+    local tray = Theme:CreateCard(openMailFrame, 316, 96)
+    tray:SetPoint("BOTTOMLEFT", 12, 10)
+    tray:SetPoint("BOTTOMRIGHT", -12, 10)
+    tray:SetBackdropBorderColor(1.0, 0.82, 0.0, 0.8)
+    openMailFrame.Tray = tray
 
-    local trayTitle = tray:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
-    trayTitle:SetPoint("TOPLEFT", 6, -5)
-    trayTitle:SetPoint("TOPRIGHT", -6, -5)
-    trayTitle:SetJustifyH("LEFT")
-    trayTitle:SetText("Parcel Attachment / Objective:")
-    tray.Title = trayTitle
+    -- Item / Parcel Slot Button (Left side of tray)
+    local itemSlot = CreateFrame("Button", nil, tray, "BackdropTemplate")
+    itemSlot:SetSize(40, 40)
+    itemSlot:SetPoint("TOPLEFT", 8, -8)
+    Theme:ApplyCardBackdrop(itemSlot, true)
 
-    local progressText = tray:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
-    progressText:SetPoint("TOPLEFT", 6, -18)
-    progressText:SetPoint("TOPRIGHT", -6, -18)
-    progressText:SetJustifyH("LEFT")
-    progressText:SetText("Progress: 0/3")
-    tray.ProgressText = progressText
+    local itemIcon = itemSlot:CreateTexture(nil, "ARTWORK")
+    itemIcon:SetAllPoints()
+    itemIcon:SetTexture("Interface\\Icons\\INV_Box_01")
+    itemIcon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+    itemSlot.Icon = itemIcon
 
-    local actionBtn = Theme:CreateButton(tray, "CLAIM", 160, 24, true)
-    actionBtn:SetPoint("BOTTOM", 0, 6)
-    actionBtn:SetPoint("LEFT", 6, 0)
-    actionBtn:SetPoint("RIGHT", -6, 0)
+    local itemBorder = itemSlot:CreateTexture(nil, "OVERLAY")
+    itemBorder:SetSize(42, 42)
+    itemBorder:SetPoint("CENTER", itemSlot, "CENTER", 0, 0)
+    itemBorder:SetTexture("Interface\\Tooltips\\UI-Tooltip-Border")
+    itemBorder:SetVertexColor(1.0, 0.82, 0.0, 0.9)
+
+    tray.ItemSlot = itemSlot
+
+    -- Attachment / Directive Details
+    local trayHeader = tray:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    trayHeader:SetPoint("TOPLEFT", itemSlot, "TOPRIGHT", 8, 0)
+    trayHeader:SetPoint("TOPRIGHT", -8, 0)
+    trayHeader:SetJustifyH("LEFT")
+    tray.Header = trayHeader
+
+    local traySummary = tray:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+    traySummary:SetPoint("TOPLEFT", trayHeader, "BOTTOMLEFT", 0, -2)
+    traySummary:SetPoint("TOPRIGHT", -8, -2)
+    traySummary:SetJustifyH("LEFT")
+    tray.Summary = traySummary
+
+    -- Claim / Unbox Action Button
+    local actionBtn = Theme:CreateButton(tray, "CLAIM", 180, 26, true)
+    actionBtn:SetPoint("BOTTOMLEFT", 8, 8)
+    actionBtn:SetPoint("BOTTOMRIGHT", -8, 8)
     tray.ActionBtn = actionBtn
+
+    openMailFrame:Hide()
 end
 
-local function UpdateFramePanel(parent)
-    if not parent or not parent:IsShown() then return end
+function Mail:OpenLetter(letterId)
+    selectedLetterId = letterId or 1
+    DB:MarkLetterRead(selectedLetterId)
+
+    if not openMailFrame then
+        Mail:BuildOpenMailFrame()
+    end
+
+    -- Anchor smoothly to MailFrame
+    if MailFrame and MailFrame:IsShown() then
+        openMailFrame:ClearAllPoints()
+        openMailFrame:SetPoint("TOPLEFT", MailFrame, "TOPRIGHT", -32, 0)
+    end
+
+    openMailFrame:Show()
+    Mail:UpdateUI()
+    PlaySound(844) -- SOUNDKIT.IG_SPELLBOOK_OPEN
+end
+
+function Mail:UpdateUI()
+    if not mailContainer or not mailContainer:IsShown() then return end
 
     local dispatches = C.NESINGWARY_DISPATCHES or {}
     local currentDispatch = dispatches[selectedLetterId] or dispatches[1]
 
-    -- Update Left List
-    if parent.letterButtons then
-        for i, btn in ipairs(parent.letterButtons) do
-            local dispatch = dispatches[i]
-            if dispatch then
-                local isRead = DB:IsLetterRead(dispatch.id)
-                if dispatch.isStarter then
-                    if DB:IsStarterClaimed() then
-                        btn.StatusText:SetText("|cff00ff00[Archived]|r")
-                    else
-                        btn.StatusText:SetText("|cffffd100[UNOPENED]|r")
-                    end
-                else
-                    local progress = DB:GetQuestProgress(dispatch.questType)
-                    if DB:IsQuestClaimed(dispatch.id) then
-                        btn.StatusText:SetText("|cff00ff00[Archived]|r")
-                    elseif dispatch.targetCount and progress >= dispatch.targetCount then
-                        btn.StatusText:SetText("|cff00ff99[Ready!]|r")
-                    elseif not isRead then
-                        btn.StatusText:SetText("|cffffd100[NEW]|r")
-                    else
-                        btn.StatusText:SetText(string.format("|cffffcc00%d/%d (Read)|r", progress, dispatch.targetCount or 1))
-                    end
-                end
+    -- Update Inbox Header
+    if mailContainer.HeaderBar and mailContainer.HeaderBar.CountText then
+        mailContainer.HeaderBar.CountText:SetText(string.format("|cffaaaaaaTotal Dispatches: %d|r", #dispatches))
+    end
 
-                if dispatch.id == selectedLetterId then
-                    btn:SetBackdropBorderColor(1.0, 0.82, 0.0, 1.0)
+    -- Update Inbox Column Rows
+    for i, btn in ipairs(listButtons) do
+        local dispatch = dispatches[i]
+        if dispatch then
+            local isRead = DB:IsLetterRead(dispatch.id)
+
+            if dispatch.isStarter then
+                if DB:IsStarterClaimed() then
+                    btn.StatusText:SetText("|cff888888[Archived]|r")
                 else
-                    btn:SetBackdropBorderColor(0.3, 0.4, 0.5, 0.6)
+                    btn.StatusText:SetText("|cffffd100[ 📦 Unopened Parcel ]|r")
                 end
+            else
+                local progress = DB:GetQuestProgress(dispatch.questType)
+                local target = dispatch.targetCount or 1
+                local isClaimed = DB:IsQuestClaimed(dispatch.id)
+
+                if isClaimed then
+                    btn.StatusText:SetText("|cff888888[Archived]|r")
+                elseif progress >= target then
+                    btn.StatusText:SetText("|cff00ff99[ ✔ Ready to Claim ]|r")
+                elseif not isRead then
+                    btn.StatusText:SetText("|cffffd100[ ✉️ New ]|r")
+                else
+                    btn.StatusText:SetText(string.format("|cffffcc00[ Progress: %d / %d ]|r", progress, target))
+                end
+            end
+
+            if dispatch.id == selectedLetterId and openMailFrame and openMailFrame:IsShown() then
+                btn:SetBackdropBorderColor(1.0, 0.82, 0.0, 1.0)
+                btn:SetBackdropColor(0.14, 0.18, 0.24, 0.95)
+            else
+                btn:SetBackdropBorderColor(0.2, 0.28, 0.38, 0.7)
+                btn:SetBackdropColor(0.08, 0.10, 0.14, 0.85)
             end
         end
     end
 
-    -- Update Right Parchment Reader
-    local right = parent.RightPanel
-    if not right or not currentDispatch then return end
+    -- Update Secondary OpenMail Sidecar Window
+    if openMailFrame and openMailFrame:IsShown() and currentDispatch then
+        local headerCard = openMailFrame.HeaderCard
+        headerCard.SenderText:SetText(string.format("|cffaaaaaaFrom:|r |cffffd100%s|r (|cff00ff99%s|r)", currentDispatch.sender or "Expedition HQ", currentDispatch.location or "Azeroth"))
+        headerCard.SubjectText:SetText(string.format("|cffaaaaaaSubject:|r |cffffffff%s|r", currentDispatch.title or "Dispatch"))
 
-    right.DocTitle:SetText("|cffffd100" .. currentDispatch.title .. "|r")
-    right.SenderText:SetText(string.format("|cffaaaaaaFrom: %s (%s)|r", currentDispatch.sender, currentDispatch.location or "Expedition"))
-    right.BodyText:SetText(currentDispatch.body or "")
-    right.BodyContent:SetHeight(right.BodyText:GetStringHeight() + 20)
+        openMailFrame.BodyText:SetText(currentDispatch.body or "")
+        openMailFrame.BodyContent:SetHeight(openMailFrame.BodyText:GetStringHeight() + 24)
 
-    -- Update Tray & Actions
-    local tray = right.Tray
-    if currentDispatch.isStarter then
-        tray.Title:SetText("|cffffd100Starter Parcel Attachment:|r")
-        if DB:IsStarterClaimed() then
-            tray.ProgressText:SetText("|cff00ff00Starter companion & nets unboxed!|r")
-            tray.ActionBtn:Disable()
-            tray.ActionBtn:SetText("CRATE UNBOXED")
+        local tray = openMailFrame.Tray
+        tray.ItemSlot.Icon:SetTexture(currentDispatch.icon or "Interface\\Icons\\INV_Box_01")
+
+        -- Tooltip for attached rewards
+        tray.ItemSlot:SetScript("OnEnter", function(self)
+            GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+            if currentDispatch.isStarter then
+                GameTooltip:AddLine("Safari League Starter Kit", 1, 0.82, 0)
+                GameTooltip:AddLine("Enclosed Items:", 1, 1, 1)
+                GameTooltip:AddLine("• Racial Level 1 Companion Crate", 0, 1, 0.6)
+                GameTooltip:AddLine("• 5x Copper Safari Nets", 0, 1, 0.6)
+                GameTooltip:AddLine("• Forever Safari Field Guide", 0, 1, 0.6)
+            else
+                GameTooltip:AddLine(currentDispatch.title, 1, 0.82, 0)
+                GameTooltip:AddLine(currentDispatch.summary or "Field Directive", 1, 1, 1)
+                GameTooltip:AddLine(" ")
+                GameTooltip:AddLine("Turn-in Rewards:", 1, 0.82, 0)
+                if currentDispatch.rewards and currentDispatch.rewards.tokens and currentDispatch.rewards.tokens > 0 then
+                    GameTooltip:AddDoubleLine("Safari Tokens:", string.format("+%d", currentDispatch.rewards.tokens), 1, 1, 1, 1, 0.82, 0)
+                end
+                if currentDispatch.rewards and currentDispatch.rewards.items then
+                    for _, itm in ipairs(currentDispatch.rewards.items) do
+                        local itmData = C.ITEMS[itm.id] or C.CAGES[itm.id] or {}
+                        GameTooltip:AddDoubleLine(itmData.name or itm.id, string.format("x%d", itm.count), 0.8, 0.9, 1, 1, 1, 1)
+                    end
+                end
+            end
+            GameTooltip:Show()
+        end)
+        tray.ItemSlot:SetScript("OnLeave", function() GameTooltip:Hide() end)
+
+        if currentDispatch.isStarter then
+            tray.Header:SetText("|cffffd100Attached Parcel:|r Starter Companion Kit")
+            if DB:IsStarterClaimed() then
+                tray.Summary:SetText("|cff00ff00Starter crate collected and unboxed.|r")
+                tray.ActionBtn:Disable()
+                tray.ActionBtn:SetText("✔ CRATE UNBOXED")
+            else
+                tray.Summary:SetText("|cffffff00Contains: Racial Companion + 5x Copper Nets|r")
+                tray.ActionBtn:Enable()
+                tray.ActionBtn:SetText("📦 UNBOX STARTER CRATE")
+                tray.ActionBtn:SetScript("OnClick", function()
+                    DB:ClaimStarterKit()
+                    Mail:UpdateUI()
+                    Mail:UpdateTabBadge()
+                end)
+            end
         else
-            tray.ProgressText:SetText("|cffffff00Contains racial companion & 5 Nets|r")
-            tray.ActionBtn:Enable()
-            tray.ActionBtn:SetText("📦 UNBOX STARTER CRATE")
-            tray.ActionBtn:SetScript("OnClick", function()
-                DB:ClaimStarterKit()
-                Mail:UpdateUI()
-                Mail:UpdateTabBadge()
-            end)
-        end
-    else
-        local progress = DB:GetQuestProgress(currentDispatch.questType)
-        local target = currentDispatch.targetCount or 1
-        local isClaimed = DB:IsQuestClaimed(currentDispatch.id)
+            local progress = DB:GetQuestProgress(currentDispatch.questType)
+            local target = currentDispatch.targetCount or 1
+            local isClaimed = DB:IsQuestClaimed(currentDispatch.id)
 
-        tray.Title:SetText(string.format("|cffffd100Objective: %s|r", currentDispatch.summary or "Field Directive"))
-        
-        if isClaimed then
-            tray.ProgressText:SetText("|cff00ff00Rewards claimed! Bounty completed.|r")
-            tray.ActionBtn:Disable()
-            tray.ActionBtn:SetText("BOUNTY CLAIMED")
-        elseif progress >= target then
-            tray.ProgressText:SetText(string.format("|cff00ff00Progress: %d / %d (Complete!)|r", progress, target))
-            tray.ActionBtn:Enable()
-            tray.ActionBtn:SetText("🎁 CLAIM REWARDS")
-            tray.ActionBtn:SetScript("OnClick", function()
-                DB:ClaimQuestReward(currentDispatch.id)
-                Mail:UpdateUI()
-                Mail:UpdateTabBadge()
-            end)
-        else
-            tray.ProgressText:SetText(string.format("|cffff4444Progress: %d / %d (Incomplete)|r", progress, target))
-            tray.ActionBtn:Disable()
-            tray.ActionBtn:SetText("INCOMPLETE")
-        end
-    end
-end
+            tray.Header:SetText(string.format("|cffffd100Directive:|r %s", currentDispatch.summary or "Field Bounty"))
 
-function Mail:UpdateUI()
-    if mailContainer and mailContainer:IsShown() then
-        UpdateFramePanel(mailContainer)
+            if isClaimed then
+                tray.Summary:SetText("|cff888888Rewards claimed! Bounty archived.|r")
+                tray.ActionBtn:Disable()
+                tray.ActionBtn:SetText("✔ REWARDS CLAIMED")
+            elseif progress >= target then
+                tray.Summary:SetText(string.format("|cff00ff00Progress: %d / %d (Objective Complete!)|r", progress, target))
+                tray.ActionBtn:Enable()
+                tray.ActionBtn:SetText("🎁 CLAIM BOUNTY REWARDS")
+                tray.ActionBtn:SetScript("OnClick", function()
+                    DB:ClaimQuestReward(currentDispatch.id)
+                    Mail:UpdateUI()
+                    Mail:UpdateTabBadge()
+                end)
+            else
+                tray.Summary:SetText(string.format("|cffff4444Progress: %d / %d (Incomplete in field)|r", progress, target))
+                tray.ActionBtn:Disable()
+                tray.ActionBtn:SetText(string.format("INCOMPLETE (%d / %d)", progress, target))
+            end
+        end
     end
 end
 
