@@ -188,14 +188,40 @@ function DB:ValidateAndRepairSignatures()
         if not mob.sig or mob.sig ~= expectedSig then
             -- If tampered or legacy, recompute legal bounds
             if ForeverSafari.StatEngine and ForeverSafari.StatEngine.CalculateStats then
-                local stats = ForeverSafari.StatEngine:CalculateStats(mob.level or 1, mob.creatureType, mob.isElite)
-                mob.hp = stats.hp
-                mob.maxHp = stats.hp
-                mob.attack = stats.attack
-                mob.defense = stats.defense
-                mob.speed = stats.speed
+                local baseStats = nil
+                if ForeverSafari.CreatureDB then
+                    for _, entry in pairs(ForeverSafari.CreatureDB) do
+                        if entry.name == mob.name and entry.baseStats then
+                            baseStats = entry.baseStats
+                            break
+                        end
+                    end
+                end
+                local stats = ForeverSafari.StatEngine:CalculateStats(mob.creatureType, mob.attunement or 0, mob.isElite, baseStats)
+                mob.maxHP = stats.maxHP
+                mob.hp = stats.maxHP
+                mob.attack = stats.atk
+                mob.atk = stats.atk
+                mob.defense = stats.def
+                mob.def = stats.def
+                mob.speed = stats.spd
+                mob.spd = stats.spd
+                mob.rank = stats.rankData.rank
             end
+            if not mob.currentHP or mob.currentHP > (mob.maxHP or 10) then
+                mob.currentHP = mob.maxHP or 10
+            end
+            mob.hp = mob.currentHP
             mob.sig = DB:GenerateSignature(mob)
+        else
+            -- Ensure currentHP and maxHP are valid numbers
+            if not mob.maxHP or mob.maxHP <= 0 then
+                mob.maxHP = mob.hp or 10
+            end
+            if mob.currentHP == nil then
+                mob.currentHP = mob.maxHP
+            end
+            mob.hp = mob.currentHP
         end
     end
 end
@@ -905,5 +931,40 @@ function DB:ResetDB()
         ForeverSafari.Toast:ShowReward("Safari League Reset", "New recruit profile initialized! Visit any town mailbox.")
     end
     PlaySound(844)
+end
+
+function DB:HealMob(mobId)
+    local mob = DB:GetMobById(mobId)
+    if not mob then return false end
+    mob.maxHP = mob.maxHP or mob.hp or 10
+    mob.currentHP = mob.maxHP
+    mob.hp = mob.maxHP
+    DB:SignMob(mob)
+    if ForeverSafari.JournalFrame and ForeverSafari.JournalFrame:IsShown() then
+        ForeverSafari.JournalFrame:UpdateUI()
+    end
+    if ForeverSafari.CaptureHUD and ForeverSafari.CaptureHUD:IsShown() then
+        ForeverSafari.CaptureHUD:UpdateUI()
+    end
+    return true
+end
+
+function DB:HealTeam(silent)
+    local team = DB:GetTeam()
+    local healedCount = 0
+    for _, mobId in ipairs(team) do
+        if DB:HealMob(mobId) then
+            healedCount = healedCount + 1
+        end
+    end
+    if not silent then
+        local C = ForeverSafari.Constants
+        DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00Your active team has been fully healed and revived!|r", C.PREFIX))
+        if ForeverSafari.Toast then
+            ForeverSafari.Toast:ShowReward("Team Restored!", "All active companions are fully healed & revived.")
+        end
+        PlaySound(895)
+    end
+    return healedCount
 end
 

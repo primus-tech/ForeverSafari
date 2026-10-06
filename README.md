@@ -100,6 +100,7 @@ Companions progress through bonding, feeding, and battlefield survival rather th
 * **Innkeepers (Safari Treats & Food Provisions)**:
   * Gossip Option: `[ 🍖 Browse Safari Treats & Food Provisions ]`
   * Inventory: Safari Treats, Grand Safari Feasts, Healing Salves, and fresh harvested family meats (Wolf, Feline, Bear, Boar, Raptor, etc.).
+  * **Rest & Recovery**: Opening an Innkeeper's gossip window fully heals and revives your active team. Out in the field, fainted companions need a Revival Crystal or Healing Salve.
 * **Instant Auto-Close**: Closing the NPC gossip window immediately closes the shop interface.
 
 ### 10. The "Field Research" Snare & Hunter Coexistence (0% Mob Damage)

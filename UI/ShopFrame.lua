@@ -177,6 +177,28 @@ function Shop:OnGossipShow()
         Shop.isAtVendor = true
         Shop.vendorType = vType or "Pet Trainer"
 
+        -- Auto-heal & revive companion squad when resting at an Innkeeper
+        if Shop.vendorType == "Innkeeper" and DB and DB.HealTeam then
+            local team = DB:GetTeam()
+            local needsHealing = false
+            for _, mobId in ipairs(team) do
+                local m = DB:GetMobById(mobId)
+                if m and (not m.currentHP or m.currentHP < (m.maxHP or 10)) then
+                    needsHealing = true
+                    break
+                end
+            end
+            if needsHealing then
+                DB:HealTeam(true)
+                local C = ForeverSafari.Constants
+                DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00%s tended to your Safari companions! All active team members are fully healed & revived.|r", C.PREFIX, Shop.vendorType))
+                if ForeverSafari.Toast then
+                    ForeverSafari.Toast:ShowReward("Companions Restored!", string.format("Tended by %s (Team fully healed & revived).", Shop.vendorType))
+                end
+                PlaySound(895)
+            end
+        end
+
         -- Create or Attach Gossip Menu Button to GossipFrame
         if GossipFrame then
             if not gossipBtn then
