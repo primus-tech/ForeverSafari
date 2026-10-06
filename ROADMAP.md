@@ -122,17 +122,20 @@
 
 ---
 
-## 📍 Phase 9: Mailbox Correspondence & Quest Distribution Hub (Completed ✅)
-* [x] **Blizzard MailFrame Tab 3 Integration (`UI/SafariMailFrame.lua`)**:
-  * Seamless custom tab (`Safari Dispatch`) docked directly to Blizzard's `MailFrame` (`MAIL_SHOW` / `MAIL_CLOSED`).
-  * Dynamic unread / unclaimed quest alert badge (`|cff00ff00* Safari Dispatch *|r`).
+## 📍 Phase 9: Physical Mailbox Hub & Journal Field Directives (Completed ✅)
+* [x] **Safari Journal Field Directives (Tab 4 — `/safari` / `/safari bounties`)**:
+  * Live field tracker for all Nesingwary research directives, target quotas, progress bars, and objective dossiers.
+  * Allows players to check requirements anywhere in the wild while exploring.
+* [x] **Blizzard MailFrame Custom Tab ("Safari")**:
+  * Seamless custom tab docked directly to Blizzard's physical `MailFrame` (`MAIL_SHOW` / `MAIL_CLOSED`).
+  * Dynamic unread / unclaimed quest alert badge (`|cff00ff00Safari (!)|r`).
 * [x] **First-Load Starter Companion Crate Unboxing**:
-  * First-login correspondence from Hemet Nesingwary delivering the racial starter companion crate, 5x Copper Safari Nets, and 15 tokens.
-* [x] **Official Nesingwary Field Bounties**:
+  * First-login parcel from Hemet Nesingwary delivering the racial starter companion crate and 5x Copper Safari Nets (0 free tokens).
+* [x] **Official Nesingwary Field Bounties & Turn-Ins**:
   * Scrollable parchment letters distributing field research quests (Field Stalking 101, The Wild Nourishment, Apex Rares, Dungeon Catalysts).
-  * Objective progress tracking, parcel attachments, and reward redemption.
-* [x] **Standalone Field Reader**:
-  * Accessible from anywhere via `/fsmail` or `/safari mail`.
+  * Objective progress bars and physical turn-in requirements: players must return to a town mailbox to unbox parcels and collect their earned Safari Tokens and supplies.
+* [x] **Outer Bezel Minimap Button Orbit**:
+  * Shape-aware perimeter calculation supporting round, square, and modern WoW minimaps so the button stays docked on the outer bezel and never renders inside over the map texture.
 
 ---
 
@@ -148,4 +151,5 @@
   * Offers Safari Treats, Grand Safari Feasts, Healing Salves, and harvested family meats.
 * [x] **Instant Gossip Cleanup**:
   * Closing gossip immediately dismisses the merchant frame and clears vendor credentials.
+
 

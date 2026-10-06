@@ -601,7 +601,7 @@ C.NESINGWARY_DISPATCHES = {
         summary = "Unbox your racial starter companion and 5 Copper Safari Nets.",
         body = "Greetings, recruit!\n\nIf you are reading this dispatch, your petition to join the Junior Safari League has been officially accepted by the Nesingwary Expedition!\n\nWhether you hail from the dense glades of Teldrassil, the red canyons of Durotar, or the snowpeaks of Dun Morogh, Azeroth is teeming with majestic wildlife waiting to be researched, bonded with, and tested in honorable battle.\n\nAttached to this parcel is your Caged Starter Companion native to your homeland, along with five field research nets. Treat your companion well, nourish it with native diets, and protect the wild balance!\n\nGood hunting,\n— Hemet Nesingwary Sr.",
         rewards = {
-            tokens = 15,
+            tokens = 0,
             items = { { id = "copper_cage", count = 5 } },
         }
     },

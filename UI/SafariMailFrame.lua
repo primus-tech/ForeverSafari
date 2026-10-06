@@ -429,63 +429,8 @@ function Mail:UpdateUI()
     if mailContainer and mailContainer:IsShown() then
         UpdateFramePanel(mailContainer)
     end
-    if standaloneFrame and standaloneFrame:IsShown() then
-        UpdateFramePanel(standaloneFrame)
-    end
 end
 
 function Mail:IsShown()
-    return (mailContainer and mailContainer:IsShown()) or (standaloneFrame and standaloneFrame:IsShown())
-end
-
--- Standalone Field Dispatch Reader (Accessible via /safari mail, /fsmail, or Field Guide)
-function Mail:ShowStandalone()
-    if not standaloneFrame then
-        standaloneFrame = CreateFrame("Frame", "ForeverSafariStandaloneMailFrame", UIParent, "BackdropTemplate")
-        standaloneFrame:SetSize(360, 440)
-        standaloneFrame:SetPoint("CENTER", UIParent, "CENTER", 0, 20)
-        standaloneFrame:SetMovable(true)
-        standaloneFrame:EnableMouse(true)
-        standaloneFrame:RegisterForDrag("LeftButton")
-        standaloneFrame:SetClampedToScreen(true)
-        standaloneFrame:SetFrameStrata("HIGH")
-
-        Theme:ApplyFrameBackdrop(standaloneFrame, true)
-        standaloneFrame:SetScript("OnDragStart", function(self) self:StartMoving() end)
-        standaloneFrame:SetScript("OnDragStop", function(self) self:StopMovingOrSizing() end)
-
-        local closeBtn = CreateFrame("Button", nil, standaloneFrame, "UIPanelCloseButton")
-        closeBtn:SetPoint("TOPRIGHT", -2, -2)
-        closeBtn:SetScript("OnClick", function() standaloneFrame:Hide() end)
-
-        local title = standaloneFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-        title:SetPoint("TOPLEFT", 12, -10)
-        title:SetText("|cffffd100Nesingwary Field Correspondence|r")
-
-        local sub = standaloneFrame:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
-        sub:SetPoint("TOPLEFT", 12, -28)
-        sub:SetText("Official Safari League dispatches & active bounties.")
-        sub:SetTextColor(0.7, 0.8, 0.9)
-
-        local innerContent = CreateFrame("Frame", nil, standaloneFrame)
-        innerContent:SetSize(338, 380)
-        innerContent:SetPoint("TOPLEFT", 10, -48)
-        standaloneFrame.Inner = innerContent
-
-        Mail:BuildMailContent(innerContent)
-        standaloneFrame.letterButtons = innerContent.letterButtons
-        standaloneFrame.RightPanel = innerContent.RightPanel
-    end
-
-    standaloneFrame:Show()
-    Mail:UpdateUI()
-    PlaySound(844)
-end
-
-function Mail:ToggleStandalone()
-    if standaloneFrame and standaloneFrame:IsShown() then
-        standaloneFrame:Hide()
-    else
-        Mail:ShowStandalone()
-    end
+    return mailContainer and mailContainer:IsShown()
 end

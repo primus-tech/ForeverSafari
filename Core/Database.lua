@@ -13,14 +13,14 @@ local DB = ns.Database
 
 local DEFAULT_DB = {
     version = 2,
-    tokens = 15,
+    tokens = 0,
     inventory = {
-        ["copper_cage"] = 3,
+        ["copper_cage"] = 0,
         ["iron_cage"] = 0,
         ["mithril_cage"] = 0,
         ["arcanite_capsule"] = 0,
-        ["az_treat"] = 1,
-        ["healing_salve"] = 2,
+        ["az_treat"] = 0,
+        ["healing_salve"] = 0,
         ["revival_crystal"] = 0,
     },
     collection = {}, -- List of all captured companions
@@ -37,7 +37,7 @@ local DEFAULT_DB = {
         totalCaptured = 0,
         totalCagesThrown = 0,
         totalQuestsCompleted = 0,
-        totalTokensEarned = 15,
+        totalTokensEarned = 0,
         totalBattlesWon = 0,
         totalBattlesLost = 0,
         totalAbilitiesLearned = 4,
@@ -706,7 +706,6 @@ function DB:ClaimStarterKit()
     
     DB:AddMob(starterMob)
     DB:AddItem("copper_cage", 5)
-    DB:AddTokens(15, "Commission Grant")
     ForeverSafariDB.mail.starterClaimed = true
 
     if ForeverSafari.Toast then

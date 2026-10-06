@@ -122,22 +122,24 @@ function Journal:Initialize()
     frame.Header = Theme:CreateHeader(frame, "Forever Safari - Field Guide", "Interface\\Icons\\INV_Box_01")
 
     -- Top Navigation Tab Buttons (View Modes)
+    -- Top Navigation Tab Buttons (View Modes)
     local tabContainer = CreateFrame("Frame", nil, frame)
-    tabContainer:SetSize(520, 28)
+    tabContainer:SetSize(540, 28)
     tabContainer:SetPoint("TOPLEFT", frame, "TOPLEFT", 14, -38)
     frame.TabContainer = tabContainer
 
     local tabs = {
-        { id = "SHOWCASE", text = "3D Showcase Stage" },
-        { id = "GRID",     text = "3D Paperdoll Gallery" },
+        { id = "SHOWCASE", text = "3D Showcase" },
+        { id = "GRID",     text = "3D Gallery" },
         { id = "BESTIARY", text = "Azeroth Bestiary" },
+        { id = "BOUNTIES", text = "Field Directives" },
     }
 
     frame.TabButtons = {}
     for i, tabInfo in ipairs(tabs) do
         local btn = CreateFrame("Button", nil, tabContainer, "BackdropTemplate")
-        btn:SetSize(160, 24)
-        btn:SetPoint("LEFT", tabContainer, "LEFT", (i - 1) * 166, 0)
+        btn:SetSize(126, 24)
+        btn:SetPoint("LEFT", tabContainer, "LEFT", (i - 1) * 130, 0)
         btn.tabId = tabInfo.id
 
         btn:SetBackdrop({
@@ -159,10 +161,10 @@ function Journal:Initialize()
         frame.TabButtons[tabInfo.id] = btn
     end
 
-    -- Top Right Quick Access Buttons (Safari Bag & Supplies Shop)
+    -- Top Right Quick Access Buttons (Safari Bag & Field Directives shortcut)
     local bagBtn = CreateFrame("Button", "ForeverSafariJournalBagBtn", frame, "BackdropTemplate")
-    bagBtn:SetSize(120, 24)
-    bagBtn:SetPoint("TOPRIGHT", frame, "TOPRIGHT", -150, -38)
+    bagBtn:SetSize(110, 24)
+    bagBtn:SetPoint("TOPRIGHT", frame, "TOPRIGHT", -134, -38)
     bagBtn:SetBackdrop({
         bgFile = "Interface\\Buttons\\WHITE8X8",
         edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
@@ -193,38 +195,38 @@ function Journal:Initialize()
     bagBtn:SetScript("OnLeave", function() GameTooltip:Hide() end)
     frame.BagBtn = bagBtn
 
-    local mailBtn = CreateFrame("Button", "ForeverSafariJournalMailBtn", frame, "BackdropTemplate")
-    mailBtn:SetSize(130, 24)
-    mailBtn:SetPoint("TOPRIGHT", frame, "TOPRIGHT", -18, -38)
-    mailBtn:SetBackdrop({
+    local bountiesBtn = CreateFrame("Button", "ForeverSafariJournalBountiesBtn", frame, "BackdropTemplate")
+    bountiesBtn:SetSize(114, 24)
+    bountiesBtn:SetPoint("TOPRIGHT", frame, "TOPRIGHT", -16, -38)
+    bountiesBtn:SetBackdrop({
         bgFile = "Interface\\Buttons\\WHITE8X8",
         edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
         edgeSize = 8,
     })
-    mailBtn:SetBackdropColor(0.12, 0.16, 0.22, 0.9)
-    mailBtn:SetBackdropBorderColor(1.0, 0.82, 0.0, 0.8)
+    bountiesBtn:SetBackdropColor(0.12, 0.16, 0.22, 0.9)
+    bountiesBtn:SetBackdropBorderColor(1.0, 0.82, 0.0, 0.8)
 
-    local mailIcon = mailBtn:CreateTexture(nil, "ARTWORK")
-    mailIcon:SetSize(16, 16)
-    mailIcon:SetPoint("LEFT", mailBtn, "LEFT", 6, 0)
-    mailIcon:SetTexture("Interface\\Icons\\INV_Letter_15")
-    mailIcon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+    local bIcon = bountiesBtn:CreateTexture(nil, "ARTWORK")
+    bIcon:SetSize(16, 16)
+    bIcon:SetPoint("LEFT", bountiesBtn, "LEFT", 6, 0)
+    bIcon:SetTexture("Interface\\Icons\\INV_Letter_15")
+    bIcon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
 
-    local mailText = mailBtn:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
-    mailText:SetPoint("LEFT", mailIcon, "RIGHT", 4, 0)
-    mailText:SetText("|cffffd100Safari Dispatch|r")
+    local bText = bountiesBtn:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    bText:SetPoint("LEFT", bIcon, "RIGHT", 4, 0)
+    bText:SetText("|cffffd100Directives|r")
 
-    mailBtn:SetScript("OnClick", function()
-        if ForeverSafari.SafariMailFrame then ForeverSafari.SafariMailFrame:ToggleStandalone() end
+    bountiesBtn:SetScript("OnClick", function()
+        Journal:SetTab("BOUNTIES")
     end)
-    mailBtn:SetScript("OnEnter", function(self)
+    bountiesBtn:SetScript("OnEnter", function(self)
         GameTooltip:SetOwner(self, "ANCHOR_TOP")
-        GameTooltip:AddLine("|cffffd100Nesingwary Correspondence|r", 1, 1, 1)
-        GameTooltip:AddLine("Read official Safari League dispatches and track active bounties.", 0.8, 0.8, 0.8, true)
+        GameTooltip:AddLine("|cffffd100Field Directives & Bounties|r", 1, 1, 1)
+        GameTooltip:AddLine("Track your active Nesingwary research directives and hunt objectives in the field.", 0.8, 0.8, 0.8, true)
         GameTooltip:Show()
     end)
-    mailBtn:SetScript("OnLeave", function() GameTooltip:Hide() end)
-    frame.MailBtn = mailBtn
+    bountiesBtn:SetScript("OnLeave", function() GameTooltip:Hide() end)
+    frame.BountiesBtn = bountiesBtn
 
     -- View 1: 3D Showcase Stage Container
     local showcaseContainer = CreateFrame("Frame", "ForeverSafariShowcaseContainer", frame)
@@ -249,6 +251,14 @@ function Journal:Initialize()
     frame.BestiaryContainer = bestiaryContainer
 
     Journal:BuildBestiaryView(bestiaryContainer)
+
+    -- View 4: Field Directives & Quest Log Container
+    local bountiesContainer = CreateFrame("Frame", "ForeverSafariBountiesContainer", frame)
+    bountiesContainer:SetPoint("TOPLEFT", frame, "TOPLEFT", 12, -68)
+    bountiesContainer:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -12, 60)
+    frame.BountiesContainer = bountiesContainer
+
+    Journal:BuildBountiesView(bountiesContainer)
 
     -- Bottom Team Roster Dock with 3D Mini-Paperdolls
     Journal:BuildTeamDock(frame)
@@ -278,8 +288,15 @@ function Journal:SetTab(tabId)
     frame.ShowcaseContainer:SetShown(tabId == "SHOWCASE")
     frame.GridContainer:SetShown(tabId == "GRID")
     frame.BestiaryContainer:SetShown(tabId == "BESTIARY")
+    frame.BountiesContainer:SetShown(tabId == "BOUNTIES")
 
     Journal:UpdateUI()
+end
+
+function Journal:ShowTab(tabId)
+    if not frame then Journal:Initialize() end
+    frame:Show()
+    Journal:SetTab(tabId or "SHOWCASE")
 end
 
 -- =========================================================================
@@ -1500,8 +1517,262 @@ function Journal:UpdateShowcase()
     end
 end
 
-function Journal:UpdateDossier()
-    Journal:UpdateShowcase()
+-- =========================================================================
+-- VIEW 4: FIELD DIRECTIVES & BOUNTIES LOG
+-- =========================================================================
+local selectedBountyId = 1
+local bountyButtons = {}
+
+function Journal:BuildBountiesView(parent)
+    -- Left Column: Directives List
+    local leftPanel = Theme:CreateCard(parent, 250, 480)
+    leftPanel:SetPoint("TOPLEFT", parent, "TOPLEFT", 0, 0)
+    parent.LeftPanel = leftPanel
+
+    local listTitle = leftPanel:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
+    listTitle:SetPoint("TOPLEFT", 12, -10)
+    listTitle:SetText("|cffffd100Field Directives|r")
+
+    local listSub = leftPanel:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+    listSub:SetPoint("TOPLEFT", listTitle, "BOTTOMLEFT", 0, -2)
+    listSub:SetText("Nesingwary Research Quests")
+    listSub:SetTextColor(0.7, 0.75, 0.8)
+
+    local scrollFrame = CreateFrame("ScrollFrame", "ForeverSafariBountiesScrollFrame", leftPanel, "UIPanelScrollFrameTemplate")
+    scrollFrame:SetPoint("TOPLEFT", leftPanel, "TOPLEFT", 6, -38)
+    scrollFrame:SetPoint("BOTTOMRIGHT", leftPanel, "BOTTOMRIGHT", -26, 8)
+
+    local listContent = CreateFrame("Frame", "ForeverSafariBountiesListContent", scrollFrame)
+    listContent:SetSize(210, 440)
+    scrollFrame:SetScrollChild(listContent)
+    parent.ListContent = listContent
+
+    local dispatches = C.NESINGWARY_DISPATCHES or {}
+    for i, dispatch in ipairs(dispatches) do
+        local btn = CreateFrame("Button", nil, listContent, "BackdropTemplate")
+        btn:SetSize(210, 68)
+        btn:SetPoint("TOPLEFT", 4, -((i - 1) * 74))
+        btn.bountyId = dispatch.id
+
+        Theme:ApplyCardBackdrop(btn)
+
+        local icon = btn:CreateTexture(nil, "ARTWORK")
+        icon:SetSize(32, 32)
+        icon:SetPoint("LEFT", 8, 0)
+        icon:SetTexture(dispatch.icon or "Interface\\Icons\\INV_Box_01")
+        icon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+        btn.Icon = icon
+
+        local title = btn:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+        title:SetPoint("TOPLEFT", icon, "TOPRIGHT", 8, -4)
+        title:SetPoint("RIGHT", -6, 0)
+        title:SetJustifyH("LEFT")
+        title:SetText(dispatch.title)
+        btn.Title = title
+
+        local status = btn:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+        status:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -4)
+        status:SetPoint("RIGHT", -6, 0)
+        status:SetJustifyH("LEFT")
+        status:SetText("|cffaaaaaaIn Progress|r")
+        btn.Status = status
+
+        btn:SetScript("OnClick", function(self)
+            selectedBountyId = self.bountyId
+            Journal:UpdateBountiesView()
+            PlaySound(856)
+        end)
+
+        bountyButtons[i] = btn
+    end
+
+    -- Right Column: Directive Dossier, Progress & Mailbox Instructions
+    local rightPanel = Theme:CreateCard(parent, 556, 480)
+    rightPanel:SetPoint("TOPLEFT", leftPanel, "TOPRIGHT", 6, 0)
+    rightPanel:SetPoint("BOTTOMRIGHT", parent, "BOTTOMRIGHT", 0, 0)
+    parent.RightPanel = rightPanel
+
+    local crest = rightPanel:CreateTexture(nil, "ARTWORK")
+    crest:SetSize(36, 36)
+    crest:SetPoint("TOPRIGHT", -12, -10)
+    crest:SetTexture("Interface\\Icons\\Ability_Hunter_BeastTaming")
+    crest:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+    rightPanel.Crest = crest
+
+    local docTitle = rightPanel:CreateFontString(nil, "OVERLAY", "GameFontHighlightLarge")
+    docTitle:SetPoint("TOPLEFT", 14, -10)
+    docTitle:SetPoint("TOPRIGHT", crest, "TOPLEFT", -10, 0)
+    docTitle:SetJustifyH("LEFT")
+    rightPanel.DocTitle = docTitle
+
+    local senderText = rightPanel:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+    senderText:SetPoint("TOPLEFT", docTitle, "BOTTOMLEFT", 0, -4)
+    rightPanel.SenderText = senderText
+
+    -- Lore & Directive Description Scroll
+    local descScroll = CreateFrame("ScrollFrame", nil, rightPanel, "UIPanelScrollFrameTemplate")
+    descScroll:SetPoint("TOPLEFT", 14, -58)
+    descScroll:SetPoint("BOTTOMRIGHT", -28, 200)
+
+    local descContent = CreateFrame("Frame", nil, descScroll)
+    descContent:SetSize(500, 200)
+    descScroll:SetScrollChild(descContent)
+
+    local bodyText = descContent:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    bodyText:SetPoint("TOPLEFT", 0, 0)
+    bodyText:SetPoint("TOPRIGHT", 0, 0)
+    bodyText:SetJustifyH("LEFT")
+    bodyText:SetTextColor(0.88, 0.90, 0.92)
+    rightPanel.BodyText = bodyText
+    rightPanel.DescContent = descContent
+
+    -- Objectives & Progress Card
+    local objCard = Theme:CreateCard(rightPanel, 528, 108)
+    objCard:SetPoint("BOTTOMLEFT", 14, 82)
+    objCard:SetPoint("BOTTOMRIGHT", -14, 82)
+    rightPanel.ObjCard = objCard
+
+    local objHeader = objCard:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
+    objHeader:SetPoint("TOPLEFT", 10, -8)
+    objHeader:SetText("|cffffd100Directive Objective:|r")
+    objCard.Header = objHeader
+
+    local objSummary = objCard:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    objSummary:SetPoint("TOPLEFT", objHeader, "BOTTOMLEFT", 0, -4)
+    objSummary:SetPoint("RIGHT", -10, 0)
+    objSummary:SetJustifyH("LEFT")
+    objCard.Summary = objSummary
+
+    local pBar = CreateFrame("StatusBar", nil, objCard)
+    pBar:SetSize(320, 16)
+    pBar:SetPoint("TOPLEFT", objSummary, "BOTTOMLEFT", 0, -6)
+    pBar:SetStatusBarTexture("Interface\\TargetingFrame\\UI-StatusBar")
+    pBar:SetStatusBarColor(0.0, 0.8, 0.4)
+    objCard.ProgressBar = pBar
+
+    local pBarBg = pBar:CreateTexture(nil, "BACKGROUND")
+    pBarBg:SetAllPoints(pBar)
+    pBarBg:SetTexture("Interface\\TargetingFrame\\UI-StatusBar")
+    pBarBg:SetVertexColor(0.1, 0.15, 0.2, 0.8)
+
+    local pBarText = pBar:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    pBarText:SetPoint("CENTER", 0, 0)
+    objCard.ProgressText = pBarText
+
+    local rewardText = objCard:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+    rewardText:SetPoint("TOPLEFT", pBar, "BOTTOMLEFT", 0, -6)
+    rewardText:SetPoint("RIGHT", -10, 0)
+    rewardText:SetJustifyH("LEFT")
+    objCard.RewardText = rewardText
+
+    -- Physical Town Mailbox Notice Box
+    local noticeBox = Theme:CreateCard(rightPanel, 528, 64)
+    noticeBox:SetPoint("BOTTOMLEFT", 14, 10)
+    noticeBox:SetPoint("BOTTOMRIGHT", -14, 10)
+    noticeBox:SetBackdropBorderColor(1.0, 0.82, 0.0, 0.8)
+
+    local noticeIcon = noticeBox:CreateTexture(nil, "ARTWORK")
+    noticeIcon:SetSize(28, 28)
+    noticeIcon:SetPoint("LEFT", 10, 0)
+    noticeIcon:SetTexture("Interface\\Icons\\INV_Letter_15")
+    noticeIcon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+
+    local noticeTitle = noticeBox:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    noticeTitle:SetPoint("TOPLEFT", noticeIcon, "TOPRIGHT", 8, 2)
+    noticeTitle:SetText("|cffffd100📬 Physical Town Mailbox Required For Rewards & Letters|r")
+
+    local noticeDesc = noticeBox:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+    noticeDesc:SetPoint("TOPLEFT", noticeTitle, "BOTTOMLEFT", 0, -2)
+    noticeDesc:SetPoint("RIGHT", -10, 0)
+    noticeDesc:SetJustifyH("LEFT")
+    noticeDesc:SetText("|cffaaaaaaCompleted bounties and newly delivered dispatches are unboxed at an authentic Mailbox in town. Visit any town inn to collect your rewards!|r")
+end
+
+function Journal:UpdateBountiesView()
+    local dispatches = C.NESINGWARY_DISPATCHES or {}
+    local currentDispatch = dispatches[selectedBountyId] or dispatches[1]
+
+    -- Update List Cards
+    for i, btn in ipairs(bountyButtons) do
+        local dispatch = dispatches[i]
+        if dispatch then
+            local isClaimed = DB:IsQuestClaimed(dispatch.id)
+            local progress = DB:GetQuestProgress(dispatch.questType)
+            local target = dispatch.targetCount or 1
+
+            if dispatch.isStarter then
+                if DB:IsStarterClaimed() then
+                    btn.Status:SetText("|cff00ff00[Commission Active]|r")
+                else
+                    btn.Status:SetText("|cffffd100[Mailbox Parcel Waiting]|r")
+                end
+            else
+                if isClaimed then
+                    btn.Status:SetText("|cffaaaaaa[Bounty Completed]|r")
+                elseif progress >= target then
+                    btn.Status:SetText("|cff00ff99[✔ Ready for Mailbox Turn-In]|r")
+                else
+                    btn.Status:SetText(string.format("|cffffcc00[Progress: %d / %d]|r", progress, target))
+                end
+            end
+
+            if dispatch.id == selectedBountyId then
+                btn:SetBackdropBorderColor(1.0, 0.82, 0.0, 1.0)
+                btn:SetBackdropColor(0.12, 0.18, 0.24, 0.95)
+            else
+                btn:SetBackdropBorderColor(0.2, 0.3, 0.4, 0.6)
+                btn:SetBackdropColor(0.08, 0.10, 0.14, 0.8)
+            end
+        end
+    end
+
+    -- Update Dossier Content
+    local right = frame.BountiesContainer.RightPanel
+    if not right or not currentDispatch then return end
+
+    right.DocTitle:SetText(currentDispatch.title)
+    right.SenderText:SetText(string.format("|cffaaaaaaFrom: %s (%s)|r", currentDispatch.sender, currentDispatch.location or "Expedition HQ"))
+    right.BodyText:SetText(currentDispatch.body or "")
+    right.DescContent:SetHeight(right.BodyText:GetStringHeight() + 20)
+
+    local objCard = right.ObjCard
+    objCard.Summary:SetText(currentDispatch.summary or "Field Research Task")
+
+    if currentDispatch.isStarter then
+        objCard.ProgressBar:SetMinMaxValues(0, 1)
+        if DB:IsStarterClaimed() then
+            objCard.ProgressBar:SetValue(1)
+            objCard.ProgressBar:SetStatusBarColor(0.0, 0.8, 0.4)
+            objCard.ProgressText:SetText("Commission Active — Starter Companion Unboxed")
+            objCard.RewardText:SetText("|cff00ff00Starter crate collected from town mailbox.|r")
+        else
+            objCard.ProgressBar:SetValue(0)
+            objCard.ProgressBar:SetStatusBarColor(1.0, 0.6, 0.0)
+            objCard.ProgressText:SetText("0 / 1 — Parcel Waiting at Town Mailbox")
+            objCard.RewardText:SetText("|cffffd100Rewards Waiting:|r Racial Starter Companion + 5x Copper Safari Nets")
+        end
+    else
+        local progress = DB:GetQuestProgress(currentDispatch.questType)
+        local target = currentDispatch.targetCount or 1
+        local isClaimed = DB:IsQuestClaimed(currentDispatch.id)
+
+        objCard.ProgressBar:SetMinMaxValues(0, target)
+        objCard.ProgressBar:SetValue(math.min(progress, target))
+
+        if isClaimed then
+            objCard.ProgressBar:SetStatusBarColor(0.5, 0.5, 0.5)
+            objCard.ProgressText:SetText(string.format("%d / %d (Bounty Completed & Claimed)", target, target))
+            objCard.RewardText:SetText("|cffaaaaaaRewards already collected from town mailbox.|r")
+        elseif progress >= target then
+            objCard.ProgressBar:SetStatusBarColor(0.0, 1.0, 0.4)
+            objCard.ProgressText:SetText(string.format("|cff00ff00%d / %d (Objective Complete! Ready to Turn In)|r", progress, target))
+            objCard.RewardText:SetText(string.format("|cff00ff00Turn-In Reward:|r +%d Safari Tokens, Supplies (Claim at Mailbox)", currentDispatch.rewards and currentDispatch.rewards.tokens or 0))
+        else
+            objCard.ProgressBar:SetStatusBarColor(0.0, 0.7, 1.0)
+            objCard.ProgressText:SetText(string.format("%d / %d (%d%%)", progress, target, math.floor((progress / target) * 100)))
+            objCard.RewardText:SetText(string.format("|cffffd100Bounty Rewards:|r +%d Safari Tokens, Nets & Treats (Claim at Mailbox)", currentDispatch.rewards and currentDispatch.rewards.tokens or 0))
+        end
+    end
 end
 
 function Journal:UpdateTeamDock()
@@ -1544,6 +1815,8 @@ function Journal:UpdateUI()
         Journal:UpdateGridView()
     elseif currentTab == "BESTIARY" then
         Journal:UpdateBestiaryView()
+    elseif currentTab == "BOUNTIES" then
+        Journal:UpdateBountiesView()
     end
 
     Journal:UpdateTeamDock()

@@ -34,14 +34,11 @@ Every playable race receives an authentic wild companion indigenous to their hom
 | 🏹 **Troll** | Durotar / Sen'jin | **Bloodtalon Raptor** | Raptor | `1960` | Swift, ferocious predator of Sen'jin and the Darkspear Loa |
 | 🪶 **Tauren** | Mulgore | **Kodo Calf** | Kodo | `1451` | Gentle yet thunderous powerhouse of the plains |
 | 💀 **Undead** | Tirisfal Glades | **Mangy Duskbat** | Bat | `9535` | Eerie nocturnal flier haunting the ruined belfries |
-
----
-
-## 🌟 Key Systems & Gameplay Mechanics
-
 ### 1. 3D Paperdoll Journal & Field Guide
 * **Interactive 3D Showcase**: Full 360° mouse drag rotation, zoom, animation triggers (Attack, Roar, Victory, Idle), and 4-stat combat radar dossier.
 * **Paperdoll Gallery**: Browse your entire menagerie in live 3D card tiles with 9-element type filters and pagination.
+* **Azeroth Bestiary**: 1,909 cataloged creatures with habitat maps, display previews, and diet specifications.
+* **Field Directives & Quest Tracker (Tab 4)**: Track active Nesingwary research directives, target objectives, kill/tame quotas, progress bars, and lore dossiers directly from the field (`/safari` or `/safari bounties`).
 * **3D Team Dock**: Live mini-paperdoll pedestals for your active 4-member battle squad.
 
 ### 2. 5-Rank Attunement & Loyalty Progression (Replaces Leveling)
@@ -87,11 +84,10 @@ Companions progress through bonding, feeding, and battlefield survival rather th
   * 🍖 **Consumables**: Safari Treats (+50 Attunement), Grand Safari Feasts (+100 Attunement to full team), Safari Healing Salves (100% HP heal), and Revival Crystals.
 * **Context-Sensitive Actions**: Right-Clicking items in the bag automatically equips nets, feeds or heals your active companion, or opens the 3D Metamorphosis pedestal. Shift-Clicking any item links it directly into chat.
 
-### 8. Custom Mailbox Tab & Quest Correspondence ("Safari Dispatch")
-* **Blizzard Mailbox Tab 3**: Authentic custom tab attached directly to Blizzard's `MailFrame` (`MAIL_SHOW`).
-* **First-Load Starter Parcel**: Recruits unbox their racial companion starter kit, 5x Copper Safari Nets, and 15 tokens directly from Hemet Nesingwary's welcome dispatch.
-* **Nesingwary Field Bounties**: Official dispatches distribute quest bounties (Field Stalking, Wild Nourishment, Apex Rares, Dungeon Catalysts) with live objective tracking and reward claiming.
-* **Standalone Field Reader**: Accessible anywhere via `/fsmail` or `/safari mail`.
+### 8. Physical Mailbox Hub & Official Correspondence ("Safari Dispatch")
+* **Blizzard Mailbox Tab ("Safari")**: Authentic custom tab attached directly to Blizzard's `MailFrame` (`MAIL_SHOW`).
+* **First-Load Starter Parcel**: Recruits unbox their racial companion starter kit and 5x Copper Safari Nets (0 free token handouts) directly from Hemet Nesingwary's welcome dispatch.
+* **Field Research Bounty Turn-Ins**: Official dispatches distribute research bounties (Field Stalking, Wild Nourishment, Apex Rares, Dungeon Catalysts). Players track requirements in the Field Guide Journal and must return to a **physical town mailbox** to unbox parcels and collect their earned Safari Tokens and supplies.
 
 ### 9. Innkeeper & Pet Trainer Vendor Specialization (Gossip Box Only)
 * **Zero Out-of-World Access**: Supply and food purchases cannot be made out in the field. Store interfaces are accessed **exclusively by clicking gossip menu options** when interacting with authorized NPCs in town.
@@ -116,7 +112,7 @@ Forever Safari decouples creature capturing completely from world-mob HP, transf
                                          │
                         (Roll Net Tier vs Quarry Rank)
                                          ▼
-                         [Success: Virtual Snare Added]
+                          [Success: Virtual Snare Added]
                         (Live mob remains untouched in world!)
 ```
 
@@ -145,11 +141,14 @@ Forever Safari focuses purely on non-humanoid monsters, wild fauna, constructs, 
 ## 🎮 Slash Commands
 
 * `/safari` or `/fs` — Open the Forever Safari 3D Field Guide & Team Manager
+* `/safari bounties` — View Active Field Directives & Quest Tracker (Tab 4)
 * `/fsbag` or `/safari bag` — Open the Virtual Safari Bag container
-* `/fsmail` or `/safari mail` — Open Nesingwary Safari Correspondence & Bounties
-* `/fsshop` — Open Nesingwary Safari Supplies (Catalogue Mode)
+* `/fsmail` or `/safari mail` — Open Nesingwary Safari Correspondence (Turn in at Mailbox)
+* `/fsshop` — Open Nesingwary Safari Supplies (Requires Pet Trainer or Innkeeper interaction)
 * `/fsnet` — Throw selected safari net at target
 * `/fsbattle` — Engage targeted creature in turn-based combat
+* `/fsduel` — Challenge targeted player to a companion duel
+* `/safari tokens` — Check your current Safari Token balancegeted creature in turn-based combat
 * `/fsduel` — Challenge targeted player to a companion duel
 * `/safari tokens` — Check your current Safari Token balance
 

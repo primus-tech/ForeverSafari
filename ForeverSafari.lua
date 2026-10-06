@@ -103,8 +103,19 @@ local function HandleSlash(msg)
             end
             PlaySound(847)
         end
-    elseif cmd == "mail" or cmd == "letters" or cmd == "dispatch" or cmd == "bounties" or cmd == "quests" then
-        if ForeverSafari.SafariMailFrame then ForeverSafari.SafariMailFrame:ToggleStandalone() end
+    elseif cmd == "bounties" or cmd == "quests" or cmd == "directives" or cmd == "tasks" then
+        if ForeverSafari.JournalFrame then
+            ForeverSafari.JournalFrame:ShowTab("BOUNTIES")
+        end
+    elseif cmd == "mail" or cmd == "letters" or cmd == "dispatch" then
+        if MailFrame and MailFrame:IsShown() and ForeverSafari.SafariMailFrame then
+            ForeverSafari.SafariMailFrame:SelectSafariTab()
+        else
+            DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffffcc00📬 Nesingwary Mailbox Hub:|r Turn in completed bounties and claim parcels at any physical town mailbox. Opening |cffffd100Field Directives|r in your Safari Journal...")
+            if ForeverSafari.JournalFrame then
+                ForeverSafari.JournalFrame:ShowTab("BOUNTIES")
+            end
+        end
     elseif cmd == "net" or cmd == "catch" or cmd == "snare" or cmd == "trap" then
         ForeverSafari.CaptureEngine:AttemptCapture("target")
     elseif cmd == "battle" or cmd == "fight" then
@@ -116,8 +127,9 @@ local function HandleSlash(msg)
     elseif cmd == "help" then
         DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cff00ff99Available Slash Commands:|r")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/safari|r or |cffffd100/fs|r - Open Field Guide & Team Manager")
+        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/safari bounties|r - View Active Field Directives & Quest Tracker")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsbag|r or |cffffd100/safari bag|r - Open Virtual Safari Bag")
-        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsmail|r or |cffffd100/safari mail|r - View Nesingwary Dispatches & Bounties")
+        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsmail|r or |cffffd100/safari mail|r - View Nesingwary Dispatches (Turn in at Mailbox)")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsnet|r - Throw selected safari net at target")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsbattle|r - Engage targeted wild creature in turn-based battle")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsduel|r - Challenge targeted player to a companion duel")
@@ -140,7 +152,16 @@ SlashCmdList["FSSHOP"] = function()
         PlaySound(847)
     end
 end
-SlashCmdList["FSMAIL"] = function() if ForeverSafari.SafariMailFrame then ForeverSafari.SafariMailFrame:ToggleStandalone() end end
+SlashCmdList["FSMAIL"] = function()
+    if MailFrame and MailFrame:IsShown() and ForeverSafari.SafariMailFrame then
+        ForeverSafari.SafariMailFrame:SelectSafariTab()
+    else
+        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffffcc00📬 Nesingwary Mailbox Hub:|r Turn in completed bounties and claim parcels at any physical town mailbox. Opening |cffffd100Field Directives|r in your Safari Journal...")
+        if ForeverSafari.JournalFrame then
+            ForeverSafari.JournalFrame:ShowTab("BOUNTIES")
+        end
+    end
+end
 SlashCmdList["FSNET"] = function() ForeverSafari.CaptureEngine:AttemptCapture("target") end
 SlashCmdList["FSBATTLE"] = function() ForeverSafari.BattleEngine:StartWildBattle("target") end
 SlashCmdList["FSDUEL"] = function() ForeverSafari.Comms:ChallengeTarget() end
