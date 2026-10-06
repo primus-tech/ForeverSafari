@@ -521,9 +521,9 @@ function Bag:UseItem(itemId, itemData)
 
     -- 1. 🕸️ Safari Nets: Equip as active net or attempt capture
     if itemData.category == "Safari Net" then
-        if ForeverSafari.CaptureHUD then
+        if ForeverSafari.CaptureHUD and ForeverSafari.CaptureHUD.SelectCage then
             ForeverSafari.CaptureHUD:SelectCage(itemId)
-            if not ForeverSafari.CaptureHUD:IsShown() then
+            if not ForeverSafari.CaptureHUD:IsShown() and UnitExists("target") then
                 ForeverSafari.CaptureHUD:ShowHUD()
             end
         end

@@ -376,7 +376,36 @@ function HUD:ShowCaptureResult(success, targetName, chance)
     end)
 end
 
+function HUD:SelectCage(cageId)
+    if cageId and C.CAGES[cageId] then
+        selectedCageId = cageId
+        if frame and frame:IsShown() then
+            HUD:UpdateUI()
+        end
+    end
+end
+
+function HUD:GetSelectedCage()
+    return selectedCageId or "copper_cage"
+end
+
+function HUD:ShowHUD()
+    if not frame then HUD:Initialize() end
+    frame:Show()
+    HUD:UpdateUI()
+end
+
+function HUD:ToggleHUD()
+    if not frame then HUD:Initialize() end
+    if frame:IsShown() then
+        frame:Hide()
+    else
+        HUD:ShowHUD()
+    end
+end
+
 function HUD:IsShown()
     return frame and frame:IsShown()
 end
+
 
