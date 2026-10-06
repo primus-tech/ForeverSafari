@@ -177,8 +177,8 @@ function Shop:OnGossipShow()
         Shop.isAtVendor = true
         Shop.vendorType = vType or "Pet Trainer"
 
-        -- Auto-heal & revive companion squad when resting at an Innkeeper
-        if Shop.vendorType == "Innkeeper" and DB and DB.HealTeam then
+        -- Auto-heal & revive companion squad when visiting an Innkeeper or Pet Trainer
+        if DB and DB.HealTeam then
             local team = DB:GetTeam()
             local needsHealing = false
             for _, mobId in ipairs(team) do
