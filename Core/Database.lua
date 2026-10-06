@@ -782,3 +782,75 @@ function DB:ClaimQuestReward(letterId)
     end
     return true
 end
+
+-- Full clean reset of player progress to new recruit state
+function DB:ResetDB()
+    ForeverSafariDB = {
+        version = 2,
+        tokens = 0,
+        inventory = {
+            ["copper_cage"] = 0,
+            ["iron_cage"] = 0,
+            ["mithril_cage"] = 0,
+            ["arcanite_capsule"] = 0,
+            ["az_treat"] = 0,
+            ["healing_salve"] = 0,
+            ["revival_crystal"] = 0,
+        },
+        collection = {},
+        team = {},
+        activeSlot = 1,
+        discovered = {},
+        unlockedAbilities = {
+            ["Tackle"] = true,
+            ["Bite"] = true,
+            ["Furious_Howl"] = true,
+            ["Water_Jet"] = true,
+        },
+        stats = {
+            totalCaptured = 0,
+            totalCagesThrown = 0,
+            totalQuestsCompleted = 0,
+            totalTokensEarned = 0,
+            totalBattlesWon = 0,
+            totalBattlesLost = 0,
+            totalAbilitiesLearned = 4,
+        },
+        mail = {
+            starterClaimed = false,
+            readLetters = {},
+            claimedQuests = {},
+            questProgress = {
+                ["CAPTURE_TOTAL"] = 0,
+                ["FEED"] = 0,
+                ["CAPTURE_RARE"] = 0,
+                ["BOSS_KILL"] = 0,
+            },
+        },
+        settings = {
+            minimapAngle = 220,
+        }
+    }
+
+    if ForeverSafari.JournalFrame and ForeverSafari.JournalFrame:IsShown() then
+        ForeverSafari.JournalFrame:UpdateUI()
+    end
+    if ForeverSafari.SafariBagFrame and ForeverSafari.SafariBagFrame:IsShown() then
+        ForeverSafari.SafariBagFrame:UpdateUI()
+    end
+    if ForeverSafari.SafariMailFrame and ForeverSafari.SafariMailFrame:IsShown() then
+        ForeverSafari.SafariMailFrame:UpdateUI()
+        ForeverSafari.SafariMailFrame:UpdateTabBadge()
+    end
+    if ForeverSafari.MinimapButton then
+        ForeverSafari.MinimapButton:UpdatePosition()
+    end
+
+    local C = ForeverSafari.Constants
+    DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00Database reset! You are now a brand new recruit.|r Visit any town mailbox and click the |cffffd100[Safari]|r tab to unbox your welcome parcel!", C.PREFIX))
+    if ForeverSafari.Toast then
+        ForeverSafari.Toast:ShowReward("Safari League Reset", "New recruit profile initialized! Visit any town mailbox.")
+    end
+    PlaySound(844)
+end
+

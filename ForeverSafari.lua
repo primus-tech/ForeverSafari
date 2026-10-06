@@ -124,6 +124,8 @@ local function HandleSlash(msg)
         ForeverSafari.Comms:ChallengeTarget()
     elseif cmd == "tokens" then
         DEFAULT_CHAT_FRAME:AddMessage(string.format("%sYou currently have |cffffd100%d Safari Tokens|r.", C.PREFIX, DB:GetTokens()))
+    elseif cmd == "reset" then
+        DB:ResetDB()
     elseif cmd == "help" then
         DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cff00ff99Available Slash Commands:|r")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/safari|r or |cffffd100/fs|r - Open Field Guide & Team Manager")
@@ -134,6 +136,7 @@ local function HandleSlash(msg)
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsbattle|r - Engage targeted wild creature in turn-based battle")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsduel|r - Challenge targeted player to a companion duel")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/safari tokens|r - Check current Safari Token balance")
+        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/safari reset|r - Reset all progress back to a fresh new recruit")
     else
         Journal:Toggle()
     end
