@@ -94,7 +94,15 @@ local function HandleSlash(msg)
     elseif cmd == "bag" or cmd == "pouch" or cmd == "inventory" or cmd == "items" or cmd == "backpack" then
         if ForeverSafari.SafariBagFrame then ForeverSafari.SafariBagFrame:Toggle() end
     elseif cmd == "shop" or cmd == "store" or cmd == "supplies" then
-        Shop:Toggle()
+        if ForeverSafari.ShopFrame and ForeverSafari.ShopFrame.IsAtAuthorizedVendor and ForeverSafari.ShopFrame:IsAtAuthorizedVendor() then
+            Shop:Toggle()
+        else
+            DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Store access is restricted! Speak with a Stable Master (for Safari Nets & Gear) or an Innkeeper (for Safari Treats & Food Provisions).|r")
+            if ForeverSafari.Toast then
+                ForeverSafari.Toast:ShowAlert("Vendor Required", "Speak to a Stable Master or Innkeeper!")
+            end
+            PlaySound(847)
+        end
     elseif cmd == "mail" or cmd == "letters" or cmd == "dispatch" or cmd == "bounties" or cmd == "quests" then
         if ForeverSafari.SafariMailFrame then ForeverSafari.SafariMailFrame:ToggleStandalone() end
     elseif cmd == "net" or cmd == "catch" or cmd == "snare" or cmd == "trap" then
@@ -110,7 +118,6 @@ local function HandleSlash(msg)
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/safari|r or |cffffd100/fs|r - Open Field Guide & Team Manager")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsbag|r or |cffffd100/safari bag|r - Open Virtual Safari Bag")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsmail|r or |cffffd100/safari mail|r - View Nesingwary Dispatches & Bounties")
-        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsshop|r - Browse Nesingwary Safari Supplies (Catalogue Mode)")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsnet|r - Throw selected safari net at target")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsbattle|r - Engage targeted wild creature in turn-based battle")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsduel|r - Challenge targeted player to a companion duel")
@@ -122,7 +129,17 @@ end
 
 SlashCmdList["FOREVERSAFARI"] = HandleSlash
 SlashCmdList["FSBAG"] = function() if ForeverSafari.SafariBagFrame then ForeverSafari.SafariBagFrame:Toggle() end end
-SlashCmdList["FSSHOP"] = function() Shop:Toggle() end
+SlashCmdList["FSSHOP"] = function()
+    if ForeverSafari.ShopFrame and ForeverSafari.ShopFrame.IsAtAuthorizedVendor and ForeverSafari.ShopFrame:IsAtAuthorizedVendor() then
+        Shop:Toggle()
+    else
+        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Store access is restricted! Speak with a Stable Master (for Safari Nets & Gear) or an Innkeeper (for Safari Treats & Food Provisions).|r")
+        if ForeverSafari.Toast then
+            ForeverSafari.Toast:ShowAlert("Vendor Required", "Speak to a Stable Master or Innkeeper!")
+        end
+        PlaySound(847)
+    end
+end
 SlashCmdList["FSMAIL"] = function() if ForeverSafari.SafariMailFrame then ForeverSafari.SafariMailFrame:ToggleStandalone() end end
 SlashCmdList["FSNET"] = function() ForeverSafari.CaptureEngine:AttemptCapture("target") end
 SlashCmdList["FSBATTLE"] = function() ForeverSafari.BattleEngine:StartWildBattle("target") end

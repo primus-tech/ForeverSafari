@@ -1,7 +1,7 @@
 --[[
-    Forever Safari: Nesingwary Safari Supplies Shop
-    Custom merchant interface restricted exclusively to Innkeepers and Stable Masters
-    via authentic gossip interactions, allowing players to spend Safari Tokens on nets and consumables.
+    Forever Safari: Nesingwary Safari Merchant System
+    STRICTLY RESTRICTED: Shop access is ONLY granted via clicking the gossip interaction
+    at Stable Masters (for Safari Nets & Gear) and Innkeepers (for Safari Treats & Food Provisions).
 ]]
 
 local addonName, ns = ...
@@ -63,7 +63,7 @@ function Shop:Initialize()
         edgeSize = 10,
     })
     bannerFrame:SetBackdropColor(0.08, 0.10, 0.14, 0.9)
-    bannerFrame:SetBackdropBorderColor(0.3, 0.4, 0.5, 0.6)
+    bannerFrame:SetBackdropBorderColor(0.0, 0.9, 0.4, 0.8)
     frame.BannerFrame = bannerFrame
 
     local bannerText = bannerFrame:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
@@ -82,10 +82,7 @@ function Shop:Initialize()
     scrollFrame:SetScrollChild(content)
     frame.Content = content
 
-    -- Build Shop Rows
-    Shop:BuildShopItems()
-
-    -- Register Gossip Events for Innkeeper & Stable Master Detection
+    -- Register Gossip Events for Stable Master & Innkeeper Detection
     Shop:RegisterGossipEvents()
 
     frame:Hide()
@@ -178,13 +175,13 @@ function Shop:OnGossipShow()
     local isAuthorized, vType = Shop:IsAtAuthorizedVendor()
     if isAuthorized then
         Shop.isAtVendor = true
-        Shop.vendorType = vType or "Innkeeper"
+        Shop.vendorType = vType or "Stable Master"
 
         -- Create or Attach Gossip Menu Button to GossipFrame
         if GossipFrame then
             if not gossipBtn then
                 gossipBtn = CreateFrame("Button", "ForeverSafariGossipButton", GossipFrame, "BackdropTemplate")
-                gossipBtn:SetSize(280, 32)
+                gossipBtn:SetSize(290, 34)
                 gossipBtn:SetPoint("BOTTOM", GossipFrame, "BOTTOM", 0, 24)
                 gossipBtn:SetFrameLevel(GossipFrame:GetFrameLevel() + 10)
 
@@ -198,9 +195,8 @@ function Shop:OnGossipShow()
                 gossipBtn:SetBackdropBorderColor(1.0, 0.82, 0.0, 1.0)
 
                 local icon = gossipBtn:CreateTexture(nil, "ARTWORK")
-                icon:SetSize(20, 20)
-                icon:SetPoint("LEFT", 6, 0)
-                icon:SetTexture("Interface\\Icons\\Ability_Hunter_BeastTaming")
+                icon:SetSize(22, 22)
+                icon:SetPoint("LEFT", 8, 0)
                 icon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
                 gossipBtn.Icon = icon
 
@@ -208,7 +204,6 @@ function Shop:OnGossipShow()
                 label:SetPoint("LEFT", icon, "RIGHT", 6, 0)
                 label:SetPoint("RIGHT", -6, 0)
                 label:SetJustifyH("LEFT")
-                label:SetText("|cffffd100[ 🐾 Browse Safari Supplies ]|r")
                 gossipBtn.Label = label
 
                 gossipBtn:SetScript("OnClick", function()
@@ -218,8 +213,13 @@ function Shop:OnGossipShow()
                 gossipBtn:SetScript("OnEnter", function(self)
                     self:SetBackdropBorderColor(0.0, 1.0, 0.6, 1.0)
                     GameTooltip:SetOwner(self, "ANCHOR_TOP")
-                    GameTooltip:AddLine("Nesingwary Safari Supplies", 1, 0.82, 0)
-                    GameTooltip:AddLine("Authorized merchant exchange. Spend Safari Tokens on nets, feasts, and treats.", 1, 1, 1, true)
+                    if Shop.vendorType == "Innkeeper" then
+                        GameTooltip:AddLine("Nesingwary Safari Provisions", 1, 0.82, 0)
+                        GameTooltip:AddLine("Authorized Innkeeper merchant. Purchase Safari Treats, Feasts, and fresh diets.", 1, 1, 1, true)
+                    else
+                        GameTooltip:AddLine("Nesingwary Safari Supplies", 1, 0.82, 0)
+                        GameTooltip:AddLine("Authorized Stable Master merchant. Purchase Safari Nets, capsules, and gear.", 1, 1, 1, true)
+                    end
                     GameTooltip:Show()
                 end)
 
@@ -227,6 +227,15 @@ function Shop:OnGossipShow()
                     self:SetBackdropBorderColor(1.0, 0.82, 0.0, 1.0)
                     GameTooltip:Hide()
                 end)
+            end
+
+            -- Update button style based on vendor type
+            if Shop.vendorType == "Innkeeper" then
+                gossipBtn.Icon:SetTexture("Interface\\Icons\\INV_Misc_Food_54")
+                gossipBtn.Label:SetText("|cffffd100[ 🍖 Browse Safari Treats & Provisions ]|r")
+            else
+                gossipBtn.Icon:SetTexture("Interface\\Icons\\Ability_Hunter_BeastTaming")
+                gossipBtn.Label:SetText("|cffffd100[ 🐾 Browse Safari Nets & Gear ]|r")
             end
 
             gossipBtn:Show()
@@ -242,51 +251,113 @@ function Shop:OnGossipClosed()
     Shop.isAtVendor = false
     Shop.vendorType = nil
     if gossipBtn then gossipBtn:Hide() end
+    -- Close shop immediately when leaving vendor
     if frame and frame:IsShown() then
-        Shop:UpdateUI()
+        frame:Hide()
     end
 end
 
 -- =========================================================================
--- 🛒 SHOP ITEMS & CATALOGUE
+-- 🛒 SHOP ITEMS (STABLE MASTER GEAR vs INNKEEPER FOOD)
 -- =========================================================================
 function Shop:BuildShopItems()
     local content = frame.Content
-    local yOffset = 0
-
-    -- Section 1: Safari Nets Header
-    local cageSection = content:CreateFontString(nil, "OVERLAY", "GameFontHighlightLarge")
-    cageSection:SetPoint("TOPLEFT", 6, yOffset)
-    cageSection:SetText("|cffffd100Safari Nets|r")
-    yOffset = yOffset - 26
-
-    local cageKeys = { "copper_cage", "iron_cage", "mithril_cage", "arcanite_capsule" }
-    for _, id in ipairs(cageKeys) do
-        local itemData = C.CAGES[id]
-        local row = Shop:CreateShopItemRow(content, itemData, id, yOffset)
-        table.insert(itemListFrames, row)
-        yOffset = yOffset - 66
+    
+    -- Clear previous items
+    for _, card in ipairs(itemListFrames) do
+        card:Hide()
     end
+    wipe(itemListFrames)
 
-    yOffset = yOffset - 10
+    local yOffset = 0
+    local isInnkeeper = (Shop.vendorType == "Innkeeper")
 
-    -- Section 2: Consumables & Supplies
-    local supplySection = content:CreateFontString(nil, "OVERLAY", "GameFontHighlightLarge")
-    supplySection:SetPoint("TOPLEFT", 6, yOffset)
-    supplySection:SetText("|cffffd100Consumables & Training Supplies|r")
-    yOffset = yOffset - 26
+    if isInnkeeper then
+        -- INNKEEPER: Treats, Feasts & Family Diets
+        frame.Header.Title:SetText("Nesingwary Safari Provisions")
+        frame.VendorStatus:SetText("|cff00ff00[ Innkeeper — Food & Treats ]|r")
+        frame.BannerText:SetText("|cff00ff99🍖 Licensed Innkeeper Rations: Buy Safari Treats, Feasts, and fresh diets.|r")
 
-    local supplyKeys = { "az_treat", "az_feast", "healing_salve", "revival_crystal" }
-    for _, id in ipairs(supplyKeys) do
-        local itemData = C.SHOP_ITEMS[id]
-        if itemData then
+        local sec1 = content:CreateFontString(nil, "OVERLAY", "GameFontHighlightLarge")
+        sec1:SetPoint("TOPLEFT", 6, yOffset)
+        sec1:SetText("|cffffd100Safari Treats & Feasts|r")
+        yOffset = yOffset - 26
+
+        local treatKeys = { "az_treat", "az_feast", "healing_salve" }
+        for _, id in ipairs(treatKeys) do
+            local itemData = C.SHOP_ITEMS[id]
+            if itemData then
+                local row = Shop:CreateShopItemRow(content, itemData, id, yOffset)
+                table.insert(itemListFrames, row)
+                yOffset = yOffset - 66
+            end
+        end
+
+        yOffset = yOffset - 10
+
+        local sec2 = content:CreateFontString(nil, "OVERLAY", "GameFontHighlightLarge")
+        sec2:SetPoint("TOPLEFT", 6, yOffset)
+        sec2:SetText("|cffffd100Fresh Family Meats & Sustenance|r")
+        yOffset = yOffset - 26
+
+        local foodKeys = {
+            "food_canine", "food_feline", "food_bear", "food_boar", "food_raptor",
+            "food_spider", "food_scorpid", "food_kodo", "food_bat", "food_aquatic",
+            "food_reptile", "food_avian", "food_wind serpent"
+        }
+        for _, id in ipairs(foodKeys) do
+            local itemData = C.SAFARI_ITEMS[id]
+            if itemData then
+                local dataCopy = {
+                    name = itemData.name,
+                    icon = "Interface\\Icons\\" .. (itemData.icon or "INV_Misc_Food_14"),
+                    color = itemData.color or "1eff00",
+                    description = itemData.desc or "Fresh harvested sustenance. (+25 Attunement)",
+                    price = 3, -- 3 tokens per family food ration
+                }
+                local row = Shop:CreateShopItemRow(content, dataCopy, id, yOffset)
+                table.insert(itemListFrames, row)
+                yOffset = yOffset - 66
+            end
+        end
+    else
+        -- STABLE MASTER: Nets, Capsules & Field Gear
+        frame.Header.Title:SetText("Nesingwary Safari Supplies")
+        frame.VendorStatus:SetText("|cff00ff00[ Stable Master — Nets & Gear ]|r")
+        frame.BannerText:SetText("|cff00ff99🐾 Licensed Stable Master: Stock up on field research nets, capsules, and revival gear.|r")
+
+        local sec1 = content:CreateFontString(nil, "OVERLAY", "GameFontHighlightLarge")
+        sec1:SetPoint("TOPLEFT", 6, yOffset)
+        sec1:SetText("|cffffd100Safari Nets & Capsules|r")
+        yOffset = yOffset - 26
+
+        local cageKeys = { "copper_cage", "iron_cage", "mithril_cage", "arcanite_capsule" }
+        for _, id in ipairs(cageKeys) do
+            local itemData = C.CAGES[id]
             local row = Shop:CreateShopItemRow(content, itemData, id, yOffset)
             table.insert(itemListFrames, row)
             yOffset = yOffset - 66
         end
+
+        yOffset = yOffset - 10
+
+        local sec2 = content:CreateFontString(nil, "OVERLAY", "GameFontHighlightLarge")
+        sec2:SetPoint("TOPLEFT", 6, yOffset)
+        sec2:SetText("|cffffd100Emergency Medical & Revival Gear|r")
+        yOffset = yOffset - 26
+
+        local gearKeys = { "healing_salve", "revival_crystal" }
+        for _, id in ipairs(gearKeys) do
+            local itemData = C.SHOP_ITEMS[id]
+            if itemData then
+                local row = Shop:CreateShopItemRow(content, itemData, id, yOffset)
+                table.insert(itemListFrames, row)
+                yOffset = yOffset - 66
+            end
+        end
     end
 
-    content:SetHeight(math.abs(yOffset) + 20)
+    content:SetHeight(math.abs(yOffset) + 30)
 end
 
 function Shop:CreateShopItemRow(parent, data, id, yOffset)
@@ -294,6 +365,7 @@ function Shop:CreateShopItemRow(parent, data, id, yOffset)
     local card = Theme:CreateCard(parent, 416, 60)
     card:SetPoint("TOPLEFT", parent, "TOPLEFT", 4, yOffset)
     card.itemId = id
+    card.price = data.price or 5
 
     -- Icon
     local icon = card:CreateTexture(nil, "ARTWORK")
@@ -314,7 +386,7 @@ function Shop:CreateShopItemRow(parent, data, id, yOffset)
     descText:SetPoint("TOPLEFT", nameText, "BOTTOMLEFT", 0, -3)
     descText:SetPoint("TOPRIGHT", card, "TOPRIGHT", -150, -3)
     descText:SetJustifyH("LEFT")
-    descText:SetText(data.description)
+    descText:SetText(data.description or "")
     descText:SetTextColor(0.7, 0.7, 0.7)
     card.DescText = descText
 
@@ -326,14 +398,14 @@ function Shop:CreateShopItemRow(parent, data, id, yOffset)
     -- Price Tag
     local priceText = card:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
     priceText:SetPoint("RIGHT", card, "RIGHT", -110, 0)
-    priceText:SetText(string.format("|cffffd100%d|r Tokens", data.price))
+    priceText:SetText(string.format("|cffffd100%d|r Tokens", card.price))
     card.PriceText = priceText
 
     -- Buy Button
     local buyBtn = Theme:CreateButton(card, "Buy x1", 95, 26, true)
     buyBtn:SetPoint("RIGHT", card, "RIGHT", -8, 0)
     buyBtn:SetScript("OnClick", function()
-        Shop:BuyItem(id, 1, data.price, data.name)
+        Shop:BuyItem(id, 1, card.price, data.name)
     end)
     card.BuyBtn = buyBtn
 
@@ -344,11 +416,9 @@ function Shop:BuyItem(itemId, count, unitPrice, itemName)
     -- Enforce Vendor Presence
     local isAuthorized, vType = Shop:IsAtAuthorizedVendor()
     if not isAuthorized and not Shop.isAtVendor then
-        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Purchases restricted! You must speak with an Innkeeper or Stable Master to purchase Safari Supplies.|r")
-        if ForeverSafari.Toast then
-            ForeverSafari.Toast:ShowAlert("Vendor Required", "Speak with an Innkeeper or Stable Master to buy supplies!")
-        end
+        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Purchases restricted! You must speak with an Innkeeper or Stable Master.|r")
         PlaySound(847)
+        if frame and frame:IsShown() then frame:Hide() end
         return
     end
 
@@ -380,61 +450,58 @@ function Shop:UpdateUI()
         frame.Header:UpdateTokens()
     end
 
-    local isAuthorized, vType = Shop:IsAtAuthorizedVendor()
-    local atVendor = isAuthorized or Shop.isAtVendor
-    local activeVendorName = vType or Shop.vendorType or "Vendor"
-
-    if atVendor then
-        frame.VendorStatus:SetText(string.format("|cff00ff00[ Authorized Merchant: %s ]|r", activeVendorName))
-        frame.BannerFrame:SetBackdropBorderColor(0.0, 0.9, 0.4, 0.8)
-        frame.BannerText:SetText(string.format("|cff00ff00🐾 You are browsing with %s. Purchases are active!|r", activeVendorName))
-    else
-        frame.VendorStatus:SetText("|cffff4444[ Catalogue Mode ]|r")
-        frame.BannerFrame:SetBackdropBorderColor(1.0, 0.6, 0.0, 0.8)
-        frame.BannerText:SetText("|cffffcc00🐾 Catalogue Mode: Visit any Innkeeper or Stable Master to purchase supplies.|r")
-    end
-
     for _, card in ipairs(itemListFrames) do
         local id = card.itemId
-        local itemData = C.CAGES[id] or C.SHOP_ITEMS[id]
-        if itemData then
-            local count = DB:GetItemCount(id)
-            card.OwnedText:SetText(string.format("Owned: |cff00ff99%d|r", count))
+        local count = DB:GetItemCount(id)
+        card.OwnedText:SetText(string.format("Owned: |cff00ff99%d|r", count))
 
-            if not atVendor then
-                card.BuyBtn:Disable()
-                card.BuyBtn:SetText("🔒 Visit Vendor")
-            elseif DB:GetTokens() >= itemData.price then
-                card.BuyBtn:Enable()
-                card.BuyBtn:SetText(string.format("Buy x1"))
-            else
-                card.BuyBtn:Disable()
-                card.BuyBtn:SetText(string.format("Buy x1"))
-            end
+        if DB:GetTokens() >= (card.price or 5) then
+            card.BuyBtn:Enable()
+            card.BuyBtn:SetText("Buy x1")
+        else
+            card.BuyBtn:Disable()
+            card.BuyBtn:SetText("Buy x1")
         end
     end
 end
 
 function Shop:ShowShop(fromVendor)
-    if not frame then Shop:Initialize() end
-    if fromVendor then
-        Shop.isAtVendor = true
-    else
-        local isAuth, vType = Shop:IsAtAuthorizedVendor()
-        Shop.isAtVendor = isAuth
-        Shop.vendorType = vType
+    local isAuth, vType = Shop:IsAtAuthorizedVendor()
+    if not isAuth and not fromVendor then
+        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Store access is restricted! Speak with a Stable Master (for Safari Nets & Gear) or an Innkeeper (for Safari Treats & Food Provisions).|r")
+        if ForeverSafari.Toast then
+            ForeverSafari.Toast:ShowAlert("Vendor Required", "Speak to a Stable Master or Innkeeper!")
+        end
+        PlaySound(847)
+        return false
     end
+
+    Shop.isAtVendor = true
+    Shop.vendorType = vType or Shop.vendorType or "Stable Master"
+
+    if not frame then Shop:Initialize() end
+    Shop:BuildShopItems()
     frame:Show()
     Shop:UpdateUI()
     PlaySound(844) -- SOUNDKIT.IG_SPELLBOOK_OPEN
+    return true
 end
 
 function Shop:Toggle()
-    if not frame then Shop:Initialize() end
-    if frame:IsShown() then
+    local isAuth, vType = Shop:IsAtAuthorizedVendor()
+    if not isAuth then
+        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Store access is restricted! Speak with a Stable Master (for Safari Nets & Gear) or an Innkeeper (for Safari Treats & Food Provisions).|r")
+        if ForeverSafari.Toast then
+            ForeverSafari.Toast:ShowAlert("Vendor Required", "Speak to a Stable Master or Innkeeper!")
+        end
+        PlaySound(847)
+        return false
+    end
+
+    if frame and frame:IsShown() then
         frame:Hide()
     else
-        Shop:ShowShop(false)
+        Shop:ShowShop(true)
     end
 end
 

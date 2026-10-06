@@ -93,10 +93,15 @@ Companions progress through bonding, feeding, and battlefield survival rather th
 * **Nesingwary Field Bounties**: Official dispatches distribute quest bounties (Field Stalking, Wild Nourishment, Apex Rares, Dungeon Catalysts) with live objective tracking and reward claiming.
 * **Standalone Field Reader**: Accessible anywhere via `/fsmail` or `/safari mail`.
 
-### 9. Innkeeper & Stable Master Vendor Restriction (Gossip Menu)
-* **Authorized Merchants**: Nesingwary Safari Supplies are distributed exclusively through licensed **Innkeepers** and **Stable Masters** across Azeroth.
-* **Gossip Menu Button**: Talking to any Innkeeper or Stable Master adds an authentic button: `[ 🐾 Browse Nesingwary Safari Supplies ]` directly to `GossipFrame`.
-* **Catalogue Mode**: Opening the store away from vendors enables preview catalogue mode with locked purchasing buttons (`🔒 Visit Vendor`).
+### 9. Innkeeper & Stable Master Vendor Specialization (Gossip Box Only)
+* **Zero Out-of-World Access**: Supply and food purchases cannot be made out in the field. Store interfaces are accessed **exclusively by clicking gossip menu options** when interacting with authorized NPCs in town.
+* **Stable Masters (Safari Nets & Capture Gear)**:
+  * Gossip Option: `[ 🐾 Browse Safari Nets & Gear ]`
+  * Inventory: Copper, Iron, Mithril Safari Nets, Arcanite Capsules, Revival Crystals, and Salves.
+* **Innkeepers (Safari Treats & Food Provisions)**:
+  * Gossip Option: `[ 🍖 Browse Safari Treats & Food Provisions ]`
+  * Inventory: Safari Treats, Grand Safari Feasts, Healing Salves, and fresh harvested family meats (Wolf, Feline, Bear, Boar, Raptor, etc.).
+* **Instant Auto-Close**: Closing the NPC gossip window immediately closes the shop interface.
 
 ### 10. The "Field Research" Snare & Hunter Coexistence (0% Mob Damage)
 Forever Safari decouples creature capturing completely from world-mob HP, transforming the capture minigame into an authentic, peaceful **Stalking & Snare Channeling** system:

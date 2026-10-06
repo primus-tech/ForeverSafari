@@ -188,38 +188,38 @@ function Journal:Initialize()
     bagBtn:SetScript("OnLeave", function() GameTooltip:Hide() end)
     frame.BagBtn = bagBtn
 
-    local shopBtn = CreateFrame("Button", "ForeverSafariJournalShopBtn", frame, "BackdropTemplate")
-    shopBtn:SetSize(125, 24)
-    shopBtn:SetPoint("TOPRIGHT", frame, "TOPRIGHT", -18, -38)
-    shopBtn:SetBackdrop({
+    local mailBtn = CreateFrame("Button", "ForeverSafariJournalMailBtn", frame, "BackdropTemplate")
+    mailBtn:SetSize(130, 24)
+    mailBtn:SetPoint("TOPRIGHT", frame, "TOPRIGHT", -18, -38)
+    mailBtn:SetBackdrop({
         bgFile = "Interface\\Buttons\\WHITE8X8",
         edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
         edgeSize = 8,
     })
-    shopBtn:SetBackdropColor(0.12, 0.16, 0.22, 0.9)
-    shopBtn:SetBackdropBorderColor(0.0, 1.0, 0.6, 0.8)
+    mailBtn:SetBackdropColor(0.12, 0.16, 0.22, 0.9)
+    mailBtn:SetBackdropBorderColor(1.0, 0.82, 0.0, 0.8)
 
-    local shopIcon = shopBtn:CreateTexture(nil, "ARTWORK")
-    shopIcon:SetSize(16, 16)
-    shopIcon:SetPoint("LEFT", shopBtn, "LEFT", 6, 0)
-    shopIcon:SetTexture("Interface\\Icons\\Ability_Hunter_BeastTaming")
-    shopIcon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+    local mailIcon = mailBtn:CreateTexture(nil, "ARTWORK")
+    mailIcon:SetSize(16, 16)
+    mailIcon:SetPoint("LEFT", mailBtn, "LEFT", 6, 0)
+    mailIcon:SetTexture("Interface\\Icons\\INV_Letter_15")
+    mailIcon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
 
-    local shopText = shopBtn:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
-    shopText:SetPoint("LEFT", shopIcon, "RIGHT", 4, 0)
-    shopText:SetText("|cff00ff99Supplies Shop|r")
+    local mailText = mailBtn:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    mailText:SetPoint("LEFT", mailIcon, "RIGHT", 4, 0)
+    mailText:SetText("|cffffd100Safari Dispatch|r")
 
-    shopBtn:SetScript("OnClick", function()
-        if ForeverSafari.ShopFrame then ForeverSafari.ShopFrame:Toggle() end
+    mailBtn:SetScript("OnClick", function()
+        if ForeverSafari.SafariMailFrame then ForeverSafari.SafariMailFrame:ToggleStandalone() end
     end)
-    shopBtn:SetScript("OnEnter", function(self)
+    mailBtn:SetScript("OnEnter", function(self)
         GameTooltip:SetOwner(self, "ANCHOR_TOP")
-        GameTooltip:AddLine("|cff00ff99Nesingwary Supplies Shop|r", 1, 1, 1)
-        GameTooltip:AddLine("Spend Safari Tokens on nets and consumables.", 0.8, 0.8, 0.8, true)
+        GameTooltip:AddLine("|cffffd100Nesingwary Correspondence|r", 1, 1, 1)
+        GameTooltip:AddLine("Read official Safari League dispatches and track active bounties.", 0.8, 0.8, 0.8, true)
         GameTooltip:Show()
     end)
-    shopBtn:SetScript("OnLeave", function() GameTooltip:Hide() end)
-    frame.ShopBtn = shopBtn
+    mailBtn:SetScript("OnLeave", function() GameTooltip:Hide() end)
+    frame.MailBtn = mailBtn
 
     -- View 1: 3D Showcase Stage Container
     local showcaseContainer = CreateFrame("Frame", "ForeverSafariShowcaseContainer", frame)

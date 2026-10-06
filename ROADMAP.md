@@ -136,14 +136,15 @@
 
 ---
 
-## 📍 Phase 10: Gossip Store & Vendor Restriction (Completed ✅)
-* [x] **Innkeeper & Stable Master Store Restriction (`UI/ShopFrame.lua`)**:
-  * Supply purchases restricted exclusively to licensed Innkeepers and Stable Masters across Azeroth.
-* [x] **Gossip Menu Button Integration**:
-  * Talking to an Innkeeper or Stable Master attaches `[ 🐾 Browse Nesingwary Safari Supplies ]` directly to `GossipFrame`.
-* [x] **Two-State Shop Interface**:
-  * **Authorized Merchant Mode**: Full active shopping and purchasing with tokens.
-  * **Catalogue Mode**: View-only inventory preview with vendor requirement alerts (`🔒 Visit Vendor`).
-* [x] **Safari Treats & Consumables**:
-  * Renamed to **Safari Treat** (+50 Attunement) and Grand Safari Feast (+100 Attunement).
+## 📍 Phase 10: Gossip Store & Strict Vendor Specialization (Completed ✅)
+* [x] **Zero Out-of-World Store Access**:
+  * Shop opening from field commands, bags, and journals removed. Access is strictly gated through NPC gossip interaction.
+* [x] **Stable Master Specialization (Safari Nets & Capture Gear)**:
+  * Gossip Button: `[ 🐾 Browse Safari Nets & Gear ]`
+  * Offers Copper, Iron, Mithril Safari Nets, Arcanite Capsules, Revival Crystals, and Salves.
+* [x] **Innkeeper Specialization (Safari Treats & Food Provisions)**:
+  * Gossip Button: `[ 🍖 Browse Safari Treats & Food Provisions ]`
+  * Offers Safari Treats, Grand Safari Feasts, Healing Salves, and harvested family meats.
+* [x] **Instant Gossip Cleanup**:
+  * Closing gossip immediately dismisses the merchant frame and clears vendor credentials.
 
