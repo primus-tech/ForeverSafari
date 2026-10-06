@@ -599,11 +599,15 @@ C.NESINGWARY_DISPATCHES = {
         date = "Official Commission",
         icon = "Interface\\Icons\\INV_Box_01",
         isStarter = true,
-        summary = "Unbox your racial starter companion and 5 Copper Safari Nets.",
-        body = "Greetings, recruit!\n\nIf you are reading this dispatch, your petition to join the Junior Safari League has been officially accepted by the Nesingwary Expedition!\n\nWhether you hail from the dense glades of Teldrassil, the red canyons of Durotar, or the snowpeaks of Dun Morogh, Azeroth is teeming with majestic wildlife waiting to be researched, bonded with, and tested in honorable battle.\n\nAttached to this parcel is your Caged Starter Companion native to your homeland, along with five field research nets. Treat your companion well, nourish it with native diets, and protect the wild balance!\n\nGood hunting,\n— Hemet Nesingwary Sr.",
+        summary = "Unbox your racial starter companion, 10 Copper Safari Nets, 5 Healing Salves, and 1 Revival Crystal.",
+        body = "Greetings, recruit!\n\nIf you are reading this dispatch, your petition to join the Junior Safari League has been officially accepted by the Nesingwary Expedition!\n\nWhether you hail from the dense glades of Teldrassil, the red canyons of Durotar, or the snowpeaks of Dun Morogh, Azeroth is teeming with majestic wildlife waiting to be researched, bonded with, and tested in honorable battle.\n\nAttached to this parcel is your Caged Starter Companion native to your homeland, along with ten field research nets, five soothing healing salves, and an emergency revival crystal. Treat your companion well, nourish it with native diets, and protect the wild balance!\n\nGood hunting,\n— Hemet Nesingwary Sr.",
         rewards = {
             tokens = 0,
-            items = { { id = "copper_cage", count = 5 } },
+            items = {
+                { id = "copper_cage", count = 10 },
+                { id = "healing_salve", count = 5 },
+                { id = "revival_crystal", count = 1 },
+            },
         }
     },
     [2] = {

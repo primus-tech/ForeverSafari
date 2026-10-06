@@ -15,8 +15,10 @@ Upon first logging into Azeroth, players receive an official **Safari Dispatch**
 
 Recruits are supplied with:
 1. **[Caged Starter Companion]** — A wild companion native to their race's starting region.
-2. **[Nesingwary Safari Nets x 5]** — Essential capture nets to snare wild creatures in the field.
-3. **[Forever Safari Field Guide]** — The interactive 3D Paperdoll Journal and creature encyclopedia.
+2. **[Nesingwary Safari Nets x 10]** — Essential capture nets to snare wild creatures in the field.
+3. **[Safari Healing Salves x 5]** — Soothing remedies to restore a wounded companion's health.
+4. **[Revival Crystal x 1]** — Shard of rejuvenation to restore a fainted companion in emergencies.
+5. **[Forever Safari Field Guide]** — The interactive 3D Paperdoll Journal and creature encyclopedia.
 
 ---
 
@@ -88,7 +90,7 @@ Companions progress through bonding, feeding, and battlefield survival rather th
 * **Blizzard Mailbox Tab ("Safari")**: Authentic custom tab attached directly to Blizzard's `MailFrame` (`MAIL_SHOW`).
 * **Full-Width Inbox Column**: Displays a full-width list of received Nesingwary dispatches and field bounties with sender names, titles, status tags (`[ 📦 Unopened Parcel ]`, `[ ✔ Ready to Claim ]`, `[ ✉️ New ]`), and row hover highlights.
 * **Secondary Sidecar OpenMail Window**: Clicking any dispatch opens a dedicated `OpenMail` window attached to the side of `MailFrame`, styled with Nesingwary gold/dark theme, antique parchment letter body, and a parcel attachment tray with tooltips and one-click unbox/claim actions.
-* **First-Load Starter Parcel**: Recruits unbox their racial companion starter kit and 5x Copper Safari Nets (0 free token handouts) directly from Hemet Nesingwary's welcome dispatch.
+* **First-Load Starter Parcel**: Recruits unbox their racial companion starter kit, 10x Copper Safari Nets, 5x Safari Healing Salves, and 1x Revival Crystal (0 free token handouts) directly from Hemet Nesingwary's welcome dispatch.
 * **Field Research Bounty Turn-Ins**: Completed bounties are unboxed and turned in at a physical town mailbox to collect earned Safari Tokens and supplies.
 
 ### 9. Innkeeper & Pet Trainer Vendor Specialization (Gossip Box Only)

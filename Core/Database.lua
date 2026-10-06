@@ -784,11 +784,13 @@ function DB:ClaimStarterKit()
     starterMob.family = starterData.family
     
     DB:AddMob(starterMob)
-    DB:AddItem("copper_cage", 5)
+    DB:AddItem("copper_cage", 10)
+    DB:AddItem("healing_salve", 5)
+    DB:AddItem("revival_crystal", 1)
     ForeverSafariDB.mail.starterClaimed = true
 
     if ForeverSafari.Toast then
-        ForeverSafari.Toast:ShowReward("Starter Kit Unboxed!", string.format("Received %s & 5x Safari Nets", starterData.name))
+        ForeverSafari.Toast:ShowReward("Starter Kit Unboxed!", string.format("Received %s, 10x Nets, 5x Salves & 1x Revive Crystal", starterData.name))
     end
     PlaySound(1195)
     return true, starterMob

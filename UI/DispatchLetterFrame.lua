@@ -97,7 +97,7 @@ function Dispatch:Initialize()
 
     local rewardsList = crateBox:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
     rewardsList:SetPoint("TOPLEFT", rewardsLabel, "BOTTOMLEFT", 0, -4)
-    rewardsList:SetText("🐾 Native Level 1 Companion   •   🕸️ 5x Safari Nets   •   📖 3D Field Guide")
+    rewardsList:SetText("🐾 Level 1 Companion  •  🕸️ 10x Nets  •  🧪 5x Salves  •  💎 1x Revive")
 
     -- Claim & Unbox Button
     local claimBtn = CreateFrame("Button", nil, frame, "UIPanelButtonTemplate")
@@ -105,7 +105,7 @@ function Dispatch:Initialize()
     claimBtn:SetPoint("BOTTOM", frame, "BOTTOM", 0, 24)
     claimBtn:SetText("Claim Safari Starter Kit!")
     claimBtn:SetScript("OnClick", function()
-        Dispatch:ClaimStarterKit()
+        DB:ClaimStarterKit()
         frame:Hide()
     end)
 end
@@ -117,40 +117,5 @@ function Dispatch:ShowDispatch()
 end
 
 function Dispatch:ClaimStarterKit()
-    local _, playerRace = UnitRace("player")
-    if isSecret(playerRace) or not playerRace or playerRace == "" then
-        playerRace = "Human"
-    end
-
-    local starterConfig = {
-        ["Human"]     = { name = "Mangy Wolf",       type = "Beast", displayId = 903,  family = "Canine" },
-        ["Dwarf"]     = { name = "Young Black Bear", type = "Beast", displayId = 8843, family = "Bear" },
-        ["Gnome"]     = { name = "Crag Boar",        type = "Beast", displayId = 138623, family = "Boar" },
-        ["NightElf"]  = { name = "Young Nightsaber", type = "Beast", displayId = 11454, family = "Cat" },
-        ["Orc"]       = { name = "Scorpid Worker",   type = "Beast", displayId = 2485, family = "Scorpid" },
-        ["Troll"]     = { name = "Bloodtalon Raptor",type = "Beast", displayId = 1960, family = "Raptor" },
-        ["Tauren"]    = { name = "Kodo Calf",        type = "Beast", displayId = 1451, family = "Kodo" },
-        ["Scourge"]   = { name = "Mangy Duskbat",    type = "Beast", displayId = 9535, family = "Bat" },
-        ["Undead"]    = { name = "Mangy Duskbat",    type = "Beast", displayId = 9535, family = "Bat" },
-    }
-
-    local starterData = starterConfig[playerRace] or starterConfig["Human"]
-    local starterMob = ForeverSafari.StatEngine:CreateMobInstance(starterData.name, starterData.type, 1, false, starterData.displayId)
-    starterMob.nickname = "Starter " .. starterData.name
-    starterMob.family = starterData.family
-    DB:AddMob(starterMob)
-
-    -- Grant 5x Safari Nets
-    DB:AddInventoryItem("copper_cage", 5)
-
-    PlaySound(1195) -- SOUNDKIT.IG_QUEST_LOG_COMPLETE
-    DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00[Starter Kit Claimed!]|r You received |cffffd100%s (Lv 1)|r and 5x |cffffd100[Nesingwary Safari Net]|r!",
-        C.PREFIX, starterMob.name))
-
-    if ForeverSafari.Toast then
-        ForeverSafari.Toast:ShowReward(
-            "Welcome to the Safari League!",
-            string.format("Received %s and 5x Safari Nets!", starterMob.name)
-        )
-    end
+    DB:ClaimStarterKit()
 end
