@@ -124,6 +124,17 @@ local function HandleSlash(msg)
         ForeverSafari.Comms:ChallengeTarget()
     elseif cmd == "tokens" then
         DEFAULT_CHAT_FRAME:AddMessage(string.format("%sYou currently have |cffffd100%d Safari Tokens|r.", C.PREFIX, DB:GetTokens()))
+    elseif cmd == "abandon" or cmd == "release" then
+        local activeMob = DB:GetActiveMob()
+        if not activeMob then
+            DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444No active companion to abandon.|r")
+            return
+        end
+        local mName = activeMob.nickname ~= "" and activeMob.nickname or activeMob.name
+        local dialog = StaticPopup_Show("FOREVERSAFARI_CONFIRM_ABANDON", string.format("|cffffd100%s|r (Lv %d %s)", mName, activeMob.level, activeMob.creatureType))
+        if dialog then
+            dialog.data = { mobId = activeMob.id }
+        end
     elseif cmd == "reset" then
         DB:ResetDB()
     elseif cmd == "help" then
@@ -132,6 +143,7 @@ local function HandleSlash(msg)
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/safari bounties|r - View Active Field Directives & Quest Tracker")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsbag|r or |cffffd100/safari bag|r - Open Virtual Safari Bag")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsmail|r or |cffffd100/safari mail|r - View Nesingwary Dispatches (Turn in at Mailbox)")
+        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/safari abandon|r - Release active companion back into the wild")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsnet|r - Throw selected safari net at target")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsbattle|r - Engage targeted wild creature in turn-based battle")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsduel|r - Challenge targeted player to a companion duel")

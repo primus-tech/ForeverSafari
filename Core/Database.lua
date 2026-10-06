@@ -530,6 +530,33 @@ function DB:RemoveMob(id)
     end
 end
 
+function DB:AbandonMob(id)
+    local mob = DB:GetMobById(id)
+    if not mob then return false, "Companion not found." end
+    local name = mob.nickname ~= "" and mob.nickname or mob.name
+
+    DB:RemoveMob(id)
+
+    local C = ForeverSafari.Constants
+    DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cffff4444[Companion Released]|r You unsealed %s's cage and released it back into the wild. Farewell!", C.PREFIX, name))
+
+    if ForeverSafari.Toast then
+        ForeverSafari.Toast:ShowAlert("Companion Released", string.format("%s was released back to the wild.", name))
+    end
+    PlaySound(847)
+
+    if ForeverSafari.JournalFrame and ForeverSafari.JournalFrame:IsShown() then
+        if ForeverSafari.JournalFrame.SelectMob then
+            ForeverSafari.JournalFrame:SelectMob(nil)
+        end
+        ForeverSafari.JournalFrame:UpdateUI()
+    end
+    if ForeverSafari.MinimapButton then
+        ForeverSafari.MinimapButton:UpdatePosition()
+    end
+    return true
+end
+
 function DB:GetTeam()
     local team = {}
     for _, id in ipairs(ForeverSafariDB.team) do

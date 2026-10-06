@@ -144,15 +144,15 @@ Forever Safari focuses purely on non-humanoid monsters, wild fauna, constructs, 
 
 * `/safari` or `/fs` — Open the Forever Safari 3D Field Guide & Team Manager
 * `/safari bounties` — View Active Field Directives & Quest Tracker (Tab 4)
+* `/safari abandon` or `/safari release` — Release active companion back into the wild (with confirmation)
 * `/fsbag` or `/safari bag` — Open the Virtual Safari Bag container
 * `/fsmail` or `/safari mail` — Open Nesingwary Safari Correspondence (Turn in at Mailbox)
 * `/fsshop` — Open Nesingwary Safari Supplies (Requires Pet Trainer or Innkeeper interaction)
 * `/fsnet` — Throw selected safari net at target
 * `/fsbattle` — Engage targeted creature in turn-based combat
 * `/fsduel` — Challenge targeted player to a companion duel
-* `/safari tokens` — Check your current Safari Token balancegeted creature in turn-based combat
-* `/fsduel` — Challenge targeted player to a companion duel
 * `/safari tokens` — Check your current Safari Token balance
+* `/safari reset` — Reset all progress back to a fresh new recruit
 
 ---
 

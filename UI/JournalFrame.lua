@@ -30,6 +30,30 @@ local gridCards = {}
 local bestiaryButtons = {}
 local trainerButtons = {}
 
+-- Static Confirmation Dialog for Releasing / Abandoning a Companion
+StaticPopupDialogs["FOREVERSAFARI_CONFIRM_ABANDON"] = {
+    text = "Are you sure you want to abandon %s and release it back into the wild?\n\n|cffff4444This action cannot be undone.|r",
+    button1 = "Release to Wild",
+    button2 = "Cancel",
+    OnAccept = function(self, data)
+        local mobId = (data and data.mobId) or selectedMobId
+        if mobId then
+            DB:AbandonMob(mobId)
+        end
+    end,
+    timeout = 0,
+    whileDead = true,
+    hideOnEscape = true,
+    preferredIndex = 3,
+}
+
+function Journal:SelectMob(mobId)
+    selectedMobId = mobId
+    if frame and frame:IsShown() then
+        Journal:UpdateUI()
+    end
+end
+
 -- Helper to safely load display IDs onto a PlayerModel frame
 local function SetModelCreature(modelFrame, displayId)
     if not modelFrame or not displayId or displayId <= 0 then return end
@@ -590,8 +614,33 @@ function Journal:BuildDossierPanel(panel)
     end
 
     -- Bottom Action Buttons
-    local setActiveBtn = Theme:CreateButton(panel, "Set Active Leader", 132, 24, true)
-    setActiveBtn:SetPoint("BOTTOMLEFT", panel, "BOTTOMLEFT", 0, 8)
+    local abandonBtn = Theme:CreateButton(panel, "Release to Wild", 270, 20)
+    abandonBtn:SetPoint("BOTTOMLEFT", panel, "BOTTOMLEFT", 0, 6)
+    local aFont = abandonBtn:GetFontString()
+    if aFont then aFont:SetTextColor(1.0, 0.45, 0.45) end
+    abandonBtn:SetScript("OnClick", function()
+        if selectedMobId then
+            local mob = DB:GetMobById(selectedMobId)
+            if not mob then return end
+            local mName = mob.nickname ~= "" and mob.nickname or mob.name
+            local dialog = StaticPopup_Show("FOREVERSAFARI_CONFIRM_ABANDON", string.format("|cffffd100%s|r (Lv %d %s)", mName, mob.level, mob.creatureType))
+            if dialog then
+                dialog.data = { mobId = selectedMobId }
+            end
+        end
+    end)
+    abandonBtn:SetScript("OnEnter", function(self)
+        GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+        GameTooltip:AddLine("Release to Wild", 1, 0.3, 0.3)
+        GameTooltip:AddLine("Permanently unseal and release this companion back into the wild.", 1, 1, 1, true)
+        GameTooltip:AddLine("|cffff4444Warning: This action cannot be undone!|r", 1, 0.4, 0.4)
+        GameTooltip:Show()
+    end)
+    abandonBtn:SetScript("OnLeave", function() GameTooltip:Hide() end)
+    panel.AbandonBtn = abandonBtn
+
+    local setActiveBtn = Theme:CreateButton(panel, "Set Active Leader", 132, 22, true)
+    setActiveBtn:SetPoint("BOTTOMLEFT", abandonBtn, "TOPLEFT", 0, 4)
     setActiveBtn:SetScript("OnClick", function()
         if selectedMobId then
             DB:SetTeamSlot(1, selectedMobId)
@@ -601,8 +650,8 @@ function Journal:BuildDossierPanel(panel)
     end)
     panel.SetActiveBtn = setActiveBtn
 
-    local feedTreatBtn = Theme:CreateButton(panel, "Feed Treat (+XP)", 132, 24)
-    feedTreatBtn:SetPoint("BOTTOMRIGHT", panel, "BOTTOMRIGHT", -6, 8)
+    local feedTreatBtn = Theme:CreateButton(panel, "Feed Treat (+XP)", 132, 22)
+    feedTreatBtn:SetPoint("BOTTOMRIGHT", panel, "BOTTOMRIGHT", -6, 30)
     feedTreatBtn:SetScript("OnClick", function() Journal:UseItemOnMob("az_treat") end)
     panel.FeedTreatBtn = feedTreatBtn
 
@@ -612,7 +661,7 @@ function Journal:BuildDossierPanel(panel)
     panel.HealBtn = healBtn
 
     local trainBtn = Theme:CreateButton(panel, "Grimoire Training", 132, 22)
-    trainBtn:SetPoint("BOTTOMRIGHT", feedTreatBtn, "TOPRIGHT", 0, 4)
+    trainBtn:SetPoint("BOTTOMRIGHT", feedTreatBtn, "TOPRIGHT", 0, 26)
     trainBtn:SetScript("OnClick", function() Journal:OpenTrainingDrawer(1) end)
     panel.TrainBtn = trainBtn
 end
@@ -1403,12 +1452,41 @@ function Journal:UpdateShowcase()
 
     if not selectedMobId or #collection == 0 then
         panel.NameText:SetText("No Companion Selected")
+        panel.TypeBadge:SetText("Type: -")
+        panel.MetaText:SetText("Habitat: -\nNative: -")
+        panel.HPBar:SetMinMaxValues(0, 1)
+        panel.HPBar:SetValue(0)
+        panel.HPBar.Text:SetText("HP: - / -")
+        panel.XPBar:SetMinMaxValues(0, 1)
+        panel.XPBar:SetValue(0)
+        panel.XPBar.Text:SetText("Attunement: -")
+        panel.StatSummary:SetText("ATK: -   DEF: -   SPD: -")
+        panel.BattleRecord:SetText("Battle Record: -")
+        panel.PassiveText:SetText("|cffffd100Rank Perk:|r None")
+        panel.MatchupText:SetText("No active companion.")
+
+        for i = 1, 4 do
+            panel.MoveCards[i]:Hide()
+        end
+
+        if panel.AbandonBtn then panel.AbandonBtn:Disable() end
+        if panel.SetActiveBtn then panel.SetActiveBtn:Disable() end
+        if panel.FeedTreatBtn then panel.FeedTreatBtn:Disable() end
+        if panel.HealBtn then panel.HealBtn:Disable() end
+        if panel.TrainBtn then panel.TrainBtn:Disable() end
+
         cStage.MainModel:Hide()
         cStage.LeftModel:Hide()
         cStage.RightModel:Hide()
         cStage.Counter:SetText("0 Companions in Collection")
         return
     end
+
+    if panel.AbandonBtn then panel.AbandonBtn:Enable() end
+    if panel.SetActiveBtn then panel.SetActiveBtn:Enable() end
+    if panel.FeedTreatBtn then panel.FeedTreatBtn:Enable() end
+    if panel.HealBtn then panel.HealBtn:Enable() end
+    if panel.TrainBtn then panel.TrainBtn:Enable() end
 
     local mob = DB:GetMobById(selectedMobId)
     if not mob then
