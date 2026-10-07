@@ -3293,6 +3293,7 @@ FS.CreatureDB[1948] = {
     isBoss = false,
     zones = {130},
     baseStats = { hp = 210, atk = 69, def = 56, spd = 33 },
+    signatureAbilities = { 1004, 201, 104, 205 },
 }
 FS.CreatureDB[1953] = {
     name = "Lake Skulker",
@@ -4865,6 +4866,7 @@ FS.CreatureDB[2850] = {
     isBoss = false,
     zones = {3},
     baseStats = { hp = 308, atk = 124, def = 86, spd = 68 },
+    signatureAbilities = { 1001, 101, 121, 107 },
 }
 FS.CreatureDB[2887] = {
     name = "Prismatic Exile",
@@ -7745,6 +7747,7 @@ FS.CreatureDB[4829] = {
     isBoss = true,
     zones = {719},
     baseStats = { hp = 244, atk = 81, def = 67, spd = 39 },
+    signatureAbilities = { 1003, 401, 408, 506 },
 }
 FS.CreatureDB[4841] = {
     name = "Deadmire",
@@ -8741,6 +8744,7 @@ FS.CreatureDB[5828] = {
     isBoss = false,
     zones = {17},
     baseStats = { hp = 210, atk = 82, def = 56, spd = 46 },
+    signatureAbilities = { 1002, 101, 120, 105 },
 }
 FS.CreatureDB[5829] = {
     name = "Snort the Heckler",
@@ -15149,6 +15153,19 @@ FS.CreatureDB[12250] = {
     isBoss = false,
     zones = {139},
     baseStats = { hp = 310, atk = 107, def = 88, spd = 70 },
+}
+FS.CreatureDB[12258] = {
+    name = "Rotgrip",
+    displayId = 1195,
+    family = "Crocolisk",
+    element = "Aquatic",
+    minLevel = 47,
+    maxLevel = 48,
+    classification = 0,
+    isBoss = true,
+    zones = {2100},
+    baseStats = { hp = 340, atk = 118, def = 95, spd = 42 },
+    signatureAbilities = { 1005, 401, 108, 405 },
 }
 FS.CreatureDB[12260] = {
     name = "Onyxian Drake",

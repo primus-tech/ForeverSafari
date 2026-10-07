@@ -88,6 +88,45 @@ function BE:TickCooldowns(side)
     end
 end
 
+-- Process HoTs, DoTs, and Buff durations at end of round
+function BE:TickRoundBuffsAndHoTs()
+    for _, side in ipairs({ "player", "enemy" }) do
+        local mob = (side == "player") and BE.State.playerMob or BE.State.enemyMob
+        local buffs = BE.State.buffs[side]
+        if mob and mob.currentHP > 0 and buffs then
+            -- HoT (Heal over Time, e.g. Frenzied Regeneration)
+            if buffs.hot then
+                local healAmount = math.max(1, math.floor(mob.maxHP * (buffs.hot.healPercent or 0.15)))
+                mob.currentHP = math.min(mob.maxHP, mob.currentHP + healAmount)
+                local mName = (side == "player" and mob.nickname ~= "" and mob.nickname) or mob.name
+                BE:AddLog(string.format("|cff00ff99[Regeneration]|r %s restored %d HP! (Duration: %d rounds left)", mName, healAmount, buffs.hot.duration - 1))
+                buffs.hot.duration = buffs.hot.duration - 1
+                if buffs.hot.duration <= 0 then
+                    buffs.hot = nil
+                end
+            end
+
+            -- Bleed Vulnerability decay
+            if buffs.bleedVuln then
+                buffs.bleedVuln.turns = (buffs.bleedVuln.turns or 1) - 1
+                if buffs.bleedVuln.turns <= 0 then
+                    buffs.bleedVuln = nil
+                end
+            end
+
+            -- Stat Buffs / Debuffs decay
+            for _, statKey in ipairs({ "atk", "def", "spd" }) do
+                if buffs[statKey] and buffs[statKey].turns then
+                    buffs[statKey].turns = buffs[statKey].turns - 1
+                    if buffs[statKey].turns <= 0 then
+                        buffs[statKey] = nil
+                    end
+                end
+            end
+        end
+    end
+end
+
 -- Check if player has any conscious companion on team
 function BE:HasConsciousTeamMember()
     local team = DB:GetTeam()
@@ -317,6 +356,36 @@ function BE:ExecutePlayerMove(moveKey)
 
     local pName = player.nickname ~= "" and player.nickname or player.name
 
+    -- Flinch check
+    if BE.State.flinch and BE.State.flinch.player then
+        BE.State.flinch.player = false
+        BE.State.dialogueText = string.format("%s flinched and couldn't move!", pName)
+        BE:AddLog(string.format("|cffffaa00%s flinched and could not attack!|r", pName))
+        if ForeverSafari.BattleFrame then ForeverSafari.BattleFrame:UpdateUI() end
+        BE.State.turn = "enemy"
+        C_Timer.After(1.2, function()
+            BE:ExecuteEnemyTurn()
+        end)
+        return
+    end
+
+    -- Sleep check
+    if BE.State.buffs.player and BE.State.buffs.player.sleep and BE.State.buffs.player.sleep > 0 then
+        BE.State.buffs.player.sleep = BE.State.buffs.player.sleep - 1
+        BE.State.dialogueText = string.format("%s is fast asleep!", pName)
+        BE:AddLog(string.format("|cff9966cc%s is fast asleep and cannot move!|r", pName))
+        if BE.State.buffs.player.sleep <= 0 then
+            BE.State.buffs.player.sleep = nil
+            BE:AddLog(string.format("|cff00ff00%s woke up!|r", pName))
+        end
+        if ForeverSafari.BattleFrame then ForeverSafari.BattleFrame:UpdateUI() end
+        BE.State.turn = "enemy"
+        C_Timer.After(1.2, function()
+            BE:ExecuteEnemyTurn()
+        end)
+        return
+    end
+
     -- Disobedience Check based on Attunement Rank
     local isDisobedient, reason = SE:CheckDisobedience(player)
     if isDisobedient then
@@ -337,8 +406,9 @@ function BE:ExecutePlayerMove(moveKey)
     moveData.usesLeft = moveData.usesLeft - 1
     moveData.currentCD = move.cooldown or 0
 
+    local priorityText = (move.priority and move.priority > 0) and " |cffffcc00[Priority Strike!]|r" or ""
     BE.State.dialogueText = string.format("%s used %s!", pName, move.name)
-    BE:AddLog(string.format("|cff00ff99%s|r used |cffffd100%s|r! (Uses: %d/%d)", pName, move.name, moveData.usesLeft, moveData.maxUses))
+    BE:AddLog(string.format("|cff00ff99%s|r used |cffffd100%s|r!%s (Uses: %d/%d)", pName, move.name, priorityText, moveData.usesLeft, moveData.maxUses))
 
     -- Trigger Player Attack Animation in UI
     if ForeverSafari.BattleFrame and ForeverSafari.BattleFrame.TriggerAttackAnimation then
@@ -390,6 +460,48 @@ function BE:ExecuteEnemyTurn()
     local enemy = BE.State.enemyMob
     local player = BE.State.playerMob
 
+    -- Flinch check
+    if BE.State.flinch and BE.State.flinch.enemy then
+        BE.State.flinch.enemy = false
+        BE.State.dialogueText = string.format("Enemy %s flinched and couldn't move!", enemy.name)
+        BE:AddLog(string.format("|cffffaa00Wild %s flinched and could not attack!|r", enemy.name))
+        -- Complete round
+        BE:TickCooldowns("player")
+        BE:TickCooldowns("enemy")
+        BE:TickRoundBuffsAndHoTs()
+        BE.State.round = BE.State.round + 1
+        BE.State.turn = "player"
+        C_Timer.After(1.2, function()
+            local pName = player.nickname ~= "" and player.nickname or player.name
+            BE.State.dialogueText = string.format("What will %s do?", pName)
+            if ForeverSafari.BattleFrame then ForeverSafari.BattleFrame:UpdateUI() end
+        end)
+        return
+    end
+
+    -- Sleep check
+    if BE.State.buffs.enemy and BE.State.buffs.enemy.sleep and BE.State.buffs.enemy.sleep > 0 then
+        BE.State.buffs.enemy.sleep = BE.State.buffs.enemy.sleep - 1
+        BE.State.dialogueText = string.format("Enemy %s is fast asleep!", enemy.name)
+        BE:AddLog(string.format("|cff9966ccWild %s is fast asleep and cannot move!|r", enemy.name))
+        if BE.State.buffs.enemy.sleep <= 0 then
+            BE.State.buffs.enemy.sleep = nil
+            BE:AddLog(string.format("|cff00ff00Wild %s woke up!|r", enemy.name))
+        end
+        -- Complete round
+        BE:TickCooldowns("player")
+        BE:TickCooldowns("enemy")
+        BE:TickRoundBuffsAndHoTs()
+        BE.State.round = BE.State.round + 1
+        BE.State.turn = "player"
+        C_Timer.After(1.2, function()
+            local pName = player.nickname ~= "" and player.nickname or player.name
+            BE.State.dialogueText = string.format("What will %s do?", pName)
+            if ForeverSafari.BattleFrame then ForeverSafari.BattleFrame:UpdateUI() end
+        end)
+        return
+    end
+
     -- Pick best available move that is off cooldown and has uses left
     local availableMoves = {}
     for _, moveKey in ipairs(enemy.abilities or { "Tackle" }) do
@@ -417,8 +529,9 @@ function BE:ExecuteEnemyTurn()
         BE:AddLog(string.format("|cff00ff00[Ability Learned!]|r You observed %s and learned |cffffd100[%s]|r!", enemy.name, chosen.move.name))
     end
 
+    local priorityText = (chosen.move.priority and chosen.move.priority > 0) and " |cffffcc00[Priority Strike!]|r" or ""
     BE.State.dialogueText = string.format("Enemy %s used %s!", enemy.name, chosen.move.name)
-    BE:AddLog(string.format("|cffff6666Wild %s|r used |cffffd100%s|r!", enemy.name, chosen.move.name))
+    BE:AddLog(string.format("|cffff6666Wild %s|r used |cffffd100%s|r!%s", enemy.name, chosen.move.name, priorityText))
 
     -- Trigger Enemy Attack Animation in UI
     if ForeverSafari.BattleFrame and ForeverSafari.BattleFrame.TriggerAttackAnimation then
@@ -453,9 +566,10 @@ function BE:ExecuteEnemyTurn()
         end
     end
 
-    -- Round Complete: Decrement Cooldowns for both combatants
+    -- Round Complete: Decrement Cooldowns & Buffs for both combatants
     BE:TickCooldowns("player")
     BE:TickCooldowns("enemy")
+    BE:TickRoundBuffsAndHoTs()
 
     BE.State.round = BE.State.round + 1
     BE.State.turn = "player"
@@ -502,27 +616,53 @@ function BE:ApplyMoveEffects(move, attacker, defender, side)
     local prevDefenderHP = defender.currentHP
     local isDefenderElemental = (defender.creatureType == "Elemental")
 
-    -- Heals
+    -- Instant Direct Heals
     if move.heal then
         local healAmount = math.floor(attacker.maxHP * move.heal)
         attacker.currentHP = math.min(attacker.maxHP, attacker.currentHP + healAmount)
         BE:AddLog(string.format("|cff00ff00%s restored %d HP!|r", attacker.name, healAmount))
     end
 
-    -- Buffs / Debuffs
+    -- Heal Over Time (HoT)
+    if move.hot then
+        BE.State.buffs[side].hot = {
+            healPercent = move.hot.healPercent or 0.15,
+            duration = move.hot.duration or 3,
+            name = move.name,
+        }
+        BE:AddLog(string.format("|cff00ff99[Regeneration] %s began regenerating health over time!|r", attacker.name))
+    end
+
+    -- Stat Buffs / Debuffs
     if move.buff then
         if move.buff.multiplier < 1.0 and isDefenderElemental then
             BE:AddLog(string.format("|cff00e5ff[Primal Purity] %s ignored the debuff!|r", defender.name))
         else
             BE.State.buffs[side][move.buff.stat] = {
                 multiplier = move.buff.multiplier,
-                turns = move.buff.duration
+                turns = move.buff.duration or 3
             }
-            BE:AddLog(string.format("|cff33ccff%s's %s was boosted!|r", attacker.name, string.upper(move.buff.stat)))
+            BE:AddLog(string.format("|cff33ccff%s's %s was modified!|r", attacker.name, string.upper(move.buff.stat)))
         end
     end
 
-    -- Direct Damage
+    -- Specific Debuffs (e.g. Bleed Vulnerability from Mangle)
+    if move.debuff and move.debuff.bleedVuln then
+        BE.State.buffs[targetSide].bleedVuln = {
+            multiplier = move.debuff.bleedVuln,
+            turns = move.debuff.duration or 3,
+        }
+        BE:AddLog(string.format("|cffff4444%s was mangled! Bleed damage taken increased by +50%%!|r", defender.name))
+    end
+
+    -- Stealth / Flight Reveal (Alarm Bark / Faerie Fire)
+    if move.revealStealth then
+        BE.State.buffs[targetSide].prowl = nil
+        BE.State.buffs[targetSide].liftOff = nil
+        BE:AddLog(string.format("|cffffcc00[Vigilance] %s revealed %s! Stealth and flight evasion broken!|r", attacker.name, defender.name))
+    end
+
+    -- Direct Damage Calculation
     if move.power and move.power > 0 then
         local atkMod = 1.0
         if BE.State.buffs[side]["atk"] then
@@ -554,6 +694,12 @@ function BE:ApplyMoveEffects(move, attacker, defender, side)
             undeadMod = 0.75
         end
 
+        -- Bleed Synergy: Mangle vulnerability
+        local bleedMod = 1.0
+        if (move.dot or move.name == "Rip" or move.name == "Shred" or move.name == "Ravage") and BE.State.buffs[targetSide].bleedVuln then
+            bleedMod = BE.State.buffs[targetSide].bleedVuln.multiplier or 1.50
+        end
+
         local atk = (attacker.atk or 10) * atkMod * beastMod * dragonkinMod * undeadMod
         local def = (defender.def or 8) * defMod
 
@@ -563,10 +709,11 @@ function BE:ApplyMoveEffects(move, attacker, defender, side)
             typeMult = C.TYPE_ADVANTAGES[move.type][defender.creatureType]
         end
 
-        local isCrit = (math.random() < 0.12)
+        local critChance = 0.12 + ((move.critBonus or 0) / 100)
+        local isCrit = (math.random() < critChance)
         local critMult = isCrit and 1.5 or 1.0
 
-        local rawDmg = ((atk * move.power * 0.7) / (def * 0.75 + 15)) + math.random(2, 6)
+        local rawDmg = (((atk * move.power * 0.7) / (def * 0.75 + 15)) + math.random(2, 6)) * bleedMod
         local finalDmg = math.max(1, math.floor(rawDmg * typeMult * critMult))
 
         -- Passive 7: Magic (Cannot take more than 35% max HP from a single attack)
@@ -595,22 +742,22 @@ function BE:ApplyMoveEffects(move, attacker, defender, side)
         local critText = isCrit and " |cffff0000[CRITICAL HIT!]|r" or ""
         BE:AddLog(string.format("Dealt |cffff3333%d|r damage!%s%s", finalDmg, effText, critText))
 
-        -- Passive 6: Humanoid (Recovers 4% max HP every round they deal damage)
-        if attacker.creatureType == "Humanoid" and finalDmg > 0 then
-            local humHeal = math.max(1, math.floor(attacker.maxHP * 0.04))
-            attacker.currentHP = math.min(attacker.maxHP, attacker.currentHP + humHeal)
-            BE:AddLog(string.format("|cff3399ff[Martial Recovery] %s recovered %d HP (4%%)!|r", attacker.name, humHeal))
+        -- Flinch Effect
+        if move.flinchChance and math.random(1, 100) <= move.flinchChance then
+            BE.State.flinch = BE.State.flinch or { player = false, enemy = false }
+            BE.State.flinch[targetSide] = true
+            BE:AddLog(string.format("|cffffcc00[Flinched!] %s flinched and lost focus!|r", defender.name))
         end
 
-        -- Track Dragonkin trigger: if enemy dropped below 50% HP
-        if attacker.creatureType == "Dragonkin" and (prevDefenderHP / defender.maxHP) >= 0.50 and (defender.currentHP / defender.maxHP) < 0.50 then
-            BE.State.passives.dragonkinEnraged[side] = true
-            BE:AddLog(string.format("|cffff3333[Draconic Fury] %s is enraged! Next attack deals +50%% damage!|r", attacker.name))
+        -- Sleep Effect
+        if move.sleepChance and math.random(1, 100) <= move.sleepChance then
+            BE.State.buffs[targetSide].sleep = 2
+            BE:AddLog(string.format("|cff9966cc[Sleep] %s succumbed to tranquilizing venom and fell asleep!|r", defender.name))
         end
 
         -- Drain Life effect
-        if move.drainPercent then
-            local drained = math.floor(finalDmg * move.drainPercent)
+        if move.heal and move.heal > 0 and finalDmg > 0 then
+            local drained = math.floor(finalDmg * move.heal)
             attacker.currentHP = math.min(attacker.maxHP, attacker.currentHP + drained)
             BE:AddLog(string.format("|cff00ff00%s drained %d health!|r", attacker.name, drained))
         end

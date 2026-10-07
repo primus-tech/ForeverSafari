@@ -108,8 +108,38 @@ function SE:CalculateStats(creatureType, points, isElite, baseStatsOverride)
 end
 
 -- Generate starting abilities restricted by initial rank capacity (Rank 1 = 1 move)
-function SE:GenerateAbilities(creatureType, family)
+function SE:GenerateAbilities(creatureType, family, signatureAbilities)
     local abilities = {}
+    
+    -- Check if custom/signature abilities were provided
+    if signatureAbilities and type(signatureAbilities) == "table" and #signatureAbilities > 0 then
+        for _, sig in ipairs(signatureAbilities) do
+            local move = C.ABILITIES and C.ABILITIES[sig]
+            if move and move.name then
+                table.insert(abilities, move.name)
+            elseif type(sig) == "string" then
+                table.insert(abilities, sig)
+            end
+        end
+        if #abilities > 0 then
+            return abilities
+        end
+    end
+
+    -- Check if FamilyMovepools has default moves defined in MoveDB
+    if ForeverSafari.FamilyMovepools and ForeverSafari.FamilyMovepools[family] then
+        local pool = ForeverSafari.FamilyMovepools[family]
+        for _, moveId in ipairs(pool) do
+            local move = ForeverSafari:GetMove(moveId) or (C.ABILITIES and C.ABILITIES[moveId])
+            if move and move.name then
+                table.insert(abilities, move.name)
+                if #abilities >= 4 then break end
+            end
+        end
+        if #abilities > 0 then
+            return abilities
+        end
+    end
     
     -- Assign family-specific starter moves
     if family == "Canine" or family == "Wolf" or family == "Fox" then
@@ -160,18 +190,20 @@ function SE:CreateMobInstance(name, rawCreatureType, initialAttunement, isElite,
 
     -- Check if species exists in CreatureDB
     local baseStats = nil
+    local sigAbilities = nil
     if ForeverSafari.CreatureDB then
         for _, entry in pairs(ForeverSafari.CreatureDB) do
-            if entry.name == name and entry.baseStats then
-                baseStats = entry.baseStats
+            if entry.name == name then
+                if entry.baseStats then baseStats = entry.baseStats end
                 family = entry.family or family
+                if entry.signatureAbilities then sigAbilities = entry.signatureAbilities end
                 break
             end
         end
     end
 
     local stats = SE:CalculateStats(creatureType, attunement, isElite, baseStats)
-    local abilities = SE:GenerateAbilities(creatureType, family)
+    local abilities = SE:GenerateAbilities(creatureType, family, sigAbilities)
 
     local zone = GetZoneText() or "Azeroth"
     local timestamp = time()
