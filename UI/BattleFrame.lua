@@ -297,6 +297,18 @@ function BF:BuildFightMenu(parent)
             end
         end)
 
+        btn:SetScript("OnEnter", function(self)
+            self:SetBackdropBorderColor(1.0, 1.0, 1.0, 1.0)
+            if self.moveKey then
+                local mState = BE.State.moveState.player and BE.State.moveState.player[self.moveKey]
+                Theme:ShowAbilityTooltip(self, self.moveKey, "ANCHOR_TOP", mState, BE.State.enemyMob)
+            end
+        end)
+        btn:SetScript("OnLeave", function(self)
+            self:SetBackdropBorderColor(1.0, 0.82, 0.0, 0.8)
+            Theme:HideAbilityTooltip()
+        end)
+
         moveButtons[i] = btn
     end
 

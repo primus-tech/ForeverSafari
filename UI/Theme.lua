@@ -214,3 +214,106 @@ function Theme:CreateHeader(parent, titleText, iconTexture)
     header:UpdateTokens()
     return header
 end
+
+-- =========================================================================
+-- 📖 HOVER TOOLTIP: PET ABILITIES & MOVES
+-- =========================================================================
+function Theme:ShowAbilityTooltip(owner, moveKeyOrData, anchor, moveState, defenderMob)
+    if not owner or not moveKeyOrData then return end
+    local C = ns.Constants
+    local BE = ns.BattleEngine
+    local MoveDB = ns.MoveDB or (ForeverSafari and ForeverSafari.MoveDB)
+
+    local move = nil
+    if type(moveKeyOrData) == "table" then
+        move = moveKeyOrData
+    else
+        local kNum = tonumber(moveKeyOrData)
+        if MoveDB and kNum and MoveDB[kNum] then
+            move = MoveDB[kNum]
+        elseif MoveDB and MoveDB[moveKeyOrData] then
+            move = MoveDB[moveKeyOrData]
+        elseif BE and BE.GetMoveData then
+            move = BE:GetMoveData(moveKeyOrData)
+        elseif C and C.ABILITIES and C.ABILITIES[moveKeyOrData] then
+            move = C.ABILITIES[moveKeyOrData]
+        end
+    end
+    if not move then return end
+
+    GameTooltip:SetOwner(owner, anchor or "ANCHOR_TOP")
+    
+    -- Ability Name
+    GameTooltip:AddLine(move.name or "Ability", 1.0, 1.0, 1.0)
+
+    -- Type & Category
+    local mType = move.type or move.element or "Beast"
+    local typeInfo = (C and C.CREATURE_TYPES and C.CREATURE_TYPES[mType]) or { color = "ffd100" }
+    local typeColor = typeInfo.color or "ffd100"
+    local category = move.category or ((move.power and move.power > 0) and "Physical" or "Status")
+    local catColor = (category == "Physical") and "|cffff8844Physical|r" or ((category == "Special") and "|cff33ccffSpecial|r" or "|cffaaaaaaStatus|r")
+
+    local headerLine = string.format("Type: |cff%s%s|r  •  %s", typeColor, mType, catColor)
+    if move.priority and move.priority > 0 then
+        headerLine = headerLine .. string.format("  •  |cffffcc00[Priority +%d]|r", move.priority)
+    end
+    GameTooltip:AddLine(headerLine, 0.9, 0.9, 0.9)
+
+    -- Combat Attributes (Power, Accuracy, PP/Uses, Cooldown)
+    GameTooltip:AddLine(" ")
+    local powerStr = (move.power and move.power > 0) and tostring(move.power) or "--"
+    local accStr = (move.accuracy and move.accuracy > 0) and string.format("%d%%", move.accuracy) or "--"
+    
+    local maxUses = (moveState and moveState.maxUses) or move.maxUses or move.pp or 10
+    local usesLeft = (moveState and moveState.usesLeft) or maxUses
+    local ppStr = (moveState and string.format("%d / %d", usesLeft, maxUses)) or string.format("%d uses", maxUses)
+    
+    local cdStr = "Ready (0 CD)"
+    if moveState and moveState.currentCD and moveState.currentCD > 0 then
+        cdStr = string.format("|cffff4444%d Turn%s CD|r", moveState.currentCD, moveState.currentCD > 1 and "s" or "")
+    elseif move.cooldown and move.cooldown > 0 then
+        cdStr = string.format("%d Turn%s CD", move.cooldown, move.cooldown > 1 and "s" or "")
+    end
+
+    GameTooltip:AddDoubleLine(string.format("Power: |cffffffff%s|r", powerStr), string.format("Accuracy: |cffffffff%s|r", accStr), 1, 0.82, 0, 1, 0.82, 0)
+    GameTooltip:AddDoubleLine(string.format("Battle Uses: |cffffffff%s|r", ppStr), string.format("Cooldown: |cffffffff%s|r", cdStr), 1, 0.82, 0, 1, 0.82, 0)
+
+    -- Live Type Advantage vs active opponent if in combat
+    if defenderMob and defenderMob.creatureType and C and C.TYPE_ADVANTAGES and C.TYPE_ADVANTAGES[mType] then
+        local mult = C.TYPE_ADVANTAGES[mType][defenderMob.creatureType]
+        if mult and mult >= 1.5 then
+            GameTooltip:AddLine(string.format("vs %s: |cff00ff00Super Effective! (150%% Damage)|r", defenderMob.name or "Foe"), 0.8, 1, 0.8)
+        elseif mult and mult <= 0.70 then
+            GameTooltip:AddLine(string.format("vs %s: |cffff8800Resisted (67%% Damage)|r", defenderMob.name or "Foe"), 1, 0.7, 0.5)
+        end
+    end
+
+    -- Description & Tactical Effect Callouts
+    local desc = move.desc or move.description or "A tactical companion ability."
+    GameTooltip:AddLine(" ")
+    GameTooltip:AddLine(desc, 1, 1, 1, true)
+
+    if move.heal then
+        GameTooltip:AddLine(string.format("• Restores |cff00ff00%.0f%%|r Max HP immediately", move.heal * 100), 0, 1, 0.6)
+    end
+    if move.hot then
+        GameTooltip:AddLine(string.format("• Restores |cff00ff00%.0f%%|r Max HP per turn for %d turns", (move.hot.healPercent or 0.15) * 100, move.hot.duration or 3), 0, 1, 0.6)
+    end
+    if move.buff then
+        local dir = move.buff.multiplier > 1 and "Increases" or "Decreases"
+        local pct = math.abs(move.buff.multiplier - 1) * 100
+        GameTooltip:AddLine(string.format("• %s target's |cffffcc00%s|r by |cffffffff%.0f%%|r for %d turns", dir, string.upper(move.buff.stat or "ATK"), pct, move.buff.duration or 3), 0.8, 0.9, 1)
+    end
+    if move.flinchChance then
+        GameTooltip:AddLine(string.format("• |cffffd100%d%% chance|r to cause opponent to flinch", move.flinchChance), 1, 0.82, 0)
+    end
+    if move.sleepChance then
+        GameTooltip:AddLine(string.format("• |cff9966cc%d%% chance|r to put target to sleep for 2 rounds", move.sleepChance), 0.7, 0.5, 1)
+    end
+
+    GameTooltip:Show()
+end
+
+function Theme:HideAbilityTooltip()
+    GameTooltip:Hide()
+end

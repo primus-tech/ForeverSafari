@@ -295,14 +295,30 @@ function Journal:BuildRosterView(parent)
         mCard.Info = mInfo
 
         mCard:SetScript("OnClick", function(self)
-            Journal:OpenTrainingDrawer(self.slotIndex)
-            PlaySound(856)
+            if not self.isLocked then
+                Journal:OpenTrainingDrawer(self.slotIndex)
+                PlaySound(856)
+            end
         end)
         mCard:SetScript("OnEnter", function(self)
             self:SetBackdropBorderColor(1.0, 0.82, 0.0, 1.0)
+            if self.moveId then
+                Theme:ShowAbilityTooltip(self, self.moveId, "ANCHOR_TOP")
+            elseif self.isLocked then
+                GameTooltip:SetOwner(self, "ANCHOR_TOP")
+                GameTooltip:AddLine(string.format("Slot %d Locked", self.slotIndex or 1), 1, 0.82, 0)
+                GameTooltip:AddLine("Increase your companion's Attunement Loyalty rank through feeding and battling to unlock this move slot.", 1, 1, 1, true)
+                GameTooltip:Show()
+            else
+                GameTooltip:SetOwner(self, "ANCHOR_TOP")
+                GameTooltip:AddLine(string.format("Slot %d: Empty", self.slotIndex or 1), 0, 1, 0.6)
+                GameTooltip:AddLine("Click to open the Beast Training Grimoire and teach a new ability.", 1, 1, 1, true)
+                GameTooltip:Show()
+            end
         end)
         mCard:SetScript("OnLeave", function(self)
             self:SetBackdropBorderColor(0.2, 0.3, 0.4, 0.8)
+            Theme:HideAbilityTooltip()
         end)
 
         rightPanel.MoveCards[i] = mCard

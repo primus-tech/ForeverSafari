@@ -182,6 +182,23 @@ function Inspector:Initialize()
         mName:SetText("Empty")
         slot.mName = mName
 
+        slot.slotIdx = i
+        slot:SetScript("OnEnter", function(self)
+            self:SetBackdropBorderColor(1.0, 0.82, 0.0, 1.0)
+            if self.isLocked then
+                GameTooltip:SetOwner(self, "ANCHOR_TOP")
+                GameTooltip:AddLine(string.format("Locked Move Slot #%d", self.slotIdx), 1, 0.82, 0)
+                GameTooltip:AddLine(string.format("Requires Attunement Rank %s to unlock.", self.requiredRank or "?"), 1, 1, 1, true)
+                GameTooltip:Show()
+            elseif self.moveKey then
+                ForeverSafari.Theme:ShowAbilityTooltip(self, self.moveKey, "ANCHOR_TOP")
+            end
+        end)
+        slot:SetScript("OnLeave", function(self)
+            self:SetBackdropBorderColor(0.5, 0.5, 0.6, 0.6)
+            ForeverSafari.Theme:HideAbilityTooltip()
+        end)
+
         frame.moveSlots[i] = slot
     end
 
@@ -237,13 +254,19 @@ function Inspector:InspectCompanion(companionData)
     -- Moves (respect rank move capacity)
     local abilities = companionData.abilities or {}
     local capacity = rankData.moveSlots or 1
+    local rankRequirements = { "I (Whelp)", "II (Hunter)", "III (Alpha)", "IV (Apex)" }
     for i = 1, 4 do
         local slot = frame.moveSlots[i]
         if i > capacity then
+            slot.isLocked = true
+            slot.moveKey = nil
+            slot.requiredRank = rankRequirements[i]
             slot.icon:SetTexture("Interface\\Icons\\INV_Misc_Key_03")
             slot.mName:SetText(string.format("|cff666666Locked|r"))
         else
+            slot.isLocked = false
             local moveKey = abilities[i]
+            slot.moveKey = moveKey
             if moveKey then
                 local moveData = ForeverSafari.Constants.ABILITIES[moveKey]
                 local mName = moveData and moveData.name or moveKey

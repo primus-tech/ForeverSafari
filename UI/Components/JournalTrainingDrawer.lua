@@ -108,9 +108,13 @@ function Journal:OpenTrainingDrawer(slotIndex)
 
                     btn:SetScript("OnEnter", function(self)
                         self:SetBackdropBorderColor(1.0, 0.82, 0.0, 1.0)
+                        if self.moveId then
+                            Theme:ShowAbilityTooltip(self, self.moveId, "ANCHOR_LEFT")
+                        end
                     end)
                     btn:SetScript("OnLeave", function(self)
                         self:SetBackdropBorderColor(0.2, 0.3, 0.4, 0.8)
+                        Theme:HideAbilityTooltip()
                     end)
 
                     drawer.MoveButtons[btnIdx] = btn
