@@ -134,6 +134,7 @@ local function HandleSlash(msg)
         local dialog = StaticPopup_Show("FOREVERSAFARI_CONFIRM_ABANDON", string.format("|cffffd100%s|r (Lv %d %s)", mName, activeMob.level, activeMob.creatureType))
         if dialog then
             dialog.data = { mobId = activeMob.id }
+        end
     elseif cmd == "reset" then
         DB:ResetDB()
     elseif cmd == "help" then
