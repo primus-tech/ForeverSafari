@@ -16,8 +16,17 @@ local Theme = ns.Theme
 
 local frame = nil
 local itemListFrames = {}
+local currentCategory = "gear"
+
 Shop.isAtVendor = false
 Shop.vendorType = nil
+
+local CATEGORIES = {
+    { id = "gear", name = "Capture Gear", icon = "Interface\\Icons\\INV_Misc_Net_01", desc = "Field research snares, nets, traps, and cages for in-battle capture." },
+    { id = "crates", name = "Transport Crates", icon = "Interface\\Icons\\INV_Box_PetCarrier_01", desc = "Expedition crates to auto-board excess captured companions." },
+    { id = "food", name = "Treats & Diets", icon = "Interface\\Icons\\INV_Misc_Food_14", desc = "Safari treats and species-specific dietary meals (+25 Attunement)." },
+    { id = "medical", name = "Medicine & Aid", icon = "Interface\\Icons\\INV_Potion_54", desc = "Emergency field remedies to restore health and revive fallen companions." },
+}
 
 local function isSecret(v)
     if v == nil then return false end
@@ -31,7 +40,7 @@ function Shop:Initialize()
     if frame then return end
 
     frame = CreateFrame("Frame", "ForeverSafariShopFrame", UIParent, "BackdropTemplate")
-    frame:SetSize(480, 540)
+    frame:SetSize(490, 560)
     frame:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
     frame:SetMovable(true)
     frame:EnableMouse(true)
@@ -44,7 +53,7 @@ function Shop:Initialize()
     frame:SetScript("OnDragStop", function(self) self:StopMovingOrSizing() end)
 
     Theme:CreateCloseButton(frame)
-    frame.Header = Theme:CreateHeader(frame, "Nesingwary Safari Supplies", "Interface\\Icons\\Ability_Hunter_BeastTaming")
+    frame.Header = Theme:CreateHeader(frame, "Nesingwary Safari Outfitter", "Interface\\Icons\\Ability_Hunter_BeastTaming")
 
     -- Vendor Status Badge
     local vendorStatus = frame:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
@@ -52,17 +61,53 @@ function Shop:Initialize()
     vendorStatus:SetJustifyH("RIGHT")
     frame.VendorStatus = vendorStatus
 
+    -- Category Tabs
+    frame.Tabs = {}
+    local tabWidth = 110
+    local tabHeight = 24
+    local startX = 14
+    for idx, cat in ipairs(CATEGORIES) do
+        local tab = CreateFrame("Button", "ForeverSafariShopTab" .. idx, frame, "BackdropTemplate")
+        tab:SetSize(tabWidth, tabHeight)
+        tab:SetPoint("TOPLEFT", frame, "TOPLEFT", startX + ((idx - 1) * (tabWidth + 6)), -42)
+        Theme:ApplyCardBackdrop(tab)
+        tab.catId = cat.id
+
+        local tText = tab:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+        tText:SetPoint("CENTER", 0, 0)
+        tText:SetText(cat.name)
+        tab.Text = tText
+
+        tab:SetScript("OnClick", function()
+            currentCategory = cat.id
+            PlaySound(844)
+            Shop:UpdateTabs()
+            Shop:BuildShopItems()
+            Shop:UpdateUI()
+        end)
+
+        tab:SetScript("OnEnter", function(self)
+            GameTooltip:SetOwner(self, "ANCHOR_TOP")
+            GameTooltip:AddLine(cat.name, 1, 0.82, 0)
+            GameTooltip:AddLine(cat.desc, 1, 1, 1, true)
+            GameTooltip:Show()
+        end)
+        tab:SetScript("OnLeave", function() GameTooltip:Hide() end)
+
+        frame.Tabs[cat.id] = tab
+    end
+
     -- Category Subheader / Banner
     local bannerFrame = CreateFrame("Frame", nil, frame, "BackdropTemplate")
-    bannerFrame:SetSize(456, 26)
-    bannerFrame:SetPoint("TOPLEFT", 12, -38)
+    bannerFrame:SetSize(462, 24)
+    bannerFrame:SetPoint("TOPLEFT", 14, -70)
     bannerFrame:SetBackdrop({
         bgFile = "Interface\\Buttons\\WHITE8X8",
         edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
         edgeSize = 8,
     })
-    bannerFrame:SetBackdropColor(0.08, 0.10, 0.14, 0.9)
-    bannerFrame:SetBackdropBorderColor(0.0, 0.9, 0.4, 0.8)
+    bannerFrame:SetBackdropColor(0.06, 0.08, 0.12, 0.9)
+    bannerFrame:SetBackdropBorderColor(0.0, 0.9, 0.4, 0.7)
     frame.BannerFrame = bannerFrame
 
     local bannerText = bannerFrame:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
@@ -73,12 +118,12 @@ function Shop:Initialize()
 
     -- Interactive Rest & Tend Squad Button (Gated Heal & Revive Action)
     local healBtn = CreateFrame("Button", "ForeverSafariShopHealBtn", frame, "BackdropTemplate")
-    healBtn:SetSize(456, 32)
+    healBtn:SetSize(462, 30)
     healBtn:SetPoint("TOPLEFT", bannerFrame, "BOTTOMLEFT", 0, -4)
     Theme:ApplyCardBackdrop(healBtn, true)
 
     local healIcon = healBtn:CreateTexture(nil, "ARTWORK")
-    healIcon:SetSize(20, 20)
+    healIcon:SetSize(18, 18)
     healIcon:SetPoint("LEFT", 8, 0)
     healIcon:SetTexture("Interface\\Icons\\Spell_Holy_Renew")
     healIcon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
@@ -126,17 +171,36 @@ function Shop:Initialize()
     -- Scroll Area Container
     local scrollFrame = CreateFrame("ScrollFrame", "ForeverSafariShopScrollFrame", frame, "UIPanelScrollFrameTemplate")
     scrollFrame:SetPoint("TOPLEFT", healBtn, "BOTTOMLEFT", 0, -6)
-    scrollFrame:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -32, 16)
+    scrollFrame:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -30, 14)
 
     local content = CreateFrame("Frame", "ForeverSafariShopContentFrame", scrollFrame)
-    content:SetSize(420, 600)
+    content:SetSize(434, 400)
     scrollFrame:SetScrollChild(content)
+    frame.ScrollFrame = scrollFrame
     frame.Content = content
 
     -- Register Gossip Events for Pet Trainer & Innkeeper Detection
     Shop:RegisterGossipEvents()
 
     frame:Hide()
+end
+
+function Shop:UpdateTabs()
+    if not frame or not frame.Tabs then return end
+    for _, cat in ipairs(CATEGORIES) do
+        local tab = frame.Tabs[cat.id]
+        if tab then
+            if cat.id == currentCategory then
+                tab:SetBackdropBorderColor(1.0, 0.82, 0.0, 1.0)
+                tab:SetBackdropColor(0.18, 0.15, 0.08, 0.95)
+                tab.Text:SetTextColor(1.0, 0.82, 0.0)
+            else
+                tab:SetBackdropBorderColor(0.25, 0.35, 0.45, 0.7)
+                tab:SetBackdropColor(Theme.Colors.CardBg.r, Theme.Colors.CardBg.g, Theme.Colors.CardBg.b, Theme.Colors.CardBg.a)
+                tab.Text:SetTextColor(0.75, 0.80, 0.85)
+            end
+        end
+    end
 end
 
 function Shop:UpdateHealButton()
@@ -262,7 +326,7 @@ function Shop:OnGossipClosed()
 end
 
 -- =========================================================================
--- 🛒 SHOP ITEMS (PET TRAINER GEAR vs INNKEEPER FOOD)
+-- 🛒 SHOP ITEMS PER TAB
 -- =========================================================================
 function Shop:BuildShopItems()
     local content = frame.Content
@@ -273,118 +337,103 @@ function Shop:BuildShopItems()
     end
     wipe(itemListFrames)
 
-    local yOffset = 0
+    Shop:UpdateTabs()
 
-    -- PET TRAINER: Capture Gear, Transport Crates, Treats, Family Diets, Medical
-    frame.Header.Title:SetText("Nesingwary Safari Outfitter")
+    local yOffset = -4
     frame.VendorStatus:SetText("|cff00ff00[ Pet Trainer — Outfitter & Supplies ]|r")
-    frame.BannerText:SetText("|cff00ff99🐾 Licensed Pet Trainer: Field research snares, nets, traps, transport crates, treats & diets.|r")
 
-    -- 1. Capture Gear
-    local sec1 = content:CreateFontString(nil, "OVERLAY", "GameFontHighlightLarge")
-    sec1:SetPoint("TOPLEFT", 6, yOffset)
-    sec1:SetText("|cffffd100Field Capture Gear|r")
-    yOffset = yOffset - 26
+    -- Reset Scrollbar to Top
+    if frame.ScrollFrame and frame.ScrollFrame.SetVerticalScroll then
+        frame.ScrollFrame:SetVerticalScroll(0)
+    end
 
-    local cageKeys = { "copper_cage", "iron_cage", "mithril_cage", "thorium_trap" }
-    for _, id in ipairs(cageKeys) do
-        local itemData = C.CAGES[id]
-        if itemData then
-            local row = Shop:CreateShopItemRow(content, itemData, id, yOffset)
-            table.insert(itemListFrames, row)
-            yOffset = yOffset - 66
+    if currentCategory == "gear" then
+        frame.BannerText:SetText("|cff00ff99🕸 Field Capture Gear: Snares, nets, traps, and cages for wild capture.|r")
+        local cageKeys = { "copper_cage", "iron_cage", "mithril_cage", "thorium_trap" }
+        for _, id in ipairs(cageKeys) do
+            local itemData = C.CAGES[id]
+            if itemData then
+                local row = Shop:CreateShopItemRow(content, itemData, id, yOffset)
+                table.insert(itemListFrames, row)
+                yOffset = yOffset - 80
+            end
+        end
+
+    elseif currentCategory == "crates" then
+        frame.BannerText:SetText("|cff00ff99📦 Transport Crates: Secure cages used to auto-board excess captures into Kennels.|r")
+        local crateKeys = { "crate_copper", "crate_iron", "crate_mithril", "crate_thorium" }
+        for _, id in ipairs(crateKeys) do
+            local itemData = C.TRANSPORT_CRATES[id] or C.SHOP_ITEMS[id]
+            if itemData then
+                local row = Shop:CreateShopItemRow(content, itemData, id, yOffset)
+                table.insert(itemListFrames, row)
+                yOffset = yOffset - 80
+            end
+        end
+
+    elseif currentCategory == "food" then
+        frame.BannerText:SetText("|cff00ff99🥩 Treats & Diets: Nourishing feasts and family diets granting +25 Attunement.|r")
+        local treatKeys = { "az_treat", "az_feast" }
+        for _, id in ipairs(treatKeys) do
+            local itemData = C.SHOP_ITEMS[id]
+            if itemData then
+                local row = Shop:CreateShopItemRow(content, itemData, id, yOffset)
+                table.insert(itemListFrames, row)
+                yOffset = yOffset - 80
+            end
+        end
+
+        local foodKeys = {
+            "food_canine", "food_feline", "food_bear", "food_boar", "food_raptor",
+            "food_spider", "food_scorpid", "food_kodo", "food_bat", "food_aquatic",
+            "food_reptile", "food_avian", "food_wind serpent"
+        }
+        for _, id in ipairs(foodKeys) do
+            local itemData = C.SAFARI_ITEMS[id]
+            if itemData then
+                local dataCopy = {
+                    name = itemData.name,
+                    icon = "Interface\\Icons\\" .. (itemData.icon or "INV_Misc_Food_14"),
+                    color = itemData.color or "1eff00",
+                    description = itemData.desc or "Fresh harvested sustenance. (+25 Attunement)",
+                    price = 3,
+                }
+                local row = Shop:CreateShopItemRow(content, dataCopy, id, yOffset)
+                table.insert(itemListFrames, row)
+                yOffset = yOffset - 80
+            end
+        end
+
+    elseif currentCategory == "medical" then
+        frame.BannerText:SetText("|cff00ff99🧪 Medicine & Aid: Salves and revival crystals for quick recovery in the field.|r")
+        local medKeys = { "healing_salve", "revival_crystal" }
+        for _, id in ipairs(medKeys) do
+            local itemData = C.SHOP_ITEMS[id]
+            if itemData then
+                local row = Shop:CreateShopItemRow(content, itemData, id, yOffset)
+                table.insert(itemListFrames, row)
+                yOffset = yOffset - 80
+            end
         end
     end
 
-    yOffset = yOffset - 10
-
-    -- 2. Transport Crates (Kennel Logistics)
-    local sec2 = content:CreateFontString(nil, "OVERLAY", "GameFontHighlightLarge")
-    sec2:SetPoint("TOPLEFT", 6, yOffset)
-    sec2:SetText("|cffffd100Kennel Transport Crates|r")
-    yOffset = yOffset - 26
-
-    local crateKeys = { "crate_copper", "crate_iron", "crate_mithril", "crate_thorium" }
-    for _, id in ipairs(crateKeys) do
-        local itemData = C.TRANSPORT_CRATES[id] or C.SHOP_ITEMS[id]
-        if itemData then
-            local row = Shop:CreateShopItemRow(content, itemData, id, yOffset)
-            table.insert(itemListFrames, row)
-            yOffset = yOffset - 66
-        end
-    end
-
-    yOffset = yOffset - 10
-
-    -- 3. Treats & Family Diets
-    local sec3 = content:CreateFontString(nil, "OVERLAY", "GameFontHighlightLarge")
-    sec3:SetPoint("TOPLEFT", 6, yOffset)
-    sec3:SetText("|cffffd100Safari Treats & Family Diets|r")
-    yOffset = yOffset - 26
-
-    local treatKeys = { "az_treat", "az_feast" }
-    for _, id in ipairs(treatKeys) do
-        local itemData = C.SHOP_ITEMS[id]
-        if itemData then
-            local row = Shop:CreateShopItemRow(content, itemData, id, yOffset)
-            table.insert(itemListFrames, row)
-            yOffset = yOffset - 66
-        end
-    end
-
-    local foodKeys = {
-        "food_canine", "food_feline", "food_bear", "food_boar", "food_raptor",
-        "food_spider", "food_scorpid", "food_kodo", "food_bat", "food_aquatic",
-        "food_reptile", "food_avian", "food_wind serpent"
-    }
-    for _, id in ipairs(foodKeys) do
-        local itemData = C.SAFARI_ITEMS[id]
-        if itemData then
-            local dataCopy = {
-                name = itemData.name,
-                icon = "Interface\\Icons\\" .. (itemData.icon or "INV_Misc_Food_14"),
-                color = itemData.color or "1eff00",
-                description = itemData.desc or "Fresh harvested sustenance. (+25 Attunement)",
-                price = 3,
-            }
-            local row = Shop:CreateShopItemRow(content, dataCopy, id, yOffset)
-            table.insert(itemListFrames, row)
-            yOffset = yOffset - 66
-        end
-    end
-
-    yOffset = yOffset - 10
-
-    -- 4. Emergency Medical & Revival
-    local sec4 = content:CreateFontString(nil, "OVERLAY", "GameFontHighlightLarge")
-    sec4:SetPoint("TOPLEFT", 6, yOffset)
-    sec4:SetText("|cffffd100Emergency Medical & Revival Gear|r")
-    yOffset = yOffset - 26
-
-    local medKeys = { "healing_salve", "revival_crystal" }
-    for _, id in ipairs(medKeys) do
-        local itemData = C.SHOP_ITEMS[id]
-        if itemData then
-            local row = Shop:CreateShopItemRow(content, itemData, id, yOffset)
-            table.insert(itemListFrames, row)
-            yOffset = yOffset - 66
-        end
-    end
-
-    content:SetHeight(math.abs(yOffset) + 30)
+    content:SetHeight(math.abs(yOffset) + 20)
 end
 
+-- =========================================================================
+-- 🎴 ITEM ROW: Number Owned, Cost, and Buy Button BENEATH the Item
+-- =========================================================================
 function Shop:CreateShopItemRow(parent, data, id, yOffset)
     if not data then return nil end
-    local card = Theme:CreateCard(parent, 416, 60)
-    card:SetPoint("TOPLEFT", parent, "TOPLEFT", 4, yOffset)
+    local card = Theme:CreateCard(parent, 430, 74)
+    card:SetPoint("TOPLEFT", parent, "TOPLEFT", 2, yOffset)
     card.itemId = id
     card.price = data.price or 5
 
-    -- Icon
+    -- TOP ROW: Icon, Title & Multiplier, Full Description
     local icon = card:CreateTexture(nil, "ARTWORK")
-    icon:SetSize(40, 40)
-    icon:SetPoint("LEFT", card, "LEFT", 10, 0)
+    icon:SetSize(36, 36)
+    icon:SetPoint("TOPLEFT", card, "TOPLEFT", 10, -8)
     local tex = data.icon or "Interface\\Icons\\Ability_Hunter_BeastTaming"
     if not string.find(tex, "\\") then
         tex = "Interface\\Icons\\" .. tex
@@ -392,7 +441,7 @@ function Shop:CreateShopItemRow(parent, data, id, yOffset)
     icon:SetTexture(tex)
     icon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
 
-    -- Tint transport crates by quality tier
+    -- Quality Color Tint for Crates
     if data.category == "Logistics" or string.find(id, "crate_") then
         if data.quality == 1 then
             icon:SetVertexColor(0.85, 0.65, 0.45) -- Copper
@@ -408,39 +457,41 @@ function Shop:CreateShopItemRow(parent, data, id, yOffset)
     end
     card.Icon = icon
 
-    -- Title & Multiplier / Effect
+    -- Title
     local nameText = card:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
-    nameText:SetPoint("TOPLEFT", icon, "TOPRIGHT", 10, -2)
+    nameText:SetPoint("TOPLEFT", icon, "TOPRIGHT", 10, 0)
     nameText:SetText(string.format("|cff%s%s|r", data.color or "ffffff", data.name))
     card.NameText = nameText
 
-    -- Description
+    -- Description (full width)
     local descText = card:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
-    descText:SetPoint("TOPLEFT", nameText, "BOTTOMLEFT", 0, -3)
-    descText:SetPoint("TOPRIGHT", card, "TOPRIGHT", -150, -3)
+    descText:SetPoint("TOPLEFT", nameText, "BOTTOMLEFT", 0, -2)
+    descText:SetPoint("TOPRIGHT", card, "TOPRIGHT", -12, -2)
     descText:SetJustifyH("LEFT")
     descText:SetText(data.description or data.desc or "")
-    descText:SetTextColor(0.7, 0.7, 0.7)
+    descText:SetTextColor(0.72, 0.76, 0.82)
     card.DescText = descText
 
-    -- Owned count badge
+    -- BOTTOM ROW (Beneath the item): Number Owned, Cost, and Buy Button
+    -- 1. Number Owned (Left)
     local ownedText = card:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
-    ownedText:SetPoint("BOTTOMLEFT", icon, "BOTTOMRIGHT", 10, 2)
+    ownedText:SetPoint("BOTTOMLEFT", card, "BOTTOMLEFT", 10, 8)
+    ownedText:SetText("Owned: |cff00ff990|r")
     card.OwnedText = ownedText
 
-    -- Price Tag
-    local priceText = card:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
-    priceText:SetPoint("RIGHT", card, "RIGHT", -110, 0)
-    priceText:SetText(string.format("|cffffd100%d|r Tokens", card.price))
-    card.PriceText = priceText
-
-    -- Buy Button
-    local buyBtn = Theme:CreateButton(card, "Buy x1", 95, 26, true)
-    buyBtn:SetPoint("RIGHT", card, "RIGHT", -8, 0)
+    -- 2. Buy Button (Right)
+    local buyBtn = Theme:CreateButton(card, "Buy x1", 84, 22, true)
+    buyBtn:SetPoint("BOTTOMRIGHT", card, "BOTTOMRIGHT", -10, 6)
     buyBtn:SetScript("OnClick", function()
         Shop:BuyItem(id, 1, card.price, data.name)
     end)
     card.BuyBtn = buyBtn
+
+    -- 3. Cost (Middle / Right aligned beside Buy Button)
+    local priceText = card:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
+    priceText:SetPoint("RIGHT", buyBtn, "LEFT", -12, 0)
+    priceText:SetText(string.format("Cost: |cffffd100%d Safari %s|r", card.price, card.price == 1 and "Token" or "Tokens"))
+    card.PriceText = priceText
 
     return card
 end
