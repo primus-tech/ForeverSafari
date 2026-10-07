@@ -339,9 +339,10 @@ function Journal:BuildRosterView(parent)
 end
 
 function Journal:UpdateRosterList()
-    local frame = self.Frame
-    if not frame or not frame.RosterContainer then return end
-    local leftPanel = frame.RosterContainer.LeftPanel
+    local frame = self.frame or self
+    local container = self.RosterContainer or (frame and frame.RosterContainer)
+    if not container then return end
+    local leftPanel = container.LeftPanel
     if not leftPanel then return end
 
     local content = leftPanel.Content
@@ -438,23 +439,35 @@ function Journal:UpdateRosterList()
 end
 
 function Journal:UpdateRosterView()
-    local frame = self.Frame
-    if not frame or not frame.RosterContainer then return end
-    local container = frame.RosterContainer
-    if not container:IsShown() then return end
+    local frame = self.frame or self
+    local container = self.RosterContainer or (frame and frame.RosterContainer)
+    if not container or not container:IsShown() then return end
 
     local mob = self:GetSelectedCompanion()
     self:UpdateRosterList()
-    self:UpdateTeamDock()
+    if self.UpdateTeamDock then
+        self:UpdateTeamDock()
+    end
 
-    if not mob then return end
+    if not mob then
+        local centerStage = container.CenterStage
+        if centerStage and centerStage.Model3D then
+            centerStage.Model3D:ClearModel()
+            centerStage.Model3D:Hide()
+        end
+        return
+    end
 
     -- Update Center 3D Spotlight Stage
     local centerStage = container.CenterStage
     if centerStage and centerStage.Model3D then
         centerStage.Model3D:Show()
-        centerStage.Model3D:SetDisplayInfo(mob.displayId or 903)
-        centerStage.Model3D:SetRotation(math.rad(15))
+        local displayId = (mob.displayId and mob.displayId > 0) and mob.displayId or C.GetDefaultDisplayId(mob.creatureType or mob.family, mob.name)
+        if self.SetModelCreature then
+            self:SetModelCreature(centerStage.Model3D, displayId)
+        else
+            centerStage.Model3D:SetDisplayInfo(displayId)
+        end
     end
 
     -- Update Right Dossier Panel

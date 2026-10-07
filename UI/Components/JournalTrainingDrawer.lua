@@ -49,10 +49,9 @@ function Journal:BuildTrainingDrawer(parent)
 end
 
 function Journal:OpenTrainingDrawer(slotIndex)
-    local frame = self.Frame
-    if not frame or not frame.TrainingDrawer then return end
-
-    local drawer = frame.TrainingDrawer
+    local frame = self.frame or self
+    local drawer = self.TrainingDrawer or (frame and frame.TrainingDrawer)
+    if not drawer then return end
     local mob = self:GetSelectedCompanion()
     if not mob then return end
 
