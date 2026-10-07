@@ -115,10 +115,13 @@ end
 -- 💖 INNKEEPER REST & TEND
 -- =========================================================================
 function DB:RestAllPets()
+    if self.HealAllPets then
+        return self:HealAllPets(false)
+    end
     local collection = self:GetCollection()
     local healedCount = 0
     for _, mob in ipairs(collection) do
-        mob.currentHP = nil -- Full HP reset
+        mob.currentHP = mob.maxHP or mob.hp or 40
         mob.isFainted = false
         healedCount = healedCount + 1
     end

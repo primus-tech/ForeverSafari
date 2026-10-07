@@ -137,22 +137,8 @@ function Shop:Initialize()
 
     healBtn:SetScript("OnClick", function(self)
         if DB and DB.HealTeam then
-            local team = DB:GetTeam()
-            local needsHealing = false
-            for _, mobId in ipairs(team) do
-                local m = mobId and (type(mobId) == "table" and mobId or DB:GetMobById(mobId))
-                if m and (not m.currentHP or m.currentHP < (m.maxHP or 10)) then
-                    needsHealing = true
-                    break
-                end
-            end
-            if needsHealing then
-                DB:HealTeam(false)
-                Shop:UpdateHealButton()
-            else
-                DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cff00ff00Your active companion squad is already at full health and vigor!|r")
-                PlaySound(856)
-            end
+            DB:HealTeam(false)
+            Shop:UpdateHealButton()
         end
     end)
 
@@ -218,15 +204,15 @@ function Shop:UpdateHealButton()
     end
 
     local btn = frame.HealButton
+    btn:Enable()
     if needsHealing then
-        btn:Enable()
         btn:SetBackdropBorderColor(0.0, 1.0, 0.5, 1.0)
         btn:SetBackdropColor(0.06, 0.18, 0.10, 0.95)
         btn.Text:SetText(string.format("|cff00ff00💖 Tend & Revive Squad (%d wounded/fainted) — Click to Heal|r", woundedCount))
     else
         btn:SetBackdropBorderColor(0.3, 0.4, 0.5, 0.6)
         btn:SetBackdropColor(0.08, 0.10, 0.14, 0.8)
-        btn.Text:SetText("|cffaaaaaa✔ All Active Companions Fully Restored & In Peak Health|r")
+        btn.Text:SetText("|cff00ff99✔ All Active Companions In Peak Health (Click to Rest)|r")
     end
 end
 

@@ -289,3 +289,74 @@ function DB:UnlockType(creatureType, silent)
     end
     return false
 end
+
+-- =========================================================================
+-- 💖 HEALING & RESTORATION (Pet Trainers & Rest)
+-- =========================================================================
+function DB:HealMob(mobId, silent)
+    local mob = type(mobId) == "table" and mobId or self:GetMobById(mobId)
+    if not mob then return false end
+
+    local SE = ns.StatEngine
+    local stats = SE and SE:CalculateStats(mob.element or mob.creatureType or mob.family or "Beast", mob.attunement or 0, mob.isRare, mob.baseStats)
+    local maxHP = (stats and stats.maxHP) or mob.maxHP or mob.hp or 40
+
+    mob.maxHP = maxHP
+    mob.currentHP = maxHP
+    mob.isFainted = false
+
+    self:SignMob(mob)
+    return true
+end
+
+function DB:HealTeam(silent)
+    local team = self:GetTeam()
+    local count = 0
+    for _, mobId in ipairs(team) do
+        local mob = type(mobId) == "table" and mobId or self:GetMobById(mobId)
+        if mob then
+            self:HealMob(mob, true)
+            count = count + 1
+        end
+    end
+
+    if not silent then
+        PlaySound(1195)
+        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cff00ff00[Pet Trainer]|r Tended to your squad! All active companions restored to full health and vigor.")
+        if ns.Toast and ns.Toast.ShowReward then
+            ns.Toast:ShowReward("Squad Tended & Restored!", "All battle companions healed to 100% HP")
+        end
+    end
+
+    -- Refresh UI frames if open
+    if ns.Shop and ns.Shop.UpdateHealButton then
+        ns.Shop:UpdateHealButton()
+    end
+    if ns.JournalTeamDock and ns.JournalTeamDock.UpdateDock then
+        ns.JournalTeamDock:UpdateDock()
+    end
+    if ns.JournalRosterView and ns.JournalRosterView.UpdateUI then
+        ns.JournalRosterView:UpdateUI()
+    end
+
+    return count
+end
+
+function DB:HealAllPets(silent)
+    local collection = self:GetCollection()
+    local count = 0
+    for _, mob in ipairs(collection) do
+        self:HealMob(mob, true)
+        count = count + 1
+    end
+
+    if not silent then
+        PlaySound(1195)
+        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cff00ff00[Innkeeper]|r All active and banked companions rested and fully healed!")
+        if ns.Toast and ns.Toast.ShowReward then
+            ns.Toast:ShowReward("Companions Rested!", string.format("All %d companions restored to full health", count))
+        end
+    end
+
+    return count
+end
