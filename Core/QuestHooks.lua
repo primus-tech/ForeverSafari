@@ -20,11 +20,71 @@ local function isSecret(v)
     return false
 end
 
+local recentKills = {}
+
+local MECHANICAL_DEADMINES_NPCS = {
+    [642] = "Sneed's Shredder",
+    [643] = "Sneed",
+    [43778] = "Foe Reaper 5000",
+    [47418] = "Foe Reaper 5000",
+    [5721] = "Foe Reaper 4000",
+}
+
+local MECHANICAL_DEADMINES_NAMES = {
+    ["sneed's shredder"] = true,
+    ["sneeds shredder"] = true,
+    ["foe reaper 5000"] = true,
+    ["foe reaper 4000"] = true,
+    ["defias harvest reaper"] = true,
+    ["defias watcher"] = true,
+    ["sneed"] = true,
+}
+
+function QH:IsMechanicalDeadminesBoss(name, npcID)
+    if npcID and MECHANICAL_DEADMINES_NPCS[npcID] then
+        return true
+    end
+    if name and MECHANICAL_DEADMINES_NAMES[string.lower(name)] then
+        return true
+    end
+    return false
+end
+
+function QH:HandleMechanicalBossKill(bossName)
+    if not bossName or bossName == "" then bossName = "Sneed's Shredder" end
+    local now = GetTime()
+    if recentKills[bossName] and (now - recentKills[bossName]) < 15 then
+        return
+    end
+    recentKills[bossName] = now
+
+    -- Update Quest Progress
+    DB:UpdateQuestProgress("KILL_MECHANICAL_BOSS", 1)
+    DB:UpdateQuestProgress("BOSS_KILL", 1)
+
+    -- Award tokens to player on the spot
+    DB:AddTokens(25, bossName .. " Defeated")
+
+    -- Unlock Mechanical research permit
+    local wasUnlocked = DB:IsTypeUnlocked("Mechanical")
+    if not wasUnlocked then
+        DB:UnlockType("Mechanical")
+    else
+        DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00[%s Defeated]|r +25 Safari Tokens awarded!", C.PREFIX, bossName))
+    end
+
+    -- Broadcast to party/raid addon users
+    if ns.Comms and ns.Comms.SendMessage then
+        ns.Comms:SendMessage("PERMIT_UNLOCK", "Mechanical:" .. bossName)
+    end
+end
+
 function QH:Initialize()
     local f = CreateFrame("Frame", "ForeverSafariQuestEventFrame")
     f:RegisterEvent("QUEST_TURNED_IN")
     f:RegisterEvent("BOSS_KILL")
     f:RegisterEvent("ENCOUNTER_END")
+    f:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
     
     f:SetScript("OnEvent", function(self, event, ...)
         if event == "QUEST_TURNED_IN" then
@@ -38,6 +98,20 @@ function QH:Initialize()
             if success == 1 then
                 QH:OnBossKilled(encounterID, encounterName)
             end
+        elseif event == "COMBAT_LOG_EVENT_UNFILTERED" then
+            if CombatLogGetCurrentEventInfo then
+                local _, subevent, _, _, _, _, _, destGUID, destName = CombatLogGetCurrentEventInfo()
+                if subevent == "UNIT_DIED" and destName then
+                    local npcID = nil
+                    if destGUID then
+                        local _, _, _, _, _, idStr = strsplit("-", destGUID)
+                        npcID = tonumber(idStr)
+                    end
+                    if QH:IsMechanicalDeadminesBoss(destName, npcID) then
+                        QH:HandleMechanicalBossKill(destName)
+                    end
+                end
+            end
         end
     end)
 end
@@ -45,6 +119,10 @@ end
 function QH:OnBossKilled(encounterID, name)
     -- Update Dungeon Expedition Quest Progress
     DB:UpdateQuestProgress("BOSS_KILL", 1)
+
+    if name and QH:IsMechanicalDeadminesBoss(name) then
+        QH:HandleMechanicalBossKill(name)
+    end
 
     -- Check if this boss drops a catalyst
     if ForeverSafari.GetBossCatalyst then

@@ -69,6 +69,19 @@ function Comms:OnMessageReceived(text, channel, sender)
         if ForeverSafari.Toast then
             ForeverSafari.Toast:ShowAlert("Duel Challenge", string.format("%s wants to battle companions!", sender))
         end
+    elseif msgType == "PERMIT_UNLOCK" then
+        -- Format: PERMIT_UNLOCK:Type:BossName
+        local cType, bName = strsplit(":", data or "", 2)
+        cType = cType or "Mechanical"
+        bName = bName or "Mechanical Boss"
+
+        DB:UpdateQuestProgress("KILL_MECHANICAL_BOSS", 1)
+        DB:UpdateQuestProgress("BOSS_KILL", 1)
+        DB:AddTokens(25, bName .. " Defeated")
+
+        if not DB:IsTypeUnlocked(cType) then
+            DB:UnlockType(cType)
+        end
     elseif msgType == "SHARE_MOB" then
         -- Received shared companion link from player
     end

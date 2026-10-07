@@ -716,6 +716,24 @@ C.NESINGWARY_DISPATCHES = {
             items = { { id = "arcanite_capsule", count = 1 }, { id = "az_feast", count = 3 } },
         }
     },
+    [6] = {
+        id = 6,
+        key = "deadmines_mechanical_permit",
+        title = "Research Permit: Mechanical Overhaul",
+        sender = "Hemet Nesingwary Sr.",
+        location = "Expedition Workshop",
+        date = "Priority Directive",
+        icon = "Interface\\Icons\\INV_Gizmo_02",
+        questType = "KILL_MECHANICAL_BOSS",
+        targetCount = 1,
+        unlocksType = "Mechanical",
+        summary = "Defeat the mechanical boss in Deadmines to earn the Clockwork Engineering Permit.",
+        body = "Recruit,\n\nReports indicate that the Defias Brotherhood in the Deadmines have constructed advanced mechanical lumber reapers and combat shredders deep within their subterranean foundry.\n\nTo safely study and capture mechanical fauna and clockwork constructs in the field, we require vital telemetry from an active war machine. Infiltrate the Deadmines, bring down Sneed's Shredder (or Foe Reaper), and recover the core schematics!\n\nAll naturalists present for the takedown will immediately receive their Clockwork Engineering Permit and a bounty of Safari Tokens!\n\n— Hemet Nesingwary Sr.",
+        rewards = {
+            tokens = 50,
+            items = { { id = "iron_cage", count = 5 }, { id = "healing_salve", count = 5 } },
+        }
+    },
 }
 
 -- Abilities Database (Cooldown in turns & Limited Usages per battle)
