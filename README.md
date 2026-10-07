@@ -15,10 +15,11 @@ Upon first logging into Azeroth, players receive an official **Safari Dispatch**
 
 Recruits are supplied with:
 1. **[Caged Starter Companion]** — A wild companion native to their race's starting region.
-2. **[Copper Snares x 10]** — Essential hemp rope slip-nooses to snare wild creatures in the field.
-3. **[Safari Healing Salves x 5]** — Soothing remedies to restore a wounded companion's health.
-4. **[Revival Crystal x 1]** — Shard of rejuvenation to restore a fainted companion in emergencies.
-5. **[Forever Safari Field Guide]** — The interactive 3D Paperdoll Journal and creature encyclopedia.
+2. **[Copper Snares x 10]** — Essential hemp rope slip-nooses to snare wild creatures during combat.
+3. **[Copper Transport Crates x 3]** — Reinforced transport carriers to safely ship excess captures to the Kennel.
+4. **[Safari Healing Salves x 5]** — Soothing remedies to restore a wounded companion's health.
+5. **[Revival Crystal x 1]** — Shard of rejuvenation to restore a fainted companion in emergencies.
+6. **[Forever Safari Field Guide]** — The interactive 3D Paperdoll Journal and creature encyclopedia.
 
 ---
 
@@ -36,6 +37,11 @@ Every playable race receives an authentic wild companion indigenous to their hom
 | 🏹 **Troll** | Durotar / Sen'jin | **Bloodtalon Raptor** | Raptor | `1960` | Swift, ferocious predator of Sen'jin and the Darkspear Loa |
 | 🪶 **Tauren** | Mulgore | **Kodo Calf** | Kodo | `1451` | Gentle yet thunderous powerhouse of the plains |
 | 💀 **Undead** | Tirisfal Glades | **Mangy Duskbat** | Bat | `9535` | Eerie nocturnal flier haunting the ruined belfries |
+
+---
+
+## 🌟 Core Features
+
 ### 1. 3D Paperdoll Journal & Field Guide
 * **Interactive 3D Showcase**: Full 360° mouse drag rotation, zoom, animation triggers (Attack, Roar, Victory, Idle), and 4-stat combat radar dossier.
 * **Paperdoll Gallery**: Browse your entire menagerie in live 3D card tiles with 9-element type filters and pagination.
@@ -58,13 +64,32 @@ Companions progress through bonding, feeding, and battlefield survival rather th
 * **Family Nourishment**: Feeding wild meats/essences harvested from downed animals of the same family (+25 Attunement).
 * **Zone Acclimation**: Exploring with your companion active in its native regional habitat (+15 Acclimation).
 
-### 3. Shared Family Movepools (Vanilla Hunter Model)
-* All creatures within the same family (e.g. all Wolves) share a universal **Family Grimoire**.
-* **Field Discovery**: Encountering or capturing exotic wild variants unlocks abilities directly into your Trainer Grimoire.
-* **Rank-Scaled Moves**: Move capacity scales from 1 to 4 active slots as Attunement increases.
+### 3. Shared Family Movepools, Feral Druid Abilities & Apex Signatures
+* **Shared Family Grimoires**: All creatures within the same family (e.g. all Felines) share a universal movepool.
+* **Feral Druid & Tactical Movepool**:
+  * **Dash** (`[117]`): +50% Speed burst for 3 turns.
+  * **Cower** (`[118]`): +30% Defense defensive shield.
+  * **Dive** (`[709]`): Flying aerial burst with speed surge.
+  * **Frenzied Regeneration** (`[119]`): 3-round Heal-Over-Time (HoT) restoring 15% Max HP per round.
+  * **Mangle** (`[120]`): Powerful beast strike inflicting a +50% bleed vulnerability debuff.
+  * **Shred** (`[121]`): Behind-the-back claw strike with +20% extra critical strike chance.
+  * **Swipe** (`[122]`): Sweeping multi-strike claw attack.
+  * **Faerie Fire** (`[123]`): Reduces enemy Defense by 20% and reveals stealthed/flying targets.
+  * **Tiger's Fury** (`[124]`): +35% Attack power enrage buff.
+  * **Skull Bash** (`[125]`): Heavy headbutt with a 30% chance to cause the foe to flinch.
+  * **Alarm Bark** (`[126]`): Breaks stealth/Prowl and aerial evasion, with a 25% flinch chance.
+  * **Hyena Cackle** (`[127]`): Demoralizing laughter reducing enemy Attack by 25%.
+  * **Constrict** (`[509]`): Squeezing clamp inflicting 3-round damage-over-time.
+  * **Slumbering Venom** (`[510]`): Tranquilizing venom with a 50% chance to put the target to sleep for 2 rounds.
+* **Apex Boss & World Rare Signatures**:
+  * **Broken Tooth** (NPC `2850`): **Hyper Velocity** (`[1001]`, +2 priority lightning strike homage to its 1.0 attack speed).
+  * **Humar the Pridelord** (NPC `5828`): **King's Roar** (`[1002]`, demoralizing apex roar reducing enemy Attack & Defense by 20%).
+  * **Aku'mai** (NPC `4829`): **Void Stream** (`[1003]`, hybrid Water/Shadow surge dealing bonus damage against poisoned foes).
+  * **Snarlmane** (NPC `1948`): **Shadowfang Rend** (`[1004]`, shadow necrotic curse).
+  * **Rotgrip** (NPC `12258`): **Crushing Clamp** (`[1005]`, high-damage crocolisk lock-jaw clamp).
 
 ### 4. Evolution Catalysts & Greed-Only Boss Loot
-* Dungeon bosses drop rare **Evolution Catalysts** (such as *[Shadowfang Essence]* from SFK).
+* Dungeon bosses drop rare **Evolution Catalysts** (such as *[Shadowfang Essence]* from SFK or *[Hydra Bile]* from BFD).
 * **Secondary Loot Window**: Pops on boss defeat with a **Greed-Only fair roll** (Need is permanently disabled for all players).
 * **Rank V Metamorphosis**: Using a catalyst on a companion at Rank V transforms its 3D model (e.g. Mangy Wolf ➔ **Slavering Worg**), scales base stats, and unlocks apex abilities while preserving its nickname and grimoire.
 
@@ -79,7 +104,7 @@ Companions progress through bonding, feeding, and battlefield survival rather th
 
 ### 7. Virtual Safari Bag & Item Management
 * **Authentic Container Experience**: Styled as a classic 20-slot World of Warcraft backpack container with gold-trimmed borders, quality-tinted slots, stack count badges, and authentic sound effects.
-* **Addon-Exclusive Items**: Stores only items tied directly to the addon without cluttering default Blizzard bags:
+* **Addon-Exclusive Items**:
   * 🕸️ **Capture Gear Progression**:
     * **Tier 1 (Common)**: **Copper Snare** (`INV_Misc_Noose_01` — 1 Token, 35% Base Catch)
     * **Tier 2 (Uncommon)**: **Iron Safari Net** (`Hunter_PvP_TrackersNet` — 5 Tokens, 55% Base Catch)
@@ -90,17 +115,15 @@ Companions progress through bonding, feeding, and battlefield survival rather th
     * **Tier 2 (Uncommon)**: **Iron Transport Crate** (`INV_Box_PetCarrier_01` — 5 Tokens, Uncommon)
     * **Tier 3 (Rare)**: **Mithril Transport Crate** (`INV_Box_PetCarrier_01` — 10 Tokens, Rare)
     * **Tier 4 (Epic)**: **Thorium Transport Crate** (`INV_Box_PetCarrier_01` — 25 Tokens, Epic/Dungeon Behemoths)
-  * 🥩 **Family Nourishment**: 17 harvested wild creature diet types (Wolf Meat, Feline Flank, Bear Ribs, Raptor Flesh, etc.) for feeding active companions (+25 Attunement for favorite diets, +15 for standard sustenance).
+  * 🥩 **Family Nourishment**: 17 harvested wild creature diet types for feeding active companions (+25 Attunement for favorite diets, +15 for standard sustenance).
   * 🧬 **Evolution Catalysts**: Dungeon boss drops (Shadowfang Essence, Hydra Bile, Venomous Gland, Overclocked Core, Volcanic Core).
   * 🍖 **Consumables**: Safari Treats (+50 Attunement), Grand Safari Feasts (+100 Attunement to full team), Safari Healing Salves (100% HP heal), and Revival Crystals.
 * **Context-Sensitive Actions**: Right-Clicking items in the bag automatically uses or feeds your active companion, or opens the 3D Metamorphosis pedestal. Shift-Clicking any item links it directly into chat.
 
-### 8. Physical Mailbox Hub & Authentic Standalone Sidecar ("Safari Dispatch")
+### 8. Physical Mailbox Hub & Standalone Sidecar ("Safari Dispatch")
 * **Zero-Taint Mailbox Sidecar**: Standalone Nesingwary Dispatch Hub docked seamlessly alongside Blizzard's `MailFrame` (`MAIL_SHOW`) on `UIParent`.
-* **Full-Width Inbox Column**: Displays a full-width list of received Nesingwary dispatches and field bounties with sender names, titles, status tags (`[ 📦 Unopened Parcel ]`, `[ ✔ Ready to Claim ]`, `[ ✉️ New ]`), and row hover highlights.
-* **Secondary OpenMail Window**: Clicking any dispatch opens a dedicated `OpenMail` window attached to the side, styled with Nesingwary gold/dark theme, antique parchment letter body, and a parcel attachment tray with tooltips and one-click unbox/claim actions.
-* **First-Load Starter Parcel**: Recruits unbox their racial companion starter kit, 10x Copper Snares, 3x Copper Transport Crates, 5x Safari Healing Salves, and 1x Revival Crystal directly from Hemet Nesingwary's welcome dispatch.
-* **Field Research Bounty Turn-Ins**: Completed bounties are unboxed and turned in at a physical town mailbox to collect earned Safari Tokens and supplies.
+* **Full-Width Inbox Column**: Displays received Nesingwary dispatches and field bounties with sender names, titles, and status tags (`[ 📦 Unopened Parcel ]`, `[ ✔ Ready to Claim ]`, `[ ✉️ New ]`).
+* **Secondary OpenMail Window**: Dedicated `OpenMail` window attached to the side, styled with Nesingwary gold/dark theme, antique parchment letter body, and a parcel attachment tray with tooltips and one-click unbox/claim actions.
 
 ### 9. Innkeeper Safari Kennel & Pet Trainer Outfitter
 * **Zero Out-of-World Access**: Store and bank interfaces are accessed **exclusively when interacting with authorized NPCs in town** via zero-taint standalone sidecar windows.
@@ -110,10 +133,15 @@ Companions progress through bonding, feeding, and battlefield survival rather th
   * **`[ 💖 Tend & Rest All Pets ]`**: Instant full heal and revival for all active and banked companions while resting at any Inn.
 * **Pet Trainers (Nesingwary Safari Outfitter — Universal Class Access)**:
   * **Accessible to ALL Classes**: Non-Hunter classes (Warriors, Mages, Rogues, Priests, Warlocks, Paladins, Shamans, Druids) and Hunters alike can interact with town Pet Trainers.
-  * **Complete Inventory**: Sells all 4 capture tool tiers (Snares, Nets, Traps, Cages), all 4 Transport Crates, Safari Treats, Feasts, Family Diets, and Emergency Medical supplies for **Safari Tokens**.
+  * **Category Tabs**:
+    * 🕸️ **Capture Gear**: Copper Snare, Iron Net, Mithril Trap, Thorium Cage.
+    * 📦 **Transport Crates**: Copper, Iron, Mithril, and Thorium Crates with color-coded quality tints.
+    * 🥩 **Treats & Diets**: Azsharan Treats, Feasts, and 13 species-specific dietary meals.
+    * 🧪 **Medicine & Aid**: Healing Salve and Revival Crystals.
+  * **Beneath-the-Item Card Layout**: Each item displays the number owned (`Owned: X`), token cost (`Cost: X Tokens`), and `[ Buy x1 ]` button directly beneath the item name and description.
 * **Instant Auto-Close**: Leaving the NPC immediately closes the shop or kennel interface.
 
-### 10. In-Battle Captures, 4-Tier Transport Crates & Out-of-Battle Observation
+### 10. In-Battle Captures, 4-Tier Transport Crates & Out-of-Battle Stalking
 * **In-Battle Captures Only**: Captures occur strictly during turn-based combat (`BattleFrame` / `BattleEngine`). Players select **[ BAG ] ➔ [ CAPTURE ]** during combat to deploy their snares, nets, traps, or cages.
 * **Transport Crate Logistics**:
   * If the player's active squad is full (**4/4**), capturing a wild beast auto-consumes **1 matching (or higher tier) Transport Crate** from the Safari Bag and safely ships the specimen to the **Safari Kennel** at the Innkeeper.
@@ -152,15 +180,15 @@ ForeverSafari/
 │
 ├── Data/
 │   ├── CreatureDB.lua                 # 1,909 Normalized Species & 715 3D Displays
-│   ├── MoveDB.lua                     # Move Database (Power, Accuracy, PP, Icons)
+│   ├── MoveDB.lua                     # 94 Moves (Feral Druid, Utility, Boss Signatures)
 │   └── EvolutionDB.lua                # Metamorphosis Recipes & Boss Drops
 │
 ├── Core/
-│   ├── Constants.lua                  # Types, Elements, Attunement Ranks, Food
-│   ├── Database.lua                   # Salted Signatures, Base64 DNA, Nicknames
-│   ├── StatEngine.lua                 # Attunement Scaling, Disobedience, Stats
-│   ├── CaptureEngine.lua              # Capture Rates, Net Modifiers, RNG Reticle
-│   ├── BattleEngine.lua               # Turn-based Combat Loop, Cooldowns, Loot
+│   ├── Constants.lua                  # Types, Elements, Attunement Ranks, Diets, Crates
+│   ├── Database.lua                   # Salted Signatures, Base64 DNA, Nicknames, Kennel
+│   ├── StatEngine.lua                 # Attunement Scaling, Disobedience, Move Loadouts
+│   ├── CaptureEngine.lua              # Capture Rates, Gear Modifiers, Crate Logistics
+│   ├── BattleEngine.lua               # Turn-based Combat Loop, HoTs, Bleeds, Signatures
 │   ├── QuestHooks.lua                 # Boss Kills, Quest Hooks & Token Rewards
 │   └── Comms.lua                      # P2P Multiplayer Sync & Chat Hyperlinks
 │
@@ -173,7 +201,7 @@ ForeverSafari/
     ├── InspectorFrame.lua             # 3D Paperdoll Popup for Chat Hyperlinks
     ├── CatalystLootFrame.lua          # Greed-Only Secondary Boss Loot Window
     ├── CaptureHUD.lua                 # Real-time Proximity & Move Discovery HUD
-    ├── ShopFrame.lua                  # Pet Trainer Outfitter (Snares, Nets, Crates, Treats)
+    ├── ShopFrame.lua                  # Pet Trainer Outfitter (Tabs & Below-Card Layout)
     ├── KennelFrame.lua                # Innkeeper Companion Bank (4 Squad + 5 Enclosures)
     ├── SafariBagFrame.lua             # Virtual Safari Bag 20-Slot Authentic Container
     ├── JournalFrame.lua               # 3D Paperdoll Stage, Dossier, Gallery, Dock
