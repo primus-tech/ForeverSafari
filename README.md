@@ -78,7 +78,7 @@ Companions progress through bonding, feeding, and battlefield survival rather th
 | **V** | **Bestial Symbiosis** | 0% Disobedience. Maximum harmony and power. | **4 + Perk** | **1.15x** | ✅ **Catalyst Ready!** |
 
 * **Battle Resilience**: Winning battles where your companion does not faint (+35 Attunement).
-* **Family Nourishment**: Feeding wild meats and essences harvested from downed animals of the matching family (+25 Attunement).
+* **Family Nourishment**: Feeding matching dietary sustenance (e.g. Safari Meat, Fish, Cheese, Bread, Fruit, Fungus, Parts, Bonedust, Shards, Crystals, Runes) to foster loyalty (+25 Favorite Diet, +15 Accepted Diet).
 * **Zone Acclimation**: Exploring with your companion active in its native regional habitat (+15 Acclimation).
 
 ### 4. Shared Family Movepools, Feral Druid Abilities & Apex Signatures
@@ -106,7 +106,7 @@ Companions progress through bonding, feeding, and battlefield survival rather th
   * **Rotgrip** (NPC `12258`): **Crushing Clamp** (`[1005]`, high-damage crocolisk lock-jaw clamp).
 
 ### 5. NPC Rival Battler Engine (Humanoids as AI Trainers)
-* **Challenging Azeroth's Humanoids**: Targeting and challenging any roaming Humanoid mob across Azeroth (e.g. Defias Cutthroats, Kobold Miners, Murloc Tidecallers, Riverpaw Gnolls, Kolkar Centaurs, Scarlet Crusaders, Dark Iron Dwarves, Syndicate Rogues, Southsea Pirates, Bloodscalp Trolls, Boulderfist Ogres, Venture Co. Engineers, Twilight Cultists, or Nesingwary Safari Trackers) initiates an **AI Trainer Battle** rather than a wild creature encounter.
+* **Challenging Azeroth's Humanoids**: Targeting and challenging any roaming Humanoid mob across Azeroth (e.g. Defias Cutthroats, Kobold Miners, Murloc Tidecallers, Riverpaw Gnolls, Kolkar Centaurs, Scarlet Crusaders, Dark Iron Dwarves, Syndicate Rogues, Southsea Pirates, Bloodscalps, Ogres, Venture Co., Twilight Cultists, or Nesingwary Safari Trackers) initiates an **AI Trainer Battle** rather than a wild creature encounter.
 * **14 Themed Faction Archetypes**: Each faction possesses a distinct title, immersive intro quote, defeat quote, token bounty payout, and a themed 1-to-3 companion roster scaling with level (Lv 1–15: 1 companion; Lv 16–35: 2 companions; Lv 36+: 3 companions).
 * **AI Trainer Pet Switching**: When a trainer's active pet faints, they automatically send out their next companion from their bench with custom battle announcements.
 * **Trainer Companion Protection**: Cages and snares cannot be thrown at trainer-owned pets (`"You cannot capture another hunter's companion!"`).
@@ -149,7 +149,7 @@ Companions progress through bonding, feeding, and battlefield survival rather th
   * 🍖 **Consumables**: Safari Treats (+50 Attunement), Grand Safari Feasts (+100 Attunement to full team), Safari Healing Salves (100% HP heal), and Revival Crystals.
 * **Context-Sensitive Actions**: Right-Clicking items in the bag automatically uses or feeds your active companion, or opens the 3D Metamorphosis pedestal. Shift-Clicking any item links it directly into chat.
 
-### 8. Innkeeper Safari Kennel (10 Enclosure Boxes = 200 Banked Pets)
+### 10. Innkeeper Safari Kennel (10 Enclosure Boxes = 200 Banked Pets)
 * **Zero Out-of-World Access**: Store and bank interfaces are accessed **exclusively when interacting with authorized NPCs in town** via zero-taint standalone sidecar windows.
 * **Innkeepers (Safari Kennel — The Pokémon Bank of Azeroth)**:
   * **Active Squad vs. Bank Enclosures**: Players carry up to 4 active battle companions in their field squad. The remaining creatures are stored across **10 Enclosure Bank Boxes** (20 slots per box = 200 banked companions).
@@ -159,16 +159,16 @@ Companions progress through bonding, feeding, and battlefield survival rather th
   * If the player's active squad is full (**4/4**), capturing a wild beast auto-consumes **1 matching (or higher tier) Transport Crate** from the Safari Bag and safely ships the specimen to the **Safari Kennel** at the Innkeeper.
   * If the squad has an open slot (< 4), the wild beast is recruited directly into the active team with no crate required.
 
-### 9. Pet Trainers (Nesingwary Safari Outfitter — Universal Class Access)
+### 11. Pet Trainers (Nesingwary Safari Outfitter — Universal Class Access)
 * **Accessible to ALL Classes**: Non-Hunter classes (Warriors, Mages, Rogues, Priests, Warlocks, Paladins, Shamans, Druids) and Hunters alike can interact with town Pet Trainers.
 * **Category Tabs**:
   * 🕸️ **Capture Gear**: Copper Snare, Iron Net, Mithril Trap, Thorium Cage.
   * 📦 **Transport Crates**: Copper, Iron, Mithril, and Thorium Crates with color-coded quality tints.
-  * 🥩 **Treats & Diets**: Azsharan Treats, Feasts, and 17 species-specific dietary meals.
+  * 🥩 **Treats & Diets**: Safari Treats, Grand Feasts, and 11 canonical Safari diet items.
   * 🧪 **Medicine & Aid**: Healing Salve and Revival Crystals.
 * **Beneath-the-Item Card Layout**: Each item displays the number owned (`Owned: X`), token cost (`Cost: X Tokens`), and `[ Buy x1 ]` button directly beneath the item name and description.
 
-### 10. Physical Mailbox Hub & Standalone Sidecar ("Safari Dispatch")
+### 12. Physical Mailbox Hub & Standalone Sidecar ("Safari Dispatch")
 * **Zero-Taint Mailbox Sidecar**: Standalone Nesingwary Dispatch Hub docked seamlessly alongside Blizzard's `MailFrame` (`MAIL_SHOW`) on `UIParent`.
 * **Full-Width Inbox Column**: Displays received Nesingwary dispatches and field bounties with sender names, titles, and status tags (`[ 📦 Unopened Parcel ]`, `[ ✔ Ready to Claim ]`, `[ ✉️ New ]`).
 * **Secondary OpenMail Window**: Dedicated `OpenMail` window attached to the side, styled with Nesingwary gold/dark theme, antique parchment letter body, and a parcel attachment tray with tooltips and one-click unbox/claim actions.
@@ -202,11 +202,12 @@ ForeverSafari/
 ├── ROADMAP.md                         # Master Milestone & Feature Tracker
 │
 ├── Data/                              # Canonical Data Registries
-│   ├── ItemDB.lua                     # Snares, Traps, Cages, Crates, Diets & Consumables
+│   ├── ItemDB.lua                     # Snares, Traps, Cages, Crates, 11 Diets & Consumables
 │   ├── MoveDB.lua                     # 94 Moves (Feral Druid, Utility, Boss Signatures)
-│   ├── CreatureDB.lua                 # 1,909 Normalized Species & 715 3D Displays
+│   ├── CreatureDB.lua                 # 1,910 Normalized Species & 715 3D Displays
 │   ├── BestiaryDB.lua                 # 215 Curated Classic Species across 9 Families
-│   └── EvolutionDB.lua                # Metamorphosis Recipes & Boss Drops
+│   ├── EvolutionDB.lua                # Metamorphosis Recipes & Boss Drops
+│   └── TrainerDB.lua                  # 14 Humanoid Rival Factions, Quotes & Rosters
 │
 ├── Core/                              # Core Engine & Subsystem Logic
 │   ├── Constants.lua                  # Types, Elements, Attunement Ranks, Diets, Crates
@@ -216,9 +217,10 @@ ForeverSafari/
 │   │   ├── DB_Kennel.lua              # 10 Storage Enclosure Boxes & Crate Logistics
 │   │   ├── DB_Bestiary.lua            # Pokédex Discovery & Progress Tracking
 │   │   └── DB_Inventory.lua           # Token Vault & Virtual Bag Management
-│   ├── StatEngine.lua                 # Attunement Scaling, Disobedience & Stat Engine
+│   ├── StatEngine.lua                 # Attunement Scaling, 100/110 Budget & Stat Engine
+│   ├── TrainerEngine.lua              # Roaming Humanoid NPC AI Trainer Battle Matcher
 │   ├── CaptureEngine.lua              # Capture Formulas, Catch Rates & Crate Logistics
-│   ├── BattleEngine.lua               # Turn-Based Combat Loop, HoTs, Bleeds & Statuses
+│   ├── BattleEngine.lua               # Turn-Based Combat Loop, AI Trainers & Statuses
 │   ├── QuestHooks.lua                 # Boss Kills, Quest Hooks & Token Rewards
 │   └── Comms.lua                      # P2P Multiplayer Sync & Chat Hyperlinks
 │

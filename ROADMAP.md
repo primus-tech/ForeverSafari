@@ -185,40 +185,79 @@
 
 ---
 
-## 📍 Phase 14: 🔥 TOP PRIORITY — Architecture Modular Breakdown & 3D Showcase Overhaul (In Progress / Active)
-* [ ] **14.1 3D Showcase Stage Overhaul & Visual Polish**:
+## 📍 Phase 14: Architecture Modular Breakdown & 3D Showcase Overhaul (Completed ✅)
+* [x] **3D Showcase Stage Overhaul & Visual Polish**:
   * **Next-Gen 3D Paperdoll Stage**: Dynamic pedestal lighting, ambient stage floor, smooth mouse rotation physics, responsive zoom, and animation controls (Attack, Roar, Idle, Fidget).
   * **Interactive Stat Radar & Combat Aptitudes**: Visual breakdown of HP, Attack, Defense, and Speed with type advantage indicators.
-  * **Active Moveset & Nourishment Bar**: Direct feeding tray (+25 Attunement favorite diet bonus) and intuitive move teaching drawer.
-* [ ] **14.2 `UI/JournalFrame.lua` Sub-View Modularization**:
-  * Extract 2,300+ line monolith into focused, decoupled view files:
+  * **Active Moveset & Nourishment Bar**: Direct feeding tray (+25 Attunement favorite diet bonus, +15 accepted diet bonus) and intuitive move teaching drawer.
+* [x] **`UI/JournalFrame.lua` Sub-View Modularization**:
+  * Extracted monolithic journal into focused, decoupled view files:
     * `UI/JournalFrame.lua` — Main window frame shell, top navigation tabs, header, footer.
-    * `UI/Views/JournalShowcaseView.lua` — View 1 (3D Showcase Stage & Details Panel).
+    * `UI/Views/JournalRosterView.lua` — View 1 (3D Showcase Stage & Details Panel).
     * `UI/Views/JournalGridView.lua` — View 2 (3D Menagerie Gallery Grid).
     * `UI/Views/JournalBestiaryView.lua` — View 3 (Azeroth Field Pokédex & Dossier).
+    * `UI/Views/JournalBountiesView.lua` — View 4 (Field Directives & Research Quest Log).
     * `UI/Components/JournalTeamDock.lua` — Bottom 4-member active battle squad dock.
     * `UI/Components/JournalTrainingDrawer.lua` — Move learning & grimoire teaching drawer.
-* [ ] **14.3 `Core/Database.lua` Domain Modularization**:
-  * Partition single 1,400-line DB file into domain-specific modules:
-    * `Core/Database.lua` — Core initialization, SavedVariables migration, schema upgrades.
-    * `Core/DB/DB_Pets.lua` — Pet collection CRUD, active party, level/XP, moves.
+* [x] **`Core/Database.lua` Domain Modularization**:
+  * Partitioned DB operations into domain-specific modules:
+    * `Core/Database.lua` — Core initialization, SavedVariables migration, schema upgrades, starter kit.
+    * `Core/DB/DB_Pets.lua` — Pet collection CRUD, active party, level/XP, moves, feeding logic.
     * `Core/DB/DB_Kennel.lua` — Storage boxes (1–10), crate transfer logic, kennel slots.
     * `Core/DB/DB_Bestiary.lua` — Pokédex discovery tracking, stats, and collection backfill.
     * `Core/DB/DB_Inventory.lua` — Safari Bag items, tokens, and consumables.
-* [ ] **14.4 Canonical Data Consolidation (`Data/MoveDB.lua` & `Data/ItemDB.lua`)**:
-  * Unify move definitions into `Data/MoveDB.lua` as the single canonical source of truth (removing duplicated `C.ABILITIES` from `Constants.lua`).
-  * Extract all shop, cage, crate, net, treat, and medicine definitions into `Data/ItemDB.lua`.
-  * Keep `Core/Constants.lua` clean and focused on core branding, pet type advantage matrix, and attunement rank thresholds.
-* [ ] **14.5 `Core/BattleEngine.lua` Combat Decoupling**:
-  * `Core/BattleEngine.lua` — Battle state machine, turn loop, round timers, start/end.
-  * `Core/BattleCombat.lua` — Damage formulas, type effectiveness multipliers, crit/miss rolls, status effect & DoT ticks.
-  * `Core/BattleAI.lua` — Wild beast & NPC AI combat logic.
+* [x] **Canonical Data Consolidation (`Data/MoveDB.lua` & `Data/ItemDB.lua`)**:
+  * Unified move definitions into `Data/MoveDB.lua` as the single canonical source of truth with 94 moves and signatures.
+  * Extracted all shop, cage, crate, net, treat, diet, and medicine definitions into `Data/ItemDB.lua`.
+  * Cleaned `Core/Constants.lua` to focus on core branding, element matrix, and attunement rank thresholds.
+* [x] **`Core/StatEngine.lua` Centralization**:
+  * Centralized all stat calculations, 100/110 budget enforcement, attunement multipliers, and HP recovery.
 
 ---
 
-## 📍 Phase 15: Future Expansions & Social Leagues
+## 📍 Phase 15: NPC Rival Battler Engine & Humanoid AI Trainers (Completed ✅)
+* [x] **Roaming Humanoid AI Trainers**:
+  * Targeting and challenging humanoid mobs across Azeroth (e.g. Defias, Kobolds, Murlocs, Gnolls, Centaurs, Scarlet Crusaders, Dark Iron Dwarves, Syndicate, Pirates, Bloodscalps, Ogres, Venture Co., Twilight Cultists, Nesingwary Trackers) initiates an **AI Trainer Battle**.
+* [x] **14 Themed Faction Archetypes (`Data/TrainerDB.lua`, `Core/TrainerEngine.lua`)**:
+  * Dynamic level scaling (1 pet for Lv 1–15, 2 pets for Lv 16–35, 3 pets for Lv 36+).
+  * Faction titles, contextual intro quotes, and defeat quotes.
+  * In-battle AI pet switching when a trainer's active companion faints.
+* [x] **Trainer Pet Capture Protection**:
+  * Traps and snares cannot be thrown at trainer-owned pets (`"You cannot capture another hunter's companion!"`).
+* [x] **Token Economy Restructure**:
+  * Safari tokens are awarded exclusively through defeating Humanoid AI Trainers (6–18+ tokens based on level and faction) and completing official mailbox bounties.
+  * Wild random creature battles yield nourishment drops and attunement, but no tokens.
+
+---
+
+## 📍 Phase 16: 11-Item Safari Diet & Anti-Cannibalism System (Completed ✅)
+* [x] **11 Canonical Safari Diets (`Data/ItemDB.lua`)**:
+  * **Natural Diets**: Safari Meat (Carnivores), Safari Fish (Aquatic/Shore hunters), Safari Bread (Herbivores/Grazers), Safari Cheese (Omnivores/Rodents), Safari Fruit (Avians, Bats, Primates), Safari Fungus (Cave & Swamp scavengers).
+  * **Special Diets**: Safari Parts (Mechanicals), Safari Bonedust (Undead), Safari Shards (Magic), Safari Crystals (Elementals), Safari Runes (Dragonkin).
+* [x] **Universal Diet Evaluation Matrix (`FAMILY_DIETS` & `CanEatFood`)**:
+  * **Favorite Food**: +25 Attunement & joyful roar/model animation.
+  * **Accepted Food**: +15 Attunement & eating animation.
+  * **Incompatible Food**: Companion refuses to eat, dialogue feedback, 0 items consumed.
+* [x] **Interactive Feeding Tray & Bag Integration**:
+  * Live feeding buttons with real-time inventory count badges on the 3D Spotlight stage.
+  * Right-click feeding from the 20-slot Virtual Safari Bag.
+
+---
+
+## 📍 Phase 17: Starter Companion Rank III Trusting Initialization (Completed ✅)
+* [x] **Partner Status Initialization**:
+  * Racial starter companions provided by Hemet Nesingwary initialize at **Rank III: Trusting** (600 Attunement Points) with full **1.00x True Baseline Stats (100/100 points)**, **5% Disobedience**, and **Slot 3 Unlocked for Training**.
+* [x] **Legacy Starter Auto-Promotion (`DB:ValidateAndRepairSignatures`)**:
+  * Existing player profiles with starter companions at 0 attunement are automatically promoted to Rank III with signed cryptographic integrity.
+* [x] **Wild Catch Differentiation**:
+  * Wild creatures caught in snares/cages start at **Rank I: Wild / Unbroken** (0 Attunement, 0.85x stats, 25% disobedience), maintaining clear progression and domestic bonding loops.
+
+---
+
+## 📍 Phase 18: Future Expansions & Social Leagues (Pending ⏳)
 * [ ] **PvP Safari Tournaments & Guild Ladders**: Cross-faction companion duel tournaments and leaderboards.
 * [ ] **Safari Attunement Quests**: Epic class and race-specific questlines to earn Master attunement and legendary nets.
+* [ ] **World Boss Safari Raids**: Instanced raid encounter mechanics for legendary apex creatures.
 
 
 
