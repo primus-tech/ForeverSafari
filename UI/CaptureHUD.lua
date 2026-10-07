@@ -313,7 +313,9 @@ function HUD:OnTargetChanged()
         return
     end
 
-    DB:RecordSeenMob(name, creatureType)
+    if DB and DB.DiscoverSpecies then
+        DB:DiscoverSpecies(name, "seen")
+    end
 
     frame:Show()
     HUD:UpdateUI()

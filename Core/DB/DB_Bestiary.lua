@@ -73,6 +73,10 @@ function DB:DiscoverSpecies(nameOrId, status)
     end
 end
 
+function DB:RecordSeenMob(nameOrId, creatureType)
+    return self:DiscoverSpecies(nameOrId, "seen")
+end
+
 function DB:GetBestiaryStats()
     local BestiaryDB = ns.BestiaryDB
     local all = BestiaryDB and BestiaryDB:GetAllSpecies() or {}
