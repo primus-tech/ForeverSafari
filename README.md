@@ -107,6 +107,7 @@ Companions progress through bonding, feeding, and battlefield survival rather th
 * **14 Themed Faction Archetypes**: Each faction possesses a distinct title, immersive intro quote, defeat quote, token bounty payout, and a themed 1-to-3 companion roster scaling with level (Lv 1–15: 1 companion; Lv 16–35: 2 companions; Lv 36+: 3 companions).
 * **AI Trainer Pet Switching**: When a trainer's active pet faints, they automatically send out their next companion from their bench with custom battle announcements.
 * **Trainer Companion Protection**: Cages and snares cannot be thrown at trainer-owned pets (`"You cannot capture another hunter's companion!"`).
+* **Safari Token Economy**: Roaming Humanoid AI Trainers are the primary open-world source of **Safari Tokens** (6–18+ tokens per victory, scaling with level and faction). Wild creature battles yield family nourishment diet items, attunement bonding, and quest progress, but do not drop tokens.
 
 ### 6. 100/110 Stat Budget Formula & 2-Move Starter Loadout
 * **Normalized Base Stat Budgets**:

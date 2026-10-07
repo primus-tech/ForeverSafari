@@ -1123,9 +1123,6 @@ function BE:HandleVictory()
         BE:AddLog(string.format("|cffffd100Looted [1x %s] for nourishing %s companions!|r", foodData.item, foodData.yield))
     end
 
-    local tokenReward = math.random(1, 3)
-    DB:AddTokens(tokenReward, "Wild Battle Victory")
-
     player.battlesWon = (player.battlesWon or 0) + 1
     player.battlesTotal = (player.battlesTotal or 0) + 1
     ForeverSafariDB.stats.totalBattlesWon = (ForeverSafariDB.stats.totalBattlesWon or 0) + 1
