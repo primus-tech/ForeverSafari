@@ -318,12 +318,12 @@ function BF:BuildBagMenu(parent)
     p:SetAllPoints()
     frame.BagMenu = p
 
-    local bagItems = { "copper_cage", "iron_cage", "healing_salve", "az_treat" }
+    local bagItems = { "copper_cage", "iron_cage", "mithril_cage", "thorium_trap", "healing_salve", "az_treat" }
     for i, id in ipairs(bagItems) do
-        local btn = Theme:CreateButton(p, "", 124, 32)
+        local btn = Theme:CreateButton(p, "", 124, 24)
         local col = ((i - 1) % 2)
         local row = math.floor((i - 1) / 2)
-        btn:SetPoint("TOPLEFT", 4 + (col * 130), -6 - (row * 36))
+        btn:SetPoint("TOPLEFT", 4 + (col * 130), -2 - (row * 26))
         btn.itemId = id
 
         btn:SetScript("OnClick", function(self)

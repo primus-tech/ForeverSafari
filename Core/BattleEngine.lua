@@ -672,6 +672,18 @@ function BE:ThrowCageInCombat(cageId)
         return
     end
 
+    -- Check squad capacity and transport crate requirement
+    local isSquadFull = (DB:GetSquadCount() >= 4)
+    local enemyQuality = enemy.quality or (enemy.isBoss and 4) or (enemy.isRareSpawn and 3) or (enemy.isElite and 2) or 1
+    if isSquadFull and not DB:HasTransportCrate(enemyQuality) then
+        local crateData = C.TRANSPORT_CRATES and C.TRANSPORT_CRATES[enemyQuality == 4 and "crate_thorium" or enemyQuality == 3 and "crate_mithril" or enemyQuality == 2 and "crate_iron" or "crate_copper"]
+        local crateName = crateData and crateData.name or "Transport Crate"
+        BE.State.dialogueText = string.format("Active squad full (4/4)! Need %s!", crateName)
+        BE:AddLog(string.format("|cffff4444Active squad is full (4/4)! You need a %s (or higher) to ship wild catches to the Safari Kennel!|r", crateName))
+        if ForeverSafari.BattleFrame then ForeverSafari.BattleFrame:UpdateUI() end
+        return
+    end
+
     DB:RemoveItem(cageId, 1)
     local cageData = C.CAGES[cageId] or C.CAGES["copper_cage"]
     local hpPct = (enemy.currentHP / enemy.maxHP) * 100
@@ -705,10 +717,21 @@ function BE:ThrowCageInCombat(cageId)
             C_Timer.After(1.4, function() BE:ExecuteEnemyTurn() end)
         elseif roll <= finalRate then
             PlaySound(1195)
-            BE.State.dialogueText = string.format("Gotcha! %s was caught!", enemy.name)
-            BE:AddLog(string.format("|cff00ff00Gotcha! Wild %s was captured!|r", enemy.name))
-            DB:AddMob(enemy)
-            if ForeverSafari.Toast then ForeverSafari.Toast:ShowCapture(enemy) end
+            if isSquadFull then
+                local ok, crateId, crateData = DB:ConsumeBestTransportCrate(enemyQuality)
+                DB:AddMob(enemy, false)
+                local cName = crateData and crateData.name or "Transport Crate"
+                BE.State.dialogueText = string.format("Gotcha! %s was caught & crated in %s!", enemy.name, cName)
+                BE:AddLog(string.format("|cff00ff00Gotcha! Wild %s was captured, crated in [%s], and sent to the Safari Kennel!|r", enemy.name, cName))
+                if ForeverSafari.Toast then
+                    ForeverSafari.Toast:ShowAlert("Captured & Banked", string.format("%s was crated & sent to Innkeeper's Kennel!", enemy.name))
+                end
+            else
+                DB:AddMob(enemy, true)
+                BE.State.dialogueText = string.format("Gotcha! %s joined your squad!", enemy.name)
+                BE:AddLog(string.format("|cff00ff00Gotcha! Wild %s was captured and joined your active squad!|r", enemy.name))
+                if ForeverSafari.Toast then ForeverSafari.Toast:ShowCapture(enemy) end
+            end
             BE.State.inBattle = false
             if ForeverSafari.BattleFrame then ForeverSafari.BattleFrame:UpdateUI() end
         else

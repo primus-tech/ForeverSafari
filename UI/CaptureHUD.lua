@@ -179,11 +179,11 @@ function HUD:Initialize()
         frame.CageButtons[cageId] = cBtn
     end
 
-    -- Stalk & Snare Action Button
+    -- Stalk & Observe Action Button (Learn Moves from the Wild)
     local actionBtn = CreateFrame("Button", "ForeverSafariHUDActionBtn", frame, "UIPanelButtonTemplate")
-    actionBtn:SetSize(102, 30)
+    actionBtn:SetSize(110, 30)
     actionBtn:SetPoint("BOTTOMRIGHT", -10, 10)
-    actionBtn:SetText("SNARE")
+    actionBtn:SetText("🔭 OBSERVE")
     actionBtn:SetScript("OnClick", function()
         if CE:IsChanneling() then
             CE:CancelSnareChannel("Cancelled by player.")
@@ -192,6 +192,17 @@ function HUD:Initialize()
         end
         HUD:UpdateUI()
     end)
+    actionBtn:SetScript("OnEnter", function(self)
+        GameTooltip:SetOwner(self, "ANCHOR_TOP")
+        GameTooltip:AddLine("🔭 Field Stalking & Observation", 1, 0.82, 0)
+        GameTooltip:AddLine("Quietly study this wild creature in its natural habitat to discover and learn its fighting techniques directly into your Trainer Grimoire!", 1, 1, 1, true)
+        GameTooltip:AddLine(" ")
+        GameTooltip:AddLine("• Discovers new family abilities for your companions", 0, 1, 0.6)
+        GameTooltip:AddLine("• Awards +15 Attunement if all abilities are already mastered", 0.8, 0.9, 1)
+        GameTooltip:AddLine("• Non-combat observation (quarry remains 100% untouched)", 0.8, 0.9, 1)
+        GameTooltip:Show()
+    end)
+    actionBtn:SetScript("OnLeave", function() GameTooltip:Hide() end)
     frame.ActionBtn = actionBtn
 
     -- Turn-Based Battle Action Button

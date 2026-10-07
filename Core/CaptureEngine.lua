@@ -272,60 +272,65 @@ function CE:CancelSnareChannel(reason)
     end
 end
 
--- Complete Channeling & Resolve Capture
+-- Complete Channeling & Resolve Field Move Observation
 function CE:CompleteSnareChannel()
     if not CE.ChannelState.isChanneling then return end
     CE.ChannelState.isChanneling = false
 
     local state = CE.ChannelState
     local unit = state.unit or "target"
-    local cageId = state.cageId or "copper_cage"
 
-    -- Deduct net from inventory
-    DB:RemoveItem(cageId, 1)
-    ForeverSafariDB.stats.totalCagesThrown = (ForeverSafariDB.stats.totalCagesThrown or 0) + 1
+    PlaySound(1195) -- SOUNDKIT.IG_QUEST_LOG_COMPLETE
 
-    -- Calculate Snare Outcome
-    local success, roll, threshold, distTier, distMod, rarityMod = CE:CalculateSnareRoll(unit, cageId)
+    -- Look up creature's abilities in CreatureDB or default family moves
+    local discoveredMove = nil
+    local targetName = state.targetName or "Wild Creature"
+    local cType = state.creatureType or "Beast"
 
-    local cageData = C.CAGES[cageId] or {}
-    local cageName = cageData.name or "Safari Net"
-
-    if success then
-        PlaySound(1195) -- SOUNDKIT.IG_QUEST_LOG_COMPLETE
-        
-        -- Create new companion instance & add to player collection
-        local newMob = SE:CreateMobInstance(state.targetName, state.creatureType, state.level, state.isElite, state.displayId)
-        DB:AddMob(newMob)
-
-        -- Advance Nesingwary Dispatch Quests
-        DB:UpdateQuestProgress("CAPTURE_TOTAL", 1)
-        if state.isElite or (C.ICONIC_RARES and C.ICONIC_RARES[state.targetName]) then
-            DB:UpdateQuestProgress("CAPTURE_RARE", 1)
+    if ForeverSafari.CreatureDB then
+        for _, entry in pairs(ForeverSafari.CreatureDB) do
+            if entry.name and string.lower(entry.name) == string.lower(targetName) and entry.abilities then
+                for _, moveKey in ipairs(entry.abilities) do
+                    if not DB:IsAbilityUnlocked(moveKey) then
+                        discoveredMove = moveKey
+                        break
+                    end
+                end
+                if discoveredMove then break end
+            end
         end
+    end
 
-        local bonusStr = (distTier == "CLOSE") and " |cff00ff99(Close Stalk +25% Focus)|r" or ""
-        DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00Field Research Success! Captured |cffffd100%s|r (Lv %d %s)%s! Quarry catalogued and preserved safely in the wild.|r",
-            C.PREFIX, state.targetName, state.level, state.creatureType, bonusStr))
-
-        if ForeverSafari.Toast then
-            ForeverSafari.Toast:ShowCapture(newMob)
+    -- Fallback check for family moves
+    if not discoveredMove and C.FAMILY_MOVES and C.FAMILY_MOVES[cType] then
+        for _, moveKey in ipairs(C.FAMILY_MOVES[cType]) do
+            if not DB:IsAbilityUnlocked(moveKey) then
+                discoveredMove = moveKey
+                break
+            end
         end
+    end
 
+    if discoveredMove then
+        DB:UnlockAbility(discoveredMove, targetName, false)
         if ForeverSafari.CaptureHUD and ForeverSafari.CaptureHUD.ShowCaptureResult then
-            ForeverSafari.CaptureHUD:ShowCaptureResult(true, state.targetName, threshold)
+            local moveData = C.ABILITIES[discoveredMove]
+            local mName = moveData and moveData.name or discoveredMove
+            ForeverSafari.CaptureHUD:ShowCaptureResult(true, string.format("Learned [%s]!", mName), 1.0)
         end
     else
-        PlaySound(847) -- SOUNDKIT.SHEATH
-        DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cffff4444Snare slipped! %s broke free from the netting (Chance: %.1f%%). Live quarry remains untouched in the wild.|r",
-            C.PREFIX, state.targetName, threshold * 100))
-
-        if ForeverSafari.Toast then
-            ForeverSafari.Toast:ShowAlert("Snare Slipped", state.targetName .. " slipped free! (Quarry unharmed)")
+        -- If all family moves already mastered, award Zone Acclimation / Attunement
+        local activeMob = DB:GetActiveMob()
+        if activeMob then
+            DB:AddAttunement(activeMob.id, 15, "Observed wild " .. targetName)
         end
-
+        DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00[Field Research Complete]|r Observed |cffffd100%s|r in its natural habitat! All moves already mastered; active companion gained +15 Attunement.",
+            C.PREFIX, targetName))
+        if ForeverSafari.Toast then
+            ForeverSafari.Toast:ShowAlert("Field Observation", string.format("Studied %s! (+15 Attunement)", targetName))
+        end
         if ForeverSafari.CaptureHUD and ForeverSafari.CaptureHUD.ShowCaptureResult then
-            ForeverSafari.CaptureHUD:ShowCaptureResult(false, state.targetName, threshold)
+            ForeverSafari.CaptureHUD:ShowCaptureResult(true, "Observation Complete (+15 Attunement)", 1.0)
         end
     end
 end

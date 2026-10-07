@@ -140,18 +140,47 @@
 
 ---
 
-## 📍 Phase 10: Gossip Store & Strict Vendor Specialization (Completed ✅)
+## 📍 Phase 10: Pet Trainer Safari Outfitter (Completed ✅)
 * [x] **Zero Out-of-World Store Access**:
   * Shop opening from field commands, bags, and journals removed. Access is strictly gated through NPC gossip interaction.
-* [x] **Pet Trainer Specialization (Capture Gear & Supplies — Universal Class Access)**:
-  * Standalone Sidecar Window attached cleanly to `UIParent`.
+* [x] **Pet Trainer Specialization (Full Outfitter Catalog — Universal Class Access)**:
+  * Standalone Sidecar Window attached cleanly to `UIParent` (Zero Taint).
   * Accessible to all classes (Hunters and non-hunters alike).
-  * Offers Copper Snares, Iron Safari Nets, Mithril Hunter Traps, Thorium Expedition Cages, Revival Crystals, and Salves.
-* [x] **Innkeeper Specialization (Safari Treats & Food Provisions)**:
-  * Offers Safari Treats, Grand Safari Feasts, Healing Salves, and harvested family meats.
+  * Offers Copper Snares (1 Token), Iron Safari Nets (5 Tokens), Mithril Hunter Traps (10 Tokens), Thorium Expedition Cages (25 Tokens).
+  * Offers 4 tiers of Transport Crates (1, 5, 10, 25 Tokens) with quality tinting.
+  * Offers Safari Treats, Grand Safari Feasts, harvested family nourishment diets, Healing Salves, and Revival Crystals.
 * [x] **Interactive Rest & Tend Squad Button**:
-  * `[ 💖 Tend & Revive Squad ]` button heals and revives companions when talking to trainers or innkeepers.
+  * `[ 💖 Tend & Revive Squad ]` button heals and revives companions when talking to pet trainers.
 * [x] **Instant Gossip Cleanup**:
   * Closing NPC interaction immediately dismisses the merchant frame.
+
+---
+
+## 📍 Phase 11: In-Battle Captures & 4-Tier Transport Crates (Completed ✅)
+* [x] **In-Battle Capture Flow (`Core/BattleEngine.lua`, `UI/BattleFrame.lua`)**:
+  * Thrown during turn-based combat via `[ BAG ] ➔ [ CAPTURE ]` submenu.
+  * Capture probability factors in enemy remaining HP, tool tier bonus, and level difference.
+* [x] **Active Squad (4 max) & Transport Crate Logistics**:
+  * Players carry up to 4 active battle companions in their field party.
+  * When active squad is full (4/4), in-battle capture requires and auto-consumes 1 matching or higher tier Transport Crate (`INV_Box_PetCarrier_01` tinted by quality) to safely crate and ship the wild specimen to the Safari Kennel.
+  * If squad is not full (< 4), companion joins active squad directly with no crate consumed.
+* [x] **Token Pricing Economy**:
+  * Tier 1 (Common): 1 Token (Copper Snare / Copper Transport Crate).
+  * Tier 2 (Uncommon): 5 Tokens (Iron Safari Net / Iron Transport Crate).
+  * Tier 3 (Rare): 10 Tokens (Mithril Hunter Trap / Mithril Transport Crate).
+  * Tier 4 (Epic): 25 Tokens (Thorium Expedition Cage / Thorium Transport Crate).
+
+---
+
+## 📍 Phase 12: Innkeeper Safari Kennel & Move Discovery (Completed ✅)
+* [x] **Safari Kennel Bank (`UI/KennelFrame.lua`)**:
+  * Standalone zero-taint Innkeeper sidecar acting as the Pokémon Bank of Azeroth.
+  * 4 Active Squad pedestals with live 3D models, rank badges, HP bars, and `[ Deposit to Kennel ]` actions.
+  * 5 Enclosure Bank Tabs (20 slots per box = 100 total banked companions) with search filter and `[ Withdraw to Squad ]` actions.
+  * Drag / click swap support between squad and kennel bank.
+  * `[ 💖 Tend & Rest All Pets ]`: One-click button to heal and revive all active and banked companions at any Inn.
+* [x] **Out-of-Battle HUD Move Discovery (`Core/CaptureEngine.lua`, `UI/CaptureHUD.lua`)**:
+  * Out-of-battle HUD dedicated to `[ ⚔️ BATTLE ]` and `[ 🔭 OBSERVE ]`.
+  * Completing the observation channel analyzes the wild beast to discover and unlock unlearned family abilities into the Trainer Grimoire (or awards +15 Attunement if all moves are known).
 
 

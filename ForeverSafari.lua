@@ -39,6 +39,9 @@ eventFrame:SetScript("OnEvent", function(self, event, arg1)
         Journal:Initialize()
         Shop:Initialize()
         Battle:Initialize()
+        if ForeverSafari.KennelFrame and ForeverSafari.KennelFrame.Initialize then
+            ForeverSafari.KennelFrame:Initialize()
+        end
         if Bag and Bag.Initialize then
             Bag:Initialize()
         end
@@ -79,6 +82,8 @@ SLASH_FOREVERSAFARI3 = "/fs"
 SLASH_FSBAG1 = "/fsbag"
 SLASH_FSBAG2 = "/safabag"
 SLASH_FSSHOP1 = "/fsshop"
+SLASH_FSKENNEL1 = "/fskennel"
+SLASH_FSKENNEL2 = "/safakennel"
 SLASH_FSMAIL1 = "/fsmail"
 SLASH_FSMAIL2 = "/safamail"
 SLASH_FSNET1 = "/fsnet"
@@ -93,11 +98,21 @@ local function HandleSlash(msg)
         Journal:Toggle()
     elseif cmd == "bag" or cmd == "pouch" or cmd == "inventory" or cmd == "items" or cmd == "backpack" then
         if ForeverSafari.SafariBagFrame then ForeverSafari.SafariBagFrame:Toggle() end
+    elseif cmd == "kennel" or cmd == "bank" or cmd == "stables" then
+        if ForeverSafari.ShopFrame and ForeverSafari.ShopFrame.IsAtAuthorizedVendor and ForeverSafari.ShopFrame:IsAtAuthorizedVendor() and ForeverSafari.ShopFrame.vendorType == "Innkeeper" then
+            if ForeverSafari.KennelFrame then ForeverSafari.KennelFrame:ShowKennel() end
+        else
+            DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Safari Kennel access restricted! Speak with an Innkeeper at any inn to manage your companion bank.|r")
+            if ForeverSafari.Toast then
+                ForeverSafari.Toast:ShowAlert("Innkeeper Required", "Speak to an Innkeeper to access the Safari Kennel!")
+            end
+            PlaySound(847)
+        end
     elseif cmd == "shop" or cmd == "store" or cmd == "supplies" then
         if ForeverSafari.ShopFrame and ForeverSafari.ShopFrame.IsAtAuthorizedVendor and ForeverSafari.ShopFrame:IsAtAuthorizedVendor() then
             Shop:Toggle()
         else
-            DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Store access is restricted! Speak with a Pet Trainer (for Capture Gear & Supplies) or an Innkeeper (for Safari Treats & Food Provisions).|r")
+            DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Store access is restricted! Speak with a Pet Trainer (for Capture Gear & Supplies) or an Innkeeper (for Safari Kennel).|r")
             if ForeverSafari.Toast then
                 ForeverSafari.Toast:ShowAlert("Vendor Required", "Speak to a Pet Trainer or Innkeeper!")
             end
@@ -116,7 +131,7 @@ local function HandleSlash(msg)
                 ForeverSafari.JournalFrame:ShowTab("BOUNTIES")
             end
         end
-    elseif cmd == "net" or cmd == "catch" or cmd == "snare" or cmd == "trap" or cmd == "cage" then
+    elseif cmd == "observe" or cmd == "stalk" or cmd == "net" or cmd == "catch" or cmd == "snare" or cmd == "trap" or cmd == "cage" then
         ForeverSafari.CaptureEngine:AttemptCapture("target")
     elseif cmd == "battle" or cmd == "fight" then
         ForeverSafari.BattleEngine:StartWildBattle("target")
@@ -138,11 +153,12 @@ local function HandleSlash(msg)
     elseif cmd == "help" then
         DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cff00ff99Available Slash Commands:|r")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/safari|r or |cffffd100/fs|r - Open Field Guide & Team Manager")
+        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/safari kennel|r or |cffffd100/fskennel|r - Open Safari Kennel at Innkeepers")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/safari bounties|r - View Active Field Directives & Quest Tracker")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsbag|r or |cffffd100/safari bag|r - Open Virtual Safari Bag")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsmail|r or |cffffd100/safari mail|r - View Nesingwary Dispatches (Turn in at Mailbox)")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/safari abandon|r - Release active companion back into the wild")
-        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsnet|r - Deploy active capture tool (Snare/Net/Trap/Cage) at target")
+        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/safari observe|r - Channel observation to stalk and discover new moves")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsbattle|r - Engage targeted wild creature in turn-based battle")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsduel|r - Challenge targeted player to a companion duel")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/safari tokens|r - Check current Safari Token balance")
@@ -154,6 +170,17 @@ end
 
 SlashCmdList["FOREVERSAFARI"] = HandleSlash
 SlashCmdList["FSBAG"] = function() if ForeverSafari.SafariBagFrame then ForeverSafari.SafariBagFrame:Toggle() end end
+SlashCmdList["FSKENNEL"] = function()
+    if ForeverSafari.ShopFrame and ForeverSafari.ShopFrame.IsAtAuthorizedVendor and ForeverSafari.ShopFrame:IsAtAuthorizedVendor() and ForeverSafari.ShopFrame.vendorType == "Innkeeper" then
+        if ForeverSafari.KennelFrame then ForeverSafari.KennelFrame:ShowKennel() end
+    else
+        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Safari Kennel access restricted! Speak with an Innkeeper at any inn to manage your companion bank.|r")
+        if ForeverSafari.Toast then
+            ForeverSafari.Toast:ShowAlert("Innkeeper Required", "Speak to an Innkeeper to access the Safari Kennel!")
+        end
+        PlaySound(847)
+    end
+end
 SlashCmdList["FSSHOP"] = function()
     if ForeverSafari.ShopFrame and ForeverSafari.ShopFrame.IsAtAuthorizedVendor and ForeverSafari.ShopFrame:IsAtAuthorizedVendor() then
         Shop:Toggle()

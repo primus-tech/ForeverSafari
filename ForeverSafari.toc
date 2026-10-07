@@ -26,6 +26,7 @@ UI\InspectorFrame.lua
 UI\CatalystLootFrame.lua
 UI\CaptureHUD.lua
 UI\ShopFrame.lua
+UI\KennelFrame.lua
 UI\SafariBagFrame.lua
 UI\JournalFrame.lua
 UI\BattleFrame.lua

@@ -542,11 +542,13 @@ function DB:SetMobNickname(mobId, newNickname)
     return true, "Nickname updated."
 end
 
-function DB:AddMob(mobData)
+function DB:AddMob(mobData, toSquad)
     -- Check if this is an authentic rare spawn
     if mobData.name and DB:IsReservedRareName(mobData.name) then
         mobData.isRareSpawn = true
     end
+
+    mobData.kennelBox = mobData.kennelBox or 1
 
     DB:SignMob(mobData)
     table.insert(ForeverSafariDB.collection, mobData)
@@ -568,13 +570,16 @@ function DB:AddMob(mobData)
         end
     end
 
-    -- Auto add to team if slot available
-    if #ForeverSafariDB.team < 4 then
+    -- Auto add to team if slot available and requested
+    if toSquad ~= false and #ForeverSafariDB.team < 4 then
         table.insert(ForeverSafariDB.team, mobData.id)
     end
 
     if ForeverSafari.JournalFrame and ForeverSafari.JournalFrame:IsShown() then
         ForeverSafari.JournalFrame:UpdateUI()
+    end
+    if ForeverSafari.KennelFrame and ForeverSafari.KennelFrame:IsShown() then
+        ForeverSafari.KennelFrame:UpdateUI()
     end
 
     return mobData
@@ -596,6 +601,9 @@ function DB:RemoveMob(id)
     DB:ValidateTeam()
     if ForeverSafari.JournalFrame and ForeverSafari.JournalFrame:IsShown() then
         ForeverSafari.JournalFrame:UpdateUI()
+    end
+    if ForeverSafari.KennelFrame and ForeverSafari.KennelFrame:IsShown() then
+        ForeverSafari.KennelFrame:UpdateUI()
     end
 end
 
@@ -699,6 +707,9 @@ function DB:SetTeamSlot(slotIndex, mobId)
     if ForeverSafari.JournalFrame and ForeverSafari.JournalFrame:IsShown() then
         ForeverSafari.JournalFrame:UpdateUI()
     end
+    if ForeverSafari.KennelFrame and ForeverSafari.KennelFrame:IsShown() then
+        ForeverSafari.KennelFrame:UpdateUI()
+    end
 end
 
 function DB:SwapTeamSlots(slot1, slot2)
@@ -713,6 +724,9 @@ function DB:SwapTeamSlots(slot1, slot2)
         if ForeverSafari.JournalFrame and ForeverSafari.JournalFrame:IsShown() then
             ForeverSafari.JournalFrame:UpdateUI()
         end
+        if ForeverSafari.KennelFrame and ForeverSafari.KennelFrame:IsShown() then
+            ForeverSafari.KennelFrame:UpdateUI()
+        end
     end
 end
 
@@ -724,6 +738,9 @@ function DB:RemoveTeamSlot(slotIndex)
         DB:ValidateTeam()
         if ForeverSafari.JournalFrame and ForeverSafari.JournalFrame:IsShown() then
             ForeverSafari.JournalFrame:UpdateUI()
+        end
+        if ForeverSafari.KennelFrame and ForeverSafari.KennelFrame:IsShown() then
+            ForeverSafari.KennelFrame:UpdateUI()
         end
     end
 end
@@ -744,6 +761,158 @@ function DB:ValidateTeam()
     if (ForeverSafariDB.activeSlot or 1) > #ForeverSafariDB.team or (ForeverSafariDB.activeSlot or 1) < 1 then
         ForeverSafariDB.activeSlot = 1
     end
+end
+
+-- =========================================================================
+-- 🏡 SAFARI KENNEL & ACTIVE SQUAD MANAGEMENT (4 Active / Banked Enclosures)
+-- =========================================================================
+
+function DB:GetSquad()
+    return DB:GetTeam()
+end
+
+function DB:GetSquadCount()
+    return #(ForeverSafariDB.team or {})
+end
+
+function DB:IsMobInSquad(mobId)
+    if not mobId or not ForeverSafariDB.team then return false end
+    for _, id in ipairs(ForeverSafariDB.team) do
+        if id == mobId then return true end
+    end
+    return false
+end
+
+function DB:GetKennelMobs(boxId)
+    local kennel = {}
+    local targetBox = tonumber(boxId)
+    for _, mob in ipairs(ForeverSafariDB.collection or {}) do
+        if not DB:IsMobInSquad(mob.id) then
+            local mBox = tonumber(mob.kennelBox) or 1
+            if not targetBox or mBox == targetBox then
+                table.insert(kennel, mob)
+            end
+        end
+    end
+    return kennel
+end
+
+function DB:MoveToSquad(mobId, targetSlot)
+    local mob = DB:GetMobById(mobId)
+    if not mob then return false, "Companion not found." end
+    if DB:IsMobInSquad(mobId) then return false, "Already in active squad." end
+
+    ForeverSafariDB.team = ForeverSafariDB.team or {}
+    if targetSlot and targetSlot >= 1 and targetSlot <= 4 then
+        if ForeverSafariDB.team[targetSlot] then
+            local oldMobId = ForeverSafariDB.team[targetSlot]
+            ForeverSafariDB.team[targetSlot] = mobId
+            local oldMob = DB:GetMobById(oldMobId)
+            if oldMob then oldMob.kennelBox = mob.kennelBox or 1 end
+        else
+            table.insert(ForeverSafariDB.team, mobId)
+        end
+    else
+        if #ForeverSafariDB.team < 4 then
+            table.insert(ForeverSafariDB.team, mobId)
+        else
+            return false, "Active squad is full (4/4)."
+        end
+    end
+
+    DB:ValidateTeam()
+    if ForeverSafari.JournalFrame and ForeverSafari.JournalFrame:IsShown() then
+        ForeverSafari.JournalFrame:UpdateUI()
+    end
+    if ForeverSafari.KennelFrame and ForeverSafari.KennelFrame:IsShown() then
+        ForeverSafari.KennelFrame:UpdateUI()
+    end
+    return true
+end
+
+function DB:MoveToKennel(mobId, targetBox)
+    local mob = DB:GetMobById(mobId)
+    if not mob then return false, "Companion not found." end
+    if not DB:IsMobInSquad(mobId) then return false, "Not in active squad." end
+    if #ForeverSafariDB.team <= 1 then return false, "You must keep at least 1 active companion in your squad!" end
+
+    for idx, id in ipairs(ForeverSafariDB.team) do
+        if id == mobId then
+            table.remove(ForeverSafariDB.team, idx)
+            break
+        end
+    end
+
+    mob.kennelBox = tonumber(targetBox) or 1
+    DB:ValidateTeam()
+    if ForeverSafari.JournalFrame and ForeverSafari.JournalFrame:IsShown() then
+        ForeverSafari.JournalFrame:UpdateUI()
+    end
+    if ForeverSafari.KennelFrame and ForeverSafari.KennelFrame:IsShown() then
+        ForeverSafari.KennelFrame:UpdateUI()
+    end
+    return true
+end
+
+function DB:SwapSquadAndKennel(squadSlot, kennelMobId)
+    if not squadSlot or squadSlot < 1 or squadSlot > 4 or not kennelMobId then return false end
+    local kennelMob = DB:GetMobById(kennelMobId)
+    if not kennelMob then return false end
+
+    ForeverSafariDB.team = ForeverSafariDB.team or {}
+    local oldMobId = ForeverSafariDB.team[squadSlot]
+    ForeverSafariDB.team[squadSlot] = kennelMobId
+
+    if oldMobId then
+        local oldMob = DB:GetMobById(oldMobId)
+        if oldMob then
+            oldMob.kennelBox = kennelMob.kennelBox or 1
+        end
+    end
+
+    DB:ValidateTeam()
+    if ForeverSafari.JournalFrame and ForeverSafari.JournalFrame:IsShown() then
+        ForeverSafari.JournalFrame:UpdateUI()
+    end
+    if ForeverSafari.KennelFrame and ForeverSafari.KennelFrame:IsShown() then
+        ForeverSafari.KennelFrame:UpdateUI()
+    end
+    return true
+end
+
+-- =========================================================================
+-- 📦 TRANSPORT CRATES (1 / 5 / 10 / 25 Token Logistics)
+-- =========================================================================
+
+local CRATE_ORDER = {
+    [1] = { "crate_copper", "transport_crate", "crate_iron", "crate_mithril", "crate_thorium" },
+    [2] = { "crate_iron", "crate_mithril", "crate_thorium" },
+    [3] = { "crate_mithril", "crate_thorium" },
+    [4] = { "crate_thorium" },
+}
+
+function DB:HasTransportCrate(requiredQuality)
+    local q = math.max(1, math.min(4, tonumber(requiredQuality) or 1))
+    local candidateList = CRATE_ORDER[q] or CRATE_ORDER[1]
+    for _, crateId in ipairs(candidateList) do
+        if DB:GetItemCount(crateId) > 0 then
+            return true, crateId
+        end
+    end
+    return false, nil
+end
+
+function DB:ConsumeBestTransportCrate(requiredQuality)
+    local q = math.max(1, math.min(4, tonumber(requiredQuality) or 1))
+    local candidateList = CRATE_ORDER[q] or CRATE_ORDER[1]
+    for _, crateId in ipairs(candidateList) do
+        if DB:GetItemCount(crateId) > 0 then
+            DB:RemoveItem(crateId, 1)
+            local itemData = ForeverSafari.Constants.SAFARI_ITEMS[crateId] or ForeverSafari.Constants.SHOP_ITEMS[crateId]
+            return true, crateId, itemData
+        end
+    end
+    return false, nil, nil
 end
 
 -- =========================================================================
