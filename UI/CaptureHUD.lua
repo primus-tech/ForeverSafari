@@ -280,10 +280,10 @@ function HUD:OnTargetChanged()
 
     local creatureType = C.NormalizeCreatureType(rawType, name)
 
-    -- If target is Humanoid, Giant, or not an eligible capture type, do not show the capture HUD!
-    if rawType == "Humanoid" or rawType == "Giant" or creatureType == "Humanoid" or (C.ELIGIBLE_CAPTURE_TYPES and not C.ELIGIBLE_CAPTURE_TYPES[creatureType]) then
+    -- If target is Humanoid, Giant, ineligible, or research locked, do not show the capture HUD!
+    if rawType == "Humanoid" or rawType == "Giant" or creatureType == "Humanoid" or (C.ELIGIBLE_CAPTURE_TYPES and not C.ELIGIBLE_CAPTURE_TYPES[creatureType]) or not DB:IsTypeUnlocked(creatureType) then
         if CE:IsChanneling() then
-            CE:CancelSnareChannel("Target is ineligible.")
+            CE:CancelSnareChannel("Target is ineligible or research is locked.")
         end
         frame:Hide()
         return
@@ -311,7 +311,7 @@ function HUD:UpdateUI()
     if isSecret(rawType) then rawType = "Beast" end
     local creatureType = C.NormalizeCreatureType(rawType, name)
 
-    if rawType == "Humanoid" or rawType == "Giant" or creatureType == "Humanoid" or (C.ELIGIBLE_CAPTURE_TYPES and not C.ELIGIBLE_CAPTURE_TYPES[creatureType]) then
+    if rawType == "Humanoid" or rawType == "Giant" or creatureType == "Humanoid" or (C.ELIGIBLE_CAPTURE_TYPES and not C.ELIGIBLE_CAPTURE_TYPES[creatureType]) or not DB:IsTypeUnlocked(creatureType) then
         frame:Hide()
         return
     end

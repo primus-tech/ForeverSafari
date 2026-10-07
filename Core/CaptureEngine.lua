@@ -96,6 +96,12 @@ function CE:CanInitiateSnare(unit)
         return false, "Humanoids and civilized targets cannot be snared!"
     end
 
+    if not DB:IsTypeUnlocked(creatureType) then
+        local permit = C.TYPE_RESEARCH_PERMITS and C.TYPE_RESEARCH_PERMITS[creatureType]
+        local permitName = permit and permit.name or (creatureType .. " Research Permit")
+        return false, string.format("%s research locked! Complete quest to earn [%s].", creatureType, permitName)
+    end
+
     return true, "Eligible"
 end
 

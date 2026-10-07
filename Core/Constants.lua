@@ -539,6 +539,47 @@ C.ELIGIBLE_CAPTURE_TYPES = {
     ["Undead"] = true,
 }
 
+-- Creature Types Locked behind Nesingwary Research Permits & Quests
+C.LOCKED_CREATURE_TYPES = {
+    ["Mechanical"] = true,
+    ["Elemental"]  = true,
+    ["Undead"]     = true,
+    ["Dragonkin"]  = true,
+}
+
+-- Default Unlocked Creature Types for New Recruits
+C.DEFAULT_UNLOCKED_TYPES = {
+    ["Beast"]   = true,
+    ["Flying"]  = true,
+    ["Aquatic"] = true,
+    ["Critter"] = true,
+    ["Magic"]   = true,
+}
+
+-- Nesingwary Research Permits Metadata
+C.TYPE_RESEARCH_PERMITS = {
+    ["Mechanical"] = {
+        name = "Clockwork Engineering Permit",
+        icon = "Interface\\Icons\\INV_Gizmo_02",
+        desc = "Authorizes stalking, containment, and battle tagging of wild mechanical constructs.",
+    },
+    ["Elemental"] = {
+        name = "Primal Attunement Permit",
+        icon = "Interface\\Icons\\Spell_Fire_Elemental_Devastation",
+        desc = "Authorizes field research and containment of raw elemental forces.",
+    },
+    ["Undead"] = {
+        name = "Necrotic Containment Permit",
+        icon = "Interface\\Icons\\Spell_Shadow_DeadofNight",
+        desc = "Authorizes containment of undead and reanimated fauna.",
+    },
+    ["Dragonkin"] = {
+        name = "Draconic Sanctuary Permit",
+        icon = "Interface\\Icons\\INV_Misc_Head_Dragon_01",
+        desc = "Authorizes tracking, research, and capture of dragonkin whelps and drakes.",
+    },
+}
+
 -- Consumables & Supplies
 C.SHOP_ITEMS = {
     ["az_treat"] = {

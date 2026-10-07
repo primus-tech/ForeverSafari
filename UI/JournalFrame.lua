@@ -1121,9 +1121,14 @@ function Journal:UpdateBestiaryView()
         btn.specId = spec.id
 
         local typeInfo = C.CREATURE_TYPES[spec.type] or C.CREATURE_TYPES["Beast"]
+        local isTypeLocked = C.LOCKED_CREATURE_TYPES and C.LOCKED_CREATURE_TYPES[spec.type] and not (DB and DB.IsTypeUnlocked and DB:IsTypeUnlocked(spec.type))
         btn.Icon:SetTexture(typeInfo.icon)
         btn.Title:SetText(string.format("#%02d %s", spec.id, spec.name))
-        btn.Sub:SetText(string.format("|cff%s%s|r", typeInfo.color or "ffffff", spec.type))
+        if isTypeLocked then
+            btn.Sub:SetText(string.format("|cff%s%s|r |cffff5555[Permit Req]|r", typeInfo.color or "ffffff", spec.type))
+        else
+            btn.Sub:SetText(string.format("|cff%s%s|r", typeInfo.color or "ffffff", spec.type))
+        end
 
         if spec.id == selectedBestiaryId then
             btn:SetBackdropBorderColor(0.0, 1.0, 0.6, 1.0)
@@ -1149,11 +1154,19 @@ function Journal:UpdateBestiaryDossier()
     if not spec then return end
 
     local typeInfo = C.CREATURE_TYPES[spec.type] or C.CREATURE_TYPES["Beast"]
-    rPanel.NameText:SetText(string.format("|cff00ff99#%02d %s|r", spec.id, spec.name))
-    rPanel.TypeText:SetText(string.format("Type: |cff%s[%s]|r", typeInfo.color or "ffffff", spec.type))
+    local isTypeLocked = C.LOCKED_CREATURE_TYPES and C.LOCKED_CREATURE_TYPES[spec.type] and not (DB and DB.IsTypeUnlocked and DB:IsTypeUnlocked(spec.type))
 
-    local discRecord = (ForeverSafariDB and ForeverSafariDB.discovered and ForeverSafariDB.discovered[spec.name]) or { seen = 0, caught = 0 }
-    rPanel.StatusText:SetText(string.format("Status: |cffffd100Seen %d|r | |cff00ff99Caught %d|r", discRecord.seen or 0, discRecord.caught or 0))
+    rPanel.NameText:SetText(string.format("|cff00ff99#%02d %s|r", spec.id, spec.name))
+    if isTypeLocked then
+        local permit = C.TYPE_RESEARCH_PERMITS and C.TYPE_RESEARCH_PERMITS[spec.type]
+        local permitName = permit and permit.name or (spec.type .. " Research Permit")
+        rPanel.TypeText:SetText(string.format("Type: |cff%s[%s]|r |cffff5555[Locked]|r", typeInfo.color or "ffffff", spec.type))
+        rPanel.StatusText:SetText(string.format("Status: |cffff5555[Research Permit Required]|r\n|cffffd100Earned via Quest: [%s]|r", permitName))
+    else
+        rPanel.TypeText:SetText(string.format("Type: |cff%s[%s]|r", typeInfo.color or "ffffff", spec.type))
+        local discRecord = (ForeverSafariDB and ForeverSafariDB.discovered and ForeverSafariDB.discovered[spec.name]) or { seen = 0, caught = 0 }
+        rPanel.StatusText:SetText(string.format("Status: |cffffd100Seen %d|r | |cff00ff99Caught %d|r", discRecord.seen or 0, discRecord.caught or 0))
+    end
 
     SetModelCreature(rPanel.Model3D, spec.displayId)
 

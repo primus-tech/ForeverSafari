@@ -663,6 +663,15 @@ function BE:ThrowCageInCombat(cageId)
         return
     end
 
+    if not DB:IsTypeUnlocked(enemy.creatureType) then
+        local permit = C.TYPE_RESEARCH_PERMITS and C.TYPE_RESEARCH_PERMITS[enemy.creatureType]
+        local permitName = permit and permit.name or (enemy.creatureType .. " Research Permit")
+        BE.State.dialogueText = string.format("%s research locked! Requires [%s]!", enemy.creatureType, permitName)
+        BE:AddLog(string.format("|cffff4444Cannot capture %s! Requires research permit [%s]!|r", enemy.creatureType, permitName))
+        if ForeverSafari.BattleFrame then ForeverSafari.BattleFrame:UpdateUI() end
+        return
+    end
+
     DB:RemoveItem(cageId, 1)
     local cageData = C.CAGES[cageId] or C.CAGES["copper_cage"]
     local hpPct = (enemy.currentHP / enemy.maxHP) * 100

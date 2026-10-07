@@ -33,6 +33,13 @@ local DEFAULT_DB = {
         ["Furious_Howl"] = true,
         ["Water_Jet"] = true,
     },
+    unlockedTypes = { -- Unlocked creature research permits
+        ["Beast"] = true,
+        ["Flying"] = true,
+        ["Aquatic"] = true,
+        ["Critter"] = true,
+        ["Magic"] = true,
+    },
     stats = {
         totalCaptured = 0,
         totalCagesThrown = 0,
@@ -95,6 +102,9 @@ function DB:Initialize()
         end
         if not ForeverSafariDB.unlockedAbilities then
             ForeverSafariDB.unlockedAbilities = CopyTable(DEFAULT_DB.unlockedAbilities)
+        end
+        if not ForeverSafariDB.unlockedTypes then
+            ForeverSafariDB.unlockedTypes = CopyTable(DEFAULT_DB.unlockedTypes)
         end
     end
 
@@ -773,6 +783,62 @@ function DB:GetUnlockedAbilities()
     return ForeverSafariDB.unlockedAbilities or {}
 end
 
+-- =========================================================================
+-- CREATURE TYPE PERMITS & RESEARCH UNLOCKS
+-- =========================================================================
+
+function DB:IsTypeUnlocked(creatureType)
+    if not creatureType or creatureType == "Humanoid" then return false end
+    if not ForeverSafari.Constants.LOCKED_CREATURE_TYPES[creatureType] then return true end
+    if not ForeverSafariDB.unlockedTypes then
+        ForeverSafariDB.unlockedTypes = CopyTable(ForeverSafari.Constants.DEFAULT_UNLOCKED_TYPES)
+    end
+    return ForeverSafariDB.unlockedTypes[creatureType] == true
+end
+
+function DB:UnlockType(creatureType, silent)
+    if not creatureType or creatureType == "Humanoid" then return end
+    if not ForeverSafariDB.unlockedTypes then
+        ForeverSafariDB.unlockedTypes = CopyTable(ForeverSafari.Constants.DEFAULT_UNLOCKED_TYPES)
+    end
+    ForeverSafariDB.unlockedTypes[creatureType] = true
+
+    if not silent then
+        local permit = ForeverSafari.Constants.TYPE_RESEARCH_PERMITS and ForeverSafari.Constants.TYPE_RESEARCH_PERMITS[creatureType]
+        local permitName = permit and permit.name or (creatureType .. " Research Permit")
+
+        PlaySound(1195)
+        DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00[Research Permit Granted]|r You can now stalk, battle, and capture |cffffd100%s|r creatures! ([%s])",
+            ForeverSafari.Constants.PREFIX, creatureType, permitName))
+
+        if ForeverSafari.Toast then
+            ForeverSafari.Toast:ShowReward(
+                creatureType .. " Permit Unlocked!",
+                string.format("You can now research %s creatures!", creatureType)
+            )
+        end
+    end
+
+    if ForeverSafari.JournalFrame and ForeverSafari.JournalFrame:IsShown() then
+        ForeverSafari.JournalFrame:UpdateUI()
+    end
+end
+
+function DB:LockType(creatureType)
+    if not creatureType then return end
+    if not ForeverSafariDB.unlockedTypes then
+        ForeverSafariDB.unlockedTypes = CopyTable(ForeverSafari.Constants.DEFAULT_UNLOCKED_TYPES)
+    end
+    ForeverSafariDB.unlockedTypes[creatureType] = nil
+    if ForeverSafari.JournalFrame and ForeverSafari.JournalFrame:IsShown() then
+        ForeverSafari.JournalFrame:UpdateUI()
+    end
+end
+
+function DB:GetUnlockedTypes()
+    return ForeverSafariDB.unlockedTypes or ForeverSafari.Constants.DEFAULT_UNLOCKED_TYPES
+end
+
 -- Teach a known unlocked ability to a specific slot on a companion
 function DB:SetMobAbility(mobId, slotIndex, moveKey)
     local mob = DB:GetMobById(mobId)
@@ -916,6 +982,10 @@ function DB:ClaimQuestReward(letterId)
         end
     end
 
+    if dispatch.unlocksType then
+        DB:UnlockType(dispatch.unlocksType)
+    end
+
     PlaySound(1195)
     if ForeverSafari.Toast then
         ForeverSafari.Toast:ShowReward(dispatch.title .. " Complete!", string.format("+%d Safari Tokens & Supplies", dispatch.rewards.tokens or 0))
@@ -949,6 +1019,13 @@ function DB:ResetDB()
             ["Bite"] = true,
             ["Furious_Howl"] = true,
             ["Water_Jet"] = true,
+        },
+        unlockedTypes = {
+            ["Beast"] = true,
+            ["Flying"] = true,
+            ["Aquatic"] = true,
+            ["Critter"] = true,
+            ["Magic"] = true,
         },
         stats = {
             totalCaptured = 0,
