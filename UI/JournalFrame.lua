@@ -990,6 +990,19 @@ end
 -- VIEW 3: AZEROTH BESTIARY (AUTHENTIC POKÉDEX & FIELD CATALOG)
 -- =========================================================================
 local bestiarySearchQuery = ""
+local bestiarySelectedType = "ALL"
+
+local BESTIARY_TYPE_FILTERS = {
+    { id = "ALL", text = "All Types", icon = "Interface\\Icons\\INV_Misc_Book_09" },
+    { id = "Beast", text = "🐾 Beast", icon = "Interface\\Icons\\Ability_Hunter_Pet_Cat" },
+    { id = "Mechanical", text = "⚙️ Mechanical", icon = "Interface\\Icons\\INV_Misc_EngGizmos_17" },
+    { id = "Undead", text = "💀 Undead", icon = "Interface\\Icons\\Spell_Shadow_DeadofNight" },
+    { id = "Elemental", text = "🌋 Elemental", icon = "Interface\\Icons\\Spell_Fire_Elemental_Totem" },
+    { id = "Dragonkin", text = "🐉 Dragonkin", icon = "Interface\\Icons\\INV_Misc_Head_Dragon_01" },
+    { id = "Aquatic", text = "🌊 Aquatic", icon = "Interface\\Icons\\Spell_Frost_SummonWaterElemental" },
+    { id = "Flying", text = "🦅 Flying", icon = "Interface\\Icons\\Ability_Hunter_Pet_Bat" },
+    { id = "Magic", text = "✨ Magic", icon = "Interface\\Icons\\Spell_Holy_MagicalSentry" },
+}
 
 function Journal:BuildBestiaryView(parent)
     -- Left: Species Index & Pokédex Progress
@@ -1019,12 +1032,12 @@ function Journal:BuildBestiaryView(parent)
 
     -- Search EditBox
     local searchBg = CreateFrame("Frame", nil, leftPanel, "BackdropTemplate")
-    searchBg:SetSize(232, 24)
+    searchBg:SetSize(232, 22)
     searchBg:SetPoint("TOPLEFT", pBar, "BOTTOMLEFT", 0, -6)
     Theme:ApplyCardBackdrop(searchBg)
 
     local searchBox = CreateFrame("EditBox", "ForeverSafariBestiarySearchBox", searchBg)
-    searchBox:SetSize(216, 20)
+    searchBox:SetSize(216, 18)
     searchBox:SetPoint("LEFT", searchBg, "LEFT", 8, 0)
     searchBox:SetFontObject("GameFontHighlightSmall")
     searchBox:SetAutoFocus(false)
@@ -1051,9 +1064,72 @@ function Journal:BuildBestiaryView(parent)
     end)
     leftPanel.SearchBox = searchBox
 
+    -- Type Filter Dropdown Button
+    local typeFilterBtn = CreateFrame("Button", "ForeverSafariBestiaryTypeFilterBtn", leftPanel, "BackdropTemplate")
+    typeFilterBtn:SetSize(232, 22)
+    typeFilterBtn:SetPoint("TOPLEFT", searchBg, "BOTTOMLEFT", 0, -4)
+    Theme:ApplyCardBackdrop(typeFilterBtn)
+
+    local typeFilterText = typeFilterBtn:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    typeFilterText:SetPoint("LEFT", 8, 0)
+    typeFilterText:SetText("Type: |cffffd100All Types|r ▼")
+    typeFilterBtn.Text = typeFilterText
+    leftPanel.TypeFilterBtn = typeFilterBtn
+
+    -- Type Filter Floating Popup Menu
+    local typeMenu = CreateFrame("Frame", "ForeverSafariBestiaryTypeMenu", leftPanel, "BackdropTemplate")
+    typeMenu:SetSize(232, #BESTIARY_TYPE_FILTERS * 22 + 8)
+    typeMenu:SetPoint("TOPLEFT", typeFilterBtn, "BOTTOMLEFT", 0, -2)
+    typeMenu:SetFrameStrata("DIALOG")
+    Theme:ApplyCardBackdrop(typeMenu)
+    typeMenu:SetBackdropColor(0.08, 0.11, 0.16, 0.98)
+    typeMenu:SetBackdropBorderColor(1.0, 0.82, 0.0, 0.9)
+    typeMenu:Hide()
+    leftPanel.TypeMenu = typeMenu
+
+    for idx, opt in ipairs(BESTIARY_TYPE_FILTERS) do
+        local itemBtn = CreateFrame("Button", nil, typeMenu, "BackdropTemplate")
+        itemBtn:SetSize(224, 20)
+        itemBtn:SetPoint("TOPLEFT", typeMenu, "TOPLEFT", 4, -4 - ((idx - 1) * 22))
+
+        local itemIcon = itemBtn:CreateTexture(nil, "ARTWORK")
+        itemIcon:SetSize(16, 16)
+        itemIcon:SetPoint("LEFT", 4, 0)
+        itemIcon:SetTexture(opt.icon)
+        itemIcon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+
+        local itemText = itemBtn:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+        itemText:SetPoint("LEFT", itemIcon, "RIGHT", 6, 0)
+        itemText:SetText(opt.text)
+
+        itemBtn:SetScript("OnClick", function()
+            bestiarySelectedType = opt.id
+            typeFilterText:SetText(string.format("Type: |cffffd100%s|r ▼", opt.text))
+            typeMenu:Hide()
+            Journal:UpdateBestiaryView()
+            PlaySound(856)
+        end)
+        itemBtn:SetScript("OnEnter", function(self)
+            self:SetBackdrop({ bgFile = "Interface\\Buttons\\WHITE8X8" })
+            self:SetBackdropColor(1.0, 0.82, 0.0, 0.25)
+        end)
+        itemBtn:SetScript("OnLeave", function(self)
+            self:SetBackdrop(nil)
+        end)
+    end
+
+    typeFilterBtn:SetScript("OnClick", function()
+        if typeMenu:IsShown() then
+            typeMenu:Hide()
+        else
+            typeMenu:Show()
+        end
+        PlaySound(856)
+    end)
+
     -- Scroll Area
     local scroll = CreateFrame("ScrollFrame", "ForeverSafariBestiaryScroll", leftPanel, "UIPanelScrollFrameTemplate")
-    scroll:SetPoint("TOPLEFT", searchBg, "BOTTOMLEFT", 0, -6)
+    scroll:SetPoint("TOPLEFT", typeFilterBtn, "BOTTOMLEFT", 0, -6)
     scroll:SetPoint("BOTTOMRIGHT", -26, 8)
 
     local content = CreateFrame("Frame", "ForeverSafariBestiaryContent", scroll)
@@ -1196,25 +1272,28 @@ function Journal:UpdateBestiaryView()
     local allSpecies = BestiaryDB and BestiaryDB:GetAllSpecies() or {}
     local content = parent.Content
 
-    -- Filter list based on search query
+    -- Filter list based on selected type and search query
     local filtered = {}
     for _, spec in ipairs(allSpecies) do
-        if bestiarySearchQuery == "" then
-            table.insert(filtered, spec)
-        else
-            local matchName = string.find(string.lower(spec.name), bestiarySearchQuery, 1, true)
-            local matchFamily = string.find(string.lower(spec.family), bestiarySearchQuery, 1, true)
-            local matchHabitat = false
-            if spec.habitats then
-                for _, h in ipairs(spec.habitats) do
-                    if string.find(string.lower(h), bestiarySearchQuery, 1, true) then
-                        matchHabitat = true
-                        break
+        local matchType = (bestiarySelectedType == "ALL") or (spec.element == bestiarySelectedType) or (spec.family == bestiarySelectedType)
+        if matchType then
+            if bestiarySearchQuery == "" then
+                table.insert(filtered, spec)
+            else
+                local matchName = string.find(string.lower(spec.name), bestiarySearchQuery, 1, true)
+                local matchFamily = string.find(string.lower(spec.family), bestiarySearchQuery, 1, true)
+                local matchHabitat = false
+                if spec.habitats then
+                    for _, h in ipairs(spec.habitats) do
+                        if string.find(string.lower(h), bestiarySearchQuery, 1, true) then
+                            matchHabitat = true
+                            break
+                        end
                     end
                 end
-            end
-            if matchName or matchFamily or matchHabitat then
-                table.insert(filtered, spec)
+                if matchName or matchFamily or matchHabitat then
+                    table.insert(filtered, spec)
+                end
             end
         end
     end
@@ -1280,7 +1359,11 @@ function Journal:UpdateBestiaryView()
 
         if status == "caught" then
             local iconPath = "Interface\\Icons\\Ability_Hunter_BeastTaming"
-            if spec.family == "Feline" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Cat"
+            if spec.family == "Mechanical" or spec.element == "Mechanical" then iconPath = "Interface\\Icons\\INV_Misc_EngGizmos_17"
+            elseif spec.family == "Undead" or spec.element == "Undead" then iconPath = "Interface\\Icons\\Spell_Shadow_DeadofNight"
+            elseif spec.family == "Elemental" or spec.element == "Elemental" then iconPath = "Interface\\Icons\\Spell_Fire_Elemental_Totem"
+            elseif spec.element == "Magic" then iconPath = "Interface\\Icons\\Spell_Holy_MagicalSentry"
+            elseif spec.family == "Feline" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Cat"
             elseif spec.family == "Canine" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Wolf"
             elseif spec.family == "Bear" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Bear"
             elseif spec.family == "Boar" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Boar"
@@ -1288,7 +1371,7 @@ function Journal:UpdateBestiaryView()
             elseif spec.family == "Avian" or spec.family == "Bat" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Bat"
             elseif spec.family == "Spider" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Spider"
             elseif spec.family == "Scorpid" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Scorpid"
-            elseif spec.family == "Crocolisk" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Crocolisk"
+            elseif spec.family == "Crocolisk" or spec.family == "Crab" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Crocolisk"
             elseif spec.family == "Dragonkin" or spec.family == "Wind Serpent" then iconPath = "Interface\\Icons\\INV_Misc_Head_Dragon_01"
             end
             btn.Icon:SetTexture(iconPath)
