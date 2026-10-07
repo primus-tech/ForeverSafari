@@ -131,11 +131,23 @@ function MB:Initialize()
 
         local activeMob = DB:GetActiveMob()
         if activeMob then
-            local typeData = C.CREATURE_TYPES[activeMob.creatureType] or {}
+            local cType = activeMob.creatureType or activeMob.family or activeMob.element or "Beast"
+            local typeData = C.CREATURE_TYPES[cType] or {}
             local typeColor = typeData.color or "ffffff"
-            GameTooltip:AddDoubleLine("Active Companion:", string.format("|cff%s%s|r (Lv %d %s)", typeColor, activeMob.nickname ~= "" and activeMob.nickname or activeMob.name, activeMob.level, activeMob.creatureType))
-            GameTooltip:AddDoubleLine("Health:", string.format("%d / %d", activeMob.currentHP, activeMob.maxHP), 0.2, 0.8, 0.4, 1, 1, 1)
-            GameTooltip:AddDoubleLine("Stats:", string.format("ATK: %d | DEF: %d | SPD: %d", activeMob.atk or 10, activeMob.def or 8, activeMob.spd or 12), 1, 0.85, 0.2, 1, 1, 1)
+            local petName = (activeMob.customNickname and activeMob.customNickname ~= "" and activeMob.customNickname)
+                or (activeMob.nickname and activeMob.nickname ~= "" and activeMob.nickname)
+                or activeMob.name
+                or "Companion"
+            local petLevel = activeMob.level or activeMob.attunementRank or 1
+            local curHP = activeMob.currentHP or activeMob.hp or 60
+            local maxHP = activeMob.maxHP or activeMob.hp or 60
+            local atk = activeMob.atk or activeMob.attack or 10
+            local def = activeMob.def or activeMob.defense or 8
+            local spd = activeMob.spd or activeMob.speed or 12
+
+            GameTooltip:AddDoubleLine("Active Companion:", string.format("|cff%s%s|r (Lv %d %s)", typeColor, petName, petLevel, cType))
+            GameTooltip:AddDoubleLine("Health:", string.format("%d / %d", curHP, maxHP), 0.2, 0.8, 0.4, 1, 1, 1)
+            GameTooltip:AddDoubleLine("Stats:", string.format("ATK: %d | DEF: %d | SPD: %d", atk, def, spd), 1, 0.85, 0.2, 1, 1, 1)
         else
             GameTooltip:AddLine("|cffaaaaaaNo active companion selected.|r")
         end

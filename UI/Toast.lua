@@ -125,10 +125,14 @@ function Toast:ShowReward(title, sub)
 end
 
 function Toast:ShowCapture(mob)
-    local typeInfo = C.CREATURE_TYPES[mob.creatureType] or C.CREATURE_TYPES["Unknown"]
+    local cType = mob and (mob.creatureType or mob.family or mob.element or "Beast") or "Beast"
+    local typeInfo = C.CREATURE_TYPES[cType] or C.CREATURE_TYPES["Beast"] or {}
+    local mLevel = mob and (mob.level or mob.attunementRank or 1) or 1
+    local mName = mob and (mob.customNickname or mob.nickname or mob.name or "Companion") or "Companion"
+
     Toast:Enqueue({
         title = "Creature Captured!",
-        sub = string.format("%s (Level %d %s)", mob.name, mob.level, mob.creatureType),
+        sub = string.format("%s (Level %d %s)", mName, mLevel, cType),
         icon = typeInfo.icon or "Interface\\Icons\\Ability_Hunter_BeastTaming",
         titleColor = { r = 1.0, g = 0.82, b = 0.0 },
         borderColor = { r = 1.0, g = 0.82, b = 0.0 },
