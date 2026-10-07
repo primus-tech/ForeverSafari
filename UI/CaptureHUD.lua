@@ -1,7 +1,8 @@
 --[[
-    Forever Safari: Field Research Capture Radar HUD
-    Real-time stalking distance radar, net selector, and snare channeling castbar.
-    Operates with 0% live-mob damage, allowing peaceful coexistence with Hunters and world adventurers.
+    Forever Safari: Field Research Stalking & Rival Radar HUD (CaptureHUD.lua)
+    Real-time stalking distance radar, field observation channeling, and rival battler challenge launcher.
+    0% Live-Mob Damage: Wild quarry remains completely untouched in the game world.
+    Captures occur strictly during turn-based battle via the in-combat [BAG] menu.
 ]]
 
 local addonName, ns = ...
@@ -13,6 +14,7 @@ local HUD = ns.CaptureHUD
 local C = ns.Constants
 local DB = ns.Database
 local CE = ns.CaptureEngine
+local TE = ns.TrainerEngine
 local Theme = ns.Theme
 
 local function isSecret(v)
@@ -24,14 +26,13 @@ local function isSecret(v)
 end
 
 local frame = nil
-local selectedCageId = "copper_cage"
 local lastRangeCheck = 0
 
 function HUD:Initialize()
     if frame then return end
 
     frame = CreateFrame("Frame", "ForeverSafariCaptureHUDFrame", UIParent, "BackdropTemplate")
-    frame:SetSize(365, 148)
+    frame:SetSize(350, 126)
     frame:SetPoint("TOP", UIParent, "TOP", 0, -180)
     frame:SetMovable(true)
     frame:EnableMouse(true)
@@ -47,7 +48,7 @@ function HUD:Initialize()
     -- Header Title
     local title = frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     title:SetPoint("TOPLEFT", 10, -8)
-    title:SetText("|cffffd100Forever Safari|r Field Radar")
+    title:SetText("|cffffd100Forever Safari|r Field Research Radar")
     frame.Title = title
 
     -- Quick Bag Button
@@ -98,9 +99,9 @@ function HUD:Initialize()
     targetText:SetText("No Quarry")
     frame.TargetText = targetText
 
-    -- Stalking Range / Channel CastBar (Dual Purpose StatusBar)
+    -- Stalking / Observation CastBar (Dual Purpose StatusBar)
     local radarBar = CreateFrame("StatusBar", nil, frame)
-    radarBar:SetSize(341, 20)
+    radarBar:SetSize(326, 18)
     radarBar:SetPoint("TOPLEFT", 12, -48)
     radarBar:SetStatusBarTexture("Interface\\TargetingFrame\\UI-StatusBar")
     radarBar:SetStatusBarColor(0.2, 0.8, 0.4)
@@ -114,93 +115,41 @@ function HUD:Initialize()
 
     local barText = radarBar:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
     barText:SetPoint("CENTER", 0, 0)
-    barText:SetText("Stalking Range: Checking...")
+    barText:SetText("Observation Range: Checking...")
     radarBar.Text = barText
     frame.RadarBar = radarBar
 
-    -- Capture Probability Indicator
-    local chanceText = frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-    chanceText:SetPoint("TOPLEFT", 12, -73)
-    chanceText:SetText("Snare Chance: |cff00ff00--|r")
-    frame.ChanceText = chanceText
+    -- Subtitle / Research Info Text
+    local infoText = frame:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+    infoText:SetPoint("TOPLEFT", 12, -70)
+    infoText:SetPoint("TOPRIGHT", -12, -70)
+    infoText:SetJustifyH("LEFT")
+    infoText:SetText("Field Study: |cff00ff99Discover Abilities for Grimoire (+15 Attunement)|r")
+    frame.InfoText = infoText
 
-    -- Net Selection Container & Action Buttons
-    frame.CageButtons = {}
-    local cageTypes = { "copper_cage", "iron_cage", "mithril_cage", "thorium_trap" }
-    local btnSize = 30
-    local startX = 10
+    -- Mode Badge (Bottom-Left)
+    local modeBadge = CreateFrame("Frame", nil, frame, "BackdropTemplate")
+    modeBadge:SetSize(110, 26)
+    modeBadge:SetPoint("BOTTOMLEFT", 10, 8)
+    Theme:ApplyCardBackdrop(modeBadge)
 
-    for i, cageId in ipairs(cageTypes) do
-        local cageData = C.CAGES[cageId] or {}
-        local cBtn = CreateFrame("Button", "ForeverSafariHUDNet" .. i, frame, "BackdropTemplate")
-        cBtn:SetSize(btnSize, btnSize)
-        cBtn:SetPoint("BOTTOMLEFT", startX + (i - 1) * (btnSize + 5), 10)
-
-        Theme:ApplyCardBackdrop(cBtn)
-
-        local icon = cBtn:CreateTexture(nil, "ARTWORK")
-        icon:SetPoint("TOPLEFT", 2, -2)
-        icon:SetPoint("BOTTOMRIGHT", -2, 2)
-        icon:SetTexture(cageData.icon or "Interface\\Icons\\INV_Misc_Rope_01")
-        icon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
-        cBtn.Icon = icon
-
-        local countText = cBtn:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmallOutline")
-        countText:SetPoint("BOTTOMRIGHT", -2, 2)
-        countText:SetText("0")
-        cBtn.Count = countText
-
-        -- Selection Glow
-        local glow = cBtn:CreateTexture(nil, "OVERLAY")
-        glow:SetAllPoints()
-        glow:SetTexture("Interface\\Buttons\\CheckButtonHilight")
-        glow:SetBlendMode("ADD")
-        glow:Hide()
-        cBtn.SelGlow = glow
-
-        cBtn:SetScript("OnClick", function()
-            selectedCageId = cageId
-            HUD:UpdateUI()
-            PlaySound(856)
-        end)
-
-        cBtn:SetScript("OnEnter", function(self)
-            GameTooltip:SetOwner(self, "ANCHOR_TOP")
-            GameTooltip:AddLine(cageData.name or cageId, 1, 0.82, 0)
-            GameTooltip:AddLine(string.format("Base Catch Power: |cff00ff99%.0f%%|r", (cageData.catchPower or 0.35) * 100), 1, 1, 1)
-            GameTooltip:AddLine(string.format("Channel Time: |cffffd100%.1fs|r", cageData.channelTime or 5.0), 1, 1, 1)
-            GameTooltip:AddLine(cageData.description or "", 0.8, 0.8, 0.8, true)
-            local current = DB:GetItemCount(cageId)
-            GameTooltip:AddLine(string.format("In Safari Bag: %d", current), 0, 1, 0.6)
-            GameTooltip:Show()
-        end)
-        cBtn:SetScript("OnLeave", function() GameTooltip:Hide() end)
-
-        frame.CageButtons[cageId] = cBtn
-    end
-
-    -- Trainer Badge (Shown in place of net buttons during Humanoid Trainer target)
-    local trainerBadge = CreateFrame("Frame", nil, frame, "BackdropTemplate")
-    trainerBadge:SetSize(135, 30)
-    trainerBadge:SetPoint("BOTTOMLEFT", 10, 10)
-    Theme:ApplyCardBackdrop(trainerBadge)
-    local badgeIcon = trainerBadge:CreateTexture(nil, "ARTWORK")
-    badgeIcon:SetSize(20, 20)
-    badgeIcon:SetPoint("LEFT", 6, 0)
-    badgeIcon:SetTexture("Interface\\Icons\\Achievement_PVP_A_01")
+    local badgeIcon = modeBadge:CreateTexture(nil, "ARTWORK")
+    badgeIcon:SetSize(18, 18)
+    badgeIcon:SetPoint("LEFT", 4, 0)
+    badgeIcon:SetTexture("Interface\\Icons\\INV_Misc_Spyglass_02")
     badgeIcon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+    modeBadge.Icon = badgeIcon
 
-    local badgeText = trainerBadge:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
-    badgeText:SetPoint("LEFT", badgeIcon, "RIGHT", 6, 0)
-    badgeText:SetText("|cffffd100Rival Trainer|r")
-    trainerBadge.Text = badgeText
-    trainerBadge:Hide()
-    frame.TrainerBadge = trainerBadge
+    local badgeText = modeBadge:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    badgeText:SetPoint("LEFT", badgeIcon, "RIGHT", 4, 0)
+    badgeText:SetText("Field Study")
+    modeBadge.Text = badgeText
+    frame.ModeBadge = modeBadge
 
-    -- Stalk & Observe Action Button (or Scout Trainer)
+    -- Observe / Scout Action Button
     local actionBtn = CreateFrame("Button", "ForeverSafariHUDActionBtn", frame, "UIPanelButtonTemplate")
-    actionBtn:SetSize(100, 30)
-    actionBtn:SetPoint("BOTTOMRIGHT", -10, 10)
+    actionBtn:SetSize(104, 26)
+    actionBtn:SetPoint("BOTTOMRIGHT", -10, 8)
     actionBtn:SetText("🔭 OBSERVE")
     actionBtn:SetScript("OnClick", function()
         if frame.ActionBtn.isTrainerMode then
@@ -217,9 +166,9 @@ function HUD:Initialize()
             end
         else
             if CE:IsChanneling() then
-                CE:CancelSnareChannel("Cancelled by player.")
+                CE:CancelSnareChannel("Observation cancelled by player.")
             else
-                CE:AttemptCapture("target", selectedCageId)
+                CE:AttemptCapture("target", "copper_cage")
             end
             HUD:UpdateUI()
         end
@@ -248,6 +197,7 @@ function HUD:Initialize()
         GameTooltip:AddLine("• Discovers new family abilities for your companions", 0, 1, 0.6)
         GameTooltip:AddLine("• Awards +15 Attunement if all abilities are already mastered", 0.8, 0.9, 1)
         GameTooltip:AddLine("• Non-combat observation (quarry remains 100% untouched)", 0.8, 0.9, 1)
+        GameTooltip:AddLine("• Captures happen during turn-based battle via [BAG]", 1, 0.82, 0)
         GameTooltip:Show()
     end)
     actionBtn:SetScript("OnLeave", function() GameTooltip:Hide() end)
@@ -255,7 +205,7 @@ function HUD:Initialize()
 
     -- Turn-Based Battle Action Button
     local battleBtn = CreateFrame("Button", "ForeverSafariHUDBattleBtn", frame, "UIPanelButtonTemplate")
-    battleBtn:SetSize(106, 30)
+    battleBtn:SetSize(104, 26)
     battleBtn:SetPoint("BOTTOMRIGHT", actionBtn, "BOTTOMLEFT", -6, 0)
     battleBtn:SetText("⚔️ BATTLE")
     battleBtn:SetScript("OnClick", function()
@@ -285,10 +235,10 @@ function HUD:Initialize()
         GameTooltip:AddLine("⚔️ Engage in Wild Battle", 1, 0.82, 0)
         GameTooltip:AddLine("Challenge this wild creature to a turn-based battle with your active companion.", 1, 1, 1, true)
         GameTooltip:AddLine(" ")
-        GameTooltip:AddLine("Victory Rewards:", 0, 1, 0.6)
-        GameTooltip:AddLine("• +35 Attunement Loyalty for your active companion", 0.8, 0.9, 1)
-        GameTooltip:AddLine("• Harvested Wild Family Meats / Diets", 0.8, 0.9, 1)
-        GameTooltip:AddLine("• Quest objective & bestiary progress", 1, 0.82, 0)
+        GameTooltip:AddLine("Battle & Capture Rules:", 0, 1, 0.6)
+        GameTooltip:AddLine("• Throw Snares, Traps, and Cages from in-battle [BAG]", 0.8, 0.9, 1)
+        GameTooltip:AddLine("• Victory awards Wild Family Meats / Diets & Attunement", 0.8, 0.9, 1)
+        GameTooltip:AddLine("• Advances research bounties & Bestiary records", 1, 0.82, 0)
         GameTooltip:Show()
     end)
     battleBtn:SetScript("OnLeave", function() GameTooltip:Hide() end)
@@ -435,17 +385,14 @@ function HUD:UpdateUI()
         frame.RadarBar:SetStatusBarColor(1.0, 0.75, 0.0)
         frame.RadarBar:SetMinMaxValues(0, 100)
         frame.RadarBar:SetValue(100)
-        frame.RadarBar.Text:SetText(string.format("|cffffd100⚔️ Rival AI Trainer • Bounty: +%d Safari Tokens|r", tokenReward))
+        frame.RadarBar.Text:SetText(string.format("|cffffd100⚔️ Rival AI Trainer Ready • Bounty: +%d Safari Tokens|r", tokenReward))
 
-        frame.ChanceText:SetText(string.format("Rival Squad: |cffffd100%d Companion%s|r  •  Reward: |cff00ff99+%d Tokens|r", numPets, numPets > 1 and "s" or "", tokenReward))
+        frame.InfoText:SetText(string.format("Rival Squad: |cffffd100%d Companion%s|r  •  Reward: |cff00ff99+%d Tokens|r", numPets, numPets > 1 and "s" or "", tokenReward))
 
-        -- Show trainer badge and hide cage buttons
-        if frame.TrainerBadge then
-            frame.TrainerBadge:Show()
-            frame.TrainerBadge.Text:SetText(string.format("|cffffd100%s|r", archetypeTitle))
-        end
-        for _, btn in pairs(frame.CageButtons) do
-            btn:Hide()
+        -- Mode Badge
+        if frame.ModeBadge then
+            frame.ModeBadge.Icon:SetTexture("Interface\\Icons\\Achievement_PVP_A_01")
+            frame.ModeBadge.Text:SetText("|cffffd100Rival Trainer|r")
         end
 
         -- Action Button -> Scout
@@ -478,16 +425,16 @@ function HUD:UpdateUI()
     end
 
     -- Normal Wild Creature Mode
-    frame.Title:SetText("|cffffd100Forever Safari|r Field Radar")
+    frame.Title:SetText("|cffffd100Forever Safari|r Field Research Radar")
     if frame.ActionBtn then
         frame.ActionBtn.isTrainerMode = false
         frame.ActionBtn.trainerData = nil
     end
-    if frame.TrainerBadge then
-        frame.TrainerBadge:Hide()
-    end
-    for _, btn in pairs(frame.CageButtons) do
-        btn:Show()
+
+    -- Mode Badge
+    if frame.ModeBadge then
+        frame.ModeBadge.Icon:SetTexture("Interface\\Icons\\INV_Misc_Spyglass_02")
+        frame.ModeBadge.Text:SetText("Field Study")
     end
 
     if rawType == "Humanoid" or rawType == "Giant" or creatureType == "Humanoid" or (C.ELIGIBLE_CAPTURE_TYPES and not C.ELIGIBLE_CAPTURE_TYPES[creatureType]) or not DB:IsTypeUnlocked(creatureType) then
@@ -508,12 +455,12 @@ function HUD:UpdateUI()
             frame.RadarBar:SetStatusBarColor(0.0, 1.0, 0.6)
             frame.RadarBar:SetMinMaxValues(0, 100)
             frame.RadarBar:SetValue(100)
-            frame.RadarBar.Text:SetText("|cff00ff99Close Stalk (~10 yd) • Optimal Focus (+25% Catch)|r")
+            frame.RadarBar.Text:SetText("|cff00ff99Close Stalk (~10 yd) • Optimal Observation Focus|r")
         elseif distTier == "PERIMETER" then
             frame.RadarBar:SetStatusBarColor(1.0, 0.82, 0.0)
             frame.RadarBar:SetMinMaxValues(0, 100)
             frame.RadarBar:SetValue(65)
-            frame.RadarBar.Text:SetText("|cffffd100In Perimeter (15-28 yd) • Ready to Snare|r")
+            frame.RadarBar.Text:SetText("|cffffd100In Perimeter (15-28 yd) • Ready to Observe|r")
         else
             frame.RadarBar:SetStatusBarColor(0.9, 0.25, 0.25)
             frame.RadarBar:SetMinMaxValues(0, 100)
@@ -521,29 +468,15 @@ function HUD:UpdateUI()
             frame.RadarBar.Text:SetText("|cffff4444Out of Range (>28 yd) • Close Distance!|r")
         end
 
-        -- Calculate rate
-        local rate, _ = CE:GetCaptureRate("target", selectedCageId)
-        local ratePct = (rate or 0) * 100
-
-        if distTier == "OUT_OF_RANGE" then
-            frame.ChanceText:SetText("Snare Chance: |cffff44440.0% (Too Far)|r")
-        else
-            local rateColor = (ratePct >= 65) and "00ff99" or (ratePct >= 35 and "ffd100" or "ff8800")
-            local bonusTag = (distTier == "CLOSE") and " |cff00ff99(+25% Bonus)|r" or ""
-            frame.ChanceText:SetText(string.format("Snare Chance: |cff%s%.1f%%|r%s", rateColor, ratePct, bonusTag))
-        end
+        frame.InfoText:SetText("Field Study: |cff00ff99Study Quarry for Moves (+15 Attunement)|r • |cffffd100Capture in Battle|r")
 
         -- Action Button state
-        local cageCount = DB:GetItemCount(selectedCageId)
-        if cageCount <= 0 then
-            frame.ActionBtn:Disable()
-            frame.ActionBtn:SetText("NO NETS")
-        elseif distTier == "OUT_OF_RANGE" then
+        if distTier == "OUT_OF_RANGE" then
             frame.ActionBtn:Disable()
             frame.ActionBtn:SetText("TOO FAR")
         else
             frame.ActionBtn:Enable()
-            frame.ActionBtn:SetText("SNARE")
+            frame.ActionBtn:SetText("🔭 OBSERVE")
         end
     else
         -- Active Channeling mode
@@ -568,17 +501,6 @@ function HUD:UpdateUI()
             frame.BattleBtn:SetText("⚔️ BATTLE")
         end
     end
-
-    -- Update Cage/Net buttons
-    for cageId, btn in pairs(frame.CageButtons) do
-        local count = DB:GetItemCount(cageId)
-        btn.Count:SetText(count > 0 and string.format("x%d", count) or "|cffff44440|r")
-        if cageId == selectedCageId then
-            btn.SelGlow:Show()
-        else
-            btn.SelGlow:Hide()
-        end
-    end
 end
 
 -- Channel Progress Bar Callbacks from CaptureEngine
@@ -588,8 +510,8 @@ function HUD:StartChannelBar(targetName, duration, netName)
     frame.RadarBar:SetStatusBarColor(0.2, 0.8, 1.0)
     frame.RadarBar:SetMinMaxValues(0, duration)
     frame.RadarBar:SetValue(0)
-    frame.RadarBar.Text:SetText(string.format("Channeling %s: 0.0s / %.1fs [Stalking...]", netName, duration))
-    frame.ChanceText:SetText(string.format("Stalking |cffffd100%s|r... Maintain Line of Sight!", targetName))
+    frame.RadarBar.Text:SetText(string.format("Observing %s: 0.0s / %.1fs [Studying...]", targetName, duration))
+    frame.InfoText:SetText(string.format("Stalking |cffffd100%s|r... Maintain Line of Sight!", targetName))
     HUD:UpdateUI()
 end
 
@@ -597,7 +519,7 @@ function HUD:UpdateChannelProgress(elapsed, duration)
     if not frame or not frame:IsShown() then return end
     frame.RadarBar:SetValue(math.min(duration, elapsed))
     local pct = math.min(100, (elapsed / duration) * 100)
-    frame.RadarBar.Text:SetText(string.format("Snaring: %.1fs / %.1fs (%.0f%%) [Stalking...]", elapsed, duration, pct))
+    frame.RadarBar.Text:SetText(string.format("Observing: %.1fs / %.1fs (%.0f%%) [Studying...]", elapsed, duration, pct))
 end
 
 function HUD:StopChannelBar(reason)
@@ -605,34 +527,21 @@ function HUD:StopChannelBar(reason)
     HUD:UpdateUI()
 end
 
-function HUD:ShowCaptureResult(success, targetName, chance)
+function HUD:ShowCaptureResult(success, resultText, chance)
     if not frame or not frame:IsShown() then return end
     if success then
         frame.RadarBar:SetStatusBarColor(0.0, 1.0, 0.6)
         frame.RadarBar:SetValue(100)
-        frame.RadarBar.Text:SetText(string.format("|cff00ff99Success! %s Catalogued!|r", targetName))
+        frame.RadarBar.Text:SetText(string.format("|cff00ff99%s|r", resultText or "Research Complete!"))
     else
         frame.RadarBar:SetStatusBarColor(0.9, 0.25, 0.25)
-        frame.RadarBar.Text:SetText(string.format("|cffff4444Snare Slipped! (Quarry Untouched)|r", targetName))
+        frame.RadarBar.Text:SetText(string.format("|cffff4444Observation Slipped! (Quarry Untouched)|r"))
     end
-    C_Timer.After(2.0, function()
+    C_Timer.After(2.5, function()
         if frame and frame:IsShown() then
             HUD:UpdateUI()
         end
     end)
-end
-
-function HUD:SelectCage(cageId)
-    if cageId and C.CAGES[cageId] then
-        selectedCageId = cageId
-        if frame and frame:IsShown() then
-            HUD:UpdateUI()
-        end
-    end
-end
-
-function HUD:GetSelectedCage()
-    return selectedCageId or "copper_cage"
 end
 
 function HUD:ShowHUD()
@@ -653,5 +562,3 @@ end
 function HUD:IsShown()
     return frame and frame:IsShown()
 end
-
-
