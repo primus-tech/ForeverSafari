@@ -179,20 +179,68 @@ function HUD:Initialize()
         frame.CageButtons[cageId] = cBtn
     end
 
-    -- Stalk & Observe Action Button (Learn Moves from the Wild)
+    -- Trainer Badge (Shown in place of net buttons during Humanoid Trainer target)
+    local trainerBadge = CreateFrame("Frame", nil, frame, "BackdropTemplate")
+    trainerBadge:SetSize(135, 30)
+    trainerBadge:SetPoint("BOTTOMLEFT", 10, 10)
+    Theme:ApplyCardBackdrop(trainerBadge)
+    local badgeIcon = trainerBadge:CreateTexture(nil, "ARTWORK")
+    badgeIcon:SetSize(20, 20)
+    badgeIcon:SetPoint("LEFT", 6, 0)
+    badgeIcon:SetTexture("Interface\\Icons\\Achievement_PVP_A_01")
+    badgeIcon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+
+    local badgeText = trainerBadge:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    badgeText:SetPoint("LEFT", badgeIcon, "RIGHT", 6, 0)
+    badgeText:SetText("|cffffd100Rival Trainer|r")
+    trainerBadge.Text = badgeText
+    trainerBadge:Hide()
+    frame.TrainerBadge = trainerBadge
+
+    -- Stalk & Observe Action Button (or Scout Trainer)
     local actionBtn = CreateFrame("Button", "ForeverSafariHUDActionBtn", frame, "UIPanelButtonTemplate")
-    actionBtn:SetSize(110, 30)
+    actionBtn:SetSize(100, 30)
     actionBtn:SetPoint("BOTTOMRIGHT", -10, 10)
     actionBtn:SetText("🔭 OBSERVE")
     actionBtn:SetScript("OnClick", function()
-        if CE:IsChanneling() then
-            CE:CancelSnareChannel("Cancelled by player.")
+        if frame.ActionBtn.isTrainerMode then
+            local data = frame.ActionBtn.trainerData
+            if data then
+                local arch = data.archetype or {}
+                local msg = string.format("|cffffd100[Trainer Scout]|r |cffffffff%s|r (%s): \"%s\" |cff00ff99[Bounty: +%d Tokens, %d Pet(s)]|r",
+                    data.name, arch.title or "Rival Trainer", arch.intro or "Let's battle!", data.tokenReward or 8, data.numPets or 1)
+                DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. msg)
+                if ForeverSafari.Toast and ForeverSafari.Toast.ShowReward then
+                    ForeverSafari.Toast:ShowReward(arch.title or "Rival AI Trainer", string.format("Bounty: +%d Tokens (%d Pets)", data.tokenReward or 8, data.numPets or 1))
+                end
+                PlaySound(856)
+            end
         else
-            CE:AttemptCapture("target", selectedCageId)
+            if CE:IsChanneling() then
+                CE:CancelSnareChannel("Cancelled by player.")
+            else
+                CE:AttemptCapture("target", selectedCageId)
+            end
+            HUD:UpdateUI()
         end
-        HUD:UpdateUI()
     end)
     actionBtn:SetScript("OnEnter", function(self)
+        if frame.ActionBtn.isTrainerMode then
+            local data = frame.ActionBtn.trainerData
+            GameTooltip:SetOwner(self, "ANCHOR_TOP")
+            GameTooltip:AddLine("🔍 Scout Rival Trainer", 1, 0.82, 0)
+            GameTooltip:AddLine("Inspect this roaming humanoid trainer to reveal their squad size, battle dialogue, and token bounty.", 1, 1, 1, true)
+            if data and data.archetype then
+                GameTooltip:AddLine(" ")
+                GameTooltip:AddLine(string.format("Faction Title: |cffffcc00%s|r", data.archetype.title or "Trainer"), 0.8, 0.9, 1)
+                GameTooltip:AddLine(string.format("Rival Squad: |cffffffff%d Companion(s)|r", data.numPets or 1), 0.8, 0.9, 1)
+                GameTooltip:AddLine(string.format("Defeat Bounty: |cff00ff99+%d Safari Tokens|r", data.tokenReward or 8), 0.8, 0.9, 1)
+                GameTooltip:AddLine(string.format("Battle Cry: |cffffd100\"%s\"|r", data.archetype.intro or "Let's battle!"), 1, 0.82, 0, true)
+            end
+            GameTooltip:Show()
+            return
+        end
+
         GameTooltip:SetOwner(self, "ANCHOR_TOP")
         GameTooltip:AddLine("🔭 Field Stalking & Observation", 1, 0.82, 0)
         GameTooltip:AddLine("Quietly study this wild creature in its natural habitat to discover and learn its fighting techniques directly into your Trainer Grimoire!", 1, 1, 1, true)
@@ -207,7 +255,7 @@ function HUD:Initialize()
 
     -- Turn-Based Battle Action Button
     local battleBtn = CreateFrame("Button", "ForeverSafariHUDBattleBtn", frame, "UIPanelButtonTemplate")
-    battleBtn:SetSize(96, 30)
+    battleBtn:SetSize(106, 30)
     battleBtn:SetPoint("BOTTOMRIGHT", actionBtn, "BOTTOMLEFT", -6, 0)
     battleBtn:SetText("⚔️ BATTLE")
     battleBtn:SetScript("OnClick", function()
@@ -219,6 +267,20 @@ function HUD:Initialize()
         end
     end)
     battleBtn:SetScript("OnEnter", function(self)
+        local isTrainer = ns.TrainerEngine and ns.TrainerEngine:IsHumanoidTrainer("target")
+        if isTrainer then
+            GameTooltip:SetOwner(self, "ANCHOR_TOP")
+            GameTooltip:AddLine("⚔️ Challenge Rival AI Trainer", 1, 0.82, 0)
+            GameTooltip:AddLine("Initiate a turn-based 3D companion battle against this roaming humanoid rival trainer.", 1, 1, 1, true)
+            GameTooltip:AddLine(" ")
+            GameTooltip:AddLine("Trainer Battle Rules:", 0, 1, 0.6)
+            GameTooltip:AddLine("• Win to earn Safari Tokens & Faction Bounties", 0.8, 0.9, 1)
+            GameTooltip:AddLine("• Defeat their full 1-to-3 companion roster", 0.8, 0.9, 1)
+            GameTooltip:AddLine("• Trainer pets cannot be captured with snares/cages", 1, 0.4, 0.4)
+            GameTooltip:Show()
+            return
+        end
+
         GameTooltip:SetOwner(self, "ANCHOR_TOP")
         GameTooltip:AddLine("⚔️ Engage in Wild Battle", 1, 0.82, 0)
         GameTooltip:AddLine("Challenge this wild creature to a turn-based battle with your active companion.", 1, 1, 1, true)
@@ -226,7 +288,7 @@ function HUD:Initialize()
         GameTooltip:AddLine("Victory Rewards:", 0, 1, 0.6)
         GameTooltip:AddLine("• +35 Attunement Loyalty for your active companion", 0.8, 0.9, 1)
         GameTooltip:AddLine("• Harvested Wild Family Meats / Diets", 0.8, 0.9, 1)
-        GameTooltip:AddLine("• +1 to +3 Safari Tokens", 1, 0.82, 0)
+        GameTooltip:AddLine("• Quest objective & bestiary progress", 1, 0.82, 0)
         GameTooltip:Show()
     end)
     battleBtn:SetScript("OnLeave", function() GameTooltip:Hide() end)
@@ -284,14 +346,22 @@ function HUD:OnTargetChanged()
         return
     end
 
-    local reaction = UnitReaction("player", "target")
-    if not isSecret(reaction) and type(reaction) == "number" and reaction > 4 then
+    local classification = UnitClassification("target")
+    if classification == "worldboss" then
         frame:Hide()
         return
     end
 
-    local classification = UnitClassification("target")
-    if classification == "worldboss" then
+    local isTrainer = ns.TrainerEngine and ns.TrainerEngine:IsHumanoidTrainer("target")
+
+    if isTrainer then
+        frame:Show()
+        HUD:UpdateUI()
+        return
+    end
+
+    local reaction = UnitReaction("player", "target")
+    if not isSecret(reaction) and type(reaction) == "number" and reaction > 4 then
         frame:Hide()
         return
     end
@@ -304,8 +374,8 @@ function HUD:OnTargetChanged()
 
     local creatureType = C.NormalizeCreatureType(rawType, name)
 
-    -- If target is Humanoid, Giant, ineligible, or research locked, do not show the capture HUD!
-    if rawType == "Humanoid" or rawType == "Giant" or creatureType == "Humanoid" or (C.ELIGIBLE_CAPTURE_TYPES and not C.ELIGIBLE_CAPTURE_TYPES[creatureType]) or not DB:IsTypeUnlocked(creatureType) then
+    -- If target is Giant, ineligible, or research locked, do not show the capture HUD!
+    if rawType == "Giant" or (C.ELIGIBLE_CAPTURE_TYPES and not C.ELIGIBLE_CAPTURE_TYPES[creatureType]) or not DB:IsTypeUnlocked(creatureType) then
         if CE:IsChanneling() then
             CE:CancelSnareChannel("Target is ineligible or research is locked.")
         end
@@ -337,6 +407,88 @@ function HUD:UpdateUI()
     local rawType = UnitCreatureType("target") or "Beast"
     if isSecret(rawType) then rawType = "Beast" end
     local creatureType = C.NormalizeCreatureType(rawType, name)
+
+    local isTrainer = ns.TrainerEngine and ns.TrainerEngine:IsHumanoidTrainer("target")
+
+    if isTrainer then
+        frame.Title:SetText("|cffffd100Forever Safari|r Rival Battler Radar")
+
+        local TrainerDB = ns.TrainerDB
+        local zoneName = GetZoneText() or "Azeroth"
+        local archetype = (TrainerDB and TrainerDB.GetArchetypeForUnit) and TrainerDB:GetArchetypeForUnit(name, rawType, zoneName) or (TrainerDB and TrainerDB.ARCHETYPES and TrainerDB.ARCHETYPES["Default"])
+        local archetypeTitle = archetype and archetype.title or "Rival AI Trainer"
+        local tokenReward = archetype and archetype.tokenReward or 8
+
+        local numPets = 1
+        if level and type(level) == "number" then
+            if level >= 36 then
+                tokenReward = math.floor(tokenReward * 2.0)
+                numPets = 3
+            elseif level >= 16 then
+                tokenReward = math.floor(tokenReward * 1.5)
+                numPets = 2
+            end
+        end
+
+        frame.TargetText:SetText(string.format("|cffffffff%s|r  |cffaaaaaa%s|r  |cffffcc00[%s]|r", name, levelStr, archetypeTitle))
+
+        frame.RadarBar:SetStatusBarColor(1.0, 0.75, 0.0)
+        frame.RadarBar:SetMinMaxValues(0, 100)
+        frame.RadarBar:SetValue(100)
+        frame.RadarBar.Text:SetText(string.format("|cffffd100⚔️ Rival AI Trainer • Bounty: +%d Safari Tokens|r", tokenReward))
+
+        frame.ChanceText:SetText(string.format("Rival Squad: |cffffd100%d Companion%s|r  •  Reward: |cff00ff99+%d Tokens|r", numPets, numPets > 1 and "s" or "", tokenReward))
+
+        -- Show trainer badge and hide cage buttons
+        if frame.TrainerBadge then
+            frame.TrainerBadge:Show()
+            frame.TrainerBadge.Text:SetText(string.format("|cffffd100%s|r", archetypeTitle))
+        end
+        for _, btn in pairs(frame.CageButtons) do
+            btn:Hide()
+        end
+
+        -- Action Button -> Scout
+        frame.ActionBtn:Enable()
+        frame.ActionBtn:SetText("🔍 SCOUT")
+        frame.ActionBtn.isTrainerMode = true
+        frame.ActionBtn.trainerData = {
+            name = name,
+            archetype = archetype,
+            level = level,
+            tokenReward = tokenReward,
+            numPets = numPets,
+        }
+
+        -- Battle Button -> Challenge
+        if frame.BattleBtn then
+            local activeMob = DB:GetActiveMob()
+            if not activeMob then
+                frame.BattleBtn:Disable()
+                frame.BattleBtn:SetText("NO SQUAD")
+            elseif (activeMob.currentHP or 0) <= 0 then
+                frame.BattleBtn:Disable()
+                frame.BattleBtn:SetText("FAINTED")
+            else
+                frame.BattleBtn:Enable()
+                frame.BattleBtn:SetText("⚔️ CHALLENGE")
+            end
+        end
+        return
+    end
+
+    -- Normal Wild Creature Mode
+    frame.Title:SetText("|cffffd100Forever Safari|r Field Radar")
+    if frame.ActionBtn then
+        frame.ActionBtn.isTrainerMode = false
+        frame.ActionBtn.trainerData = nil
+    end
+    if frame.TrainerBadge then
+        frame.TrainerBadge:Hide()
+    end
+    for _, btn in pairs(frame.CageButtons) do
+        btn:Show()
+    end
 
     if rawType == "Humanoid" or rawType == "Giant" or creatureType == "Humanoid" or (C.ELIGIBLE_CAPTURE_TYPES and not C.ELIGIBLE_CAPTURE_TYPES[creatureType]) or not DB:IsTypeUnlocked(creatureType) then
         frame:Hide()
