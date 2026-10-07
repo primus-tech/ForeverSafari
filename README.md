@@ -38,6 +38,9 @@ Every playable race receives an authentic wild companion indigenous to their hom
 | 🪶 **Tauren** | Mulgore | **Kodo Calf** | Kodo | `1451` | Gentle yet thunderous powerhouse of the plains |
 | 💀 **Undead** | Tirisfal Glades | **Mangy Duskbat** | Bat | `9535` | Eerie nocturnal flier haunting the ruined belfries |
 
+> [!NOTE]
+> **Starter Partner Status (Rank III: Trusting)**: Your starting companion is a specially trained partner provided by Hemet Nesingwary and begins at **Rank III: Trusting** (600 Attunement Points) with full **1.00x True Baseline Stats (100/100 points)**, **5% Disobedience**, and **Slot 3 Unlocked for Training**. Wild beasts caught in the field with snares start at **Rank I: Wild / Unbroken** (0 Attunement, 0.85x stats, 25% disobedience) requiring bonding and feeding to domesticate.
+
 ---
 
 ## 🌟 Core Features

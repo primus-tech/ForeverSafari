@@ -191,6 +191,27 @@ function DB:ValidateAndRepairSignatures()
             mob.moves = { 101, 107, 102, 118 }
         end
 
+        -- Promote starter companion to Rank 3 (Trusting) baseline if below threshold
+        if (mob.isStarter or (mob.customNickname and string.find(mob.customNickname, "^Starter"))) and (mob.attunementRank or 1) < 3 then
+            mob.attunementRank = 3
+            mob.attunementPoints = math.max(mob.attunementPoints or 0, 600)
+            mob.rank = "Trusting"
+            mob.isStarter = true
+            local SE = ns.StatEngine
+            if SE and mob.baseStats then
+                local calc = SE:CalculateStats(mob.element or mob.creatureType or "Beast", 600, false, mob.baseStats)
+                mob.maxHP = calc.maxHP
+                mob.currentHP = calc.maxHP
+                mob.hp = calc.maxHP
+                mob.atk = calc.atk
+                mob.attack = calc.atk
+                mob.def = calc.def
+                mob.defense = calc.def
+                mob.spd = calc.spd
+                mob.speed = calc.spd
+            end
+        end
+
         local expectedSig = self:GenerateSignature(mob)
         if not mob.sig or mob.sig ~= expectedSig then
             if not mob.maxHP or mob.maxHP <= 0 then
@@ -342,8 +363,9 @@ function DB:ClaimStarterKit()
     }
 
     local data = starterConfig[playerRace] or starterConfig["Human"]
+    local starterAttunement = 600 -- Rank 3: Trusting threshold (1.00x True Baseline Stats)
     local SE = ns.StatEngine
-    local calc = SE and SE:CalculateStats(data.element or data.type, 0, false, data.baseStats)
+    local calc = SE and SE:CalculateStats(data.element or data.type, starterAttunement, false, data.baseStats)
     local maxHP = calc and calc.maxHP or data.baseStats.hp
     local atk = calc and calc.atk or data.baseStats.atk
     local def = calc and calc.def or data.baseStats.def
@@ -368,8 +390,10 @@ function DB:ClaimStarterKit()
         spd = spd,
         baseStats = data.baseStats,
         moves = data.moves,
-        attunementRank = 1,
-        attunementPoints = 0,
+        attunementRank = 3,
+        attunementPoints = starterAttunement,
+        rank = "Trusting",
+        isStarter = true,
     }
 
     self:AddMob(starterMob, true)
