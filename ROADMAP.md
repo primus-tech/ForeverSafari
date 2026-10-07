@@ -172,15 +172,53 @@
 
 ---
 
-## 📍 Phase 12: Innkeeper Safari Kennel & Move Discovery (Completed ✅)
-* [x] **Safari Kennel Bank (`UI/KennelFrame.lua`)**:
-  * Standalone zero-taint Innkeeper sidecar acting as the Pokémon Bank of Azeroth.
-  * 4 Active Squad pedestals with live 3D models, rank badges, HP bars, and `[ Deposit to Kennel ]` actions.
-  * 5 Enclosure Bank Tabs (20 slots per box = 100 total banked companions) with search filter and `[ Withdraw to Squad ]` actions.
-  * Drag / click swap support between squad and kennel bank.
-  * `[ 💖 Tend & Rest All Pets ]`: One-click button to heal and revive all active and banked companions at any Inn.
-* [x] **Out-of-Battle HUD Move Discovery (`Core/CaptureEngine.lua`, `UI/CaptureHUD.lua`)**:
-  * Out-of-battle HUD dedicated to `[ ⚔️ BATTLE ]` and `[ 🔭 OBSERVE ]`.
-  * Completing the observation channel analyzes the wild beast to discover and unlock unlearned family abilities into the Trainer Grimoire (or awards +15 Attunement if all moves are known).
+## 📍 Phase 13: Authentic Azeroth Bestiary & Field Pokédex (Completed ✅)
+* [x] **215 Curated Azeroth Species Roster (`Data/BestiaryDB.lua`)**:
+  * Complete coverage across all 9 pet types: Beasts, Canines, Felines, Bears, Boars, Raptors, Avians, Bats, Crocolisks, Crabs, Turtles, Spiders, Scorpids, Hydras, Wind Serpents, Gorillas, Kodos, Tallstriders, Dragon Whelps, **Mechanicals (Harvest Reapers, Mech-Chickens, War Golems, Alarm-o-Bots)**, **Undead (Skeletal Raptors, Plaguebats, Ghostly Crabs, Bone Golems)**, and **Elementals (Blazing Elementals, Tide Walkers, Rock Rumblers, Tar Beasts, Dust Devils)**.
+  * Verified 3D display IDs for 100% accurate paperdoll rendering.
+  * Native regional habitats, favorite sustenance diets, base stats, and natural 4-move thematic movepools.
+* [x] **3-Tier Pokédex Discovery Lifecycle (`Core/Database.lua`)**:
+  * `[ ??? Undiscovered ]` ➔ `[ 🔭 Seen / Sighted ]` (stalked via `/safari observe` or encountered in combat) ➔ `[ 🐾 Captured ]` (caged into active squad or kennel).
+  * Pokédex completion progress bar with live seen/caught percentage counters.
+* [x] **Dynamic Type & Family Filter Dropdown (`UI/JournalFrame.lua`)**:
+  * Dropdown selector supporting instant 1-click filtering by *All Types, Beast, Mechanical, Undead, Elemental, Dragonkin, Aquatic, Flying, Magic*, stacked with real-time text searching.
+
+---
+
+## 📍 Phase 14: 🔥 TOP PRIORITY — Architecture Modular Breakdown & 3D Showcase Overhaul (In Progress / Active)
+* [ ] **14.1 3D Showcase Stage Overhaul & Visual Polish**:
+  * **Next-Gen 3D Paperdoll Stage**: Dynamic pedestal lighting, ambient stage floor, smooth mouse rotation physics, responsive zoom, and animation controls (Attack, Roar, Idle, Fidget).
+  * **Interactive Stat Radar & Combat Aptitudes**: Visual breakdown of HP, Attack, Defense, and Speed with type advantage indicators.
+  * **Active Moveset & Nourishment Bar**: Direct feeding tray (+25 Attunement favorite diet bonus) and intuitive move teaching drawer.
+* [ ] **14.2 `UI/JournalFrame.lua` Sub-View Modularization**:
+  * Extract 2,300+ line monolith into focused, decoupled view files:
+    * `UI/JournalFrame.lua` — Main window frame shell, top navigation tabs, header, footer.
+    * `UI/Views/JournalShowcaseView.lua` — View 1 (3D Showcase Stage & Details Panel).
+    * `UI/Views/JournalGridView.lua` — View 2 (3D Menagerie Gallery Grid).
+    * `UI/Views/JournalBestiaryView.lua` — View 3 (Azeroth Field Pokédex & Dossier).
+    * `UI/Components/JournalTeamDock.lua` — Bottom 4-member active battle squad dock.
+    * `UI/Components/JournalTrainingDrawer.lua` — Move learning & grimoire teaching drawer.
+* [ ] **14.3 `Core/Database.lua` Domain Modularization**:
+  * Partition single 1,400-line DB file into domain-specific modules:
+    * `Core/Database.lua` — Core initialization, SavedVariables migration, schema upgrades.
+    * `Core/DB/DB_Pets.lua` — Pet collection CRUD, active party, level/XP, moves.
+    * `Core/DB/DB_Kennel.lua` — Storage boxes (1–10), crate transfer logic, kennel slots.
+    * `Core/DB/DB_Bestiary.lua` — Pokédex discovery tracking, stats, and collection backfill.
+    * `Core/DB/DB_Inventory.lua` — Safari Bag items, tokens, and consumables.
+* [ ] **14.4 Canonical Data Consolidation (`Data/MoveDB.lua` & `Data/ItemDB.lua`)**:
+  * Unify move definitions into `Data/MoveDB.lua` as the single canonical source of truth (removing duplicated `C.ABILITIES` from `Constants.lua`).
+  * Extract all shop, cage, crate, net, treat, and medicine definitions into `Data/ItemDB.lua`.
+  * Keep `Core/Constants.lua` clean and focused on core branding, pet type advantage matrix, and attunement rank thresholds.
+* [ ] **14.5 `Core/BattleEngine.lua` Combat Decoupling**:
+  * `Core/BattleEngine.lua` — Battle state machine, turn loop, round timers, start/end.
+  * `Core/BattleCombat.lua` — Damage formulas, type effectiveness multipliers, crit/miss rolls, status effect & DoT ticks.
+  * `Core/BattleAI.lua` — Wild beast & NPC AI combat logic.
+
+---
+
+## 📍 Phase 15: Future Expansions & Social Leagues
+* [ ] **PvP Safari Tournaments & Guild Ladders**: Cross-faction companion duel tournaments and leaderboards.
+* [ ] **Safari Attunement Quests**: Epic class and race-specific questlines to earn Master attunement and legendary nets.
+
 
 
