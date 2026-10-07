@@ -129,6 +129,64 @@ function QH:HandleElementalBossKill(bossName)
     end
 end
 
+local UNDEAD_RFD_NPCS = {
+    [7358] = "Amnennar the Coldbringer",
+    [7357] = "Mordresh Fire Eye",
+    [8567] = "Glutton",
+    [7356] = "Plaguemaw the Rotting",
+    [7355] = "Tuten'kash",
+    [7354] = "Ragglesnout",
+}
+
+local UNDEAD_RFD_NAMES = {
+    ["amnennar the coldbringer"] = true,
+    ["amnennar"] = true,
+    ["mordresh fire eye"] = true,
+    ["glutton"] = true,
+    ["plaguemaw the rotting"] = true,
+    ["tuten'kash"] = true,
+    ["tutenkash"] = true,
+}
+
+function QH:IsUndeadRfdBoss(name, npcID)
+    if npcID and UNDEAD_RFD_NPCS[npcID] then
+        return true
+    end
+    if name and UNDEAD_RFD_NAMES[string.lower(name)] then
+        return true
+    end
+    return false
+end
+
+function QH:HandleUndeadBossKill(bossName)
+    if not bossName or bossName == "" then bossName = "Amnennar the Coldbringer" end
+    local now = GetTime()
+    if recentKills[bossName] and (now - recentKills[bossName]) < 15 then
+        return
+    end
+    recentKills[bossName] = now
+
+    -- Update Quest Progress
+    DB:UpdateQuestProgress("KILL_UNDEAD_BOSS", 1)
+    DB:UpdateQuestProgress("BOSS_KILL", 1)
+
+    -- Award tokens to player on the spot
+    DB:AddTokens(25, bossName .. " Defeated")
+
+    -- Unlock Undead research permit
+    local wasUnlocked = DB:IsTypeUnlocked("Undead")
+    if not wasUnlocked then
+        DB:UnlockType("Undead")
+    else
+        DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00[%s Defeated]|r +25 Safari Tokens awarded!", C.PREFIX, bossName))
+    end
+
+    -- Broadcast to party/raid addon users
+    if ns.Comms and ns.Comms.SendMessage then
+        ns.Comms:SendMessage("PERMIT_UNLOCK", "Undead:" .. bossName)
+    end
+end
+
 function QH:Initialize()
     local f = CreateFrame("Frame", "ForeverSafariQuestEventFrame")
     f:RegisterEvent("QUEST_TURNED_IN")
@@ -161,6 +219,8 @@ function QH:Initialize()
                         QH:HandleMechanicalBossKill(destName)
                     elseif QH:IsElementalBfdBoss(destName, npcID) then
                         QH:HandleElementalBossKill(destName)
+                    elseif QH:IsUndeadRfdBoss(destName, npcID) then
+                        QH:HandleUndeadBossKill(destName)
                     end
                 end
             end
@@ -177,6 +237,8 @@ function QH:OnBossKilled(encounterID, name)
             QH:HandleMechanicalBossKill(name)
         elseif QH:IsElementalBfdBoss(name) then
             QH:HandleElementalBossKill(name)
+        elseif QH:IsUndeadRfdBoss(name) then
+            QH:HandleUndeadBossKill(name)
         end
     end
 

@@ -752,6 +752,24 @@ C.NESINGWARY_DISPATCHES = {
             items = { { id = "mithril_cage", count = 3 }, { id = "az_treat", count = 5 } },
         }
     },
+    [8] = {
+        id = 8,
+        key = "rfd_undead_permit",
+        title = "Research Permit: Necrotic Containment",
+        sender = "Hemet Nesingwary Jr.",
+        location = "Southern Barrens",
+        date = "Priority Directive",
+        icon = "Interface\\Icons\\Spell_Shadow_DeadofNight",
+        questType = "KILL_UNDEAD_BOSS",
+        targetCount = 1,
+        unlocksType = "Undead",
+        summary = "Defeat Amnennar the Coldbringer in Razorfen Downs to earn the Necrotic Containment Permit.",
+        body = "Hunter,\n\nReanimated beasts and skeletal fauna carry lingering necrotic curses that rot standard hemp netting upon contact. To safely contain and purify undead creatures for league companionship, we must extract the phylactery matrix from an authentic Scourge lich.\n\nVenture into the thorny catacombs of Razorfen Downs, confront Amnennar the Coldbringer, and shatter his reign of ice and decay!\n\nAll naturalists participating in the assault will be awarded their Necrotic Containment Permit and expedition tokens!\n\n— Hemet Nesingwary Jr.",
+        rewards = {
+            tokens = 50,
+            items = { { id = "mithril_cage", count = 3 }, { id = "revival_crystal", count = 3 } },
+        }
+    },
 }
 
 -- Abilities Database (Cooldown in turns & Limited Usages per battle)
