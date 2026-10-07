@@ -798,6 +798,11 @@ function BE:HandleVictory()
     player.battlesTotal = (player.battlesTotal or 0) + 1
     ForeverSafariDB.stats.totalBattlesWon = (ForeverSafariDB.stats.totalBattlesWon or 0) + 1
 
+    -- Trigger Virtual Quest Progress & Boss Permits
+    if ForeverSafari.QuestHooks and ForeverSafari.QuestHooks.OnBattleVictory then
+        ForeverSafari.QuestHooks:OnBattleVictory(enemy)
+    end
+
     BE.State.inBattle = false
 
     if ForeverSafari.BattleFrame then
