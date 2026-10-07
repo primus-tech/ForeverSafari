@@ -187,6 +187,63 @@ function QH:HandleUndeadBossKill(bossName)
     end
 end
 
+local DRAGONKIN_ST_NPCS = {
+    [8443] = "Shade of Eranikus",
+    [5709] = "Shade of Eranikus",
+    [5720] = "Dreamscythe",
+    [5719] = "Weaver",
+    [5722] = "Hazzas",
+    [5721] = "Morphaz",
+}
+
+local DRAGONKIN_ST_NAMES = {
+    ["shade of eranikus"] = true,
+    ["eranikus"] = true,
+    ["dreamscythe"] = true,
+    ["weaver"] = true,
+    ["hazzas"] = true,
+    ["morphaz"] = true,
+}
+
+function QH:IsDragonkinStBoss(name, npcID)
+    if npcID and DRAGONKIN_ST_NPCS[npcID] then
+        return true
+    end
+    if name and DRAGONKIN_ST_NAMES[string.lower(name)] then
+        return true
+    end
+    return false
+end
+
+function QH:HandleDragonkinBossKill(bossName)
+    if not bossName or bossName == "" then bossName = "Shade of Eranikus" end
+    local now = GetTime()
+    if recentKills[bossName] and (now - recentKills[bossName]) < 15 then
+        return
+    end
+    recentKills[bossName] = now
+
+    -- Update Quest Progress
+    DB:UpdateQuestProgress("KILL_DRAGONKIN_BOSS", 1)
+    DB:UpdateQuestProgress("BOSS_KILL", 1)
+
+    -- Award tokens to player on the spot
+    DB:AddTokens(25, bossName .. " Defeated")
+
+    -- Unlock Dragonkin research permit
+    local wasUnlocked = DB:IsTypeUnlocked("Dragonkin")
+    if not wasUnlocked then
+        DB:UnlockType("Dragonkin")
+    else
+        DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00[%s Defeated]|r +25 Safari Tokens awarded!", C.PREFIX, bossName))
+    end
+
+    -- Broadcast to party/raid addon users
+    if ns.Comms and ns.Comms.SendMessage then
+        ns.Comms:SendMessage("PERMIT_UNLOCK", "Dragonkin:" .. bossName)
+    end
+end
+
 function QH:Initialize()
     local f = CreateFrame("Frame", "ForeverSafariQuestEventFrame")
     f:RegisterEvent("QUEST_TURNED_IN")
@@ -221,6 +278,8 @@ function QH:Initialize()
                         QH:HandleElementalBossKill(destName)
                     elseif QH:IsUndeadRfdBoss(destName, npcID) then
                         QH:HandleUndeadBossKill(destName)
+                    elseif QH:IsDragonkinStBoss(destName, npcID) then
+                        QH:HandleDragonkinBossKill(destName)
                     end
                 end
             end
@@ -239,6 +298,8 @@ function QH:OnBossKilled(encounterID, name)
             QH:HandleElementalBossKill(name)
         elseif QH:IsUndeadRfdBoss(name) then
             QH:HandleUndeadBossKill(name)
+        elseif QH:IsDragonkinStBoss(name) then
+            QH:HandleDragonkinBossKill(name)
         end
     end
 

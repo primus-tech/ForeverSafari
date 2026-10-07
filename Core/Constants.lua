@@ -770,6 +770,24 @@ C.NESINGWARY_DISPATCHES = {
             items = { { id = "mithril_cage", count = 3 }, { id = "revival_crystal", count = 3 } },
         }
     },
+    [9] = {
+        id = 9,
+        key = "sunken_temple_dragonkin_permit",
+        title = "Research Permit: Draconic Sanctuary",
+        sender = "Hemet Nesingwary Sr.",
+        location = "Swamp of Sorrows",
+        date = "Master Directive",
+        icon = "Interface\\Icons\\INV_Misc_Head_Dragon_01",
+        questType = "KILL_DRAGONKIN_BOSS",
+        targetCount = 1,
+        unlocksType = "Dragonkin",
+        summary = "Defeat Shade of Eranikus or the drakes in the Sunken Temple (Swamp of Sorrows) to earn the Draconic Sanctuary Permit.",
+        body = "Master Naturalist,\n\nDragonkin are ancient, proud, and possess unmatched draconic scales that withstand ordinary traps and taming methods. To safely approach, research, and capture dragonkin whelps and drakes, you must prove your mastery against a true dragon of the Emerald Dream.\n\nSubmerge into the sunken Temple of Atal'Hakkar within the Swamp of Sorrows, confront the corrupted Green Dragon Shade of Eranikus, and claim the draconic focus!\n\nEvery expedition member present for the dragon's fall will be granted the Draconic Sanctuary Permit!\n\n— Hemet Nesingwary Sr.",
+        rewards = {
+            tokens = 60,
+            items = { { id = "arcanite_capsule", count = 3 }, { id = "az_feast", count = 2 } },
+        }
+    },
 }
 
 -- Abilities Database (Cooldown in turns & Limited Usages per battle)
