@@ -497,8 +497,10 @@ function Journal:UpdateRosterView()
     local spd = mob.speed or mob.spd or 14
     rPanel.StatSummary:SetText(string.format("HP [ |cff33ff33%d|r ]  ATK [ |cffffaa00%d|r ]  DEF [ |cff3399ff%d|r ]  SPD [ |cff00ff99%d|r ]", maxHP, atk, def, spd))
 
-    -- Update Active Move Cards
+    -- Update Active Move Cards (2 Starting Abilities + Rank Unlocks)
     local MoveDB = ns.MoveDB or {}
+    local moveSlotsAllowed = math.max(2, rankInfo.moveSlots or 2)
+
     for i = 1, 4 do
         local mCard = rPanel.MoveCards[i]
         local moveId = mob.moves and mob.moves[i]
@@ -509,11 +511,20 @@ function Journal:UpdateRosterView()
             mCard.Name:SetText(move.name)
             local pwrText = (move.power and move.power > 0) and string.format("Pwr %d", move.power) or "Status"
             mCard.Info:SetText(pwrText)
+            mCard:Enable()
+            mCard:Show()
+        elseif i <= moveSlotsAllowed then
+            mCard.Icon:SetTexture("Interface\\Icons\\INV_Misc_QuestionMark")
+            mCard.Name:SetText("|cff00ff99[+ Train]|r")
+            mCard.Info:SetText("Click to teach")
+            mCard:Enable()
             mCard:Show()
         else
-            mCard.Icon:SetTexture("Interface\\Icons\\INV_Misc_QuestionMark")
-            mCard.Name:SetText("|cff666666(Empty)|r")
-            mCard.Info:SetText("Click to teach")
+            mCard.Icon:SetTexture("Interface\\Icons\\INV_Misc_Key_03")
+            mCard.Name:SetText(string.format("|cff666666Slot %d Locked|r", i))
+            local reqRoman = (i == 3 and "III" or "IV")
+            mCard.Info:SetText(string.format("|cff888888Rank %s required|r", reqRoman))
+            mCard:Disable()
             mCard:Show()
         end
     end

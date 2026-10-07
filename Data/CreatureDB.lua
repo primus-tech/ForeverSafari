@@ -16,7 +16,7 @@ FS.CreatureDB[3] = {
     classification = 0,
     isBoss = false,
     zones = {10},
-    baseStats = { hp = 155, atk = 51, def = 42, spd = 34 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[30] = {
     name = "Forest Spider",
@@ -28,7 +28,7 @@ FS.CreatureDB[30] = {
     classification = 0,
     isBoss = false,
     zones = {12},
-    baseStats = { hp = 60, atk = 17, def = 13, spd = 13 },
+    baseStats = { hp = 57, atk = 17, def = 13, spd = 13 },
 }
 FS.CreatureDB[36] = {
     name = "Harvest Golem",
@@ -40,7 +40,7 @@ FS.CreatureDB[36] = {
     classification = 0,
     isBoss = false,
     zones = {40},
-    baseStats = { hp = 90, atk = 27, def = 22, spd = 20 },
+    baseStats = { hp = 56, atk = 17, def = 14, spd = 13 },
 }
 FS.CreatureDB[43] = {
     name = "Mine Spider",
@@ -52,7 +52,7 @@ FS.CreatureDB[43] = {
     classification = 1,
     isBoss = false,
     zones = {12},
-    baseStats = { hp = 105, atk = 31, def = 25, spd = 16 },
+    baseStats = { hp = 65, atk = 19, def = 16, spd = 10 },
 }
 FS.CreatureDB[48] = {
     name = "Skeletal Warrior",
@@ -64,7 +64,7 @@ FS.CreatureDB[48] = {
     classification = 0,
     isBoss = false,
     zones = {10},
-    baseStats = { hp = 140, atk = 45, def = 37, spd = 31 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[69] = {
     name = "Timber Wolf",
@@ -76,7 +76,7 @@ FS.CreatureDB[69] = {
     classification = 0,
     isBoss = false,
     zones = {12},
-    baseStats = { hp = 45, atk = 11, def = 9, spd = 9 },
+    baseStats = { hp = 61, atk = 15, def = 12, spd = 12 },
 }
 FS.CreatureDB[92] = {
     name = "Rock Elemental",
@@ -88,7 +88,7 @@ FS.CreatureDB[92] = {
     classification = 0,
     isBoss = false,
     zones = {3},
-    baseStats = { hp = 230, atk = 89, def = 64, spd = 52 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[113] = {
     name = "Stonetusk Boar",
@@ -100,7 +100,7 @@ FS.CreatureDB[113] = {
     classification = 0,
     isBoss = false,
     zones = {12},
-    baseStats = { hp = 72, atk = 17, def = 14, spd = 11 },
+    baseStats = { hp = 63, atk = 15, def = 12, spd = 10 },
 }
 FS.CreatureDB[114] = {
     name = "Harvest Watcher",
@@ -112,7 +112,7 @@ FS.CreatureDB[114] = {
     classification = 0,
     isBoss = false,
     zones = {40},
-    baseStats = { hp = 105, atk = 33, def = 27, spd = 23 },
+    baseStats = { hp = 56, atk = 18, def = 14, spd = 12 },
 }
 FS.CreatureDB[115] = {
     name = "Harvest Reaper",
@@ -124,7 +124,7 @@ FS.CreatureDB[115] = {
     classification = 0,
     isBoss = false,
     zones = {40},
-    baseStats = { hp = 120, atk = 38, def = 31, spd = 26 },
+    baseStats = { hp = 56, atk = 18, def = 14, spd = 12 },
 }
 FS.CreatureDB[118] = {
     name = "Prowler",
@@ -136,7 +136,7 @@ FS.CreatureDB[118] = {
     classification = 0,
     isBoss = false,
     zones = {12},
-    baseStats = { hp = 80, atk = 24, def = 19, spd = 17 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[119] = {
     name = "Longsnout",
@@ -148,7 +148,7 @@ FS.CreatureDB[119] = {
     classification = 0,
     isBoss = false,
     zones = {12},
-    baseStats = { hp = 102, atk = 26, def = 24, spd = 16 },
+    baseStats = { hp = 61, atk = 15, def = 14, spd = 10 },
 }
 FS.CreatureDB[154] = {
     name = "Greater Fleshripper",
@@ -160,7 +160,7 @@ FS.CreatureDB[154] = {
     classification = 0,
     isBoss = false,
     zones = {40},
-    baseStats = { hp = 115, atk = 36, def = 30, spd = 25 },
+    baseStats = { hp = 56, atk = 17, def = 15, spd = 12 },
 }
 FS.CreatureDB[157] = {
     name = "Goretusk",
@@ -172,7 +172,7 @@ FS.CreatureDB[157] = {
     classification = 0,
     isBoss = false,
     zones = {40},
-    baseStats = { hp = 126, atk = 33, def = 31, spd = 19 },
+    baseStats = { hp = 60, atk = 16, def = 15, spd = 9 },
 }
 FS.CreatureDB[199] = {
     name = "Young Fleshripper",
@@ -184,7 +184,7 @@ FS.CreatureDB[199] = {
     classification = 0,
     isBoss = false,
     zones = {40},
-    baseStats = { hp = 85, atk = 26, def = 21, spd = 19 },
+    baseStats = { hp = 56, atk = 17, def = 14, spd = 13 },
 }
 FS.CreatureDB[202] = {
     name = "Skeletal Horror",
@@ -196,7 +196,7 @@ FS.CreatureDB[202] = {
     classification = 0,
     isBoss = false,
     zones = {10},
-    baseStats = { hp = 150, atk = 49, def = 40, spd = 33 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[203] = {
     name = "Skeletal Mage",
@@ -208,7 +208,7 @@ FS.CreatureDB[203] = {
     classification = 0,
     isBoss = false,
     zones = {10},
-    baseStats = { hp = 145, atk = 47, def = 39, spd = 32 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[210] = {
     name = "Bone Chewer",
@@ -220,7 +220,7 @@ FS.CreatureDB[210] = {
     classification = 0,
     isBoss = false,
     zones = {10},
-    baseStats = { hp = 165, atk = 54, def = 45, spd = 37 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[213] = {
     name = "Starving Dire Wolf",
@@ -232,7 +232,7 @@ FS.CreatureDB[213] = {
     classification = 0,
     isBoss = false,
     zones = {10, 12},
-    baseStats = { hp = 130, atk = 42, def = 34, spd = 29 },
+    baseStats = { hp = 56, atk = 18, def = 14, spd = 12 },
 }
 FS.CreatureDB[217] = {
     name = "Venom Web Spider",
@@ -244,7 +244,7 @@ FS.CreatureDB[217] = {
     classification = 0,
     isBoss = false,
     zones = {10, 12},
-    baseStats = { hp = 130, atk = 42, def = 34, spd = 29 },
+    baseStats = { hp = 56, atk = 18, def = 14, spd = 12 },
 }
 FS.CreatureDB[299] = {
     name = "Young Wolf",
@@ -256,7 +256,7 @@ FS.CreatureDB[299] = {
     classification = 0,
     isBoss = false,
     zones = {12},
-    baseStats = { hp = 40, atk = 9, def = 7, spd = 8 },
+    baseStats = { hp = 63, atk = 14, def = 11, spd = 12 },
 }
 FS.CreatureDB[302] = {
     name = "Blind Mary",
@@ -268,7 +268,7 @@ FS.CreatureDB[302] = {
     classification = 0,
     isBoss = false,
     zones = {10},
-    baseStats = { hp = 235, atk = 80, def = 66, spd = 53 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[314] = {
     name = "Eliza",
@@ -280,7 +280,7 @@ FS.CreatureDB[314] = {
     classification = 1,
     isBoss = false,
     zones = {10},
-    baseStats = { hp = 266, atk = 89, def = 73, spd = 42 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[315] = {
     name = "Stalvan Mistmantle",
@@ -292,7 +292,7 @@ FS.CreatureDB[315] = {
     classification = 0,
     isBoss = false,
     zones = {10},
-    baseStats = { hp = 195, atk = 65, def = 54, spd = 44 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[329] = {
     name = "Earth Elemental",
@@ -304,7 +304,7 @@ FS.CreatureDB[329] = {
     classification = 0,
     isBoss = false,
     zones = {1377},
-    baseStats = { hp = 305, atk = 120, def = 87, spd = 69 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[330] = {
     name = "Princess",
@@ -316,7 +316,7 @@ FS.CreatureDB[330] = {
     classification = 0,
     isBoss = false,
     zones = {12},
-    baseStats = { hp = 96, atk = 24, def = 21, spd = 14 },
+    baseStats = { hp = 62, atk = 15, def = 14, spd = 9 },
 }
 FS.CreatureDB[335] = {
     name = "Singe",
@@ -328,7 +328,7 @@ FS.CreatureDB[335] = {
     classification = 1,
     isBoss = false,
     zones = {44},
-    baseStats = { hp = 217, atk = 71, def = 58, spd = 34 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[345] = {
     name = "Bellygrub",
@@ -340,7 +340,7 @@ FS.CreatureDB[345] = {
     classification = 0,
     isBoss = false,
     zones = {44},
-    baseStats = { hp = 186, atk = 51, def = 48, spd = 28 },
+    baseStats = { hp = 60, atk = 16, def = 15, spd = 9 },
 }
 FS.CreatureDB[412] = {
     name = "Stitches",
@@ -352,7 +352,7 @@ FS.CreatureDB[412] = {
     classification = 1,
     isBoss = false,
     zones = {10, 12, 33},
-    baseStats = { hp = 294, atk = 99, def = 81, spd = 47 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[428] = {
     name = "Dire Condor",
@@ -364,7 +364,7 @@ FS.CreatureDB[428] = {
     classification = 0,
     isBoss = false,
     zones = {44},
-    baseStats = { hp = 125, atk = 40, def = 33, spd = 28 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[441] = {
     name = "Black Dragon Whelp",
@@ -376,7 +376,7 @@ FS.CreatureDB[441] = {
     classification = 0,
     isBoss = false,
     zones = {44},
-    baseStats = { hp = 120, atk = 38, def = 31, spd = 26 },
+    baseStats = { hp = 56, atk = 18, def = 14, spd = 12 },
 }
 FS.CreatureDB[442] = {
     name = "Tarantula",
@@ -388,7 +388,7 @@ FS.CreatureDB[442] = {
     classification = 0,
     isBoss = false,
     zones = {12, 44},
-    baseStats = { hp = 110, atk = 35, def = 28, spd = 24 },
+    baseStats = { hp = 56, atk = 18, def = 14, spd = 12 },
 }
 FS.CreatureDB[454] = {
     name = "Young Goretusk",
@@ -400,7 +400,7 @@ FS.CreatureDB[454] = {
     classification = 0,
     isBoss = false,
     zones = {40},
-    baseStats = { hp = 114, atk = 29, def = 27, spd = 17 },
+    baseStats = { hp = 61, atk = 16, def = 14, spd = 9 },
 }
 FS.CreatureDB[462] = {
     name = "Vultros",
@@ -412,7 +412,7 @@ FS.CreatureDB[462] = {
     classification = 4,
     isBoss = false,
     zones = {40},
-    baseStats = { hp = 230, atk = 76, def = 62, spd = 37 },
+    baseStats = { hp = 57, atk = 19, def = 15, spd = 9 },
 }
 FS.CreatureDB[471] = {
     name = "Mother Fang",
@@ -424,7 +424,7 @@ FS.CreatureDB[471] = {
     classification = 1,
     isBoss = false,
     zones = {12},
-    baseStats = { hp = 105, atk = 31, def = 25, spd = 16 },
+    baseStats = { hp = 65, atk = 19, def = 16, spd = 10 },
 }
 FS.CreatureDB[480] = {
     name = "Rusty Harvest Golem",
@@ -436,7 +436,7 @@ FS.CreatureDB[480] = {
     classification = 0,
     isBoss = false,
     zones = {40},
-    baseStats = { hp = 80, atk = 24, def = 19, spd = 17 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[503] = {
     name = "Lord Malathrom",
@@ -448,7 +448,7 @@ FS.CreatureDB[503] = {
     classification = 4,
     isBoss = false,
     zones = {10},
-    baseStats = { hp = 266, atk = 89, def = 73, spd = 42 },
+    baseStats = { hp = 56, atk = 19, def = 16, spd = 9 },
 }
 FS.CreatureDB[505] = {
     name = "Greater Tarantula",
@@ -460,7 +460,7 @@ FS.CreatureDB[505] = {
     classification = 0,
     isBoss = false,
     zones = {44},
-    baseStats = { hp = 130, atk = 42, def = 34, spd = 29 },
+    baseStats = { hp = 56, atk = 18, def = 14, spd = 12 },
 }
 FS.CreatureDB[511] = {
     name = "Insane Ghoul",
@@ -472,7 +472,7 @@ FS.CreatureDB[511] = {
     classification = 0,
     isBoss = false,
     zones = {10},
-    baseStats = { hp = 165, atk = 54, def = 45, spd = 37 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[521] = {
     name = "Lupos",
@@ -484,7 +484,7 @@ FS.CreatureDB[521] = {
     classification = 4,
     isBoss = false,
     zones = {10},
-    baseStats = { hp = 210, atk = 69, def = 56, spd = 33 },
+    baseStats = { hp = 57, atk = 19, def = 15, spd = 9 },
 }
 FS.CreatureDB[522] = {
     name = "Mor'Ladim",
@@ -496,7 +496,7 @@ FS.CreatureDB[522] = {
     classification = 1,
     isBoss = false,
     zones = {10},
-    baseStats = { hp = 294, atk = 99, def = 81, spd = 47 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[524] = {
     name = "Rockhide Boar",
@@ -508,7 +508,7 @@ FS.CreatureDB[524] = {
     classification = 0,
     isBoss = false,
     zones = {12},
-    baseStats = { hp = 84, atk = 20, def = 18, spd = 12 },
+    baseStats = { hp = 63, atk = 15, def = 13, spd = 9 },
 }
 FS.CreatureDB[525] = {
     name = "Mangy Wolf",
@@ -520,7 +520,7 @@ FS.CreatureDB[525] = {
     classification = 0,
     isBoss = false,
     zones = {12},
-    baseStats = { hp = 40, atk = 9, def = 7, spd = 8 },
+    baseStats = { hp = 63, atk = 14, def = 11, spd = 12 },
 }
 FS.CreatureDB[531] = {
     name = "Skeletal Fiend",
@@ -532,7 +532,7 @@ FS.CreatureDB[531] = {
     classification = 0,
     isBoss = false,
     zones = {10},
-    baseStats = { hp = 155, atk = 51, def = 42, spd = 34 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[539] = {
     name = "Pygmy Venom Web Spider",
@@ -544,7 +544,7 @@ FS.CreatureDB[539] = {
     classification = 0,
     isBoss = false,
     zones = {10},
-    baseStats = { hp = 125, atk = 40, def = 33, spd = 28 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[547] = {
     name = "Great Goretusk",
@@ -556,7 +556,7 @@ FS.CreatureDB[547] = {
     classification = 0,
     isBoss = false,
     zones = {40, 44},
-    baseStats = { hp = 138, atk = 36, def = 34, spd = 21 },
+    baseStats = { hp = 60, atk = 16, def = 15, spd = 9 },
 }
 FS.CreatureDB[565] = {
     name = "Rabid Dire Wolf",
@@ -568,7 +568,7 @@ FS.CreatureDB[565] = {
     classification = 0,
     isBoss = false,
     zones = {10},
-    baseStats = { hp = 135, atk = 44, def = 36, spd = 30 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[569] = {
     name = "Green Recluse",
@@ -580,7 +580,7 @@ FS.CreatureDB[569] = {
     classification = 0,
     isBoss = false,
     zones = {10},
-    baseStats = { hp = 140, atk = 45, def = 37, spd = 31 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[570] = {
     name = "Brain Eater",
@@ -592,7 +592,7 @@ FS.CreatureDB[570] = {
     classification = 0,
     isBoss = false,
     zones = {10},
-    baseStats = { hp = 175, atk = 58, def = 48, spd = 39 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[572] = {
     name = "Leprithus",
@@ -604,7 +604,7 @@ FS.CreatureDB[572] = {
     classification = 4,
     isBoss = false,
     zones = {40},
-    baseStats = { hp = 182, atk = 59, def = 48, spd = 29 },
+    baseStats = { hp = 57, atk = 19, def = 15, spd = 9 },
 }
 FS.CreatureDB[573] = {
     name = "Foe Reaper 4000",
@@ -616,7 +616,7 @@ FS.CreatureDB[573] = {
     classification = 4,
     isBoss = false,
     zones = {40},
-    baseStats = { hp = 189, atk = 61, def = 50, spd = 30 },
+    baseStats = { hp = 58, atk = 18, def = 15, spd = 9 },
 }
 FS.CreatureDB[574] = {
     name = "Naraxis",
@@ -628,7 +628,7 @@ FS.CreatureDB[574] = {
     classification = 4,
     isBoss = false,
     zones = {10},
-    baseStats = { hp = 237, atk = 79, def = 65, spd = 38 },
+    baseStats = { hp = 56, atk = 19, def = 16, spd = 9 },
 }
 FS.CreatureDB[575] = {
     name = "Fire Elemental",
@@ -640,7 +640,7 @@ FS.CreatureDB[575] = {
     classification = 0,
     isBoss = false,
     zones = {796},
-    baseStats = { hp = 210, atk = 81, def = 58, spd = 47 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[604] = {
     name = "Plague Spreader",
@@ -652,7 +652,7 @@ FS.CreatureDB[604] = {
     classification = 0,
     isBoss = false,
     zones = {10},
-    baseStats = { hp = 170, atk = 56, def = 46, spd = 38 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[616] = {
     name = "Chatter",
@@ -664,7 +664,7 @@ FS.CreatureDB[616] = {
     classification = 4,
     isBoss = false,
     zones = {44},
-    baseStats = { hp = 210, atk = 69, def = 56, spd = 33 },
+    baseStats = { hp = 57, atk = 19, def = 15, spd = 9 },
 }
 FS.CreatureDB[624] = {
     name = "Undead Excavator",
@@ -676,7 +676,7 @@ FS.CreatureDB[624] = {
     classification = 1,
     isBoss = false,
     zones = {40, -3},
-    baseStats = { hp = 168, atk = 54, def = 44, spd = 26 },
+    baseStats = { hp = 63, atk = 20, def = 17, spd = 10 },
 }
 FS.CreatureDB[625] = {
     name = "Undead Dynamiter",
@@ -688,7 +688,7 @@ FS.CreatureDB[625] = {
     classification = 1,
     isBoss = false,
     zones = {40, -3},
-    baseStats = { hp = 168, atk = 54, def = 44, spd = 26 },
+    baseStats = { hp = 63, atk = 20, def = 17, spd = 10 },
 }
 FS.CreatureDB[626] = {
     name = "Foreman Thistlenettle",
@@ -700,7 +700,7 @@ FS.CreatureDB[626] = {
     classification = 1,
     isBoss = true,
     zones = {40, -3},
-    baseStats = { hp = 189, atk = 61, def = 50, spd = 30 },
+    baseStats = { hp = 63, atk = 20, def = 17, spd = 10 },
 }
 FS.CreatureDB[628] = {
     name = "Black Ravager",
@@ -712,7 +712,7 @@ FS.CreatureDB[628] = {
     classification = 0,
     isBoss = false,
     zones = {10},
-    baseStats = { hp = 155, atk = 51, def = 42, spd = 34 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[642] = {
     name = "Sneed's Shredder",
@@ -724,7 +724,7 @@ FS.CreatureDB[642] = {
     classification = 1,
     isBoss = false,
     zones = {1581},
-    baseStats = { hp = 189, atk = 61, def = 50, spd = 30 },
+    baseStats = { hp = 63, atk = 20, def = 17, spd = 10 },
 }
 FS.CreatureDB[681] = {
     name = "Young Stranglethorn Tiger",
@@ -736,7 +736,7 @@ FS.CreatureDB[681] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 185, atk = 74, def = 51, spd = 57 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[682] = {
     name = "Stranglethorn Tiger",
@@ -748,7 +748,7 @@ FS.CreatureDB[682] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 195, atk = 78, def = 54, spd = 61 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[683] = {
     name = "Young Panther",
@@ -760,7 +760,7 @@ FS.CreatureDB[683] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 185, atk = 74, def = 51, spd = 57 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[684] = {
     name = "Shadowmaw Panther",
@@ -772,7 +772,7 @@ FS.CreatureDB[684] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 220, atk = 88, def = 61, spd = 68 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[685] = {
     name = "Stranglethorn Raptor",
@@ -784,7 +784,7 @@ FS.CreatureDB[685] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 200, atk = 80, def = 55, spd = 62 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[686] = {
     name = "Lashtail Raptor",
@@ -796,7 +796,7 @@ FS.CreatureDB[686] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 210, atk = 85, def = 58, spd = 66 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[687] = {
     name = "Jungle Stalker",
@@ -808,7 +808,7 @@ FS.CreatureDB[687] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 235, atk = 96, def = 66, spd = 73 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[691] = {
     name = "Lesser Water Elemental",
@@ -820,7 +820,7 @@ FS.CreatureDB[691] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 215, atk = 82, def = 60, spd = 48 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[698] = {
     name = "Bloodscalp Tiger",
@@ -832,7 +832,7 @@ FS.CreatureDB[698] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 205, atk = 82, def = 57, spd = 63 },
+    baseStats = { hp = 51, atk = 20, def = 14, spd = 15 },
 }
 FS.CreatureDB[704] = {
     name = "Ragged Timber Wolf",
@@ -844,7 +844,7 @@ FS.CreatureDB[704] = {
     classification = 0,
     isBoss = false,
     zones = {1},
-    baseStats = { hp = 45, atk = 11, def = 9, spd = 9 },
+    baseStats = { hp = 61, atk = 15, def = 12, spd = 12 },
 }
 FS.CreatureDB[705] = {
     name = "Ragged Young Wolf",
@@ -856,7 +856,7 @@ FS.CreatureDB[705] = {
     classification = 0,
     isBoss = false,
     zones = {1},
-    baseStats = { hp = 40, atk = 9, def = 7, spd = 8 },
+    baseStats = { hp = 63, atk = 14, def = 11, spd = 12 },
 }
 FS.CreatureDB[708] = {
     name = "Small Crag Boar",
@@ -868,7 +868,7 @@ FS.CreatureDB[708] = {
     classification = 0,
     isBoss = false,
     zones = {1},
-    baseStats = { hp = 60, atk = 13, def = 11, spd = 9 },
+    baseStats = { hp = 64, atk = 14, def = 12, spd = 10 },
 }
 FS.CreatureDB[728] = {
     name = "Bhag'thera",
@@ -880,7 +880,7 @@ FS.CreatureDB[728] = {
     classification = 1,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 329, atk = 134, def = 92, spd = 73 },
+    baseStats = { hp = 58, atk = 23, def = 16, spd = 13 },
 }
 FS.CreatureDB[729] = {
     name = "Sin'Dall",
@@ -892,7 +892,7 @@ FS.CreatureDB[729] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 220, atk = 88, def = 61, spd = 68 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[730] = {
     name = "Tethis",
@@ -904,7 +904,7 @@ FS.CreatureDB[730] = {
     classification = 1,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 350, atk = 142, def = 98, spd = 78 },
+    baseStats = { hp = 58, atk = 23, def = 16, spd = 13 },
 }
 FS.CreatureDB[731] = {
     name = "King Bangalash",
@@ -916,7 +916,7 @@ FS.CreatureDB[731] = {
     classification = 1,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 350, atk = 142, def = 98, spd = 78 },
+    baseStats = { hp = 58, atk = 23, def = 16, spd = 13 },
 }
 FS.CreatureDB[736] = {
     name = "Panther",
@@ -928,7 +928,7 @@ FS.CreatureDB[736] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 195, atk = 78, def = 54, spd = 61 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[740] = {
     name = "Adolescent Whelp",
@@ -940,7 +940,7 @@ FS.CreatureDB[740] = {
     classification = 0,
     isBoss = false,
     zones = {8},
-    baseStats = { hp = 205, atk = 69, def = 57, spd = 46 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[741] = {
     name = "Dreaming Whelp",
@@ -952,7 +952,7 @@ FS.CreatureDB[741] = {
     classification = 0,
     isBoss = false,
     zones = {8},
-    baseStats = { hp = 210, atk = 71, def = 58, spd = 47 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[744] = {
     name = "Green Scalebane",
@@ -964,7 +964,7 @@ FS.CreatureDB[744] = {
     classification = 0,
     isBoss = false,
     zones = {8},
-    baseStats = { hp = 245, atk = 83, def = 69, spd = 55 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[746] = {
     name = "Elder Dragonkin",
@@ -976,7 +976,7 @@ FS.CreatureDB[746] = {
     classification = 0,
     isBoss = false,
     zones = {8},
-    baseStats = { hp = 260, atk = 89, def = 73, spd = 58 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[756] = {
     name = "Skullsplitter Panther",
@@ -988,7 +988,7 @@ FS.CreatureDB[756] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 240, atk = 97, def = 67, spd = 74 },
+    baseStats = { hp = 51, atk = 20, def = 14, spd = 15 },
 }
 FS.CreatureDB[764] = {
     name = "Swampwalker",
@@ -1000,7 +1000,7 @@ FS.CreatureDB[764] = {
     classification = 0,
     isBoss = false,
     zones = {8},
-    baseStats = { hp = 225, atk = 87, def = 63, spd = 50 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[765] = {
     name = "Swampwalker Elder",
@@ -1012,7 +1012,7 @@ FS.CreatureDB[765] = {
     classification = 0,
     isBoss = false,
     zones = {8},
-    baseStats = { hp = 230, atk = 89, def = 64, spd = 52 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[766] = {
     name = "Tangled Horror",
@@ -1024,7 +1024,7 @@ FS.CreatureDB[766] = {
     classification = 0,
     isBoss = false,
     zones = {8},
-    baseStats = { hp = 235, atk = 92, def = 66, spd = 53 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[767] = {
     name = "Swamp Jaguar",
@@ -1036,7 +1036,7 @@ FS.CreatureDB[767] = {
     classification = 0,
     isBoss = false,
     zones = {8},
-    baseStats = { hp = 215, atk = 86, def = 60, spd = 67 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[768] = {
     name = "Shadow Panther",
@@ -1048,7 +1048,7 @@ FS.CreatureDB[768] = {
     classification = 0,
     isBoss = false,
     zones = {8},
-    baseStats = { hp = 230, atk = 93, def = 64, spd = 72 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[769] = {
     name = "Deathstrike Tarantula",
@@ -1060,7 +1060,7 @@ FS.CreatureDB[769] = {
     classification = 0,
     isBoss = false,
     zones = {8},
-    baseStats = { hp = 235, atk = 80, def = 66, spd = 53 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[771] = {
     name = "Commander Felstrom",
@@ -1072,7 +1072,7 @@ FS.CreatureDB[771] = {
     classification = 4,
     isBoss = false,
     zones = {10},
-    baseStats = { hp = 273, atk = 91, def = 75, spd = 44 },
+    baseStats = { hp = 56, atk = 19, def = 16, spd = 9 },
 }
 FS.CreatureDB[772] = {
     name = "Stranglethorn Tigress",
@@ -1084,7 +1084,7 @@ FS.CreatureDB[772] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 220, atk = 88, def = 61, spd = 68 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[785] = {
     name = "Skeletal Warder",
@@ -1096,7 +1096,7 @@ FS.CreatureDB[785] = {
     classification = 0,
     isBoss = false,
     zones = {10},
-    baseStats = { hp = 175, atk = 58, def = 48, spd = 39 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[787] = {
     name = "Skeletal Healer",
@@ -1108,7 +1108,7 @@ FS.CreatureDB[787] = {
     classification = 0,
     isBoss = false,
     zones = {10},
-    baseStats = { hp = 165, atk = 54, def = 45, spd = 37 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[822] = {
     name = "Young Forest Bear",
@@ -1120,7 +1120,7 @@ FS.CreatureDB[822] = {
     classification = 0,
     isBoss = false,
     zones = {12},
-    baseStats = { hp = 90, atk = 22, def = 20, spd = 13 },
+    baseStats = { hp = 62, atk = 15, def = 14, spd = 9 },
 }
 FS.CreatureDB[830] = {
     name = "Sand Crawler",
@@ -1132,7 +1132,7 @@ FS.CreatureDB[830] = {
     classification = 0,
     isBoss = false,
     zones = {40},
-    baseStats = { hp = 100, atk = 31, def = 25, spd = 22 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[831] = {
     name = "Sea Crawler",
@@ -1144,7 +1144,7 @@ FS.CreatureDB[831] = {
     classification = 0,
     isBoss = false,
     zones = {40},
-    baseStats = { hp = 110, atk = 35, def = 28, spd = 24 },
+    baseStats = { hp = 56, atk = 18, def = 14, spd = 12 },
 }
 FS.CreatureDB[832] = {
     name = "Dust Devil",
@@ -1156,7 +1156,7 @@ FS.CreatureDB[832] = {
     classification = 0,
     isBoss = false,
     zones = {40},
-    baseStats = { hp = 125, atk = 46, def = 33, spd = 28 },
+    baseStats = { hp = 54, atk = 20, def = 14, spd = 12 },
 }
 FS.CreatureDB[833] = {
     name = "Coyote Packleader",
@@ -1168,7 +1168,7 @@ FS.CreatureDB[833] = {
     classification = 0,
     isBoss = false,
     zones = {40},
-    baseStats = { hp = 90, atk = 27, def = 22, spd = 20 },
+    baseStats = { hp = 56, atk = 17, def = 14, spd = 13 },
 }
 FS.CreatureDB[834] = {
     name = "Coyote",
@@ -1180,7 +1180,7 @@ FS.CreatureDB[834] = {
     classification = 0,
     isBoss = false,
     zones = {40},
-    baseStats = { hp = 85, atk = 26, def = 21, spd = 19 },
+    baseStats = { hp = 56, atk = 17, def = 14, spd = 13 },
 }
 FS.CreatureDB[846] = {
     name = "Ghoul",
@@ -1192,7 +1192,7 @@ FS.CreatureDB[846] = {
     classification = 0,
     isBoss = false,
     zones = {40},
-    baseStats = { hp = 105, atk = 33, def = 27, spd = 23 },
+    baseStats = { hp = 56, atk = 18, def = 14, spd = 12 },
 }
 FS.CreatureDB[854] = {
     name = "Young Jungle Stalker",
@@ -1204,7 +1204,7 @@ FS.CreatureDB[854] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 215, atk = 86, def = 60, spd = 67 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[855] = {
     name = "Young Stranglethorn Raptor",
@@ -1216,7 +1216,7 @@ FS.CreatureDB[855] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 185, atk = 74, def = 51, spd = 57 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[856] = {
     name = "Young Lashtail Raptor",
@@ -1228,7 +1228,7 @@ FS.CreatureDB[856] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 200, atk = 80, def = 55, spd = 62 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[858] = {
     name = "Sorrow Spinner",
@@ -1240,7 +1240,7 @@ FS.CreatureDB[858] = {
     classification = 0,
     isBoss = false,
     zones = {8},
-    baseStats = { hp = 215, atk = 72, def = 60, spd = 48 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[922] = {
     name = "Silt Crawler",
@@ -1252,7 +1252,7 @@ FS.CreatureDB[922] = {
     classification = 0,
     isBoss = false,
     zones = {8},
-    baseStats = { hp = 235, atk = 80, def = 66, spd = 53 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[923] = {
     name = "Young Black Ravager",
@@ -1264,7 +1264,7 @@ FS.CreatureDB[923] = {
     classification = 0,
     isBoss = false,
     zones = {10},
-    baseStats = { hp = 150, atk = 49, def = 40, spd = 33 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[930] = {
     name = "Black Widow Hatchling",
@@ -1276,7 +1276,7 @@ FS.CreatureDB[930] = {
     classification = 0,
     isBoss = false,
     zones = {10},
-    baseStats = { hp = 145, atk = 47, def = 39, spd = 32 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[948] = {
     name = "Rotted One",
@@ -1288,7 +1288,7 @@ FS.CreatureDB[948] = {
     classification = 0,
     isBoss = false,
     zones = {10},
-    baseStats = { hp = 160, atk = 53, def = 43, spd = 36 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[949] = {
     name = "Carrion Recluse",
@@ -1300,7 +1300,7 @@ FS.CreatureDB[949] = {
     classification = 0,
     isBoss = false,
     zones = {10},
-    baseStats = { hp = 160, atk = 53, def = 43, spd = 36 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[976] = {
     name = "Kurzen War Tiger",
@@ -1312,7 +1312,7 @@ FS.CreatureDB[976] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 195, atk = 78, def = 54, spd = 61 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[977] = {
     name = "Kurzen War Panther",
@@ -1324,7 +1324,7 @@ FS.CreatureDB[977] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 195, atk = 78, def = 54, spd = 61 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[1015] = {
     name = "Highland Raptor",
@@ -1336,7 +1336,7 @@ FS.CreatureDB[1015] = {
     classification = 0,
     isBoss = false,
     zones = {11},
-    baseStats = { hp = 150, atk = 58, def = 40, spd = 46 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[1016] = {
     name = "Highland Lashtail",
@@ -1348,7 +1348,7 @@ FS.CreatureDB[1016] = {
     classification = 0,
     isBoss = false,
     zones = {11},
-    baseStats = { hp = 155, atk = 61, def = 42, spd = 48 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[1017] = {
     name = "Highland Scytheclaw",
@@ -1360,7 +1360,7 @@ FS.CreatureDB[1017] = {
     classification = 0,
     isBoss = false,
     zones = {11},
-    baseStats = { hp = 160, atk = 63, def = 43, spd = 49 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[1018] = {
     name = "Highland Razormaw",
@@ -1372,7 +1372,7 @@ FS.CreatureDB[1018] = {
     classification = 0,
     isBoss = false,
     zones = {11},
-    baseStats = { hp = 170, atk = 67, def = 46, spd = 52 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[1019] = {
     name = "Elder Razormaw",
@@ -1384,7 +1384,7 @@ FS.CreatureDB[1019] = {
     classification = 0,
     isBoss = false,
     zones = {11},
-    baseStats = { hp = 180, atk = 72, def = 49, spd = 56 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[1020] = {
     name = "Mottled Raptor",
@@ -1396,7 +1396,7 @@ FS.CreatureDB[1020] = {
     classification = 0,
     isBoss = false,
     zones = {11},
-    baseStats = { hp = 145, atk = 56, def = 39, spd = 44 },
+    baseStats = { hp = 51, atk = 20, def = 14, spd = 15 },
 }
 FS.CreatureDB[1021] = {
     name = "Mottled Screecher",
@@ -1408,7 +1408,7 @@ FS.CreatureDB[1021] = {
     classification = 0,
     isBoss = false,
     zones = {11},
-    baseStats = { hp = 155, atk = 61, def = 42, spd = 48 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[1022] = {
     name = "Mottled Scytheclaw",
@@ -1420,7 +1420,7 @@ FS.CreatureDB[1022] = {
     classification = 0,
     isBoss = false,
     zones = {11},
-    baseStats = { hp = 160, atk = 63, def = 43, spd = 49 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[1023] = {
     name = "Mottled Razormaw",
@@ -1432,7 +1432,7 @@ FS.CreatureDB[1023] = {
     classification = 0,
     isBoss = false,
     zones = {11},
-    baseStats = { hp = 165, atk = 64, def = 45, spd = 51 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[1039] = {
     name = "Fen Dweller",
@@ -1444,7 +1444,7 @@ FS.CreatureDB[1039] = {
     classification = 0,
     isBoss = false,
     zones = {11},
-    baseStats = { hp = 150, atk = 56, def = 40, spd = 33 },
+    baseStats = { hp = 54, atk = 20, def = 14, spd = 12 },
 }
 FS.CreatureDB[1040] = {
     name = "Fen Creeper",
@@ -1456,7 +1456,7 @@ FS.CreatureDB[1040] = {
     classification = 0,
     isBoss = false,
     zones = {11},
-    baseStats = { hp = 155, atk = 58, def = 42, spd = 34 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[1041] = {
     name = "Fen Lord",
@@ -1468,7 +1468,7 @@ FS.CreatureDB[1041] = {
     classification = 0,
     isBoss = false,
     zones = {11},
-    baseStats = { hp = 160, atk = 60, def = 43, spd = 36 },
+    baseStats = { hp = 54, atk = 20, def = 14, spd = 12 },
 }
 FS.CreatureDB[1042] = {
     name = "Red Whelp",
@@ -1480,7 +1480,7 @@ FS.CreatureDB[1042] = {
     classification = 0,
     isBoss = false,
     zones = {11},
-    baseStats = { hp = 150, atk = 49, def = 40, spd = 33 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[1043] = {
     name = "Lost Whelp",
@@ -1492,7 +1492,7 @@ FS.CreatureDB[1043] = {
     classification = 0,
     isBoss = false,
     zones = {11},
-    baseStats = { hp = 155, atk = 51, def = 42, spd = 34 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[1044] = {
     name = "Flamesnorting Whelp",
@@ -1504,7 +1504,7 @@ FS.CreatureDB[1044] = {
     classification = 0,
     isBoss = false,
     zones = {11},
-    baseStats = { hp = 165, atk = 54, def = 45, spd = 37 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[1047] = {
     name = "Red Scalebane",
@@ -1516,7 +1516,7 @@ FS.CreatureDB[1047] = {
     classification = 1,
     isBoss = false,
     zones = {11},
-    baseStats = { hp = 461, atk = 159, def = 132, spd = 74 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[1048] = {
     name = "Scalebane Lieutenant",
@@ -1528,7 +1528,7 @@ FS.CreatureDB[1048] = {
     classification = 1,
     isBoss = false,
     zones = {11},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[1063] = {
     name = "Jade",
@@ -1540,7 +1540,7 @@ FS.CreatureDB[1063] = {
     classification = 2,
     isBoss = false,
     zones = {},
-    baseStats = { hp = 378, atk = 129, def = 107, spd = 61 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[1069] = {
     name = "Crimson Whelp",
@@ -1552,7 +1552,7 @@ FS.CreatureDB[1069] = {
     classification = 0,
     isBoss = false,
     zones = {11},
-    baseStats = { hp = 160, atk = 53, def = 43, spd = 36 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[1081] = {
     name = "Mire Lord",
@@ -1564,7 +1564,7 @@ FS.CreatureDB[1081] = {
     classification = 0,
     isBoss = false,
     zones = {8},
-    baseStats = { hp = 245, atk = 95, def = 69, spd = 55 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[1082] = {
     name = "Sawtooth Crocolisk",
@@ -1576,7 +1576,7 @@ FS.CreatureDB[1082] = {
     classification = 0,
     isBoss = false,
     zones = {8},
-    baseStats = { hp = 225, atk = 76, def = 63, spd = 50 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[1084] = {
     name = "Young Sawtooth Crocolisk",
@@ -1588,7 +1588,7 @@ FS.CreatureDB[1084] = {
     classification = 0,
     isBoss = false,
     zones = {8},
-    baseStats = { hp = 210, atk = 71, def = 58, spd = 47 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[1085] = {
     name = "Elder Stranglethorn Tiger",
@@ -1600,7 +1600,7 @@ FS.CreatureDB[1085] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 205, atk = 82, def = 57, spd = 63 },
+    baseStats = { hp = 51, atk = 20, def = 14, spd = 15 },
 }
 FS.CreatureDB[1087] = {
     name = "Sawtooth Snapper",
@@ -1612,7 +1612,7 @@ FS.CreatureDB[1087] = {
     classification = 0,
     isBoss = false,
     zones = {8},
-    baseStats = { hp = 240, atk = 81, def = 67, spd = 54 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[1088] = {
     name = "Monstrous Crawler",
@@ -1624,7 +1624,7 @@ FS.CreatureDB[1088] = {
     classification = 0,
     isBoss = false,
     zones = {8},
-    baseStats = { hp = 250, atk = 85, def = 70, spd = 56 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[1108] = {
     name = "Mistvale Gorilla",
@@ -1636,7 +1636,7 @@ FS.CreatureDB[1108] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 195, atk = 65, def = 54, spd = 44 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[1109] = {
     name = "Fleshripper",
@@ -1648,7 +1648,7 @@ FS.CreatureDB[1109] = {
     classification = 0,
     isBoss = false,
     zones = {40},
-    baseStats = { hp = 100, atk = 31, def = 25, spd = 22 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[1110] = {
     name = "Skeletal Raider",
@@ -1660,7 +1660,7 @@ FS.CreatureDB[1110] = {
     classification = 0,
     isBoss = false,
     zones = {10},
-    baseStats = { hp = 170, atk = 56, def = 46, spd = 38 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[1111] = {
     name = "Leech Stalker",
@@ -1672,7 +1672,7 @@ FS.CreatureDB[1111] = {
     classification = 0,
     isBoss = false,
     zones = {11},
-    baseStats = { hp = 140, atk = 45, def = 37, spd = 31 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[1112] = {
     name = "Leech Widow",
@@ -1684,7 +1684,7 @@ FS.CreatureDB[1112] = {
     classification = 4,
     isBoss = false,
     zones = {11},
-    baseStats = { hp = 217, atk = 71, def = 58, spd = 34 },
+    baseStats = { hp = 57, atk = 19, def = 15, spd = 9 },
 }
 FS.CreatureDB[1114] = {
     name = "Jungle Thunderer",
@@ -1696,7 +1696,7 @@ FS.CreatureDB[1114] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 220, atk = 74, def = 61, spd = 49 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[1125] = {
     name = "Crag Boar",
@@ -1708,7 +1708,7 @@ FS.CreatureDB[1125] = {
     classification = 0,
     isBoss = false,
     zones = {1},
-    baseStats = { hp = 54, atk = 11, def = 10, spd = 7 },
+    baseStats = { hp = 66, atk = 13, def = 12, spd = 9 },
 }
 FS.CreatureDB[1126] = {
     name = "Large Crag Boar",
@@ -1720,7 +1720,7 @@ FS.CreatureDB[1126] = {
     classification = 0,
     isBoss = false,
     zones = {1},
-    baseStats = { hp = 78, atk = 18, def = 17, spd = 11 },
+    baseStats = { hp = 62, atk = 15, def = 14, spd = 9 },
 }
 FS.CreatureDB[1127] = {
     name = "Elder Crag Boar",
@@ -1732,7 +1732,7 @@ FS.CreatureDB[1127] = {
     classification = 0,
     isBoss = false,
     zones = {1},
-    baseStats = { hp = 84, atk = 20, def = 18, spd = 12 },
+    baseStats = { hp = 63, atk = 15, def = 13, spd = 9 },
 }
 FS.CreatureDB[1128] = {
     name = "Young Black Bear",
@@ -1744,7 +1744,7 @@ FS.CreatureDB[1128] = {
     classification = 0,
     isBoss = false,
     zones = {1},
-    baseStats = { hp = 72, atk = 17, def = 14, spd = 11 },
+    baseStats = { hp = 63, atk = 15, def = 12, spd = 10 },
 }
 FS.CreatureDB[1129] = {
     name = "Black Bear",
@@ -1756,7 +1756,7 @@ FS.CreatureDB[1129] = {
     classification = 0,
     isBoss = false,
     zones = {1},
-    baseStats = { hp = 78, atk = 18, def = 17, spd = 11 },
+    baseStats = { hp = 62, atk = 15, def = 14, spd = 9 },
 }
 FS.CreatureDB[1130] = {
     name = "Bjarn",
@@ -1768,7 +1768,7 @@ FS.CreatureDB[1130] = {
     classification = 4,
     isBoss = false,
     zones = {1},
-    baseStats = { hp = 159, atk = 41, def = 37, spd = 17 },
+    baseStats = { hp = 62, atk = 16, def = 15, spd = 7 },
 }
 FS.CreatureDB[1131] = {
     name = "Winter Wolf",
@@ -1780,7 +1780,7 @@ FS.CreatureDB[1131] = {
     classification = 0,
     isBoss = false,
     zones = {1},
-    baseStats = { hp = 70, atk = 20, def = 16, spd = 15 },
+    baseStats = { hp = 58, atk = 17, def = 13, spd = 12 },
 }
 FS.CreatureDB[1132] = {
     name = "Timber",
@@ -1792,7 +1792,7 @@ FS.CreatureDB[1132] = {
     classification = 4,
     isBoss = false,
     zones = {1},
-    baseStats = { hp = 118, atk = 36, def = 29, spd = 19 },
+    baseStats = { hp = 59, atk = 18, def = 14, spd = 9 },
 }
 FS.CreatureDB[1133] = {
     name = "Starving Winter Wolf",
@@ -1804,7 +1804,7 @@ FS.CreatureDB[1133] = {
     classification = 0,
     isBoss = false,
     zones = {1},
-    baseStats = { hp = 75, atk = 22, def = 18, spd = 16 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[1138] = {
     name = "Snow Tracker Wolf",
@@ -1816,7 +1816,7 @@ FS.CreatureDB[1138] = {
     classification = 0,
     isBoss = false,
     zones = {1},
-    baseStats = { hp = 65, atk = 18, def = 15, spd = 14 },
+    baseStats = { hp = 59, atk = 16, def = 13, spd = 12 },
 }
 FS.CreatureDB[1140] = {
     name = "Razormaw Matriarch",
@@ -1828,7 +1828,7 @@ FS.CreatureDB[1140] = {
     classification = 4,
     isBoss = false,
     zones = {11},
-    baseStats = { hp = 266, atk = 106, def = 73, spd = 58 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[1150] = {
     name = "River Crocolisk",
@@ -1840,7 +1840,7 @@ FS.CreatureDB[1150] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 185, atk = 62, def = 51, spd = 41 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[1151] = {
     name = "Saltwater Crocolisk",
@@ -1852,7 +1852,7 @@ FS.CreatureDB[1151] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 210, atk = 71, def = 58, spd = 47 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[1152] = {
     name = "Snapjaw Crocolisk",
@@ -1864,7 +1864,7 @@ FS.CreatureDB[1152] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 210, atk = 71, def = 58, spd = 47 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[1157] = {
     name = "Cursed Sailor",
@@ -1876,7 +1876,7 @@ FS.CreatureDB[1157] = {
     classification = 0,
     isBoss = false,
     zones = {11},
-    baseStats = { hp = 165, atk = 54, def = 45, spd = 37 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[1158] = {
     name = "Cursed Marine",
@@ -1888,7 +1888,7 @@ FS.CreatureDB[1158] = {
     classification = 0,
     isBoss = false,
     zones = {11},
-    baseStats = { hp = 170, atk = 56, def = 46, spd = 38 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[1159] = {
     name = "First Mate Snellig",
@@ -1900,7 +1900,7 @@ FS.CreatureDB[1159] = {
     classification = 0,
     isBoss = false,
     zones = {11},
-    baseStats = { hp = 180, atk = 60, def = 49, spd = 40 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[1184] = {
     name = "Cliff Lurker",
@@ -1912,7 +1912,7 @@ FS.CreatureDB[1184] = {
     classification = 0,
     isBoss = false,
     zones = {38},
-    baseStats = { hp = 100, atk = 31, def = 25, spd = 22 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[1185] = {
     name = "Wood Lurker",
@@ -1924,7 +1924,7 @@ FS.CreatureDB[1185] = {
     classification = 0,
     isBoss = false,
     zones = {38},
-    baseStats = { hp = 120, atk = 38, def = 31, spd = 26 },
+    baseStats = { hp = 56, atk = 18, def = 14, spd = 12 },
 }
 FS.CreatureDB[1186] = {
     name = "Elder Black Bear",
@@ -1936,7 +1936,7 @@ FS.CreatureDB[1186] = {
     classification = 0,
     isBoss = false,
     zones = {38},
-    baseStats = { hp = 108, atk = 27, def = 25, spd = 17 },
+    baseStats = { hp = 61, atk = 15, def = 14, spd = 10 },
 }
 FS.CreatureDB[1188] = {
     name = "Grizzled Black Bear",
@@ -1948,7 +1948,7 @@ FS.CreatureDB[1188] = {
     classification = 0,
     isBoss = false,
     zones = {38},
-    baseStats = { hp = 120, atk = 31, def = 28, spd = 18 },
+    baseStats = { hp = 61, atk = 16, def = 14, spd = 9 },
 }
 FS.CreatureDB[1189] = {
     name = "Black Bear Patriarch",
@@ -1960,7 +1960,7 @@ FS.CreatureDB[1189] = {
     classification = 0,
     isBoss = false,
     zones = {38},
-    baseStats = { hp = 138, atk = 36, def = 34, spd = 21 },
+    baseStats = { hp = 60, atk = 16, def = 15, spd = 9 },
 }
 FS.CreatureDB[1190] = {
     name = "Mountain Boar",
@@ -1972,7 +1972,7 @@ FS.CreatureDB[1190] = {
     classification = 0,
     isBoss = false,
     zones = {38},
-    baseStats = { hp = 102, atk = 26, def = 24, spd = 16 },
+    baseStats = { hp = 61, atk = 15, def = 14, spd = 10 },
 }
 FS.CreatureDB[1191] = {
     name = "Mangy Mountain Boar",
@@ -1984,7 +1984,7 @@ FS.CreatureDB[1191] = {
     classification = 0,
     isBoss = false,
     zones = {38},
-    baseStats = { hp = 126, atk = 33, def = 31, spd = 19 },
+    baseStats = { hp = 60, atk = 16, def = 15, spd = 9 },
 }
 FS.CreatureDB[1192] = {
     name = "Elder Mountain Boar",
@@ -1996,7 +1996,7 @@ FS.CreatureDB[1192] = {
     classification = 0,
     isBoss = false,
     zones = {38},
-    baseStats = { hp = 138, atk = 36, def = 34, spd = 21 },
+    baseStats = { hp = 60, atk = 16, def = 15, spd = 9 },
 }
 FS.CreatureDB[1194] = {
     name = "Mountain Buzzard",
@@ -2008,7 +2008,7 @@ FS.CreatureDB[1194] = {
     classification = 0,
     isBoss = false,
     zones = {38},
-    baseStats = { hp = 110, atk = 35, def = 28, spd = 24 },
+    baseStats = { hp = 56, atk = 18, def = 14, spd = 12 },
 }
 FS.CreatureDB[1195] = {
     name = "Forest Lurker",
@@ -2020,7 +2020,7 @@ FS.CreatureDB[1195] = {
     classification = 0,
     isBoss = false,
     zones = {38},
-    baseStats = { hp = 85, atk = 26, def = 21, spd = 19 },
+    baseStats = { hp = 56, atk = 17, def = 14, spd = 13 },
 }
 FS.CreatureDB[1196] = {
     name = "Ice Claw Bear",
@@ -2032,7 +2032,7 @@ FS.CreatureDB[1196] = {
     classification = 0,
     isBoss = false,
     zones = {1},
-    baseStats = { hp = 84, atk = 20, def = 18, spd = 12 },
+    baseStats = { hp = 63, atk = 15, def = 13, spd = 9 },
 }
 FS.CreatureDB[1199] = {
     name = "Juvenile Snow Leopard",
@@ -2044,7 +2044,7 @@ FS.CreatureDB[1199] = {
     classification = 0,
     isBoss = false,
     zones = {1},
-    baseStats = { hp = 60, atk = 20, def = 13, spd = 18 },
+    baseStats = { hp = 54, atk = 18, def = 12, spd = 16 },
 }
 FS.CreatureDB[1201] = {
     name = "Snow Leopard",
@@ -2056,7 +2056,7 @@ FS.CreatureDB[1201] = {
     classification = 0,
     isBoss = false,
     zones = {1},
-    baseStats = { hp = 70, atk = 24, def = 16, spd = 21 },
+    baseStats = { hp = 54, atk = 18, def = 12, spd = 16 },
 }
 FS.CreatureDB[1216] = {
     name = "Shore Crawler",
@@ -2068,7 +2068,7 @@ FS.CreatureDB[1216] = {
     classification = 0,
     isBoss = false,
     zones = {40},
-    baseStats = { hp = 120, atk = 38, def = 31, spd = 26 },
+    baseStats = { hp = 56, atk = 18, def = 14, spd = 12 },
 }
 FS.CreatureDB[1225] = {
     name = "Ol' Sooty",
@@ -2080,7 +2080,7 @@ FS.CreatureDB[1225] = {
     classification = 1,
     isBoss = false,
     zones = {38},
-    baseStats = { hp = 226, atk = 61, def = 57, spd = 25 },
+    baseStats = { hp = 68, atk = 18, def = 17, spd = 7 },
 }
 FS.CreatureDB[1244] = {
     name = "Rethiel the Greenwarden",
@@ -2092,7 +2092,7 @@ FS.CreatureDB[1244] = {
     classification = 0,
     isBoss = false,
     zones = {11},
-    baseStats = { hp = 185, atk = 71, def = 51, spd = 41 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[1258] = {
     name = "Black Ravager Mastiff",
@@ -2104,7 +2104,7 @@ FS.CreatureDB[1258] = {
     classification = 0,
     isBoss = false,
     zones = {10},
-    baseStats = { hp = 160, atk = 53, def = 43, spd = 36 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[1270] = {
     name = "Fetid Corpse",
@@ -2116,7 +2116,7 @@ FS.CreatureDB[1270] = {
     classification = 0,
     isBoss = false,
     zones = {10},
-    baseStats = { hp = 180, atk = 60, def = 49, spd = 40 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[1353] = {
     name = "Sarltooth",
@@ -2128,7 +2128,7 @@ FS.CreatureDB[1353] = {
     classification = 0,
     isBoss = false,
     zones = {11},
-    baseStats = { hp = 180, atk = 72, def = 49, spd = 56 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[1400] = {
     name = "Wetlands Crocolisk",
@@ -2140,7 +2140,7 @@ FS.CreatureDB[1400] = {
     classification = 0,
     isBoss = false,
     zones = {11},
-    baseStats = { hp = 150, atk = 49, def = 40, spd = 33 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[1417] = {
     name = "Young Wetlands Crocolisk",
@@ -2152,7 +2152,7 @@ FS.CreatureDB[1417] = {
     classification = 0,
     isBoss = false,
     zones = {11},
-    baseStats = { hp = 140, atk = 45, def = 37, spd = 31 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[1488] = {
     name = "Zanzil Zombie",
@@ -2164,7 +2164,7 @@ FS.CreatureDB[1488] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 250, atk = 85, def = 70, spd = 56 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[1489] = {
     name = "Zanzil Hunter",
@@ -2176,7 +2176,7 @@ FS.CreatureDB[1489] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 250, atk = 85, def = 70, spd = 56 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[1501] = {
     name = "Mindless Zombie",
@@ -2188,7 +2188,7 @@ FS.CreatureDB[1501] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 40, atk = 9, def = 7, spd = 8 },
+    baseStats = { hp = 63, atk = 14, def = 11, spd = 12 },
 }
 FS.CreatureDB[1502] = {
     name = "Wretched Zombie",
@@ -2200,7 +2200,7 @@ FS.CreatureDB[1502] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 40, atk = 9, def = 7, spd = 8 },
+    baseStats = { hp = 63, atk = 14, def = 11, spd = 12 },
 }
 FS.CreatureDB[1504] = {
     name = "Young Night Web Spider",
@@ -2212,7 +2212,7 @@ FS.CreatureDB[1504] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 45, atk = 11, def = 9, spd = 9 },
+    baseStats = { hp = 61, atk = 15, def = 12, spd = 12 },
 }
 FS.CreatureDB[1505] = {
     name = "Night Web Spider",
@@ -2224,7 +2224,7 @@ FS.CreatureDB[1505] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 50, atk = 13, def = 10, spd = 11 },
+    baseStats = { hp = 60, atk = 15, def = 12, spd = 13 },
 }
 FS.CreatureDB[1508] = {
     name = "Young Scavenger",
@@ -2236,7 +2236,7 @@ FS.CreatureDB[1508] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 40, atk = 9, def = 7, spd = 8 },
+    baseStats = { hp = 63, atk = 14, def = 11, spd = 12 },
 }
 FS.CreatureDB[1509] = {
     name = "Ragged Scavenger",
@@ -2248,7 +2248,7 @@ FS.CreatureDB[1509] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 45, atk = 11, def = 9, spd = 9 },
+    baseStats = { hp = 61, atk = 15, def = 12, spd = 12 },
 }
 FS.CreatureDB[1511] = {
     name = "Enraged Silverback Gorilla",
@@ -2260,7 +2260,7 @@ FS.CreatureDB[1511] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 240, atk = 81, def = 67, spd = 54 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[1512] = {
     name = "Duskbat",
@@ -2272,7 +2272,7 @@ FS.CreatureDB[1512] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 40, atk = 9, def = 7, spd = 10 },
+    baseStats = { hp = 60, atk = 14, def = 11, spd = 15 },
 }
 FS.CreatureDB[1513] = {
     name = "Mangy Duskbat",
@@ -2284,7 +2284,7 @@ FS.CreatureDB[1513] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 50, atk = 13, def = 10, spd = 12 },
+    baseStats = { hp = 59, atk = 15, def = 12, spd = 14 },
 }
 FS.CreatureDB[1516] = {
     name = "Konda",
@@ -2296,7 +2296,7 @@ FS.CreatureDB[1516] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 250, atk = 85, def = 70, spd = 56 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[1520] = {
     name = "Rattlecage Soldier",
@@ -2308,7 +2308,7 @@ FS.CreatureDB[1520] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 65, atk = 18, def = 15, spd = 14 },
+    baseStats = { hp = 59, atk = 16, def = 13, spd = 12 },
 }
 FS.CreatureDB[1522] = {
     name = "Darkeye Bonecaster",
@@ -2320,7 +2320,7 @@ FS.CreatureDB[1522] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 70, atk = 20, def = 16, spd = 15 },
+    baseStats = { hp = 58, atk = 17, def = 13, spd = 12 },
 }
 FS.CreatureDB[1523] = {
     name = "Cracked Skull Soldier",
@@ -2332,7 +2332,7 @@ FS.CreatureDB[1523] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 75, atk = 22, def = 18, spd = 16 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[1525] = {
     name = "Rotting Dead",
@@ -2344,7 +2344,7 @@ FS.CreatureDB[1525] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 60, atk = 17, def = 13, spd = 13 },
+    baseStats = { hp = 57, atk = 17, def = 13, spd = 13 },
 }
 FS.CreatureDB[1526] = {
     name = "Ravaged Corpse",
@@ -2356,7 +2356,7 @@ FS.CreatureDB[1526] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 65, atk = 18, def = 15, spd = 14 },
+    baseStats = { hp = 59, atk = 16, def = 13, spd = 12 },
 }
 FS.CreatureDB[1527] = {
     name = "Hungering Dead",
@@ -2368,7 +2368,7 @@ FS.CreatureDB[1527] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 70, atk = 20, def = 16, spd = 15 },
+    baseStats = { hp = 58, atk = 17, def = 13, spd = 12 },
 }
 FS.CreatureDB[1528] = {
     name = "Shambling Horror",
@@ -2380,7 +2380,7 @@ FS.CreatureDB[1528] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 75, atk = 22, def = 18, spd = 16 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[1529] = {
     name = "Bleeding Horror",
@@ -2392,7 +2392,7 @@ FS.CreatureDB[1529] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 80, atk = 24, def = 19, spd = 17 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[1530] = {
     name = "Rotting Ancestor",
@@ -2404,7 +2404,7 @@ FS.CreatureDB[1530] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 85, atk = 26, def = 21, spd = 19 },
+    baseStats = { hp = 56, atk = 17, def = 14, spd = 13 },
 }
 FS.CreatureDB[1531] = {
     name = "Lost Soul",
@@ -2416,7 +2416,7 @@ FS.CreatureDB[1531] = {
     classification = 4,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 91, atk = 26, def = 21, spd = 14 },
+    baseStats = { hp = 60, atk = 17, def = 14, spd = 9 },
 }
 FS.CreatureDB[1532] = {
     name = "Wandering Spirit",
@@ -2428,7 +2428,7 @@ FS.CreatureDB[1532] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 85, atk = 26, def = 21, spd = 19 },
+    baseStats = { hp = 56, atk = 17, def = 14, spd = 13 },
 }
 FS.CreatureDB[1533] = {
     name = "Tormented Spirit",
@@ -2440,7 +2440,7 @@ FS.CreatureDB[1533] = {
     classification = 4,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 105, atk = 31, def = 25, spd = 16 },
+    baseStats = { hp = 59, atk = 18, def = 14, spd = 9 },
 }
 FS.CreatureDB[1534] = {
     name = "Wailing Ancestor",
@@ -2452,7 +2452,7 @@ FS.CreatureDB[1534] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 80, atk = 24, def = 19, spd = 17 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[1553] = {
     name = "Greater Duskbat",
@@ -2464,7 +2464,7 @@ FS.CreatureDB[1553] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 65, atk = 18, def = 15, spd = 16 },
+    baseStats = { hp = 57, atk = 16, def = 13, spd = 14 },
 }
 FS.CreatureDB[1554] = {
     name = "Vampiric Duskbat",
@@ -2476,7 +2476,7 @@ FS.CreatureDB[1554] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 75, atk = 22, def = 18, spd = 19 },
+    baseStats = { hp = 57, atk = 16, def = 13, spd = 14 },
 }
 FS.CreatureDB[1555] = {
     name = "Vicious Night Web Spider",
@@ -2488,7 +2488,7 @@ FS.CreatureDB[1555] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 80, atk = 24, def = 19, spd = 17 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[1557] = {
     name = "Elder Mistvale Gorilla",
@@ -2500,7 +2500,7 @@ FS.CreatureDB[1557] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 235, atk = 80, def = 66, spd = 53 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[1558] = {
     name = "Silverback Patriarch",
@@ -2512,7 +2512,7 @@ FS.CreatureDB[1558] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 245, atk = 83, def = 69, spd = 55 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[1654] = {
     name = "Gregor Agamand",
@@ -2524,7 +2524,7 @@ FS.CreatureDB[1654] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 85, atk = 26, def = 21, spd = 19 },
+    baseStats = { hp = 56, atk = 17, def = 14, spd = 13 },
 }
 FS.CreatureDB[1655] = {
     name = "Nissa Agamand",
@@ -2536,7 +2536,7 @@ FS.CreatureDB[1655] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 85, atk = 26, def = 21, spd = 19 },
+    baseStats = { hp = 56, atk = 17, def = 14, spd = 13 },
 }
 FS.CreatureDB[1656] = {
     name = "Thurman Agamand",
@@ -2548,7 +2548,7 @@ FS.CreatureDB[1656] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 85, atk = 26, def = 21, spd = 19 },
+    baseStats = { hp = 56, atk = 17, def = 14, spd = 13 },
 }
 FS.CreatureDB[1657] = {
     name = "Devlin Agamand",
@@ -2560,7 +2560,7 @@ FS.CreatureDB[1657] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 80, atk = 24, def = 19, spd = 17 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[1675] = {
     name = "Rot Hide Mongrel",
@@ -2572,7 +2572,7 @@ FS.CreatureDB[1675] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 70, atk = 20, def = 16, spd = 15 },
+    baseStats = { hp = 58, atk = 17, def = 13, spd = 12 },
 }
 FS.CreatureDB[1688] = {
     name = "Night Web Matriarch",
@@ -2584,7 +2584,7 @@ FS.CreatureDB[1688] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 60, atk = 17, def = 13, spd = 13 },
+    baseStats = { hp = 57, atk = 17, def = 13, spd = 13 },
 }
 FS.CreatureDB[1689] = {
     name = "Scarred Crag Boar",
@@ -2596,7 +2596,7 @@ FS.CreatureDB[1689] = {
     classification = 0,
     isBoss = false,
     zones = {1},
-    baseStats = { hp = 96, atk = 24, def = 21, spd = 14 },
+    baseStats = { hp = 62, atk = 15, def = 14, spd = 9 },
 }
 FS.CreatureDB[1693] = {
     name = "Loch Crocolisk",
@@ -2608,7 +2608,7 @@ FS.CreatureDB[1693] = {
     classification = 0,
     isBoss = false,
     zones = {38},
-    baseStats = { hp = 105, atk = 33, def = 27, spd = 23 },
+    baseStats = { hp = 56, atk = 18, def = 14, spd = 12 },
 }
 FS.CreatureDB[1713] = {
     name = "Elder Shadowmaw Panther",
@@ -2620,7 +2620,7 @@ FS.CreatureDB[1713] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 245, atk = 99, def = 69, spd = 76 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[1749] = {
     name = "Lady Katrana Prestor",
@@ -2632,7 +2632,7 @@ FS.CreatureDB[1749] = {
     classification = 0,
     isBoss = false,
     zones = {1519},
-    baseStats = { hp = 345, atk = 119, def = 99, spd = 78 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[1753] = {
     name = "Maggot Eye",
@@ -2644,7 +2644,7 @@ FS.CreatureDB[1753] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 85, atk = 26, def = 21, spd = 19 },
+    baseStats = { hp = 56, atk = 17, def = 14, spd = 13 },
 }
 FS.CreatureDB[1765] = {
     name = "Worg",
@@ -2656,7 +2656,7 @@ FS.CreatureDB[1765] = {
     classification = 0,
     isBoss = false,
     zones = {85, 130},
-    baseStats = { hp = 85, atk = 26, def = 21, spd = 19 },
+    baseStats = { hp = 56, atk = 17, def = 14, spd = 13 },
 }
 FS.CreatureDB[1766] = {
     name = "Mottled Worg",
@@ -2668,7 +2668,7 @@ FS.CreatureDB[1766] = {
     classification = 0,
     isBoss = false,
     zones = {130},
-    baseStats = { hp = 90, atk = 27, def = 22, spd = 20 },
+    baseStats = { hp = 56, atk = 17, def = 14, spd = 13 },
 }
 FS.CreatureDB[1772] = {
     name = "Rot Hide Gladerunner",
@@ -2680,7 +2680,7 @@ FS.CreatureDB[1772] = {
     classification = 0,
     isBoss = false,
     zones = {130},
-    baseStats = { hp = 90, atk = 27, def = 22, spd = 20 },
+    baseStats = { hp = 56, atk = 17, def = 14, spd = 13 },
 }
 FS.CreatureDB[1773] = {
     name = "Rot Hide Mystic",
@@ -2692,7 +2692,7 @@ FS.CreatureDB[1773] = {
     classification = 0,
     isBoss = false,
     zones = {130},
-    baseStats = { hp = 95, atk = 29, def = 24, spd = 21 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[1778] = {
     name = "Ferocious Grizzled Bear",
@@ -2704,7 +2704,7 @@ FS.CreatureDB[1778] = {
     classification = 0,
     isBoss = false,
     zones = {130},
-    baseStats = { hp = 108, atk = 27, def = 25, spd = 17 },
+    baseStats = { hp = 61, atk = 15, def = 14, spd = 10 },
 }
 FS.CreatureDB[1780] = {
     name = "Moss Stalker",
@@ -2716,7 +2716,7 @@ FS.CreatureDB[1780] = {
     classification = 0,
     isBoss = false,
     zones = {130},
-    baseStats = { hp = 95, atk = 29, def = 24, spd = 21 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[1781] = {
     name = "Mist Creeper",
@@ -2728,7 +2728,7 @@ FS.CreatureDB[1781] = {
     classification = 0,
     isBoss = false,
     zones = {130},
-    baseStats = { hp = 100, atk = 31, def = 25, spd = 22 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[1783] = {
     name = "Skeletal Flayer",
@@ -2740,7 +2740,7 @@ FS.CreatureDB[1783] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 285, atk = 98, def = 81, spd = 64 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[1785] = {
     name = "Skeletal Terror",
@@ -2752,7 +2752,7 @@ FS.CreatureDB[1785] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 300, atk = 103, def = 85, spd = 68 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[1787] = {
     name = "Skeletal Executioner",
@@ -2764,7 +2764,7 @@ FS.CreatureDB[1787] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 305, atk = 105, def = 87, spd = 69 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[1788] = {
     name = "Skeletal Warlord",
@@ -2776,7 +2776,7 @@ FS.CreatureDB[1788] = {
     classification = 1,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 441, atk = 152, def = 125, spd = 71 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[1789] = {
     name = "Skeletal Acolyte",
@@ -2788,7 +2788,7 @@ FS.CreatureDB[1789] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 310, atk = 107, def = 88, spd = 70 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[1791] = {
     name = "Slavering Ghoul",
@@ -2800,7 +2800,7 @@ FS.CreatureDB[1791] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 290, atk = 99, def = 82, spd = 65 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[1793] = {
     name = "Rotting Ghoul",
@@ -2812,7 +2812,7 @@ FS.CreatureDB[1793] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 305, atk = 105, def = 87, spd = 69 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[1794] = {
     name = "Soulless Ghoul",
@@ -2824,7 +2824,7 @@ FS.CreatureDB[1794] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 305, atk = 105, def = 87, spd = 69 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[1795] = {
     name = "Searing Ghoul",
@@ -2836,7 +2836,7 @@ FS.CreatureDB[1795] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 310, atk = 107, def = 88, spd = 70 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[1796] = {
     name = "Freezing Ghoul",
@@ -2848,7 +2848,7 @@ FS.CreatureDB[1796] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 310, atk = 107, def = 88, spd = 70 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[1797] = {
     name = "Giant Grizzled Bear",
@@ -2860,7 +2860,7 @@ FS.CreatureDB[1797] = {
     classification = 0,
     isBoss = false,
     zones = {130},
-    baseStats = { hp = 114, atk = 29, def = 27, spd = 17 },
+    baseStats = { hp = 61, atk = 16, def = 14, spd = 9 },
 }
 FS.CreatureDB[1798] = {
     name = "Tortured Soul",
@@ -2872,7 +2872,7 @@ FS.CreatureDB[1798] = {
     classification = 0,
     isBoss = false,
     zones = {},
-    baseStats = { hp = 310, atk = 107, def = 88, spd = 70 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[1802] = {
     name = "Hungering Wraith",
@@ -2884,7 +2884,7 @@ FS.CreatureDB[1802] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 320, atk = 110, def = 91, spd = 72 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[1804] = {
     name = "Wailing Death",
@@ -2896,7 +2896,7 @@ FS.CreatureDB[1804] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 315, atk = 108, def = 90, spd = 71 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[1805] = {
     name = "Flesh Golem",
@@ -2908,7 +2908,7 @@ FS.CreatureDB[1805] = {
     classification = 1,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 441, atk = 152, def = 125, spd = 71 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[1809] = {
     name = "Carrion Vulture",
@@ -2920,7 +2920,7 @@ FS.CreatureDB[1809] = {
     classification = 0,
     isBoss = false,
     zones = {28, 85},
-    baseStats = { hp = 290, atk = 99, def = 82, spd = 65 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[1812] = {
     name = "Rotting Behemoth",
@@ -2932,7 +2932,7 @@ FS.CreatureDB[1812] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 310, atk = 123, def = 88, spd = 70 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[1813] = {
     name = "Decaying Horror",
@@ -2944,7 +2944,7 @@ FS.CreatureDB[1813] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 315, atk = 124, def = 90, spd = 71 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[1815] = {
     name = "Diseased Black Bear",
@@ -2956,7 +2956,7 @@ FS.CreatureDB[1815] = {
     classification = 0,
     isBoss = false,
     zones = {28, 85},
-    baseStats = { hp = 348, atk = 99, def = 94, spd = 55 },
+    baseStats = { hp = 58, atk = 17, def = 16, spd = 9 },
 }
 FS.CreatureDB[1816] = {
     name = "Diseased Grizzly",
@@ -2968,7 +2968,7 @@ FS.CreatureDB[1816] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 372, atk = 107, def = 101, spd = 59 },
+    baseStats = { hp = 58, atk = 17, def = 16, spd = 9 },
 }
 FS.CreatureDB[1817] = {
     name = "Diseased Wolf",
@@ -2980,7 +2980,7 @@ FS.CreatureDB[1817] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 300, atk = 103, def = 85, spd = 68 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[1821] = {
     name = "Carrion Lurker",
@@ -2992,7 +2992,7 @@ FS.CreatureDB[1821] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 295, atk = 101, def = 84, spd = 66 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[1822] = {
     name = "Venom Mist Lurker",
@@ -3004,7 +3004,7 @@ FS.CreatureDB[1822] = {
     classification = 0,
     isBoss = false,
     zones = {28, 85},
-    baseStats = { hp = 285, atk = 98, def = 81, spd = 64 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[1824] = {
     name = "Plague Lurker",
@@ -3016,7 +3016,7 @@ FS.CreatureDB[1824] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 305, atk = 105, def = 87, spd = 69 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[1847] = {
     name = "Foulmane",
@@ -3028,7 +3028,7 @@ FS.CreatureDB[1847] = {
     classification = 4,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 413, atk = 142, def = 117, spd = 66 },
+    baseStats = { hp = 56, atk = 19, def = 16, spd = 9 },
 }
 FS.CreatureDB[1850] = {
     name = "Putridius",
@@ -3040,7 +3040,7 @@ FS.CreatureDB[1850] = {
     classification = 2,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 454, atk = 157, def = 130, spd = 73 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[1851] = {
     name = "The Husk",
@@ -3052,7 +3052,7 @@ FS.CreatureDB[1851] = {
     classification = 4,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 482, atk = 192, def = 138, spd = 78 },
+    baseStats = { hp = 53, atk = 22, def = 16, spd = 9 },
 }
 FS.CreatureDB[1852] = {
     name = "Araj the Summoner",
@@ -3064,7 +3064,7 @@ FS.CreatureDB[1852] = {
     classification = 1,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[1865] = {
     name = "Ravenclaw Raider",
@@ -3076,7 +3076,7 @@ FS.CreatureDB[1865] = {
     classification = 0,
     isBoss = false,
     zones = {130},
-    baseStats = { hp = 95, atk = 29, def = 24, spd = 21 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[1866] = {
     name = "Ravenclaw Slave",
@@ -3088,7 +3088,7 @@ FS.CreatureDB[1866] = {
     classification = 0,
     isBoss = false,
     zones = {130},
-    baseStats = { hp = 90, atk = 27, def = 22, spd = 20 },
+    baseStats = { hp = 56, atk = 17, def = 14, spd = 13 },
 }
 FS.CreatureDB[1868] = {
     name = "Ravenclaw Servant",
@@ -3100,7 +3100,7 @@ FS.CreatureDB[1868] = {
     classification = 0,
     isBoss = false,
     zones = {130},
-    baseStats = { hp = 100, atk = 31, def = 25, spd = 22 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[1870] = {
     name = "Hand of Ravenclaw",
@@ -3112,7 +3112,7 @@ FS.CreatureDB[1870] = {
     classification = 0,
     isBoss = false,
     zones = {130},
-    baseStats = { hp = 110, atk = 35, def = 28, spd = 24 },
+    baseStats = { hp = 56, atk = 18, def = 14, spd = 12 },
 }
 FS.CreatureDB[1890] = {
     name = "Rattlecage Skeleton",
@@ -3124,7 +3124,7 @@ FS.CreatureDB[1890] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 45, atk = 11, def = 9, spd = 9 },
+    baseStats = { hp = 61, atk = 15, def = 12, spd = 12 },
 }
 FS.CreatureDB[1916] = {
     name = "Stephen Bhartec",
@@ -3136,7 +3136,7 @@ FS.CreatureDB[1916] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 45, atk = 11, def = 9, spd = 9 },
+    baseStats = { hp = 61, atk = 15, def = 12, spd = 12 },
 }
 FS.CreatureDB[1917] = {
     name = "Daniel Ulfman",
@@ -3148,7 +3148,7 @@ FS.CreatureDB[1917] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 45, atk = 11, def = 9, spd = 9 },
+    baseStats = { hp = 61, atk = 15, def = 12, spd = 12 },
 }
 FS.CreatureDB[1918] = {
     name = "Karrel Grayves",
@@ -3160,7 +3160,7 @@ FS.CreatureDB[1918] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 45, atk = 11, def = 9, spd = 9 },
+    baseStats = { hp = 61, atk = 15, def = 12, spd = 12 },
 }
 FS.CreatureDB[1919] = {
     name = "Samuel Fipps",
@@ -3172,7 +3172,7 @@ FS.CreatureDB[1919] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 60, atk = 17, def = 13, spd = 13 },
+    baseStats = { hp = 57, atk = 17, def = 13, spd = 13 },
 }
 FS.CreatureDB[1922] = {
     name = "Gray Forest Wolf",
@@ -3184,7 +3184,7 @@ FS.CreatureDB[1922] = {
     classification = 0,
     isBoss = false,
     zones = {12},
-    baseStats = { hp = 70, atk = 20, def = 16, spd = 15 },
+    baseStats = { hp = 58, atk = 17, def = 13, spd = 12 },
 }
 FS.CreatureDB[1923] = {
     name = "Bloodsnout Worg",
@@ -3196,7 +3196,7 @@ FS.CreatureDB[1923] = {
     classification = 0,
     isBoss = false,
     zones = {130},
-    baseStats = { hp = 115, atk = 36, def = 30, spd = 25 },
+    baseStats = { hp = 56, atk = 17, def = 15, spd = 12 },
 }
 FS.CreatureDB[1939] = {
     name = "Rot Hide Brute",
@@ -3208,7 +3208,7 @@ FS.CreatureDB[1939] = {
     classification = 0,
     isBoss = false,
     zones = {130},
-    baseStats = { hp = 115, atk = 36, def = 30, spd = 25 },
+    baseStats = { hp = 56, atk = 17, def = 15, spd = 12 },
 }
 FS.CreatureDB[1940] = {
     name = "Rot Hide Plague Weaver",
@@ -3220,7 +3220,7 @@ FS.CreatureDB[1940] = {
     classification = 0,
     isBoss = false,
     zones = {130},
-    baseStats = { hp = 120, atk = 38, def = 31, spd = 26 },
+    baseStats = { hp = 56, atk = 18, def = 14, spd = 12 },
 }
 FS.CreatureDB[1941] = {
     name = "Rot Hide Graverobber",
@@ -3232,7 +3232,7 @@ FS.CreatureDB[1941] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 65, atk = 18, def = 15, spd = 14 },
+    baseStats = { hp = 59, atk = 16, def = 13, spd = 12 },
 }
 FS.CreatureDB[1942] = {
     name = "Rot Hide Savage",
@@ -3244,7 +3244,7 @@ FS.CreatureDB[1942] = {
     classification = 0,
     isBoss = false,
     zones = {130},
-    baseStats = { hp = 125, atk = 40, def = 33, spd = 28 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[1943] = {
     name = "Raging Rot Hide",
@@ -3256,7 +3256,7 @@ FS.CreatureDB[1943] = {
     classification = 0,
     isBoss = false,
     zones = {130},
-    baseStats = { hp = 125, atk = 40, def = 33, spd = 28 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[1944] = {
     name = "Rot Hide Bruiser",
@@ -3268,7 +3268,7 @@ FS.CreatureDB[1944] = {
     classification = 4,
     isBoss = false,
     zones = {130},
-    baseStats = { hp = 203, atk = 66, def = 54, spd = 32 },
+    baseStats = { hp = 57, atk = 19, def = 15, spd = 9 },
 }
 FS.CreatureDB[1946] = {
     name = "Lillith Nefara",
@@ -3280,7 +3280,7 @@ FS.CreatureDB[1946] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 95, atk = 29, def = 24, spd = 21 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[1948] = {
     name = "Snarlmane",
@@ -3292,7 +3292,7 @@ FS.CreatureDB[1948] = {
     classification = 4,
     isBoss = false,
     zones = {130},
-    baseStats = { hp = 210, atk = 69, def = 56, spd = 33 },
+    baseStats = { hp = 57, atk = 19, def = 15, spd = 9 },
     signatureAbilities = { 1004, 201, 104, 205 },
 }
 FS.CreatureDB[1953] = {
@@ -3305,7 +3305,7 @@ FS.CreatureDB[1953] = {
     classification = 0,
     isBoss = false,
     zones = {36, 130},
-    baseStats = { hp = 110, atk = 40, def = 28, spd = 24 },
+    baseStats = { hp = 54, atk = 20, def = 14, spd = 12 },
 }
 FS.CreatureDB[1954] = {
     name = "Elder Lake Skulker",
@@ -3317,7 +3317,7 @@ FS.CreatureDB[1954] = {
     classification = 0,
     isBoss = false,
     zones = {36, 130},
-    baseStats = { hp = 115, atk = 41, def = 30, spd = 25 },
+    baseStats = { hp = 55, atk = 19, def = 14, spd = 12 },
 }
 FS.CreatureDB[1955] = {
     name = "Lake Creeper",
@@ -3329,7 +3329,7 @@ FS.CreatureDB[1955] = {
     classification = 0,
     isBoss = false,
     zones = {130},
-    baseStats = { hp = 120, atk = 43, def = 31, spd = 26 },
+    baseStats = { hp = 54, atk = 20, def = 14, spd = 12 },
 }
 FS.CreatureDB[1956] = {
     name = "Elder Lake Creeper",
@@ -3341,7 +3341,7 @@ FS.CreatureDB[1956] = {
     classification = 0,
     isBoss = false,
     zones = {130},
-    baseStats = { hp = 125, atk = 46, def = 33, spd = 28 },
+    baseStats = { hp = 54, atk = 20, def = 14, spd = 12 },
 }
 FS.CreatureDB[1961] = {
     name = "Mangeclaw",
@@ -3353,7 +3353,7 @@ FS.CreatureDB[1961] = {
     classification = 0,
     isBoss = false,
     zones = {1},
-    baseStats = { hp = 108, atk = 27, def = 25, spd = 17 },
+    baseStats = { hp = 61, atk = 15, def = 14, spd = 10 },
 }
 FS.CreatureDB[1971] = {
     name = "Ivar the Foul",
@@ -3365,7 +3365,7 @@ FS.CreatureDB[1971] = {
     classification = 0,
     isBoss = false,
     zones = {130},
-    baseStats = { hp = 100, atk = 31, def = 25, spd = 22 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[1974] = {
     name = "Ravenclaw Drudger",
@@ -3377,7 +3377,7 @@ FS.CreatureDB[1974] = {
     classification = 0,
     isBoss = false,
     zones = {130},
-    baseStats = { hp = 130, atk = 42, def = 34, spd = 29 },
+    baseStats = { hp = 56, atk = 18, def = 14, spd = 12 },
 }
 FS.CreatureDB[1983] = {
     name = "Nightlash",
@@ -3389,7 +3389,7 @@ FS.CreatureDB[1983] = {
     classification = 0,
     isBoss = false,
     zones = {130},
-    baseStats = { hp = 105, atk = 33, def = 27, spd = 23 },
+    baseStats = { hp = 56, atk = 18, def = 14, spd = 12 },
 }
 FS.CreatureDB[1984] = {
     name = "Young Thistle Boar",
@@ -3401,7 +3401,7 @@ FS.CreatureDB[1984] = {
     classification = 0,
     isBoss = false,
     zones = {141},
-    baseStats = { hp = 48, atk = 9, def = 8, spd = 6 },
+    baseStats = { hp = 68, atk = 13, def = 11, spd = 8 },
 }
 FS.CreatureDB[1985] = {
     name = "Thistle Boar",
@@ -3413,7 +3413,7 @@ FS.CreatureDB[1985] = {
     classification = 0,
     isBoss = false,
     zones = {141},
-    baseStats = { hp = 54, atk = 11, def = 10, spd = 7 },
+    baseStats = { hp = 66, atk = 13, def = 12, spd = 9 },
 }
 FS.CreatureDB[1986] = {
     name = "Webwood Spider",
@@ -3425,7 +3425,7 @@ FS.CreatureDB[1986] = {
     classification = 0,
     isBoss = false,
     zones = {141},
-    baseStats = { hp = 50, atk = 13, def = 10, spd = 11 },
+    baseStats = { hp = 60, atk = 15, def = 12, spd = 13 },
 }
 FS.CreatureDB[1994] = {
     name = "Githyiss the Vile",
@@ -3437,7 +3437,7 @@ FS.CreatureDB[1994] = {
     classification = 0,
     isBoss = false,
     zones = {141},
-    baseStats = { hp = 60, atk = 17, def = 13, spd = 13 },
+    baseStats = { hp = 57, atk = 17, def = 13, spd = 13 },
 }
 FS.CreatureDB[1995] = {
     name = "Strigid Owl",
@@ -3449,7 +3449,7 @@ FS.CreatureDB[1995] = {
     classification = 0,
     isBoss = false,
     zones = {141},
-    baseStats = { hp = 60, atk = 17, def = 13, spd = 13 },
+    baseStats = { hp = 57, atk = 17, def = 13, spd = 13 },
 }
 FS.CreatureDB[1996] = {
     name = "Strigid Screecher",
@@ -3461,7 +3461,7 @@ FS.CreatureDB[1996] = {
     classification = 0,
     isBoss = false,
     zones = {141, 1657},
-    baseStats = { hp = 70, atk = 20, def = 16, spd = 15 },
+    baseStats = { hp = 58, atk = 17, def = 13, spd = 12 },
 }
 FS.CreatureDB[1997] = {
     name = "Strigid Hunter",
@@ -3473,7 +3473,7 @@ FS.CreatureDB[1997] = {
     classification = 0,
     isBoss = false,
     zones = {141},
-    baseStats = { hp = 75, atk = 22, def = 18, spd = 16 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[1998] = {
     name = "Webwood Lurker",
@@ -3485,7 +3485,7 @@ FS.CreatureDB[1998] = {
     classification = 0,
     isBoss = false,
     zones = {141},
-    baseStats = { hp = 60, atk = 17, def = 13, spd = 13 },
+    baseStats = { hp = 57, atk = 17, def = 13, spd = 13 },
 }
 FS.CreatureDB[1999] = {
     name = "Webwood Venomfang",
@@ -3497,7 +3497,7 @@ FS.CreatureDB[1999] = {
     classification = 0,
     isBoss = false,
     zones = {141},
-    baseStats = { hp = 70, atk = 20, def = 16, spd = 15 },
+    baseStats = { hp = 58, atk = 17, def = 13, spd = 12 },
 }
 FS.CreatureDB[2000] = {
     name = "Webwood Silkspinner",
@@ -3509,7 +3509,7 @@ FS.CreatureDB[2000] = {
     classification = 0,
     isBoss = false,
     zones = {141},
-    baseStats = { hp = 75, atk = 22, def = 18, spd = 16 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[2001] = {
     name = "Giant Webwood Spider",
@@ -3521,7 +3521,7 @@ FS.CreatureDB[2001] = {
     classification = 0,
     isBoss = false,
     zones = {141},
-    baseStats = { hp = 85, atk = 26, def = 21, spd = 19 },
+    baseStats = { hp = 56, atk = 17, def = 14, spd = 13 },
 }
 FS.CreatureDB[2022] = {
     name = "Timberling",
@@ -3533,7 +3533,7 @@ FS.CreatureDB[2022] = {
     classification = 0,
     isBoss = false,
     zones = {141},
-    baseStats = { hp = 60, atk = 19, def = 13, spd = 13 },
+    baseStats = { hp = 58, atk = 18, def = 12, spd = 12 },
 }
 FS.CreatureDB[2025] = {
     name = "Timberling Bark Ripper",
@@ -3545,7 +3545,7 @@ FS.CreatureDB[2025] = {
     classification = 0,
     isBoss = false,
     zones = {141},
-    baseStats = { hp = 70, atk = 23, def = 16, spd = 15 },
+    baseStats = { hp = 56, atk = 19, def = 13, spd = 12 },
 }
 FS.CreatureDB[2027] = {
     name = "Timberling Trampler",
@@ -3557,7 +3557,7 @@ FS.CreatureDB[2027] = {
     classification = 0,
     isBoss = false,
     zones = {141},
-    baseStats = { hp = 75, atk = 25, def = 18, spd = 16 },
+    baseStats = { hp = 56, atk = 19, def = 13, spd = 12 },
 }
 FS.CreatureDB[2029] = {
     name = "Timberling Mire Beast",
@@ -3569,7 +3569,7 @@ FS.CreatureDB[2029] = {
     classification = 0,
     isBoss = false,
     zones = {141},
-    baseStats = { hp = 80, atk = 27, def = 19, spd = 17 },
+    baseStats = { hp = 56, atk = 19, def = 13, spd = 12 },
 }
 FS.CreatureDB[2030] = {
     name = "Elder Timberling",
@@ -3581,7 +3581,7 @@ FS.CreatureDB[2030] = {
     classification = 0,
     isBoss = false,
     zones = {141},
-    baseStats = { hp = 85, atk = 29, def = 21, spd = 19 },
+    baseStats = { hp = 55, atk = 19, def = 14, spd = 12 },
 }
 FS.CreatureDB[2031] = {
     name = "Young Nightsaber",
@@ -3593,7 +3593,7 @@ FS.CreatureDB[2031] = {
     classification = 0,
     isBoss = false,
     zones = {141},
-    baseStats = { hp = 40, atk = 10, def = 7, spd = 12 },
+    baseStats = { hp = 59, atk = 14, def = 10, spd = 17 },
 }
 FS.CreatureDB[2032] = {
     name = "Mangy Nightsaber",
@@ -3605,7 +3605,7 @@ FS.CreatureDB[2032] = {
     classification = 0,
     isBoss = false,
     zones = {141},
-    baseStats = { hp = 45, atk = 13, def = 9, spd = 13 },
+    baseStats = { hp = 57, atk = 16, def = 11, spd = 16 },
 }
 FS.CreatureDB[2033] = {
     name = "Elder Nightsaber",
@@ -3617,7 +3617,7 @@ FS.CreatureDB[2033] = {
     classification = 0,
     isBoss = false,
     zones = {141},
-    baseStats = { hp = 75, atk = 26, def = 18, spd = 22 },
+    baseStats = { hp = 53, atk = 18, def = 13, spd = 16 },
 }
 FS.CreatureDB[2034] = {
     name = "Feral Nightsaber",
@@ -3629,7 +3629,7 @@ FS.CreatureDB[2034] = {
     classification = 0,
     isBoss = false,
     zones = {141},
-    baseStats = { hp = 85, atk = 31, def = 21, spd = 26 },
+    baseStats = { hp = 52, atk = 19, def = 13, spd = 16 },
 }
 FS.CreatureDB[2042] = {
     name = "Nightsaber",
@@ -3641,7 +3641,7 @@ FS.CreatureDB[2042] = {
     classification = 0,
     isBoss = false,
     zones = {141},
-    baseStats = { hp = 60, atk = 20, def = 13, spd = 18 },
+    baseStats = { hp = 54, atk = 18, def = 12, spd = 16 },
 }
 FS.CreatureDB[2043] = {
     name = "Nightsaber Stalker",
@@ -3653,7 +3653,7 @@ FS.CreatureDB[2043] = {
     classification = 0,
     isBoss = false,
     zones = {141},
-    baseStats = { hp = 70, atk = 24, def = 16, spd = 21 },
+    baseStats = { hp = 54, atk = 18, def = 12, spd = 16 },
 }
 FS.CreatureDB[2044] = {
     name = "Forlorn Spirit",
@@ -3665,7 +3665,7 @@ FS.CreatureDB[2044] = {
     classification = 0,
     isBoss = false,
     zones = {12, 40, 1519},
-    baseStats = { hp = 160, atk = 53, def = 43, spd = 36 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[2056] = {
     name = "Ravenclaw Apparition",
@@ -3677,7 +3677,7 @@ FS.CreatureDB[2056] = {
     classification = 0,
     isBoss = false,
     zones = {130},
-    baseStats = { hp = 155, atk = 51, def = 42, spd = 34 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[2069] = {
     name = "Moonstalker",
@@ -3689,7 +3689,7 @@ FS.CreatureDB[2069] = {
     classification = 0,
     isBoss = false,
     zones = {148},
-    baseStats = { hp = 105, atk = 39, def = 27, spd = 32 },
+    baseStats = { hp = 52, atk = 19, def = 13, spd = 16 },
 }
 FS.CreatureDB[2070] = {
     name = "Moonstalker Runt",
@@ -3701,7 +3701,7 @@ FS.CreatureDB[2070] = {
     classification = 0,
     isBoss = false,
     zones = {148},
-    baseStats = { hp = 100, atk = 37, def = 25, spd = 30 },
+    baseStats = { hp = 52, atk = 19, def = 13, spd = 16 },
 }
 FS.CreatureDB[2071] = {
     name = "Moonstalker Matriarch",
@@ -3713,7 +3713,7 @@ FS.CreatureDB[2071] = {
     classification = 0,
     isBoss = false,
     zones = {148},
-    baseStats = { hp = 130, atk = 50, def = 34, spd = 39 },
+    baseStats = { hp = 52, atk = 20, def = 13, spd = 15 },
 }
 FS.CreatureDB[2089] = {
     name = "Giant Wetlands Crocolisk",
@@ -3725,7 +3725,7 @@ FS.CreatureDB[2089] = {
     classification = 0,
     isBoss = false,
     zones = {11},
-    baseStats = { hp = 160, atk = 53, def = 43, spd = 36 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[2156] = {
     name = "Cracked Golem",
@@ -3737,7 +3737,7 @@ FS.CreatureDB[2156] = {
     classification = 0,
     isBoss = false,
     zones = {148},
-    baseStats = { hp = 125, atk = 46, def = 33, spd = 28 },
+    baseStats = { hp = 54, atk = 20, def = 14, spd = 12 },
 }
 FS.CreatureDB[2157] = {
     name = "Stone Behemoth",
@@ -3749,7 +3749,7 @@ FS.CreatureDB[2157] = {
     classification = 0,
     isBoss = false,
     zones = {148},
-    baseStats = { hp = 130, atk = 48, def = 34, spd = 29 },
+    baseStats = { hp = 54, atk = 20, def = 14, spd = 12 },
 }
 FS.CreatureDB[2163] = {
     name = "Thistle Bear",
@@ -3761,7 +3761,7 @@ FS.CreatureDB[2163] = {
     classification = 0,
     isBoss = false,
     zones = {148},
-    baseStats = { hp = 108, atk = 27, def = 25, spd = 17 },
+    baseStats = { hp = 61, atk = 15, def = 14, spd = 10 },
 }
 FS.CreatureDB[2165] = {
     name = "Grizzled Thistle Bear",
@@ -3773,7 +3773,7 @@ FS.CreatureDB[2165] = {
     classification = 0,
     isBoss = false,
     zones = {148},
-    baseStats = { hp = 138, atk = 36, def = 34, spd = 21 },
+    baseStats = { hp = 60, atk = 16, def = 15, spd = 9 },
 }
 FS.CreatureDB[2166] = {
     name = "Oakenscowl",
@@ -3785,7 +3785,7 @@ FS.CreatureDB[2166] = {
     classification = 1,
     isBoss = false,
     zones = {141},
-    baseStats = { hp = 112, atk = 37, def = 27, spd = 17 },
+    baseStats = { hp = 64, atk = 21, def = 15, spd = 10 },
 }
 FS.CreatureDB[2172] = {
     name = "Strider Clutchmother",
@@ -3797,7 +3797,7 @@ FS.CreatureDB[2172] = {
     classification = 4,
     isBoss = false,
     zones = {148},
-    baseStats = { hp = 189, atk = 61, def = 50, spd = 30 },
+    baseStats = { hp = 58, atk = 18, def = 15, spd = 9 },
 }
 FS.CreatureDB[2175] = {
     name = "Shadowclaw",
@@ -3809,7 +3809,7 @@ FS.CreatureDB[2175] = {
     classification = 4,
     isBoss = false,
     zones = {148},
-    baseStats = { hp = 140, atk = 51, def = 35, spd = 30 },
+    baseStats = { hp = 54, atk = 20, def = 14, spd = 12 },
 }
 FS.CreatureDB[2176] = {
     name = "Cursed Highborne",
@@ -3821,7 +3821,7 @@ FS.CreatureDB[2176] = {
     classification = 0,
     isBoss = false,
     zones = {148},
-    baseStats = { hp = 85, atk = 26, def = 21, spd = 19 },
+    baseStats = { hp = 56, atk = 17, def = 14, spd = 13 },
 }
 FS.CreatureDB[2177] = {
     name = "Writhing Highborne",
@@ -3833,7 +3833,7 @@ FS.CreatureDB[2177] = {
     classification = 0,
     isBoss = false,
     zones = {148},
-    baseStats = { hp = 90, atk = 27, def = 22, spd = 20 },
+    baseStats = { hp = 56, atk = 17, def = 14, spd = 13 },
 }
 FS.CreatureDB[2178] = {
     name = "Wailing Highborne",
@@ -3845,7 +3845,7 @@ FS.CreatureDB[2178] = {
     classification = 0,
     isBoss = false,
     zones = {148},
-    baseStats = { hp = 95, atk = 29, def = 24, spd = 21 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[2184] = {
     name = "Lady Moongazer",
@@ -3857,7 +3857,7 @@ FS.CreatureDB[2184] = {
     classification = 4,
     isBoss = false,
     zones = {148},
-    baseStats = { hp = 168, atk = 54, def = 44, spd = 26 },
+    baseStats = { hp = 58, atk = 18, def = 15, spd = 9 },
 }
 FS.CreatureDB[2227] = {
     name = "Sharlindra",
@@ -3869,7 +3869,7 @@ FS.CreatureDB[2227] = {
     classification = 0,
     isBoss = false,
     zones = {1497},
-    baseStats = { hp = 160, atk = 53, def = 43, spd = 36 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[2231] = {
     name = "Pygmy Tide Crawler",
@@ -3881,7 +3881,7 @@ FS.CreatureDB[2231] = {
     classification = 0,
     isBoss = false,
     zones = {148},
-    baseStats = { hp = 80, atk = 24, def = 19, spd = 17 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[2232] = {
     name = "Tide Crawler",
@@ -3893,7 +3893,7 @@ FS.CreatureDB[2232] = {
     classification = 0,
     isBoss = false,
     zones = {148},
-    baseStats = { hp = 100, atk = 31, def = 25, spd = 22 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[2233] = {
     name = "Encrusted Tide Crawler",
@@ -3905,7 +3905,7 @@ FS.CreatureDB[2233] = {
     classification = 0,
     isBoss = false,
     zones = {148},
-    baseStats = { hp = 130, atk = 42, def = 34, spd = 29 },
+    baseStats = { hp = 56, atk = 18, def = 14, spd = 12 },
 }
 FS.CreatureDB[2234] = {
     name = "Young Reef Crawler",
@@ -3917,7 +3917,7 @@ FS.CreatureDB[2234] = {
     classification = 0,
     isBoss = false,
     zones = {148},
-    baseStats = { hp = 85, atk = 26, def = 21, spd = 19 },
+    baseStats = { hp = 56, atk = 17, def = 14, spd = 13 },
 }
 FS.CreatureDB[2235] = {
     name = "Reef Crawler",
@@ -3929,7 +3929,7 @@ FS.CreatureDB[2235] = {
     classification = 0,
     isBoss = false,
     zones = {148, -6},
-    baseStats = { hp = 115, atk = 36, def = 30, spd = 25 },
+    baseStats = { hp = 56, atk = 17, def = 15, spd = 12 },
 }
 FS.CreatureDB[2236] = {
     name = "Raging Reef Crawler",
@@ -3941,7 +3941,7 @@ FS.CreatureDB[2236] = {
     classification = 0,
     isBoss = false,
     zones = {148},
-    baseStats = { hp = 135, atk = 44, def = 36, spd = 30 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[2237] = {
     name = "Moonstalker Sire",
@@ -3953,7 +3953,7 @@ FS.CreatureDB[2237] = {
     classification = 0,
     isBoss = false,
     zones = {148},
-    baseStats = { hp = 120, atk = 45, def = 31, spd = 37 },
+    baseStats = { hp = 52, atk = 19, def = 13, spd = 16 },
 }
 FS.CreatureDB[2258] = {
     name = "Stone Fury",
@@ -3965,7 +3965,7 @@ FS.CreatureDB[2258] = {
     classification = 4,
     isBoss = false,
     zones = {36},
-    baseStats = { hp = 308, atk = 119, def = 86, spd = 49 },
+    baseStats = { hp = 55, atk = 21, def = 15, spd = 9 },
 }
 FS.CreatureDB[2278] = {
     name = "Melisara",
@@ -3977,7 +3977,7 @@ FS.CreatureDB[2278] = {
     classification = 0,
     isBoss = false,
     zones = {267},
-    baseStats = { hp = 160, atk = 53, def = 43, spd = 36 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[2283] = {
     name = "Ravenclaw Regent",
@@ -3989,7 +3989,7 @@ FS.CreatureDB[2283] = {
     classification = 4,
     isBoss = false,
     zones = {130},
-    baseStats = { hp = 203, atk = 66, def = 54, spd = 32 },
+    baseStats = { hp = 57, atk = 19, def = 15, spd = 9 },
 }
 FS.CreatureDB[2321] = {
     name = "Foreststrider Fledgling",
@@ -4001,7 +4001,7 @@ FS.CreatureDB[2321] = {
     classification = 0,
     isBoss = false,
     zones = {148},
-    baseStats = { hp = 95, atk = 29, def = 24, spd = 21 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[2322] = {
     name = "Foreststrider",
@@ -4013,7 +4013,7 @@ FS.CreatureDB[2322] = {
     classification = 0,
     isBoss = false,
     zones = {148},
-    baseStats = { hp = 110, atk = 35, def = 28, spd = 24 },
+    baseStats = { hp = 56, atk = 18, def = 14, spd = 12 },
 }
 FS.CreatureDB[2323] = {
     name = "Giant Foreststrider",
@@ -4025,7 +4025,7 @@ FS.CreatureDB[2323] = {
     classification = 0,
     isBoss = false,
     zones = {148},
-    baseStats = { hp = 125, atk = 40, def = 33, spd = 28 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[2348] = {
     name = "Elder Moss Creeper",
@@ -4037,7 +4037,7 @@ FS.CreatureDB[2348] = {
     classification = 0,
     isBoss = false,
     zones = {267},
-    baseStats = { hp = 165, atk = 54, def = 45, spd = 37 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[2349] = {
     name = "Giant Moss Creeper",
@@ -4049,7 +4049,7 @@ FS.CreatureDB[2349] = {
     classification = 0,
     isBoss = false,
     zones = {36, 267},
-    baseStats = { hp = 155, atk = 51, def = 42, spd = 34 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[2350] = {
     name = "Forest Moss Creeper",
@@ -4061,7 +4061,7 @@ FS.CreatureDB[2350] = {
     classification = 0,
     isBoss = false,
     zones = {36, 267},
-    baseStats = { hp = 135, atk = 44, def = 36, spd = 30 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[2351] = {
     name = "Gray Bear",
@@ -4073,7 +4073,7 @@ FS.CreatureDB[2351] = {
     classification = 0,
     isBoss = false,
     zones = {36, 267},
-    baseStats = { hp = 168, atk = 45, def = 42, spd = 26 },
+    baseStats = { hp = 60, atk = 16, def = 15, spd = 9 },
 }
 FS.CreatureDB[2354] = {
     name = "Vicious Gray Bear",
@@ -4085,7 +4085,7 @@ FS.CreatureDB[2354] = {
     classification = 0,
     isBoss = false,
     zones = {267},
-    baseStats = { hp = 174, atk = 47, def = 44, spd = 27 },
+    baseStats = { hp = 60, atk = 16, def = 15, spd = 9 },
 }
 FS.CreatureDB[2356] = {
     name = "Elder Gray Bear",
@@ -4097,7 +4097,7 @@ FS.CreatureDB[2356] = {
     classification = 0,
     isBoss = false,
     zones = {36, 267},
-    baseStats = { hp = 192, atk = 53, def = 49, spd = 30 },
+    baseStats = { hp = 60, atk = 16, def = 15, spd = 9 },
 }
 FS.CreatureDB[2359] = {
     name = "Elemental Slave",
@@ -4109,7 +4109,7 @@ FS.CreatureDB[2359] = {
     classification = 0,
     isBoss = false,
     zones = {36},
-    baseStats = { hp = 200, atk = 77, def = 55, spd = 45 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[2384] = {
     name = "Starving Mountain Lion",
@@ -4121,7 +4121,7 @@ FS.CreatureDB[2384] = {
     classification = 0,
     isBoss = false,
     zones = {36, 267},
-    baseStats = { hp = 150, atk = 58, def = 40, spd = 46 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[2385] = {
     name = "Feral Mountain Lion",
@@ -4133,7 +4133,7 @@ FS.CreatureDB[2385] = {
     classification = 0,
     isBoss = false,
     zones = {267},
-    baseStats = { hp = 170, atk = 67, def = 46, spd = 52 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[2406] = {
     name = "Mountain Lion",
@@ -4145,7 +4145,7 @@ FS.CreatureDB[2406] = {
     classification = 0,
     isBoss = false,
     zones = {36, 267},
-    baseStats = { hp = 195, atk = 78, def = 54, spd = 61 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[2407] = {
     name = "Hulking Mountain Lion",
@@ -4157,7 +4157,7 @@ FS.CreatureDB[2407] = {
     classification = 0,
     isBoss = false,
     zones = {36, 267},
-    baseStats = { hp = 200, atk = 80, def = 55, spd = 62 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[2408] = {
     name = "Snapjaw",
@@ -4169,7 +4169,7 @@ FS.CreatureDB[2408] = {
     classification = 0,
     isBoss = false,
     zones = {36, 267},
-    baseStats = { hp = 185, atk = 62, def = 51, spd = 41 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[2433] = {
     name = "Helcular's Remains",
@@ -4181,7 +4181,7 @@ FS.CreatureDB[2433] = {
     classification = 1,
     isBoss = false,
     zones = {267},
-    baseStats = { hp = 357, atk = 122, def = 100, spd = 57 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[2447] = {
     name = "Narillasanz",
@@ -4193,7 +4193,7 @@ FS.CreatureDB[2447] = {
     classification = 2,
     isBoss = false,
     zones = {36, 267},
-    baseStats = { hp = 357, atk = 122, def = 100, spd = 57 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[2475] = {
     name = "Sloth",
@@ -4205,7 +4205,7 @@ FS.CreatureDB[2475] = {
     classification = 0,
     isBoss = false,
     zones = {10},
-    baseStats = { hp = 190, atk = 63, def = 52, spd = 42 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[2476] = {
     name = "Large Loch Crocolisk",
@@ -4217,7 +4217,7 @@ FS.CreatureDB[2476] = {
     classification = 4,
     isBoss = false,
     zones = {38},
-    baseStats = { hp = 203, atk = 66, def = 54, spd = 32 },
+    baseStats = { hp = 57, atk = 19, def = 15, spd = 9 },
 }
 FS.CreatureDB[2479] = {
     name = "Sludge",
@@ -4229,7 +4229,7 @@ FS.CreatureDB[2479] = {
     classification = 0,
     isBoss = false,
     zones = {10},
-    baseStats = { hp = 190, atk = 63, def = 52, spd = 42 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[2505] = {
     name = "Saltwater Snapjaw",
@@ -4241,7 +4241,7 @@ FS.CreatureDB[2505] = {
     classification = 0,
     isBoss = false,
     zones = {47},
-    baseStats = { hp = 280, atk = 96, def = 79, spd = 63 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[2521] = {
     name = "Skymane Gorilla",
@@ -4253,7 +4253,7 @@ FS.CreatureDB[2521] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 285, atk = 98, def = 81, spd = 64 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[2522] = {
     name = "Jaguero Stalker",
@@ -4265,7 +4265,7 @@ FS.CreatureDB[2522] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 285, atk = 117, def = 81, spd = 88 },
+    baseStats = { hp = 51, atk = 20, def = 14, spd = 15 },
 }
 FS.CreatureDB[2531] = {
     name = "Minion of Morganth",
@@ -4277,7 +4277,7 @@ FS.CreatureDB[2531] = {
     classification = 0,
     isBoss = false,
     zones = {44},
-    baseStats = { hp = 175, atk = 58, def = 48, spd = 39 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[2535] = {
     name = "Maury \"Club Foot\" Wilkins",
@@ -4289,7 +4289,7 @@ FS.CreatureDB[2535] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 250, atk = 85, def = 70, spd = 56 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[2536] = {
     name = "Jon-Jon the Crow",
@@ -4301,7 +4301,7 @@ FS.CreatureDB[2536] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 250, atk = 85, def = 70, spd = 56 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[2537] = {
     name = "Chucky \"Ten Thumbs\"",
@@ -4313,7 +4313,7 @@ FS.CreatureDB[2537] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 250, atk = 85, def = 70, spd = 56 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[2544] = {
     name = "Southern Sand Crawler",
@@ -4325,7 +4325,7 @@ FS.CreatureDB[2544] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 235, atk = 80, def = 66, spd = 53 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[2551] = {
     name = "Brutus",
@@ -4337,7 +4337,7 @@ FS.CreatureDB[2551] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 250, atk = 97, def = 70, spd = 56 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[2559] = {
     name = "Highland Strider",
@@ -4349,7 +4349,7 @@ FS.CreatureDB[2559] = {
     classification = 0,
     isBoss = false,
     zones = {45, 267},
-    baseStats = { hp = 185, atk = 74, def = 51, spd = 57 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[2560] = {
     name = "Highland Thrasher",
@@ -4361,7 +4361,7 @@ FS.CreatureDB[2560] = {
     classification = 0,
     isBoss = false,
     zones = {45},
-    baseStats = { hp = 200, atk = 80, def = 55, spd = 62 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[2561] = {
     name = "Highland Fleshstalker",
@@ -4373,7 +4373,7 @@ FS.CreatureDB[2561] = {
     classification = 0,
     isBoss = false,
     zones = {45},
-    baseStats = { hp = 215, atk = 86, def = 60, spd = 67 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[2563] = {
     name = "Plains Creeper",
@@ -4385,7 +4385,7 @@ FS.CreatureDB[2563] = {
     classification = 0,
     isBoss = false,
     zones = {45},
-    baseStats = { hp = 195, atk = 65, def = 54, spd = 44 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[2565] = {
     name = "Giant Plains Creeper",
@@ -4397,7 +4397,7 @@ FS.CreatureDB[2565] = {
     classification = 0,
     isBoss = false,
     zones = {45},
-    baseStats = { hp = 210, atk = 71, def = 58, spd = 47 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[2578] = {
     name = "Young Mesa Buzzard",
@@ -4409,7 +4409,7 @@ FS.CreatureDB[2578] = {
     classification = 0,
     isBoss = false,
     zones = {45},
-    baseStats = { hp = 190, atk = 63, def = 52, spd = 42 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[2579] = {
     name = "Mesa Buzzard",
@@ -4421,7 +4421,7 @@ FS.CreatureDB[2579] = {
     classification = 0,
     isBoss = false,
     zones = {45},
-    baseStats = { hp = 205, atk = 69, def = 57, spd = 46 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[2580] = {
     name = "Elder Mesa Buzzard",
@@ -4433,7 +4433,7 @@ FS.CreatureDB[2580] = {
     classification = 0,
     isBoss = false,
     zones = {45},
-    baseStats = { hp = 220, atk = 74, def = 61, spd = 49 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[2592] = {
     name = "Rumbling Exile",
@@ -4445,7 +4445,7 @@ FS.CreatureDB[2592] = {
     classification = 0,
     isBoss = false,
     zones = {45},
-    baseStats = { hp = 225, atk = 87, def = 63, spd = 50 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[2623] = {
     name = "Spirit of Old",
@@ -4457,7 +4457,7 @@ FS.CreatureDB[2623] = {
     classification = 0,
     isBoss = false,
     zones = {36},
-    baseStats = { hp = 195, atk = 65, def = 54, spd = 44 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[2635] = {
     name = "Elder Saltwater Crocolisk",
@@ -4469,7 +4469,7 @@ FS.CreatureDB[2635] = {
     classification = 1,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 315, atk = 106, def = 88, spd = 50 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[2638] = {
     name = "Syndicate Spectre",
@@ -4481,7 +4481,7 @@ FS.CreatureDB[2638] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 210, atk = 71, def = 58, spd = 47 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[2667] = {
     name = "Ward of Laze",
@@ -4493,7 +4493,7 @@ FS.CreatureDB[2667] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 215, atk = 72, def = 60, spd = 48 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[2676] = {
     name = "Compact Harvest Reaper",
@@ -4505,7 +4505,7 @@ FS.CreatureDB[2676] = {
     classification = 0,
     isBoss = false,
     zones = {17, 33, 406},
-    baseStats = { hp = 185, atk = 62, def = 51, spd = 41 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[2680] = {
     name = "Vilebranch Wolf Pup",
@@ -4517,7 +4517,7 @@ FS.CreatureDB[2680] = {
     classification = 0,
     isBoss = false,
     zones = {47},
-    baseStats = { hp = 265, atk = 90, def = 75, spd = 60 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[2681] = {
     name = "Vilebranch Raiding Wolf",
@@ -4529,7 +4529,7 @@ FS.CreatureDB[2681] = {
     classification = 1,
     isBoss = false,
     zones = {47},
-    baseStats = { hp = 399, atk = 137, def = 113, spd = 64 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[2723] = {
     name = "Stone Golem",
@@ -4541,7 +4541,7 @@ FS.CreatureDB[2723] = {
     classification = 0,
     isBoss = false,
     zones = {3},
-    baseStats = { hp = 225, atk = 87, def = 63, spd = 50 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[2725] = {
     name = "Scalding Whelp",
@@ -4553,7 +4553,7 @@ FS.CreatureDB[2725] = {
     classification = 0,
     isBoss = false,
     zones = {3},
-    baseStats = { hp = 245, atk = 83, def = 69, spd = 55 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[2727] = {
     name = "Crag Coyote",
@@ -4565,7 +4565,7 @@ FS.CreatureDB[2727] = {
     classification = 0,
     isBoss = false,
     zones = {3},
-    baseStats = { hp = 210, atk = 71, def = 58, spd = 47 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[2728] = {
     name = "Feral Crag Coyote",
@@ -4577,7 +4577,7 @@ FS.CreatureDB[2728] = {
     classification = 0,
     isBoss = false,
     zones = {3},
-    baseStats = { hp = 220, atk = 74, def = 61, spd = 49 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[2729] = {
     name = "Elder Crag Coyote",
@@ -4589,7 +4589,7 @@ FS.CreatureDB[2729] = {
     classification = 0,
     isBoss = false,
     zones = {3},
-    baseStats = { hp = 230, atk = 78, def = 64, spd = 52 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[2730] = {
     name = "Rabid Crag Coyote",
@@ -4601,7 +4601,7 @@ FS.CreatureDB[2730] = {
     classification = 0,
     isBoss = false,
     zones = {3},
-    baseStats = { hp = 245, atk = 83, def = 69, spd = 55 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[2731] = {
     name = "Ridge Stalker",
@@ -4613,7 +4613,7 @@ FS.CreatureDB[2731] = {
     classification = 0,
     isBoss = false,
     zones = {3},
-    baseStats = { hp = 215, atk = 86, def = 60, spd = 67 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[2732] = {
     name = "Ridge Huntress",
@@ -4625,7 +4625,7 @@ FS.CreatureDB[2732] = {
     classification = 0,
     isBoss = false,
     zones = {3},
-    baseStats = { hp = 225, atk = 91, def = 63, spd = 69 },
+    baseStats = { hp = 51, atk = 20, def = 14, spd = 15 },
 }
 FS.CreatureDB[2734] = {
     name = "Ridge Stalker Patriarch",
@@ -4637,7 +4637,7 @@ FS.CreatureDB[2734] = {
     classification = 0,
     isBoss = false,
     zones = {3},
-    baseStats = { hp = 235, atk = 96, def = 66, spd = 73 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[2735] = {
     name = "Lesser Rock Elemental",
@@ -4649,7 +4649,7 @@ FS.CreatureDB[2735] = {
     classification = 0,
     isBoss = false,
     zones = {3},
-    baseStats = { hp = 225, atk = 87, def = 63, spd = 50 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[2736] = {
     name = "Greater Rock Elemental",
@@ -4661,7 +4661,7 @@ FS.CreatureDB[2736] = {
     classification = 0,
     isBoss = false,
     zones = {3},
-    baseStats = { hp = 250, atk = 97, def = 70, spd = 56 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[2745] = {
     name = "Ambassador Infernus",
@@ -4673,7 +4673,7 @@ FS.CreatureDB[2745] = {
     classification = 1,
     isBoss = false,
     zones = {3},
-    baseStats = { hp = 343, atk = 134, def = 96, spd = 55 },
+    baseStats = { hp = 60, atk = 23, def = 17, spd = 10 },
 }
 FS.CreatureDB[2749] = {
     name = "Siege Golem",
@@ -4685,7 +4685,7 @@ FS.CreatureDB[2749] = {
     classification = 2,
     isBoss = false,
     zones = {3},
-    baseStats = { hp = 329, atk = 128, def = 92, spd = 53 },
+    baseStats = { hp = 60, atk = 23, def = 17, spd = 10 },
 }
 FS.CreatureDB[2751] = {
     name = "War Golem",
@@ -4697,7 +4697,7 @@ FS.CreatureDB[2751] = {
     classification = 4,
     isBoss = false,
     zones = {3},
-    baseStats = { hp = 301, atk = 116, def = 84, spd = 48 },
+    baseStats = { hp = 55, atk = 21, def = 15, spd = 9 },
 }
 FS.CreatureDB[2752] = {
     name = "Rumbler",
@@ -4709,7 +4709,7 @@ FS.CreatureDB[2752] = {
     classification = 4,
     isBoss = false,
     zones = {3},
-    baseStats = { hp = 364, atk = 142, def = 102, spd = 58 },
+    baseStats = { hp = 55, atk = 21, def = 15, spd = 9 },
 }
 FS.CreatureDB[2753] = {
     name = "Barnabus",
@@ -4721,7 +4721,7 @@ FS.CreatureDB[2753] = {
     classification = 4,
     isBoss = false,
     zones = {3},
-    baseStats = { hp = 315, atk = 106, def = 88, spd = 50 },
+    baseStats = { hp = 56, atk = 19, def = 16, spd = 9 },
 }
 FS.CreatureDB[2755] = {
     name = "Myzrael",
@@ -4733,7 +4733,7 @@ FS.CreatureDB[2755] = {
     classification = 1,
     isBoss = false,
     zones = {45},
-    baseStats = { hp = 357, atk = 140, def = 100, spd = 57 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[2757] = {
     name = "Blacklash",
@@ -4745,7 +4745,7 @@ FS.CreatureDB[2757] = {
     classification = 1,
     isBoss = false,
     zones = {3, 38},
-    baseStats = { hp = 399, atk = 137, def = 113, spd = 64 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[2759] = {
     name = "Hematus",
@@ -4757,7 +4757,7 @@ FS.CreatureDB[2759] = {
     classification = 1,
     isBoss = false,
     zones = {3, 38},
-    baseStats = { hp = 399, atk = 137, def = 113, spd = 64 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[2760] = {
     name = "Burning Exile",
@@ -4769,7 +4769,7 @@ FS.CreatureDB[2760] = {
     classification = 0,
     isBoss = false,
     zones = {45},
-    baseStats = { hp = 225, atk = 87, def = 63, spd = 50 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[2761] = {
     name = "Cresting Exile",
@@ -4781,7 +4781,7 @@ FS.CreatureDB[2761] = {
     classification = 0,
     isBoss = false,
     zones = {45},
-    baseStats = { hp = 225, atk = 87, def = 63, spd = 50 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[2762] = {
     name = "Thundering Exile",
@@ -4793,7 +4793,7 @@ FS.CreatureDB[2762] = {
     classification = 0,
     isBoss = false,
     zones = {45},
-    baseStats = { hp = 225, atk = 87, def = 63, spd = 50 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[2776] = {
     name = "Vengeful Surge",
@@ -4805,7 +4805,7 @@ FS.CreatureDB[2776] = {
     classification = 0,
     isBoss = false,
     zones = {45},
-    baseStats = { hp = 235, atk = 92, def = 66, spd = 53 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[2791] = {
     name = "Enraged Rock Elemental",
@@ -4817,7 +4817,7 @@ FS.CreatureDB[2791] = {
     classification = 0,
     isBoss = false,
     zones = {3},
-    baseStats = { hp = 245, atk = 95, def = 69, spd = 55 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[2829] = {
     name = "Starving Buzzard",
@@ -4829,7 +4829,7 @@ FS.CreatureDB[2829] = {
     classification = 0,
     isBoss = false,
     zones = {3, 38},
-    baseStats = { hp = 215, atk = 72, def = 60, spd = 48 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[2830] = {
     name = "Buzzard",
@@ -4841,7 +4841,7 @@ FS.CreatureDB[2830] = {
     classification = 0,
     isBoss = false,
     zones = {3},
-    baseStats = { hp = 225, atk = 76, def = 63, spd = 50 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[2831] = {
     name = "Giant Buzzard",
@@ -4853,7 +4853,7 @@ FS.CreatureDB[2831] = {
     classification = 0,
     isBoss = false,
     zones = {3},
-    baseStats = { hp = 235, atk = 80, def = 66, spd = 53 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[2850] = {
     name = "Broken Tooth",
@@ -4865,7 +4865,7 @@ FS.CreatureDB[2850] = {
     classification = 4,
     isBoss = false,
     zones = {3},
-    baseStats = { hp = 308, atk = 124, def = 86, spd = 68 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
     signatureAbilities = { 1001, 101, 121, 107 },
 }
 FS.CreatureDB[2887] = {
@@ -4878,7 +4878,7 @@ FS.CreatureDB[2887] = {
     classification = 0,
     isBoss = false,
     zones = {45},
-    baseStats = { hp = 250, atk = 97, def = 70, spd = 56 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[2922] = {
     name = "Servo",
@@ -4890,7 +4890,7 @@ FS.CreatureDB[2922] = {
     classification = 0,
     isBoss = false,
     zones = {3},
-    baseStats = { hp = 60, atk = 17, def = 13, spd = 13 },
+    baseStats = { hp = 57, atk = 17, def = 13, spd = 13 },
 }
 FS.CreatureDB[2923] = {
     name = "Mangy Silvermane",
@@ -4902,7 +4902,7 @@ FS.CreatureDB[2923] = {
     classification = 0,
     isBoss = false,
     zones = {47},
-    baseStats = { hp = 240, atk = 81, def = 67, spd = 54 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[2924] = {
     name = "Silvermane Wolf",
@@ -4914,7 +4914,7 @@ FS.CreatureDB[2924] = {
     classification = 0,
     isBoss = false,
     zones = {47},
-    baseStats = { hp = 250, atk = 85, def = 70, spd = 56 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[2925] = {
     name = "Silvermane Howler",
@@ -4926,7 +4926,7 @@ FS.CreatureDB[2925] = {
     classification = 0,
     isBoss = false,
     zones = {47},
-    baseStats = { hp = 260, atk = 89, def = 73, spd = 58 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[2926] = {
     name = "Silvermane Stalker",
@@ -4938,7 +4938,7 @@ FS.CreatureDB[2926] = {
     classification = 0,
     isBoss = false,
     zones = {47},
-    baseStats = { hp = 270, atk = 92, def = 76, spd = 61 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[2931] = {
     name = "Zaricotl",
@@ -4950,7 +4950,7 @@ FS.CreatureDB[2931] = {
     classification = 2,
     isBoss = false,
     zones = {3},
-    baseStats = { hp = 434, atk = 149, def = 123, spd = 70 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[2946] = {
     name = "Puppet of Helcular",
@@ -4962,7 +4962,7 @@ FS.CreatureDB[2946] = {
     classification = 0,
     isBoss = false,
     zones = {267},
-    baseStats = { hp = 245, atk = 83, def = 69, spd = 55 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[2954] = {
     name = "Bristleback Battleboar",
@@ -4974,7 +4974,7 @@ FS.CreatureDB[2954] = {
     classification = 0,
     isBoss = false,
     zones = {215},
-    baseStats = { hp = 66, atk = 15, def = 13, spd = 10 },
+    baseStats = { hp = 64, atk = 14, def = 12, spd = 10 },
 }
 FS.CreatureDB[2955] = {
     name = "Plainstrider",
@@ -4986,7 +4986,7 @@ FS.CreatureDB[2955] = {
     classification = 0,
     isBoss = false,
     zones = {215},
-    baseStats = { hp = 40, atk = 9, def = 7, spd = 8 },
+    baseStats = { hp = 63, atk = 14, def = 11, spd = 12 },
 }
 FS.CreatureDB[2956] = {
     name = "Adult Plainstrider",
@@ -4998,7 +4998,7 @@ FS.CreatureDB[2956] = {
     classification = 0,
     isBoss = false,
     zones = {215},
-    baseStats = { hp = 65, atk = 18, def = 15, spd = 14 },
+    baseStats = { hp = 59, atk = 16, def = 13, spd = 12 },
 }
 FS.CreatureDB[2957] = {
     name = "Elder Plainstrider",
@@ -5010,7 +5010,7 @@ FS.CreatureDB[2957] = {
     classification = 0,
     isBoss = false,
     zones = {215, 1638},
-    baseStats = { hp = 75, atk = 22, def = 18, spd = 16 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[2958] = {
     name = "Prairie Wolf",
@@ -5022,7 +5022,7 @@ FS.CreatureDB[2958] = {
     classification = 0,
     isBoss = false,
     zones = {215},
-    baseStats = { hp = 60, atk = 17, def = 13, spd = 13 },
+    baseStats = { hp = 57, atk = 17, def = 13, spd = 13 },
 }
 FS.CreatureDB[2959] = {
     name = "Prairie Stalker",
@@ -5034,7 +5034,7 @@ FS.CreatureDB[2959] = {
     classification = 0,
     isBoss = false,
     zones = {215, 1638},
-    baseStats = { hp = 70, atk = 20, def = 16, spd = 15 },
+    baseStats = { hp = 58, atk = 17, def = 13, spd = 12 },
 }
 FS.CreatureDB[2960] = {
     name = "Prairie Wolf Alpha",
@@ -5046,7 +5046,7 @@ FS.CreatureDB[2960] = {
     classification = 0,
     isBoss = false,
     zones = {215, 1638},
-    baseStats = { hp = 80, atk = 24, def = 19, spd = 17 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[2961] = {
     name = "Mountain Cougar",
@@ -5058,7 +5058,7 @@ FS.CreatureDB[2961] = {
     classification = 0,
     isBoss = false,
     zones = {215},
-    baseStats = { hp = 50, atk = 15, def = 10, spd = 14 },
+    baseStats = { hp = 56, atk = 17, def = 11, spd = 16 },
 }
 FS.CreatureDB[2966] = {
     name = "Battleboar",
@@ -5070,7 +5070,7 @@ FS.CreatureDB[2966] = {
     classification = 0,
     isBoss = false,
     zones = {215},
-    baseStats = { hp = 60, atk = 13, def = 11, spd = 9 },
+    baseStats = { hp = 64, atk = 14, def = 12, spd = 10 },
 }
 FS.CreatureDB[2969] = {
     name = "Wiry Swoop",
@@ -5082,7 +5082,7 @@ FS.CreatureDB[2969] = {
     classification = 0,
     isBoss = false,
     zones = {215},
-    baseStats = { hp = 65, atk = 18, def = 15, spd = 14 },
+    baseStats = { hp = 59, atk = 16, def = 13, spd = 12 },
 }
 FS.CreatureDB[2970] = {
     name = "Swoop",
@@ -5094,7 +5094,7 @@ FS.CreatureDB[2970] = {
     classification = 0,
     isBoss = false,
     zones = {215},
-    baseStats = { hp = 75, atk = 22, def = 18, spd = 16 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[2971] = {
     name = "Taloned Swoop",
@@ -5106,7 +5106,7 @@ FS.CreatureDB[2971] = {
     classification = 0,
     isBoss = false,
     zones = {215, 1638},
-    baseStats = { hp = 80, atk = 24, def = 19, spd = 17 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[2972] = {
     name = "Kodo Calf",
@@ -5118,7 +5118,7 @@ FS.CreatureDB[2972] = {
     classification = 0,
     isBoss = false,
     zones = {215},
-    baseStats = { hp = 72, atk = 17, def = 14, spd = 11 },
+    baseStats = { hp = 63, atk = 15, def = 12, spd = 10 },
 }
 FS.CreatureDB[3035] = {
     name = "Flatland Cougar",
@@ -5130,7 +5130,7 @@ FS.CreatureDB[3035] = {
     classification = 0,
     isBoss = false,
     zones = {215, 1638},
-    baseStats = { hp = 70, atk = 24, def = 16, spd = 21 },
+    baseStats = { hp = 54, atk = 18, def = 12, spd = 16 },
 }
 FS.CreatureDB[3068] = {
     name = "Mazzranache",
@@ -5142,7 +5142,7 @@ FS.CreatureDB[3068] = {
     classification = 4,
     isBoss = false,
     zones = {215},
-    baseStats = { hp = 112, atk = 33, def = 27, spd = 17 },
+    baseStats = { hp = 60, atk = 17, def = 14, spd = 9 },
 }
 FS.CreatureDB[3094] = {
     name = "Unseen",
@@ -5154,7 +5154,7 @@ FS.CreatureDB[3094] = {
     classification = 0,
     isBoss = false,
     zones = {10},
-    baseStats = { hp = 285, atk = 98, def = 81, spd = 64 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[3098] = {
     name = "Mottled Boar",
@@ -5166,7 +5166,7 @@ FS.CreatureDB[3098] = {
     classification = 0,
     isBoss = false,
     zones = {14},
-    baseStats = { hp = 48, atk = 9, def = 8, spd = 6 },
+    baseStats = { hp = 68, atk = 13, def = 11, spd = 8 },
 }
 FS.CreatureDB[3099] = {
     name = "Dire Mottled Boar",
@@ -5178,7 +5178,7 @@ FS.CreatureDB[3099] = {
     classification = 0,
     isBoss = false,
     zones = {14},
-    baseStats = { hp = 78, atk = 18, def = 17, spd = 11 },
+    baseStats = { hp = 62, atk = 15, def = 14, spd = 9 },
 }
 FS.CreatureDB[3100] = {
     name = "Elder Mottled Boar",
@@ -5190,7 +5190,7 @@ FS.CreatureDB[3100] = {
     classification = 0,
     isBoss = false,
     zones = {14, 1637},
-    baseStats = { hp = 90, atk = 22, def = 20, spd = 13 },
+    baseStats = { hp = 62, atk = 15, def = 14, spd = 9 },
 }
 FS.CreatureDB[3106] = {
     name = "Pygmy Surf Crawler",
@@ -5202,7 +5202,7 @@ FS.CreatureDB[3106] = {
     classification = 0,
     isBoss = false,
     zones = {14},
-    baseStats = { hp = 60, atk = 17, def = 13, spd = 13 },
+    baseStats = { hp = 57, atk = 17, def = 13, spd = 13 },
 }
 FS.CreatureDB[3107] = {
     name = "Surf Crawler",
@@ -5214,7 +5214,7 @@ FS.CreatureDB[3107] = {
     classification = 0,
     isBoss = false,
     zones = {14},
-    baseStats = { hp = 70, atk = 20, def = 16, spd = 15 },
+    baseStats = { hp = 58, atk = 17, def = 13, spd = 12 },
 }
 FS.CreatureDB[3108] = {
     name = "Encrusted Surf Crawler",
@@ -5226,7 +5226,7 @@ FS.CreatureDB[3108] = {
     classification = 0,
     isBoss = false,
     zones = {14},
-    baseStats = { hp = 80, atk = 24, def = 19, spd = 17 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[3110] = {
     name = "Dreadmaw Crocolisk",
@@ -5238,7 +5238,7 @@ FS.CreatureDB[3110] = {
     classification = 0,
     isBoss = false,
     zones = {14, 17},
-    baseStats = { hp = 85, atk = 26, def = 21, spd = 19 },
+    baseStats = { hp = 56, atk = 17, def = 14, spd = 13 },
 }
 FS.CreatureDB[3121] = {
     name = "Durotar Tiger",
@@ -5250,7 +5250,7 @@ FS.CreatureDB[3121] = {
     classification = 0,
     isBoss = false,
     zones = {14},
-    baseStats = { hp = 70, atk = 24, def = 16, spd = 21 },
+    baseStats = { hp = 54, atk = 18, def = 12, spd = 16 },
 }
 FS.CreatureDB[3122] = {
     name = "Bloodtalon Taillasher",
@@ -5262,7 +5262,7 @@ FS.CreatureDB[3122] = {
     classification = 0,
     isBoss = false,
     zones = {14},
-    baseStats = { hp = 70, atk = 24, def = 16, spd = 21 },
+    baseStats = { hp = 54, atk = 18, def = 12, spd = 16 },
 }
 FS.CreatureDB[3123] = {
     name = "Bloodtalon Scythemaw",
@@ -5274,7 +5274,7 @@ FS.CreatureDB[3123] = {
     classification = 0,
     isBoss = false,
     zones = {14},
-    baseStats = { hp = 80, atk = 28, def = 19, spd = 24 },
+    baseStats = { hp = 52, atk = 19, def = 13, spd = 16 },
 }
 FS.CreatureDB[3124] = {
     name = "Scorpid Worker",
@@ -5286,7 +5286,7 @@ FS.CreatureDB[3124] = {
     classification = 0,
     isBoss = false,
     zones = {14},
-    baseStats = { hp = 50, atk = 13, def = 10, spd = 11 },
+    baseStats = { hp = 60, atk = 15, def = 12, spd = 13 },
 }
 FS.CreatureDB[3125] = {
     name = "Clattering Scorpid",
@@ -5298,7 +5298,7 @@ FS.CreatureDB[3125] = {
     classification = 0,
     isBoss = false,
     zones = {14},
-    baseStats = { hp = 60, atk = 17, def = 13, spd = 13 },
+    baseStats = { hp = 57, atk = 17, def = 13, spd = 13 },
 }
 FS.CreatureDB[3126] = {
     name = "Armored Scorpid",
@@ -5310,7 +5310,7 @@ FS.CreatureDB[3126] = {
     classification = 0,
     isBoss = false,
     zones = {14, 1637},
-    baseStats = { hp = 70, atk = 20, def = 16, spd = 15 },
+    baseStats = { hp = 58, atk = 17, def = 13, spd = 12 },
 }
 FS.CreatureDB[3127] = {
     name = "Venomtail Scorpid",
@@ -5322,7 +5322,7 @@ FS.CreatureDB[3127] = {
     classification = 0,
     isBoss = false,
     zones = {14},
-    baseStats = { hp = 80, atk = 24, def = 19, spd = 17 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[3225] = {
     name = "Corrupted Mottled Boar",
@@ -5334,7 +5334,7 @@ FS.CreatureDB[3225] = {
     classification = 0,
     isBoss = false,
     zones = {14},
-    baseStats = { hp = 102, atk = 26, def = 24, spd = 16 },
+    baseStats = { hp = 61, atk = 15, def = 14, spd = 10 },
 }
 FS.CreatureDB[3226] = {
     name = "Corrupted Scorpid",
@@ -5346,7 +5346,7 @@ FS.CreatureDB[3226] = {
     classification = 0,
     isBoss = false,
     zones = {14},
-    baseStats = { hp = 85, atk = 26, def = 21, spd = 19 },
+    baseStats = { hp = 56, atk = 17, def = 14, spd = 13 },
 }
 FS.CreatureDB[3227] = {
     name = "Corrupted Bloodtalon Scythemaw",
@@ -5358,7 +5358,7 @@ FS.CreatureDB[3227] = {
     classification = 0,
     isBoss = false,
     zones = {14},
-    baseStats = { hp = 85, atk = 31, def = 21, spd = 26 },
+    baseStats = { hp = 52, atk = 19, def = 13, spd = 16 },
 }
 FS.CreatureDB[3228] = {
     name = "Corrupted Surf Crawler",
@@ -5370,7 +5370,7 @@ FS.CreatureDB[3228] = {
     classification = 0,
     isBoss = false,
     zones = {14},
-    baseStats = { hp = 85, atk = 26, def = 21, spd = 19 },
+    baseStats = { hp = 56, atk = 17, def = 14, spd = 13 },
 }
 FS.CreatureDB[3231] = {
     name = "Corrupted Dreadmaw Crocolisk",
@@ -5382,7 +5382,7 @@ FS.CreatureDB[3231] = {
     classification = 0,
     isBoss = false,
     zones = {14, 17},
-    baseStats = { hp = 90, atk = 27, def = 22, spd = 20 },
+    baseStats = { hp = 56, atk = 17, def = 14, spd = 13 },
 }
 FS.CreatureDB[3241] = {
     name = "Savannah Patriarch",
@@ -5394,7 +5394,7 @@ FS.CreatureDB[3241] = {
     classification = 0,
     isBoss = false,
     zones = {17},
-    baseStats = { hp = 110, atk = 42, def = 28, spd = 33 },
+    baseStats = { hp = 52, atk = 20, def = 13, spd = 15 },
 }
 FS.CreatureDB[3243] = {
     name = "Savannah Highmane",
@@ -5406,7 +5406,7 @@ FS.CreatureDB[3243] = {
     classification = 0,
     isBoss = false,
     zones = {17},
-    baseStats = { hp = 95, atk = 34, def = 24, spd = 28 },
+    baseStats = { hp = 53, atk = 19, def = 13, spd = 15 },
 }
 FS.CreatureDB[3244] = {
     name = "Greater Plainstrider",
@@ -5418,7 +5418,7 @@ FS.CreatureDB[3244] = {
     classification = 0,
     isBoss = false,
     zones = {17},
-    baseStats = { hp = 90, atk = 27, def = 22, spd = 20 },
+    baseStats = { hp = 56, atk = 17, def = 14, spd = 13 },
 }
 FS.CreatureDB[3245] = {
     name = "Ornery Plainstrider",
@@ -5430,7 +5430,7 @@ FS.CreatureDB[3245] = {
     classification = 0,
     isBoss = false,
     zones = {17},
-    baseStats = { hp = 115, atk = 36, def = 30, spd = 25 },
+    baseStats = { hp = 56, atk = 17, def = 15, spd = 12 },
 }
 FS.CreatureDB[3246] = {
     name = "Fleeting Plainstrider",
@@ -5442,7 +5442,7 @@ FS.CreatureDB[3246] = {
     classification = 0,
     isBoss = false,
     zones = {17},
-    baseStats = { hp = 95, atk = 29, def = 24, spd = 21 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[3247] = {
     name = "Thunderhawk Hatchling",
@@ -5454,7 +5454,7 @@ FS.CreatureDB[3247] = {
     classification = 0,
     isBoss = false,
     zones = {17},
-    baseStats = { hp = 130, atk = 42, def = 34, spd = 33 },
+    baseStats = { hp = 54, atk = 18, def = 14, spd = 14 },
 }
 FS.CreatureDB[3249] = {
     name = "Greater Thunderhawk",
@@ -5466,7 +5466,7 @@ FS.CreatureDB[3249] = {
     classification = 0,
     isBoss = false,
     zones = {17},
-    baseStats = { hp = 150, atk = 49, def = 40, spd = 39 },
+    baseStats = { hp = 54, atk = 18, def = 14, spd = 14 },
 }
 FS.CreatureDB[3250] = {
     name = "Silithid Creeper",
@@ -5478,7 +5478,7 @@ FS.CreatureDB[3250] = {
     classification = 0,
     isBoss = false,
     zones = {17},
-    baseStats = { hp = 135, atk = 44, def = 36, spd = 30 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[3252] = {
     name = "Silithid Swarmer",
@@ -5490,7 +5490,7 @@ FS.CreatureDB[3252] = {
     classification = 0,
     isBoss = false,
     zones = {17},
-    baseStats = { hp = 140, atk = 45, def = 37, spd = 31 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[3254] = {
     name = "Sunscale Lashtail",
@@ -5502,7 +5502,7 @@ FS.CreatureDB[3254] = {
     classification = 0,
     isBoss = false,
     zones = {17},
-    baseStats = { hp = 95, atk = 34, def = 24, spd = 28 },
+    baseStats = { hp = 53, atk = 19, def = 13, spd = 15 },
 }
 FS.CreatureDB[3255] = {
     name = "Sunscale Screecher",
@@ -5514,7 +5514,7 @@ FS.CreatureDB[3255] = {
     classification = 0,
     isBoss = false,
     zones = {17},
-    baseStats = { hp = 105, atk = 39, def = 27, spd = 32 },
+    baseStats = { hp = 52, atk = 19, def = 13, spd = 16 },
 }
 FS.CreatureDB[3256] = {
     name = "Sunscale Scytheclaw",
@@ -5526,7 +5526,7 @@ FS.CreatureDB[3256] = {
     classification = 0,
     isBoss = false,
     zones = {17},
-    baseStats = { hp = 120, atk = 45, def = 31, spd = 37 },
+    baseStats = { hp = 52, atk = 19, def = 13, spd = 16 },
 }
 FS.CreatureDB[3257] = {
     name = "Ishamuhale",
@@ -5538,7 +5538,7 @@ FS.CreatureDB[3257] = {
     classification = 0,
     isBoss = false,
     zones = {17},
-    baseStats = { hp = 130, atk = 50, def = 34, spd = 39 },
+    baseStats = { hp = 52, atk = 20, def = 13, spd = 15 },
 }
 FS.CreatureDB[3281] = {
     name = "Sarkoth",
@@ -5550,7 +5550,7 @@ FS.CreatureDB[3281] = {
     classification = 0,
     isBoss = false,
     zones = {14},
-    baseStats = { hp = 55, atk = 15, def = 12, spd = 12 },
+    baseStats = { hp = 58, atk = 16, def = 13, spd = 13 },
 }
 FS.CreatureDB[3415] = {
     name = "Savannah Huntress",
@@ -5562,7 +5562,7 @@ FS.CreatureDB[3415] = {
     classification = 0,
     isBoss = false,
     zones = {17},
-    baseStats = { hp = 90, atk = 32, def = 22, spd = 27 },
+    baseStats = { hp = 52, atk = 19, def = 13, spd = 16 },
 }
 FS.CreatureDB[3416] = {
     name = "Savannah Matriarch",
@@ -5574,7 +5574,7 @@ FS.CreatureDB[3416] = {
     classification = 0,
     isBoss = false,
     zones = {17},
-    baseStats = { hp = 120, atk = 45, def = 31, spd = 37 },
+    baseStats = { hp = 52, atk = 19, def = 13, spd = 16 },
 }
 FS.CreatureDB[3417] = {
     name = "Living Flame",
@@ -5586,7 +5586,7 @@ FS.CreatureDB[3417] = {
     classification = 0,
     isBoss = false,
     zones = {-3},
-    baseStats = { hp = 115, atk = 41, def = 30, spd = 25 },
+    baseStats = { hp = 55, atk = 19, def = 14, spd = 12 },
 }
 FS.CreatureDB[3424] = {
     name = "Thunderhawk Cloudscraper",
@@ -5598,7 +5598,7 @@ FS.CreatureDB[3424] = {
     classification = 0,
     isBoss = false,
     zones = {17},
-    baseStats = { hp = 140, atk = 45, def = 37, spd = 36 },
+    baseStats = { hp = 55, atk = 17, def = 14, spd = 14 },
 }
 FS.CreatureDB[3425] = {
     name = "Savannah Prowler",
@@ -5610,7 +5610,7 @@ FS.CreatureDB[3425] = {
     classification = 0,
     isBoss = false,
     zones = {17},
-    baseStats = { hp = 105, atk = 39, def = 27, spd = 32 },
+    baseStats = { hp = 52, atk = 19, def = 13, spd = 16 },
 }
 FS.CreatureDB[3461] = {
     name = "Oasis Snapjaw",
@@ -5622,7 +5622,7 @@ FS.CreatureDB[3461] = {
     classification = 0,
     isBoss = false,
     zones = {17},
-    baseStats = { hp = 110, atk = 35, def = 28, spd = 24 },
+    baseStats = { hp = 56, atk = 18, def = 14, spd = 12 },
 }
 FS.CreatureDB[3472] = {
     name = "Washte Pawne",
@@ -5634,7 +5634,7 @@ FS.CreatureDB[3472] = {
     classification = 0,
     isBoss = false,
     zones = {17},
-    baseStats = { hp = 160, atk = 53, def = 43, spd = 41 },
+    baseStats = { hp = 54, atk = 18, def = 14, spd = 14 },
 }
 FS.CreatureDB[3475] = {
     name = "Echeyakee",
@@ -5646,7 +5646,7 @@ FS.CreatureDB[3475] = {
     classification = 0,
     isBoss = false,
     zones = {17},
-    baseStats = { hp = 115, atk = 43, def = 30, spd = 34 },
+    baseStats = { hp = 52, atk = 19, def = 14, spd = 15 },
 }
 FS.CreatureDB[3503] = {
     name = "Silithid Protector",
@@ -5658,7 +5658,7 @@ FS.CreatureDB[3503] = {
     classification = 0,
     isBoss = false,
     zones = {17},
-    baseStats = { hp = 125, atk = 40, def = 33, spd = 28 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[3535] = {
     name = "Blackmoss the Fetid",
@@ -5670,7 +5670,7 @@ FS.CreatureDB[3535] = {
     classification = 4,
     isBoss = false,
     zones = {141},
-    baseStats = { hp = 140, atk = 49, def = 35, spd = 22 },
+    baseStats = { hp = 57, atk = 20, def = 14, spd = 9 },
 }
 FS.CreatureDB[3538] = {
     name = "Overwatch Mark I",
@@ -5682,7 +5682,7 @@ FS.CreatureDB[3538] = {
     classification = 0,
     isBoss = false,
     zones = {267},
-    baseStats = { hp = 195, atk = 65, def = 54, spd = 44 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[3566] = {
     name = "Flatland Prowler",
@@ -5694,7 +5694,7 @@ FS.CreatureDB[3566] = {
     classification = 0,
     isBoss = false,
     zones = {215, 1638},
-    baseStats = { hp = 80, atk = 28, def = 19, spd = 24 },
+    baseStats = { hp = 52, atk = 19, def = 13, spd = 16 },
 }
 FS.CreatureDB[3569] = {
     name = "Bogling",
@@ -5706,7 +5706,7 @@ FS.CreatureDB[3569] = {
     classification = 0,
     isBoss = false,
     zones = {141},
-    baseStats = { hp = 60, atk = 19, def = 13, spd = 13 },
+    baseStats = { hp = 58, atk = 18, def = 12, spd = 12 },
 }
 FS.CreatureDB[3581] = {
     name = "Sewer Beast",
@@ -5718,7 +5718,7 @@ FS.CreatureDB[3581] = {
     classification = 4,
     isBoss = false,
     zones = {1519},
-    baseStats = { hp = 399, atk = 137, def = 113, spd = 64 },
+    baseStats = { hp = 56, atk = 19, def = 16, spd = 9 },
 }
 FS.CreatureDB[3617] = {
     name = "Lordaeron Citizen",
@@ -5730,7 +5730,7 @@ FS.CreatureDB[3617] = {
     classification = 0,
     isBoss = false,
     zones = {1497},
-    baseStats = { hp = 110, atk = 35, def = 28, spd = 24 },
+    baseStats = { hp = 56, atk = 18, def = 14, spd = 12 },
 }
 FS.CreatureDB[3619] = {
     name = "Ghost Saber",
@@ -5742,7 +5742,7 @@ FS.CreatureDB[3619] = {
     classification = 0,
     isBoss = false,
     zones = {148},
-    baseStats = { hp = 130, atk = 50, def = 34, spd = 39 },
+    baseStats = { hp = 52, atk = 20, def = 13, spd = 15 },
 }
 FS.CreatureDB[3630] = {
     name = "Deviate Coiler",
@@ -5754,7 +5754,7 @@ FS.CreatureDB[3630] = {
     classification = 1,
     isBoss = false,
     zones = {17, -6},
-    baseStats = { hp = 154, atk = 49, def = 39, spd = 28 },
+    baseStats = { hp = 63, atk = 20, def = 16, spd = 11 },
 }
 FS.CreatureDB[3631] = {
     name = "Deviate Stinglash",
@@ -5766,7 +5766,7 @@ FS.CreatureDB[3631] = {
     classification = 1,
     isBoss = false,
     zones = {17, -6},
-    baseStats = { hp = 161, atk = 51, def = 42, spd = 29 },
+    baseStats = { hp = 63, atk = 20, def = 16, spd = 11 },
 }
 FS.CreatureDB[3632] = {
     name = "Deviate Creeper",
@@ -5778,7 +5778,7 @@ FS.CreatureDB[3632] = {
     classification = 1,
     isBoss = false,
     zones = {17, -6},
-    baseStats = { hp = 154, atk = 58, def = 39, spd = 33 },
+    baseStats = { hp = 60, atk = 22, def = 15, spd = 13 },
 }
 FS.CreatureDB[3633] = {
     name = "Deviate Slayer",
@@ -5790,7 +5790,7 @@ FS.CreatureDB[3633] = {
     classification = 1,
     isBoss = false,
     zones = {17, -6},
-    baseStats = { hp = 161, atk = 61, def = 42, spd = 34 },
+    baseStats = { hp = 58, atk = 23, def = 16, spd = 13 },
 }
 FS.CreatureDB[3634] = {
     name = "Deviate Stalker",
@@ -5802,7 +5802,7 @@ FS.CreatureDB[3634] = {
     classification = 1,
     isBoss = false,
     zones = {17, -6},
-    baseStats = { hp = 161, atk = 61, def = 42, spd = 34 },
+    baseStats = { hp = 58, atk = 23, def = 16, spd = 13 },
 }
 FS.CreatureDB[3636] = {
     name = "Deviate Ravager",
@@ -5814,7 +5814,7 @@ FS.CreatureDB[3636] = {
     classification = 1,
     isBoss = false,
     zones = {718},
-    baseStats = { hp = 175, atk = 67, def = 46, spd = 38 },
+    baseStats = { hp = 58, atk = 23, def = 16, spd = 13 },
 }
 FS.CreatureDB[3653] = {
     name = "Kresh",
@@ -5826,7 +5826,7 @@ FS.CreatureDB[3653] = {
     classification = 1,
     isBoss = true,
     zones = {718},
-    baseStats = { hp = 189, atk = 61, def = 50, spd = 30 },
+    baseStats = { hp = 63, atk = 20, def = 17, spd = 10 },
 }
 FS.CreatureDB[3667] = {
     name = "Anaya Dawnrunner",
@@ -5838,7 +5838,7 @@ FS.CreatureDB[3667] = {
     classification = 0,
     isBoss = false,
     zones = {148},
-    baseStats = { hp = 115, atk = 36, def = 30, spd = 25 },
+    baseStats = { hp = 56, atk = 17, def = 15, spd = 12 },
 }
 FS.CreatureDB[3780] = {
     name = "Shadethicket Moss Eater",
@@ -5850,7 +5850,7 @@ FS.CreatureDB[3780] = {
     classification = 0,
     isBoss = false,
     zones = {331},
-    baseStats = { hp = 145, atk = 54, def = 39, spd = 32 },
+    baseStats = { hp = 54, atk = 20, def = 14, spd = 12 },
 }
 FS.CreatureDB[3781] = {
     name = "Shadethicket Wood Shaper",
@@ -5862,7 +5862,7 @@ FS.CreatureDB[3781] = {
     classification = 0,
     isBoss = false,
     zones = {331},
-    baseStats = { hp = 150, atk = 56, def = 40, spd = 33 },
+    baseStats = { hp = 54, atk = 20, def = 14, spd = 12 },
 }
 FS.CreatureDB[3782] = {
     name = "Shadethicket Stone Mover",
@@ -5874,7 +5874,7 @@ FS.CreatureDB[3782] = {
     classification = 0,
     isBoss = false,
     zones = {331},
-    baseStats = { hp = 160, atk = 60, def = 43, spd = 36 },
+    baseStats = { hp = 54, atk = 20, def = 14, spd = 12 },
 }
 FS.CreatureDB[3783] = {
     name = "Shadethicket Raincaller",
@@ -5886,7 +5886,7 @@ FS.CreatureDB[3783] = {
     classification = 0,
     isBoss = false,
     zones = {331},
-    baseStats = { hp = 145, atk = 54, def = 39, spd = 32 },
+    baseStats = { hp = 54, atk = 20, def = 14, spd = 12 },
 }
 FS.CreatureDB[3784] = {
     name = "Shadethicket Bark Ripper",
@@ -5898,7 +5898,7 @@ FS.CreatureDB[3784] = {
     classification = 0,
     isBoss = false,
     zones = {331},
-    baseStats = { hp = 165, atk = 62, def = 45, spd = 37 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[3799] = {
     name = "Severed Druid",
@@ -5910,7 +5910,7 @@ FS.CreatureDB[3799] = {
     classification = 0,
     isBoss = false,
     zones = {331},
-    baseStats = { hp = 175, atk = 58, def = 48, spd = 39 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[3801] = {
     name = "Severed Sleeper",
@@ -5922,7 +5922,7 @@ FS.CreatureDB[3801] = {
     classification = 0,
     isBoss = false,
     zones = {331},
-    baseStats = { hp = 175, atk = 58, def = 48, spd = 39 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[3802] = {
     name = "Severed Dreamer",
@@ -5934,7 +5934,7 @@ FS.CreatureDB[3802] = {
     classification = 0,
     isBoss = false,
     zones = {331},
-    baseStats = { hp = 180, atk = 60, def = 49, spd = 40 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[3803] = {
     name = "Severed Keeper",
@@ -5946,7 +5946,7 @@ FS.CreatureDB[3803] = {
     classification = 0,
     isBoss = false,
     zones = {331},
-    baseStats = { hp = 180, atk = 60, def = 49, spd = 40 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[3809] = {
     name = "Ashenvale Bear",
@@ -5958,7 +5958,7 @@ FS.CreatureDB[3809] = {
     classification = 0,
     isBoss = false,
     zones = {331, 406},
-    baseStats = { hp = 168, atk = 45, def = 42, spd = 26 },
+    baseStats = { hp = 60, atk = 16, def = 15, spd = 9 },
 }
 FS.CreatureDB[3810] = {
     name = "Elder Ashenvale Bear",
@@ -5970,7 +5970,7 @@ FS.CreatureDB[3810] = {
     classification = 0,
     isBoss = false,
     zones = {331},
-    baseStats = { hp = 192, atk = 53, def = 49, spd = 30 },
+    baseStats = { hp = 60, atk = 16, def = 15, spd = 9 },
 }
 FS.CreatureDB[3811] = {
     name = "Giant Ashenvale Bear",
@@ -5982,7 +5982,7 @@ FS.CreatureDB[3811] = {
     classification = 0,
     isBoss = false,
     zones = {331},
-    baseStats = { hp = 216, atk = 60, def = 56, spd = 34 },
+    baseStats = { hp = 60, atk = 16, def = 15, spd = 9 },
 }
 FS.CreatureDB[3812] = {
     name = "Clattering Crawler",
@@ -5994,7 +5994,7 @@ FS.CreatureDB[3812] = {
     classification = 0,
     isBoss = false,
     zones = {331},
-    baseStats = { hp = 130, atk = 42, def = 34, spd = 29 },
+    baseStats = { hp = 56, atk = 18, def = 14, spd = 12 },
 }
 FS.CreatureDB[3814] = {
     name = "Spined Crawler",
@@ -6006,7 +6006,7 @@ FS.CreatureDB[3814] = {
     classification = 0,
     isBoss = false,
     zones = {331},
-    baseStats = { hp = 135, atk = 44, def = 36, spd = 30 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[3815] = {
     name = "Blink Dragon",
@@ -6018,7 +6018,7 @@ FS.CreatureDB[3815] = {
     classification = 0,
     isBoss = false,
     zones = {331},
-    baseStats = { hp = 165, atk = 54, def = 45, spd = 37 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[3819] = {
     name = "Wildthorn Stalker",
@@ -6030,7 +6030,7 @@ FS.CreatureDB[3819] = {
     classification = 0,
     isBoss = false,
     zones = {17, 331},
-    baseStats = { hp = 135, atk = 44, def = 36, spd = 30 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[3820] = {
     name = "Wildthorn Venomspitter",
@@ -6042,7 +6042,7 @@ FS.CreatureDB[3820] = {
     classification = 0,
     isBoss = false,
     zones = {331},
-    baseStats = { hp = 155, atk = 51, def = 42, spd = 34 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[3821] = {
     name = "Wildthorn Lurker",
@@ -6054,7 +6054,7 @@ FS.CreatureDB[3821] = {
     classification = 0,
     isBoss = false,
     zones = {16, 331},
-    baseStats = { hp = 175, atk = 58, def = 48, spd = 39 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[3823] = {
     name = "Ghostpaw Runner",
@@ -6066,7 +6066,7 @@ FS.CreatureDB[3823] = {
     classification = 0,
     isBoss = false,
     zones = {17, 331},
-    baseStats = { hp = 130, atk = 42, def = 34, spd = 29 },
+    baseStats = { hp = 56, atk = 18, def = 14, spd = 12 },
 }
 FS.CreatureDB[3824] = {
     name = "Ghostpaw Howler",
@@ -6078,7 +6078,7 @@ FS.CreatureDB[3824] = {
     classification = 0,
     isBoss = false,
     zones = {331},
-    baseStats = { hp = 150, atk = 49, def = 40, spd = 33 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[3825] = {
     name = "Ghostpaw Alpha",
@@ -6090,7 +6090,7 @@ FS.CreatureDB[3825] = {
     classification = 0,
     isBoss = false,
     zones = {331},
-    baseStats = { hp = 170, atk = 56, def = 46, spd = 38 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[3834] = {
     name = "Crazed Ancient",
@@ -6102,7 +6102,7 @@ FS.CreatureDB[3834] = {
     classification = 0,
     isBoss = false,
     zones = {331},
-    baseStats = { hp = 170, atk = 64, def = 46, spd = 38 },
+    baseStats = { hp = 54, atk = 20, def = 14, spd = 12 },
 }
 FS.CreatureDB[3861] = {
     name = "Bleak Worg",
@@ -6114,7 +6114,7 @@ FS.CreatureDB[3861] = {
     classification = 1,
     isBoss = false,
     zones = {209},
-    baseStats = { hp = 196, atk = 64, def = 52, spd = 31 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[3862] = {
     name = "Slavering Worg",
@@ -6126,7 +6126,7 @@ FS.CreatureDB[3862] = {
     classification = 1,
     isBoss = false,
     zones = {209},
-    baseStats = { hp = 196, atk = 64, def = 52, spd = 31 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[3863] = {
     name = "Lupine Horror",
@@ -6138,7 +6138,7 @@ FS.CreatureDB[3863] = {
     classification = 1,
     isBoss = false,
     zones = {209},
-    baseStats = { hp = 217, atk = 71, def = 58, spd = 34 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[3866] = {
     name = "Vile Bat",
@@ -6150,7 +6150,7 @@ FS.CreatureDB[3866] = {
     classification = 1,
     isBoss = false,
     zones = {209},
-    baseStats = { hp = 203, atk = 66, def = 54, spd = 37 },
+    baseStats = { hp = 63, atk = 20, def = 16, spd = 11 },
 }
 FS.CreatureDB[3868] = {
     name = "Blood Seeker",
@@ -6162,7 +6162,7 @@ FS.CreatureDB[3868] = {
     classification = 1,
     isBoss = false,
     zones = {209},
-    baseStats = { hp = 210, atk = 69, def = 56, spd = 39 },
+    baseStats = { hp = 63, atk = 20, def = 16, spd = 11 },
 }
 FS.CreatureDB[3873] = {
     name = "Tormented Officer",
@@ -6174,7 +6174,7 @@ FS.CreatureDB[3873] = {
     classification = 1,
     isBoss = false,
     zones = {209},
-    baseStats = { hp = 210, atk = 69, def = 56, spd = 33 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[3875] = {
     name = "Haunted Servitor",
@@ -6186,7 +6186,7 @@ FS.CreatureDB[3875] = {
     classification = 1,
     isBoss = false,
     zones = {209},
-    baseStats = { hp = 189, atk = 61, def = 50, spd = 30 },
+    baseStats = { hp = 63, atk = 20, def = 17, spd = 10 },
 }
 FS.CreatureDB[3887] = {
     name = "Baron Silverlaine",
@@ -6198,7 +6198,7 @@ FS.CreatureDB[3887] = {
     classification = 1,
     isBoss = true,
     zones = {209},
-    baseStats = { hp = 217, atk = 71, def = 58, spd = 34 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[3917] = {
     name = "Befouled Water Elemental",
@@ -6210,7 +6210,7 @@ FS.CreatureDB[3917] = {
     classification = 0,
     isBoss = false,
     zones = {331},
-    baseStats = { hp = 155, atk = 58, def = 42, spd = 34 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[3919] = {
     name = "Withered Ancient",
@@ -6222,7 +6222,7 @@ FS.CreatureDB[3919] = {
     classification = 0,
     isBoss = false,
     zones = {331},
-    baseStats = { hp = 165, atk = 62, def = 45, spd = 37 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[3931] = {
     name = "Shadethicket Oracle",
@@ -6234,7 +6234,7 @@ FS.CreatureDB[3931] = {
     classification = 0,
     isBoss = false,
     zones = {331},
-    baseStats = { hp = 185, atk = 71, def = 51, spd = 41 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[3939] = {
     name = "Razormane Wolf",
@@ -6246,7 +6246,7 @@ FS.CreatureDB[3939] = {
     classification = 0,
     isBoss = false,
     zones = {17},
-    baseStats = { hp = 190, atk = 63, def = 52, spd = 42 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[3940] = {
     name = "Taneel Darkwood",
@@ -6258,7 +6258,7 @@ FS.CreatureDB[3940] = {
     classification = 0,
     isBoss = false,
     zones = {331},
-    baseStats = { hp = 195, atk = 65, def = 54, spd = 44 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[3941] = {
     name = "Uthil Mooncall",
@@ -6270,7 +6270,7 @@ FS.CreatureDB[3941] = {
     classification = 0,
     isBoss = false,
     zones = {331},
-    baseStats = { hp = 195, atk = 65, def = 54, spd = 44 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[3942] = {
     name = "Mavoris Cloudsbreak",
@@ -6282,7 +6282,7 @@ FS.CreatureDB[3942] = {
     classification = 0,
     isBoss = false,
     zones = {331},
-    baseStats = { hp = 195, atk = 65, def = 54, spd = 44 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4005] = {
     name = "Deepmoss Creeper",
@@ -6294,7 +6294,7 @@ FS.CreatureDB[4005] = {
     classification = 0,
     isBoss = false,
     zones = {406},
-    baseStats = { hp = 115, atk = 36, def = 30, spd = 25 },
+    baseStats = { hp = 56, atk = 17, def = 15, spd = 12 },
 }
 FS.CreatureDB[4006] = {
     name = "Deepmoss Webspinner",
@@ -6306,7 +6306,7 @@ FS.CreatureDB[4006] = {
     classification = 0,
     isBoss = false,
     zones = {406},
-    baseStats = { hp = 130, atk = 42, def = 34, spd = 29 },
+    baseStats = { hp = 56, atk = 18, def = 14, spd = 12 },
 }
 FS.CreatureDB[4007] = {
     name = "Deepmoss Venomspitter",
@@ -6318,7 +6318,7 @@ FS.CreatureDB[4007] = {
     classification = 0,
     isBoss = false,
     zones = {406},
-    baseStats = { hp = 120, atk = 38, def = 31, spd = 26 },
+    baseStats = { hp = 56, atk = 18, def = 14, spd = 12 },
 }
 FS.CreatureDB[4011] = {
     name = "Young Pridewing",
@@ -6330,7 +6330,7 @@ FS.CreatureDB[4011] = {
     classification = 0,
     isBoss = false,
     zones = {406},
-    baseStats = { hp = 130, atk = 42, def = 34, spd = 33 },
+    baseStats = { hp = 54, atk = 18, def = 14, spd = 14 },
 }
 FS.CreatureDB[4016] = {
     name = "Fey Dragon",
@@ -6342,7 +6342,7 @@ FS.CreatureDB[4016] = {
     classification = 0,
     isBoss = false,
     zones = {406},
-    baseStats = { hp = 155, atk = 51, def = 42, spd = 34 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4017] = {
     name = "Wily Fey Dragon",
@@ -6354,7 +6354,7 @@ FS.CreatureDB[4017] = {
     classification = 0,
     isBoss = false,
     zones = {406},
-    baseStats = { hp = 165, atk = 54, def = 45, spd = 37 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4028] = {
     name = "Charred Ancient",
@@ -6366,7 +6366,7 @@ FS.CreatureDB[4028] = {
     classification = 0,
     isBoss = false,
     zones = {406},
-    baseStats = { hp = 160, atk = 60, def = 43, spd = 36 },
+    baseStats = { hp = 54, atk = 20, def = 14, spd = 12 },
 }
 FS.CreatureDB[4029] = {
     name = "Blackened Ancient",
@@ -6378,7 +6378,7 @@ FS.CreatureDB[4029] = {
     classification = 0,
     isBoss = false,
     zones = {406},
-    baseStats = { hp = 170, atk = 64, def = 46, spd = 38 },
+    baseStats = { hp = 54, atk = 20, def = 14, spd = 12 },
 }
 FS.CreatureDB[4030] = {
     name = "Vengeful Ancient",
@@ -6390,7 +6390,7 @@ FS.CreatureDB[4030] = {
     classification = 4,
     isBoss = false,
     zones = {406},
-    baseStats = { hp = 251, atk = 96, def = 69, spd = 40 },
+    baseStats = { hp = 55, atk = 21, def = 15, spd = 9 },
 }
 FS.CreatureDB[4034] = {
     name = "Enraged Stone Spirit",
@@ -6402,7 +6402,7 @@ FS.CreatureDB[4034] = {
     classification = 0,
     isBoss = false,
     zones = {406},
-    baseStats = { hp = 155, atk = 58, def = 42, spd = 34 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[4035] = {
     name = "Furious Stone Spirit",
@@ -6414,7 +6414,7 @@ FS.CreatureDB[4035] = {
     classification = 0,
     isBoss = false,
     zones = {406},
-    baseStats = { hp = 165, atk = 62, def = 45, spd = 37 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[4037] = {
     name = "Burning Ravager",
@@ -6426,7 +6426,7 @@ FS.CreatureDB[4037] = {
     classification = 0,
     isBoss = false,
     zones = {406},
-    baseStats = { hp = 155, atk = 58, def = 42, spd = 34 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[4038] = {
     name = "Burning Destroyer",
@@ -6438,7 +6438,7 @@ FS.CreatureDB[4038] = {
     classification = 0,
     isBoss = false,
     zones = {406},
-    baseStats = { hp = 165, atk = 62, def = 45, spd = 37 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[4040] = {
     name = "Cave Stalker",
@@ -6450,7 +6450,7 @@ FS.CreatureDB[4040] = {
     classification = 0,
     isBoss = false,
     zones = {11},
-    baseStats = { hp = 140, atk = 45, def = 37, spd = 31 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4066] = {
     name = "Nal'taszar",
@@ -6462,7 +6462,7 @@ FS.CreatureDB[4066] = {
     classification = 2,
     isBoss = false,
     zones = {406},
-    baseStats = { hp = 259, atk = 86, def = 71, spd = 41 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[4067] = {
     name = "Twilight Runner",
@@ -6474,7 +6474,7 @@ FS.CreatureDB[4067] = {
     classification = 0,
     isBoss = false,
     zones = {406},
-    baseStats = { hp = 150, atk = 58, def = 40, spd = 46 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[4073] = {
     name = "XT:4",
@@ -6486,7 +6486,7 @@ FS.CreatureDB[4073] = {
     classification = 0,
     isBoss = false,
     zones = {406},
-    baseStats = { hp = 150, atk = 49, def = 40, spd = 33 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4074] = {
     name = "XT:9",
@@ -6498,7 +6498,7 @@ FS.CreatureDB[4074] = {
     classification = 0,
     isBoss = false,
     zones = {406},
-    baseStats = { hp = 150, atk = 49, def = 40, spd = 33 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4117] = {
     name = "Cloud Serpent",
@@ -6510,7 +6510,7 @@ FS.CreatureDB[4117] = {
     classification = 0,
     isBoss = false,
     zones = {400},
-    baseStats = { hp = 160, atk = 53, def = 43, spd = 41 },
+    baseStats = { hp = 54, atk = 18, def = 14, spd = 14 },
 }
 FS.CreatureDB[4118] = {
     name = "Venomous Cloud Serpent",
@@ -6522,7 +6522,7 @@ FS.CreatureDB[4118] = {
     classification = 0,
     isBoss = false,
     zones = {400},
-    baseStats = { hp = 170, atk = 56, def = 46, spd = 44 },
+    baseStats = { hp = 53, atk = 18, def = 15, spd = 14 },
 }
 FS.CreatureDB[4119] = {
     name = "Elder Cloud Serpent",
@@ -6534,7 +6534,7 @@ FS.CreatureDB[4119] = {
     classification = 0,
     isBoss = false,
     zones = {400},
-    baseStats = { hp = 175, atk = 58, def = 48, spd = 45 },
+    baseStats = { hp = 53, atk = 18, def = 15, spd = 14 },
 }
 FS.CreatureDB[4120] = {
     name = "Thundering Boulderkin",
@@ -6546,7 +6546,7 @@ FS.CreatureDB[4120] = {
     classification = 0,
     isBoss = false,
     zones = {400},
-    baseStats = { hp = 175, atk = 66, def = 48, spd = 39 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[4124] = {
     name = "Needles Cougar",
@@ -6558,7 +6558,7 @@ FS.CreatureDB[4124] = {
     classification = 0,
     isBoss = false,
     zones = {357, 400},
-    baseStats = { hp = 170, atk = 67, def = 46, spd = 52 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[4126] = {
     name = "Crag Stalker",
@@ -6570,7 +6570,7 @@ FS.CreatureDB[4126] = {
     classification = 0,
     isBoss = false,
     zones = {400},
-    baseStats = { hp = 160, atk = 63, def = 43, spd = 49 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[4127] = {
     name = "Hecklefang Hyena",
@@ -6582,7 +6582,7 @@ FS.CreatureDB[4127] = {
     classification = 0,
     isBoss = false,
     zones = {17},
-    baseStats = { hp = 110, atk = 35, def = 28, spd = 24 },
+    baseStats = { hp = 56, atk = 18, def = 14, spd = 12 },
 }
 FS.CreatureDB[4128] = {
     name = "Hecklefang Stalker",
@@ -6594,7 +6594,7 @@ FS.CreatureDB[4128] = {
     classification = 0,
     isBoss = false,
     zones = {17},
-    baseStats = { hp = 145, atk = 47, def = 39, spd = 32 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4129] = {
     name = "Hecklefang Snarler",
@@ -6606,7 +6606,7 @@ FS.CreatureDB[4129] = {
     classification = 0,
     isBoss = false,
     zones = {17},
-    baseStats = { hp = 125, atk = 40, def = 33, spd = 28 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4139] = {
     name = "Scorpid Terror",
@@ -6618,7 +6618,7 @@ FS.CreatureDB[4139] = {
     classification = 0,
     isBoss = false,
     zones = {400},
-    baseStats = { hp = 200, atk = 67, def = 55, spd = 45 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4140] = {
     name = "Scorpid Reaver",
@@ -6630,7 +6630,7 @@ FS.CreatureDB[4140] = {
     classification = 0,
     isBoss = false,
     zones = {400},
-    baseStats = { hp = 190, atk = 63, def = 52, spd = 42 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4142] = {
     name = "Sparkleshell Tortoise",
@@ -6642,7 +6642,7 @@ FS.CreatureDB[4142] = {
     classification = 0,
     isBoss = false,
     zones = {400},
-    baseStats = { hp = 185, atk = 62, def = 51, spd = 41 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4143] = {
     name = "Sparkleshell Snapper",
@@ -6654,7 +6654,7 @@ FS.CreatureDB[4143] = {
     classification = 0,
     isBoss = false,
     zones = {400},
-    baseStats = { hp = 205, atk = 69, def = 57, spd = 46 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4144] = {
     name = "Sparkleshell Borer",
@@ -6666,7 +6666,7 @@ FS.CreatureDB[4144] = {
     classification = 0,
     isBoss = false,
     zones = {400},
-    baseStats = { hp = 195, atk = 65, def = 54, spd = 44 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4154] = {
     name = "Salt Flats Scavenger",
@@ -6678,7 +6678,7 @@ FS.CreatureDB[4154] = {
     classification = 0,
     isBoss = false,
     zones = {400},
-    baseStats = { hp = 190, atk = 63, def = 52, spd = 42 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4158] = {
     name = "Salt Flats Vulture",
@@ -6690,7 +6690,7 @@ FS.CreatureDB[4158] = {
     classification = 0,
     isBoss = false,
     zones = {400},
-    baseStats = { hp = 200, atk = 67, def = 55, spd = 45 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4248] = {
     name = "Pesterhide Hyena",
@@ -6702,7 +6702,7 @@ FS.CreatureDB[4248] = {
     classification = 0,
     isBoss = false,
     zones = {400},
-    baseStats = { hp = 165, atk = 54, def = 45, spd = 37 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4249] = {
     name = "Pesterhide Snarler",
@@ -6714,7 +6714,7 @@ FS.CreatureDB[4249] = {
     classification = 0,
     isBoss = false,
     zones = {357, 400},
-    baseStats = { hp = 175, atk = 58, def = 48, spd = 39 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4250] = {
     name = "Galak Packhound",
@@ -6726,7 +6726,7 @@ FS.CreatureDB[4250] = {
     classification = 0,
     isBoss = false,
     zones = {400},
-    baseStats = { hp = 155, atk = 51, def = 42, spd = 34 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4260] = {
     name = "Venture Co. Shredder",
@@ -6738,7 +6738,7 @@ FS.CreatureDB[4260] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 220, atk = 74, def = 61, spd = 49 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4263] = {
     name = "Deepmoss Hatchling",
@@ -6750,7 +6750,7 @@ FS.CreatureDB[4263] = {
     classification = 0,
     isBoss = false,
     zones = {406},
-    baseStats = { hp = 105, atk = 33, def = 27, spd = 23 },
+    baseStats = { hp = 56, atk = 18, def = 14, spd = 12 },
 }
 FS.CreatureDB[4264] = {
     name = "Deepmoss Matriarch",
@@ -6762,7 +6762,7 @@ FS.CreatureDB[4264] = {
     classification = 0,
     isBoss = false,
     zones = {406},
-    baseStats = { hp = 145, atk = 47, def = 39, spd = 32 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4278] = {
     name = "Commander Springvale",
@@ -6774,7 +6774,7 @@ FS.CreatureDB[4278] = {
     classification = 1,
     isBoss = true,
     zones = {209},
-    baseStats = { hp = 217, atk = 71, def = 58, spd = 34 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[4304] = {
     name = "Scarlet Tracking Hound",
@@ -6786,7 +6786,7 @@ FS.CreatureDB[4304] = {
     classification = 1,
     isBoss = false,
     zones = {796},
-    baseStats = { hp = 280, atk = 94, def = 77, spd = 45 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[4308] = {
     name = "Unfettered Spirit",
@@ -6798,7 +6798,7 @@ FS.CreatureDB[4308] = {
     classification = 0,
     isBoss = false,
     zones = {796},
-    baseStats = { hp = 190, atk = 63, def = 52, spd = 42 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4316] = {
     name = "Kolkar Packhound",
@@ -6810,7 +6810,7 @@ FS.CreatureDB[4316] = {
     classification = 0,
     isBoss = false,
     zones = {17},
-    baseStats = { hp = 100, atk = 31, def = 25, spd = 22 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[4323] = {
     name = "Searing Hatchling",
@@ -6822,7 +6822,7 @@ FS.CreatureDB[4323] = {
     classification = 0,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 240, atk = 81, def = 67, spd = 54 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4324] = {
     name = "Searing Whelp",
@@ -6834,7 +6834,7 @@ FS.CreatureDB[4324] = {
     classification = 0,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 245, atk = 83, def = 69, spd = 55 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4328] = {
     name = "Firemane Scalebane",
@@ -6846,7 +6846,7 @@ FS.CreatureDB[4328] = {
     classification = 0,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 250, atk = 85, def = 70, spd = 56 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4331] = {
     name = "Firemane Ash Tail",
@@ -6858,7 +6858,7 @@ FS.CreatureDB[4331] = {
     classification = 0,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 245, atk = 83, def = 69, spd = 55 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4334] = {
     name = "Firemane Flamecaller",
@@ -6870,7 +6870,7 @@ FS.CreatureDB[4334] = {
     classification = 0,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 250, atk = 85, def = 70, spd = 56 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4339] = {
     name = "Brimgore",
@@ -6882,7 +6882,7 @@ FS.CreatureDB[4339] = {
     classification = 2,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 364, atk = 124, def = 102, spd = 58 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[4341] = {
     name = "Drywallow Crocolisk",
@@ -6894,7 +6894,7 @@ FS.CreatureDB[4341] = {
     classification = 0,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 210, atk = 71, def = 58, spd = 47 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4342] = {
     name = "Drywallow Vicejaw",
@@ -6906,7 +6906,7 @@ FS.CreatureDB[4342] = {
     classification = 0,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 215, atk = 72, def = 60, spd = 48 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4343] = {
     name = "Drywallow Snapper",
@@ -6918,7 +6918,7 @@ FS.CreatureDB[4343] = {
     classification = 0,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 220, atk = 74, def = 61, spd = 49 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4344] = {
     name = "Mottled Drywallow Crocolisk",
@@ -6930,7 +6930,7 @@ FS.CreatureDB[4344] = {
     classification = 0,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 225, atk = 76, def = 63, spd = 50 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4345] = {
     name = "Drywallow Daggermaw",
@@ -6942,7 +6942,7 @@ FS.CreatureDB[4345] = {
     classification = 0,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 235, atk = 80, def = 66, spd = 53 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4351] = {
     name = "Bloodfen Raptor",
@@ -6954,7 +6954,7 @@ FS.CreatureDB[4351] = {
     classification = 0,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 210, atk = 85, def = 58, spd = 66 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[4352] = {
     name = "Bloodfen Screecher",
@@ -6966,7 +6966,7 @@ FS.CreatureDB[4352] = {
     classification = 0,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 215, atk = 86, def = 60, spd = 67 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[4355] = {
     name = "Bloodfen Scytheclaw",
@@ -6978,7 +6978,7 @@ FS.CreatureDB[4355] = {
     classification = 0,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 220, atk = 88, def = 61, spd = 68 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[4356] = {
     name = "Bloodfen Razormaw",
@@ -6990,7 +6990,7 @@ FS.CreatureDB[4356] = {
     classification = 0,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 230, atk = 93, def = 64, spd = 72 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[4357] = {
     name = "Bloodfen Lashtail",
@@ -7002,7 +7002,7 @@ FS.CreatureDB[4357] = {
     classification = 0,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 235, atk = 96, def = 66, spd = 73 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[4371] = {
     name = "Shadowfang Moonwalker",
@@ -7014,7 +7014,7 @@ FS.CreatureDB[4371] = {
     classification = 0,
     isBoss = false,
     zones = {209},
-    baseStats = { hp = 140, atk = 45, def = 37, spd = 31 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4376] = {
     name = "Darkmist Spider",
@@ -7026,7 +7026,7 @@ FS.CreatureDB[4376] = {
     classification = 0,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 210, atk = 71, def = 58, spd = 47 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4377] = {
     name = "Darkmist Lurker",
@@ -7038,7 +7038,7 @@ FS.CreatureDB[4377] = {
     classification = 0,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 220, atk = 74, def = 61, spd = 49 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4378] = {
     name = "Darkmist Recluse",
@@ -7050,7 +7050,7 @@ FS.CreatureDB[4378] = {
     classification = 0,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 215, atk = 72, def = 60, spd = 48 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4379] = {
     name = "Darkmist Silkspinner",
@@ -7062,7 +7062,7 @@ FS.CreatureDB[4379] = {
     classification = 0,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 225, atk = 76, def = 63, spd = 50 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4380] = {
     name = "Darkmist Widow",
@@ -7074,7 +7074,7 @@ FS.CreatureDB[4380] = {
     classification = 4,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 329, atk = 112, def = 92, spd = 53 },
+    baseStats = { hp = 56, atk = 19, def = 16, spd = 9 },
 }
 FS.CreatureDB[4382] = {
     name = "Withervine Creeper",
@@ -7086,7 +7086,7 @@ FS.CreatureDB[4382] = {
     classification = 0,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 210, atk = 81, def = 58, spd = 47 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[4385] = {
     name = "Withervine Rager",
@@ -7098,7 +7098,7 @@ FS.CreatureDB[4385] = {
     classification = 0,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 225, atk = 87, def = 63, spd = 50 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[4386] = {
     name = "Withervine Bark Ripper",
@@ -7110,7 +7110,7 @@ FS.CreatureDB[4386] = {
     classification = 0,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 215, atk = 82, def = 60, spd = 48 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[4387] = {
     name = "Withervine Mire Beast",
@@ -7122,7 +7122,7 @@ FS.CreatureDB[4387] = {
     classification = 0,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 220, atk = 85, def = 61, spd = 49 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[4396] = {
     name = "Mudrock Tortoise",
@@ -7134,7 +7134,7 @@ FS.CreatureDB[4396] = {
     classification = 0,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 215, atk = 72, def = 60, spd = 48 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4397] = {
     name = "Mudrock Spikeshell",
@@ -7146,7 +7146,7 @@ FS.CreatureDB[4397] = {
     classification = 0,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 220, atk = 74, def = 61, spd = 49 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4398] = {
     name = "Mudrock Burrower",
@@ -7158,7 +7158,7 @@ FS.CreatureDB[4398] = {
     classification = 0,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 230, atk = 78, def = 64, spd = 52 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4399] = {
     name = "Mudrock Borer",
@@ -7170,7 +7170,7 @@ FS.CreatureDB[4399] = {
     classification = 0,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 245, atk = 83, def = 69, spd = 55 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4400] = {
     name = "Mudrock Snapjaw",
@@ -7182,7 +7182,7 @@ FS.CreatureDB[4400] = {
     classification = 0,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 240, atk = 81, def = 67, spd = 54 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4411] = {
     name = "Darkfang Lurker",
@@ -7194,7 +7194,7 @@ FS.CreatureDB[4411] = {
     classification = 0,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 215, atk = 72, def = 60, spd = 48 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4412] = {
     name = "Darkfang Creeper",
@@ -7206,7 +7206,7 @@ FS.CreatureDB[4412] = {
     classification = 0,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 225, atk = 76, def = 63, spd = 50 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4413] = {
     name = "Darkfang Spider",
@@ -7218,7 +7218,7 @@ FS.CreatureDB[4413] = {
     classification = 0,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 210, atk = 71, def = 58, spd = 47 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4414] = {
     name = "Darkfang Venomspitter",
@@ -7230,7 +7230,7 @@ FS.CreatureDB[4414] = {
     classification = 0,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 220, atk = 74, def = 61, spd = 49 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4415] = {
     name = "Giant Darkfang Spider",
@@ -7242,7 +7242,7 @@ FS.CreatureDB[4415] = {
     classification = 0,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 235, atk = 80, def = 66, spd = 53 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4423] = {
     name = "Darnassian Protector",
@@ -7254,7 +7254,7 @@ FS.CreatureDB[4423] = {
     classification = 0,
     isBoss = false,
     zones = {1657},
-    baseStats = { hp = 310, atk = 123, def = 88, spd = 70 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[4425] = {
     name = "Blind Hunter",
@@ -7266,7 +7266,7 @@ FS.CreatureDB[4425] = {
     classification = 2,
     isBoss = false,
     zones = {491},
-    baseStats = { hp = 273, atk = 91, def = 75, spd = 51 },
+    baseStats = { hp = 62, atk = 20, def = 17, spd = 11 },
 }
 FS.CreatureDB[4472] = {
     name = "Haunting Vision",
@@ -7278,7 +7278,7 @@ FS.CreatureDB[4472] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 320, atk = 110, def = 91, spd = 72 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[4474] = {
     name = "Rotting Cadaver",
@@ -7290,7 +7290,7 @@ FS.CreatureDB[4474] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 300, atk = 103, def = 85, spd = 68 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[4475] = {
     name = "Blighted Zombie",
@@ -7302,7 +7302,7 @@ FS.CreatureDB[4475] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 295, atk = 101, def = 84, spd = 66 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4499] = {
     name = "Rok'Alim the Pounder",
@@ -7314,7 +7314,7 @@ FS.CreatureDB[4499] = {
     classification = 1,
     isBoss = false,
     zones = {400},
-    baseStats = { hp = 259, atk = 98, def = 71, spd = 41 },
+    baseStats = { hp = 60, atk = 23, def = 17, spd = 10 },
 }
 FS.CreatureDB[4511] = {
     name = "Agam'ar",
@@ -7326,7 +7326,7 @@ FS.CreatureDB[4511] = {
     classification = 1,
     isBoss = false,
     zones = {491},
-    baseStats = { hp = 260, atk = 71, def = 66, spd = 28 },
+    baseStats = { hp = 68, atk = 18, def = 17, spd = 7 },
 }
 FS.CreatureDB[4512] = {
     name = "Rotting Agam'ar",
@@ -7338,7 +7338,7 @@ FS.CreatureDB[4512] = {
     classification = 1,
     isBoss = false,
     zones = {491},
-    baseStats = { hp = 292, atk = 81, def = 77, spd = 33 },
+    baseStats = { hp = 66, atk = 18, def = 18, spd = 8 },
 }
 FS.CreatureDB[4514] = {
     name = "Raging Agam'ar",
@@ -7350,7 +7350,7 @@ FS.CreatureDB[4514] = {
     classification = 1,
     isBoss = false,
     zones = {491},
-    baseStats = { hp = 268, atk = 74, def = 69, spd = 30 },
+    baseStats = { hp = 68, atk = 18, def = 17, spd = 7 },
 }
 FS.CreatureDB[4526] = {
     name = "Wind Howler",
@@ -7362,7 +7362,7 @@ FS.CreatureDB[4526] = {
     classification = 1,
     isBoss = false,
     zones = {491},
-    baseStats = { hp = 224, atk = 85, def = 60, spd = 36 },
+    baseStats = { hp = 61, atk = 23, def = 16, spd = 10 },
 }
 FS.CreatureDB[4528] = {
     name = "Stone Rumbler",
@@ -7374,7 +7374,7 @@ FS.CreatureDB[4528] = {
     classification = 1,
     isBoss = false,
     zones = {491},
-    baseStats = { hp = 217, atk = 81, def = 58, spd = 34 },
+    baseStats = { hp = 61, atk = 23, def = 16, spd = 10 },
 }
 FS.CreatureDB[4534] = {
     name = "Tamed Hyena",
@@ -7386,7 +7386,7 @@ FS.CreatureDB[4534] = {
     classification = 1,
     isBoss = false,
     zones = {491},
-    baseStats = { hp = 237, atk = 79, def = 65, spd = 38 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[4535] = {
     name = "Tamed Battleboar",
@@ -7398,7 +7398,7 @@ FS.CreatureDB[4535] = {
     classification = 1,
     isBoss = false,
     zones = {491},
-    baseStats = { hp = 260, atk = 71, def = 66, spd = 28 },
+    baseStats = { hp = 68, atk = 18, def = 17, spd = 7 },
 }
 FS.CreatureDB[4538] = {
     name = "Kraul Bat",
@@ -7410,7 +7410,7 @@ FS.CreatureDB[4538] = {
     classification = 1,
     isBoss = false,
     zones = {491},
-    baseStats = { hp = 259, atk = 86, def = 71, spd = 48 },
+    baseStats = { hp = 62, atk = 20, def = 17, spd = 11 },
 }
 FS.CreatureDB[4539] = {
     name = "Greater Kraul Bat",
@@ -7422,7 +7422,7 @@ FS.CreatureDB[4539] = {
     classification = 1,
     isBoss = false,
     zones = {491},
-    baseStats = { hp = 273, atk = 91, def = 75, spd = 51 },
+    baseStats = { hp = 62, atk = 20, def = 17, spd = 11 },
 }
 FS.CreatureDB[4542] = {
     name = "High Inquisitor Fairbanks",
@@ -7434,7 +7434,7 @@ FS.CreatureDB[4542] = {
     classification = 1,
     isBoss = false,
     zones = {796},
-    baseStats = { hp = 329, atk = 112, def = 92, spd = 53 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[4543] = {
     name = "Bloodmage Thalnos",
@@ -7446,7 +7446,7 @@ FS.CreatureDB[4543] = {
     classification = 1,
     isBoss = false,
     zones = {796},
-    baseStats = { hp = 287, atk = 96, def = 79, spd = 46 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[4548] = {
     name = "Steelsnap",
@@ -7458,7 +7458,7 @@ FS.CreatureDB[4548] = {
     classification = 0,
     isBoss = false,
     zones = {400},
-    baseStats = { hp = 185, atk = 62, def = 51, spd = 41 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4550] = {
     name = "Ophelia Montague",
@@ -7470,7 +7470,7 @@ FS.CreatureDB[4550] = {
     classification = 0,
     isBoss = false,
     zones = {1497},
-    baseStats = { hp = 260, atk = 89, def = 73, spd = 58 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[4566] = {
     name = "Kaelystia Hatebringer",
@@ -7482,7 +7482,7 @@ FS.CreatureDB[4566] = {
     classification = 0,
     isBoss = false,
     zones = {1497},
-    baseStats = { hp = 335, atk = 116, def = 96, spd = 76 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[4606] = {
     name = "Aelthalyste",
@@ -7494,7 +7494,7 @@ FS.CreatureDB[4606] = {
     classification = 0,
     isBoss = false,
     zones = {1497},
-    baseStats = { hp = 335, atk = 116, def = 96, spd = 76 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[4610] = {
     name = "Algernon",
@@ -7506,7 +7506,7 @@ FS.CreatureDB[4610] = {
     classification = 0,
     isBoss = false,
     zones = {1497},
-    baseStats = { hp = 185, atk = 62, def = 51, spd = 41 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4612] = {
     name = "Boyle",
@@ -7518,7 +7518,7 @@ FS.CreatureDB[4612] = {
     classification = 0,
     isBoss = false,
     zones = {1497},
-    baseStats = { hp = 185, atk = 62, def = 51, spd = 41 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4660] = {
     name = "Maraudine Bonepaw",
@@ -7530,7 +7530,7 @@ FS.CreatureDB[4660] = {
     classification = 0,
     isBoss = false,
     zones = {405},
-    baseStats = { hp = 220, atk = 74, def = 61, spd = 49 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4661] = {
     name = "Gelkis Rumbler",
@@ -7542,7 +7542,7 @@ FS.CreatureDB[4661] = {
     classification = 0,
     isBoss = false,
     zones = {405},
-    baseStats = { hp = 180, atk = 69, def = 49, spd = 40 },
+    baseStats = { hp = 54, atk = 20, def = 14, spd = 12 },
 }
 FS.CreatureDB[4662] = {
     name = "Magram Bonepaw",
@@ -7554,7 +7554,7 @@ FS.CreatureDB[4662] = {
     classification = 0,
     isBoss = false,
     zones = {405},
-    baseStats = { hp = 220, atk = 74, def = 61, spd = 49 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4688] = {
     name = "Bonepaw Hyena",
@@ -7566,7 +7566,7 @@ FS.CreatureDB[4688] = {
     classification = 0,
     isBoss = false,
     zones = {405},
-    baseStats = { hp = 205, atk = 69, def = 57, spd = 46 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4689] = {
     name = "Starving Bonepaw",
@@ -7578,7 +7578,7 @@ FS.CreatureDB[4689] = {
     classification = 0,
     isBoss = false,
     zones = {405},
-    baseStats = { hp = 190, atk = 63, def = 52, spd = 42 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4690] = {
     name = "Rabid Bonepaw",
@@ -7590,7 +7590,7 @@ FS.CreatureDB[4690] = {
     classification = 0,
     isBoss = false,
     zones = {405},
-    baseStats = { hp = 220, atk = 74, def = 61, spd = 49 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4692] = {
     name = "Dread Swoop",
@@ -7602,7 +7602,7 @@ FS.CreatureDB[4692] = {
     classification = 0,
     isBoss = false,
     zones = {405},
-    baseStats = { hp = 195, atk = 65, def = 54, spd = 44 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4693] = {
     name = "Dread Flyer",
@@ -7614,7 +7614,7 @@ FS.CreatureDB[4693] = {
     classification = 0,
     isBoss = false,
     zones = {405},
-    baseStats = { hp = 215, atk = 72, def = 60, spd = 48 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4694] = {
     name = "Dread Ripper",
@@ -7626,7 +7626,7 @@ FS.CreatureDB[4694] = {
     classification = 0,
     isBoss = false,
     zones = {405},
-    baseStats = { hp = 230, atk = 78, def = 64, spd = 52 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4695] = {
     name = "Carrion Horror",
@@ -7638,7 +7638,7 @@ FS.CreatureDB[4695] = {
     classification = 0,
     isBoss = false,
     zones = {405},
-    baseStats = { hp = 215, atk = 72, def = 60, spd = 48 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4696] = {
     name = "Scorpashi Snapper",
@@ -7650,7 +7650,7 @@ FS.CreatureDB[4696] = {
     classification = 0,
     isBoss = false,
     zones = {405},
-    baseStats = { hp = 185, atk = 62, def = 51, spd = 41 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4697] = {
     name = "Scorpashi Lasher",
@@ -7662,7 +7662,7 @@ FS.CreatureDB[4697] = {
     classification = 0,
     isBoss = false,
     zones = {405},
-    baseStats = { hp = 205, atk = 69, def = 57, spd = 46 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4699] = {
     name = "Scorpashi Venomlash",
@@ -7674,7 +7674,7 @@ FS.CreatureDB[4699] = {
     classification = 0,
     isBoss = false,
     zones = {405},
-    baseStats = { hp = 225, atk = 76, def = 63, spd = 50 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4821] = {
     name = "Skittering Crustacean",
@@ -7686,7 +7686,7 @@ FS.CreatureDB[4821] = {
     classification = 1,
     isBoss = false,
     zones = {719},
-    baseStats = { hp = 210, atk = 69, def = 56, spd = 33 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[4822] = {
     name = "Snapping Crustacean",
@@ -7698,7 +7698,7 @@ FS.CreatureDB[4822] = {
     classification = 1,
     isBoss = false,
     zones = {719},
-    baseStats = { hp = 217, atk = 71, def = 58, spd = 34 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[4823] = {
     name = "Barbed Crustacean",
@@ -7710,7 +7710,7 @@ FS.CreatureDB[4823] = {
     classification = 1,
     isBoss = false,
     zones = {719},
-    baseStats = { hp = 224, atk = 74, def = 60, spd = 36 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[4824] = {
     name = "Aku'mai Fisher",
@@ -7722,7 +7722,7 @@ FS.CreatureDB[4824] = {
     classification = 1,
     isBoss = false,
     zones = {719},
-    baseStats = { hp = 210, atk = 69, def = 56, spd = 33 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[4825] = {
     name = "Aku'mai Snapjaw",
@@ -7734,7 +7734,7 @@ FS.CreatureDB[4825] = {
     classification = 1,
     isBoss = false,
     zones = {719},
-    baseStats = { hp = 230, atk = 76, def = 62, spd = 37 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[4829] = {
     name = "Aku'mai",
@@ -7746,7 +7746,7 @@ FS.CreatureDB[4829] = {
     classification = 0,
     isBoss = true,
     zones = {719},
-    baseStats = { hp = 244, atk = 81, def = 67, spd = 39 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
     signatureAbilities = { 1003, 401, 408, 506 },
 }
 FS.CreatureDB[4841] = {
@@ -7759,7 +7759,7 @@ FS.CreatureDB[4841] = {
     classification = 0,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 260, atk = 89, def = 73, spd = 58 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[4857] = {
     name = "Stone Keeper",
@@ -7771,7 +7771,7 @@ FS.CreatureDB[4857] = {
     classification = 1,
     isBoss = true,
     zones = {1337},
-    baseStats = { hp = 371, atk = 146, def = 105, spd = 60 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[4860] = {
     name = "Stone Steward",
@@ -7783,7 +7783,7 @@ FS.CreatureDB[4860] = {
     classification = 1,
     isBoss = false,
     zones = {1337},
-    baseStats = { hp = 357, atk = 140, def = 100, spd = 57 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[4861] = {
     name = "Shrike Bat",
@@ -7795,7 +7795,7 @@ FS.CreatureDB[4861] = {
     classification = 1,
     isBoss = false,
     zones = {1337},
-    baseStats = { hp = 315, atk = 106, def = 88, spd = 58 },
+    baseStats = { hp = 61, atk = 21, def = 17, spd = 11 },
 }
 FS.CreatureDB[4872] = {
     name = "Obsidian Golem",
@@ -7807,7 +7807,7 @@ FS.CreatureDB[4872] = {
     classification = 1,
     isBoss = false,
     zones = {3, -3},
-    baseStats = { hp = 315, atk = 106, def = 88, spd = 50 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[4887] = {
     name = "Ghamoo-ra",
@@ -7819,7 +7819,7 @@ FS.CreatureDB[4887] = {
     classification = 1,
     isBoss = false,
     zones = {719},
-    baseStats = { hp = 224, atk = 74, def = 60, spd = 36 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[4950] = {
     name = "Spot",
@@ -7831,7 +7831,7 @@ FS.CreatureDB[4950] = {
     classification = 0,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 210, atk = 71, def = 58, spd = 47 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4952] = {
     name = "Theramore Combat Dummy",
@@ -7843,7 +7843,7 @@ FS.CreatureDB[4952] = {
     classification = 0,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 40, atk = 9, def = 7, spd = 8 },
+    baseStats = { hp = 63, atk = 14, def = 11, spd = 12 },
 }
 FS.CreatureDB[4958] = {
     name = "Haunting Spirit",
@@ -7855,7 +7855,7 @@ FS.CreatureDB[4958] = {
     classification = 0,
     isBoss = false,
     zones = {209},
-    baseStats = { hp = 140, atk = 45, def = 37, spd = 31 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[4978] = {
     name = "Aku'mai Servant",
@@ -7867,7 +7867,7 @@ FS.CreatureDB[4978] = {
     classification = 1,
     isBoss = false,
     zones = {719},
-    baseStats = { hp = 230, atk = 87, def = 62, spd = 37 },
+    baseStats = { hp = 61, atk = 23, def = 16, spd = 10 },
 }
 FS.CreatureDB[5053] = {
     name = "Deviate Crocolisk",
@@ -7879,7 +7879,7 @@ FS.CreatureDB[5053] = {
     classification = 0,
     isBoss = false,
     zones = {718},
-    baseStats = { hp = 125, atk = 40, def = 33, spd = 28 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[5056] = {
     name = "Deviate Dreadfang",
@@ -7891,7 +7891,7 @@ FS.CreatureDB[5056] = {
     classification = 1,
     isBoss = false,
     zones = {718},
-    baseStats = { hp = 189, atk = 61, def = 50, spd = 35 },
+    baseStats = { hp = 63, atk = 20, def = 16, spd = 11 },
 }
 FS.CreatureDB[5097] = {
     name = "Lupine Delusion",
@@ -7903,7 +7903,7 @@ FS.CreatureDB[5097] = {
     classification = 0,
     isBoss = false,
     zones = {209},
-    baseStats = { hp = 160, atk = 53, def = 43, spd = 36 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[5260] = {
     name = "Groddoc Ape",
@@ -7915,7 +7915,7 @@ FS.CreatureDB[5260] = {
     classification = 0,
     isBoss = false,
     zones = {357},
-    baseStats = { hp = 245, atk = 83, def = 69, spd = 55 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[5262] = {
     name = "Groddoc Thunderer",
@@ -7927,7 +7927,7 @@ FS.CreatureDB[5262] = {
     classification = 0,
     isBoss = false,
     zones = {357},
-    baseStats = { hp = 280, atk = 96, def = 79, spd = 63 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[5263] = {
     name = "Mummified Atal'ai",
@@ -7939,7 +7939,7 @@ FS.CreatureDB[5263] = {
     classification = 1,
     isBoss = false,
     zones = {-3},
-    baseStats = { hp = 371, atk = 127, def = 105, spd = 60 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[5267] = {
     name = "Unliving Atal'ai",
@@ -7951,7 +7951,7 @@ FS.CreatureDB[5267] = {
     classification = 1,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 385, atk = 132, def = 109, spd = 62 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[5268] = {
     name = "Ironfur Bear",
@@ -7963,7 +7963,7 @@ FS.CreatureDB[5268] = {
     classification = 0,
     isBoss = false,
     zones = {357},
-    baseStats = { hp = 288, atk = 81, def = 77, spd = 45 },
+    baseStats = { hp = 59, atk = 16, def = 16, spd = 9 },
 }
 FS.CreatureDB[5270] = {
     name = "Atal'ai Corpse Eater",
@@ -7975,7 +7975,7 @@ FS.CreatureDB[5270] = {
     classification = 1,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 392, atk = 134, def = 111, spd = 63 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[5271] = {
     name = "Atal'ai Deathwalker",
@@ -7987,7 +7987,7 @@ FS.CreatureDB[5271] = {
     classification = 1,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 399, atk = 137, def = 113, spd = 64 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[5272] = {
     name = "Grizzled Ironfur Bear",
@@ -7999,7 +7999,7 @@ FS.CreatureDB[5272] = {
     classification = 0,
     isBoss = false,
     zones = {357},
-    baseStats = { hp = 306, atk = 87, def = 82, spd = 48 },
+    baseStats = { hp = 58, atk = 17, def = 16, spd = 9 },
 }
 FS.CreatureDB[5274] = {
     name = "Ironfur Patriarch",
@@ -8011,7 +8011,7 @@ FS.CreatureDB[5274] = {
     classification = 0,
     isBoss = false,
     zones = {357},
-    baseStats = { hp = 330, atk = 94, def = 89, spd = 52 },
+    baseStats = { hp = 58, atk = 17, def = 16, spd = 9 },
 }
 FS.CreatureDB[5276] = {
     name = "Sprite Dragon",
@@ -8023,7 +8023,7 @@ FS.CreatureDB[5276] = {
     classification = 0,
     isBoss = false,
     zones = {357},
-    baseStats = { hp = 275, atk = 94, def = 78, spd = 62 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[5277] = {
     name = "Nightmare Scalebane",
@@ -8035,7 +8035,7 @@ FS.CreatureDB[5277] = {
     classification = 1,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 399, atk = 137, def = 113, spd = 64 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[5278] = {
     name = "Sprite Darter",
@@ -8047,7 +8047,7 @@ FS.CreatureDB[5278] = {
     classification = 0,
     isBoss = false,
     zones = {357},
-    baseStats = { hp = 255, atk = 87, def = 72, spd = 57 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[5283] = {
     name = "Nightmare Wanderer",
@@ -8059,7 +8059,7 @@ FS.CreatureDB[5283] = {
     classification = 1,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 392, atk = 134, def = 111, spd = 63 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[5286] = {
     name = "Longtooth Runner",
@@ -8071,7 +8071,7 @@ FS.CreatureDB[5286] = {
     classification = 0,
     isBoss = false,
     zones = {357, 400},
-    baseStats = { hp = 235, atk = 80, def = 66, spd = 53 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[5287] = {
     name = "Longtooth Howler",
@@ -8083,7 +8083,7 @@ FS.CreatureDB[5287] = {
     classification = 0,
     isBoss = false,
     zones = {357},
-    baseStats = { hp = 250, atk = 85, def = 70, spd = 56 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[5288] = {
     name = "Rabid Forest Wolf",
@@ -8095,7 +8095,7 @@ FS.CreatureDB[5288] = {
     classification = 0,
     isBoss = false,
     zones = {85, 357},
-    baseStats = { hp = 175, atk = 58, def = 48, spd = 39 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[5291] = {
     name = "Hakkari Frostwing",
@@ -8107,7 +8107,7 @@ FS.CreatureDB[5291] = {
     classification = 1,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 392, atk = 134, def = 111, spd = 73 },
+    baseStats = { hp = 61, atk = 21, def = 17, spd = 11 },
 }
 FS.CreatureDB[5307] = {
     name = "Vale Screecher",
@@ -8119,7 +8119,7 @@ FS.CreatureDB[5307] = {
     classification = 0,
     isBoss = false,
     zones = {357},
-    baseStats = { hp = 245, atk = 83, def = 69, spd = 64 },
+    baseStats = { hp = 53, atk = 18, def = 15, spd = 14 },
 }
 FS.CreatureDB[5312] = {
     name = "Lethlas",
@@ -8131,7 +8131,7 @@ FS.CreatureDB[5312] = {
     classification = 1,
     isBoss = false,
     zones = {357, 16018},
-    baseStats = { hp = 482, atk = 167, def = 138, spd = 78 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[5314] = {
     name = "Phantim",
@@ -8143,7 +8143,7 @@ FS.CreatureDB[5314] = {
     classification = 1,
     isBoss = false,
     zones = {331, 16169},
-    baseStats = { hp = 482, atk = 167, def = 138, spd = 78 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[5317] = {
     name = "Jademir Oracle",
@@ -8155,7 +8155,7 @@ FS.CreatureDB[5317] = {
     classification = 1,
     isBoss = false,
     zones = {357, 16018},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[5319] = {
     name = "Jademir Tree Warder",
@@ -8167,7 +8167,7 @@ FS.CreatureDB[5319] = {
     classification = 1,
     isBoss = false,
     zones = {357, 16018},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[5349] = {
     name = "Arash-ethis",
@@ -8179,7 +8179,7 @@ FS.CreatureDB[5349] = {
     classification = 4,
     isBoss = false,
     zones = {357},
-    baseStats = { hp = 392, atk = 134, def = 111, spd = 73 },
+    baseStats = { hp = 55, atk = 19, def = 16, spd = 10 },
 }
 FS.CreatureDB[5352] = {
     name = "Old Grizzlegut",
@@ -8191,7 +8191,7 @@ FS.CreatureDB[5352] = {
     classification = 4,
     isBoss = false,
     zones = {357},
-    baseStats = { hp = 420, atk = 119, def = 112, spd = 47 },
+    baseStats = { hp = 60, atk = 17, def = 16, spd = 7 },
 }
 FS.CreatureDB[5354] = {
     name = "Gnarl Leafbrother",
@@ -8203,7 +8203,7 @@ FS.CreatureDB[5354] = {
     classification = 4,
     isBoss = false,
     zones = {357},
-    baseStats = { hp = 357, atk = 140, def = 100, spd = 57 },
+    baseStats = { hp = 55, atk = 21, def = 15, spd = 9 },
 }
 FS.CreatureDB[5356] = {
     name = "Snarler",
@@ -8215,7 +8215,7 @@ FS.CreatureDB[5356] = {
     classification = 4,
     isBoss = false,
     zones = {357},
-    baseStats = { hp = 343, atk = 117, def = 96, spd = 55 },
+    baseStats = { hp = 56, atk = 19, def = 16, spd = 9 },
 }
 FS.CreatureDB[5400] = {
     name = "Zekkis",
@@ -8227,7 +8227,7 @@ FS.CreatureDB[5400] = {
     classification = 2,
     isBoss = false,
     zones = {},
-    baseStats = { hp = 385, atk = 132, def = 109, spd = 62 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[5422] = {
     name = "Scorpid Hunter",
@@ -8239,7 +8239,7 @@ FS.CreatureDB[5422] = {
     classification = 0,
     isBoss = false,
     zones = {440},
-    baseStats = { hp = 235, atk = 80, def = 66, spd = 53 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[5423] = {
     name = "Scorpid Tail Lasher",
@@ -8251,7 +8251,7 @@ FS.CreatureDB[5423] = {
     classification = 0,
     isBoss = false,
     zones = {440},
-    baseStats = { hp = 250, atk = 85, def = 70, spd = 56 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[5424] = {
     name = "Scorpid Dunestalker",
@@ -8263,7 +8263,7 @@ FS.CreatureDB[5424] = {
     classification = 0,
     isBoss = false,
     zones = {440},
-    baseStats = { hp = 265, atk = 90, def = 75, spd = 60 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[5425] = {
     name = "Starving Blisterpaw",
@@ -8275,7 +8275,7 @@ FS.CreatureDB[5425] = {
     classification = 0,
     isBoss = false,
     zones = {440},
-    baseStats = { hp = 240, atk = 81, def = 67, spd = 54 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[5426] = {
     name = "Blisterpaw Hyena",
@@ -8287,7 +8287,7 @@ FS.CreatureDB[5426] = {
     classification = 0,
     isBoss = false,
     zones = {440},
-    baseStats = { hp = 255, atk = 87, def = 72, spd = 57 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[5427] = {
     name = "Rabid Blisterpaw",
@@ -8299,7 +8299,7 @@ FS.CreatureDB[5427] = {
     classification = 0,
     isBoss = false,
     zones = {440},
-    baseStats = { hp = 270, atk = 92, def = 76, spd = 61 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[5428] = {
     name = "Roc",
@@ -8311,7 +8311,7 @@ FS.CreatureDB[5428] = {
     classification = 0,
     isBoss = false,
     zones = {440},
-    baseStats = { hp = 245, atk = 83, def = 69, spd = 55 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[5429] = {
     name = "Fire Roc",
@@ -8323,7 +8323,7 @@ FS.CreatureDB[5429] = {
     classification = 0,
     isBoss = false,
     zones = {440},
-    baseStats = { hp = 255, atk = 87, def = 72, spd = 57 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[5430] = {
     name = "Searing Roc",
@@ -8335,7 +8335,7 @@ FS.CreatureDB[5430] = {
     classification = 0,
     isBoss = false,
     zones = {440},
-    baseStats = { hp = 275, atk = 94, def = 78, spd = 62 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[5431] = {
     name = "Surf Glider",
@@ -8347,7 +8347,7 @@ FS.CreatureDB[5431] = {
     classification = 0,
     isBoss = false,
     zones = {440},
-    baseStats = { hp = 280, atk = 96, def = 79, spd = 63 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[5461] = {
     name = "Sea Elemental",
@@ -8359,7 +8359,7 @@ FS.CreatureDB[5461] = {
     classification = 0,
     isBoss = false,
     zones = {357},
-    baseStats = { hp = 275, atk = 108, def = 78, spd = 62 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[5462] = {
     name = "Sea Spray",
@@ -8371,7 +8371,7 @@ FS.CreatureDB[5462] = {
     classification = 0,
     isBoss = false,
     zones = {357},
-    baseStats = { hp = 270, atk = 105, def = 76, spd = 61 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[5465] = {
     name = "Land Rager",
@@ -8383,7 +8383,7 @@ FS.CreatureDB[5465] = {
     classification = 0,
     isBoss = false,
     zones = {440},
-    baseStats = { hp = 265, atk = 103, def = 75, spd = 60 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[5481] = {
     name = "Thistleshrub Dew Collector",
@@ -8395,7 +8395,7 @@ FS.CreatureDB[5481] = {
     classification = 0,
     isBoss = false,
     zones = {440},
-    baseStats = { hp = 270, atk = 105, def = 76, spd = 61 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[5485] = {
     name = "Thistleshrub Rootshaper",
@@ -8407,7 +8407,7 @@ FS.CreatureDB[5485] = {
     classification = 0,
     isBoss = false,
     zones = {440},
-    baseStats = { hp = 280, atk = 110, def = 79, spd = 63 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[5490] = {
     name = "Gnarled Thistleshrub",
@@ -8419,7 +8419,7 @@ FS.CreatureDB[5490] = {
     classification = 0,
     isBoss = false,
     zones = {440},
-    baseStats = { hp = 275, atk = 108, def = 78, spd = 62 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[5652] = {
     name = "Practice Dummy",
@@ -8431,7 +8431,7 @@ FS.CreatureDB[5652] = {
     classification = 0,
     isBoss = false,
     zones = {1497},
-    baseStats = { hp = 160, atk = 53, def = 43, spd = 36 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[5685] = {
     name = "Captive Ghoul",
@@ -8443,7 +8443,7 @@ FS.CreatureDB[5685] = {
     classification = 0,
     isBoss = false,
     zones = {1497},
-    baseStats = { hp = 85, atk = 26, def = 21, spd = 19 },
+    baseStats = { hp = 56, atk = 17, def = 14, spd = 13 },
 }
 FS.CreatureDB[5686] = {
     name = "Captive Zombie",
@@ -8455,7 +8455,7 @@ FS.CreatureDB[5686] = {
     classification = 0,
     isBoss = false,
     zones = {1497},
-    baseStats = { hp = 75, atk = 22, def = 18, spd = 16 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[5687] = {
     name = "Captive Abomination",
@@ -8467,7 +8467,7 @@ FS.CreatureDB[5687] = {
     classification = 0,
     isBoss = false,
     zones = {1497},
-    baseStats = { hp = 135, atk = 44, def = 36, spd = 30 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[5708] = {
     name = "Spawn of Hakkar",
@@ -8479,7 +8479,7 @@ FS.CreatureDB[5708] = {
     classification = 1,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 399, atk = 137, def = 113, spd = 74 },
+    baseStats = { hp = 61, atk = 21, def = 17, spd = 11 },
 }
 FS.CreatureDB[5709] = {
     name = "Shade of Eranikus",
@@ -8491,7 +8491,7 @@ FS.CreatureDB[5709] = {
     classification = 1,
     isBoss = true,
     zones = {1477},
-    baseStats = { hp = 434, atk = 149, def = 123, spd = 70 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[5711] = {
     name = "Ogom the Wretched",
@@ -8503,7 +8503,7 @@ FS.CreatureDB[5711] = {
     classification = 1,
     isBoss = true,
     zones = {1477},
-    baseStats = { hp = 420, atk = 144, def = 119, spd = 68 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[5712] = {
     name = "Zolo",
@@ -8515,7 +8515,7 @@ FS.CreatureDB[5712] = {
     classification = 1,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 406, atk = 139, def = 115, spd = 65 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[5713] = {
     name = "Gasher",
@@ -8527,7 +8527,7 @@ FS.CreatureDB[5713] = {
     classification = 1,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 406, atk = 139, def = 115, spd = 65 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[5714] = {
     name = "Loro",
@@ -8539,7 +8539,7 @@ FS.CreatureDB[5714] = {
     classification = 1,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 406, atk = 139, def = 115, spd = 65 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[5715] = {
     name = "Hukku",
@@ -8551,7 +8551,7 @@ FS.CreatureDB[5715] = {
     classification = 1,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 413, atk = 142, def = 117, spd = 66 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[5716] = {
     name = "Zul'Lor",
@@ -8563,7 +8563,7 @@ FS.CreatureDB[5716] = {
     classification = 1,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 413, atk = 142, def = 117, spd = 66 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[5717] = {
     name = "Mijan",
@@ -8575,7 +8575,7 @@ FS.CreatureDB[5717] = {
     classification = 1,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 413, atk = 142, def = 117, spd = 66 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[5718] = {
     name = "Rothos",
@@ -8587,7 +8587,7 @@ FS.CreatureDB[5718] = {
     classification = 1,
     isBoss = false,
     zones = {47, 16029},
-    baseStats = { hp = 482, atk = 167, def = 138, spd = 78 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[5719] = {
     name = "Morphaz",
@@ -8599,7 +8599,7 @@ FS.CreatureDB[5719] = {
     classification = 1,
     isBoss = true,
     zones = {1477},
-    baseStats = { hp = 413, atk = 142, def = 117, spd = 66 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[5720] = {
     name = "Weaver",
@@ -8611,7 +8611,7 @@ FS.CreatureDB[5720] = {
     classification = 1,
     isBoss = true,
     zones = {1477},
-    baseStats = { hp = 406, atk = 139, def = 115, spd = 65 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[5721] = {
     name = "Dreamscythe",
@@ -8623,7 +8623,7 @@ FS.CreatureDB[5721] = {
     classification = 1,
     isBoss = true,
     zones = {1477},
-    baseStats = { hp = 420, atk = 144, def = 119, spd = 68 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[5722] = {
     name = "Hazzas",
@@ -8635,7 +8635,7 @@ FS.CreatureDB[5722] = {
     classification = 1,
     isBoss = true,
     zones = {1477},
-    baseStats = { hp = 420, atk = 144, def = 119, spd = 68 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[5723] = {
     name = "Warug's Target Dummy",
@@ -8647,7 +8647,7 @@ FS.CreatureDB[5723] = {
     classification = 0,
     isBoss = false,
     zones = {405},
-    baseStats = { hp = 165, atk = 54, def = 45, spd = 37 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[5756] = {
     name = "Deviate Venomwing",
@@ -8659,7 +8659,7 @@ FS.CreatureDB[5756] = {
     classification = 1,
     isBoss = false,
     zones = {718},
-    baseStats = { hp = 189, atk = 61, def = 50, spd = 35 },
+    baseStats = { hp = 63, atk = 20, def = 16, spd = 11 },
 }
 FS.CreatureDB[5761] = {
     name = "Deviate Shambler",
@@ -8671,7 +8671,7 @@ FS.CreatureDB[5761] = {
     classification = 1,
     isBoss = false,
     zones = {718},
-    baseStats = { hp = 182, atk = 67, def = 48, spd = 29 },
+    baseStats = { hp = 61, atk = 23, def = 16, spd = 10 },
 }
 FS.CreatureDB[5766] = {
     name = "Savannah Cub",
@@ -8683,7 +8683,7 @@ FS.CreatureDB[5766] = {
     classification = 0,
     isBoss = false,
     zones = {17},
-    baseStats = { hp = 75, atk = 26, def = 18, spd = 22 },
+    baseStats = { hp = 53, atk = 18, def = 13, spd = 16 },
 }
 FS.CreatureDB[5775] = {
     name = "Verdan the Everliving",
@@ -8695,7 +8695,7 @@ FS.CreatureDB[5775] = {
     classification = 1,
     isBoss = true,
     zones = {718},
-    baseStats = { hp = 196, atk = 73, def = 52, spd = 31 },
+    baseStats = { hp = 61, atk = 23, def = 16, spd = 10 },
 }
 FS.CreatureDB[5806] = {
     name = "Treant Ally",
@@ -8707,7 +8707,7 @@ FS.CreatureDB[5806] = {
     classification = 0,
     isBoss = false,
     zones = {406},
-    baseStats = { hp = 150, atk = 56, def = 40, spd = 33 },
+    baseStats = { hp = 54, atk = 20, def = 14, spd = 12 },
 }
 FS.CreatureDB[5807] = {
     name = "The Rake",
@@ -8719,7 +8719,7 @@ FS.CreatureDB[5807] = {
     classification = 4,
     isBoss = false,
     zones = {215},
-    baseStats = { hp = 118, atk = 43, def = 29, spd = 26 },
+    baseStats = { hp = 55, atk = 20, def = 13, spd = 12 },
 }
 FS.CreatureDB[5823] = {
     name = "Death Flayer",
@@ -8731,7 +8731,7 @@ FS.CreatureDB[5823] = {
     classification = 4,
     isBoss = false,
     zones = {14},
-    baseStats = { hp = 125, atk = 38, def = 31, spd = 20 },
+    baseStats = { hp = 59, atk = 18, def = 14, spd = 9 },
 }
 FS.CreatureDB[5828] = {
     name = "Humar the Pridelord",
@@ -8743,7 +8743,7 @@ FS.CreatureDB[5828] = {
     classification = 2,
     isBoss = false,
     zones = {17},
-    baseStats = { hp = 210, atk = 82, def = 56, spd = 46 },
+    baseStats = { hp = 58, atk = 23, def = 16, spd = 13 },
     signatureAbilities = { 1002, 101, 120, 105 },
 }
 FS.CreatureDB[5829] = {
@@ -8756,7 +8756,7 @@ FS.CreatureDB[5829] = {
     classification = 4,
     isBoss = false,
     zones = {17},
-    baseStats = { hp = 168, atk = 54, def = 44, spd = 26 },
+    baseStats = { hp = 58, atk = 18, def = 15, spd = 9 },
 }
 FS.CreatureDB[5834] = {
     name = "Azzere the Skyblade",
@@ -8768,7 +8768,7 @@ FS.CreatureDB[5834] = {
     classification = 4,
     isBoss = false,
     zones = {17},
-    baseStats = { hp = 224, atk = 74, def = 60, spd = 41 },
+    baseStats = { hp = 56, atk = 19, def = 15, spd = 10 },
 }
 FS.CreatureDB[5842] = {
     name = "Takk the Leaper",
@@ -8780,7 +8780,7 @@ FS.CreatureDB[5842] = {
     classification = 2,
     isBoss = false,
     zones = {17},
-    baseStats = { hp = 182, atk = 70, def = 48, spd = 39 },
+    baseStats = { hp = 58, atk = 23, def = 16, spd = 13 },
 }
 FS.CreatureDB[5850] = {
     name = "Blazing Elemental",
@@ -8792,7 +8792,7 @@ FS.CreatureDB[5850] = {
     classification = 0,
     isBoss = false,
     zones = {51},
-    baseStats = { hp = 265, atk = 103, def = 75, spd = 60 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[5852] = {
     name = "Inferno Elemental",
@@ -8804,7 +8804,7 @@ FS.CreatureDB[5852] = {
     classification = 0,
     isBoss = false,
     zones = {51},
-    baseStats = { hp = 275, atk = 108, def = 78, spd = 62 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[5853] = {
     name = "Tempered War Golem",
@@ -8816,7 +8816,7 @@ FS.CreatureDB[5853] = {
     classification = 0,
     isBoss = false,
     zones = {51},
-    baseStats = { hp = 265, atk = 103, def = 75, spd = 60 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[5854] = {
     name = "Heavy War Golem",
@@ -8828,7 +8828,7 @@ FS.CreatureDB[5854] = {
     classification = 0,
     isBoss = false,
     zones = {51},
-    baseStats = { hp = 275, atk = 108, def = 78, spd = 62 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[5855] = {
     name = "Magma Elemental",
@@ -8840,7 +8840,7 @@ FS.CreatureDB[5855] = {
     classification = 0,
     isBoss = false,
     zones = {51},
-    baseStats = { hp = 270, atk = 105, def = 76, spd = 61 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[5856] = {
     name = "Glassweb Spider",
@@ -8852,7 +8852,7 @@ FS.CreatureDB[5856] = {
     classification = 0,
     isBoss = false,
     zones = {51},
-    baseStats = { hp = 255, atk = 87, def = 72, spd = 57 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[5857] = {
     name = "Searing Lava Spider",
@@ -8864,7 +8864,7 @@ FS.CreatureDB[5857] = {
     classification = 0,
     isBoss = false,
     zones = {51},
-    baseStats = { hp = 265, atk = 90, def = 75, spd = 60 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[5858] = {
     name = "Searing Lava Spider",
@@ -8876,7 +8876,7 @@ FS.CreatureDB[5858] = {
     classification = 0,
     isBoss = false,
     zones = {51},
-    baseStats = { hp = 275, atk = 94, def = 78, spd = 62 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[5865] = {
     name = "Dishu",
@@ -8888,7 +8888,7 @@ FS.CreatureDB[5865] = {
     classification = 4,
     isBoss = false,
     zones = {17},
-    baseStats = { hp = 140, atk = 51, def = 35, spd = 30 },
+    baseStats = { hp = 54, atk = 20, def = 14, spd = 12 },
 }
 FS.CreatureDB[5881] = {
     name = "Cursed Sycamore",
@@ -8900,7 +8900,7 @@ FS.CreatureDB[5881] = {
     classification = 0,
     isBoss = false,
     zones = {357},
-    baseStats = { hp = 260, atk = 102, def = 73, spd = 58 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[5891] = {
     name = "Minor Manifestation of Earth",
@@ -8912,7 +8912,7 @@ FS.CreatureDB[5891] = {
     classification = 0,
     isBoss = false,
     zones = {1, 14, 215},
-    baseStats = { hp = 110, atk = 40, def = 28, spd = 24 },
+    baseStats = { hp = 54, atk = 20, def = 14, spd = 12 },
 }
 FS.CreatureDB[5893] = {
     name = "Minor Manifestation of Fire",
@@ -8924,7 +8924,7 @@ FS.CreatureDB[5893] = {
     classification = 0,
     isBoss = false,
     zones = {14},
-    baseStats = { hp = 95, atk = 33, def = 24, spd = 21 },
+    baseStats = { hp = 55, atk = 19, def = 14, spd = 12 },
 }
 FS.CreatureDB[5894] = {
     name = "Corrupt Minor Manifestation of Water",
@@ -8936,7 +8936,7 @@ FS.CreatureDB[5894] = {
     classification = 0,
     isBoss = false,
     zones = {130},
-    baseStats = { hp = 145, atk = 54, def = 39, spd = 32 },
+    baseStats = { hp = 54, atk = 20, def = 14, spd = 12 },
 }
 FS.CreatureDB[5895] = {
     name = "Minor Manifestation of Water",
@@ -8948,7 +8948,7 @@ FS.CreatureDB[5895] = {
     classification = 0,
     isBoss = false,
     zones = {130},
-    baseStats = { hp = 145, atk = 54, def = 39, spd = 32 },
+    baseStats = { hp = 54, atk = 20, def = 14, spd = 12 },
 }
 FS.CreatureDB[5912] = {
     name = "Deviate Faerie Dragon",
@@ -8960,7 +8960,7 @@ FS.CreatureDB[5912] = {
     classification = 2,
     isBoss = true,
     zones = {718},
-    baseStats = { hp = 189, atk = 61, def = 50, spd = 30 },
+    baseStats = { hp = 63, atk = 20, def = 17, spd = 10 },
 }
 FS.CreatureDB[5937] = {
     name = "Vile Sting",
@@ -8972,7 +8972,7 @@ FS.CreatureDB[5937] = {
     classification = 2,
     isBoss = false,
     zones = {400},
-    baseStats = { hp = 294, atk = 99, def = 81, spd = 47 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[5982] = {
     name = "Black Slayer",
@@ -8984,7 +8984,7 @@ FS.CreatureDB[5982] = {
     classification = 0,
     isBoss = false,
     zones = {4},
-    baseStats = { hp = 270, atk = 92, def = 76, spd = 61 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[5984] = {
     name = "Starving Snickerfang",
@@ -8996,7 +8996,7 @@ FS.CreatureDB[5984] = {
     classification = 0,
     isBoss = false,
     zones = {4},
-    baseStats = { hp = 260, atk = 89, def = 73, spd = 58 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[5985] = {
     name = "Snickerfang Hyena",
@@ -9008,7 +9008,7 @@ FS.CreatureDB[5985] = {
     classification = 0,
     isBoss = false,
     zones = {4},
-    baseStats = { hp = 280, atk = 96, def = 79, spd = 63 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[5988] = {
     name = "Scorpok Stinger",
@@ -9020,7 +9020,7 @@ FS.CreatureDB[5988] = {
     classification = 0,
     isBoss = false,
     zones = {4},
-    baseStats = { hp = 285, atk = 98, def = 81, spd = 64 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[5992] = {
     name = "Ashmane Boar",
@@ -9032,7 +9032,7 @@ FS.CreatureDB[5992] = {
     classification = 0,
     isBoss = false,
     zones = {4},
-    baseStats = { hp = 330, atk = 94, def = 89, spd = 52 },
+    baseStats = { hp = 58, atk = 17, def = 16, spd = 9 },
 }
 FS.CreatureDB[6013] = {
     name = "Wayward Buzzard",
@@ -9044,7 +9044,7 @@ FS.CreatureDB[6013] = {
     classification = 0,
     isBoss = false,
     zones = {3},
-    baseStats = { hp = 215, atk = 72, def = 60, spd = 48 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[6109] = {
     name = "Azuregos",
@@ -9056,7 +9056,7 @@ FS.CreatureDB[6109] = {
     classification = 3,
     isBoss = false,
     zones = {16, 15532},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 55, atk = 20, def = 16, spd = 9 },
 }
 FS.CreatureDB[6116] = {
     name = "Highborne Apparition",
@@ -9068,7 +9068,7 @@ FS.CreatureDB[6116] = {
     classification = 0,
     isBoss = false,
     zones = {16},
-    baseStats = { hp = 260, atk = 89, def = 73, spd = 58 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[6118] = {
     name = "Varo'then's Ghost",
@@ -9080,7 +9080,7 @@ FS.CreatureDB[6118] = {
     classification = 4,
     isBoss = false,
     zones = {16},
-    baseStats = { hp = 385, atk = 132, def = 109, spd = 62 },
+    baseStats = { hp = 56, atk = 19, def = 16, spd = 9 },
 }
 FS.CreatureDB[6129] = {
     name = "Draconic Magelord",
@@ -9092,7 +9092,7 @@ FS.CreatureDB[6129] = {
     classification = 1,
     isBoss = false,
     zones = {16},
-    baseStats = { hp = 420, atk = 144, def = 119, spd = 68 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[6130] = {
     name = "Blue Scalebane",
@@ -9104,7 +9104,7 @@ FS.CreatureDB[6130] = {
     classification = 1,
     isBoss = false,
     zones = {16},
-    baseStats = { hp = 413, atk = 142, def = 117, spd = 66 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[6131] = {
     name = "Draconic Mageweaver",
@@ -9116,7 +9116,7 @@ FS.CreatureDB[6131] = {
     classification = 1,
     isBoss = false,
     zones = {16},
-    baseStats = { hp = 406, atk = 139, def = 115, spd = 65 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[6133] = {
     name = "Shade of Elura",
@@ -9128,7 +9128,7 @@ FS.CreatureDB[6133] = {
     classification = 0,
     isBoss = false,
     zones = {148},
-    baseStats = { hp = 90, atk = 27, def = 22, spd = 20 },
+    baseStats = { hp = 56, atk = 17, def = 14, spd = 13 },
 }
 FS.CreatureDB[6220] = {
     name = "Irradiated Horror",
@@ -9140,7 +9140,7 @@ FS.CreatureDB[6220] = {
     classification = 1,
     isBoss = false,
     zones = {721},
-    baseStats = { hp = 287, atk = 110, def = 79, spd = 46 },
+    baseStats = { hp = 60, atk = 23, def = 17, spd = 10 },
 }
 FS.CreatureDB[6225] = {
     name = "Mechano-Tank",
@@ -9152,7 +9152,7 @@ FS.CreatureDB[6225] = {
     classification = 1,
     isBoss = false,
     zones = {721},
-    baseStats = { hp = 294, atk = 99, def = 81, spd = 47 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[6226] = {
     name = "Mechano-Flamewalker",
@@ -9164,7 +9164,7 @@ FS.CreatureDB[6226] = {
     classification = 1,
     isBoss = false,
     zones = {721},
-    baseStats = { hp = 294, atk = 99, def = 81, spd = 47 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[6227] = {
     name = "Mechano-Frostwalker",
@@ -9176,7 +9176,7 @@ FS.CreatureDB[6227] = {
     classification = 1,
     isBoss = false,
     zones = {721},
-    baseStats = { hp = 301, atk = 101, def = 84, spd = 48 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[6229] = {
     name = "Crowd Pummeler 9-60",
@@ -9188,7 +9188,7 @@ FS.CreatureDB[6229] = {
     classification = 1,
     isBoss = true,
     zones = {721},
-    baseStats = { hp = 273, atk = 91, def = 75, spd = 44 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[6230] = {
     name = "Peacekeeper Security Suit",
@@ -9200,7 +9200,7 @@ FS.CreatureDB[6230] = {
     classification = 1,
     isBoss = false,
     zones = {721},
-    baseStats = { hp = 294, atk = 99, def = 81, spd = 47 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[6231] = {
     name = "Techbot",
@@ -9212,7 +9212,7 @@ FS.CreatureDB[6231] = {
     classification = 1,
     isBoss = false,
     zones = {-3},
-    baseStats = { hp = 230, atk = 76, def = 62, spd = 37 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[6232] = {
     name = "Arcane Nullifier X-21",
@@ -9224,7 +9224,7 @@ FS.CreatureDB[6232] = {
     classification = 1,
     isBoss = false,
     zones = {721},
-    baseStats = { hp = 301, atk = 101, def = 84, spd = 48 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[6233] = {
     name = "Mechanized Sentry",
@@ -9236,7 +9236,7 @@ FS.CreatureDB[6233] = {
     classification = 1,
     isBoss = false,
     zones = {721},
-    baseStats = { hp = 287, atk = 96, def = 79, spd = 46 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[6235] = {
     name = "Electrocutioner 6000",
@@ -9248,7 +9248,7 @@ FS.CreatureDB[6235] = {
     classification = 1,
     isBoss = true,
     zones = {721},
-    baseStats = { hp = 273, atk = 91, def = 75, spd = 44 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[6239] = {
     name = "Cyclonian",
@@ -9260,7 +9260,7 @@ FS.CreatureDB[6239] = {
     classification = 1,
     isBoss = false,
     zones = {36},
-    baseStats = { hp = 329, atk = 128, def = 92, spd = 53 },
+    baseStats = { hp = 60, atk = 23, def = 17, spd = 10 },
 }
 FS.CreatureDB[6250] = {
     name = "Crawler",
@@ -9272,7 +9272,7 @@ FS.CreatureDB[6250] = {
     classification = 0,
     isBoss = false,
     zones = {40},
-    baseStats = { hp = 90, atk = 27, def = 22, spd = 20 },
+    baseStats = { hp = 56, atk = 17, def = 14, spd = 13 },
 }
 FS.CreatureDB[6352] = {
     name = "Coralshell Lurker",
@@ -9284,7 +9284,7 @@ FS.CreatureDB[6352] = {
     classification = 0,
     isBoss = false,
     zones = {16},
-    baseStats = { hp = 300, atk = 103, def = 85, spd = 68 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[6369] = {
     name = "Coralshell Tortoise",
@@ -9296,7 +9296,7 @@ FS.CreatureDB[6369] = {
     classification = 0,
     isBoss = false,
     zones = {16},
-    baseStats = { hp = 290, atk = 99, def = 82, spd = 65 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[6386] = {
     name = "Ward of Zanzil",
@@ -9308,7 +9308,7 @@ FS.CreatureDB[6386] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 265, atk = 90, def = 75, spd = 60 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[6388] = {
     name = "Zanzil Skeleton",
@@ -9320,7 +9320,7 @@ FS.CreatureDB[6388] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 260, atk = 89, def = 73, spd = 58 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[6412] = {
     name = "Skeleton",
@@ -9332,7 +9332,7 @@ FS.CreatureDB[6412] = {
     classification = 0,
     isBoss = false,
     zones = {11, 28},
-    baseStats = { hp = 225, atk = 76, def = 63, spd = 50 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[6426] = {
     name = "Anguished Dead",
@@ -9344,7 +9344,7 @@ FS.CreatureDB[6426] = {
     classification = 1,
     isBoss = false,
     zones = {796},
-    baseStats = { hp = 273, atk = 91, def = 75, spd = 44 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[6427] = {
     name = "Haunting Phantasm",
@@ -9356,7 +9356,7 @@ FS.CreatureDB[6427] = {
     classification = 1,
     isBoss = false,
     zones = {796},
-    baseStats = { hp = 273, atk = 91, def = 75, spd = 44 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[6489] = {
     name = "Ironspine",
@@ -9368,7 +9368,7 @@ FS.CreatureDB[6489] = {
     classification = 2,
     isBoss = false,
     zones = {796},
-    baseStats = { hp = 280, atk = 94, def = 77, spd = 45 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[6490] = {
     name = "Azshir the Sleepless",
@@ -9380,7 +9380,7 @@ FS.CreatureDB[6490] = {
     classification = 2,
     isBoss = false,
     zones = {796},
-    baseStats = { hp = 280, atk = 94, def = 77, spd = 45 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[6492] = {
     name = "Rift Spawn",
@@ -9392,7 +9392,7 @@ FS.CreatureDB[6492] = {
     classification = 0,
     isBoss = false,
     zones = {1497, 1519},
-    baseStats = { hp = 115, atk = 41, def = 30, spd = 25 },
+    baseStats = { hp = 55, atk = 19, def = 14, spd = 12 },
 }
 FS.CreatureDB[6493] = {
     name = "Illusionary Phantasm",
@@ -9404,7 +9404,7 @@ FS.CreatureDB[6493] = {
     classification = 1,
     isBoss = false,
     zones = {796},
-    baseStats = { hp = 273, atk = 91, def = 75, spd = 44 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[6508] = {
     name = "Venomhide Ravasaur",
@@ -9416,7 +9416,7 @@ FS.CreatureDB[6508] = {
     classification = 0,
     isBoss = false,
     zones = {490},
-    baseStats = { hp = 285, atk = 117, def = 81, spd = 88 },
+    baseStats = { hp = 51, atk = 20, def = 14, spd = 15 },
 }
 FS.CreatureDB[6513] = {
     name = "Un'Goro Stomper",
@@ -9428,7 +9428,7 @@ FS.CreatureDB[6513] = {
     classification = 0,
     isBoss = false,
     zones = {490},
-    baseStats = { hp = 290, atk = 99, def = 82, spd = 65 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[6514] = {
     name = "Un'Goro Gorilla",
@@ -9440,7 +9440,7 @@ FS.CreatureDB[6514] = {
     classification = 0,
     isBoss = false,
     zones = {490},
-    baseStats = { hp = 285, atk = 98, def = 81, spd = 64 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[6516] = {
     name = "Un'Goro Thunderer",
@@ -9452,7 +9452,7 @@ FS.CreatureDB[6516] = {
     classification = 0,
     isBoss = false,
     zones = {490},
-    baseStats = { hp = 295, atk = 101, def = 84, spd = 66 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[6517] = {
     name = "Tar Beast",
@@ -9464,7 +9464,7 @@ FS.CreatureDB[6517] = {
     classification = 0,
     isBoss = false,
     zones = {490},
-    baseStats = { hp = 285, atk = 112, def = 81, spd = 64 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[6518] = {
     name = "Tar Lurker",
@@ -9476,7 +9476,7 @@ FS.CreatureDB[6518] = {
     classification = 0,
     isBoss = false,
     zones = {490},
-    baseStats = { hp = 300, atk = 118, def = 85, spd = 68 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[6519] = {
     name = "Tar Lord",
@@ -9488,7 +9488,7 @@ FS.CreatureDB[6519] = {
     classification = 0,
     isBoss = false,
     zones = {490},
-    baseStats = { hp = 300, atk = 118, def = 85, spd = 68 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[6521] = {
     name = "Living Blaze",
@@ -9500,7 +9500,7 @@ FS.CreatureDB[6521] = {
     classification = 0,
     isBoss = false,
     zones = {490},
-    baseStats = { hp = 305, atk = 120, def = 87, spd = 69 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[6527] = {
     name = "Tar Creeper",
@@ -9512,7 +9512,7 @@ FS.CreatureDB[6527] = {
     classification = 0,
     isBoss = false,
     zones = {490},
-    baseStats = { hp = 290, atk = 113, def = 82, spd = 65 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[6550] = {
     name = "Mana Surge",
@@ -9524,7 +9524,7 @@ FS.CreatureDB[6550] = {
     classification = 0,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 235, atk = 92, def = 66, spd = 53 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[6585] = {
     name = "Uhk'loc",
@@ -9536,7 +9536,7 @@ FS.CreatureDB[6585] = {
     classification = 4,
     isBoss = false,
     zones = {490},
-    baseStats = { hp = 413, atk = 142, def = 117, spd = 66 },
+    baseStats = { hp = 56, atk = 19, def = 16, spd = 9 },
 }
 FS.CreatureDB[6669] = {
     name = "The Threshwackonator 4100",
@@ -9548,7 +9548,7 @@ FS.CreatureDB[6669] = {
     classification = 1,
     isBoss = false,
     zones = {148},
-    baseStats = { hp = 189, atk = 61, def = 50, spd = 30 },
+    baseStats = { hp = 63, atk = 20, def = 17, spd = 10 },
 }
 FS.CreatureDB[6788] = {
     name = "Den Mother",
@@ -9560,7 +9560,7 @@ FS.CreatureDB[6788] = {
     classification = 0,
     isBoss = false,
     zones = {148},
-    baseStats = { hp = 150, atk = 40, def = 37, spd = 23 },
+    baseStats = { hp = 60, atk = 16, def = 15, spd = 9 },
 }
 FS.CreatureDB[6789] = {
     name = "Thistle Cub",
@@ -9572,7 +9572,7 @@ FS.CreatureDB[6789] = {
     classification = 0,
     isBoss = false,
     zones = {148},
-    baseStats = { hp = 96, atk = 24, def = 21, spd = 14 },
+    baseStats = { hp = 62, atk = 15, def = 14, spd = 9 },
 }
 FS.CreatureDB[6932] = {
     name = "Swamp Spirit",
@@ -9584,7 +9584,7 @@ FS.CreatureDB[6932] = {
     classification = 0,
     isBoss = false,
     zones = {8},
-    baseStats = { hp = 235, atk = 92, def = 66, spd = 53 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[7022] = {
     name = "Venomlash Scorpid",
@@ -9596,7 +9596,7 @@ FS.CreatureDB[7022] = {
     classification = 1,
     isBoss = false,
     zones = {1337},
-    baseStats = { hp = 322, atk = 109, def = 90, spd = 52 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[7031] = {
     name = "Obsidian Elemental",
@@ -9608,7 +9608,7 @@ FS.CreatureDB[7031] = {
     classification = 0,
     isBoss = false,
     zones = {46},
-    baseStats = { hp = 295, atk = 116, def = 84, spd = 66 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[7032] = {
     name = "Greater Obsidian Elemental",
@@ -9620,7 +9620,7 @@ FS.CreatureDB[7032] = {
     classification = 0,
     isBoss = false,
     zones = {46},
-    baseStats = { hp = 315, atk = 124, def = 90, spd = 71 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[7039] = {
     name = "War Reaver",
@@ -9632,7 +9632,7 @@ FS.CreatureDB[7039] = {
     classification = 0,
     isBoss = false,
     zones = {46},
-    baseStats = { hp = 305, atk = 120, def = 87, spd = 69 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[7044] = {
     name = "Black Drake",
@@ -9644,7 +9644,7 @@ FS.CreatureDB[7044] = {
     classification = 1,
     isBoss = false,
     zones = {46},
-    baseStats = { hp = 406, atk = 139, def = 115, spd = 65 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[7045] = {
     name = "Scalding Drake",
@@ -9656,7 +9656,7 @@ FS.CreatureDB[7045] = {
     classification = 1,
     isBoss = false,
     zones = {46},
-    baseStats = { hp = 427, atk = 147, def = 121, spd = 69 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[7046] = {
     name = "Searscale Drake",
@@ -9668,7 +9668,7 @@ FS.CreatureDB[7046] = {
     classification = 1,
     isBoss = false,
     zones = {46},
-    baseStats = { hp = 448, atk = 154, def = 128, spd = 72 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[7047] = {
     name = "Black Broodling",
@@ -9680,7 +9680,7 @@ FS.CreatureDB[7047] = {
     classification = 0,
     isBoss = false,
     zones = {46},
-    baseStats = { hp = 290, atk = 99, def = 82, spd = 65 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[7048] = {
     name = "Scalding Broodling",
@@ -9692,7 +9692,7 @@ FS.CreatureDB[7048] = {
     classification = 0,
     isBoss = false,
     zones = {46},
-    baseStats = { hp = 300, atk = 103, def = 85, spd = 68 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[7049] = {
     name = "Flamescale Broodling",
@@ -9704,7 +9704,7 @@ FS.CreatureDB[7049] = {
     classification = 0,
     isBoss = false,
     zones = {46},
-    baseStats = { hp = 310, atk = 107, def = 88, spd = 70 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[7055] = {
     name = "Blackrock Worg",
@@ -9716,7 +9716,7 @@ FS.CreatureDB[7055] = {
     classification = 0,
     isBoss = false,
     zones = {46},
-    baseStats = { hp = 305, atk = 105, def = 87, spd = 69 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[7067] = {
     name = "Venture Co. Drone",
@@ -9728,7 +9728,7 @@ FS.CreatureDB[7067] = {
     classification = 0,
     isBoss = false,
     zones = {17, 40},
-    baseStats = { hp = 145, atk = 47, def = 39, spd = 32 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[7068] = {
     name = "Condemned Acolyte",
@@ -9740,7 +9740,7 @@ FS.CreatureDB[7068] = {
     classification = 1,
     isBoss = false,
     zones = {267},
-    baseStats = { hp = 448, atk = 154, def = 128, spd = 72 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[7069] = {
     name = "Condemned Monk",
@@ -9752,7 +9752,7 @@ FS.CreatureDB[7069] = {
     classification = 1,
     isBoss = false,
     zones = {267},
-    baseStats = { hp = 454, atk = 157, def = 130, spd = 73 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[7071] = {
     name = "Cursed Paladin",
@@ -9764,7 +9764,7 @@ FS.CreatureDB[7071] = {
     classification = 1,
     isBoss = false,
     zones = {267},
-    baseStats = { hp = 448, atk = 154, def = 128, spd = 72 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[7072] = {
     name = "Cursed Justicar",
@@ -9776,7 +9776,7 @@ FS.CreatureDB[7072] = {
     classification = 1,
     isBoss = false,
     zones = {267},
-    baseStats = { hp = 461, atk = 159, def = 132, spd = 74 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[7075] = {
     name = "Writhing Mage",
@@ -9788,7 +9788,7 @@ FS.CreatureDB[7075] = {
     classification = 1,
     isBoss = false,
     zones = {267},
-    baseStats = { hp = 454, atk = 157, def = 130, spd = 73 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[7078] = {
     name = "Cleft Scorpid",
@@ -9800,7 +9800,7 @@ FS.CreatureDB[7078] = {
     classification = 0,
     isBoss = false,
     zones = {1337},
-    baseStats = { hp = 210, atk = 71, def = 58, spd = 47 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[7079] = {
     name = "Viscous Fallout",
@@ -9812,7 +9812,7 @@ FS.CreatureDB[7079] = {
     classification = 1,
     isBoss = true,
     zones = {721},
-    baseStats = { hp = 259, atk = 98, def = 71, spd = 41 },
+    baseStats = { hp = 60, atk = 23, def = 17, spd = 10 },
 }
 FS.CreatureDB[7097] = {
     name = "Ironbeak Owl",
@@ -9824,7 +9824,7 @@ FS.CreatureDB[7097] = {
     classification = 0,
     isBoss = false,
     zones = {361},
-    baseStats = { hp = 275, atk = 94, def = 78, spd = 62 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[7098] = {
     name = "Ironbeak Screecher",
@@ -9836,7 +9836,7 @@ FS.CreatureDB[7098] = {
     classification = 0,
     isBoss = false,
     zones = {361},
-    baseStats = { hp = 295, atk = 101, def = 84, spd = 66 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[7099] = {
     name = "Ironbeak Hunter",
@@ -9848,7 +9848,7 @@ FS.CreatureDB[7099] = {
     classification = 0,
     isBoss = false,
     zones = {361},
-    baseStats = { hp = 285, atk = 98, def = 81, spd = 64 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[7100] = {
     name = "Warpwood Moss Flayer",
@@ -9860,7 +9860,7 @@ FS.CreatureDB[7100] = {
     classification = 0,
     isBoss = false,
     zones = {361},
-    baseStats = { hp = 295, atk = 116, def = 84, spd = 66 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[7101] = {
     name = "Warpwood Shredder",
@@ -9872,7 +9872,7 @@ FS.CreatureDB[7101] = {
     classification = 0,
     isBoss = false,
     zones = {361},
-    baseStats = { hp = 300, atk = 118, def = 85, spd = 68 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[7104] = {
     name = "Dessecus",
@@ -9884,7 +9884,7 @@ FS.CreatureDB[7104] = {
     classification = 2,
     isBoss = false,
     zones = {361},
-    baseStats = { hp = 441, atk = 174, def = 125, spd = 71 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[7132] = {
     name = "Toxic Horror",
@@ -9896,7 +9896,7 @@ FS.CreatureDB[7132] = {
     classification = 0,
     isBoss = false,
     zones = {361},
-    baseStats = { hp = 300, atk = 118, def = 85, spd = 68 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[7138] = {
     name = "Irontree Wanderer",
@@ -9908,7 +9908,7 @@ FS.CreatureDB[7138] = {
     classification = 0,
     isBoss = false,
     zones = {361},
-    baseStats = { hp = 295, atk = 116, def = 84, spd = 66 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[7139] = {
     name = "Irontree Stomper",
@@ -9920,7 +9920,7 @@ FS.CreatureDB[7139] = {
     classification = 0,
     isBoss = false,
     zones = {361},
-    baseStats = { hp = 295, atk = 116, def = 84, spd = 66 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[7149] = {
     name = "Withered Protector",
@@ -9932,7 +9932,7 @@ FS.CreatureDB[7149] = {
     classification = 0,
     isBoss = false,
     zones = {361},
-    baseStats = { hp = 310, atk = 123, def = 88, spd = 70 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[7166] = {
     name = "Wrenix's Gizmotronic Apparatus",
@@ -9944,7 +9944,7 @@ FS.CreatureDB[7166] = {
     classification = 0,
     isBoss = false,
     zones = {17},
-    baseStats = { hp = 135, atk = 44, def = 36, spd = 30 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[7206] = {
     name = "Ancient Stone Keeper",
@@ -9956,7 +9956,7 @@ FS.CreatureDB[7206] = {
     classification = 1,
     isBoss = true,
     zones = {1337},
-    baseStats = { hp = 357, atk = 140, def = 100, spd = 57 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[7209] = {
     name = "Obsidian Shard",
@@ -9968,7 +9968,7 @@ FS.CreatureDB[7209] = {
     classification = 0,
     isBoss = false,
     zones = {1337},
-    baseStats = { hp = 210, atk = 71, def = 58, spd = 47 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[7266] = {
     name = "Ember",
@@ -9980,7 +9980,7 @@ FS.CreatureDB[7266] = {
     classification = 0,
     isBoss = false,
     zones = {721},
-    baseStats = { hp = 210, atk = 81, def = 58, spd = 47 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[7272] = {
     name = "Theka the Martyr",
@@ -9992,7 +9992,7 @@ FS.CreatureDB[7272] = {
     classification = 1,
     isBoss = true,
     zones = {1176},
-    baseStats = { hp = 364, atk = 124, def = 102, spd = 58 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[7276] = {
     name = "Zul'Farrak Dead Hero",
@@ -10004,7 +10004,7 @@ FS.CreatureDB[7276] = {
     classification = 0,
     isBoss = false,
     zones = {1176},
-    baseStats = { hp = 260, atk = 89, def = 73, spd = 58 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[7286] = {
     name = "Zul'Farrak Zombie",
@@ -10016,7 +10016,7 @@ FS.CreatureDB[7286] = {
     classification = 1,
     isBoss = false,
     zones = {1176},
-    baseStats = { hp = 350, atk = 119, def = 98, spd = 56 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[7310] = {
     name = "Mutated Venture Co. Drone",
@@ -10028,7 +10028,7 @@ FS.CreatureDB[7310] = {
     classification = 0,
     isBoss = false,
     zones = {17},
-    baseStats = { hp = 160, atk = 53, def = 43, spd = 36 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[7319] = {
     name = "Lady Sathrah",
@@ -10040,7 +10040,7 @@ FS.CreatureDB[7319] = {
     classification = 0,
     isBoss = false,
     zones = {141},
-    baseStats = { hp = 95, atk = 29, def = 24, spd = 21 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[7327] = {
     name = "Withered Warrior",
@@ -10052,7 +10052,7 @@ FS.CreatureDB[7327] = {
     classification = 1,
     isBoss = false,
     zones = {722},
-    baseStats = { hp = 287, atk = 96, def = 79, spd = 46 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[7328] = {
     name = "Withered Reaver",
@@ -10064,7 +10064,7 @@ FS.CreatureDB[7328] = {
     classification = 1,
     isBoss = false,
     zones = {722},
-    baseStats = { hp = 294, atk = 99, def = 81, spd = 47 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[7332] = {
     name = "Withered Spearhide",
@@ -10076,7 +10076,7 @@ FS.CreatureDB[7332] = {
     classification = 1,
     isBoss = false,
     zones = {722},
-    baseStats = { hp = 287, atk = 96, def = 79, spd = 46 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[7333] = {
     name = "Withered Battle Boar",
@@ -10088,7 +10088,7 @@ FS.CreatureDB[7333] = {
     classification = 0,
     isBoss = false,
     zones = {722},
-    baseStats = { hp = 205, atk = 69, def = 57, spd = 46 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[7334] = {
     name = "Battle Boar Horror",
@@ -10100,7 +10100,7 @@ FS.CreatureDB[7334] = {
     classification = 0,
     isBoss = false,
     zones = {722},
-    baseStats = { hp = 220, atk = 74, def = 61, spd = 49 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[7340] = {
     name = "Skeletal Shadowcaster",
@@ -10112,7 +10112,7 @@ FS.CreatureDB[7340] = {
     classification = 0,
     isBoss = false,
     zones = {722},
-    baseStats = { hp = 215, atk = 72, def = 60, spd = 48 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[7341] = {
     name = "Skeletal Frostweaver",
@@ -10124,7 +10124,7 @@ FS.CreatureDB[7341] = {
     classification = 1,
     isBoss = false,
     zones = {722},
-    baseStats = { hp = 308, atk = 104, def = 86, spd = 49 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[7342] = {
     name = "Skeletal Summoner",
@@ -10136,7 +10136,7 @@ FS.CreatureDB[7342] = {
     classification = 1,
     isBoss = false,
     zones = {722},
-    baseStats = { hp = 322, atk = 109, def = 90, spd = 52 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[7343] = {
     name = "Splinterbone Skeleton",
@@ -10148,7 +10148,7 @@ FS.CreatureDB[7343] = {
     classification = 0,
     isBoss = false,
     zones = {722},
-    baseStats = { hp = 210, atk = 71, def = 58, spd = 47 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[7344] = {
     name = "Splinterbone Warrior",
@@ -10160,7 +10160,7 @@ FS.CreatureDB[7344] = {
     classification = 0,
     isBoss = false,
     zones = {722},
-    baseStats = { hp = 220, atk = 74, def = 61, spd = 49 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[7346] = {
     name = "Splinterbone Centurion",
@@ -10172,7 +10172,7 @@ FS.CreatureDB[7346] = {
     classification = 0,
     isBoss = false,
     zones = {722},
-    baseStats = { hp = 225, atk = 76, def = 63, spd = 50 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[7347] = {
     name = "Boneflayer Ghoul",
@@ -10184,7 +10184,7 @@ FS.CreatureDB[7347] = {
     classification = 1,
     isBoss = false,
     zones = {722},
-    baseStats = { hp = 315, atk = 106, def = 88, spd = 50 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[7348] = {
     name = "Thorn Eater Ghoul",
@@ -10196,7 +10196,7 @@ FS.CreatureDB[7348] = {
     classification = 1,
     isBoss = false,
     zones = {722},
-    baseStats = { hp = 308, atk = 104, def = 86, spd = 49 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[7349] = {
     name = "Tomb Fiend",
@@ -10208,7 +10208,7 @@ FS.CreatureDB[7349] = {
     classification = 0,
     isBoss = false,
     zones = {722},
-    baseStats = { hp = 210, atk = 71, def = 58, spd = 47 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[7351] = {
     name = "Tomb Reaver",
@@ -10220,7 +10220,7 @@ FS.CreatureDB[7351] = {
     classification = 1,
     isBoss = false,
     zones = {722},
-    baseStats = { hp = 308, atk = 104, def = 86, spd = 49 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[7352] = {
     name = "Frozen Soul",
@@ -10232,7 +10232,7 @@ FS.CreatureDB[7352] = {
     classification = 1,
     isBoss = false,
     zones = {722},
-    baseStats = { hp = 308, atk = 104, def = 86, spd = 49 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[7353] = {
     name = "Freezing Spirit",
@@ -10244,7 +10244,7 @@ FS.CreatureDB[7353] = {
     classification = 1,
     isBoss = false,
     zones = {722},
-    baseStats = { hp = 322, atk = 109, def = 90, spd = 52 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[7355] = {
     name = "Tuten'kash",
@@ -10256,7 +10256,7 @@ FS.CreatureDB[7355] = {
     classification = 1,
     isBoss = false,
     zones = {722},
-    baseStats = { hp = 329, atk = 112, def = 92, spd = 53 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[7357] = {
     name = "Mordresh Fire Eye",
@@ -10268,7 +10268,7 @@ FS.CreatureDB[7357] = {
     classification = 1,
     isBoss = false,
     zones = {722},
-    baseStats = { hp = 322, atk = 109, def = 90, spd = 52 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[7358] = {
     name = "Amnennar the Coldbringer",
@@ -10280,7 +10280,7 @@ FS.CreatureDB[7358] = {
     classification = 1,
     isBoss = false,
     zones = {722},
-    baseStats = { hp = 336, atk = 114, def = 94, spd = 54 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[7370] = {
     name = "Restless Shade",
@@ -10292,7 +10292,7 @@ FS.CreatureDB[7370] = {
     classification = 0,
     isBoss = false,
     zones = {41},
-    baseStats = { hp = 330, atk = 114, def = 94, spd = 74 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[7405] = {
     name = "Deadly Cleft Scorpid",
@@ -10304,7 +10304,7 @@ FS.CreatureDB[7405] = {
     classification = 0,
     isBoss = false,
     zones = {1337},
-    baseStats = { hp = 245, atk = 83, def = 69, spd = 55 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[7430] = {
     name = "Frostsaber Cub",
@@ -10316,7 +10316,7 @@ FS.CreatureDB[7430] = {
     classification = 0,
     isBoss = false,
     zones = {618},
-    baseStats = { hp = 310, atk = 128, def = 88, spd = 97 },
+    baseStats = { hp = 49, atk = 21, def = 14, spd = 16 },
 }
 FS.CreatureDB[7431] = {
     name = "Frostsaber",
@@ -10328,7 +10328,7 @@ FS.CreatureDB[7431] = {
     classification = 0,
     isBoss = false,
     zones = {618},
-    baseStats = { hp = 315, atk = 129, def = 90, spd = 98 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[7432] = {
     name = "Frostsaber Stalker",
@@ -10340,7 +10340,7 @@ FS.CreatureDB[7432] = {
     classification = 0,
     isBoss = false,
     zones = {618},
-    baseStats = { hp = 330, atk = 136, def = 94, spd = 103 },
+    baseStats = { hp = 49, atk = 21, def = 14, spd = 16 },
 }
 FS.CreatureDB[7433] = {
     name = "Frostsaber Huntress",
@@ -10352,7 +10352,7 @@ FS.CreatureDB[7433] = {
     classification = 0,
     isBoss = false,
     zones = {618},
-    baseStats = { hp = 325, atk = 134, def = 93, spd = 102 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[7434] = {
     name = "Frostsaber Pride Watcher",
@@ -10364,7 +10364,7 @@ FS.CreatureDB[7434] = {
     classification = 0,
     isBoss = false,
     zones = {618},
-    baseStats = { hp = 330, atk = 136, def = 94, spd = 103 },
+    baseStats = { hp = 49, atk = 21, def = 14, spd = 16 },
 }
 FS.CreatureDB[7436] = {
     name = "Cobalt Scalebane",
@@ -10376,7 +10376,7 @@ FS.CreatureDB[7436] = {
     classification = 1,
     isBoss = false,
     zones = {618},
-    baseStats = { hp = 441, atk = 152, def = 125, spd = 71 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[7437] = {
     name = "Cobalt Mageweaver",
@@ -10388,7 +10388,7 @@ FS.CreatureDB[7437] = {
     classification = 1,
     isBoss = false,
     zones = {618},
-    baseStats = { hp = 448, atk = 154, def = 128, spd = 72 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[7443] = {
     name = "Shardtooth Mauler",
@@ -10400,7 +10400,7 @@ FS.CreatureDB[7443] = {
     classification = 0,
     isBoss = false,
     zones = {618},
-    baseStats = { hp = 372, atk = 107, def = 101, spd = 59 },
+    baseStats = { hp = 58, atk = 17, def = 16, spd = 9 },
 }
 FS.CreatureDB[7444] = {
     name = "Shardtooth Bear",
@@ -10412,7 +10412,7 @@ FS.CreatureDB[7444] = {
     classification = 0,
     isBoss = false,
     zones = {618},
-    baseStats = { hp = 360, atk = 103, def = 97, spd = 57 },
+    baseStats = { hp = 58, atk = 17, def = 16, spd = 9 },
 }
 FS.CreatureDB[7445] = {
     name = "Elder Shardtooth",
@@ -10424,7 +10424,7 @@ FS.CreatureDB[7445] = {
     classification = 0,
     isBoss = false,
     zones = {618},
-    baseStats = { hp = 384, atk = 110, def = 104, spd = 61 },
+    baseStats = { hp = 58, atk = 17, def = 16, spd = 9 },
 }
 FS.CreatureDB[7446] = {
     name = "Rabid Shardtooth",
@@ -10436,7 +10436,7 @@ FS.CreatureDB[7446] = {
     classification = 0,
     isBoss = false,
     zones = {618},
-    baseStats = { hp = 396, atk = 114, def = 108, spd = 62 },
+    baseStats = { hp = 58, atk = 17, def = 16, spd = 9 },
 }
 FS.CreatureDB[7455] = {
     name = "Winterspring Owl",
@@ -10448,7 +10448,7 @@ FS.CreatureDB[7455] = {
     classification = 0,
     isBoss = false,
     zones = {618},
-    baseStats = { hp = 310, atk = 107, def = 88, spd = 70 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[7456] = {
     name = "Winterspring Screecher",
@@ -10460,7 +10460,7 @@ FS.CreatureDB[7456] = {
     classification = 0,
     isBoss = false,
     zones = {618},
-    baseStats = { hp = 325, atk = 112, def = 93, spd = 73 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[7523] = {
     name = "Suffering Highborne",
@@ -10472,7 +10472,7 @@ FS.CreatureDB[7523] = {
     classification = 0,
     isBoss = false,
     zones = {618},
-    baseStats = { hp = 305, atk = 105, def = 87, spd = 69 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[7524] = {
     name = "Anguished Highborne",
@@ -10484,7 +10484,7 @@ FS.CreatureDB[7524] = {
     classification = 0,
     isBoss = false,
     zones = {618},
-    baseStats = { hp = 310, atk = 107, def = 88, spd = 70 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[7584] = {
     name = "Wandering Forest Walker",
@@ -10496,7 +10496,7 @@ FS.CreatureDB[7584] = {
     classification = 0,
     isBoss = false,
     zones = {357},
-    baseStats = { hp = 260, atk = 102, def = 73, spd = 58 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[7738] = {
     name = "Burning Servant",
@@ -10508,7 +10508,7 @@ FS.CreatureDB[7738] = {
     classification = 0,
     isBoss = false,
     zones = {721},
-    baseStats = { hp = 210, atk = 81, def = 58, spd = 47 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[7784] = {
     name = "Homing Robot OOX-17/TN",
@@ -10520,7 +10520,7 @@ FS.CreatureDB[7784] = {
     classification = 0,
     isBoss = false,
     zones = {440},
-    baseStats = { hp = 245, atk = 83, def = 69, spd = 55 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[7786] = {
     name = "Skeleton of Zum'rah",
@@ -10532,7 +10532,7 @@ FS.CreatureDB[7786] = {
     classification = 0,
     isBoss = false,
     zones = {1176},
-    baseStats = { hp = 210, atk = 71, def = 58, spd = 47 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[7796] = {
     name = "Nekrum Gutchewer",
@@ -10544,7 +10544,7 @@ FS.CreatureDB[7796] = {
     classification = 1,
     isBoss = true,
     zones = {1176},
-    baseStats = { hp = 364, atk = 124, def = 102, spd = 58 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[7800] = {
     name = "Mekgineer Thermaplugg",
@@ -10556,7 +10556,7 @@ FS.CreatureDB[7800] = {
     classification = 1,
     isBoss = true,
     zones = {721},
-    baseStats = { hp = 287, atk = 96, def = 79, spd = 46 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[7803] = {
     name = "Scorpid Duneburrower",
@@ -10568,7 +10568,7 @@ FS.CreatureDB[7803] = {
     classification = 0,
     isBoss = false,
     zones = {440},
-    baseStats = { hp = 265, atk = 90, def = 75, spd = 60 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[7806] = {
     name = "Homing Robot OOX-09/HL",
@@ -10580,7 +10580,7 @@ FS.CreatureDB[7806] = {
     classification = 0,
     isBoss = false,
     zones = {47},
-    baseStats = { hp = 245, atk = 83, def = 69, spd = 55 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[7807] = {
     name = "Homing Robot OOX-22/FE",
@@ -10592,7 +10592,7 @@ FS.CreatureDB[7807] = {
     classification = 0,
     isBoss = false,
     zones = {357},
-    baseStats = { hp = 245, atk = 83, def = 69, spd = 55 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[7846] = {
     name = "Teremus the Devourer",
@@ -10604,7 +10604,7 @@ FS.CreatureDB[7846] = {
     classification = 2,
     isBoss = false,
     zones = {4, 8, 12, 1519},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[7849] = {
     name = "Mobile Alert System",
@@ -10616,7 +10616,7 @@ FS.CreatureDB[7849] = {
     classification = 0,
     isBoss = false,
     zones = {721},
-    baseStats = { hp = 195, atk = 65, def = 54, spd = 44 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[7864] = {
     name = "Lingering Highborne",
@@ -10628,7 +10628,7 @@ FS.CreatureDB[7864] = {
     classification = 0,
     isBoss = false,
     zones = {16},
-    baseStats = { hp = 280, atk = 96, def = 79, spd = 63 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[7895] = {
     name = "Ambassador Bloodrage",
@@ -10640,7 +10640,7 @@ FS.CreatureDB[7895] = {
     classification = 2,
     isBoss = false,
     zones = {17},
-    baseStats = { hp = 301, atk = 101, def = 84, spd = 48 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[7897] = {
     name = "Alarm-a-bomb 2600",
@@ -10652,7 +10652,7 @@ FS.CreatureDB[7897] = {
     classification = 0,
     isBoss = false,
     zones = {721},
-    baseStats = { hp = 185, atk = 62, def = 51, spd = 41 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[7915] = {
     name = "Walking Bomb",
@@ -10664,7 +10664,7 @@ FS.CreatureDB[7915] = {
     classification = 0,
     isBoss = false,
     zones = {721},
-    baseStats = { hp = 185, atk = 62, def = 51, spd = 41 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[7997] = {
     name = "Captured Sprite Darter",
@@ -10676,7 +10676,7 @@ FS.CreatureDB[7997] = {
     classification = 0,
     isBoss = false,
     zones = {357},
-    baseStats = { hp = 245, atk = 83, def = 69, spd = 55 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[8035] = {
     name = "Dark Iron Land Mine",
@@ -10688,7 +10688,7 @@ FS.CreatureDB[8035] = {
     classification = 0,
     isBoss = false,
     zones = {721},
-    baseStats = { hp = 255, atk = 87, def = 72, spd = 57 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[8196] = {
     name = "Occulus",
@@ -10700,7 +10700,7 @@ FS.CreatureDB[8196] = {
     classification = 1,
     isBoss = false,
     zones = {440},
-    baseStats = { hp = 399, atk = 137, def = 113, spd = 64 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[8197] = {
     name = "Chronalis",
@@ -10712,7 +10712,7 @@ FS.CreatureDB[8197] = {
     classification = 1,
     isBoss = false,
     zones = {440},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[8198] = {
     name = "Tick",
@@ -10724,7 +10724,7 @@ FS.CreatureDB[8198] = {
     classification = 1,
     isBoss = false,
     zones = {440},
-    baseStats = { hp = 413, atk = 142, def = 117, spd = 66 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[8207] = {
     name = "Greater Firebird",
@@ -10736,7 +10736,7 @@ FS.CreatureDB[8207] = {
     classification = 4,
     isBoss = false,
     zones = {440},
-    baseStats = { hp = 371, atk = 127, def = 105, spd = 60 },
+    baseStats = { hp = 56, atk = 19, def = 16, spd = 9 },
 }
 FS.CreatureDB[8208] = {
     name = "Murderous Blisterpaw",
@@ -10748,7 +10748,7 @@ FS.CreatureDB[8208] = {
     classification = 4,
     isBoss = false,
     zones = {440},
-    baseStats = { hp = 350, atk = 119, def = 98, spd = 56 },
+    baseStats = { hp = 56, atk = 19, def = 16, spd = 9 },
 }
 FS.CreatureDB[8211] = {
     name = "Old Cliff Jumper",
@@ -10760,7 +10760,7 @@ FS.CreatureDB[8211] = {
     classification = 4,
     isBoss = false,
     zones = {47},
-    baseStats = { hp = 343, atk = 117, def = 96, spd = 55 },
+    baseStats = { hp = 56, atk = 19, def = 16, spd = 9 },
 }
 FS.CreatureDB[8213] = {
     name = "Ironback",
@@ -10772,7 +10772,7 @@ FS.CreatureDB[8213] = {
     classification = 4,
     isBoss = false,
     zones = {47},
-    baseStats = { hp = 406, atk = 139, def = 115, spd = 65 },
+    baseStats = { hp = 56, atk = 19, def = 16, spd = 9 },
 }
 FS.CreatureDB[8277] = {
     name = "Rekk'tilac",
@@ -10784,7 +10784,7 @@ FS.CreatureDB[8277] = {
     classification = 4,
     isBoss = false,
     zones = {51},
-    baseStats = { hp = 385, atk = 132, def = 109, spd = 62 },
+    baseStats = { hp = 56, atk = 19, def = 16, spd = 9 },
 }
 FS.CreatureDB[8278] = {
     name = "Smoldar",
@@ -10796,7 +10796,7 @@ FS.CreatureDB[8278] = {
     classification = 4,
     isBoss = false,
     zones = {51},
-    baseStats = { hp = 399, atk = 157, def = 113, spd = 64 },
+    baseStats = { hp = 55, atk = 21, def = 15, spd = 9 },
 }
 FS.CreatureDB[8279] = {
     name = "Faulty War Golem",
@@ -10808,7 +10808,7 @@ FS.CreatureDB[8279] = {
     classification = 4,
     isBoss = false,
     zones = {51},
-    baseStats = { hp = 371, atk = 146, def = 105, spd = 60 },
+    baseStats = { hp = 55, atk = 21, def = 15, spd = 9 },
 }
 FS.CreatureDB[8281] = {
     name = "Scald",
@@ -10820,7 +10820,7 @@ FS.CreatureDB[8281] = {
     classification = 4,
     isBoss = false,
     zones = {51},
-    baseStats = { hp = 392, atk = 154, def = 111, spd = 63 },
+    baseStats = { hp = 55, atk = 21, def = 15, spd = 9 },
 }
 FS.CreatureDB[8299] = {
     name = "Spiteflayer",
@@ -10832,7 +10832,7 @@ FS.CreatureDB[8299] = {
     classification = 4,
     isBoss = false,
     zones = {4},
-    baseStats = { hp = 413, atk = 142, def = 117, spd = 66 },
+    baseStats = { hp = 56, atk = 19, def = 16, spd = 9 },
 }
 FS.CreatureDB[8300] = {
     name = "Ravage",
@@ -10844,7 +10844,7 @@ FS.CreatureDB[8300] = {
     classification = 4,
     isBoss = false,
     zones = {4},
-    baseStats = { hp = 406, atk = 139, def = 115, spd = 65 },
+    baseStats = { hp = 56, atk = 19, def = 16, spd = 9 },
 }
 FS.CreatureDB[8301] = {
     name = "Clack the Reaver",
@@ -10856,7 +10856,7 @@ FS.CreatureDB[8301] = {
     classification = 4,
     isBoss = false,
     zones = {4},
-    baseStats = { hp = 420, atk = 144, def = 119, spd = 68 },
+    baseStats = { hp = 56, atk = 19, def = 16, spd = 9 },
 }
 FS.CreatureDB[8317] = {
     name = "Atal'ai Deathwalker's Spirit",
@@ -10868,7 +10868,7 @@ FS.CreatureDB[8317] = {
     classification = 1,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 399, atk = 137, def = 113, spd = 64 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[8319] = {
     name = "Nightmare Whelp",
@@ -10880,7 +10880,7 @@ FS.CreatureDB[8319] = {
     classification = 0,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 280, atk = 96, def = 79, spd = 63 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[8324] = {
     name = "Atal'ai Skeleton",
@@ -10892,7 +10892,7 @@ FS.CreatureDB[8324] = {
     classification = 0,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 275, atk = 94, def = 78, spd = 62 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[8336] = {
     name = "Hakkari Sapper",
@@ -10904,7 +10904,7 @@ FS.CreatureDB[8336] = {
     classification = 1,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 392, atk = 134, def = 111, spd = 73 },
+    baseStats = { hp = 61, atk = 21, def = 17, spd = 11 },
 }
 FS.CreatureDB[8384] = {
     name = "Deep Lurker",
@@ -10916,7 +10916,7 @@ FS.CreatureDB[8384] = {
     classification = 1,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 385, atk = 151, def = 109, spd = 62 },
+    baseStats = { hp = 60, atk = 23, def = 17, spd = 10 },
 }
 FS.CreatureDB[8400] = {
     name = "Obsidion",
@@ -10928,7 +10928,7 @@ FS.CreatureDB[8400] = {
     classification = 1,
     isBoss = false,
     zones = {51},
-    baseStats = { hp = 413, atk = 163, def = 117, spd = 66 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[8441] = {
     name = "Raze",
@@ -10940,7 +10940,7 @@ FS.CreatureDB[8441] = {
     classification = 0,
     isBoss = false,
     zones = {51},
-    baseStats = { hp = 275, atk = 108, def = 78, spd = 62 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[8447] = {
     name = "Clunk",
@@ -10952,7 +10952,7 @@ FS.CreatureDB[8447] = {
     classification = 1,
     isBoss = false,
     zones = {51},
-    baseStats = { hp = 385, atk = 132, def = 109, spd = 62 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[8477] = {
     name = "Skeletal Servant",
@@ -10964,7 +10964,7 @@ FS.CreatureDB[8477] = {
     classification = 0,
     isBoss = false,
     zones = {722, 2017},
-    baseStats = { hp = 265, atk = 90, def = 75, spd = 60 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[8479] = {
     name = "Velarok Windblade",
@@ -10976,7 +10976,7 @@ FS.CreatureDB[8479] = {
     classification = 1,
     isBoss = false,
     zones = {51},
-    baseStats = { hp = 434, atk = 149, def = 123, spd = 70 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[8497] = {
     name = "Nightmare Suppressor",
@@ -10988,7 +10988,7 @@ FS.CreatureDB[8497] = {
     classification = 1,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 392, atk = 134, def = 111, spd = 63 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[8519] = {
     name = "Blighted Surge",
@@ -11000,7 +11000,7 @@ FS.CreatureDB[8519] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 305, atk = 120, def = 87, spd = 69 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[8520] = {
     name = "Plague Ravager",
@@ -11012,7 +11012,7 @@ FS.CreatureDB[8520] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 310, atk = 123, def = 88, spd = 70 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[8521] = {
     name = "Blighted Horror",
@@ -11024,7 +11024,7 @@ FS.CreatureDB[8521] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 315, atk = 124, def = 90, spd = 71 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[8522] = {
     name = "Plague Monstrosity",
@@ -11036,7 +11036,7 @@ FS.CreatureDB[8522] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 320, atk = 126, def = 91, spd = 72 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[8523] = {
     name = "Scourge Soldier",
@@ -11048,7 +11048,7 @@ FS.CreatureDB[8523] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 300, atk = 103, def = 85, spd = 68 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[8524] = {
     name = "Cursed Mage",
@@ -11060,7 +11060,7 @@ FS.CreatureDB[8524] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 305, atk = 105, def = 87, spd = 69 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[8525] = {
     name = "Scourge Warder",
@@ -11072,7 +11072,7 @@ FS.CreatureDB[8525] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 310, atk = 107, def = 88, spd = 70 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[8526] = {
     name = "Dark Caster",
@@ -11084,7 +11084,7 @@ FS.CreatureDB[8526] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 315, atk = 108, def = 90, spd = 71 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[8528] = {
     name = "Dread Weaver",
@@ -11096,7 +11096,7 @@ FS.CreatureDB[8528] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 325, atk = 112, def = 93, spd = 73 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[8530] = {
     name = "Cannibal Ghoul",
@@ -11108,7 +11108,7 @@ FS.CreatureDB[8530] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 305, atk = 105, def = 87, spd = 69 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[8531] = {
     name = "Gibbering Ghoul",
@@ -11120,7 +11120,7 @@ FS.CreatureDB[8531] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 315, atk = 108, def = 90, spd = 71 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[8532] = {
     name = "Diseased Flayer",
@@ -11132,7 +11132,7 @@ FS.CreatureDB[8532] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 325, atk = 112, def = 93, spd = 73 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[8534] = {
     name = "Putrid Gargoyle",
@@ -11144,7 +11144,7 @@ FS.CreatureDB[8534] = {
     classification = 0,
     isBoss = false,
     zones = {28, 139},
-    baseStats = { hp = 310, atk = 107, def = 88, spd = 70 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[8535] = {
     name = "Putrid Shrieker",
@@ -11156,7 +11156,7 @@ FS.CreatureDB[8535] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 320, atk = 110, def = 91, spd = 72 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[8538] = {
     name = "Unseen Servant",
@@ -11168,7 +11168,7 @@ FS.CreatureDB[8538] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 310, atk = 107, def = 88, spd = 70 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[8539] = {
     name = "Eyeless Watcher",
@@ -11180,7 +11180,7 @@ FS.CreatureDB[8539] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 320, atk = 110, def = 91, spd = 72 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[8540] = {
     name = "Torn Screamer",
@@ -11192,7 +11192,7 @@ FS.CreatureDB[8540] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 305, atk = 105, def = 87, spd = 69 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[8541] = {
     name = "Hate Shrieker",
@@ -11204,7 +11204,7 @@ FS.CreatureDB[8541] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 315, atk = 108, def = 90, spd = 71 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[8542] = {
     name = "Death Singer",
@@ -11216,7 +11216,7 @@ FS.CreatureDB[8542] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 325, atk = 112, def = 93, spd = 73 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[8543] = {
     name = "Stitched Horror",
@@ -11228,7 +11228,7 @@ FS.CreatureDB[8543] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 320, atk = 110, def = 91, spd = 72 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[8544] = {
     name = "Gangled Golem",
@@ -11240,7 +11240,7 @@ FS.CreatureDB[8544] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 325, atk = 112, def = 93, spd = 73 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[8545] = {
     name = "Abomination",
@@ -11252,7 +11252,7 @@ FS.CreatureDB[8545] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 330, atk = 114, def = 94, spd = 74 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[8555] = {
     name = "Crypt Fiend",
@@ -11264,7 +11264,7 @@ FS.CreatureDB[8555] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 300, atk = 103, def = 85, spd = 68 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[8556] = {
     name = "Crypt Walker",
@@ -11276,7 +11276,7 @@ FS.CreatureDB[8556] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 310, atk = 107, def = 88, spd = 70 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[8557] = {
     name = "Crypt Horror",
@@ -11288,7 +11288,7 @@ FS.CreatureDB[8557] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 320, atk = 110, def = 91, spd = 72 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[8558] = {
     name = "Crypt Slayer",
@@ -11300,7 +11300,7 @@ FS.CreatureDB[8558] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 325, atk = 112, def = 93, spd = 73 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[8567] = {
     name = "Glutton",
@@ -11312,7 +11312,7 @@ FS.CreatureDB[8567] = {
     classification = 1,
     isBoss = false,
     zones = {722},
-    baseStats = { hp = 329, atk = 112, def = 92, spd = 53 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[8585] = {
     name = "Frost Spectre",
@@ -11324,7 +11324,7 @@ FS.CreatureDB[8585] = {
     classification = 0,
     isBoss = false,
     zones = {722},
-    baseStats = { hp = 240, atk = 81, def = 67, spd = 54 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[8600] = {
     name = "Plaguebat",
@@ -11336,7 +11336,7 @@ FS.CreatureDB[8600] = {
     classification = 0,
     isBoss = false,
     zones = {28, 139},
-    baseStats = { hp = 305, atk = 105, def = 87, spd = 80 },
+    baseStats = { hp = 53, atk = 18, def = 15, spd = 14 },
 }
 FS.CreatureDB[8601] = {
     name = "Noxious Plaguebat",
@@ -11348,7 +11348,7 @@ FS.CreatureDB[8601] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 310, atk = 107, def = 88, spd = 81 },
+    baseStats = { hp = 53, atk = 18, def = 15, spd = 14 },
 }
 FS.CreatureDB[8602] = {
     name = "Monstrous Plaguebat",
@@ -11360,7 +11360,7 @@ FS.CreatureDB[8602] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 320, atk = 110, def = 91, spd = 84 },
+    baseStats = { hp = 53, atk = 18, def = 15, spd = 14 },
 }
 FS.CreatureDB[8667] = {
     name = "Gusting Vortex",
@@ -11372,7 +11372,7 @@ FS.CreatureDB[8667] = {
     classification = 0,
     isBoss = false,
     zones = {440},
-    baseStats = { hp = 255, atk = 100, def = 72, spd = 57 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[8762] = {
     name = "Timberweb Recluse",
@@ -11384,7 +11384,7 @@ FS.CreatureDB[8762] = {
     classification = 0,
     isBoss = false,
     zones = {16},
-    baseStats = { hp = 270, atk = 92, def = 76, spd = 61 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[8837] = {
     name = "Muck Splash",
@@ -11396,7 +11396,7 @@ FS.CreatureDB[8837] = {
     classification = 0,
     isBoss = false,
     zones = {51},
-    baseStats = { hp = 275, atk = 108, def = 78, spd = 62 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[8856] = {
     name = "Tyrion's Spybot",
@@ -11408,7 +11408,7 @@ FS.CreatureDB[8856] = {
     classification = 0,
     isBoss = false,
     zones = {1519},
-    baseStats = { hp = 160, atk = 53, def = 43, spd = 36 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[8884] = {
     name = "Skeletal Mount",
@@ -11420,7 +11420,7 @@ FS.CreatureDB[8884] = {
     classification = 0,
     isBoss = false,
     zones = {440},
-    baseStats = { hp = 40, atk = 9, def = 7, spd = 8 },
+    baseStats = { hp = 63, atk = 14, def = 11, spd = 12 },
 }
 FS.CreatureDB[8905] = {
     name = "Warbringer Construct",
@@ -11432,7 +11432,7 @@ FS.CreatureDB[8905] = {
     classification = 1,
     isBoss = false,
     zones = {1584},
-    baseStats = { hp = 420, atk = 165, def = 119, spd = 68 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[8906] = {
     name = "Ragereaver Golem",
@@ -11444,7 +11444,7 @@ FS.CreatureDB[8906] = {
     classification = 1,
     isBoss = false,
     zones = {1584},
-    baseStats = { hp = 427, atk = 169, def = 121, spd = 69 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[8907] = {
     name = "Wrath Hammer Construct",
@@ -11456,7 +11456,7 @@ FS.CreatureDB[8907] = {
     classification = 1,
     isBoss = false,
     zones = {1584},
-    baseStats = { hp = 434, atk = 171, def = 123, spd = 70 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[8908] = {
     name = "Molten War Golem",
@@ -11468,7 +11468,7 @@ FS.CreatureDB[8908] = {
     classification = 1,
     isBoss = false,
     zones = {1584},
-    baseStats = { hp = 434, atk = 171, def = 123, spd = 70 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[8923] = {
     name = "Panzor the Invincible",
@@ -11480,7 +11480,7 @@ FS.CreatureDB[8923] = {
     classification = 2,
     isBoss = true,
     zones = {1584},
-    baseStats = { hp = 448, atk = 177, def = 128, spd = 72 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[8926] = {
     name = "Deep Stinger",
@@ -11492,7 +11492,7 @@ FS.CreatureDB[8926] = {
     classification = 0,
     isBoss = false,
     zones = {1584},
-    baseStats = { hp = 290, atk = 99, def = 82, spd = 65 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[8927] = {
     name = "Dark Screecher",
@@ -11504,7 +11504,7 @@ FS.CreatureDB[8927] = {
     classification = 0,
     isBoss = false,
     zones = {1584},
-    baseStats = { hp = 290, atk = 99, def = 82, spd = 76 },
+    baseStats = { hp = 53, atk = 18, def = 15, spd = 14 },
 }
 FS.CreatureDB[8933] = {
     name = "Cave Creeper",
@@ -11516,7 +11516,7 @@ FS.CreatureDB[8933] = {
     classification = 0,
     isBoss = false,
     zones = {1584},
-    baseStats = { hp = 290, atk = 99, def = 82, spd = 65 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[8956] = {
     name = "Angerclaw Bear",
@@ -11528,7 +11528,7 @@ FS.CreatureDB[8956] = {
     classification = 0,
     isBoss = false,
     zones = {361},
-    baseStats = { hp = 324, atk = 92, def = 87, spd = 51 },
+    baseStats = { hp = 58, atk = 17, def = 16, spd = 9 },
 }
 FS.CreatureDB[8957] = {
     name = "Angerclaw Grizzly",
@@ -11540,7 +11540,7 @@ FS.CreatureDB[8957] = {
     classification = 0,
     isBoss = false,
     zones = {361},
-    baseStats = { hp = 348, atk = 99, def = 94, spd = 55 },
+    baseStats = { hp = 58, atk = 17, def = 16, spd = 9 },
 }
 FS.CreatureDB[8958] = {
     name = "Angerclaw Mauler",
@@ -11552,7 +11552,7 @@ FS.CreatureDB[8958] = {
     classification = 0,
     isBoss = false,
     zones = {361},
-    baseStats = { hp = 336, atk = 96, def = 90, spd = 53 },
+    baseStats = { hp = 58, atk = 17, def = 16, spd = 9 },
 }
 FS.CreatureDB[8959] = {
     name = "Felpaw Wolf",
@@ -11564,7 +11564,7 @@ FS.CreatureDB[8959] = {
     classification = 0,
     isBoss = false,
     zones = {361},
-    baseStats = { hp = 270, atk = 92, def = 76, spd = 61 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[8960] = {
     name = "Felpaw Scavenger",
@@ -11576,7 +11576,7 @@ FS.CreatureDB[8960] = {
     classification = 0,
     isBoss = false,
     zones = {361},
-    baseStats = { hp = 280, atk = 96, def = 79, spd = 63 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[8961] = {
     name = "Felpaw Ravager",
@@ -11588,7 +11588,7 @@ FS.CreatureDB[8961] = {
     classification = 0,
     isBoss = false,
     zones = {361},
-    baseStats = { hp = 290, atk = 99, def = 82, spd = 65 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[8976] = {
     name = "Hematos",
@@ -11600,7 +11600,7 @@ FS.CreatureDB[8976] = {
     classification = 2,
     isBoss = false,
     zones = {46},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[8981] = {
     name = "Malfunctioning Reaver",
@@ -11612,7 +11612,7 @@ FS.CreatureDB[8981] = {
     classification = 4,
     isBoss = false,
     zones = {46},
-    baseStats = { hp = 441, atk = 174, def = 125, spd = 71 },
+    baseStats = { hp = 55, atk = 21, def = 15, spd = 9 },
 }
 FS.CreatureDB[9017] = {
     name = "Lord Incendius",
@@ -11624,7 +11624,7 @@ FS.CreatureDB[9017] = {
     classification = 1,
     isBoss = true,
     zones = {1584},
-    baseStats = { hp = 434, atk = 171, def = 123, spd = 70 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[9025] = {
     name = "Lord Roccor",
@@ -11636,7 +11636,7 @@ FS.CreatureDB[9025] = {
     classification = 2,
     isBoss = true,
     zones = {1584},
-    baseStats = { hp = 406, atk = 159, def = 115, spd = 65 },
+    baseStats = { hp = 60, atk = 23, def = 17, spd = 10 },
 }
 FS.CreatureDB[9026] = {
     name = "Overmaster Pyron",
@@ -11648,7 +11648,7 @@ FS.CreatureDB[9026] = {
     classification = 1,
     isBoss = false,
     zones = {-3},
-    baseStats = { hp = 413, atk = 163, def = 117, spd = 66 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[9031] = {
     name = "Anub'shiah",
@@ -11660,7 +11660,7 @@ FS.CreatureDB[9031] = {
     classification = 1,
     isBoss = true,
     zones = {1584},
-    baseStats = { hp = 427, atk = 147, def = 121, spd = 69 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[9034] = {
     name = "Hate'rel",
@@ -11672,7 +11672,7 @@ FS.CreatureDB[9034] = {
     classification = 1,
     isBoss = true,
     zones = {1584},
-    baseStats = { hp = 434, atk = 149, def = 123, spd = 70 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[9035] = {
     name = "Anger'rel",
@@ -11684,7 +11684,7 @@ FS.CreatureDB[9035] = {
     classification = 1,
     isBoss = true,
     zones = {1584},
-    baseStats = { hp = 434, atk = 149, def = 123, spd = 70 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[9036] = {
     name = "Vile'rel",
@@ -11696,7 +11696,7 @@ FS.CreatureDB[9036] = {
     classification = 1,
     isBoss = true,
     zones = {1584},
-    baseStats = { hp = 441, atk = 152, def = 125, spd = 71 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[9037] = {
     name = "Gloom'rel",
@@ -11708,7 +11708,7 @@ FS.CreatureDB[9037] = {
     classification = 1,
     isBoss = true,
     zones = {1584},
-    baseStats = { hp = 441, atk = 152, def = 125, spd = 71 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[9038] = {
     name = "Seeth'rel",
@@ -11720,7 +11720,7 @@ FS.CreatureDB[9038] = {
     classification = 1,
     isBoss = true,
     zones = {1584},
-    baseStats = { hp = 441, atk = 152, def = 125, spd = 71 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[9039] = {
     name = "Doom'rel",
@@ -11732,7 +11732,7 @@ FS.CreatureDB[9039] = {
     classification = 1,
     isBoss = true,
     zones = {1584},
-    baseStats = { hp = 448, atk = 154, def = 128, spd = 72 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[9040] = {
     name = "Dope'rel",
@@ -11744,7 +11744,7 @@ FS.CreatureDB[9040] = {
     classification = 1,
     isBoss = true,
     zones = {1584},
-    baseStats = { hp = 441, atk = 152, def = 125, spd = 71 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[9178] = {
     name = "Burning Spirit",
@@ -11756,7 +11756,7 @@ FS.CreatureDB[9178] = {
     classification = 0,
     isBoss = false,
     zones = {1584},
-    baseStats = { hp = 185, atk = 71, def = 51, spd = 41 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[9376] = {
     name = "Blazerunner",
@@ -11768,7 +11768,7 @@ FS.CreatureDB[9376] = {
     classification = 1,
     isBoss = false,
     zones = {490},
-    baseStats = { hp = 441, atk = 174, def = 125, spd = 71 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[9377] = {
     name = "Swirling Vortex",
@@ -11780,7 +11780,7 @@ FS.CreatureDB[9377] = {
     classification = 0,
     isBoss = false,
     zones = {400},
-    baseStats = { hp = 200, atk = 77, def = 55, spd = 45 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[9396] = {
     name = "Ground Pounder",
@@ -11792,7 +11792,7 @@ FS.CreatureDB[9396] = {
     classification = 0,
     isBoss = false,
     zones = {440},
-    baseStats = { hp = 245, atk = 95, def = 69, spd = 55 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[9397] = {
     name = "Living Storm",
@@ -11804,7 +11804,7 @@ FS.CreatureDB[9397] = {
     classification = 0,
     isBoss = false,
     zones = {440},
-    baseStats = { hp = 275, atk = 108, def = 78, spd = 62 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[9416] = {
     name = "Scarshield Worg",
@@ -11816,7 +11816,7 @@ FS.CreatureDB[9416] = {
     classification = 0,
     isBoss = false,
     zones = {1583},
-    baseStats = { hp = 300, atk = 103, def = 85, spd = 68 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[9453] = {
     name = "Aquementas",
@@ -11828,7 +11828,7 @@ FS.CreatureDB[9453] = {
     classification = 0,
     isBoss = false,
     zones = {440},
-    baseStats = { hp = 305, atk = 120, def = 87, spd = 69 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[9459] = {
     name = "Cyrus Therepentous",
@@ -11840,7 +11840,7 @@ FS.CreatureDB[9459] = {
     classification = 1,
     isBoss = false,
     zones = {46},
-    baseStats = { hp = 434, atk = 149, def = 123, spd = 70 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[9461] = {
     name = "Frenzied Black Drake",
@@ -11852,7 +11852,7 @@ FS.CreatureDB[9461] = {
     classification = 1,
     isBoss = false,
     zones = {46},
-    baseStats = { hp = 427, atk = 147, def = 121, spd = 69 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[9502] = {
     name = "Phalanx",
@@ -11864,7 +11864,7 @@ FS.CreatureDB[9502] = {
     classification = 1,
     isBoss = true,
     zones = {1584},
-    baseStats = { hp = 434, atk = 171, def = 123, spd = 70 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[9568] = {
     name = "Overlord Wyrmthalak",
@@ -11876,7 +11876,7 @@ FS.CreatureDB[9568] = {
     classification = 1,
     isBoss = true,
     zones = {1583},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[9598] = {
     name = "Arei",
@@ -11888,7 +11888,7 @@ FS.CreatureDB[9598] = {
     classification = 0,
     isBoss = false,
     zones = {361},
-    baseStats = { hp = 315, atk = 124, def = 90, spd = 71 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[9601] = {
     name = "Treant Spirit",
@@ -11900,7 +11900,7 @@ FS.CreatureDB[9601] = {
     classification = 0,
     isBoss = false,
     zones = {361},
-    baseStats = { hp = 295, atk = 116, def = 84, spd = 66 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[9622] = {
     name = "U'cha",
@@ -11912,7 +11912,7 @@ FS.CreatureDB[9622] = {
     classification = 0,
     isBoss = false,
     zones = {490},
-    baseStats = { hp = 310, atk = 107, def = 88, spd = 70 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[9623] = {
     name = "A-Me 01",
@@ -11924,7 +11924,7 @@ FS.CreatureDB[9623] = {
     classification = 0,
     isBoss = false,
     zones = {490},
-    baseStats = { hp = 275, atk = 94, def = 78, spd = 62 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[9690] = {
     name = "Ember Worg",
@@ -11936,7 +11936,7 @@ FS.CreatureDB[9690] = {
     classification = 0,
     isBoss = false,
     zones = {46},
-    baseStats = { hp = 290, atk = 99, def = 82, spd = 65 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[9691] = {
     name = "Venomtip Scorpid",
@@ -11948,7 +11948,7 @@ FS.CreatureDB[9691] = {
     classification = 0,
     isBoss = false,
     zones = {46},
-    baseStats = { hp = 295, atk = 101, def = 84, spd = 66 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[9694] = {
     name = "Slavering Ember Worg",
@@ -11960,7 +11960,7 @@ FS.CreatureDB[9694] = {
     classification = 0,
     isBoss = false,
     zones = {46},
-    baseStats = { hp = 300, atk = 103, def = 85, spd = 68 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[9695] = {
     name = "Deathlash Scorpid",
@@ -11972,7 +11972,7 @@ FS.CreatureDB[9695] = {
     classification = 0,
     isBoss = false,
     zones = {46},
-    baseStats = { hp = 305, atk = 105, def = 87, spd = 69 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[9696] = {
     name = "Bloodaxe Worg",
@@ -11984,7 +11984,7 @@ FS.CreatureDB[9696] = {
     classification = 0,
     isBoss = false,
     zones = {1583},
-    baseStats = { hp = 325, atk = 112, def = 93, spd = 73 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[9697] = {
     name = "Giant Ember Worg",
@@ -11996,7 +11996,7 @@ FS.CreatureDB[9697] = {
     classification = 0,
     isBoss = false,
     zones = {46},
-    baseStats = { hp = 310, atk = 107, def = 88, spd = 70 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[9698] = {
     name = "Firetail Scorpid",
@@ -12008,7 +12008,7 @@ FS.CreatureDB[9698] = {
     classification = 0,
     isBoss = false,
     zones = {46},
-    baseStats = { hp = 315, atk = 108, def = 90, spd = 71 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[9878] = {
     name = "Entropic Beast",
@@ -12020,7 +12020,7 @@ FS.CreatureDB[9878] = {
     classification = 0,
     isBoss = false,
     zones = {361},
-    baseStats = { hp = 290, atk = 113, def = 82, spd = 65 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[9879] = {
     name = "Entropic Horror",
@@ -12032,7 +12032,7 @@ FS.CreatureDB[9879] = {
     classification = 0,
     isBoss = false,
     zones = {361},
-    baseStats = { hp = 300, atk = 118, def = 85, spd = 68 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[10077] = {
     name = "Deathmaw",
@@ -12044,7 +12044,7 @@ FS.CreatureDB[10077] = {
     classification = 4,
     isBoss = false,
     zones = {46},
-    baseStats = { hp = 420, atk = 144, def = 119, spd = 68 },
+    baseStats = { hp = 56, atk = 19, def = 16, spd = 9 },
 }
 FS.CreatureDB[10083] = {
     name = "Rage Talon Flamescale",
@@ -12056,7 +12056,7 @@ FS.CreatureDB[10083] = {
     classification = 1,
     isBoss = false,
     zones = {1583},
-    baseStats = { hp = 454, atk = 157, def = 130, spd = 73 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10117] = {
     name = "Tortured Slave",
@@ -12068,7 +12068,7 @@ FS.CreatureDB[10117] = {
     classification = 0,
     isBoss = false,
     zones = {1584},
-    baseStats = { hp = 40, atk = 9, def = 7, spd = 8 },
+    baseStats = { hp = 63, atk = 14, def = 11, spd = 12 },
 }
 FS.CreatureDB[10120] = {
     name = "Vault Warder",
@@ -12080,7 +12080,7 @@ FS.CreatureDB[10120] = {
     classification = 1,
     isBoss = false,
     zones = {1337},
-    baseStats = { hp = 364, atk = 142, def = 102, spd = 58 },
+    baseStats = { hp = 60, atk = 23, def = 17, spd = 10 },
 }
 FS.CreatureDB[10161] = {
     name = "Rookery Whelp",
@@ -12092,7 +12092,7 @@ FS.CreatureDB[10161] = {
     classification = 0,
     isBoss = false,
     zones = {1583},
-    baseStats = { hp = 315, atk = 108, def = 90, spd = 71 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[10162] = {
     name = "Lord Victor Nefarius",
@@ -12104,7 +12104,7 @@ FS.CreatureDB[10162] = {
     classification = 3,
     isBoss = false,
     zones = {2677},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 55, atk = 20, def = 16, spd = 9 },
 }
 FS.CreatureDB[10184] = {
     name = "Onyxia",
@@ -12116,7 +12116,7 @@ FS.CreatureDB[10184] = {
     classification = 3,
     isBoss = true,
     zones = {},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[10196] = {
     name = "General Colbatann",
@@ -12128,7 +12128,7 @@ FS.CreatureDB[10196] = {
     classification = 2,
     isBoss = false,
     zones = {618},
-    baseStats = { hp = 441, atk = 152, def = 125, spd = 71 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[10200] = {
     name = "Rak'shiri",
@@ -12140,7 +12140,7 @@ FS.CreatureDB[10200] = {
     classification = 4,
     isBoss = false,
     zones = {618},
-    baseStats = { hp = 448, atk = 184, def = 128, spd = 100 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[10202] = {
     name = "Azurous",
@@ -12152,7 +12152,7 @@ FS.CreatureDB[10202] = {
     classification = 2,
     isBoss = false,
     zones = {618},
-    baseStats = { hp = 461, atk = 159, def = 132, spd = 74 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10221] = {
     name = "Bloodaxe Worg Pup",
@@ -12164,7 +12164,7 @@ FS.CreatureDB[10221] = {
     classification = 0,
     isBoss = false,
     zones = {1583},
-    baseStats = { hp = 295, atk = 101, def = 84, spd = 66 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[10264] = {
     name = "Solakar Flamewreath",
@@ -12176,7 +12176,7 @@ FS.CreatureDB[10264] = {
     classification = 1,
     isBoss = false,
     zones = {1583},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10321] = {
     name = "Emberstrife",
@@ -12188,7 +12188,7 @@ FS.CreatureDB[10321] = {
     classification = 1,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10339] = {
     name = "Gyth",
@@ -12200,7 +12200,7 @@ FS.CreatureDB[10339] = {
     classification = 1,
     isBoss = false,
     zones = {1583},
-    baseStats = { hp = 482, atk = 167, def = 138, spd = 78 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10340] = {
     name = "Vaelastrasz the Red",
@@ -12212,7 +12212,7 @@ FS.CreatureDB[10340] = {
     classification = 1,
     isBoss = false,
     zones = {1583},
-    baseStats = { hp = 482, atk = 167, def = 138, spd = 78 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10357] = {
     name = "Ressan the Needler",
@@ -12224,7 +12224,7 @@ FS.CreatureDB[10357] = {
     classification = 4,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 125, atk = 38, def = 31, spd = 23 },
+    baseStats = { hp = 57, atk = 18, def = 14, spd = 11 },
 }
 FS.CreatureDB[10358] = {
     name = "Fellicent's Shade",
@@ -12236,7 +12236,7 @@ FS.CreatureDB[10358] = {
     classification = 4,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 133, atk = 41, def = 33, spd = 21 },
+    baseStats = { hp = 59, atk = 18, def = 14, spd = 9 },
 }
 FS.CreatureDB[10359] = {
     name = "Sri'skulk",
@@ -12248,7 +12248,7 @@ FS.CreatureDB[10359] = {
     classification = 4,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 140, atk = 43, def = 35, spd = 22 },
+    baseStats = { hp = 58, atk = 18, def = 15, spd = 9 },
 }
 FS.CreatureDB[10363] = {
     name = "General Drakkisath",
@@ -12260,7 +12260,7 @@ FS.CreatureDB[10363] = {
     classification = 3,
     isBoss = false,
     zones = {1583},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 55, atk = 20, def = 16, spd = 9 },
 }
 FS.CreatureDB[10372] = {
     name = "Rage Talon Fire Tongue",
@@ -12272,7 +12272,7 @@ FS.CreatureDB[10372] = {
     classification = 1,
     isBoss = false,
     zones = {1583},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10375] = {
     name = "Spire Spiderling",
@@ -12284,7 +12284,7 @@ FS.CreatureDB[10375] = {
     classification = 0,
     isBoss = false,
     zones = {1583},
-    baseStats = { hp = 310, atk = 107, def = 88, spd = 70 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[10381] = {
     name = "Ravaged Cadaver",
@@ -12296,7 +12296,7 @@ FS.CreatureDB[10381] = {
     classification = 1,
     isBoss = false,
     zones = {2017},
-    baseStats = { hp = 441, atk = 152, def = 125, spd = 71 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[10382] = {
     name = "Mangled Cadaver",
@@ -12308,7 +12308,7 @@ FS.CreatureDB[10382] = {
     classification = 1,
     isBoss = false,
     zones = {2017},
-    baseStats = { hp = 434, atk = 149, def = 123, spd = 70 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[10383] = {
     name = "Broken Cadaver",
@@ -12320,7 +12320,7 @@ FS.CreatureDB[10383] = {
     classification = 0,
     isBoss = false,
     zones = {2017},
-    baseStats = { hp = 310, atk = 107, def = 88, spd = 70 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[10384] = {
     name = "Spectral Citizen",
@@ -12332,7 +12332,7 @@ FS.CreatureDB[10384] = {
     classification = 1,
     isBoss = false,
     zones = {2017},
-    baseStats = { hp = 434, atk = 149, def = 123, spd = 70 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[10385] = {
     name = "Ghostly Citizen",
@@ -12344,7 +12344,7 @@ FS.CreatureDB[10385] = {
     classification = 1,
     isBoss = false,
     zones = {2017},
-    baseStats = { hp = 441, atk = 152, def = 125, spd = 71 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[10387] = {
     name = "Vengeful Phantom",
@@ -12356,7 +12356,7 @@ FS.CreatureDB[10387] = {
     classification = 0,
     isBoss = false,
     zones = {2017},
-    baseStats = { hp = 315, atk = 108, def = 90, spd = 71 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[10388] = {
     name = "Spiteful Phantom",
@@ -12368,7 +12368,7 @@ FS.CreatureDB[10388] = {
     classification = 0,
     isBoss = false,
     zones = {2017},
-    baseStats = { hp = 325, atk = 112, def = 93, spd = 73 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[10389] = {
     name = "Wrath Phantom",
@@ -12380,7 +12380,7 @@ FS.CreatureDB[10389] = {
     classification = 0,
     isBoss = false,
     zones = {2017},
-    baseStats = { hp = 335, atk = 116, def = 96, spd = 76 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[10391] = {
     name = "Skeletal Berserker",
@@ -12392,7 +12392,7 @@ FS.CreatureDB[10391] = {
     classification = 0,
     isBoss = false,
     zones = {2017},
-    baseStats = { hp = 315, atk = 108, def = 90, spd = 71 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[10393] = {
     name = "Skul",
@@ -12404,7 +12404,7 @@ FS.CreatureDB[10393] = {
     classification = 2,
     isBoss = true,
     zones = {2017},
-    baseStats = { hp = 454, atk = 157, def = 130, spd = 73 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10405] = {
     name = "Plague Ghoul",
@@ -12416,7 +12416,7 @@ FS.CreatureDB[10405] = {
     classification = 1,
     isBoss = false,
     zones = {2017},
-    baseStats = { hp = 448, atk = 154, def = 128, spd = 72 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10406] = {
     name = "Ghoul Ravener",
@@ -12428,7 +12428,7 @@ FS.CreatureDB[10406] = {
     classification = 1,
     isBoss = false,
     zones = {2017},
-    baseStats = { hp = 454, atk = 157, def = 130, spd = 73 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10407] = {
     name = "Fleshflayer Ghoul",
@@ -12440,7 +12440,7 @@ FS.CreatureDB[10407] = {
     classification = 1,
     isBoss = false,
     zones = {2017},
-    baseStats = { hp = 461, atk = 159, def = 132, spd = 74 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10408] = {
     name = "Rockwing Gargoyle",
@@ -12452,7 +12452,7 @@ FS.CreatureDB[10408] = {
     classification = 1,
     isBoss = false,
     zones = {2017},
-    baseStats = { hp = 448, atk = 154, def = 128, spd = 72 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10409] = {
     name = "Rockwing Screecher",
@@ -12464,7 +12464,7 @@ FS.CreatureDB[10409] = {
     classification = 1,
     isBoss = false,
     zones = {2017},
-    baseStats = { hp = 454, atk = 157, def = 130, spd = 73 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10411] = {
     name = "Eye of Naxxramas",
@@ -12476,7 +12476,7 @@ FS.CreatureDB[10411] = {
     classification = 0,
     isBoss = false,
     zones = {2017},
-    baseStats = { hp = 315, atk = 108, def = 90, spd = 71 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[10412] = {
     name = "Crypt Crawler",
@@ -12488,7 +12488,7 @@ FS.CreatureDB[10412] = {
     classification = 1,
     isBoss = false,
     zones = {2017},
-    baseStats = { hp = 454, atk = 157, def = 130, spd = 73 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10413] = {
     name = "Crypt Beast",
@@ -12500,7 +12500,7 @@ FS.CreatureDB[10413] = {
     classification = 1,
     isBoss = false,
     zones = {2017},
-    baseStats = { hp = 461, atk = 159, def = 132, spd = 74 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10414] = {
     name = "Patchwork Horror",
@@ -12512,7 +12512,7 @@ FS.CreatureDB[10414] = {
     classification = 1,
     isBoss = false,
     zones = {2017},
-    baseStats = { hp = 448, atk = 154, def = 128, spd = 72 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10416] = {
     name = "Bile Spewer",
@@ -12524,7 +12524,7 @@ FS.CreatureDB[10416] = {
     classification = 1,
     isBoss = false,
     zones = {2017},
-    baseStats = { hp = 461, atk = 159, def = 132, spd = 74 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10417] = {
     name = "Venom Belcher",
@@ -12536,7 +12536,7 @@ FS.CreatureDB[10417] = {
     classification = 1,
     isBoss = false,
     zones = {2017},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10432] = {
     name = "Vectus",
@@ -12548,7 +12548,7 @@ FS.CreatureDB[10432] = {
     classification = 1,
     isBoss = false,
     zones = {2057},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10433] = {
     name = "Marduk Blackpool",
@@ -12560,7 +12560,7 @@ FS.CreatureDB[10433] = {
     classification = 1,
     isBoss = false,
     zones = {2057},
-    baseStats = { hp = 454, atk = 157, def = 130, spd = 73 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10435] = {
     name = "Magistrate Barthilas",
@@ -12572,7 +12572,7 @@ FS.CreatureDB[10435] = {
     classification = 1,
     isBoss = true,
     zones = {2017},
-    baseStats = { hp = 454, atk = 157, def = 130, spd = 73 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10436] = {
     name = "Baroness Anastari",
@@ -12584,7 +12584,7 @@ FS.CreatureDB[10436] = {
     classification = 1,
     isBoss = true,
     zones = {2017},
-    baseStats = { hp = 461, atk = 159, def = 132, spd = 74 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10437] = {
     name = "Nerub'enkan",
@@ -12596,7 +12596,7 @@ FS.CreatureDB[10437] = {
     classification = 1,
     isBoss = true,
     zones = {2017},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10439] = {
     name = "Ramstein the Gorger",
@@ -12608,7 +12608,7 @@ FS.CreatureDB[10439] = {
     classification = 1,
     isBoss = true,
     zones = {2017},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10440] = {
     name = "Baron Rivendare",
@@ -12620,7 +12620,7 @@ FS.CreatureDB[10440] = {
     classification = 1,
     isBoss = false,
     zones = {2017},
-    baseStats = { hp = 482, atk = 167, def = 138, spd = 78 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10442] = {
     name = "Chromatic Whelp",
@@ -12632,7 +12632,7 @@ FS.CreatureDB[10442] = {
     classification = 0,
     isBoss = false,
     zones = {1583},
-    baseStats = { hp = 320, atk = 110, def = 91, spd = 72 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[10463] = {
     name = "Shrieking Banshee",
@@ -12644,7 +12644,7 @@ FS.CreatureDB[10463] = {
     classification = 1,
     isBoss = false,
     zones = {2017},
-    baseStats = { hp = 448, atk = 154, def = 128, spd = 72 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10464] = {
     name = "Wailing Banshee",
@@ -12656,7 +12656,7 @@ FS.CreatureDB[10464] = {
     classification = 1,
     isBoss = false,
     zones = {2017},
-    baseStats = { hp = 454, atk = 157, def = 130, spd = 73 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10478] = {
     name = "Splintered Skeleton",
@@ -12668,7 +12668,7 @@ FS.CreatureDB[10478] = {
     classification = 1,
     isBoss = false,
     zones = {2057},
-    baseStats = { hp = 461, atk = 159, def = 132, spd = 74 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10480] = {
     name = "Unstable Corpse",
@@ -12680,7 +12680,7 @@ FS.CreatureDB[10480] = {
     classification = 0,
     isBoss = false,
     zones = {2057},
-    baseStats = { hp = 325, atk = 112, def = 93, spd = 73 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[10481] = {
     name = "Reanimated Corpse",
@@ -12692,7 +12692,7 @@ FS.CreatureDB[10481] = {
     classification = 0,
     isBoss = false,
     zones = {2057},
-    baseStats = { hp = 325, atk = 112, def = 93, spd = 73 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[10482] = {
     name = "Risen Lackey",
@@ -12704,7 +12704,7 @@ FS.CreatureDB[10482] = {
     classification = 0,
     isBoss = false,
     zones = {2057},
-    baseStats = { hp = 175, atk = 58, def = 48, spd = 39 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[10485] = {
     name = "Risen Aberration",
@@ -12716,7 +12716,7 @@ FS.CreatureDB[10485] = {
     classification = 0,
     isBoss = false,
     zones = {2057},
-    baseStats = { hp = 320, atk = 110, def = 91, spd = 72 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[10486] = {
     name = "Risen Warrior",
@@ -12728,7 +12728,7 @@ FS.CreatureDB[10486] = {
     classification = 1,
     isBoss = false,
     zones = {2057},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10487] = {
     name = "Risen Protector",
@@ -12740,7 +12740,7 @@ FS.CreatureDB[10487] = {
     classification = 1,
     isBoss = false,
     zones = {2057},
-    baseStats = { hp = 461, atk = 159, def = 132, spd = 74 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10488] = {
     name = "Risen Construct",
@@ -12752,7 +12752,7 @@ FS.CreatureDB[10488] = {
     classification = 1,
     isBoss = false,
     zones = {2057},
-    baseStats = { hp = 461, atk = 159, def = 132, spd = 74 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10491] = {
     name = "Risen Bonewarder",
@@ -12764,7 +12764,7 @@ FS.CreatureDB[10491] = {
     classification = 1,
     isBoss = false,
     zones = {2057},
-    baseStats = { hp = 454, atk = 157, def = 130, spd = 73 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10495] = {
     name = "Diseased Ghoul",
@@ -12776,7 +12776,7 @@ FS.CreatureDB[10495] = {
     classification = 1,
     isBoss = false,
     zones = {2057},
-    baseStats = { hp = 454, atk = 157, def = 130, spd = 73 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10498] = {
     name = "Spectral Tutor",
@@ -12788,7 +12788,7 @@ FS.CreatureDB[10498] = {
     classification = 1,
     isBoss = false,
     zones = {2057},
-    baseStats = { hp = 461, atk = 159, def = 132, spd = 74 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10499] = {
     name = "Spectral Researcher",
@@ -12800,7 +12800,7 @@ FS.CreatureDB[10499] = {
     classification = 1,
     isBoss = false,
     zones = {2057},
-    baseStats = { hp = 461, atk = 159, def = 132, spd = 74 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10500] = {
     name = "Spectral Teacher",
@@ -12812,7 +12812,7 @@ FS.CreatureDB[10500] = {
     classification = 1,
     isBoss = false,
     zones = {2057},
-    baseStats = { hp = 461, atk = 159, def = 132, spd = 74 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10502] = {
     name = "Lady Illucia Barov",
@@ -12824,7 +12824,7 @@ FS.CreatureDB[10502] = {
     classification = 1,
     isBoss = false,
     zones = {2057},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10503] = {
     name = "Jandice Barov",
@@ -12836,7 +12836,7 @@ FS.CreatureDB[10503] = {
     classification = 1,
     isBoss = false,
     zones = {2057},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10504] = {
     name = "Lord Alexei Barov",
@@ -12848,7 +12848,7 @@ FS.CreatureDB[10504] = {
     classification = 1,
     isBoss = false,
     zones = {2057},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10506] = {
     name = "Kirtonos the Herald",
@@ -12860,7 +12860,7 @@ FS.CreatureDB[10506] = {
     classification = 1,
     isBoss = false,
     zones = {2057},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10507] = {
     name = "The Ravenian",
@@ -12872,7 +12872,7 @@ FS.CreatureDB[10507] = {
     classification = 1,
     isBoss = false,
     zones = {2057},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10508] = {
     name = "Ras Frostwhisper",
@@ -12884,7 +12884,7 @@ FS.CreatureDB[10508] = {
     classification = 1,
     isBoss = false,
     zones = {2057},
-    baseStats = { hp = 482, atk = 167, def = 138, spd = 78 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10516] = {
     name = "The Unforgiven",
@@ -12896,7 +12896,7 @@ FS.CreatureDB[10516] = {
     classification = 1,
     isBoss = true,
     zones = {2017},
-    baseStats = { hp = 448, atk = 154, def = 128, spd = 72 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10558] = {
     name = "Hearthsinger Forresten",
@@ -12908,7 +12908,7 @@ FS.CreatureDB[10558] = {
     classification = 2,
     isBoss = true,
     zones = {2017},
-    baseStats = { hp = 448, atk = 154, def = 128, spd = 72 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10580] = {
     name = "Fetid Zombie",
@@ -12920,7 +12920,7 @@ FS.CreatureDB[10580] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 310, atk = 107, def = 88, spd = 70 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[10581] = {
     name = "Young Arikara",
@@ -12932,7 +12932,7 @@ FS.CreatureDB[10581] = {
     classification = 1,
     isBoss = false,
     zones = {400},
-    baseStats = { hp = 189, atk = 61, def = 50, spd = 35 },
+    baseStats = { hp = 63, atk = 20, def = 16, spd = 11 },
 }
 FS.CreatureDB[10641] = {
     name = "Branch Snapper",
@@ -12944,7 +12944,7 @@ FS.CreatureDB[10641] = {
     classification = 4,
     isBoss = false,
     zones = {331},
-    baseStats = { hp = 224, atk = 85, def = 60, spd = 36 },
+    baseStats = { hp = 55, atk = 21, def = 15, spd = 9 },
 }
 FS.CreatureDB[10642] = {
     name = "Eck'alom",
@@ -12956,7 +12956,7 @@ FS.CreatureDB[10642] = {
     classification = 4,
     isBoss = false,
     zones = {331},
-    baseStats = { hp = 237, atk = 90, def = 65, spd = 38 },
+    baseStats = { hp = 55, atk = 21, def = 15, spd = 9 },
 }
 FS.CreatureDB[10644] = {
     name = "Mist Howler",
@@ -12968,7 +12968,7 @@ FS.CreatureDB[10644] = {
     classification = 4,
     isBoss = false,
     zones = {331},
-    baseStats = { hp = 203, atk = 66, def = 54, spd = 32 },
+    baseStats = { hp = 57, atk = 19, def = 15, spd = 9 },
 }
 FS.CreatureDB[10659] = {
     name = "Cobalt Whelp",
@@ -12980,7 +12980,7 @@ FS.CreatureDB[10659] = {
     classification = 0,
     isBoss = false,
     zones = {618},
-    baseStats = { hp = 305, atk = 105, def = 87, spd = 69 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[10660] = {
     name = "Cobalt Broodling",
@@ -12992,7 +12992,7 @@ FS.CreatureDB[10660] = {
     classification = 0,
     isBoss = false,
     zones = {618},
-    baseStats = { hp = 310, atk = 107, def = 88, spd = 70 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[10661] = {
     name = "Spell Eater",
@@ -13004,7 +13004,7 @@ FS.CreatureDB[10661] = {
     classification = 0,
     isBoss = false,
     zones = {618},
-    baseStats = { hp = 310, atk = 107, def = 88, spd = 70 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[10662] = {
     name = "Spellmaw",
@@ -13016,7 +13016,7 @@ FS.CreatureDB[10662] = {
     classification = 1,
     isBoss = false,
     zones = {618},
-    baseStats = { hp = 441, atk = 152, def = 125, spd = 71 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[10663] = {
     name = "Manaclaw",
@@ -13028,7 +13028,7 @@ FS.CreatureDB[10663] = {
     classification = 1,
     isBoss = false,
     zones = {618},
-    baseStats = { hp = 454, atk = 157, def = 130, spd = 73 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10664] = {
     name = "Scryer",
@@ -13040,7 +13040,7 @@ FS.CreatureDB[10664] = {
     classification = 1,
     isBoss = false,
     zones = {618},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10666] = {
     name = "Gordo",
@@ -13052,7 +13052,7 @@ FS.CreatureDB[10666] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 185, atk = 62, def = 51, spd = 41 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[10667] = {
     name = "Chromie",
@@ -13064,7 +13064,7 @@ FS.CreatureDB[10667] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 350, atk = 121, def = 100, spd = 79 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[10678] = {
     name = "Plagued Hatchling",
@@ -13076,7 +13076,7 @@ FS.CreatureDB[10678] = {
     classification = 0,
     isBoss = false,
     zones = {2057},
-    baseStats = { hp = 325, atk = 112, def = 93, spd = 73 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[10683] = {
     name = "Rookery Hatcher",
@@ -13088,7 +13088,7 @@ FS.CreatureDB[10683] = {
     classification = 1,
     isBoss = false,
     zones = {1583},
-    baseStats = { hp = 454, atk = 157, def = 130, spd = 73 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10684] = {
     name = "Remorseful Highborne",
@@ -13100,7 +13100,7 @@ FS.CreatureDB[10684] = {
     classification = 0,
     isBoss = false,
     zones = {618},
-    baseStats = { hp = 315, atk = 108, def = 90, spd = 71 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[10698] = {
     name = "Summoned Zombie",
@@ -13112,7 +13112,7 @@ FS.CreatureDB[10698] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 300, atk = 103, def = 85, spd = 68 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[10699] = {
     name = "Carrion Scarab",
@@ -13124,7 +13124,7 @@ FS.CreatureDB[10699] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 320, atk = 110, def = 91, spd = 72 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[10737] = {
     name = "Shy-Rotam",
@@ -13136,7 +13136,7 @@ FS.CreatureDB[10737] = {
     classification = 1,
     isBoss = false,
     zones = {618},
-    baseStats = { hp = 468, atk = 194, def = 134, spd = 105 },
+    baseStats = { hp = 57, atk = 24, def = 16, spd = 13 },
 }
 FS.CreatureDB[10740] = {
     name = "Awbee",
@@ -13148,7 +13148,7 @@ FS.CreatureDB[10740] = {
     classification = 1,
     isBoss = false,
     zones = {1583},
-    baseStats = { hp = 448, atk = 154, def = 128, spd = 72 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10741] = {
     name = "Sian-Rotam",
@@ -13160,7 +13160,7 @@ FS.CreatureDB[10741] = {
     classification = 1,
     isBoss = false,
     zones = {618},
-    baseStats = { hp = 468, atk = 194, def = 134, spd = 105 },
+    baseStats = { hp = 57, atk = 24, def = 16, spd = 13 },
 }
 FS.CreatureDB[10756] = {
     name = "Scalding Elemental",
@@ -13172,7 +13172,7 @@ FS.CreatureDB[10756] = {
     classification = 0,
     isBoss = false,
     zones = {400},
-    baseStats = { hp = 175, atk = 66, def = 48, spd = 39 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[10757] = {
     name = "Boiling Elemental",
@@ -13184,7 +13184,7 @@ FS.CreatureDB[10757] = {
     classification = 0,
     isBoss = false,
     zones = {400},
-    baseStats = { hp = 170, atk = 64, def = 46, spd = 38 },
+    baseStats = { hp = 54, atk = 20, def = 14, spd = 12 },
 }
 FS.CreatureDB[10778] = {
     name = "Janice Felstone",
@@ -13196,7 +13196,7 @@ FS.CreatureDB[10778] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 60, atk = 17, def = 13, spd = 13 },
+    baseStats = { hp = 57, atk = 17, def = 13, spd = 13 },
 }
 FS.CreatureDB[10801] = {
     name = "Jabbering Ghoul",
@@ -13208,7 +13208,7 @@ FS.CreatureDB[10801] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 305, atk = 105, def = 87, spd = 69 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[10806] = {
     name = "Ursius",
@@ -13220,7 +13220,7 @@ FS.CreatureDB[10806] = {
     classification = 1,
     isBoss = false,
     zones = {618},
-    baseStats = { hp = 529, atk = 152, def = 143, spd = 60 },
+    baseStats = { hp = 66, atk = 19, def = 18, spd = 7 },
 }
 FS.CreatureDB[10808] = {
     name = "Timmy the Cruel",
@@ -13232,7 +13232,7 @@ FS.CreatureDB[10808] = {
     classification = 2,
     isBoss = true,
     zones = {2017},
-    baseStats = { hp = 454, atk = 157, def = 130, spd = 73 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10809] = {
     name = "Stonespine",
@@ -13244,7 +13244,7 @@ FS.CreatureDB[10809] = {
     classification = 2,
     isBoss = true,
     zones = {2017},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10816] = {
     name = "Wandering Skeleton",
@@ -13256,7 +13256,7 @@ FS.CreatureDB[10816] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 310, atk = 107, def = 88, spd = 70 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[10821] = {
     name = "Hed'mush the Rotting",
@@ -13268,7 +13268,7 @@ FS.CreatureDB[10821] = {
     classification = 4,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 448, atk = 154, def = 128, spd = 72 },
+    baseStats = { hp = 56, atk = 19, def = 16, spd = 9 },
 }
 FS.CreatureDB[10825] = {
     name = "Gish the Unmoving",
@@ -13280,7 +13280,7 @@ FS.CreatureDB[10825] = {
     classification = 4,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 441, atk = 152, def = 125, spd = 71 },
+    baseStats = { hp = 56, atk = 19, def = 16, spd = 9 },
 }
 FS.CreatureDB[10826] = {
     name = "Lord Darkscythe",
@@ -13292,7 +13292,7 @@ FS.CreatureDB[10826] = {
     classification = 4,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 448, atk = 154, def = 128, spd = 72 },
+    baseStats = { hp = 56, atk = 19, def = 16, spd = 9 },
 }
 FS.CreatureDB[10836] = {
     name = "Farmer Dalson",
@@ -13304,7 +13304,7 @@ FS.CreatureDB[10836] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 315, atk = 108, def = 90, spd = 71 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[10876] = {
     name = "Undead Scarab",
@@ -13316,7 +13316,7 @@ FS.CreatureDB[10876] = {
     classification = 0,
     isBoss = false,
     zones = {2017},
-    baseStats = { hp = 320, atk = 110, def = 91, spd = 72 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[10882] = {
     name = "Arikara",
@@ -13328,7 +13328,7 @@ FS.CreatureDB[10882] = {
     classification = 1,
     isBoss = false,
     zones = {400},
-    baseStats = { hp = 244, atk = 81, def = 67, spd = 45 },
+    baseStats = { hp = 62, atk = 20, def = 17, spd = 11 },
 }
 FS.CreatureDB[10901] = {
     name = "Lorekeeper Polkelt",
@@ -13340,7 +13340,7 @@ FS.CreatureDB[10901] = {
     classification = 1,
     isBoss = false,
     zones = {2057},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10926] = {
     name = "Pamela Redpath",
@@ -13352,7 +13352,7 @@ FS.CreatureDB[10926] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 40, atk = 9, def = 7, spd = 8 },
+    baseStats = { hp = 63, atk = 14, def = 11, spd = 12 },
 }
 FS.CreatureDB[10927] = {
     name = "Marlene Redpath",
@@ -13364,7 +13364,7 @@ FS.CreatureDB[10927] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 85, atk = 26, def = 21, spd = 19 },
+    baseStats = { hp = 56, atk = 17, def = 14, spd = 13 },
 }
 FS.CreatureDB[10929] = {
     name = "Haleh",
@@ -13376,7 +13376,7 @@ FS.CreatureDB[10929] = {
     classification = 1,
     isBoss = false,
     zones = {618},
-    baseStats = { hp = 482, atk = 167, def = 138, spd = 78 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10936] = {
     name = "Joseph Redpath",
@@ -13388,7 +13388,7 @@ FS.CreatureDB[10936] = {
     classification = 0,
     isBoss = false,
     zones = {28, 139},
-    baseStats = { hp = 335, atk = 116, def = 96, spd = 76 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[10938] = {
     name = "Redpath the Corrupted",
@@ -13400,7 +13400,7 @@ FS.CreatureDB[10938] = {
     classification = 1,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10939] = {
     name = "Marduk the Black",
@@ -13412,7 +13412,7 @@ FS.CreatureDB[10939] = {
     classification = 1,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 454, atk = 157, def = 130, spd = 73 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10940] = {
     name = "Ghost of the Past",
@@ -13424,7 +13424,7 @@ FS.CreatureDB[10940] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 310, atk = 107, def = 88, spd = 70 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[10944] = {
     name = "Davil Lightfire",
@@ -13436,7 +13436,7 @@ FS.CreatureDB[10944] = {
     classification = 1,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10945] = {
     name = "Davil Crokford",
@@ -13448,7 +13448,7 @@ FS.CreatureDB[10945] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 335, atk = 116, def = 96, spd = 76 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[10946] = {
     name = "Horgus the Ravager",
@@ -13460,7 +13460,7 @@ FS.CreatureDB[10946] = {
     classification = 1,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10947] = {
     name = "Darrowshire Betrayer",
@@ -13472,7 +13472,7 @@ FS.CreatureDB[10947] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 320, atk = 110, def = 91, spd = 72 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[10948] = {
     name = "Darrowshire Defender",
@@ -13484,7 +13484,7 @@ FS.CreatureDB[10948] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 320, atk = 110, def = 91, spd = 72 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[10949] = {
     name = "Silver Hand Disciple",
@@ -13496,7 +13496,7 @@ FS.CreatureDB[10949] = {
     classification = 1,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 448, atk = 154, def = 128, spd = 72 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10950] = {
     name = "Redpath Militia",
@@ -13508,7 +13508,7 @@ FS.CreatureDB[10950] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 315, atk = 108, def = 90, spd = 71 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[10951] = {
     name = "Marauding Corpse",
@@ -13520,7 +13520,7 @@ FS.CreatureDB[10951] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 315, atk = 108, def = 90, spd = 71 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[10952] = {
     name = "Marauding Skeleton",
@@ -13532,7 +13532,7 @@ FS.CreatureDB[10952] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 315, atk = 108, def = 90, spd = 71 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[10953] = {
     name = "Servant of Horgus",
@@ -13544,7 +13544,7 @@ FS.CreatureDB[10953] = {
     classification = 1,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 448, atk = 154, def = 128, spd = 72 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10954] = {
     name = "Bloodletter",
@@ -13556,7 +13556,7 @@ FS.CreatureDB[10954] = {
     classification = 1,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 448, atk = 154, def = 128, spd = 72 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[10955] = {
     name = "Summoned Water Elemental",
@@ -13568,7 +13568,7 @@ FS.CreatureDB[10955] = {
     classification = 0,
     isBoss = false,
     zones = {2017},
-    baseStats = { hp = 310, atk = 123, def = 88, spd = 70 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[10979] = {
     name = "Scarlet Hound",
@@ -13580,7 +13580,7 @@ FS.CreatureDB[10979] = {
     classification = 0,
     isBoss = false,
     zones = {28, 16236},
-    baseStats = { hp = 315, atk = 108, def = 90, spd = 71 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[10981] = {
     name = "Frostwolf",
@@ -13592,7 +13592,7 @@ FS.CreatureDB[10981] = {
     classification = 0,
     isBoss = false,
     zones = {2597},
-    baseStats = { hp = 285, atk = 98, def = 81, spd = 64 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[10996] = {
     name = "Fallen Hero",
@@ -13604,7 +13604,7 @@ FS.CreatureDB[10996] = {
     classification = 1,
     isBoss = false,
     zones = {28, 85, 139},
-    baseStats = { hp = 461, atk = 159, def = 132, spd = 74 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[11027] = {
     name = "Illusory Wraith",
@@ -13616,7 +13616,7 @@ FS.CreatureDB[11027] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 290, atk = 99, def = 82, spd = 65 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[11030] = {
     name = "Mindless Undead",
@@ -13628,7 +13628,7 @@ FS.CreatureDB[11030] = {
     classification = 0,
     isBoss = false,
     zones = {2017},
-    baseStats = { hp = 315, atk = 108, def = 90, spd = 71 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[11058] = {
     name = "Ezra Grimm",
@@ -13640,7 +13640,7 @@ FS.CreatureDB[11058] = {
     classification = 1,
     isBoss = true,
     zones = {2017},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[11064] = {
     name = "Darrowshire Spirit",
@@ -13652,7 +13652,7 @@ FS.CreatureDB[11064] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 315, atk = 108, def = 90, spd = 71 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[11075] = {
     name = "Cauldron Lord Bilemaw",
@@ -13664,7 +13664,7 @@ FS.CreatureDB[11075] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 300, atk = 103, def = 85, spd = 68 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[11076] = {
     name = "Cauldron Lord Razarch",
@@ -13676,7 +13676,7 @@ FS.CreatureDB[11076] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 315, atk = 108, def = 90, spd = 71 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[11077] = {
     name = "Cauldron Lord Malvinious",
@@ -13688,7 +13688,7 @@ FS.CreatureDB[11077] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 310, atk = 107, def = 88, spd = 70 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[11078] = {
     name = "Cauldron Lord Soulwrath",
@@ -13700,7 +13700,7 @@ FS.CreatureDB[11078] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 325, atk = 112, def = 93, spd = 73 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[11082] = {
     name = "Stratholme Courier",
@@ -13712,7 +13712,7 @@ FS.CreatureDB[11082] = {
     classification = 1,
     isBoss = true,
     zones = {2017},
-    baseStats = { hp = 448, atk = 154, def = 128, spd = 72 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[11141] = {
     name = "Spirit of Trey Lightforge",
@@ -13724,7 +13724,7 @@ FS.CreatureDB[11141] = {
     classification = 1,
     isBoss = false,
     zones = {361},
-    baseStats = { hp = 420, atk = 144, def = 119, spd = 68 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[11142] = {
     name = "Undead Postman",
@@ -13736,7 +13736,7 @@ FS.CreatureDB[11142] = {
     classification = 1,
     isBoss = false,
     zones = {2017},
-    baseStats = { hp = 448, atk = 154, def = 128, spd = 72 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[11143] = {
     name = "Postmaster Malown",
@@ -13748,7 +13748,7 @@ FS.CreatureDB[11143] = {
     classification = 1,
     isBoss = true,
     zones = {2017},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[11156] = {
     name = "Green Skeletal Warhorse",
@@ -13760,7 +13760,7 @@ FS.CreatureDB[11156] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 40, atk = 9, def = 7, spd = 8 },
+    baseStats = { hp = 63, atk = 14, def = 11, spd = 12 },
 }
 FS.CreatureDB[11197] = {
     name = "Mindless Skeleton",
@@ -13772,7 +13772,7 @@ FS.CreatureDB[11197] = {
     classification = 0,
     isBoss = false,
     zones = {2017},
-    baseStats = { hp = 335, atk = 116, def = 96, spd = 76 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[11216] = {
     name = "Eva Sarkhoff",
@@ -13784,7 +13784,7 @@ FS.CreatureDB[11216] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 305, atk = 105, def = 87, spd = 69 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[11217] = {
     name = "Lucien Sarkhoff",
@@ -13796,7 +13796,7 @@ FS.CreatureDB[11217] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 310, atk = 107, def = 88, spd = 70 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[11256] = {
     name = "Manifestation of Water",
@@ -13808,7 +13808,7 @@ FS.CreatureDB[11256] = {
     classification = 1,
     isBoss = false,
     zones = {17},
-    baseStats = { hp = 468, atk = 186, def = 134, spd = 76 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[11258] = {
     name = "Frail Skeleton",
@@ -13820,7 +13820,7 @@ FS.CreatureDB[11258] = {
     classification = 0,
     isBoss = false,
     zones = {2057},
-    baseStats = { hp = 40, atk = 9, def = 7, spd = 8 },
+    baseStats = { hp = 63, atk = 14, def = 11, spd = 12 },
 }
 FS.CreatureDB[11262] = {
     name = "Onyxian Whelp",
@@ -13832,7 +13832,7 @@ FS.CreatureDB[11262] = {
     classification = 0,
     isBoss = false,
     zones = {},
-    baseStats = { hp = 325, atk = 112, def = 93, spd = 73 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[11263] = {
     name = "Spectral Projection",
@@ -13844,7 +13844,7 @@ FS.CreatureDB[11263] = {
     classification = 0,
     isBoss = false,
     zones = {2057},
-    baseStats = { hp = 330, atk = 114, def = 94, spd = 74 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[11277] = {
     name = "Caer Darrow Citizen",
@@ -13856,7 +13856,7 @@ FS.CreatureDB[11277] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 215, atk = 72, def = 60, spd = 48 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[11278] = {
     name = "Magnus Frostwake",
@@ -13868,7 +13868,7 @@ FS.CreatureDB[11278] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 285, atk = 98, def = 81, spd = 64 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[11280] = {
     name = "Caer Darrow Cannoneer",
@@ -13880,7 +13880,7 @@ FS.CreatureDB[11280] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 295, atk = 101, def = 84, spd = 66 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[11281] = {
     name = "Caer Darrow Horseman",
@@ -13892,7 +13892,7 @@ FS.CreatureDB[11281] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 305, atk = 105, def = 87, spd = 69 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[11282] = {
     name = "Melia",
@@ -13904,7 +13904,7 @@ FS.CreatureDB[11282] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 40, atk = 9, def = 7, spd = 8 },
+    baseStats = { hp = 63, atk = 14, def = 11, spd = 12 },
 }
 FS.CreatureDB[11283] = {
     name = "Sammy",
@@ -13916,7 +13916,7 @@ FS.CreatureDB[11283] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 40, atk = 9, def = 7, spd = 8 },
+    baseStats = { hp = 63, atk = 14, def = 11, spd = 12 },
 }
 FS.CreatureDB[11285] = {
     name = "Rory",
@@ -13928,7 +13928,7 @@ FS.CreatureDB[11285] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 210, atk = 71, def = 58, spd = 47 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[11286] = {
     name = "Magistrate Marduke",
@@ -13940,7 +13940,7 @@ FS.CreatureDB[11286] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 320, atk = 110, def = 91, spd = 72 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[11287] = {
     name = "Baker Masterson",
@@ -13952,7 +13952,7 @@ FS.CreatureDB[11287] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 220, atk = 74, def = 61, spd = 49 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[11288] = {
     name = "Spectral Betrayer",
@@ -13964,7 +13964,7 @@ FS.CreatureDB[11288] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 320, atk = 110, def = 91, spd = 72 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[11289] = {
     name = "Spectral Defender",
@@ -13976,7 +13976,7 @@ FS.CreatureDB[11289] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 320, atk = 110, def = 91, spd = 72 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[11290] = {
     name = "Mossflayer Zombie",
@@ -13988,7 +13988,7 @@ FS.CreatureDB[11290] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 300, atk = 103, def = 85, spd = 68 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[11291] = {
     name = "Unliving Mossflayer",
@@ -14000,7 +14000,7 @@ FS.CreatureDB[11291] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 305, atk = 105, def = 87, spd = 69 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[11316] = {
     name = "Joseph Dirte",
@@ -14012,7 +14012,7 @@ FS.CreatureDB[11316] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 190, atk = 63, def = 52, spd = 42 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[11321] = {
     name = "Molten Elemental",
@@ -14024,7 +14024,7 @@ FS.CreatureDB[11321] = {
     classification = 1,
     isBoss = false,
     zones = {2437},
-    baseStats = { hp = 147, atk = 52, def = 37, spd = 23 },
+    baseStats = { hp = 62, atk = 22, def = 16, spd = 10 },
 }
 FS.CreatureDB[11357] = {
     name = "Son of Hakkar",
@@ -14036,7 +14036,7 @@ FS.CreatureDB[11357] = {
     classification = 1,
     isBoss = false,
     zones = {1977},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 88 },
+    baseStats = { hp = 61, atk = 21, def = 17, spd = 11 },
 }
 FS.CreatureDB[11359] = {
     name = "Soulflayer",
@@ -14048,7 +14048,7 @@ FS.CreatureDB[11359] = {
     classification = 1,
     isBoss = false,
     zones = {1977},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 89 },
+    baseStats = { hp = 61, atk = 21, def = 17, spd = 11 },
 }
 FS.CreatureDB[11360] = {
     name = "Zulian Cub",
@@ -14060,7 +14060,7 @@ FS.CreatureDB[11360] = {
     classification = 0,
     isBoss = false,
     zones = {1977},
-    baseStats = { hp = 335, atk = 139, def = 96, spd = 105 },
+    baseStats = { hp = 49, atk = 21, def = 14, spd = 16 },
 }
 FS.CreatureDB[11361] = {
     name = "Zulian Tiger",
@@ -14072,7 +14072,7 @@ FS.CreatureDB[11361] = {
     classification = 1,
     isBoss = false,
     zones = {1977},
-    baseStats = { hp = 468, atk = 194, def = 134, spd = 105 },
+    baseStats = { hp = 57, atk = 24, def = 16, spd = 13 },
 }
 FS.CreatureDB[11365] = {
     name = "Zulian Panther",
@@ -14084,7 +14084,7 @@ FS.CreatureDB[11365] = {
     classification = 1,
     isBoss = false,
     zones = {1977},
-    baseStats = { hp = 468, atk = 194, def = 134, spd = 105 },
+    baseStats = { hp = 57, atk = 24, def = 16, spd = 13 },
 }
 FS.CreatureDB[11368] = {
     name = "Bloodseeker Bat",
@@ -14096,7 +14096,7 @@ FS.CreatureDB[11368] = {
     classification = 0,
     isBoss = false,
     zones = {1977},
-    baseStats = { hp = 335, atk = 116, def = 96, spd = 88 },
+    baseStats = { hp = 53, atk = 18, def = 15, spd = 14 },
 }
 FS.CreatureDB[11370] = {
     name = "Razzashi Broodwidow",
@@ -14108,7 +14108,7 @@ FS.CreatureDB[11370] = {
     classification = 1,
     isBoss = false,
     zones = {1977},
-    baseStats = { hp = 454, atk = 157, def = 130, spd = 73 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[11439] = {
     name = "Illusion of Jandice Barov",
@@ -14120,7 +14120,7 @@ FS.CreatureDB[11439] = {
     classification = 1,
     isBoss = false,
     zones = {2057},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[11446] = {
     name = "Gordok Spirit",
@@ -14132,7 +14132,7 @@ FS.CreatureDB[11446] = {
     classification = 1,
     isBoss = false,
     zones = {2557},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[11447] = {
     name = "Mushgog",
@@ -14144,7 +14144,7 @@ FS.CreatureDB[11447] = {
     classification = 2,
     isBoss = true,
     zones = {357},
-    baseStats = { hp = 468, atk = 186, def = 134, spd = 76 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[11458] = {
     name = "Petrified Treant",
@@ -14156,7 +14156,7 @@ FS.CreatureDB[11458] = {
     classification = 1,
     isBoss = false,
     zones = {2557},
-    baseStats = { hp = 454, atk = 180, def = 130, spd = 73 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[11459] = {
     name = "Ironbark Protector",
@@ -14168,7 +14168,7 @@ FS.CreatureDB[11459] = {
     classification = 1,
     isBoss = false,
     zones = {2557},
-    baseStats = { hp = 454, atk = 180, def = 130, spd = 73 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[11462] = {
     name = "Warpwood Treant",
@@ -14180,7 +14180,7 @@ FS.CreatureDB[11462] = {
     classification = 1,
     isBoss = false,
     zones = {2557},
-    baseStats = { hp = 427, atk = 169, def = 121, spd = 69 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[11464] = {
     name = "Warpwood Tangler",
@@ -14192,7 +14192,7 @@ FS.CreatureDB[11464] = {
     classification = 1,
     isBoss = false,
     zones = {2557},
-    baseStats = { hp = 434, atk = 171, def = 123, spd = 70 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[11465] = {
     name = "Warpwood Stomper",
@@ -14204,7 +14204,7 @@ FS.CreatureDB[11465] = {
     classification = 1,
     isBoss = false,
     zones = {2557},
-    baseStats = { hp = 448, atk = 177, def = 128, spd = 72 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[11466] = {
     name = "Highborne Summoner",
@@ -14216,7 +14216,7 @@ FS.CreatureDB[11466] = {
     classification = 1,
     isBoss = false,
     zones = {2557},
-    baseStats = { hp = 434, atk = 149, def = 123, spd = 70 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[11467] = {
     name = "Tsu'zee",
@@ -14228,7 +14228,7 @@ FS.CreatureDB[11467] = {
     classification = 1,
     isBoss = true,
     zones = {2557},
-    baseStats = { hp = 461, atk = 159, def = 132, spd = 74 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[11469] = {
     name = "Eldreth Seether",
@@ -14240,7 +14240,7 @@ FS.CreatureDB[11469] = {
     classification = 1,
     isBoss = false,
     zones = {2557},
-    baseStats = { hp = 454, atk = 157, def = 130, spd = 73 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[11471] = {
     name = "Eldreth Apparition",
@@ -14252,7 +14252,7 @@ FS.CreatureDB[11471] = {
     classification = 1,
     isBoss = false,
     zones = {2557},
-    baseStats = { hp = 448, atk = 154, def = 128, spd = 72 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[11472] = {
     name = "Eldreth Spirit",
@@ -14264,7 +14264,7 @@ FS.CreatureDB[11472] = {
     classification = 1,
     isBoss = false,
     zones = {2557},
-    baseStats = { hp = 448, atk = 154, def = 128, spd = 72 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[11473] = {
     name = "Eldreth Spectre",
@@ -14276,7 +14276,7 @@ FS.CreatureDB[11473] = {
     classification = 1,
     isBoss = false,
     zones = {2557},
-    baseStats = { hp = 454, atk = 157, def = 130, spd = 73 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[11475] = {
     name = "Eldreth Phantasm",
@@ -14288,7 +14288,7 @@ FS.CreatureDB[11475] = {
     classification = 1,
     isBoss = false,
     zones = {2557},
-    baseStats = { hp = 454, atk = 157, def = 130, spd = 73 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[11476] = {
     name = "Skeletal Highborne",
@@ -14300,7 +14300,7 @@ FS.CreatureDB[11476] = {
     classification = 0,
     isBoss = false,
     zones = {2557},
-    baseStats = { hp = 320, atk = 110, def = 91, spd = 72 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[11477] = {
     name = "Rotting Highborne",
@@ -14312,7 +14312,7 @@ FS.CreatureDB[11477] = {
     classification = 0,
     isBoss = false,
     zones = {2557},
-    baseStats = { hp = 325, atk = 112, def = 93, spd = 73 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[11480] = {
     name = "Arcane Aberration",
@@ -14324,7 +14324,7 @@ FS.CreatureDB[11480] = {
     classification = 1,
     isBoss = false,
     zones = {2557},
-    baseStats = { hp = 461, atk = 182, def = 132, spd = 74 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[11483] = {
     name = "Mana Remnant",
@@ -14336,7 +14336,7 @@ FS.CreatureDB[11483] = {
     classification = 1,
     isBoss = false,
     zones = {2557},
-    baseStats = { hp = 454, atk = 180, def = 130, spd = 73 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[11484] = {
     name = "Residual Monstrosity",
@@ -14348,7 +14348,7 @@ FS.CreatureDB[11484] = {
     classification = 1,
     isBoss = false,
     zones = {2557},
-    baseStats = { hp = 461, atk = 182, def = 132, spd = 74 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[11487] = {
     name = "Magister Kalendris",
@@ -14360,7 +14360,7 @@ FS.CreatureDB[11487] = {
     classification = 1,
     isBoss = true,
     zones = {2557},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[11488] = {
     name = "Illyanna Ravenoak",
@@ -14372,7 +14372,7 @@ FS.CreatureDB[11488] = {
     classification = 1,
     isBoss = true,
     zones = {2557},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[11489] = {
     name = "Tendris Warpwood",
@@ -14384,7 +14384,7 @@ FS.CreatureDB[11489] = {
     classification = 1,
     isBoss = true,
     zones = {2557},
-    baseStats = { hp = 468, atk = 186, def = 134, spd = 76 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[11491] = {
     name = "Old Ironbark",
@@ -14396,7 +14396,7 @@ FS.CreatureDB[11491] = {
     classification = 1,
     isBoss = false,
     zones = {2557},
-    baseStats = { hp = 454, atk = 180, def = 130, spd = 73 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[11502] = {
     name = "Ragnaros",
@@ -14408,7 +14408,7 @@ FS.CreatureDB[11502] = {
     classification = 3,
     isBoss = true,
     zones = {2717},
-    baseStats = { hp = 70042, atk = 28989, def = 21006, spd = 11406 },
+    baseStats = { hp = 58, atk = 24, def = 18, spd = 10 },
 }
 FS.CreatureDB[11551] = {
     name = "Necrofiend",
@@ -14420,7 +14420,7 @@ FS.CreatureDB[11551] = {
     classification = 1,
     isBoss = false,
     zones = {2057},
-    baseStats = { hp = 461, atk = 159, def = 132, spd = 74 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[11561] = {
     name = "Undead Ravager",
@@ -14432,7 +14432,7 @@ FS.CreatureDB[11561] = {
     classification = 0,
     isBoss = false,
     zones = {405},
-    baseStats = { hp = 220, atk = 74, def = 61, spd = 49 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[11576] = {
     name = "Whirlwind Ripper",
@@ -14444,7 +14444,7 @@ FS.CreatureDB[11576] = {
     classification = 0,
     isBoss = false,
     zones = {405},
-    baseStats = { hp = 200, atk = 77, def = 55, spd = 45 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[11577] = {
     name = "Whirlwind Stormwalker",
@@ -14456,7 +14456,7 @@ FS.CreatureDB[11577] = {
     classification = 0,
     isBoss = false,
     zones = {405},
-    baseStats = { hp = 215, atk = 82, def = 60, spd = 48 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[11578] = {
     name = "Whirlwind Shredder",
@@ -14468,7 +14468,7 @@ FS.CreatureDB[11578] = {
     classification = 0,
     isBoss = false,
     zones = {405},
-    baseStats = { hp = 200, atk = 77, def = 55, spd = 45 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[11583] = {
     name = "Nefarian",
@@ -14480,7 +14480,7 @@ FS.CreatureDB[11583] = {
     classification = 3,
     isBoss = true,
     zones = {2677},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[11620] = {
     name = "Spectral Marauder",
@@ -14492,7 +14492,7 @@ FS.CreatureDB[11620] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 320, atk = 110, def = 91, spd = 72 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[11621] = {
     name = "Spectral Corpse",
@@ -14504,7 +14504,7 @@ FS.CreatureDB[11621] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 320, atk = 110, def = 91, spd = 72 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[11622] = {
     name = "Rattlegore",
@@ -14516,7 +14516,7 @@ FS.CreatureDB[11622] = {
     classification = 1,
     isBoss = false,
     zones = {2057},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[11665] = {
     name = "Lava Annihilator",
@@ -14528,7 +14528,7 @@ FS.CreatureDB[11665] = {
     classification = 1,
     isBoss = false,
     zones = {2717},
-    baseStats = { hp = 475, atk = 188, def = 136, spd = 77 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[11666] = {
     name = "Firewalker",
@@ -14540,7 +14540,7 @@ FS.CreatureDB[11666] = {
     classification = 1,
     isBoss = false,
     zones = {2717},
-    baseStats = { hp = 475, atk = 188, def = 136, spd = 77 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[11668] = {
     name = "Firelord",
@@ -14552,7 +14552,7 @@ FS.CreatureDB[11668] = {
     classification = 1,
     isBoss = false,
     zones = {2717},
-    baseStats = { hp = 475, atk = 188, def = 136, spd = 77 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[11669] = {
     name = "Flame Imp",
@@ -14564,7 +14564,7 @@ FS.CreatureDB[11669] = {
     classification = 1,
     isBoss = false,
     zones = {2717},
-    baseStats = { hp = 475, atk = 188, def = 136, spd = 77 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[11684] = {
     name = "Warsong Shredder",
@@ -14576,7 +14576,7 @@ FS.CreatureDB[11684] = {
     classification = 0,
     isBoss = false,
     zones = {331},
-    baseStats = { hp = 170, atk = 56, def = 46, spd = 38 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[11686] = {
     name = "Ghostly Raider",
@@ -14588,7 +14588,7 @@ FS.CreatureDB[11686] = {
     classification = 0,
     isBoss = false,
     zones = {405},
-    baseStats = { hp = 235, atk = 80, def = 66, spd = 53 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[11687] = {
     name = "Ghostly Marauder",
@@ -14600,7 +14600,7 @@ FS.CreatureDB[11687] = {
     classification = 0,
     isBoss = false,
     zones = {405},
-    baseStats = { hp = 240, atk = 81, def = 67, spd = 54 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[11735] = {
     name = "Stonelash Scorpid",
@@ -14612,7 +14612,7 @@ FS.CreatureDB[11735] = {
     classification = 0,
     isBoss = false,
     zones = {1377},
-    baseStats = { hp = 305, atk = 105, def = 87, spd = 69 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[11736] = {
     name = "Stonelash Pincer",
@@ -14624,7 +14624,7 @@ FS.CreatureDB[11736] = {
     classification = 0,
     isBoss = false,
     zones = {1377},
-    baseStats = { hp = 315, atk = 108, def = 90, spd = 71 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[11737] = {
     name = "Stonelash Flayer",
@@ -14636,7 +14636,7 @@ FS.CreatureDB[11737] = {
     classification = 0,
     isBoss = false,
     zones = {1377},
-    baseStats = { hp = 320, atk = 110, def = 91, spd = 72 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[11738] = {
     name = "Sand Skitterer",
@@ -14648,7 +14648,7 @@ FS.CreatureDB[11738] = {
     classification = 0,
     isBoss = false,
     zones = {1377},
-    baseStats = { hp = 310, atk = 107, def = 88, spd = 70 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[11739] = {
     name = "Rock Stalker",
@@ -14660,7 +14660,7 @@ FS.CreatureDB[11739] = {
     classification = 0,
     isBoss = false,
     zones = {1377},
-    baseStats = { hp = 320, atk = 110, def = 91, spd = 72 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[11744] = {
     name = "Dust Stormer",
@@ -14672,7 +14672,7 @@ FS.CreatureDB[11744] = {
     classification = 0,
     isBoss = false,
     zones = {1377},
-    baseStats = { hp = 315, atk = 124, def = 90, spd = 71 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[11745] = {
     name = "Cyclone Warrior",
@@ -14684,7 +14684,7 @@ FS.CreatureDB[11745] = {
     classification = 0,
     isBoss = false,
     zones = {1377},
-    baseStats = { hp = 325, atk = 128, def = 93, spd = 73 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[11746] = {
     name = "Desert Rumbler",
@@ -14696,7 +14696,7 @@ FS.CreatureDB[11746] = {
     classification = 0,
     isBoss = false,
     zones = {1377},
-    baseStats = { hp = 320, atk = 126, def = 91, spd = 72 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[11747] = {
     name = "Desert Rager",
@@ -14708,7 +14708,7 @@ FS.CreatureDB[11747] = {
     classification = 0,
     isBoss = false,
     zones = {1377},
-    baseStats = { hp = 325, atk = 128, def = 93, spd = 73 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[11777] = {
     name = "Shadowshard Rumbler",
@@ -14720,7 +14720,7 @@ FS.CreatureDB[11777] = {
     classification = 1,
     isBoss = false,
     zones = {405},
-    baseStats = { hp = 329, atk = 128, def = 92, spd = 53 },
+    baseStats = { hp = 60, atk = 23, def = 17, spd = 10 },
 }
 FS.CreatureDB[11778] = {
     name = "Shadowshard Smasher",
@@ -14732,7 +14732,7 @@ FS.CreatureDB[11778] = {
     classification = 1,
     isBoss = false,
     zones = {405},
-    baseStats = { hp = 336, atk = 131, def = 94, spd = 54 },
+    baseStats = { hp = 60, atk = 23, def = 17, spd = 10 },
 }
 FS.CreatureDB[11781] = {
     name = "Ambershard Crusher",
@@ -14744,7 +14744,7 @@ FS.CreatureDB[11781] = {
     classification = 1,
     isBoss = false,
     zones = {405},
-    baseStats = { hp = 329, atk = 128, def = 92, spd = 53 },
+    baseStats = { hp = 60, atk = 23, def = 17, spd = 10 },
 }
 FS.CreatureDB[11782] = {
     name = "Ambershard Destroyer",
@@ -14756,7 +14756,7 @@ FS.CreatureDB[11782] = {
     classification = 1,
     isBoss = false,
     zones = {405},
-    baseStats = { hp = 343, atk = 134, def = 96, spd = 55 },
+    baseStats = { hp = 60, atk = 23, def = 17, spd = 10 },
 }
 FS.CreatureDB[11783] = {
     name = "Theradrim Shardling",
@@ -14768,7 +14768,7 @@ FS.CreatureDB[11783] = {
     classification = 0,
     isBoss = false,
     zones = {2100},
-    baseStats = { hp = 265, atk = 103, def = 75, spd = 60 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[11862] = {
     name = "Tsunaman",
@@ -14780,7 +14780,7 @@ FS.CreatureDB[11862] = {
     classification = 0,
     isBoss = false,
     zones = {406},
-    baseStats = { hp = 160, atk = 60, def = 43, spd = 36 },
+    baseStats = { hp = 54, atk = 20, def = 14, spd = 12 },
 }
 FS.CreatureDB[11873] = {
     name = "Spectral Attendant",
@@ -14792,7 +14792,7 @@ FS.CreatureDB[11873] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 335, atk = 116, def = 96, spd = 76 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[11875] = {
     name = "Mortar Team Target Dummy",
@@ -14804,7 +14804,7 @@ FS.CreatureDB[11875] = {
     classification = 0,
     isBoss = false,
     zones = {1},
-    baseStats = { hp = 85, atk = 26, def = 21, spd = 19 },
+    baseStats = { hp = 56, atk = 17, def = 14, spd = 13 },
 }
 FS.CreatureDB[11921] = {
     name = "Besseleth",
@@ -14816,7 +14816,7 @@ FS.CreatureDB[11921] = {
     classification = 1,
     isBoss = false,
     zones = {406},
-    baseStats = { hp = 196, atk = 64, def = 52, spd = 31 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[11936] = {
     name = "Artist Renfray",
@@ -14828,7 +14828,7 @@ FS.CreatureDB[11936] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 95, atk = 29, def = 24, spd = 21 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[11981] = {
     name = "Flamegor",
@@ -14840,7 +14840,7 @@ FS.CreatureDB[11981] = {
     classification = 3,
     isBoss = true,
     zones = {2677},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[11983] = {
     name = "Firemaw",
@@ -14852,7 +14852,7 @@ FS.CreatureDB[11983] = {
     classification = 3,
     isBoss = true,
     zones = {2677},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[12017] = {
     name = "Broodlord Lashlayer",
@@ -14864,7 +14864,7 @@ FS.CreatureDB[12017] = {
     classification = 3,
     isBoss = true,
     zones = {2677},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[12037] = {
     name = "Ursol'lok",
@@ -14876,7 +14876,7 @@ FS.CreatureDB[12037] = {
     classification = 4,
     isBoss = false,
     zones = {331},
-    baseStats = { hp = 319, atk = 89, def = 83, spd = 35 },
+    baseStats = { hp = 60, atk = 17, def = 16, spd = 7 },
 }
 FS.CreatureDB[12056] = {
     name = "Baron Geddon",
@@ -14888,7 +14888,7 @@ FS.CreatureDB[12056] = {
     classification = 3,
     isBoss = true,
     zones = {2717},
-    baseStats = { hp = 70042, atk = 28989, def = 21006, spd = 11406 },
+    baseStats = { hp = 58, atk = 24, def = 18, spd = 10 },
 }
 FS.CreatureDB[12057] = {
     name = "Garr",
@@ -14900,7 +14900,7 @@ FS.CreatureDB[12057] = {
     classification = 3,
     isBoss = true,
     zones = {2717},
-    baseStats = { hp = 70042, atk = 28989, def = 21006, spd = 11406 },
+    baseStats = { hp = 58, atk = 24, def = 18, spd = 10 },
 }
 FS.CreatureDB[12076] = {
     name = "Lava Elemental",
@@ -14912,7 +14912,7 @@ FS.CreatureDB[12076] = {
     classification = 1,
     isBoss = false,
     zones = {2717},
-    baseStats = { hp = 475, atk = 188, def = 136, spd = 77 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[12099] = {
     name = "Firesworn",
@@ -14924,7 +14924,7 @@ FS.CreatureDB[12099] = {
     classification = 1,
     isBoss = false,
     zones = {2717},
-    baseStats = { hp = 461, atk = 182, def = 132, spd = 74 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[12100] = {
     name = "Lava Reaver",
@@ -14936,7 +14936,7 @@ FS.CreatureDB[12100] = {
     classification = 1,
     isBoss = false,
     zones = {2717},
-    baseStats = { hp = 482, atk = 192, def = 138, spd = 78 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[12101] = {
     name = "Lava Surger",
@@ -14948,7 +14948,7 @@ FS.CreatureDB[12101] = {
     classification = 1,
     isBoss = false,
     zones = {2717},
-    baseStats = { hp = 475, atk = 188, def = 136, spd = 77 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[12129] = {
     name = "Onyxian Warder",
@@ -14960,7 +14960,7 @@ FS.CreatureDB[12129] = {
     classification = 1,
     isBoss = false,
     zones = {},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[12143] = {
     name = "Son of Flame",
@@ -14972,7 +14972,7 @@ FS.CreatureDB[12143] = {
     classification = 1,
     isBoss = false,
     zones = {2717},
-    baseStats = { hp = 475, atk = 188, def = 136, spd = 77 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[12178] = {
     name = "Tortured Druid",
@@ -14984,7 +14984,7 @@ FS.CreatureDB[12178] = {
     classification = 0,
     isBoss = false,
     zones = {1377},
-    baseStats = { hp = 310, atk = 107, def = 88, spd = 70 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[12199] = {
     name = "Shade of Ambermoon",
@@ -14996,7 +14996,7 @@ FS.CreatureDB[12199] = {
     classification = 0,
     isBoss = false,
     zones = {1377},
-    baseStats = { hp = 325, atk = 112, def = 93, spd = 73 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[12201] = {
     name = "Princess Theradras",
@@ -15008,7 +15008,7 @@ FS.CreatureDB[12201] = {
     classification = 1,
     isBoss = true,
     zones = {2100},
-    baseStats = { hp = 406, atk = 159, def = 115, spd = 65 },
+    baseStats = { hp = 60, atk = 23, def = 17, spd = 10 },
 }
 FS.CreatureDB[12208] = {
     name = "Conquered Soul of the Blightcaller",
@@ -15020,7 +15020,7 @@ FS.CreatureDB[12208] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 325, atk = 112, def = 93, spd = 73 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[12223] = {
     name = "Cavern Lurker",
@@ -15032,7 +15032,7 @@ FS.CreatureDB[12223] = {
     classification = 1,
     isBoss = false,
     zones = {2100},
-    baseStats = { hp = 364, atk = 142, def = 102, spd = 58 },
+    baseStats = { hp = 60, atk = 23, def = 17, spd = 10 },
 }
 FS.CreatureDB[12224] = {
     name = "Cavern Shambler",
@@ -15044,7 +15044,7 @@ FS.CreatureDB[12224] = {
     classification = 1,
     isBoss = false,
     zones = {2100},
-    baseStats = { hp = 371, atk = 146, def = 105, spd = 60 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[12237] = {
     name = "Meshlok the Harvester",
@@ -15056,7 +15056,7 @@ FS.CreatureDB[12237] = {
     classification = 2,
     isBoss = true,
     zones = {2100},
-    baseStats = { hp = 385, atk = 151, def = 109, spd = 62 },
+    baseStats = { hp = 60, atk = 23, def = 17, spd = 10 },
 }
 FS.CreatureDB[12238] = {
     name = "Zaetar's Spirit",
@@ -15068,7 +15068,7 @@ FS.CreatureDB[12238] = {
     classification = 1,
     isBoss = false,
     zones = {2100},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[12239] = {
     name = "Spirit of Gelk",
@@ -15080,7 +15080,7 @@ FS.CreatureDB[12239] = {
     classification = 1,
     isBoss = false,
     zones = {405},
-    baseStats = { hp = 343, atk = 117, def = 96, spd = 55 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[12240] = {
     name = "Spirit of Kolk",
@@ -15092,7 +15092,7 @@ FS.CreatureDB[12240] = {
     classification = 1,
     isBoss = false,
     zones = {405, -6},
-    baseStats = { hp = 350, atk = 119, def = 98, spd = 56 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[12241] = {
     name = "Spirit of Magra",
@@ -15104,7 +15104,7 @@ FS.CreatureDB[12241] = {
     classification = 1,
     isBoss = false,
     zones = {-6},
-    baseStats = { hp = 350, atk = 119, def = 98, spd = 56 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[12242] = {
     name = "Spirit of Maraudos",
@@ -15116,7 +15116,7 @@ FS.CreatureDB[12242] = {
     classification = 1,
     isBoss = false,
     zones = {2100},
-    baseStats = { hp = 371, atk = 127, def = 105, spd = 60 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[12243] = {
     name = "Spirit of Veng",
@@ -15128,7 +15128,7 @@ FS.CreatureDB[12243] = {
     classification = 1,
     isBoss = false,
     zones = {2100},
-    baseStats = { hp = 378, atk = 129, def = 107, spd = 61 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[12248] = {
     name = "Infiltrator Hameya",
@@ -15140,7 +15140,7 @@ FS.CreatureDB[12248] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 335, atk = 116, def = 96, spd = 76 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[12250] = {
     name = "Zaeldarr the Outcast",
@@ -15152,7 +15152,7 @@ FS.CreatureDB[12250] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 310, atk = 107, def = 88, spd = 70 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[12258] = {
     name = "Rotgrip",
@@ -15164,7 +15164,7 @@ FS.CreatureDB[12258] = {
     classification = 0,
     isBoss = true,
     zones = {2100},
-    baseStats = { hp = 340, atk = 118, def = 95, spd = 42 },
+    baseStats = { hp = 62, atk = 22, def = 18, spd = 8 },
     signatureAbilities = { 1005, 401, 108, 405 },
 }
 FS.CreatureDB[12260] = {
@@ -15177,7 +15177,7 @@ FS.CreatureDB[12260] = {
     classification = 1,
     isBoss = false,
     zones = {},
-    baseStats = { hp = 482, atk = 167, def = 138, spd = 78 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[12261] = {
     name = "Infected Mossflayer",
@@ -15189,7 +15189,7 @@ FS.CreatureDB[12261] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 320, atk = 110, def = 91, spd = 72 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[12262] = {
     name = "Ziggurat Protector",
@@ -15201,7 +15201,7 @@ FS.CreatureDB[12262] = {
     classification = 1,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 454, atk = 157, def = 130, spd = 73 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[12263] = {
     name = "Slaughterhouse Protector",
@@ -15213,7 +15213,7 @@ FS.CreatureDB[12263] = {
     classification = 1,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 454, atk = 157, def = 130, spd = 73 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[12265] = {
     name = "Lava Spawn",
@@ -15225,7 +15225,7 @@ FS.CreatureDB[12265] = {
     classification = 1,
     isBoss = false,
     zones = {2717},
-    baseStats = { hp = 468, atk = 186, def = 134, spd = 76 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[12341] = {
     name = "Blue Skeletal Horse",
@@ -15237,7 +15237,7 @@ FS.CreatureDB[12341] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 40, atk = 9, def = 7, spd = 8 },
+    baseStats = { hp = 63, atk = 14, def = 11, spd = 12 },
 }
 FS.CreatureDB[12342] = {
     name = "Brown Skeletal Horse",
@@ -15249,7 +15249,7 @@ FS.CreatureDB[12342] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 40, atk = 9, def = 7, spd = 8 },
+    baseStats = { hp = 63, atk = 14, def = 11, spd = 12 },
 }
 FS.CreatureDB[12343] = {
     name = "Red Skeletal Horse",
@@ -15261,7 +15261,7 @@ FS.CreatureDB[12343] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 40, atk = 9, def = 7, spd = 8 },
+    baseStats = { hp = 63, atk = 14, def = 11, spd = 12 },
 }
 FS.CreatureDB[12347] = {
     name = "Enraged Reef Crawler",
@@ -15273,7 +15273,7 @@ FS.CreatureDB[12347] = {
     classification = 0,
     isBoss = false,
     zones = {405},
-    baseStats = { hp = 190, atk = 63, def = 52, spd = 42 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[12363] = {
     name = "Blue Mechanostrider",
@@ -15285,7 +15285,7 @@ FS.CreatureDB[12363] = {
     classification = 0,
     isBoss = false,
     zones = {1},
-    baseStats = { hp = 40, atk = 9, def = 7, spd = 8 },
+    baseStats = { hp = 63, atk = 14, def = 11, spd = 12 },
 }
 FS.CreatureDB[12365] = {
     name = "Red Mechanostrider",
@@ -15297,7 +15297,7 @@ FS.CreatureDB[12365] = {
     classification = 0,
     isBoss = false,
     zones = {1},
-    baseStats = { hp = 40, atk = 9, def = 7, spd = 8 },
+    baseStats = { hp = 63, atk = 14, def = 11, spd = 12 },
 }
 FS.CreatureDB[12366] = {
     name = "Unpainted Mechanostrider",
@@ -15309,7 +15309,7 @@ FS.CreatureDB[12366] = {
     classification = 0,
     isBoss = false,
     zones = {1},
-    baseStats = { hp = 40, atk = 9, def = 7, spd = 8 },
+    baseStats = { hp = 63, atk = 14, def = 11, spd = 12 },
 }
 FS.CreatureDB[12367] = {
     name = "Green Mechanostrider",
@@ -15321,7 +15321,7 @@ FS.CreatureDB[12367] = {
     classification = 0,
     isBoss = false,
     zones = {1},
-    baseStats = { hp = 40, atk = 9, def = 7, spd = 8 },
+    baseStats = { hp = 63, atk = 14, def = 11, spd = 12 },
 }
 FS.CreatureDB[12377] = {
     name = "Wailing Spectre",
@@ -15333,7 +15333,7 @@ FS.CreatureDB[12377] = {
     classification = 0,
     isBoss = false,
     zones = {41},
-    baseStats = { hp = 330, atk = 114, def = 94, spd = 74 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[12378] = {
     name = "Damned Soul",
@@ -15345,7 +15345,7 @@ FS.CreatureDB[12378] = {
     classification = 0,
     isBoss = false,
     zones = {41},
-    baseStats = { hp = 330, atk = 114, def = 94, spd = 74 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[12379] = {
     name = "Unliving Caretaker",
@@ -15357,7 +15357,7 @@ FS.CreatureDB[12379] = {
     classification = 0,
     isBoss = false,
     zones = {41},
-    baseStats = { hp = 330, atk = 114, def = 94, spd = 74 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[12380] = {
     name = "Unliving Resident",
@@ -15369,7 +15369,7 @@ FS.CreatureDB[12380] = {
     classification = 0,
     isBoss = false,
     zones = {41},
-    baseStats = { hp = 330, atk = 114, def = 94, spd = 74 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[12385] = {
     name = "Mortar Team Advanced Target Dummy",
@@ -15381,7 +15381,7 @@ FS.CreatureDB[12385] = {
     classification = 0,
     isBoss = false,
     zones = {1},
-    baseStats = { hp = 110, atk = 35, def = 28, spd = 24 },
+    baseStats = { hp = 56, atk = 18, def = 14, spd = 12 },
 }
 FS.CreatureDB[12431] = {
     name = "Gorefang",
@@ -15393,7 +15393,7 @@ FS.CreatureDB[12431] = {
     classification = 4,
     isBoss = false,
     zones = {130},
-    baseStats = { hp = 140, atk = 43, def = 35, spd = 22 },
+    baseStats = { hp = 58, atk = 18, def = 15, spd = 9 },
 }
 FS.CreatureDB[12432] = {
     name = "Old Vicejaw",
@@ -15405,7 +15405,7 @@ FS.CreatureDB[12432] = {
     classification = 4,
     isBoss = false,
     zones = {130},
-    baseStats = { hp = 176, atk = 46, def = 42, spd = 19 },
+    baseStats = { hp = 62, atk = 16, def = 15, spd = 7 },
 }
 FS.CreatureDB[12433] = {
     name = "Krethis Shadowspinner",
@@ -15417,7 +15417,7 @@ FS.CreatureDB[12433] = {
     classification = 4,
     isBoss = false,
     zones = {130},
-    baseStats = { hp = 154, atk = 49, def = 39, spd = 24 },
+    baseStats = { hp = 58, atk = 18, def = 15, spd = 9 },
 }
 FS.CreatureDB[12435] = {
     name = "Razorgore the Untamed",
@@ -15429,7 +15429,7 @@ FS.CreatureDB[12435] = {
     classification = 3,
     isBoss = true,
     zones = {2677},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[12457] = {
     name = "Blackwing Spellbinder",
@@ -15441,7 +15441,7 @@ FS.CreatureDB[12457] = {
     classification = 1,
     isBoss = false,
     zones = {2677},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[12463] = {
     name = "Death Talon Flamescale",
@@ -15453,7 +15453,7 @@ FS.CreatureDB[12463] = {
     classification = 1,
     isBoss = false,
     zones = {2677},
-    baseStats = { hp = 482, atk = 167, def = 138, spd = 78 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[12464] = {
     name = "Death Talon Seether",
@@ -15465,7 +15465,7 @@ FS.CreatureDB[12464] = {
     classification = 1,
     isBoss = false,
     zones = {2677},
-    baseStats = { hp = 482, atk = 167, def = 138, spd = 78 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[12468] = {
     name = "Death Talon Hatcher",
@@ -15477,7 +15477,7 @@ FS.CreatureDB[12468] = {
     classification = 1,
     isBoss = false,
     zones = {2677},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[12473] = {
     name = "Arcanite Dragonling",
@@ -15489,7 +15489,7 @@ FS.CreatureDB[12473] = {
     classification = 0,
     isBoss = false,
     zones = {1584},
-    baseStats = { hp = 335, atk = 116, def = 96, spd = 76 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[12475] = {
     name = "Emeraldon Tree Warder",
@@ -15501,7 +15501,7 @@ FS.CreatureDB[12475] = {
     classification = 1,
     isBoss = false,
     zones = {331, 1637, 16169},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[12476] = {
     name = "Emeraldon Oracle",
@@ -15513,7 +15513,7 @@ FS.CreatureDB[12476] = {
     classification = 1,
     isBoss = false,
     zones = {331, 1637, 16169},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[12478] = {
     name = "Verdantine Oracle",
@@ -15525,7 +15525,7 @@ FS.CreatureDB[12478] = {
     classification = 1,
     isBoss = false,
     zones = {47, 16029},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[12479] = {
     name = "Verdantine Tree Warder",
@@ -15537,7 +15537,7 @@ FS.CreatureDB[12479] = {
     classification = 1,
     isBoss = false,
     zones = {47, 16029},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[12496] = {
     name = "Dreamtracker",
@@ -15549,7 +15549,7 @@ FS.CreatureDB[12496] = {
     classification = 1,
     isBoss = false,
     zones = {47, 16029},
-    baseStats = { hp = 482, atk = 167, def = 138, spd = 78 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[12497] = {
     name = "Dreamroarer",
@@ -15561,7 +15561,7 @@ FS.CreatureDB[12497] = {
     classification = 1,
     isBoss = false,
     zones = {357, 16018},
-    baseStats = { hp = 482, atk = 167, def = 138, spd = 78 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[12498] = {
     name = "Dreamstalker",
@@ -15573,7 +15573,7 @@ FS.CreatureDB[12498] = {
     classification = 1,
     isBoss = false,
     zones = {331, 16169},
-    baseStats = { hp = 482, atk = 167, def = 138, spd = 78 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[12759] = {
     name = "Tideress",
@@ -15585,7 +15585,7 @@ FS.CreatureDB[12759] = {
     classification = 0,
     isBoss = false,
     zones = {331},
-    baseStats = { hp = 170, atk = 64, def = 46, spd = 38 },
+    baseStats = { hp = 54, atk = 20, def = 14, spd = 12 },
 }
 FS.CreatureDB[12806] = {
     name = "Magmakin",
@@ -15597,7 +15597,7 @@ FS.CreatureDB[12806] = {
     classification = 1,
     isBoss = false,
     zones = {2717},
-    baseStats = { hp = 468, atk = 186, def = 134, spd = 76 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[12865] = {
     name = "Ambassador Malcin",
@@ -15609,7 +15609,7 @@ FS.CreatureDB[12865] = {
     classification = 1,
     isBoss = false,
     zones = {17},
-    baseStats = { hp = 301, atk = 101, def = 84, spd = 48 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[12876] = {
     name = "Baron Aquanis",
@@ -15621,7 +15621,7 @@ FS.CreatureDB[12876] = {
     classification = 1,
     isBoss = false,
     zones = {719},
-    baseStats = { hp = 244, atk = 93, def = 67, spd = 39 },
+    baseStats = { hp = 60, atk = 23, def = 17, spd = 10 },
 }
 FS.CreatureDB[12899] = {
     name = "Axtroz",
@@ -15633,7 +15633,7 @@ FS.CreatureDB[12899] = {
     classification = 1,
     isBoss = false,
     zones = {11},
-    baseStats = { hp = 482, atk = 167, def = 138, spd = 78 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[12900] = {
     name = "Somnus",
@@ -15645,7 +15645,7 @@ FS.CreatureDB[12900] = {
     classification = 1,
     isBoss = false,
     zones = {8},
-    baseStats = { hp = 482, atk = 167, def = 138, spd = 78 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[13020] = {
     name = "Vaelastrasz the Corrupt",
@@ -15657,7 +15657,7 @@ FS.CreatureDB[13020] = {
     classification = 3,
     isBoss = true,
     zones = {2677},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[13021] = {
     name = "Warpwood Crusher",
@@ -15669,7 +15669,7 @@ FS.CreatureDB[13021] = {
     classification = 1,
     isBoss = false,
     zones = {2557},
-    baseStats = { hp = 441, atk = 174, def = 125, spd = 71 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[13022] = {
     name = "Whip Lasher",
@@ -15681,7 +15681,7 @@ FS.CreatureDB[13022] = {
     classification = 0,
     isBoss = false,
     zones = {2557},
-    baseStats = { hp = 305, atk = 120, def = 87, spd = 69 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[13141] = {
     name = "Deeprot Stomper",
@@ -15693,7 +15693,7 @@ FS.CreatureDB[13141] = {
     classification = 1,
     isBoss = false,
     zones = {2100},
-    baseStats = { hp = 350, atk = 136, def = 98, spd = 56 },
+    baseStats = { hp = 60, atk = 23, def = 17, spd = 10 },
 }
 FS.CreatureDB[13142] = {
     name = "Deeprot Tangler",
@@ -15705,7 +15705,7 @@ FS.CreatureDB[13142] = {
     classification = 1,
     isBoss = false,
     zones = {2100},
-    baseStats = { hp = 357, atk = 140, def = 100, spd = 57 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[13145] = {
     name = "Lieutenant Grummus",
@@ -15717,7 +15717,7 @@ FS.CreatureDB[13145] = {
     classification = 1,
     isBoss = false,
     zones = {2597},
-    baseStats = { hp = 461, atk = 159, def = 132, spd = 74 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[13146] = {
     name = "Lieutenant Murp",
@@ -15729,7 +15729,7 @@ FS.CreatureDB[13146] = {
     classification = 1,
     isBoss = false,
     zones = {2597},
-    baseStats = { hp = 461, atk = 159, def = 132, spd = 74 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[13196] = {
     name = "Phase Lasher",
@@ -15741,7 +15741,7 @@ FS.CreatureDB[13196] = {
     classification = 1,
     isBoss = false,
     zones = {2557},
-    baseStats = { hp = 427, atk = 169, def = 121, spd = 69 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[13197] = {
     name = "Fel Lash",
@@ -15753,7 +15753,7 @@ FS.CreatureDB[13197] = {
     classification = 1,
     isBoss = false,
     zones = {2557},
-    baseStats = { hp = 441, atk = 174, def = 125, spd = 71 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[13256] = {
     name = "Lokholar the Ice Lord",
@@ -15765,7 +15765,7 @@ FS.CreatureDB[13256] = {
     classification = 3,
     isBoss = false,
     zones = {2597},
-    baseStats = { hp = 70042, atk = 28989, def = 21006, spd = 11406 },
+    baseStats = { hp = 53, atk = 22, def = 16, spd = 9 },
 }
 FS.CreatureDB[13278] = {
     name = "Duke Hydraxis",
@@ -15777,7 +15777,7 @@ FS.CreatureDB[13278] = {
     classification = 1,
     isBoss = false,
     zones = {16},
-    baseStats = { hp = 468, atk = 186, def = 134, spd = 76 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[13280] = {
     name = "Hydrospawn",
@@ -15789,7 +15789,7 @@ FS.CreatureDB[13280] = {
     classification = 1,
     isBoss = true,
     zones = {2557},
-    baseStats = { hp = 448, atk = 177, def = 128, spd = 72 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[13282] = {
     name = "Noxxion",
@@ -15801,7 +15801,7 @@ FS.CreatureDB[13282] = {
     classification = 1,
     isBoss = true,
     zones = {2100},
-    baseStats = { hp = 385, atk = 151, def = 109, spd = 62 },
+    baseStats = { hp = 60, atk = 23, def = 17, spd = 10 },
 }
 FS.CreatureDB[13285] = {
     name = "Death Lash",
@@ -15813,7 +15813,7 @@ FS.CreatureDB[13285] = {
     classification = 1,
     isBoss = false,
     zones = {2557},
-    baseStats = { hp = 448, atk = 177, def = 128, spd = 72 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[13456] = {
     name = "Noxxion's Spawn",
@@ -15825,7 +15825,7 @@ FS.CreatureDB[13456] = {
     classification = 0,
     isBoss = false,
     zones = {2100},
-    baseStats = { hp = 265, atk = 103, def = 75, spd = 60 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[13599] = {
     name = "Stolid Snapjaw",
@@ -15837,7 +15837,7 @@ FS.CreatureDB[13599] = {
     classification = 0,
     isBoss = false,
     zones = {2100},
-    baseStats = { hp = 265, atk = 90, def = 75, spd = 60 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[13696] = {
     name = "Noxxious Scion",
@@ -15849,7 +15849,7 @@ FS.CreatureDB[13696] = {
     classification = 0,
     isBoss = false,
     zones = {2100},
-    baseStats = { hp = 265, atk = 103, def = 75, spd = 60 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[14020] = {
     name = "Chromaggus",
@@ -15861,7 +15861,7 @@ FS.CreatureDB[14020] = {
     classification = 3,
     isBoss = true,
     zones = {2677},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[14022] = {
     name = "Corrupted Red Whelp",
@@ -15873,7 +15873,7 @@ FS.CreatureDB[14022] = {
     classification = 0,
     isBoss = false,
     zones = {2677},
-    baseStats = { hp = 335, atk = 116, def = 96, spd = 76 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[14023] = {
     name = "Corrupted Green Whelp",
@@ -15885,7 +15885,7 @@ FS.CreatureDB[14023] = {
     classification = 0,
     isBoss = false,
     zones = {2677},
-    baseStats = { hp = 335, atk = 116, def = 96, spd = 76 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[14024] = {
     name = "Corrupted Blue Whelp",
@@ -15897,7 +15897,7 @@ FS.CreatureDB[14024] = {
     classification = 0,
     isBoss = false,
     zones = {2677},
-    baseStats = { hp = 335, atk = 116, def = 96, spd = 76 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[14025] = {
     name = "Corrupted Bronze Whelp",
@@ -15909,7 +15909,7 @@ FS.CreatureDB[14025] = {
     classification = 0,
     isBoss = false,
     zones = {2677},
-    baseStats = { hp = 335, atk = 116, def = 96, spd = 76 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[14123] = {
     name = "Steeljaw Snapper",
@@ -15921,7 +15921,7 @@ FS.CreatureDB[14123] = {
     classification = 0,
     isBoss = false,
     zones = {440},
-    baseStats = { hp = 245, atk = 83, def = 69, spd = 55 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[14222] = {
     name = "Araga",
@@ -15933,7 +15933,7 @@ FS.CreatureDB[14222] = {
     classification = 4,
     isBoss = false,
     zones = {36},
-    baseStats = { hp = 294, atk = 118, def = 81, spd = 66 },
+    baseStats = { hp = 53, atk = 21, def = 14, spd = 12 },
 }
 FS.CreatureDB[14223] = {
     name = "Cranky Benj",
@@ -15945,7 +15945,7 @@ FS.CreatureDB[14223] = {
     classification = 4,
     isBoss = false,
     zones = {36},
-    baseStats = { hp = 273, atk = 91, def = 75, spd = 44 },
+    baseStats = { hp = 56, atk = 19, def = 16, spd = 9 },
 }
 FS.CreatureDB[14224] = {
     name = "7:XT",
@@ -15957,7 +15957,7 @@ FS.CreatureDB[14224] = {
     classification = 4,
     isBoss = false,
     zones = {3},
-    baseStats = { hp = 336, atk = 114, def = 94, spd = 54 },
+    baseStats = { hp = 56, atk = 19, def = 16, spd = 9 },
 }
 FS.CreatureDB[14228] = {
     name = "Giggler",
@@ -15969,7 +15969,7 @@ FS.CreatureDB[14228] = {
     classification = 4,
     isBoss = false,
     zones = {405},
-    baseStats = { hp = 287, atk = 96, def = 79, spd = 46 },
+    baseStats = { hp = 56, atk = 19, def = 16, spd = 9 },
 }
 FS.CreatureDB[14231] = {
     name = "Drogoth the Roamer",
@@ -15981,7 +15981,7 @@ FS.CreatureDB[14231] = {
     classification = 4,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 308, atk = 119, def = 86, spd = 49 },
+    baseStats = { hp = 55, atk = 21, def = 15, spd = 9 },
 }
 FS.CreatureDB[14232] = {
     name = "Dart",
@@ -15993,7 +15993,7 @@ FS.CreatureDB[14232] = {
     classification = 4,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 315, atk = 127, def = 88, spd = 69 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[14233] = {
     name = "Ripscale",
@@ -16005,7 +16005,7 @@ FS.CreatureDB[14233] = {
     classification = 4,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 322, atk = 109, def = 90, spd = 52 },
+    baseStats = { hp = 56, atk = 19, def = 16, spd = 9 },
 }
 FS.CreatureDB[14234] = {
     name = "Hayoc",
@@ -16017,7 +16017,7 @@ FS.CreatureDB[14234] = {
     classification = 4,
     isBoss = false,
     zones = {15},
-    baseStats = { hp = 336, atk = 114, def = 94, spd = 62 },
+    baseStats = { hp = 55, atk = 19, def = 16, spd = 10 },
 }
 FS.CreatureDB[14266] = {
     name = "Shanda the Spinner",
@@ -16029,7 +16029,7 @@ FS.CreatureDB[14266] = {
     classification = 4,
     isBoss = false,
     zones = {38},
-    baseStats = { hp = 182, atk = 59, def = 48, spd = 29 },
+    baseStats = { hp = 57, atk = 19, def = 15, spd = 9 },
 }
 FS.CreatureDB[14268] = {
     name = "Lord Condar",
@@ -16041,7 +16041,7 @@ FS.CreatureDB[14268] = {
     classification = 4,
     isBoss = false,
     zones = {38},
-    baseStats = { hp = 154, atk = 49, def = 39, spd = 24 },
+    baseStats = { hp = 58, atk = 18, def = 15, spd = 9 },
 }
 FS.CreatureDB[14269] = {
     name = "Seeker Aqualon",
@@ -16053,7 +16053,7 @@ FS.CreatureDB[14269] = {
     classification = 4,
     isBoss = false,
     zones = {44},
-    baseStats = { hp = 196, atk = 73, def = 52, spd = 31 },
+    baseStats = { hp = 55, atk = 21, def = 15, spd = 9 },
 }
 FS.CreatureDB[14272] = {
     name = "Snarlflare",
@@ -16065,7 +16065,7 @@ FS.CreatureDB[14272] = {
     classification = 4,
     isBoss = false,
     zones = {44},
-    baseStats = { hp = 175, atk = 56, def = 46, spd = 28 },
+    baseStats = { hp = 58, atk = 18, def = 15, spd = 9 },
 }
 FS.CreatureDB[14279] = {
     name = "Creepthess",
@@ -16077,7 +16077,7 @@ FS.CreatureDB[14279] = {
     classification = 4,
     isBoss = false,
     zones = {267},
-    baseStats = { hp = 217, atk = 71, def = 58, spd = 34 },
+    baseStats = { hp = 57, atk = 19, def = 15, spd = 9 },
 }
 FS.CreatureDB[14280] = {
     name = "Big Samras",
@@ -16089,7 +16089,7 @@ FS.CreatureDB[14280] = {
     classification = 4,
     isBoss = false,
     zones = {267},
-    baseStats = { hp = 284, atk = 79, def = 74, spd = 32 },
+    baseStats = { hp = 60, atk = 17, def = 16, spd = 7 },
 }
 FS.CreatureDB[14283] = {
     name = "Stormpike Owl",
@@ -16101,7 +16101,7 @@ FS.CreatureDB[14283] = {
     classification = 0,
     isBoss = false,
     zones = {2597},
-    baseStats = { hp = 300, atk = 103, def = 85, spd = 68 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[14337] = {
     name = "Field Repair Bot 74A",
@@ -16113,7 +16113,7 @@ FS.CreatureDB[14337] = {
     classification = 0,
     isBoss = false,
     zones = {1977, 2677, 2717, 3428, 3456, 16236},
-    baseStats = { hp = 285, atk = 98, def = 81, spd = 64 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[14339] = {
     name = "Death Howl",
@@ -16125,7 +16125,7 @@ FS.CreatureDB[14339] = {
     classification = 4,
     isBoss = false,
     zones = {361},
-    baseStats = { hp = 392, atk = 134, def = 111, spd = 63 },
+    baseStats = { hp = 56, atk = 19, def = 16, spd = 9 },
 }
 FS.CreatureDB[14343] = {
     name = "Olm the Wise",
@@ -16137,7 +16137,7 @@ FS.CreatureDB[14343] = {
     classification = 4,
     isBoss = false,
     zones = {361},
-    baseStats = { hp = 413, atk = 142, def = 117, spd = 66 },
+    baseStats = { hp = 56, atk = 19, def = 16, spd = 9 },
 }
 FS.CreatureDB[14344] = {
     name = "Mongress",
@@ -16149,7 +16149,7 @@ FS.CreatureDB[14344] = {
     classification = 4,
     isBoss = false,
     zones = {361},
-    baseStats = { hp = 478, atk = 137, def = 129, spd = 54 },
+    baseStats = { hp = 60, atk = 17, def = 16, spd = 7 },
 }
 FS.CreatureDB[14350] = {
     name = "Hydroling",
@@ -16161,7 +16161,7 @@ FS.CreatureDB[14350] = {
     classification = 0,
     isBoss = false,
     zones = {2557},
-    baseStats = { hp = 320, atk = 126, def = 91, spd = 72 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[14358] = {
     name = "Shen'dralar Ancient",
@@ -16173,7 +16173,7 @@ FS.CreatureDB[14358] = {
     classification = 1,
     isBoss = false,
     zones = {2557},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[14364] = {
     name = "Shen'dralar Spirit",
@@ -16185,7 +16185,7 @@ FS.CreatureDB[14364] = {
     classification = 1,
     isBoss = false,
     zones = {2557},
-    baseStats = { hp = 448, atk = 154, def = 128, spd = 72 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[14397] = {
     name = "Mana Burst",
@@ -16197,7 +16197,7 @@ FS.CreatureDB[14397] = {
     classification = 0,
     isBoss = false,
     zones = {2557},
-    baseStats = { hp = 330, atk = 131, def = 94, spd = 74 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[14398] = {
     name = "Eldreth Darter",
@@ -16209,7 +16209,7 @@ FS.CreatureDB[14398] = {
     classification = 1,
     isBoss = false,
     zones = {2557},
-    baseStats = { hp = 454, atk = 157, def = 130, spd = 73 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[14399] = {
     name = "Arcane Torrent",
@@ -16221,7 +16221,7 @@ FS.CreatureDB[14399] = {
     classification = 1,
     isBoss = false,
     zones = {2557},
-    baseStats = { hp = 461, atk = 182, def = 132, spd = 74 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[14400] = {
     name = "Arcane Feedback",
@@ -16233,7 +16233,7 @@ FS.CreatureDB[14400] = {
     classification = 0,
     isBoss = false,
     zones = {2557},
-    baseStats = { hp = 330, atk = 131, def = 94, spd = 74 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[14424] = {
     name = "Mirelow",
@@ -16245,7 +16245,7 @@ FS.CreatureDB[14424] = {
     classification = 4,
     isBoss = false,
     zones = {11},
-    baseStats = { hp = 224, atk = 85, def = 60, spd = 36 },
+    baseStats = { hp = 55, atk = 21, def = 15, spd = 9 },
 }
 FS.CreatureDB[14430] = {
     name = "Duskstalker",
@@ -16257,7 +16257,7 @@ FS.CreatureDB[14430] = {
     classification = 4,
     isBoss = false,
     zones = {141},
-    baseStats = { hp = 112, atk = 39, def = 27, spd = 24 },
+    baseStats = { hp = 56, atk = 19, def = 13, spd = 12 },
 }
 FS.CreatureDB[14435] = {
     name = "Prince Thunderaan",
@@ -16269,7 +16269,7 @@ FS.CreatureDB[14435] = {
     classification = 3,
     isBoss = false,
     zones = {1377},
-    baseStats = { hp = 70042, atk = 28989, def = 21006, spd = 11406 },
+    baseStats = { hp = 53, atk = 22, def = 16, spd = 9 },
 }
 FS.CreatureDB[14448] = {
     name = "Molt Thorn",
@@ -16281,7 +16281,7 @@ FS.CreatureDB[14448] = {
     classification = 4,
     isBoss = false,
     zones = {8},
-    baseStats = { hp = 343, atk = 134, def = 96, spd = 55 },
+    baseStats = { hp = 55, atk = 21, def = 15, spd = 9 },
 }
 FS.CreatureDB[14454] = {
     name = "The Windreaver",
@@ -16293,7 +16293,7 @@ FS.CreatureDB[14454] = {
     classification = 2,
     isBoss = false,
     zones = {1377},
-    baseStats = { hp = 468, atk = 186, def = 134, spd = 76 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[14455] = {
     name = "Whirling Invader",
@@ -16305,7 +16305,7 @@ FS.CreatureDB[14455] = {
     classification = 0,
     isBoss = false,
     zones = {1377},
-    baseStats = { hp = 320, atk = 126, def = 91, spd = 72 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[14457] = {
     name = "Princess Tempestria",
@@ -16317,7 +16317,7 @@ FS.CreatureDB[14457] = {
     classification = 2,
     isBoss = false,
     zones = {618},
-    baseStats = { hp = 468, atk = 186, def = 134, spd = 76 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[14458] = {
     name = "Watery Invader",
@@ -16329,7 +16329,7 @@ FS.CreatureDB[14458] = {
     classification = 0,
     isBoss = false,
     zones = {618},
-    baseStats = { hp = 320, atk = 126, def = 91, spd = 72 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[14460] = {
     name = "Blazing Invader",
@@ -16341,7 +16341,7 @@ FS.CreatureDB[14460] = {
     classification = 0,
     isBoss = false,
     zones = {490},
-    baseStats = { hp = 310, atk = 123, def = 88, spd = 70 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[14461] = {
     name = "Baron Charr",
@@ -16353,7 +16353,7 @@ FS.CreatureDB[14461] = {
     classification = 2,
     isBoss = false,
     zones = {490},
-    baseStats = { hp = 454, atk = 180, def = 130, spd = 73 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[14462] = {
     name = "Thundering Invader",
@@ -16365,7 +16365,7 @@ FS.CreatureDB[14462] = {
     classification = 0,
     isBoss = false,
     zones = {16},
-    baseStats = { hp = 315, atk = 124, def = 90, spd = 71 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[14464] = {
     name = "Avalanchion",
@@ -16377,7 +16377,7 @@ FS.CreatureDB[14464] = {
     classification = 2,
     isBoss = false,
     zones = {16},
-    baseStats = { hp = 454, atk = 180, def = 130, spd = 73 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[14472] = {
     name = "Gretheer",
@@ -16389,7 +16389,7 @@ FS.CreatureDB[14472] = {
     classification = 4,
     isBoss = false,
     zones = {1377},
-    baseStats = { hp = 448, atk = 154, def = 128, spd = 72 },
+    baseStats = { hp = 56, atk = 19, def = 16, spd = 9 },
 }
 FS.CreatureDB[14476] = {
     name = "Krellack",
@@ -16401,7 +16401,7 @@ FS.CreatureDB[14476] = {
     classification = 4,
     isBoss = false,
     zones = {1377},
-    baseStats = { hp = 441, atk = 152, def = 125, spd = 71 },
+    baseStats = { hp = 56, atk = 19, def = 16, spd = 9 },
 }
 FS.CreatureDB[14478] = {
     name = "Huricanian",
@@ -16413,7 +16413,7 @@ FS.CreatureDB[14478] = {
     classification = 4,
     isBoss = false,
     zones = {1377},
-    baseStats = { hp = 454, atk = 180, def = 130, spd = 73 },
+    baseStats = { hp = 53, atk = 22, def = 16, spd = 9 },
 }
 FS.CreatureDB[14484] = {
     name = "Injured Peasant",
@@ -16425,7 +16425,7 @@ FS.CreatureDB[14484] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 290, atk = 99, def = 82, spd = 65 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[14485] = {
     name = "Plagued Peasant",
@@ -16437,7 +16437,7 @@ FS.CreatureDB[14485] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 295, atk = 101, def = 84, spd = 66 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[14486] = {
     name = "Scourge Footsoldier",
@@ -16449,7 +16449,7 @@ FS.CreatureDB[14486] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 325, atk = 112, def = 93, spd = 73 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[14489] = {
     name = "Scourge Archer",
@@ -16461,7 +16461,7 @@ FS.CreatureDB[14489] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 335, atk = 116, def = 96, spd = 76 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[14491] = {
     name = "Kurmokk",
@@ -16473,7 +16473,7 @@ FS.CreatureDB[14491] = {
     classification = 4,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 343, atk = 117, def = 96, spd = 55 },
+    baseStats = { hp = 56, atk = 19, def = 16, spd = 9 },
 }
 FS.CreatureDB[14494] = {
     name = "Eris Havenfire",
@@ -16485,7 +16485,7 @@ FS.CreatureDB[14494] = {
     classification = 1,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[14511] = {
     name = "Shadowed Spirit",
@@ -16497,7 +16497,7 @@ FS.CreatureDB[14511] = {
     classification = 1,
     isBoss = false,
     zones = {2057},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[14512] = {
     name = "Corrupted Spirit",
@@ -16509,7 +16509,7 @@ FS.CreatureDB[14512] = {
     classification = 1,
     isBoss = false,
     zones = {2057},
-    baseStats = { hp = 461, atk = 159, def = 132, spd = 74 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[14513] = {
     name = "Malicious Spirit",
@@ -16521,7 +16521,7 @@ FS.CreatureDB[14513] = {
     classification = 1,
     isBoss = false,
     zones = {2057},
-    baseStats = { hp = 461, atk = 159, def = 132, spd = 74 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[14514] = {
     name = "Banal Spirit",
@@ -16533,7 +16533,7 @@ FS.CreatureDB[14514] = {
     classification = 0,
     isBoss = false,
     zones = {2057},
-    baseStats = { hp = 335, atk = 116, def = 96, spd = 76 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[14516] = {
     name = "Death Knight Darkreaver",
@@ -16545,7 +16545,7 @@ FS.CreatureDB[14516] = {
     classification = 1,
     isBoss = false,
     zones = {2057},
-    baseStats = { hp = 482, atk = 167, def = 138, spd = 78 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[14518] = {
     name = "Aspect of Banality",
@@ -16557,7 +16557,7 @@ FS.CreatureDB[14518] = {
     classification = 1,
     isBoss = false,
     zones = {2057},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[14519] = {
     name = "Aspect of Corruption",
@@ -16569,7 +16569,7 @@ FS.CreatureDB[14519] = {
     classification = 1,
     isBoss = false,
     zones = {2057},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[14520] = {
     name = "Aspect of Malice",
@@ -16581,7 +16581,7 @@ FS.CreatureDB[14520] = {
     classification = 1,
     isBoss = false,
     zones = {2057},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[14521] = {
     name = "Aspect of Shadow",
@@ -16593,7 +16593,7 @@ FS.CreatureDB[14521] = {
     classification = 1,
     isBoss = false,
     zones = {2057},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[14532] = {
     name = "Razzashi Venombrood",
@@ -16605,7 +16605,7 @@ FS.CreatureDB[14532] = {
     classification = 1,
     isBoss = false,
     zones = {1977},
-    baseStats = { hp = 448, atk = 154, def = 128, spd = 72 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[14551] = {
     name = "Swift Yellow Mechanostrider",
@@ -16617,7 +16617,7 @@ FS.CreatureDB[14551] = {
     classification = 0,
     isBoss = false,
     zones = {1},
-    baseStats = { hp = 40, atk = 9, def = 7, spd = 8 },
+    baseStats = { hp = 63, atk = 14, def = 11, spd = 12 },
 }
 FS.CreatureDB[14552] = {
     name = "Swift White Mechanostrider",
@@ -16629,7 +16629,7 @@ FS.CreatureDB[14552] = {
     classification = 0,
     isBoss = false,
     zones = {1},
-    baseStats = { hp = 40, atk = 9, def = 7, spd = 8 },
+    baseStats = { hp = 63, atk = 14, def = 11, spd = 12 },
 }
 FS.CreatureDB[14553] = {
     name = "Swift Green Mechanostrider",
@@ -16641,7 +16641,7 @@ FS.CreatureDB[14553] = {
     classification = 0,
     isBoss = false,
     zones = {1},
-    baseStats = { hp = 40, atk = 9, def = 7, spd = 8 },
+    baseStats = { hp = 63, atk = 14, def = 11, spd = 12 },
 }
 FS.CreatureDB[14558] = {
     name = "Purple Skeletal Warhorse",
@@ -16653,7 +16653,7 @@ FS.CreatureDB[14558] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 40, atk = 9, def = 7, spd = 8 },
+    baseStats = { hp = 63, atk = 14, def = 11, spd = 12 },
 }
 FS.CreatureDB[14564] = {
     name = "Terrordale Spirit",
@@ -16665,7 +16665,7 @@ FS.CreatureDB[14564] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 330, atk = 114, def = 94, spd = 74 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[14601] = {
     name = "Ebonroc",
@@ -16677,7 +16677,7 @@ FS.CreatureDB[14601] = {
     classification = 3,
     isBoss = true,
     zones = {2677},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[14605] = {
     name = "Bone Construct",
@@ -16689,7 +16689,7 @@ FS.CreatureDB[14605] = {
     classification = 1,
     isBoss = false,
     zones = {2677},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[14682] = {
     name = "Sever",
@@ -16701,7 +16701,7 @@ FS.CreatureDB[14682] = {
     classification = 1,
     isBoss = false,
     zones = {209},
-    baseStats = { hp = 224, atk = 74, def = 60, spd = 36 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[14684] = {
     name = "Balzaphon",
@@ -16713,7 +16713,7 @@ FS.CreatureDB[14684] = {
     classification = 1,
     isBoss = false,
     zones = {2017},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[14686] = {
     name = "Lady Falther'ess",
@@ -16725,7 +16725,7 @@ FS.CreatureDB[14686] = {
     classification = 1,
     isBoss = false,
     zones = {722},
-    baseStats = { hp = 329, atk = 112, def = 92, spd = 53 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[14690] = {
     name = "Revanchion",
@@ -16737,7 +16737,7 @@ FS.CreatureDB[14690] = {
     classification = 1,
     isBoss = false,
     zones = {2557},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[14693] = {
     name = "Scorn",
@@ -16749,7 +16749,7 @@ FS.CreatureDB[14693] = {
     classification = 1,
     isBoss = false,
     zones = {796},
-    baseStats = { hp = 287, atk = 96, def = 79, spd = 46 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[14695] = {
     name = "Lord Blackwood",
@@ -16761,7 +16761,7 @@ FS.CreatureDB[14695] = {
     classification = 1,
     isBoss = false,
     zones = {2057},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[14697] = {
     name = "Lumbering Horror",
@@ -16773,7 +16773,7 @@ FS.CreatureDB[14697] = {
     classification = 4,
     isBoss = false,
     zones = {4, 16, 46, 139, 440, 618},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 56, atk = 19, def = 16, spd = 9 },
 }
 FS.CreatureDB[14821] = {
     name = "Razzashi Raptor",
@@ -16785,7 +16785,7 @@ FS.CreatureDB[14821] = {
     classification = 1,
     isBoss = false,
     zones = {1977},
-    baseStats = { hp = 468, atk = 194, def = 134, spd = 105 },
+    baseStats = { hp = 57, atk = 24, def = 16, spd = 13 },
 }
 FS.CreatureDB[14825] = {
     name = "Withered Mistress",
@@ -16797,7 +16797,7 @@ FS.CreatureDB[14825] = {
     classification = 1,
     isBoss = false,
     zones = {1977},
-    baseStats = { hp = 454, atk = 157, def = 130, spd = 73 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[14887] = {
     name = "Ysondre",
@@ -16809,7 +16809,7 @@ FS.CreatureDB[14887] = {
     classification = 3,
     isBoss = false,
     zones = {10, 47, 331, 357},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 55, atk = 20, def = 16, spd = 9 },
 }
 FS.CreatureDB[14888] = {
     name = "Lethon",
@@ -16821,7 +16821,7 @@ FS.CreatureDB[14888] = {
     classification = 3,
     isBoss = false,
     zones = {10, 47, 331, 357},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 55, atk = 20, def = 16, spd = 9 },
 }
 FS.CreatureDB[14889] = {
     name = "Emeriss",
@@ -16833,7 +16833,7 @@ FS.CreatureDB[14889] = {
     classification = 3,
     isBoss = false,
     zones = {10, 47, 331, 357},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 55, atk = 20, def = 16, spd = 9 },
 }
 FS.CreatureDB[14890] = {
     name = "Taerar",
@@ -16845,7 +16845,7 @@ FS.CreatureDB[14890] = {
     classification = 3,
     isBoss = false,
     zones = {10, 47, 331, 357},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 55, atk = 20, def = 16, spd = 9 },
 }
 FS.CreatureDB[14965] = {
     name = "Frenzied Bloodseeker Bat",
@@ -16857,7 +16857,7 @@ FS.CreatureDB[14965] = {
     classification = 0,
     isBoss = false,
     zones = {1977},
-    baseStats = { hp = 335, atk = 116, def = 96, spd = 88 },
+    baseStats = { hp = 53, atk = 18, def = 15, spd = 14 },
 }
 FS.CreatureDB[14986] = {
     name = "Shade of Jin'do",
@@ -16869,7 +16869,7 @@ FS.CreatureDB[14986] = {
     classification = 0,
     isBoss = false,
     zones = {1977},
-    baseStats = { hp = 335, atk = 116, def = 96, spd = 76 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[15041] = {
     name = "Spawn of Mar'li",
@@ -16881,7 +16881,7 @@ FS.CreatureDB[15041] = {
     classification = 0,
     isBoss = false,
     zones = {1977},
-    baseStats = { hp = 320, atk = 110, def = 91, spd = 72 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[15043] = {
     name = "Zulian Crocolisk",
@@ -16893,7 +16893,7 @@ FS.CreatureDB[15043] = {
     classification = 1,
     isBoss = false,
     zones = {1977},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[15067] = {
     name = "Zulian Stalker",
@@ -16905,7 +16905,7 @@ FS.CreatureDB[15067] = {
     classification = 1,
     isBoss = false,
     zones = {1977},
-    baseStats = { hp = 475, atk = 196, def = 136, spd = 106 },
+    baseStats = { hp = 57, atk = 24, def = 16, spd = 13 },
 }
 FS.CreatureDB[15079] = {
     name = "Fishbot 5000",
@@ -16917,7 +16917,7 @@ FS.CreatureDB[15079] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 285, atk = 98, def = 81, spd = 64 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[15082] = {
     name = "Gri'lek",
@@ -16929,7 +16929,7 @@ FS.CreatureDB[15082] = {
     classification = 3,
     isBoss = false,
     zones = {1977},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 55, atk = 20, def = 16, spd = 9 },
 }
 FS.CreatureDB[15083] = {
     name = "Hazza'rah",
@@ -16941,7 +16941,7 @@ FS.CreatureDB[15083] = {
     classification = 3,
     isBoss = false,
     zones = {1977},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 55, atk = 20, def = 16, spd = 9 },
 }
 FS.CreatureDB[15084] = {
     name = "Renataki",
@@ -16953,7 +16953,7 @@ FS.CreatureDB[15084] = {
     classification = 3,
     isBoss = false,
     zones = {1977},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 55, atk = 20, def = 16, spd = 9 },
 }
 FS.CreatureDB[15085] = {
     name = "Wushoolay",
@@ -16965,7 +16965,7 @@ FS.CreatureDB[15085] = {
     classification = 3,
     isBoss = false,
     zones = {1977},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 55, atk = 20, def = 16, spd = 9 },
 }
 FS.CreatureDB[15101] = {
     name = "Zulian Prowler",
@@ -16977,7 +16977,7 @@ FS.CreatureDB[15101] = {
     classification = 0,
     isBoss = false,
     zones = {1977},
-    baseStats = { hp = 335, atk = 139, def = 96, spd = 105 },
+    baseStats = { hp = 49, atk = 21, def = 14, spd = 16 },
 }
 FS.CreatureDB[15117] = {
     name = "Chained Spirit",
@@ -16989,7 +16989,7 @@ FS.CreatureDB[15117] = {
     classification = 0,
     isBoss = false,
     zones = {1977},
-    baseStats = { hp = 335, atk = 116, def = 96, spd = 76 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[15163] = {
     name = "Nightmare Illusion",
@@ -17001,7 +17001,7 @@ FS.CreatureDB[15163] = {
     classification = 0,
     isBoss = false,
     zones = {1977},
-    baseStats = { hp = 335, atk = 116, def = 96, spd = 76 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[15185] = {
     name = "Brood of Nozdormu",
@@ -17013,7 +17013,7 @@ FS.CreatureDB[15185] = {
     classification = 1,
     isBoss = false,
     zones = {},
-    baseStats = { hp = 482, atk = 167, def = 138, spd = 78 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[15192] = {
     name = "Anachronos",
@@ -17025,7 +17025,7 @@ FS.CreatureDB[15192] = {
     classification = 3,
     isBoss = false,
     zones = {440},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 55, atk = 20, def = 16, spd = 9 },
 }
 FS.CreatureDB[15209] = {
     name = "Crimson Templar",
@@ -17037,7 +17037,7 @@ FS.CreatureDB[15209] = {
     classification = 1,
     isBoss = false,
     zones = {1377},
-    baseStats = { hp = 468, atk = 186, def = 134, spd = 76 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[15211] = {
     name = "Azure Templar",
@@ -17049,7 +17049,7 @@ FS.CreatureDB[15211] = {
     classification = 1,
     isBoss = false,
     zones = {1377},
-    baseStats = { hp = 468, atk = 186, def = 134, spd = 76 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[15212] = {
     name = "Hoary Templar",
@@ -17061,7 +17061,7 @@ FS.CreatureDB[15212] = {
     classification = 1,
     isBoss = false,
     zones = {1377},
-    baseStats = { hp = 468, atk = 186, def = 134, spd = 76 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[15302] = {
     name = "Shade of Taerar",
@@ -17073,7 +17073,7 @@ FS.CreatureDB[15302] = {
     classification = 3,
     isBoss = false,
     zones = {10, 47, 331, 357},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 55, atk = 20, def = 16, spd = 9 },
 }
 FS.CreatureDB[15307] = {
     name = "Earthen Templar",
@@ -17085,7 +17085,7 @@ FS.CreatureDB[15307] = {
     classification = 1,
     isBoss = false,
     zones = {1377},
-    baseStats = { hp = 468, atk = 186, def = 134, spd = 76 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[15338] = {
     name = "Obsidian Destroyer",
@@ -17097,7 +17097,7 @@ FS.CreatureDB[15338] = {
     classification = 1,
     isBoss = false,
     zones = {3429},
-    baseStats = { hp = 475, atk = 188, def = 136, spd = 77 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[15368] = {
     name = "Tonk Mine",
@@ -17109,7 +17109,7 @@ FS.CreatureDB[15368] = {
     classification = 0,
     isBoss = false,
     zones = {12, 215},
-    baseStats = { hp = 335, atk = 116, def = 96, spd = 76 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[15378] = {
     name = "Merithra of the Dream",
@@ -17121,7 +17121,7 @@ FS.CreatureDB[15378] = {
     classification = 3,
     isBoss = false,
     zones = {3428},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 55, atk = 20, def = 16, spd = 9 },
 }
 FS.CreatureDB[15379] = {
     name = "Caelestrasz",
@@ -17133,7 +17133,7 @@ FS.CreatureDB[15379] = {
     classification = 3,
     isBoss = false,
     zones = {1377, 3428},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 55, atk = 20, def = 16, spd = 9 },
 }
 FS.CreatureDB[15380] = {
     name = "Arygos",
@@ -17145,7 +17145,7 @@ FS.CreatureDB[15380] = {
     classification = 3,
     isBoss = false,
     zones = {3428},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 55, atk = 20, def = 16, spd = 9 },
 }
 FS.CreatureDB[15381] = {
     name = "Anachronos the Ancient",
@@ -17157,7 +17157,7 @@ FS.CreatureDB[15381] = {
     classification = 3,
     isBoss = false,
     zones = {1377},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 55, atk = 20, def = 16, spd = 9 },
 }
 FS.CreatureDB[15481] = {
     name = "Spirit of Azuregos",
@@ -17169,7 +17169,7 @@ FS.CreatureDB[15481] = {
     classification = 3,
     isBoss = false,
     zones = {16},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 55, atk = 20, def = 16, spd = 9 },
 }
 FS.CreatureDB[15491] = {
     name = "Eranikus, Tyrant of the Dream",
@@ -17181,7 +17181,7 @@ FS.CreatureDB[15491] = {
     classification = 3,
     isBoss = false,
     zones = {493},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 55, atk = 20, def = 16, spd = 9 },
 }
 FS.CreatureDB[15527] = {
     name = "Mana Fiend",
@@ -17193,7 +17193,7 @@ FS.CreatureDB[15527] = {
     classification = 1,
     isBoss = false,
     zones = {3429},
-    baseStats = { hp = 468, atk = 186, def = 134, spd = 76 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[15928] = {
     name = "Thaddius",
@@ -17205,7 +17205,7 @@ FS.CreatureDB[15928] = {
     classification = 3,
     isBoss = true,
     zones = {3456},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[15929] = {
     name = "Stalagg",
@@ -17217,7 +17217,7 @@ FS.CreatureDB[15929] = {
     classification = 3,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 55, atk = 20, def = 16, spd = 9 },
 }
 FS.CreatureDB[15930] = {
     name = "Feugen",
@@ -17229,7 +17229,7 @@ FS.CreatureDB[15930] = {
     classification = 3,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 55, atk = 20, def = 16, spd = 9 },
 }
 FS.CreatureDB[15931] = {
     name = "Grobbulus",
@@ -17241,7 +17241,7 @@ FS.CreatureDB[15931] = {
     classification = 3,
     isBoss = true,
     zones = {3456},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[15932] = {
     name = "Gluth",
@@ -17253,7 +17253,7 @@ FS.CreatureDB[15932] = {
     classification = 3,
     isBoss = true,
     zones = {3456},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[15936] = {
     name = "Heigan the Unclean",
@@ -17265,7 +17265,7 @@ FS.CreatureDB[15936] = {
     classification = 3,
     isBoss = true,
     zones = {3456},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[15954] = {
     name = "Noth the Plaguebringer",
@@ -17277,7 +17277,7 @@ FS.CreatureDB[15954] = {
     classification = 3,
     isBoss = true,
     zones = {3456},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[15956] = {
     name = "Anub'Rekhan",
@@ -17289,7 +17289,7 @@ FS.CreatureDB[15956] = {
     classification = 3,
     isBoss = true,
     zones = {3456},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[15978] = {
     name = "Crypt Reaver",
@@ -17301,7 +17301,7 @@ FS.CreatureDB[15978] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[15979] = {
     name = "Tomb Horror",
@@ -17313,7 +17313,7 @@ FS.CreatureDB[15979] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[15989] = {
     name = "Sapphiron",
@@ -17325,7 +17325,7 @@ FS.CreatureDB[15989] = {
     classification = 3,
     isBoss = true,
     zones = {3456},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[15990] = {
     name = "Kel'Thuzad",
@@ -17337,7 +17337,7 @@ FS.CreatureDB[15990] = {
     classification = 3,
     isBoss = true,
     zones = {3456},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[16011] = {
     name = "Loatheb",
@@ -17349,7 +17349,7 @@ FS.CreatureDB[16011] = {
     classification = 3,
     isBoss = true,
     zones = {3456},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[16017] = {
     name = "Patchwork Golem",
@@ -17361,7 +17361,7 @@ FS.CreatureDB[16017] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16018] = {
     name = "Bile Retcher",
@@ -17373,7 +17373,7 @@ FS.CreatureDB[16018] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16020] = {
     name = "Mad Scientist",
@@ -17385,7 +17385,7 @@ FS.CreatureDB[16020] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16021] = {
     name = "Living Monstrosity",
@@ -17397,7 +17397,7 @@ FS.CreatureDB[16021] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 482, atk = 167, def = 138, spd = 78 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16022] = {
     name = "Surgical Assistant",
@@ -17409,7 +17409,7 @@ FS.CreatureDB[16022] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16024] = {
     name = "Embalming Slime",
@@ -17421,7 +17421,7 @@ FS.CreatureDB[16024] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16025] = {
     name = "Stitched Spewer",
@@ -17433,7 +17433,7 @@ FS.CreatureDB[16025] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 489, atk = 169, def = 140, spd = 79 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16028] = {
     name = "Patchwerk",
@@ -17445,7 +17445,7 @@ FS.CreatureDB[16028] = {
     classification = 3,
     isBoss = true,
     zones = {3456},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[16029] = {
     name = "Sludge Belcher",
@@ -17457,7 +17457,7 @@ FS.CreatureDB[16029] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 482, atk = 167, def = 138, spd = 78 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16034] = {
     name = "Plague Beast",
@@ -17469,7 +17469,7 @@ FS.CreatureDB[16034] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 475, atk = 188, def = 136, spd = 77 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[16043] = {
     name = "Magma Lord Bokk",
@@ -17481,7 +17481,7 @@ FS.CreatureDB[16043] = {
     classification = 0,
     isBoss = false,
     zones = {46},
-    baseStats = { hp = 335, atk = 133, def = 96, spd = 76 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[16060] = {
     name = "Gothik the Harvester",
@@ -17493,7 +17493,7 @@ FS.CreatureDB[16060] = {
     classification = 3,
     isBoss = true,
     zones = {3456},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[16061] = {
     name = "Instructor Razuvious",
@@ -17505,7 +17505,7 @@ FS.CreatureDB[16061] = {
     classification = 3,
     isBoss = true,
     zones = {3456},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[16062] = {
     name = "Highlord Mograine",
@@ -17517,7 +17517,7 @@ FS.CreatureDB[16062] = {
     classification = 3,
     isBoss = true,
     zones = {3456},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[16063] = {
     name = "Sir Zeliek",
@@ -17529,7 +17529,7 @@ FS.CreatureDB[16063] = {
     classification = 3,
     isBoss = true,
     zones = {3456},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[16064] = {
     name = "Thane Korth'azz",
@@ -17541,7 +17541,7 @@ FS.CreatureDB[16064] = {
     classification = 3,
     isBoss = true,
     zones = {3456},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[16065] = {
     name = "Lady Blaumeux",
@@ -17553,7 +17553,7 @@ FS.CreatureDB[16065] = {
     classification = 3,
     isBoss = true,
     zones = {3456},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[16066] = {
     name = "Spectral Assassin",
@@ -17565,7 +17565,7 @@ FS.CreatureDB[16066] = {
     classification = 0,
     isBoss = false,
     zones = {1583},
-    baseStats = { hp = 335, atk = 116, def = 96, spd = 76 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[16067] = {
     name = "Skeletal Steed",
@@ -17577,7 +17577,7 @@ FS.CreatureDB[16067] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16093] = {
     name = "Spectral Stalker",
@@ -17589,7 +17589,7 @@ FS.CreatureDB[16093] = {
     classification = 0,
     isBoss = false,
     zones = {1537, 1637, 2557},
-    baseStats = { hp = 335, atk = 116, def = 96, spd = 76 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[16101] = {
     name = "Jarien",
@@ -17601,7 +17601,7 @@ FS.CreatureDB[16101] = {
     classification = 1,
     isBoss = true,
     zones = {2017},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[16102] = {
     name = "Sothos",
@@ -17613,7 +17613,7 @@ FS.CreatureDB[16102] = {
     classification = 1,
     isBoss = true,
     zones = {2017},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[16103] = {
     name = "Spirit of Jarien",
@@ -17625,7 +17625,7 @@ FS.CreatureDB[16103] = {
     classification = 0,
     isBoss = false,
     zones = {2017},
-    baseStats = { hp = 50030, atk = 18006, def = 15004, spd = 11406 },
+    baseStats = { hp = 53, atk = 19, def = 16, spd = 12 },
 }
 FS.CreatureDB[16104] = {
     name = "Spirit of Sothos",
@@ -17637,7 +17637,7 @@ FS.CreatureDB[16104] = {
     classification = 0,
     isBoss = false,
     zones = {2017},
-    baseStats = { hp = 50030, atk = 18006, def = 15004, spd = 11406 },
+    baseStats = { hp = 53, atk = 19, def = 16, spd = 12 },
 }
 FS.CreatureDB[16117] = {
     name = "Plagued Swine",
@@ -17649,7 +17649,7 @@ FS.CreatureDB[16117] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 402, atk = 116, def = 110, spd = 64 },
+    baseStats = { hp = 58, atk = 17, def = 16, spd = 9 },
 }
 FS.CreatureDB[16119] = {
     name = "Bone Minion",
@@ -17661,7 +17661,7 @@ FS.CreatureDB[16119] = {
     classification = 0,
     isBoss = false,
     zones = {2057},
-    baseStats = { hp = 335, atk = 116, def = 96, spd = 76 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[16120] = {
     name = "Bone Mage",
@@ -17673,7 +17673,7 @@ FS.CreatureDB[16120] = {
     classification = 1,
     isBoss = false,
     zones = {2057},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16125] = {
     name = "Unrelenting Deathknight",
@@ -17685,7 +17685,7 @@ FS.CreatureDB[16125] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16126] = {
     name = "Unrelenting Rider",
@@ -17697,7 +17697,7 @@ FS.CreatureDB[16126] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 482, atk = 167, def = 138, spd = 78 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16127] = {
     name = "Spectral Trainee",
@@ -17709,7 +17709,7 @@ FS.CreatureDB[16127] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 482, atk = 167, def = 138, spd = 78 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16141] = {
     name = "Ghoul Berserker",
@@ -17721,7 +17721,7 @@ FS.CreatureDB[16141] = {
     classification = 0,
     isBoss = false,
     zones = {4, 16, 46, 139, 440, 618},
-    baseStats = { hp = 330, atk = 114, def = 94, spd = 74 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[16143] = {
     name = "Shadow of Doom",
@@ -17733,7 +17733,7 @@ FS.CreatureDB[16143] = {
     classification = 1,
     isBoss = false,
     zones = {4, 16, 46, 139, 440, 618},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16146] = {
     name = "Deathknight",
@@ -17745,7 +17745,7 @@ FS.CreatureDB[16146] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16148] = {
     name = "Spectral Deathknight",
@@ -17757,7 +17757,7 @@ FS.CreatureDB[16148] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 482, atk = 167, def = 138, spd = 78 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16149] = {
     name = "Spectral Horse",
@@ -17769,7 +17769,7 @@ FS.CreatureDB[16149] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 489, atk = 169, def = 140, spd = 79 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16150] = {
     name = "Spectral Rider",
@@ -17781,7 +17781,7 @@ FS.CreatureDB[16150] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 489, atk = 169, def = 140, spd = 79 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16154] = {
     name = "Risen Deathknight",
@@ -17793,7 +17793,7 @@ FS.CreatureDB[16154] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16156] = {
     name = "Dark Touched Warrior",
@@ -17805,7 +17805,7 @@ FS.CreatureDB[16156] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16163] = {
     name = "Deathknight Cavalier",
@@ -17817,7 +17817,7 @@ FS.CreatureDB[16163] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16164] = {
     name = "Shade of Naxxramas",
@@ -17829,7 +17829,7 @@ FS.CreatureDB[16164] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16165] = {
     name = "Necro Knight",
@@ -17841,7 +17841,7 @@ FS.CreatureDB[16165] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16167] = {
     name = "Bony Construct",
@@ -17853,7 +17853,7 @@ FS.CreatureDB[16167] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16168] = {
     name = "Stoneskin Gargoyle",
@@ -17865,7 +17865,7 @@ FS.CreatureDB[16168] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16184] = {
     name = "Nerubian Overseer",
@@ -17877,7 +17877,7 @@ FS.CreatureDB[16184] = {
     classification = 1,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16194] = {
     name = "Unholy Axe",
@@ -17889,7 +17889,7 @@ FS.CreatureDB[16194] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16215] = {
     name = "Unholy Staff",
@@ -17901,7 +17901,7 @@ FS.CreatureDB[16215] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16216] = {
     name = "Unholy Swords",
@@ -17913,7 +17913,7 @@ FS.CreatureDB[16216] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16244] = {
     name = "Infectious Ghoul",
@@ -17925,7 +17925,7 @@ FS.CreatureDB[16244] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16290] = {
     name = "Fallout Slime",
@@ -17937,7 +17937,7 @@ FS.CreatureDB[16290] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16298] = {
     name = "Spectral Soldier",
@@ -17949,7 +17949,7 @@ FS.CreatureDB[16298] = {
     classification = 0,
     isBoss = false,
     zones = {4, 16, 46, 139, 440, 618},
-    baseStats = { hp = 330, atk = 114, def = 94, spd = 74 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[16299] = {
     name = "Skeletal Shocktrooper",
@@ -17961,7 +17961,7 @@ FS.CreatureDB[16299] = {
     classification = 0,
     isBoss = false,
     zones = {4, 16, 46, 139, 440, 618},
-    baseStats = { hp = 330, atk = 114, def = 94, spd = 74 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[16360] = {
     name = "Zombie Chow",
@@ -17973,7 +17973,7 @@ FS.CreatureDB[16360] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16375] = {
     name = "Sewage Slime",
@@ -17985,7 +17985,7 @@ FS.CreatureDB[16375] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16379] = {
     name = "Spirit of the Damned",
@@ -17997,7 +17997,7 @@ FS.CreatureDB[16379] = {
     classification = 4,
     isBoss = false,
     zones = {4, 16, 46, 139, 440, 618},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 56, atk = 19, def = 16, spd = 9 },
 }
 FS.CreatureDB[16380] = {
     name = "Bone Witch",
@@ -18009,7 +18009,7 @@ FS.CreatureDB[16380] = {
     classification = 4,
     isBoss = false,
     zones = {4, 16, 46, 139, 440, 618},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 56, atk = 19, def = 16, spd = 9 },
 }
 FS.CreatureDB[16383] = {
     name = "Flameshocker",
@@ -18021,7 +18021,7 @@ FS.CreatureDB[16383] = {
     classification = 1,
     isBoss = false,
     zones = {1497, 1519},
-    baseStats = { hp = 427, atk = 147, def = 121, spd = 69 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[16390] = {
     name = "Deathchill Servant",
@@ -18033,7 +18033,7 @@ FS.CreatureDB[16390] = {
     classification = 0,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 340, atk = 117, def = 97, spd = 77 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[16394] = {
     name = "Pallid Horror",
@@ -18045,7 +18045,7 @@ FS.CreatureDB[16394] = {
     classification = 1,
     isBoss = false,
     zones = {1497, 1519},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16422] = {
     name = "Skeletal Soldier",
@@ -18057,7 +18057,7 @@ FS.CreatureDB[16422] = {
     classification = 0,
     isBoss = false,
     zones = {12, 85},
-    baseStats = { hp = 65, atk = 18, def = 15, spd = 14 },
+    baseStats = { hp = 59, atk = 16, def = 13, spd = 12 },
 }
 FS.CreatureDB[16423] = {
     name = "Spectral Apparition",
@@ -18069,7 +18069,7 @@ FS.CreatureDB[16423] = {
     classification = 0,
     isBoss = false,
     zones = {12, 85},
-    baseStats = { hp = 65, atk = 18, def = 15, spd = 14 },
+    baseStats = { hp = 59, atk = 16, def = 13, spd = 12 },
 }
 FS.CreatureDB[16427] = {
     name = "Soldier of the Frozen Wastes",
@@ -18081,7 +18081,7 @@ FS.CreatureDB[16427] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16428] = {
     name = "Unstoppable Abomination",
@@ -18093,7 +18093,7 @@ FS.CreatureDB[16428] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16429] = {
     name = "Soul Weaver",
@@ -18105,7 +18105,7 @@ FS.CreatureDB[16429] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16437] = {
     name = "Spectral Spirit",
@@ -18117,7 +18117,7 @@ FS.CreatureDB[16437] = {
     classification = 0,
     isBoss = false,
     zones = {1, 14, 141, 215},
-    baseStats = { hp = 80, atk = 24, def = 19, spd = 17 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[16438] = {
     name = "Skeletal Trooper",
@@ -18129,7 +18129,7 @@ FS.CreatureDB[16438] = {
     classification = 0,
     isBoss = false,
     zones = {1, 14, 141, 215},
-    baseStats = { hp = 80, atk = 24, def = 19, spd = 17 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[16446] = {
     name = "Plagued Gargoyle",
@@ -18141,7 +18141,7 @@ FS.CreatureDB[16446] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16447] = {
     name = "Plagued Ghoul",
@@ -18153,7 +18153,7 @@ FS.CreatureDB[16447] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16449] = {
     name = "Spirit of Naxxramas",
@@ -18165,7 +18165,7 @@ FS.CreatureDB[16449] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16451] = {
     name = "Deathknight Vindicator",
@@ -18177,7 +18177,7 @@ FS.CreatureDB[16451] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 482, atk = 167, def = 138, spd = 78 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16861] = {
     name = "Death Lord",
@@ -18189,7 +18189,7 @@ FS.CreatureDB[16861] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[16984] = {
     name = "Plagued Warrior",
@@ -18201,7 +18201,7 @@ FS.CreatureDB[16984] = {
     classification = 1,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[35826] = {
     name = "Kaye Toogie",
@@ -18213,7 +18213,7 @@ FS.CreatureDB[35826] = {
     classification = 0,
     isBoss = false,
     zones = {36},
-    baseStats = { hp = 210, atk = 71, def = 58, spd = 47 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[166359] = {
     name = "Zulian Tiger",
@@ -18225,7 +18225,7 @@ FS.CreatureDB[166359] = {
     classification = 1,
     isBoss = false,
     zones = {1977},
-    baseStats = { hp = 468, atk = 194, def = 134, spd = 105 },
+    baseStats = { hp = 57, atk = 24, def = 16, spd = 13 },
 }
 FS.CreatureDB[184410] = {
     name = "Onyxian Warder",
@@ -18237,7 +18237,7 @@ FS.CreatureDB[184410] = {
     classification = 1,
     isBoss = false,
     zones = {},
-    baseStats = { hp = 482, atk = 167, def = 138, spd = 78 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[185320] = {
     name = "Unstable Chromatic Drake",
@@ -18249,7 +18249,7 @@ FS.CreatureDB[185320] = {
     classification = 1,
     isBoss = false,
     zones = {2677},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[202699] = {
     name = "Baron Aquanis",
@@ -18261,7 +18261,7 @@ FS.CreatureDB[202699] = {
     classification = 1,
     isBoss = true,
     zones = {719},
-    baseStats = { hp = 70042, atk = 28989, def = 21006, spd = 11406 },
+    baseStats = { hp = 58, atk = 24, def = 18, spd = 10 },
 }
 FS.CreatureDB[202838] = {
     name = "Fathom Elemental",
@@ -18273,7 +18273,7 @@ FS.CreatureDB[202838] = {
     classification = 1,
     isBoss = false,
     zones = {719},
-    baseStats = { hp = 230, atk = 87, def = 62, spd = 37 },
+    baseStats = { hp = 61, atk = 23, def = 16, spd = 10 },
 }
 FS.CreatureDB[202839] = {
     name = "Riptide Elemental",
@@ -18285,7 +18285,7 @@ FS.CreatureDB[202839] = {
     classification = 1,
     isBoss = false,
     zones = {719},
-    baseStats = { hp = 230, atk = 87, def = 62, spd = 37 },
+    baseStats = { hp = 61, atk = 23, def = 16, spd = 10 },
 }
 FS.CreatureDB[202840] = {
     name = "Torrent Elemental",
@@ -18297,7 +18297,7 @@ FS.CreatureDB[202840] = {
     classification = 1,
     isBoss = false,
     zones = {719},
-    baseStats = { hp = 230, atk = 87, def = 62, spd = 37 },
+    baseStats = { hp = 61, atk = 23, def = 16, spd = 10 },
 }
 FS.CreatureDB[205382] = {
     name = "Mokwa",
@@ -18309,7 +18309,7 @@ FS.CreatureDB[205382] = {
     classification = 4,
     isBoss = false,
     zones = {215},
-    baseStats = { hp = 98, atk = 33, def = 23, spd = 21 },
+    baseStats = { hp = 56, atk = 19, def = 13, spd = 12 },
 }
 FS.CreatureDB[206245] = {
     name = "Unleashed Nature Spirit",
@@ -18321,7 +18321,7 @@ FS.CreatureDB[206245] = {
     classification = 0,
     isBoss = false,
     zones = {141, 215},
-    baseStats = { hp = 70, atk = 23, def = 16, spd = 15 },
+    baseStats = { hp = 56, atk = 19, def = 13, spd = 12 },
 }
 FS.CreatureDB[208124] = {
     name = "Raluk",
@@ -18333,7 +18333,7 @@ FS.CreatureDB[208124] = {
     classification = 4,
     isBoss = false,
     zones = {14},
-    baseStats = { hp = 98, atk = 33, def = 23, spd = 21 },
+    baseStats = { hp = 56, atk = 19, def = 13, spd = 12 },
 }
 FS.CreatureDB[208638] = {
     name = "Fyodi",
@@ -18345,7 +18345,7 @@ FS.CreatureDB[208638] = {
     classification = 1,
     isBoss = false,
     zones = {1},
-    baseStats = { hp = 117, atk = 28, def = 26, spd = 12 },
+    baseStats = { hp = 70, atk = 17, def = 16, spd = 7 },
 }
 FS.CreatureDB[208812] = {
     name = "Jorul",
@@ -18357,7 +18357,7 @@ FS.CreatureDB[208812] = {
     classification = 4,
     isBoss = false,
     zones = {1},
-    baseStats = { hp = 126, atk = 31, def = 28, spd = 13 },
+    baseStats = { hp = 63, atk = 16, def = 14, spd = 7 },
 }
 FS.CreatureDB[208842] = {
     name = "The Gardener",
@@ -18369,7 +18369,7 @@ FS.CreatureDB[208842] = {
     classification = 2,
     isBoss = false,
     zones = {},
-    baseStats = { hp = 399, atk = 137, def = 113, spd = 64 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[208846] = {
     name = "Sun Admirer",
@@ -18381,7 +18381,7 @@ FS.CreatureDB[208846] = {
     classification = 4,
     isBoss = false,
     zones = {440},
-    baseStats = { hp = 482, atk = 167, def = 138, spd = 78 },
+    baseStats = { hp = 56, atk = 19, def = 16, spd = 9 },
 }
 FS.CreatureDB[209928] = {
     name = "Mowgh",
@@ -18393,7 +18393,7 @@ FS.CreatureDB[209928] = {
     classification = 4,
     isBoss = false,
     zones = {141},
-    baseStats = { hp = 126, atk = 31, def = 28, spd = 13 },
+    baseStats = { hp = 63, atk = 16, def = 14, spd = 7 },
 }
 FS.CreatureDB[210107] = {
     name = "Kackle",
@@ -18405,7 +18405,7 @@ FS.CreatureDB[210107] = {
     classification = 4,
     isBoss = false,
     zones = {38},
-    baseStats = { hp = 154, atk = 49, def = 39, spd = 24 },
+    baseStats = { hp = 58, atk = 18, def = 15, spd = 9 },
 }
 FS.CreatureDB[210483] = {
     name = "Aggressive Squashling",
@@ -18417,7 +18417,7 @@ FS.CreatureDB[210483] = {
     classification = 0,
     isBoss = false,
     zones = {40},
-    baseStats = { hp = 115, atk = 41, def = 30, spd = 25 },
+    baseStats = { hp = 55, atk = 19, def = 14, spd = 12 },
 }
 FS.CreatureDB[210501] = {
     name = "Harvest Reaper Prototype",
@@ -18429,7 +18429,7 @@ FS.CreatureDB[210501] = {
     classification = 0,
     isBoss = false,
     zones = {40},
-    baseStats = { hp = 125, atk = 40, def = 33, spd = 28 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[210533] = {
     name = "Silverspur",
@@ -18441,7 +18441,7 @@ FS.CreatureDB[210533] = {
     classification = 0,
     isBoss = false,
     zones = {40},
-    baseStats = { hp = 105, atk = 33, def = 27, spd = 23 },
+    baseStats = { hp = 56, atk = 18, def = 14, spd = 12 },
 }
 FS.CreatureDB[211042] = {
     name = "Green Dragon Whelp",
@@ -18453,7 +18453,7 @@ FS.CreatureDB[211042] = {
     classification = 0,
     isBoss = false,
     zones = {331},
-    baseStats = { hp = 135, atk = 44, def = 36, spd = 30 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[211875] = {
     name = "Decayed Elemental",
@@ -18465,7 +18465,7 @@ FS.CreatureDB[211875] = {
     classification = 1,
     isBoss = false,
     zones = {130, 1637},
-    baseStats = { hp = 154, atk = 56, def = 39, spd = 24 },
+    baseStats = { hp = 61, atk = 23, def = 16, spd = 10 },
 }
 FS.CreatureDB[211951] = {
     name = "Koartul",
@@ -18477,7 +18477,7 @@ FS.CreatureDB[211951] = {
     classification = 2,
     isBoss = false,
     zones = {267},
-    baseStats = { hp = 224, atk = 74, def = 60, spd = 36 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[211952] = {
     name = "Omni Diffusion Armor",
@@ -18489,7 +18489,7 @@ FS.CreatureDB[211952] = {
     classification = 1,
     isBoss = false,
     zones = {12, 40, 85, 1519},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[211953] = {
     name = "Bulky Protective Ironweave",
@@ -18501,7 +18501,7 @@ FS.CreatureDB[211953] = {
     classification = 1,
     isBoss = false,
     zones = {40, 85},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[211954] = {
     name = "Electrostatic Discharge Shielding",
@@ -18513,7 +18513,7 @@ FS.CreatureDB[211954] = {
     classification = 1,
     isBoss = false,
     zones = {40, 85, 1519},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[211955] = {
     name = "Auxiliary Anti-Tamper Mechanism",
@@ -18525,7 +18525,7 @@ FS.CreatureDB[211955] = {
     classification = 1,
     isBoss = false,
     zones = {40, 85, 1519},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[211965] = {
     name = "Carrodin",
@@ -18537,7 +18537,7 @@ FS.CreatureDB[211965] = {
     classification = 4,
     isBoss = false,
     zones = {11},
-    baseStats = { hp = 224, atk = 74, def = 60, spd = 36 },
+    baseStats = { hp = 57, atk = 19, def = 15, spd = 9 },
 }
 FS.CreatureDB[212252] = {
     name = "Harvest Golem V000-A",
@@ -18549,7 +18549,7 @@ FS.CreatureDB[212252] = {
     classification = 1,
     isBoss = false,
     zones = {40, 85},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[212461] = {
     name = "Phantasmal Servant",
@@ -18561,7 +18561,7 @@ FS.CreatureDB[212461] = {
     classification = 1,
     isBoss = false,
     zones = {719},
-    baseStats = { hp = 230, atk = 87, def = 62, spd = 37 },
+    baseStats = { hp = 61, atk = 23, def = 16, spd = 10 },
 }
 FS.CreatureDB[212692] = {
     name = "Bound Elemental",
@@ -18573,7 +18573,7 @@ FS.CreatureDB[212692] = {
     classification = 1,
     isBoss = false,
     zones = {17},
-    baseStats = { hp = 196, atk = 73, def = 52, spd = 31 },
+    baseStats = { hp = 61, atk = 23, def = 16, spd = 10 },
 }
 FS.CreatureDB[212753] = {
     name = "Tortured Soul",
@@ -18585,7 +18585,7 @@ FS.CreatureDB[212753] = {
     classification = 1,
     isBoss = false,
     zones = {130},
-    baseStats = { hp = 189, atk = 61, def = 50, spd = 30 },
+    baseStats = { hp = 63, atk = 20, def = 17, spd = 10 },
 }
 FS.CreatureDB[212809] = {
     name = "Wailing Spirit",
@@ -18597,7 +18597,7 @@ FS.CreatureDB[212809] = {
     classification = 1,
     isBoss = false,
     zones = {130},
-    baseStats = { hp = 189, atk = 61, def = 50, spd = 30 },
+    baseStats = { hp = 63, atk = 20, def = 17, spd = 10 },
 }
 FS.CreatureDB[212837] = {
     name = "Primordial Anomaly",
@@ -18609,7 +18609,7 @@ FS.CreatureDB[212837] = {
     classification = 1,
     isBoss = false,
     zones = {406},
-    baseStats = { hp = 224, atk = 85, def = 60, spd = 36 },
+    baseStats = { hp = 61, atk = 23, def = 16, spd = 10 },
 }
 FS.CreatureDB[213451] = {
     name = "Cleansing Elemental",
@@ -18621,7 +18621,7 @@ FS.CreatureDB[213451] = {
     classification = 1,
     isBoss = false,
     zones = {719},
-    baseStats = { hp = 237, atk = 90, def = 65, spd = 38 },
+    baseStats = { hp = 60, atk = 23, def = 17, spd = 10 },
 }
 FS.CreatureDB[213795] = {
     name = "Gharrik",
@@ -18633,7 +18633,7 @@ FS.CreatureDB[213795] = {
     classification = 0,
     isBoss = false,
     zones = {3},
-    baseStats = { hp = 235, atk = 80, def = 66, spd = 53 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[213994] = {
     name = "Corrosive Droplet",
@@ -18645,7 +18645,7 @@ FS.CreatureDB[213994] = {
     classification = 1,
     isBoss = false,
     zones = {719},
-    baseStats = { hp = 230, atk = 87, def = 62, spd = 37 },
+    baseStats = { hp = 61, atk = 23, def = 16, spd = 10 },
 }
 FS.CreatureDB[214129] = {
     name = "Venture Co. Light Shredder",
@@ -18657,7 +18657,7 @@ FS.CreatureDB[214129] = {
     classification = 0,
     isBoss = false,
     zones = {406},
-    baseStats = { hp = 135, atk = 44, def = 36, spd = 30 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[214612] = {
     name = "Aku'mai Fisher",
@@ -18669,7 +18669,7 @@ FS.CreatureDB[214612] = {
     classification = 1,
     isBoss = false,
     zones = {719},
-    baseStats = { hp = 224, atk = 74, def = 60, spd = 36 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[215108] = {
     name = "Aku'mai Snapjaw",
@@ -18681,7 +18681,7 @@ FS.CreatureDB[215108] = {
     classification = 1,
     isBoss = false,
     zones = {719},
-    baseStats = { hp = 237, atk = 79, def = 65, spd = 38 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[215728] = {
     name = "Crowd Pummeler 9-60",
@@ -18693,7 +18693,7 @@ FS.CreatureDB[215728] = {
     classification = 1,
     isBoss = false,
     zones = {721},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[216474] = {
     name = "Ravaging Tempest",
@@ -18705,7 +18705,7 @@ FS.CreatureDB[216474] = {
     classification = 1,
     isBoss = false,
     zones = {400},
-    baseStats = { hp = 315, atk = 121, def = 88, spd = 50 },
+    baseStats = { hp = 60, atk = 23, def = 17, spd = 10 },
 }
 FS.CreatureDB[216666] = {
     name = "Techbot",
@@ -18717,7 +18717,7 @@ FS.CreatureDB[216666] = {
     classification = 1,
     isBoss = false,
     zones = {},
-    baseStats = { hp = 329, atk = 112, def = 92, spd = 53 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[216810] = {
     name = "Desiccated Fallout",
@@ -18729,7 +18729,7 @@ FS.CreatureDB[216810] = {
     classification = 1,
     isBoss = false,
     zones = {721},
-    baseStats = { hp = 336, atk = 131, def = 94, spd = 54 },
+    baseStats = { hp = 60, atk = 23, def = 17, spd = 10 },
 }
 FS.CreatureDB[217305] = {
     name = "Ancient Fire Elemental",
@@ -18741,7 +18741,7 @@ FS.CreatureDB[217305] = {
     classification = 0,
     isBoss = false,
     zones = {36},
-    baseStats = { hp = 205, atk = 79, def = 57, spd = 46 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[217308] = {
     name = "Irradiated Goo",
@@ -18753,7 +18753,7 @@ FS.CreatureDB[217308] = {
     classification = 0,
     isBoss = false,
     zones = {721},
-    baseStats = { hp = 240, atk = 93, def = 67, spd = 54 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[217387] = {
     name = "Brother Atticus",
@@ -18765,7 +18765,7 @@ FS.CreatureDB[217387] = {
     classification = 0,
     isBoss = false,
     zones = {45},
-    baseStats = { hp = 210, atk = 71, def = 58, spd = 47 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[217412] = {
     name = "Amaryllis Webb",
@@ -18777,7 +18777,7 @@ FS.CreatureDB[217412] = {
     classification = 0,
     isBoss = false,
     zones = {8},
-    baseStats = { hp = 210, atk = 71, def = 58, spd = 47 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[218242] = {
     name = "STX-04/BD",
@@ -18789,7 +18789,7 @@ FS.CreatureDB[218242] = {
     classification = 1,
     isBoss = false,
     zones = {721},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[218243] = {
     name = "STX-13/LL",
@@ -18801,7 +18801,7 @@ FS.CreatureDB[218243] = {
     classification = 1,
     isBoss = false,
     zones = {721},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[218244] = {
     name = "STX-25/NB",
@@ -18813,7 +18813,7 @@ FS.CreatureDB[218244] = {
     classification = 1,
     isBoss = false,
     zones = {721},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[218245] = {
     name = "STX-37/CN",
@@ -18825,7 +18825,7 @@ FS.CreatureDB[218245] = {
     classification = 1,
     isBoss = false,
     zones = {721},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[218344] = {
     name = "Explosive Egg",
@@ -18837,7 +18837,7 @@ FS.CreatureDB[218344] = {
     classification = 0,
     isBoss = false,
     zones = {721},
-    baseStats = { hp = 245, atk = 83, def = 69, spd = 55 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[218349] = {
     name = "Walking Bomb",
@@ -18849,7 +18849,7 @@ FS.CreatureDB[218349] = {
     classification = 0,
     isBoss = false,
     zones = {721},
-    baseStats = { hp = 185, atk = 62, def = 51, spd = 41 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[218538] = {
     name = "STX-96/FR",
@@ -18861,7 +18861,7 @@ FS.CreatureDB[218538] = {
     classification = 1,
     isBoss = false,
     zones = {721},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[218571] = {
     name = "Shade of Eranikus",
@@ -18873,7 +18873,7 @@ FS.CreatureDB[218571] = {
     classification = 1,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[218606] = {
     name = "Lumbering Dreamwalker",
@@ -18885,7 +18885,7 @@ FS.CreatureDB[218606] = {
     classification = 1,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 406, atk = 159, def = 115, spd = 65 },
+    baseStats = { hp = 60, atk = 23, def = 17, spd = 10 },
 }
 FS.CreatureDB[218718] = {
     name = "Ogom the Wretched",
@@ -18897,7 +18897,7 @@ FS.CreatureDB[218718] = {
     classification = 1,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[218819] = {
     name = "Festering Rotslime",
@@ -18909,7 +18909,7 @@ FS.CreatureDB[218819] = {
     classification = 1,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 70042, atk = 28989, def = 21006, spd = 11406 },
+    baseStats = { hp = 58, atk = 24, def = 18, spd = 10 },
 }
 FS.CreatureDB[218891] = {
     name = "Skeletal Servant",
@@ -18921,7 +18921,7 @@ FS.CreatureDB[218891] = {
     classification = 0,
     isBoss = false,
     zones = {400},
-    baseStats = { hp = 205, atk = 69, def = 57, spd = 46 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[218970] = {
     name = "STX-97/IC",
@@ -18933,7 +18933,7 @@ FS.CreatureDB[218970] = {
     classification = 1,
     isBoss = false,
     zones = {721},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[218972] = {
     name = "STX-98/PO",
@@ -18945,7 +18945,7 @@ FS.CreatureDB[218972] = {
     classification = 1,
     isBoss = false,
     zones = {721},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[218974] = {
     name = "STX-99/XD",
@@ -18957,7 +18957,7 @@ FS.CreatureDB[218974] = {
     classification = 1,
     isBoss = false,
     zones = {721},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[219110] = {
     name = "Incendiary Bomb",
@@ -18969,7 +18969,7 @@ FS.CreatureDB[219110] = {
     classification = 0,
     isBoss = false,
     zones = {721},
-    baseStats = { hp = 240, atk = 81, def = 67, spd = 54 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[219111] = {
     name = "Frost Bomb",
@@ -18981,7 +18981,7 @@ FS.CreatureDB[219111] = {
     classification = 0,
     isBoss = false,
     zones = {721},
-    baseStats = { hp = 240, atk = 81, def = 67, spd = 54 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[219112] = {
     name = "Radioactive Bomb",
@@ -18993,7 +18993,7 @@ FS.CreatureDB[219112] = {
     classification = 0,
     isBoss = false,
     zones = {721},
-    baseStats = { hp = 240, atk = 81, def = 67, spd = 54 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[219822] = {
     name = "Chained Spirit",
@@ -19005,7 +19005,7 @@ FS.CreatureDB[219822] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 335, atk = 116, def = 96, spd = 76 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[220007] = {
     name = "Viscous Fallout",
@@ -19017,7 +19017,7 @@ FS.CreatureDB[220007] = {
     classification = 1,
     isBoss = false,
     zones = {721},
-    baseStats = { hp = 70042, atk = 28989, def = 21006, spd = 11406 },
+    baseStats = { hp = 58, atk = 24, def = 18, spd = 10 },
 }
 FS.CreatureDB[220072] = {
     name = "Electrocutioner 6000",
@@ -19029,7 +19029,7 @@ FS.CreatureDB[220072] = {
     classification = 1,
     isBoss = false,
     zones = {721},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[220833] = {
     name = "Dreamscythe",
@@ -19041,7 +19041,7 @@ FS.CreatureDB[220833] = {
     classification = 1,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[220864] = {
     name = "Weaver",
@@ -19053,7 +19053,7 @@ FS.CreatureDB[220864] = {
     classification = 1,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[221168] = {
     name = "Dire Wolf Alpha",
@@ -19065,7 +19065,7 @@ FS.CreatureDB[221168] = {
     classification = 0,
     isBoss = false,
     zones = {10},
-    baseStats = { hp = 165, atk = 54, def = 45, spd = 37 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[221169] = {
     name = "Black Widow Broodmother",
@@ -19077,7 +19077,7 @@ FS.CreatureDB[221169] = {
     classification = 0,
     isBoss = false,
     zones = {10},
-    baseStats = { hp = 165, atk = 54, def = 45, spd = 37 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[221170] = {
     name = "Uprooted Gloomwood",
@@ -19089,7 +19089,7 @@ FS.CreatureDB[221170] = {
     classification = 0,
     isBoss = false,
     zones = {10},
-    baseStats = { hp = 255, atk = 100, def = 72, spd = 57 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[221176] = {
     name = "Nightterror Whelp",
@@ -19101,7 +19101,7 @@ FS.CreatureDB[221176] = {
     classification = 0,
     isBoss = false,
     zones = {10},
-    baseStats = { hp = 165, atk = 54, def = 45, spd = 37 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[221204] = {
     name = "Ylanthrius",
@@ -19113,7 +19113,7 @@ FS.CreatureDB[221204] = {
     classification = 1,
     isBoss = false,
     zones = {10},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[221230] = {
     name = "Nightmare Grizzly",
@@ -19125,7 +19125,7 @@ FS.CreatureDB[221230] = {
     classification = 0,
     isBoss = false,
     zones = {331},
-    baseStats = { hp = 288, atk = 81, def = 77, spd = 45 },
+    baseStats = { hp = 59, atk = 16, def = 16, spd = 9 },
 }
 FS.CreatureDB[221258] = {
     name = "Dreamthorn Stalker",
@@ -19137,7 +19137,7 @@ FS.CreatureDB[221258] = {
     classification = 0,
     isBoss = false,
     zones = {331},
-    baseStats = { hp = 240, atk = 81, def = 67, spd = 54 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[221260] = {
     name = "Terror Whelp",
@@ -19149,7 +19149,7 @@ FS.CreatureDB[221260] = {
     classification = 0,
     isBoss = false,
     zones = {331},
-    baseStats = { hp = 240, atk = 81, def = 67, spd = 54 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[221263] = {
     name = "Vengeful Ancient",
@@ -19161,7 +19161,7 @@ FS.CreatureDB[221263] = {
     classification = 1,
     isBoss = false,
     zones = {331},
-    baseStats = { hp = 336, atk = 131, def = 94, spd = 54 },
+    baseStats = { hp = 60, atk = 23, def = 17, spd = 10 },
 }
 FS.CreatureDB[221264] = {
     name = "Dreamharvester",
@@ -19173,7 +19173,7 @@ FS.CreatureDB[221264] = {
     classification = 1,
     isBoss = false,
     zones = {331},
-    baseStats = { hp = 336, atk = 114, def = 94, spd = 54 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[221265] = {
     name = "Larsera",
@@ -19185,7 +19185,7 @@ FS.CreatureDB[221265] = {
     classification = 1,
     isBoss = false,
     zones = {331},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[221267] = {
     name = "Shredder 9000",
@@ -19197,7 +19197,7 @@ FS.CreatureDB[221267] = {
     classification = 1,
     isBoss = false,
     zones = {331},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[221326] = {
     name = "Wrath Whelp",
@@ -19209,7 +19209,7 @@ FS.CreatureDB[221326] = {
     classification = 0,
     isBoss = false,
     zones = {47},
-    baseStats = { hp = 290, atk = 99, def = 82, spd = 65 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[221328] = {
     name = "Dreamwater Vicejaw",
@@ -19221,7 +19221,7 @@ FS.CreatureDB[221328] = {
     classification = 0,
     isBoss = false,
     zones = {47},
-    baseStats = { hp = 290, atk = 99, def = 82, spd = 65 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[221331] = {
     name = "Florius",
@@ -19233,7 +19233,7 @@ FS.CreatureDB[221331] = {
     classification = 1,
     isBoss = false,
     zones = {47},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[221361] = {
     name = "Mad Sprite",
@@ -19245,7 +19245,7 @@ FS.CreatureDB[221361] = {
     classification = 0,
     isBoss = false,
     zones = {357},
-    baseStats = { hp = 290, atk = 99, def = 82, spd = 65 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[221365] = {
     name = "Deathpetal Lasher",
@@ -19257,7 +19257,7 @@ FS.CreatureDB[221365] = {
     classification = 0,
     isBoss = false,
     zones = {357},
-    baseStats = { hp = 290, atk = 113, def = 82, spd = 65 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[221369] = {
     name = "Frenzied Whelp",
@@ -19269,7 +19269,7 @@ FS.CreatureDB[221369] = {
     classification = 0,
     isBoss = false,
     zones = {357},
-    baseStats = { hp = 290, atk = 99, def = 82, spd = 65 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[221393] = {
     name = "Tyrannikus",
@@ -19281,7 +19281,7 @@ FS.CreatureDB[221393] = {
     classification = 1,
     isBoss = false,
     zones = {357},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[221651] = {
     name = "Ceruleos",
@@ -19293,7 +19293,7 @@ FS.CreatureDB[221651] = {
     classification = 0,
     isBoss = false,
     zones = {16},
-    baseStats = { hp = 285, atk = 98, def = 81, spd = 64 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[221759] = {
     name = "Gasher",
@@ -19305,7 +19305,7 @@ FS.CreatureDB[221759] = {
     classification = 1,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[221828] = {
     name = "Vengeful Spirit",
@@ -19317,7 +19317,7 @@ FS.CreatureDB[221828] = {
     classification = 0,
     isBoss = false,
     zones = {47},
-    baseStats = { hp = 260, atk = 89, def = 73, spd = 58 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[221833] = {
     name = "Hukku",
@@ -19329,7 +19329,7 @@ FS.CreatureDB[221833] = {
     classification = 1,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[221834] = {
     name = "Loro",
@@ -19341,7 +19341,7 @@ FS.CreatureDB[221834] = {
     classification = 1,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[221835] = {
     name = "Mijan",
@@ -19353,7 +19353,7 @@ FS.CreatureDB[221835] = {
     classification = 1,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[221836] = {
     name = "Zolo",
@@ -19365,7 +19365,7 @@ FS.CreatureDB[221836] = {
     classification = 1,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[221837] = {
     name = "Zul'Lor",
@@ -19377,7 +19377,7 @@ FS.CreatureDB[221837] = {
     classification = 1,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[221935] = {
     name = "Treant Avatar",
@@ -19389,7 +19389,7 @@ FS.CreatureDB[221935] = {
     classification = 0,
     isBoss = false,
     zones = {357},
-    baseStats = { hp = 285, atk = 112, def = 81, spd = 64 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[221942] = {
     name = "Morphaz",
@@ -19401,7 +19401,7 @@ FS.CreatureDB[221942] = {
     classification = 1,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[221943] = {
     name = "Hazzas",
@@ -19413,7 +19413,7 @@ FS.CreatureDB[221943] = {
     classification = 1,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[222004] = {
     name = "Corrupt Moderate Manifestation of Water",
@@ -19425,7 +19425,7 @@ FS.CreatureDB[222004] = {
     classification = 0,
     isBoss = false,
     zones = {16},
-    baseStats = { hp = 255, atk = 100, def = 72, spd = 57 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[222005] = {
     name = "Moderate Manifestation of Water",
@@ -19437,7 +19437,7 @@ FS.CreatureDB[222005] = {
     classification = 0,
     isBoss = false,
     zones = {16, 357},
-    baseStats = { hp = 255, atk = 100, def = 72, spd = 57 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[222088] = {
     name = "Nightmare Whelpling",
@@ -19449,7 +19449,7 @@ FS.CreatureDB[222088] = {
     classification = 0,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 290, atk = 99, def = 82, spd = 65 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[222089] = {
     name = "Nightmare Scalebane",
@@ -19461,7 +19461,7 @@ FS.CreatureDB[222089] = {
     classification = 0,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 290, atk = 99, def = 82, spd = 65 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[222192] = {
     name = "Nightmare Vine",
@@ -19473,7 +19473,7 @@ FS.CreatureDB[222192] = {
     classification = 0,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 295, atk = 116, def = 84, spd = 66 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[222232] = {
     name = "Corrupt Moderate Manifestation of Air",
@@ -19485,7 +19485,7 @@ FS.CreatureDB[222232] = {
     classification = 0,
     isBoss = false,
     zones = {47},
-    baseStats = { hp = 265, atk = 103, def = 75, spd = 60 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[222243] = {
     name = "Zopilote",
@@ -19497,7 +19497,7 @@ FS.CreatureDB[222243] = {
     classification = 2,
     isBoss = false,
     zones = {440},
-    baseStats = { hp = 350, atk = 119, def = 98, spd = 56 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[222289] = {
     name = "Moderate Manifestation of Air",
@@ -19509,7 +19509,7 @@ FS.CreatureDB[222289] = {
     classification = 0,
     isBoss = false,
     zones = {47, 357},
-    baseStats = { hp = 265, atk = 103, def = 75, spd = 60 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[222407] = {
     name = "Enraged Leywalker",
@@ -19521,7 +19521,7 @@ FS.CreatureDB[222407] = {
     classification = 1,
     isBoss = false,
     zones = {16, 47, 51, 357},
-    baseStats = { hp = 378, atk = 148, def = 107, spd = 61 },
+    baseStats = { hp = 60, atk = 23, def = 17, spd = 10 },
 }
 FS.CreatureDB[222566] = {
     name = "Animated Flame",
@@ -19533,7 +19533,7 @@ FS.CreatureDB[222566] = {
     classification = 0,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 290, atk = 113, def = 82, spd = 65 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[222617] = {
     name = "Moderate Manifestation of Fire",
@@ -19545,7 +19545,7 @@ FS.CreatureDB[222617] = {
     classification = 0,
     isBoss = false,
     zones = {51, 357},
-    baseStats = { hp = 270, atk = 105, def = 76, spd = 61 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[222620] = {
     name = "Corrupt Moderate Manifestation of Fire",
@@ -19557,7 +19557,7 @@ FS.CreatureDB[222620] = {
     classification = 0,
     isBoss = false,
     zones = {51},
-    baseStats = { hp = 270, atk = 105, def = 76, spd = 61 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[222623] = {
     name = "Moderate Manifestation of Earth",
@@ -19569,7 +19569,7 @@ FS.CreatureDB[222623] = {
     classification = 0,
     isBoss = false,
     zones = {357, 440},
-    baseStats = { hp = 260, atk = 102, def = 73, spd = 58 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[222625] = {
     name = "Corrupt Moderate Manifestation of Earth",
@@ -19581,7 +19581,7 @@ FS.CreatureDB[222625] = {
     classification = 0,
     isBoss = false,
     zones = {440},
-    baseStats = { hp = 260, atk = 102, def = 73, spd = 58 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[222699] = {
     name = "Enraged Stormcrow",
@@ -19593,7 +19593,7 @@ FS.CreatureDB[222699] = {
     classification = 0,
     isBoss = false,
     zones = {51},
-    baseStats = { hp = 260, atk = 89, def = 73, spd = 58 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[222705] = {
     name = "Blightbark",
@@ -19605,7 +19605,7 @@ FS.CreatureDB[222705] = {
     classification = 1,
     isBoss = false,
     zones = {357},
-    baseStats = { hp = 399, atk = 157, def = 113, spd = 64 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[222799] = {
     name = "Simmering Elemental",
@@ -19617,7 +19617,7 @@ FS.CreatureDB[222799] = {
     classification = 0,
     isBoss = false,
     zones = {357},
-    baseStats = { hp = 240, atk = 93, def = 67, spd = 54 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[222919] = {
     name = "Whirling Tempest",
@@ -19629,7 +19629,7 @@ FS.CreatureDB[222919] = {
     classification = 0,
     isBoss = false,
     zones = {357},
-    baseStats = { hp = 255, atk = 100, def = 72, spd = 57 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[222968] = {
     name = "Lethlas",
@@ -19641,7 +19641,7 @@ FS.CreatureDB[222968] = {
     classification = 1,
     isBoss = false,
     zones = {357},
-    baseStats = { hp = 413, atk = 142, def = 117, spd = 66 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[222977] = {
     name = "Phantim",
@@ -19653,7 +19653,7 @@ FS.CreatureDB[222977] = {
     classification = 1,
     isBoss = false,
     zones = {331},
-    baseStats = { hp = 343, atk = 117, def = 96, spd = 55 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[223123] = {
     name = "Diseased Forest Walker",
@@ -19665,7 +19665,7 @@ FS.CreatureDB[223123] = {
     classification = 0,
     isBoss = false,
     zones = {357},
-    baseStats = { hp = 250, atk = 97, def = 70, spd = 56 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[223130] = {
     name = "Uprooted Gloomwood",
@@ -19677,7 +19677,7 @@ FS.CreatureDB[223130] = {
     classification = 0,
     isBoss = false,
     zones = {357},
-    baseStats = { hp = 265, atk = 103, def = 75, spd = 60 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[223287] = {
     name = "Fire Elemental",
@@ -19689,7 +19689,7 @@ FS.CreatureDB[223287] = {
     classification = 0,
     isBoss = false,
     zones = {10},
-    baseStats = { hp = 170, atk = 64, def = 46, spd = 38 },
+    baseStats = { hp = 54, atk = 20, def = 14, spd = 12 },
 }
 FS.CreatureDB[224243] = {
     name = "Deep Lurker",
@@ -19701,7 +19701,7 @@ FS.CreatureDB[224243] = {
     classification = 1,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 406, atk = 159, def = 115, spd = 65 },
+    baseStats = { hp = 60, atk = 23, def = 17, spd = 10 },
 }
 FS.CreatureDB[224253] = {
     name = "Nightmare Wanderer",
@@ -19713,7 +19713,7 @@ FS.CreatureDB[224253] = {
     classification = 1,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 406, atk = 139, def = 115, spd = 65 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[224255] = {
     name = "Nightmare Scalebane",
@@ -19725,7 +19725,7 @@ FS.CreatureDB[224255] = {
     classification = 1,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 406, atk = 139, def = 115, spd = 65 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[224256] = {
     name = "Nightmare Whelp",
@@ -19737,7 +19737,7 @@ FS.CreatureDB[224256] = {
     classification = 0,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 285, atk = 98, def = 81, spd = 64 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[224259] = {
     name = "Atal'ai Deathwalker",
@@ -19749,7 +19749,7 @@ FS.CreatureDB[224259] = {
     classification = 1,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 406, atk = 139, def = 115, spd = 65 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[224260] = {
     name = "Atal'ai Corpse Eater",
@@ -19761,7 +19761,7 @@ FS.CreatureDB[224260] = {
     classification = 1,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 406, atk = 139, def = 115, spd = 65 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[224262] = {
     name = "Unliving Atal'ai",
@@ -19773,7 +19773,7 @@ FS.CreatureDB[224262] = {
     classification = 1,
     isBoss = false,
     zones = {1477},
-    baseStats = { hp = 406, atk = 139, def = 115, spd = 65 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[226922] = {
     name = "Zilbagob",
@@ -19785,7 +19785,7 @@ FS.CreatureDB[226922] = {
     classification = 1,
     isBoss = false,
     zones = {15475},
-    baseStats = { hp = 482, atk = 167, def = 138, spd = 78 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[226923] = {
     name = "Grimroot",
@@ -19797,7 +19797,7 @@ FS.CreatureDB[226923] = {
     classification = 1,
     isBoss = false,
     zones = {15475},
-    baseStats = { hp = 482, atk = 192, def = 138, spd = 78 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[226982] = {
     name = "Frijidar",
@@ -19809,7 +19809,7 @@ FS.CreatureDB[226982] = {
     classification = 1,
     isBoss = false,
     zones = {618},
-    baseStats = { hp = 468, atk = 186, def = 134, spd = 76 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[227755] = {
     name = "Estelenn",
@@ -19821,7 +19821,7 @@ FS.CreatureDB[227755] = {
     classification = 0,
     isBoss = false,
     zones = {46},
-    baseStats = { hp = 335, atk = 116, def = 96, spd = 76 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[227819] = {
     name = "Duke Hydraxis",
@@ -19833,7 +19833,7 @@ FS.CreatureDB[227819] = {
     classification = 1,
     isBoss = false,
     zones = {2717},
-    baseStats = { hp = 468, atk = 186, def = 134, spd = 76 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[227939] = {
     name = "The Molten Core",
@@ -19845,7 +19845,7 @@ FS.CreatureDB[227939] = {
     classification = 3,
     isBoss = false,
     zones = {2717},
-    baseStats = { hp = 70042, atk = 28989, def = 21006, spd = 11406 },
+    baseStats = { hp = 53, atk = 22, def = 16, spd = 9 },
 }
 FS.CreatureDB[228142] = {
     name = "Techbot",
@@ -19857,7 +19857,7 @@ FS.CreatureDB[228142] = {
     classification = 0,
     isBoss = false,
     zones = {440},
-    baseStats = { hp = 345, atk = 119, def = 99, spd = 78 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[228432] = {
     name = "Garr",
@@ -19869,7 +19869,7 @@ FS.CreatureDB[228432] = {
     classification = 3,
     isBoss = true,
     zones = {2717},
-    baseStats = { hp = 70042, atk = 28989, def = 21006, spd = 11406 },
+    baseStats = { hp = 58, atk = 24, def = 18, spd = 10 },
 }
 FS.CreatureDB[228433] = {
     name = "Baron Geddon",
@@ -19881,7 +19881,7 @@ FS.CreatureDB[228433] = {
     classification = 3,
     isBoss = true,
     zones = {2717},
-    baseStats = { hp = 70042, atk = 28989, def = 21006, spd = 11406 },
+    baseStats = { hp = 58, atk = 24, def = 18, spd = 10 },
 }
 FS.CreatureDB[228438] = {
     name = "Ragnaros",
@@ -19893,7 +19893,7 @@ FS.CreatureDB[228438] = {
     classification = 3,
     isBoss = true,
     zones = {2717},
-    baseStats = { hp = 70042, atk = 28989, def = 21006, spd = 11406 },
+    baseStats = { hp = 58, atk = 24, def = 18, spd = 10 },
 }
 FS.CreatureDB[228612] = {
     name = "Festering Ghoul",
@@ -19905,7 +19905,7 @@ FS.CreatureDB[228612] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 305, atk = 105, def = 87, spd = 69 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[228619] = {
     name = "Orthas",
@@ -19917,7 +19917,7 @@ FS.CreatureDB[228619] = {
     classification = 0,
     isBoss = false,
     zones = {139, 2017},
-    baseStats = { hp = 335, atk = 116, def = 96, spd = 76 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[228620] = {
     name = "Slack-Jawed Ghoul",
@@ -19929,7 +19929,7 @@ FS.CreatureDB[228620] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 315, atk = 108, def = 90, spd = 71 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[228622] = {
     name = "Orthas",
@@ -19941,7 +19941,7 @@ FS.CreatureDB[228622] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 315, atk = 108, def = 90, spd = 71 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[228718] = {
     name = "Firelands Invader",
@@ -19953,7 +19953,7 @@ FS.CreatureDB[228718] = {
     classification = 0,
     isBoss = false,
     zones = {51},
-    baseStats = { hp = 305, atk = 120, def = 87, spd = 69 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[228719] = {
     name = "Firelands Drudge",
@@ -19965,7 +19965,7 @@ FS.CreatureDB[228719] = {
     classification = 0,
     isBoss = false,
     zones = {51},
-    baseStats = { hp = 315, atk = 124, def = 90, spd = 71 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[228720] = {
     name = "Duke Searbrand",
@@ -19977,7 +19977,7 @@ FS.CreatureDB[228720] = {
     classification = 1,
     isBoss = false,
     zones = {51},
-    baseStats = { hp = 461, atk = 182, def = 132, spd = 74 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[228723] = {
     name = "Obsidian Reaver",
@@ -19989,7 +19989,7 @@ FS.CreatureDB[228723] = {
     classification = 0,
     isBoss = false,
     zones = {51},
-    baseStats = { hp = 320, atk = 126, def = 91, spd = 72 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[228724] = {
     name = "Obsidian Surger",
@@ -20001,7 +20001,7 @@ FS.CreatureDB[228724] = {
     classification = 0,
     isBoss = false,
     zones = {51},
-    baseStats = { hp = 315, atk = 124, def = 90, spd = 71 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[228725] = {
     name = "Firesworn",
@@ -20013,7 +20013,7 @@ FS.CreatureDB[228725] = {
     classification = 1,
     isBoss = false,
     zones = {46},
-    baseStats = { hp = 468, atk = 186, def = 134, spd = 76 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[228729] = {
     name = "Duke Tectonis",
@@ -20025,7 +20025,7 @@ FS.CreatureDB[228729] = {
     classification = 1,
     isBoss = false,
     zones = {51},
-    baseStats = { hp = 461, atk = 182, def = 132, spd = 74 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[228731] = {
     name = "Dread Lasher",
@@ -20037,7 +20037,7 @@ FS.CreatureDB[228731] = {
     classification = 0,
     isBoss = false,
     zones = {15475},
-    baseStats = { hp = 340, atk = 134, def = 97, spd = 77 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[228748] = {
     name = "Poisoned Sapling",
@@ -20049,7 +20049,7 @@ FS.CreatureDB[228748] = {
     classification = 0,
     isBoss = false,
     zones = {15475},
-    baseStats = { hp = 335, atk = 133, def = 96, spd = 76 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[228816] = {
     name = "Primal Flame Elemental",
@@ -20061,7 +20061,7 @@ FS.CreatureDB[228816] = {
     classification = 1,
     isBoss = false,
     zones = {2717},
-    baseStats = { hp = 482, atk = 192, def = 138, spd = 78 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[228820] = {
     name = "Hydraxian Firefighter",
@@ -20073,7 +20073,7 @@ FS.CreatureDB[228820] = {
     classification = 1,
     isBoss = false,
     zones = {2717},
-    baseStats = { hp = 482, atk = 192, def = 138, spd = 78 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[228834] = {
     name = "Firesworn",
@@ -20085,7 +20085,7 @@ FS.CreatureDB[228834] = {
     classification = 1,
     isBoss = false,
     zones = {2717},
-    baseStats = { hp = 468, atk = 186, def = 134, spd = 76 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[228891] = {
     name = "Enraged Shade",
@@ -20097,7 +20097,7 @@ FS.CreatureDB[228891] = {
     classification = 0,
     isBoss = false,
     zones = {618},
-    baseStats = { hp = 300, atk = 103, def = 85, spd = 68 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[228912] = {
     name = "Severed Dreamer",
@@ -20109,7 +20109,7 @@ FS.CreatureDB[228912] = {
     classification = 1,
     isBoss = false,
     zones = {15475},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[228913] = {
     name = "Severed Druid",
@@ -20121,7 +20121,7 @@ FS.CreatureDB[228913] = {
     classification = 1,
     isBoss = false,
     zones = {15475},
-    baseStats = { hp = 461, atk = 159, def = 132, spd = 74 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[228914] = {
     name = "Severed Keeper",
@@ -20133,7 +20133,7 @@ FS.CreatureDB[228914] = {
     classification = 1,
     isBoss = false,
     zones = {15475},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[228915] = {
     name = "Severed Sleeper",
@@ -20145,7 +20145,7 @@ FS.CreatureDB[228915] = {
     classification = 1,
     isBoss = false,
     zones = {15475},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[228934] = {
     name = "Thane Korth'azz",
@@ -20157,7 +20157,7 @@ FS.CreatureDB[228934] = {
     classification = 3,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 55, atk = 20, def = 16, spd = 9 },
 }
 FS.CreatureDB[228935] = {
     name = "Enraged Spirit",
@@ -20169,7 +20169,7 @@ FS.CreatureDB[228935] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 335, atk = 116, def = 96, spd = 76 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[229802] = {
     name = "Poisoned Sapling",
@@ -20181,7 +20181,7 @@ FS.CreatureDB[229802] = {
     classification = 0,
     isBoss = false,
     zones = {15475},
-    baseStats = { hp = 335, atk = 133, def = 96, spd = 76 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[229840] = {
     name = "Hydraxian Firefighter",
@@ -20193,7 +20193,7 @@ FS.CreatureDB[229840] = {
     classification = 1,
     isBoss = false,
     zones = {2717},
-    baseStats = { hp = 482, atk = 192, def = 138, spd = 78 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[229897] = {
     name = "Wild Windtwister",
@@ -20205,7 +20205,7 @@ FS.CreatureDB[229897] = {
     classification = 0,
     isBoss = false,
     zones = {493},
-    baseStats = { hp = 335, atk = 133, def = 96, spd = 76 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[230558] = {
     name = "Territorial Terran",
@@ -20217,7 +20217,7 @@ FS.CreatureDB[230558] = {
     classification = 0,
     isBoss = false,
     zones = {493},
-    baseStats = { hp = 335, atk = 133, def = 96, spd = 76 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[230775] = {
     name = "Rage Talon Quartermaster",
@@ -20229,7 +20229,7 @@ FS.CreatureDB[230775] = {
     classification = 1,
     isBoss = false,
     zones = {1583},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[230949] = {
     name = "Hydraxian Firefighter",
@@ -20241,7 +20241,7 @@ FS.CreatureDB[230949] = {
     classification = 1,
     isBoss = false,
     zones = {2717},
-    baseStats = { hp = 482, atk = 192, def = 138, spd = 78 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[231178] = {
     name = "Duke Hydraxis",
@@ -20253,7 +20253,7 @@ FS.CreatureDB[231178] = {
     classification = 1,
     isBoss = false,
     zones = {2717},
-    baseStats = { hp = 468, atk = 186, def = 134, spd = 76 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[231485] = {
     name = "Procrastimond",
@@ -20265,7 +20265,7 @@ FS.CreatureDB[231485] = {
     classification = 3,
     isBoss = false,
     zones = {15793},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 55, atk = 20, def = 16, spd = 9 },
 }
 FS.CreatureDB[231494] = {
     name = "Prince Thunderaan",
@@ -20277,7 +20277,7 @@ FS.CreatureDB[231494] = {
     classification = 3,
     isBoss = false,
     zones = {15825},
-    baseStats = { hp = 70042, atk = 28989, def = 21006, spd = 11406 },
+    baseStats = { hp = 53, atk = 22, def = 16, spd = 9 },
 }
 FS.CreatureDB[231661] = {
     name = "Rahuz",
@@ -20289,7 +20289,7 @@ FS.CreatureDB[231661] = {
     classification = 2,
     isBoss = false,
     zones = {},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[231858] = {
     name = "Storm Mender",
@@ -20301,7 +20301,7 @@ FS.CreatureDB[231858] = {
     classification = 1,
     isBoss = false,
     zones = {15825},
-    baseStats = { hp = 482, atk = 192, def = 138, spd = 78 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[231868] = {
     name = "Cyclone Imperator",
@@ -20313,7 +20313,7 @@ FS.CreatureDB[231868] = {
     classification = 1,
     isBoss = false,
     zones = {15825},
-    baseStats = { hp = 482, atk = 192, def = 138, spd = 78 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[231871] = {
     name = "Living Storm",
@@ -20325,7 +20325,7 @@ FS.CreatureDB[231871] = {
     classification = 1,
     isBoss = false,
     zones = {15825},
-    baseStats = { hp = 475, atk = 188, def = 136, spd = 77 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[231872] = {
     name = "Thundering Rager",
@@ -20337,7 +20337,7 @@ FS.CreatureDB[231872] = {
     classification = 1,
     isBoss = false,
     zones = {15825},
-    baseStats = { hp = 475, atk = 188, def = 136, spd = 77 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[231887] = {
     name = "Vale Tempest",
@@ -20349,7 +20349,7 @@ FS.CreatureDB[231887] = {
     classification = 1,
     isBoss = false,
     zones = {15825},
-    baseStats = { hp = 475, atk = 188, def = 136, spd = 77 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[232103] = {
     name = "Black Whelp",
@@ -20361,7 +20361,7 @@ FS.CreatureDB[232103] = {
     classification = 0,
     isBoss = false,
     zones = {2677},
-    baseStats = { hp = 350, atk = 121, def = 100, spd = 79 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[232104] = {
     name = "Bronze Whelp",
@@ -20373,7 +20373,7 @@ FS.CreatureDB[232104] = {
     classification = 0,
     isBoss = false,
     zones = {2677},
-    baseStats = { hp = 350, atk = 121, def = 100, spd = 79 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[232105] = {
     name = "Red Whelp",
@@ -20385,7 +20385,7 @@ FS.CreatureDB[232105] = {
     classification = 0,
     isBoss = false,
     zones = {2677},
-    baseStats = { hp = 350, atk = 121, def = 100, spd = 79 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[232107] = {
     name = "Blue Whelp",
@@ -20397,7 +20397,7 @@ FS.CreatureDB[232107] = {
     classification = 0,
     isBoss = false,
     zones = {2677},
-    baseStats = { hp = 350, atk = 121, def = 100, spd = 79 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[232109] = {
     name = "Green Whelp",
@@ -20409,7 +20409,7 @@ FS.CreatureDB[232109] = {
     classification = 0,
     isBoss = false,
     zones = {2677},
-    baseStats = { hp = 350, atk = 121, def = 100, spd = 79 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[232398] = {
     name = "Primordial Flame",
@@ -20421,7 +20421,7 @@ FS.CreatureDB[232398] = {
     classification = 0,
     isBoss = false,
     zones = {46},
-    baseStats = { hp = 335, atk = 133, def = 96, spd = 76 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[232558] = {
     name = "Rampaging Dead",
@@ -20433,7 +20433,7 @@ FS.CreatureDB[232558] = {
     classification = 0,
     isBoss = false,
     zones = {15828},
-    baseStats = { hp = 330, atk = 114, def = 94, spd = 74 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[232559] = {
     name = "Shambling Dead",
@@ -20445,7 +20445,7 @@ FS.CreatureDB[232559] = {
     classification = 0,
     isBoss = false,
     zones = {15828},
-    baseStats = { hp = 330, atk = 114, def = 94, spd = 74 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[232560] = {
     name = "Scourge Footsoldier",
@@ -20457,7 +20457,7 @@ FS.CreatureDB[232560] = {
     classification = 0,
     isBoss = false,
     zones = {15828},
-    baseStats = { hp = 325, atk = 112, def = 93, spd = 73 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[232561] = {
     name = "Dread Spellweaver",
@@ -20469,7 +20469,7 @@ FS.CreatureDB[232561] = {
     classification = 0,
     isBoss = false,
     zones = {},
-    baseStats = { hp = 325, atk = 112, def = 93, spd = 73 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[232562] = {
     name = "Scourge Reaver",
@@ -20481,7 +20481,7 @@ FS.CreatureDB[232562] = {
     classification = 0,
     isBoss = false,
     zones = {},
-    baseStats = { hp = 320, atk = 110, def = 91, spd = 72 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[232564] = {
     name = "Scourge Horror",
@@ -20493,7 +20493,7 @@ FS.CreatureDB[232564] = {
     classification = 0,
     isBoss = false,
     zones = {15828},
-    baseStats = { hp = 325, atk = 112, def = 93, spd = 73 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[232587] = {
     name = "Nefarian",
@@ -20505,7 +20505,7 @@ FS.CreatureDB[232587] = {
     classification = 3,
     isBoss = false,
     zones = {2677},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 55, atk = 20, def = 16, spd = 9 },
 }
 FS.CreatureDB[232625] = {
     name = "Riosustrasz",
@@ -20517,7 +20517,7 @@ FS.CreatureDB[232625] = {
     classification = 3,
     isBoss = false,
     zones = {11},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 55, atk = 20, def = 16, spd = 9 },
 }
 FS.CreatureDB[232694] = {
     name = "Storm Mender",
@@ -20529,7 +20529,7 @@ FS.CreatureDB[232694] = {
     classification = 1,
     isBoss = false,
     zones = {15825},
-    baseStats = { hp = 482, atk = 192, def = 138, spd = 78 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[232754] = {
     name = "Rotting Ghoul",
@@ -20541,7 +20541,7 @@ FS.CreatureDB[232754] = {
     classification = 0,
     isBoss = false,
     zones = {15828},
-    baseStats = { hp = 330, atk = 114, def = 94, spd = 74 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[232756] = {
     name = "Hungry Dead",
@@ -20553,7 +20553,7 @@ FS.CreatureDB[232756] = {
     classification = 0,
     isBoss = false,
     zones = {15828},
-    baseStats = { hp = 330, atk = 114, def = 94, spd = 74 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[232855] = {
     name = "Prismatic Elemental",
@@ -20565,7 +20565,7 @@ FS.CreatureDB[232855] = {
     classification = 1,
     isBoss = false,
     zones = {46},
-    baseStats = { hp = 482, atk = 192, def = 138, spd = 78 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[232900] = {
     name = "Cursed Mage",
@@ -20577,7 +20577,7 @@ FS.CreatureDB[232900] = {
     classification = 0,
     isBoss = false,
     zones = {139},
-    baseStats = { hp = 310, atk = 107, def = 88, spd = 70 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[233033] = {
     name = "Rotgut",
@@ -20589,7 +20589,7 @@ FS.CreatureDB[233033] = {
     classification = 1,
     isBoss = false,
     zones = {15828},
-    baseStats = { hp = 461, atk = 159, def = 132, spd = 74 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[233049] = {
     name = "Searing Ghoul",
@@ -20601,7 +20601,7 @@ FS.CreatureDB[233049] = {
     classification = 0,
     isBoss = false,
     zones = {15828},
-    baseStats = { hp = 325, atk = 112, def = 93, spd = 73 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[233084] = {
     name = "Estelenn",
@@ -20613,7 +20613,7 @@ FS.CreatureDB[233084] = {
     classification = 0,
     isBoss = false,
     zones = {490},
-    baseStats = { hp = 335, atk = 116, def = 96, spd = 76 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[233093] = {
     name = "Magma Elemental",
@@ -20625,7 +20625,7 @@ FS.CreatureDB[233093] = {
     classification = 0,
     isBoss = false,
     zones = {46},
-    baseStats = { hp = 340, atk = 134, def = 97, spd = 77 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[233249] = {
     name = "Estelenn",
@@ -20637,7 +20637,7 @@ FS.CreatureDB[233249] = {
     classification = 0,
     isBoss = false,
     zones = {490},
-    baseStats = { hp = 335, atk = 116, def = 96, spd = 76 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[233264] = {
     name = "Red Whelp",
@@ -20649,7 +20649,7 @@ FS.CreatureDB[233264] = {
     classification = 0,
     isBoss = false,
     zones = {11},
-    baseStats = { hp = 335, atk = 116, def = 96, spd = 76 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[233574] = {
     name = "Bronze Whelp",
@@ -20661,7 +20661,7 @@ FS.CreatureDB[233574] = {
     classification = 0,
     isBoss = false,
     zones = {15828},
-    baseStats = { hp = 350, atk = 121, def = 100, spd = 79 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[234880] = {
     name = "Emeriss",
@@ -20673,7 +20673,7 @@ FS.CreatureDB[234880] = {
     classification = 3,
     isBoss = false,
     zones = {16119},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 55, atk = 20, def = 16, spd = 9 },
 }
 FS.CreatureDB[235164] = {
     name = "G00 DV-1B3 Generator",
@@ -20685,7 +20685,7 @@ FS.CreatureDB[235164] = {
     classification = 0,
     isBoss = false,
     zones = {139, 3428, 3456, 16074, 16236},
-    baseStats = { hp = 335, atk = 116, def = 96, spd = 76 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[235180] = {
     name = "Lethon",
@@ -20697,7 +20697,7 @@ FS.CreatureDB[235180] = {
     classification = 3,
     isBoss = false,
     zones = {16018},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 55, atk = 20, def = 16, spd = 9 },
 }
 FS.CreatureDB[235197] = {
     name = "Taerar",
@@ -20709,7 +20709,7 @@ FS.CreatureDB[235197] = {
     classification = 3,
     isBoss = false,
     zones = {16169},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 55, atk = 20, def = 16, spd = 9 },
 }
 FS.CreatureDB[235207] = {
     name = "Unyielding Shade of Taerar",
@@ -20721,7 +20721,7 @@ FS.CreatureDB[235207] = {
     classification = 3,
     isBoss = false,
     zones = {16169},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 55, atk = 20, def = 16, spd = 9 },
 }
 FS.CreatureDB[235208] = {
     name = "Wandering Shade of Taerar",
@@ -20733,7 +20733,7 @@ FS.CreatureDB[235208] = {
     classification = 3,
     isBoss = false,
     zones = {16169},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 55, atk = 20, def = 16, spd = 9 },
 }
 FS.CreatureDB[235209] = {
     name = "Corrosive Shade of Taerar",
@@ -20745,7 +20745,7 @@ FS.CreatureDB[235209] = {
     classification = 3,
     isBoss = false,
     zones = {16169},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 55, atk = 20, def = 16, spd = 9 },
 }
 FS.CreatureDB[235232] = {
     name = "Ysondre",
@@ -20757,7 +20757,7 @@ FS.CreatureDB[235232] = {
     classification = 3,
     isBoss = false,
     zones = {16029},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 55, atk = 20, def = 16, spd = 9 },
 }
 FS.CreatureDB[237439] = {
     name = "Kharon",
@@ -20769,7 +20769,7 @@ FS.CreatureDB[237439] = {
     classification = 1,
     isBoss = false,
     zones = {16074},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[237657] = {
     name = "Glacial Fetters",
@@ -20781,7 +20781,7 @@ FS.CreatureDB[237657] = {
     classification = 0,
     isBoss = false,
     zones = {16074},
-    baseStats = { hp = 345, atk = 136, def = 99, spd = 78 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[237964] = {
     name = "Harbinger of Sin",
@@ -20793,7 +20793,7 @@ FS.CreatureDB[237964] = {
     classification = 1,
     isBoss = false,
     zones = {16074},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[238191] = {
     name = "Risen Warrior",
@@ -20805,7 +20805,7 @@ FS.CreatureDB[238191] = {
     classification = 1,
     isBoss = false,
     zones = {16074},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[238192] = {
     name = "Risen Warder",
@@ -20817,7 +20817,7 @@ FS.CreatureDB[238192] = {
     classification = 1,
     isBoss = false,
     zones = {16074},
-    baseStats = { hp = 482, atk = 167, def = 138, spd = 78 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[238193] = {
     name = "Risen Protector",
@@ -20829,7 +20829,7 @@ FS.CreatureDB[238193] = {
     classification = 1,
     isBoss = false,
     zones = {16074},
-    baseStats = { hp = 482, atk = 167, def = 138, spd = 78 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[238200] = {
     name = "Crypt Ghoul",
@@ -20841,7 +20841,7 @@ FS.CreatureDB[238200] = {
     classification = 0,
     isBoss = false,
     zones = {16074},
-    baseStats = { hp = 340, atk = 117, def = 97, spd = 77 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[238206] = {
     name = "Diseased Ghoul",
@@ -20853,7 +20853,7 @@ FS.CreatureDB[238206] = {
     classification = 1,
     isBoss = false,
     zones = {16074},
-    baseStats = { hp = 482, atk = 167, def = 138, spd = 78 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[238208] = {
     name = "Ragged Ghoul",
@@ -20865,7 +20865,7 @@ FS.CreatureDB[238208] = {
     classification = 1,
     isBoss = false,
     zones = {16074},
-    baseStats = { hp = 482, atk = 167, def = 138, spd = 78 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[238252] = {
     name = "Trapped Soul",
@@ -20877,7 +20877,7 @@ FS.CreatureDB[238252] = {
     classification = 1,
     isBoss = false,
     zones = {16074},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[238425] = {
     name = "Annie",
@@ -20889,7 +20889,7 @@ FS.CreatureDB[238425] = {
     classification = 0,
     isBoss = false,
     zones = {16074},
-    baseStats = { hp = 40, atk = 9, def = 7, spd = 8 },
+    baseStats = { hp = 63, atk = 14, def = 11, spd = 12 },
 }
 FS.CreatureDB[238426] = {
     name = "Steele",
@@ -20901,7 +20901,7 @@ FS.CreatureDB[238426] = {
     classification = 0,
     isBoss = false,
     zones = {16074},
-    baseStats = { hp = 40, atk = 9, def = 7, spd = 8 },
+    baseStats = { hp = 63, atk = 14, def = 11, spd = 12 },
 }
 FS.CreatureDB[238427] = {
     name = "Flora",
@@ -20913,7 +20913,7 @@ FS.CreatureDB[238427] = {
     classification = 0,
     isBoss = false,
     zones = {16074},
-    baseStats = { hp = 40, atk = 9, def = 7, spd = 8 },
+    baseStats = { hp = 63, atk = 14, def = 11, spd = 12 },
 }
 FS.CreatureDB[238447] = {
     name = "Rotting Ghoul",
@@ -20925,7 +20925,7 @@ FS.CreatureDB[238447] = {
     classification = 0,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 335, atk = 116, def = 96, spd = 76 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[238448] = {
     name = "Skeletal Warrior",
@@ -20937,7 +20937,7 @@ FS.CreatureDB[238448] = {
     classification = 0,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 335, atk = 116, def = 96, spd = 76 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[238449] = {
     name = "Abomination",
@@ -20949,7 +20949,7 @@ FS.CreatureDB[238449] = {
     classification = 0,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 335, atk = 116, def = 96, spd = 76 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[238450] = {
     name = "Crypt Fiend",
@@ -20961,7 +20961,7 @@ FS.CreatureDB[238450] = {
     classification = 0,
     isBoss = false,
     zones = {3456},
-    baseStats = { hp = 335, atk = 116, def = 96, spd = 76 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[238527] = {
     name = "Mangled Cadaver",
@@ -20973,7 +20973,7 @@ FS.CreatureDB[238527] = {
     classification = 1,
     isBoss = false,
     zones = {16074},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[238528] = {
     name = "Ragged Ghoul",
@@ -20985,7 +20985,7 @@ FS.CreatureDB[238528] = {
     classification = 1,
     isBoss = false,
     zones = {16074},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[238559] = {
     name = "Crypt Dweller",
@@ -20997,7 +20997,7 @@ FS.CreatureDB[238559] = {
     classification = 1,
     isBoss = false,
     zones = {16074},
-    baseStats = { hp = 482, atk = 167, def = 138, spd = 78 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[238560] = {
     name = "The Warden",
@@ -21009,7 +21009,7 @@ FS.CreatureDB[238560] = {
     classification = 1,
     isBoss = false,
     zones = {16074},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[238561] = {
     name = "Crypt Terror",
@@ -21021,7 +21021,7 @@ FS.CreatureDB[238561] = {
     classification = 0,
     isBoss = false,
     zones = {16074},
-    baseStats = { hp = 330, atk = 114, def = 94, spd = 74 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[238562] = {
     name = "Bone Witch",
@@ -21033,7 +21033,7 @@ FS.CreatureDB[238562] = {
     classification = 1,
     isBoss = false,
     zones = {16074},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[238563] = {
     name = "Crypt Soldier",
@@ -21045,7 +21045,7 @@ FS.CreatureDB[238563] = {
     classification = 0,
     isBoss = false,
     zones = {16074},
-    baseStats = { hp = 330, atk = 114, def = 94, spd = 74 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[238628] = {
     name = "Broodwidow",
@@ -21057,7 +21057,7 @@ FS.CreatureDB[238628] = {
     classification = 1,
     isBoss = false,
     zones = {16074},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[238629] = {
     name = "Deep Stalker",
@@ -21069,7 +21069,7 @@ FS.CreatureDB[238629] = {
     classification = 0,
     isBoss = false,
     zones = {16074},
-    baseStats = { hp = 330, atk = 114, def = 94, spd = 74 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[238630] = {
     name = "Skeleton",
@@ -21081,7 +21081,7 @@ FS.CreatureDB[238630] = {
     classification = 0,
     isBoss = false,
     zones = {16074},
-    baseStats = { hp = 330, atk = 114, def = 94, spd = 74 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[238638] = {
     name = "Echo of the Baroness",
@@ -21093,7 +21093,7 @@ FS.CreatureDB[238638] = {
     classification = 1,
     isBoss = false,
     zones = {16074},
-    baseStats = { hp = 482, atk = 167, def = 138, spd = 78 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[238639] = {
     name = "Wailing Banshee",
@@ -21105,7 +21105,7 @@ FS.CreatureDB[238639] = {
     classification = 1,
     isBoss = false,
     zones = {16074},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[238640] = {
     name = "Shrieking Banshee",
@@ -21117,7 +21117,7 @@ FS.CreatureDB[238640] = {
     classification = 1,
     isBoss = false,
     zones = {16074},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[238643] = {
     name = "Forgotten Denizen",
@@ -21129,7 +21129,7 @@ FS.CreatureDB[238643] = {
     classification = 0,
     isBoss = false,
     zones = {16074},
-    baseStats = { hp = 330, atk = 114, def = 94, spd = 74 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[238650] = {
     name = "Forgotten Student",
@@ -21141,7 +21141,7 @@ FS.CreatureDB[238650] = {
     classification = 0,
     isBoss = false,
     zones = {16074},
-    baseStats = { hp = 325, atk = 112, def = 93, spd = 73 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[238656] = {
     name = "Crypt Dweller",
@@ -21153,7 +21153,7 @@ FS.CreatureDB[238656] = {
     classification = 1,
     isBoss = false,
     zones = {16074},
-    baseStats = { hp = 482, atk = 167, def = 138, spd = 78 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[238657] = {
     name = "Crypt Dweller",
@@ -21165,7 +21165,7 @@ FS.CreatureDB[238657] = {
     classification = 1,
     isBoss = false,
     zones = {16074},
-    baseStats = { hp = 482, atk = 167, def = 138, spd = 78 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[238766] = {
     name = "Withering Iris",
@@ -21177,7 +21177,7 @@ FS.CreatureDB[238766] = {
     classification = 0,
     isBoss = false,
     zones = {16074},
-    baseStats = { hp = 335, atk = 133, def = 96, spd = 76 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[238954] = {
     name = "Solistrasza",
@@ -21189,7 +21189,7 @@ FS.CreatureDB[238954] = {
     classification = 1,
     isBoss = false,
     zones = {16236},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[239151] = {
     name = "Monument",
@@ -21201,7 +21201,7 @@ FS.CreatureDB[239151] = {
     classification = 0,
     isBoss = false,
     zones = {1377},
-    baseStats = { hp = 335, atk = 116, def = 96, spd = 76 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[239328] = {
     name = "Burning Ghoul",
@@ -21213,7 +21213,7 @@ FS.CreatureDB[239328] = {
     classification = 1,
     isBoss = false,
     zones = {16074},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[239329] = {
     name = "Tortured Student",
@@ -21225,7 +21225,7 @@ FS.CreatureDB[239329] = {
     classification = 1,
     isBoss = false,
     zones = {16074},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[239334] = {
     name = "Deadwind Steed",
@@ -21237,7 +21237,7 @@ FS.CreatureDB[239334] = {
     classification = 0,
     isBoss = false,
     zones = {16074},
-    baseStats = { hp = 50030, atk = 18006, def = 15004, spd = 11406 },
+    baseStats = { hp = 53, atk = 19, def = 16, spd = 12 },
 }
 FS.CreatureDB[239365] = {
     name = "Blighted Apparition",
@@ -21249,7 +21249,7 @@ FS.CreatureDB[239365] = {
     classification = 1,
     isBoss = false,
     zones = {16074},
-    baseStats = { hp = 84, atk = 23, def = 18, spd = 13 },
+    baseStats = { hp = 68, atk = 18, def = 14, spd = 10 },
 }
 FS.CreatureDB[239382] = {
     name = "Diseased Corpse",
@@ -21261,7 +21261,7 @@ FS.CreatureDB[239382] = {
     classification = 1,
     isBoss = false,
     zones = {16074},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[240352] = {
     name = "Mana Elemental",
@@ -21273,7 +21273,7 @@ FS.CreatureDB[240352] = {
     classification = 1,
     isBoss = false,
     zones = {41},
-    baseStats = { hp = 489, atk = 194, def = 140, spd = 79 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[241904] = {
     name = "Scarlet Artillery",
@@ -21285,7 +21285,7 @@ FS.CreatureDB[241904] = {
     classification = 1,
     isBoss = false,
     zones = {16236},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[241940] = {
     name = "Spirit of Mograine",
@@ -21297,7 +21297,7 @@ FS.CreatureDB[241940] = {
     classification = 3,
     isBoss = false,
     zones = {16394},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 55, atk = 20, def = 16, spd = 9 },
 }
 FS.CreatureDB[242137] = {
     name = "Un'Goro Gorilla",
@@ -21309,7 +21309,7 @@ FS.CreatureDB[242137] = {
     classification = 0,
     isBoss = false,
     zones = {16236},
-    baseStats = { hp = 285, atk = 98, def = 81, spd = 64 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[242477] = {
     name = "Animated Detritus",
@@ -21321,7 +21321,7 @@ FS.CreatureDB[242477] = {
     classification = 1,
     isBoss = false,
     zones = {},
-    baseStats = { hp = 468, atk = 186, def = 134, spd = 76 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[242498] = {
     name = "Reagent Bot",
@@ -21333,7 +21333,7 @@ FS.CreatureDB[242498] = {
     classification = 0,
     isBoss = false,
     zones = {1, 12, 14, 17, 38, 40, 44, 85},
-    baseStats = { hp = 160, atk = 53, def = 43, spd = 36 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[242499] = {
     name = "Highlord Mograine",
@@ -21345,7 +21345,7 @@ FS.CreatureDB[242499] = {
     classification = 3,
     isBoss = false,
     zones = {796},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 55, atk = 20, def = 16, spd = 9 },
 }
 FS.CreatureDB[242501] = {
     name = "The Will of the Ashbringer",
@@ -21357,7 +21357,7 @@ FS.CreatureDB[242501] = {
     classification = 3,
     isBoss = false,
     zones = {139, 16394},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 55, atk = 20, def = 16, spd = 9 },
 }
 FS.CreatureDB[242867] = {
     name = "The Will of the Ashbringer",
@@ -21369,7 +21369,7 @@ FS.CreatureDB[242867] = {
     classification = 3,
     isBoss = false,
     zones = {796},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 55, atk = 20, def = 16, spd = 9 },
 }
 FS.CreatureDB[242886] = {
     name = "Eastsea Long Barrel",
@@ -21381,7 +21381,7 @@ FS.CreatureDB[242886] = {
     classification = 0,
     isBoss = false,
     zones = {16236},
-    baseStats = { hp = 60, atk = 17, def = 13, spd = 13 },
+    baseStats = { hp = 57, atk = 17, def = 13, spd = 13 },
 }
 FS.CreatureDB[243007] = {
     name = "Screeching Terror",
@@ -21393,7 +21393,7 @@ FS.CreatureDB[243007] = {
     classification = 1,
     isBoss = false,
     zones = {16236},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[243056] = {
     name = "Knight Farris",
@@ -21405,7 +21405,7 @@ FS.CreatureDB[243056] = {
     classification = 1,
     isBoss = false,
     zones = {2017},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[243057] = {
     name = "Knight Stearn",
@@ -21417,7 +21417,7 @@ FS.CreatureDB[243057] = {
     classification = 1,
     isBoss = false,
     zones = {2017},
-    baseStats = { hp = 70042, atk = 25208, def = 21006, spd = 11406 },
+    baseStats = { hp = 60, atk = 22, def = 18, spd = 10 },
 }
 FS.CreatureDB[243139] = {
     name = "Lightgorged Whelp",
@@ -21429,7 +21429,7 @@ FS.CreatureDB[243139] = {
     classification = 1,
     isBoss = false,
     zones = {16236},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[244009] = {
     name = "Scarlet Artillery",
@@ -21441,7 +21441,7 @@ FS.CreatureDB[244009] = {
     classification = 1,
     isBoss = false,
     zones = {16236},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[244017] = {
     name = "Scarlet Artillery",
@@ -21453,7 +21453,7 @@ FS.CreatureDB[244017] = {
     classification = 1,
     isBoss = false,
     zones = {16236},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[244106] = {
     name = "Scarlet Artillery",
@@ -21465,7 +21465,7 @@ FS.CreatureDB[244106] = {
     classification = 1,
     isBoss = false,
     zones = {16236},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[244135] = {
     name = "Scarlet Artillery",
@@ -21477,7 +21477,7 @@ FS.CreatureDB[244135] = {
     classification = 1,
     isBoss = false,
     zones = {16236},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[244525] = {
     name = "Hyjal Bear",
@@ -21489,7 +21489,7 @@ FS.CreatureDB[244525] = {
     classification = 0,
     isBoss = false,
     zones = {616},
-    baseStats = { hp = 372, atk = 107, def = 101, spd = 59 },
+    baseStats = { hp = 58, atk = 17, def = 16, spd = 9 },
 }
 FS.CreatureDB[245070] = {
     name = "Lightgorged Whelp",
@@ -21501,7 +21501,7 @@ FS.CreatureDB[245070] = {
     classification = 1,
     isBoss = false,
     zones = {16236},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[245490] = {
     name = "Shade of Naxxramas",
@@ -21513,7 +21513,7 @@ FS.CreatureDB[245490] = {
     classification = 1,
     isBoss = false,
     zones = {16394},
-    baseStats = { hp = 475, atk = 164, def = 136, spd = 77 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[248299] = {
     name = "Elmpaw",
@@ -21525,7 +21525,7 @@ FS.CreatureDB[248299] = {
     classification = 1,
     isBoss = false,
     zones = {12},
-    baseStats = { hp = 159, atk = 41, def = 37, spd = 17 },
+    baseStats = { hp = 69, atk = 18, def = 16, spd = 7 },
 }
 FS.CreatureDB[248463] = {
     name = "Rumbler",
@@ -21537,7 +21537,7 @@ FS.CreatureDB[248463] = {
     classification = 0,
     isBoss = false,
     zones = {12},
-    baseStats = { hp = 65, atk = 20, def = 15, spd = 14 },
+    baseStats = { hp = 57, atk = 18, def = 13, spd = 12 },
 }
 FS.CreatureDB[249052] = {
     name = "Witherbeard",
@@ -21549,7 +21549,7 @@ FS.CreatureDB[249052] = {
     classification = 1,
     isBoss = false,
     zones = {616},
-    baseStats = { hp = 468, atk = 186, def = 134, spd = 76 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[249053] = {
     name = "Hyjal Owl",
@@ -21561,7 +21561,7 @@ FS.CreatureDB[249053] = {
     classification = 0,
     isBoss = false,
     zones = {616},
-    baseStats = { hp = 310, atk = 107, def = 88, spd = 70 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[249228] = {
     name = "Fleshflay Ravener",
@@ -21573,7 +21573,7 @@ FS.CreatureDB[249228] = {
     classification = 0,
     isBoss = false,
     zones = {616},
-    baseStats = { hp = 320, atk = 110, def = 91, spd = 72 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[249247] = {
     name = "Forgotten Soldier",
@@ -21585,7 +21585,7 @@ FS.CreatureDB[249247] = {
     classification = 0,
     isBoss = false,
     zones = {616},
-    baseStats = { hp = 320, atk = 110, def = 91, spd = 72 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[250926] = {
     name = "Scrawny Ursera",
@@ -21597,7 +21597,7 @@ FS.CreatureDB[250926] = {
     classification = 0,
     isBoss = false,
     zones = {16593},
-    baseStats = { hp = 60, atk = 13, def = 11, spd = 9 },
+    baseStats = { hp = 64, atk = 14, def = 12, spd = 10 },
 }
 FS.CreatureDB[250927] = {
     name = "Shadowgale Ursera",
@@ -21609,7 +21609,7 @@ FS.CreatureDB[250927] = {
     classification = 0,
     isBoss = false,
     zones = {16593},
-    baseStats = { hp = 102, atk = 26, def = 24, spd = 16 },
+    baseStats = { hp = 61, atk = 15, def = 14, spd = 10 },
 }
 FS.CreatureDB[250928] = {
     name = "Highlands Ursera",
@@ -21621,7 +21621,7 @@ FS.CreatureDB[250928] = {
     classification = 0,
     isBoss = false,
     zones = {16593},
-    baseStats = { hp = 84, atk = 20, def = 18, spd = 12 },
+    baseStats = { hp = 63, atk = 15, def = 13, spd = 9 },
 }
 FS.CreatureDB[250929] = {
     name = "Malfunctioning Cyclone Construct",
@@ -21633,7 +21633,7 @@ FS.CreatureDB[250929] = {
     classification = 0,
     isBoss = false,
     zones = {16593},
-    baseStats = { hp = 160, atk = 60, def = 43, spd = 36 },
+    baseStats = { hp = 54, atk = 20, def = 14, spd = 12 },
 }
 FS.CreatureDB[250937] = {
     name = "Ursera Scavenger",
@@ -21645,7 +21645,7 @@ FS.CreatureDB[250937] = {
     classification = 0,
     isBoss = false,
     zones = {16593},
-    baseStats = { hp = 66, atk = 15, def = 13, spd = 10 },
+    baseStats = { hp = 64, atk = 14, def = 12, spd = 10 },
 }
 FS.CreatureDB[251115] = {
     name = "Urs'anah",
@@ -21657,7 +21657,7 @@ FS.CreatureDB[251115] = {
     classification = 0,
     isBoss = false,
     zones = {16593},
-    baseStats = { hp = 72, atk = 17, def = 14, spd = 11 },
+    baseStats = { hp = 63, atk = 15, def = 12, spd = 10 },
 }
 FS.CreatureDB[251166] = {
     name = "Minor Manifestation of Earth",
@@ -21669,7 +21669,7 @@ FS.CreatureDB[251166] = {
     classification = 0,
     isBoss = false,
     zones = {16593},
-    baseStats = { hp = 110, atk = 40, def = 28, spd = 24 },
+    baseStats = { hp = 54, atk = 20, def = 14, spd = 12 },
 }
 FS.CreatureDB[251245] = {
     name = "Prideclaw",
@@ -21681,7 +21681,7 @@ FS.CreatureDB[251245] = {
     classification = 0,
     isBoss = false,
     zones = {16593},
-    baseStats = { hp = 60, atk = 20, def = 13, spd = 18 },
+    baseStats = { hp = 54, atk = 18, def = 12, spd = 16 },
 }
 FS.CreatureDB[251343] = {
     name = "Shen'dralar Citizen",
@@ -21693,7 +21693,7 @@ FS.CreatureDB[251343] = {
     classification = 0,
     isBoss = false,
     zones = {16651},
-    baseStats = { hp = 335, atk = 116, def = 96, spd = 76 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[251661] = {
     name = "Galestrider",
@@ -21705,7 +21705,7 @@ FS.CreatureDB[251661] = {
     classification = 0,
     isBoss = false,
     zones = {16593},
-    baseStats = { hp = 60, atk = 17, def = 13, spd = 13 },
+    baseStats = { hp = 57, atk = 17, def = 13, spd = 13 },
 }
 FS.CreatureDB[251676] = {
     name = "Wind Hollow",
@@ -21717,7 +21717,7 @@ FS.CreatureDB[251676] = {
     classification = 0,
     isBoss = false,
     zones = {16593},
-    baseStats = { hp = 85, atk = 29, def = 21, spd = 19 },
+    baseStats = { hp = 55, atk = 19, def = 14, spd = 12 },
 }
 FS.CreatureDB[251707] = {
     name = "Ornery Galestrider",
@@ -21729,7 +21729,7 @@ FS.CreatureDB[251707] = {
     classification = 0,
     isBoss = false,
     zones = {16593},
-    baseStats = { hp = 75, atk = 22, def = 18, spd = 16 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[252481] = {
     name = "Wind Sprite",
@@ -21741,7 +21741,7 @@ FS.CreatureDB[252481] = {
     classification = 0,
     isBoss = false,
     zones = {16593},
-    baseStats = { hp = 70, atk = 23, def = 16, spd = 15 },
+    baseStats = { hp = 56, atk = 19, def = 13, spd = 12 },
 }
 FS.CreatureDB[252691] = {
     name = "Adarien",
@@ -21753,7 +21753,7 @@ FS.CreatureDB[252691] = {
     classification = 0,
     isBoss = false,
     zones = {16651},
-    baseStats = { hp = 335, atk = 116, def = 96, spd = 76 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[252695] = {
     name = "Pylon Protector",
@@ -21765,7 +21765,7 @@ FS.CreatureDB[252695] = {
     classification = 1,
     isBoss = false,
     zones = {16651},
-    baseStats = { hp = 475, atk = 188, def = 136, spd = 77 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[252711] = {
     name = "Decrepit Pylon Protector",
@@ -21777,7 +21777,7 @@ FS.CreatureDB[252711] = {
     classification = 0,
     isBoss = false,
     zones = {},
-    baseStats = { hp = 245, atk = 95, def = 69, spd = 55 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[253282] = {
     name = "Shriekling Fledgling",
@@ -21789,7 +21789,7 @@ FS.CreatureDB[253282] = {
     classification = 0,
     isBoss = false,
     zones = {16593},
-    baseStats = { hp = 75, atk = 26, def = 18, spd = 22 },
+    baseStats = { hp = 53, atk = 18, def = 13, spd = 16 },
 }
 FS.CreatureDB[253283] = {
     name = "Shriekling Matriarch",
@@ -21801,7 +21801,7 @@ FS.CreatureDB[253283] = {
     classification = 0,
     isBoss = false,
     zones = {16593},
-    baseStats = { hp = 80, atk = 28, def = 19, spd = 24 },
+    baseStats = { hp = 52, atk = 19, def = 13, spd = 16 },
 }
 FS.CreatureDB[254572] = {
     name = "Malevolent Marigold",
@@ -21813,7 +21813,7 @@ FS.CreatureDB[254572] = {
     classification = 0,
     isBoss = false,
     zones = {16651},
-    baseStats = { hp = 245, atk = 95, def = 69, spd = 55 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[254588] = {
     name = "Windsong Crawler",
@@ -21825,7 +21825,7 @@ FS.CreatureDB[254588] = {
     classification = 0,
     isBoss = false,
     zones = {16593},
-    baseStats = { hp = 75, atk = 22, def = 18, spd = 16 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[254589] = {
     name = "Vulgara the Insatiable",
@@ -21837,7 +21837,7 @@ FS.CreatureDB[254589] = {
     classification = 1,
     isBoss = false,
     zones = {16593},
-    baseStats = { hp = 105, atk = 31, def = 25, spd = 16 },
+    baseStats = { hp = 65, atk = 19, def = 16, spd = 10 },
 }
 FS.CreatureDB[254695] = {
     name = "Repair Bot",
@@ -21849,7 +21849,7 @@ FS.CreatureDB[254695] = {
     classification = 0,
     isBoss = false,
     zones = {11, 12, 14, 17, 40, 85, 130, 400},
-    baseStats = { hp = 160, atk = 53, def = 43, spd = 36 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[255174] = {
     name = "Blind Screecher",
@@ -21861,7 +21861,7 @@ FS.CreatureDB[255174] = {
     classification = 0,
     isBoss = false,
     zones = {16651},
-    baseStats = { hp = 240, atk = 81, def = 67, spd = 62 },
+    baseStats = { hp = 53, atk = 18, def = 15, spd = 14 },
 }
 FS.CreatureDB[255697] = {
     name = "Shen'dralar Scholar",
@@ -21873,7 +21873,7 @@ FS.CreatureDB[255697] = {
     classification = 0,
     isBoss = false,
     zones = {16651},
-    baseStats = { hp = 335, atk = 116, def = 96, spd = 76 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[255759] = {
     name = "Shen'dralas Protector",
@@ -21885,7 +21885,7 @@ FS.CreatureDB[255759] = {
     classification = 1,
     isBoss = false,
     zones = {16651},
-    baseStats = { hp = 468, atk = 162, def = 134, spd = 76 },
+    baseStats = { hp = 61, atk = 21, def = 18, spd = 10 },
 }
 FS.CreatureDB[255830] = {
     name = "Malevolent Storm",
@@ -21897,7 +21897,7 @@ FS.CreatureDB[255830] = {
     classification = 0,
     isBoss = false,
     zones = {16593},
-    baseStats = { hp = 95, atk = 33, def = 24, spd = 21 },
+    baseStats = { hp = 55, atk = 19, def = 14, spd = 12 },
 }
 FS.CreatureDB[255833] = {
     name = "Rohash",
@@ -21909,7 +21909,7 @@ FS.CreatureDB[255833] = {
     classification = 0,
     isBoss = false,
     zones = {16593},
-    baseStats = { hp = 335, atk = 133, def = 96, spd = 76 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[255851] = {
     name = "Mature Paletusk",
@@ -21921,7 +21921,7 @@ FS.CreatureDB[255851] = {
     classification = 0,
     isBoss = false,
     zones = {16591},
-    baseStats = { hp = 270, atk = 76, def = 72, spd = 42 },
+    baseStats = { hp = 58, atk = 17, def = 16, spd = 9 },
 }
 FS.CreatureDB[255901] = {
     name = "Sand Crawler",
@@ -21933,7 +21933,7 @@ FS.CreatureDB[255901] = {
     classification = 0,
     isBoss = false,
     zones = {16591},
-    baseStats = { hp = 215, atk = 72, def = 60, spd = 48 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[256076] = {
     name = "Damaged Construct",
@@ -21945,7 +21945,7 @@ FS.CreatureDB[256076] = {
     classification = 0,
     isBoss = false,
     zones = {16593},
-    baseStats = { hp = 85, atk = 29, def = 21, spd = 19 },
+    baseStats = { hp = 55, atk = 19, def = 14, spd = 12 },
 }
 FS.CreatureDB[256092] = {
     name = "Shadowgale Shriekling",
@@ -21957,7 +21957,7 @@ FS.CreatureDB[256092] = {
     classification = 0,
     isBoss = false,
     zones = {16593},
-    baseStats = { hp = 85, atk = 26, def = 21, spd = 19 },
+    baseStats = { hp = 56, atk = 17, def = 14, spd = 13 },
 }
 FS.CreatureDB[256108] = {
     name = "Shadowgale Shrieker",
@@ -21969,7 +21969,7 @@ FS.CreatureDB[256108] = {
     classification = 0,
     isBoss = false,
     zones = {16593},
-    baseStats = { hp = 85, atk = 26, def = 21, spd = 19 },
+    baseStats = { hp = 56, atk = 17, def = 14, spd = 13 },
 }
 FS.CreatureDB[256250] = {
     name = "Living Storm",
@@ -21981,7 +21981,7 @@ FS.CreatureDB[256250] = {
     classification = 0,
     isBoss = false,
     zones = {16593},
-    baseStats = { hp = 80, atk = 27, def = 19, spd = 17 },
+    baseStats = { hp = 56, atk = 19, def = 13, spd = 12 },
 }
 FS.CreatureDB[256492] = {
     name = "Fernfeather",
@@ -21993,7 +21993,7 @@ FS.CreatureDB[256492] = {
     classification = 4,
     isBoss = false,
     zones = {16593},
-    baseStats = { hp = 118, atk = 36, def = 29, spd = 19 },
+    baseStats = { hp = 59, atk = 18, def = 14, spd = 9 },
 }
 FS.CreatureDB[256617] = {
     name = "Baron Anvillaxx",
@@ -22005,7 +22005,7 @@ FS.CreatureDB[256617] = {
     classification = 1,
     isBoss = false,
     zones = {16593},
-    baseStats = { hp = 140, atk = 49, def = 35, spd = 22 },
+    baseStats = { hp = 62, atk = 22, def = 16, spd = 10 },
 }
 FS.CreatureDB[256807] = {
     name = "Shore Crawler",
@@ -22017,7 +22017,7 @@ FS.CreatureDB[256807] = {
     classification = 0,
     isBoss = false,
     zones = {16591},
-    baseStats = { hp = 230, atk = 78, def = 64, spd = 52 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[258331] = {
     name = "Young Paletusk",
@@ -22029,7 +22029,7 @@ FS.CreatureDB[258331] = {
     classification = 0,
     isBoss = false,
     zones = {16591},
-    baseStats = { hp = 258, atk = 72, def = 69, spd = 40 },
+    baseStats = { hp = 59, atk = 16, def = 16, spd = 9 },
 }
 FS.CreatureDB[259046] = {
     name = "Freshwater Crocolisk",
@@ -22041,7 +22041,7 @@ FS.CreatureDB[259046] = {
     classification = 0,
     isBoss = false,
     zones = {16591},
-    baseStats = { hp = 225, atk = 76, def = 63, spd = 50 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[259054] = {
     name = "Wildplains Patriarch",
@@ -22053,7 +22053,7 @@ FS.CreatureDB[259054] = {
     classification = 0,
     isBoss = false,
     zones = {16591},
-    baseStats = { hp = 230, atk = 93, def = 64, spd = 72 },
+    baseStats = { hp = 50, atk = 20, def = 14, spd = 16 },
 }
 FS.CreatureDB[259055] = {
     name = "Wildplains Huntress",
@@ -22065,7 +22065,7 @@ FS.CreatureDB[259055] = {
     classification = 0,
     isBoss = false,
     zones = {16591},
-    baseStats = { hp = 225, atk = 91, def = 63, spd = 69 },
+    baseStats = { hp = 51, atk = 20, def = 14, spd = 15 },
 }
 FS.CreatureDB[259267] = {
     name = "Plains Coyote",
@@ -22077,7 +22077,7 @@ FS.CreatureDB[259267] = {
     classification = 0,
     isBoss = false,
     zones = {16591},
-    baseStats = { hp = 215, atk = 72, def = 60, spd = 48 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[259269] = {
     name = "High Plains Buzzard",
@@ -22089,7 +22089,7 @@ FS.CreatureDB[259269] = {
     classification = 0,
     isBoss = false,
     zones = {16591},
-    baseStats = { hp = 225, atk = 76, def = 63, spd = 50 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[259388] = {
     name = "Mystmane",
@@ -22101,7 +22101,7 @@ FS.CreatureDB[259388] = {
     classification = 4,
     isBoss = false,
     zones = {16593},
-    baseStats = { hp = 168, atk = 43, def = 40, spd = 18 },
+    baseStats = { hp = 62, atk = 16, def = 15, spd = 7 },
 }
 FS.CreatureDB[260157] = {
     name = "Elder Snow Leopard",
@@ -22113,7 +22113,7 @@ FS.CreatureDB[260157] = {
     classification = 0,
     isBoss = false,
     zones = {1},
-    baseStats = { hp = 80, atk = 28, def = 19, spd = 24 },
+    baseStats = { hp = 52, atk = 19, def = 13, spd = 16 },
 }
 FS.CreatureDB[260235] = {
     name = "Trapclaw",
@@ -22125,7 +22125,7 @@ FS.CreatureDB[260235] = {
     classification = 0,
     isBoss = false,
     zones = {16591},
-    baseStats = { hp = 245, atk = 83, def = 69, spd = 55 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[260396] = {
     name = "Whispering Horror",
@@ -22137,7 +22137,7 @@ FS.CreatureDB[260396] = {
     classification = 1,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 125, atk = 38, def = 31, spd = 20 },
+    baseStats = { hp = 64, atk = 20, def = 16, spd = 10 },
 }
 FS.CreatureDB[260428] = {
     name = "Shadowvale Lurcher",
@@ -22149,7 +22149,7 @@ FS.CreatureDB[260428] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 80, atk = 24, def = 19, spd = 17 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[260430] = {
     name = "Shadowvale Mystic",
@@ -22161,7 +22161,7 @@ FS.CreatureDB[260430] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 80, atk = 24, def = 19, spd = 17 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[260431] = {
     name = "Shadowvale Lurcher",
@@ -22173,7 +22173,7 @@ FS.CreatureDB[260431] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 75, atk = 22, def = 18, spd = 16 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[260432] = {
     name = "Shadowvale Mystic",
@@ -22185,7 +22185,7 @@ FS.CreatureDB[260432] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 75, atk = 22, def = 18, spd = 16 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[260803] = {
     name = "Highland Spider",
@@ -22197,7 +22197,7 @@ FS.CreatureDB[260803] = {
     classification = 0,
     isBoss = false,
     zones = {11, 16732},
-    baseStats = { hp = 170, atk = 56, def = 46, spd = 38 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[260809] = {
     name = "Highland Tortoise",
@@ -22209,7 +22209,7 @@ FS.CreatureDB[260809] = {
     classification = 0,
     isBoss = false,
     zones = {11, 16732},
-    baseStats = { hp = 165, atk = 54, def = 45, spd = 37 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[260822] = {
     name = "Tainted Grovewalker",
@@ -22221,7 +22221,7 @@ FS.CreatureDB[260822] = {
     classification = 0,
     isBoss = false,
     zones = {616},
-    baseStats = { hp = 320, atk = 126, def = 91, spd = 72 },
+    baseStats = { hp = 52, atk = 21, def = 15, spd = 12 },
 }
 FS.CreatureDB[262033] = {
     name = "Suspicious Adventurer",
@@ -22233,7 +22233,7 @@ FS.CreatureDB[262033] = {
     classification = 0,
     isBoss = false,
     zones = {28},
-    baseStats = { hp = 335, atk = 116, def = 96, spd = 76 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[262037] = {
     name = "Roosting Duskbat",
@@ -22245,7 +22245,7 @@ FS.CreatureDB[262037] = {
     classification = 0,
     isBoss = false,
     zones = {16591},
-    baseStats = { hp = 220, atk = 74, def = 61, spd = 57 },
+    baseStats = { hp = 53, atk = 18, def = 15, spd = 14 },
 }
 FS.CreatureDB[262523] = {
     name = "Galestrider",
@@ -22257,7 +22257,7 @@ FS.CreatureDB[262523] = {
     classification = 0,
     isBoss = false,
     zones = {215},
-    baseStats = { hp = 85, atk = 26, def = 21, spd = 19 },
+    baseStats = { hp = 56, atk = 17, def = 14, spd = 13 },
 }
 FS.CreatureDB[263343] = {
     name = "Low Plains Buzzard",
@@ -22269,7 +22269,7 @@ FS.CreatureDB[263343] = {
     classification = 0,
     isBoss = false,
     zones = {16591},
-    baseStats = { hp = 220, atk = 74, def = 61, spd = 49 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[263348] = {
     name = "Roving Tallstrider",
@@ -22281,7 +22281,7 @@ FS.CreatureDB[263348] = {
     classification = 0,
     isBoss = false,
     zones = {16591},
-    baseStats = { hp = 220, atk = 74, def = 61, spd = 49 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[263369] = {
     name = "G45-B4G",
@@ -22293,7 +22293,7 @@ FS.CreatureDB[263369] = {
     classification = 0,
     isBoss = false,
     zones = {16591},
-    baseStats = { hp = 225, atk = 76, def = 63, spd = 50 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[263380] = {
     name = "Ghostmaw",
@@ -22305,7 +22305,7 @@ FS.CreatureDB[263380] = {
     classification = 1,
     isBoss = false,
     zones = {16591},
-    baseStats = { hp = 343, atk = 117, def = 96, spd = 55 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[263681] = {
     name = "Bear",
@@ -22317,7 +22317,7 @@ FS.CreatureDB[263681] = {
     classification = 0,
     isBoss = false,
     zones = {16651},
-    baseStats = { hp = 288, atk = 81, def = 77, spd = 45 },
+    baseStats = { hp = 59, atk = 16, def = 16, spd = 9 },
 }
 FS.CreatureDB[264079] = {
     name = "Gloomrise Hatchling",
@@ -22329,7 +22329,7 @@ FS.CreatureDB[264079] = {
     classification = 0,
     isBoss = false,
     zones = {215},
-    baseStats = { hp = 170, atk = 56, def = 46, spd = 38 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[264081] = {
     name = "Gloomrise Spinner",
@@ -22341,7 +22341,7 @@ FS.CreatureDB[264081] = {
     classification = 0,
     isBoss = false,
     zones = {215},
-    baseStats = { hp = 175, atk = 58, def = 48, spd = 39 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[264083] = {
     name = "Gloomrise Soldier",
@@ -22353,7 +22353,7 @@ FS.CreatureDB[264083] = {
     classification = 0,
     isBoss = false,
     zones = {215},
-    baseStats = { hp = 175, atk = 58, def = 48, spd = 39 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[264333] = {
     name = "Grimroot",
@@ -22365,7 +22365,7 @@ FS.CreatureDB[264333] = {
     classification = 1,
     isBoss = false,
     zones = {616},
-    baseStats = { hp = 468, atk = 186, def = 134, spd = 76 },
+    baseStats = { hp = 59, atk = 24, def = 17, spd = 10 },
 }
 FS.CreatureDB[266484] = {
     name = "Morbin Lightbane",
@@ -22377,7 +22377,7 @@ FS.CreatureDB[266484] = {
     classification = 0,
     isBoss = false,
     zones = {1497},
-    baseStats = { hp = 185, atk = 62, def = 51, spd = 41 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[266849] = {
     name = "Ridgeshade Lurker",
@@ -22389,7 +22389,7 @@ FS.CreatureDB[266849] = {
     classification = 0,
     isBoss = false,
     zones = {14},
-    baseStats = { hp = 60, atk = 17, def = 13, spd = 13 },
+    baseStats = { hp = 57, atk = 17, def = 13, spd = 13 },
 }
 FS.CreatureDB[266850] = {
     name = "Ridgeshade Creeper",
@@ -22401,7 +22401,7 @@ FS.CreatureDB[266850] = {
     classification = 0,
     isBoss = false,
     zones = {14},
-    baseStats = { hp = 60, atk = 17, def = 13, spd = 13 },
+    baseStats = { hp = 57, atk = 17, def = 13, spd = 13 },
 }
 FS.CreatureDB[266851] = {
     name = "Ukorsbane",
@@ -22413,7 +22413,7 @@ FS.CreatureDB[266851] = {
     classification = 1,
     isBoss = false,
     zones = {14},
-    baseStats = { hp = 105, atk = 31, def = 25, spd = 16 },
+    baseStats = { hp = 65, atk = 19, def = 16, spd = 10 },
 }
 FS.CreatureDB[267354] = {
     name = "Black Skeletal Horse",
@@ -22425,7 +22425,7 @@ FS.CreatureDB[267354] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 40, atk = 9, def = 7, spd = 8 },
+    baseStats = { hp = 63, atk = 14, def = 11, spd = 12 },
 }
 FS.CreatureDB[267357] = {
     name = "Red Skeletal Horse",
@@ -22437,7 +22437,7 @@ FS.CreatureDB[267357] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 40, atk = 9, def = 7, spd = 8 },
+    baseStats = { hp = 63, atk = 14, def = 11, spd = 12 },
 }
 FS.CreatureDB[267358] = {
     name = "Blue Skeletal Horse",
@@ -22449,7 +22449,7 @@ FS.CreatureDB[267358] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 40, atk = 9, def = 7, spd = 8 },
+    baseStats = { hp = 63, atk = 14, def = 11, spd = 12 },
 }
 FS.CreatureDB[267364] = {
     name = "Brown Skeletal Horse",
@@ -22461,7 +22461,7 @@ FS.CreatureDB[267364] = {
     classification = 0,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 40, atk = 9, def = 7, spd = 8 },
+    baseStats = { hp = 63, atk = 14, def = 11, spd = 12 },
 }
 FS.CreatureDB[267683] = {
     name = "Red Mechanostrider",
@@ -22473,7 +22473,7 @@ FS.CreatureDB[267683] = {
     classification = 0,
     isBoss = false,
     zones = {1},
-    baseStats = { hp = 40, atk = 9, def = 7, spd = 8 },
+    baseStats = { hp = 63, atk = 14, def = 11, spd = 12 },
 }
 FS.CreatureDB[267684] = {
     name = "Green Mechanostrider",
@@ -22485,7 +22485,7 @@ FS.CreatureDB[267684] = {
     classification = 0,
     isBoss = false,
     zones = {1},
-    baseStats = { hp = 40, atk = 9, def = 7, spd = 8 },
+    baseStats = { hp = 63, atk = 14, def = 11, spd = 12 },
 }
 FS.CreatureDB[267687] = {
     name = "Blue Mechanostrider",
@@ -22497,7 +22497,7 @@ FS.CreatureDB[267687] = {
     classification = 0,
     isBoss = false,
     zones = {1},
-    baseStats = { hp = 40, atk = 9, def = 7, spd = 8 },
+    baseStats = { hp = 63, atk = 14, def = 11, spd = 12 },
 }
 FS.CreatureDB[267688] = {
     name = "Unpainted Mechanostrider",
@@ -22509,7 +22509,7 @@ FS.CreatureDB[267688] = {
     classification = 0,
     isBoss = false,
     zones = {1},
-    baseStats = { hp = 40, atk = 9, def = 7, spd = 8 },
+    baseStats = { hp = 63, atk = 14, def = 11, spd = 12 },
 }
 FS.CreatureDB[267963] = {
     name = "Quadcopter",
@@ -22521,7 +22521,7 @@ FS.CreatureDB[267963] = {
     classification = 0,
     isBoss = false,
     zones = {},
-    baseStats = { hp = 345, atk = 119, def = 99, spd = 78 },
+    baseStats = { hp = 54, atk = 19, def = 15, spd = 12 },
 }
 FS.CreatureDB[268425] = {
     name = "Ranath Nightstride",
@@ -22533,7 +22533,7 @@ FS.CreatureDB[268425] = {
     classification = 1,
     isBoss = false,
     zones = {36},
-    baseStats = { hp = 364, atk = 124, def = 102, spd = 58 },
+    baseStats = { hp = 62, atk = 21, def = 17, spd = 10 },
 }
 FS.CreatureDB[268530] = {
     name = "Bloodtalon Matriarch",
@@ -22545,7 +22545,7 @@ FS.CreatureDB[268530] = {
     classification = 0,
     isBoss = false,
     zones = {14},
-    baseStats = { hp = 80, atk = 28, def = 19, spd = 24 },
+    baseStats = { hp = 52, atk = 19, def = 13, spd = 16 },
 }
 FS.CreatureDB[268558] = {
     name = "Chakuyak",
@@ -22557,7 +22557,7 @@ FS.CreatureDB[268558] = {
     classification = 0,
     isBoss = false,
     zones = {215},
-    baseStats = { hp = 60, atk = 17, def = 13, spd = 13 },
+    baseStats = { hp = 57, atk = 17, def = 13, spd = 13 },
 }
 FS.CreatureDB[268763] = {
     name = "Manifestation of Flames",
@@ -22569,7 +22569,7 @@ FS.CreatureDB[268763] = {
     classification = 0,
     isBoss = false,
     zones = {16593},
-    baseStats = { hp = 95, atk = 33, def = 24, spd = 21 },
+    baseStats = { hp = 55, atk = 19, def = 14, spd = 12 },
 }
 FS.CreatureDB[268831] = {
     name = "Plains Prowler",
@@ -22581,7 +22581,7 @@ FS.CreatureDB[268831] = {
     classification = 0,
     isBoss = false,
     zones = {16591},
-    baseStats = { hp = 230, atk = 78, def = 64, spd = 52 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[269075] = {
     name = "Snow Leopard Prowler",
@@ -22593,7 +22593,7 @@ FS.CreatureDB[269075] = {
     classification = 0,
     isBoss = false,
     zones = {1},
-    baseStats = { hp = 65, atk = 21, def = 15, spd = 19 },
+    baseStats = { hp = 54, atk = 18, def = 12, spd = 16 },
 }
 FS.CreatureDB[269175] = {
     name = "Carnivorous Weed",
@@ -22605,7 +22605,7 @@ FS.CreatureDB[269175] = {
     classification = 0,
     isBoss = false,
     zones = {33},
-    baseStats = { hp = 220, atk = 85, def = 61, spd = 49 },
+    baseStats = { hp = 53, atk = 20, def = 15, spd = 12 },
 }
 FS.CreatureDB[269254] = {
     name = "Famished Blackworg",
@@ -22617,7 +22617,7 @@ FS.CreatureDB[269254] = {
     classification = 0,
     isBoss = false,
     zones = {51},
-    baseStats = { hp = 265, atk = 90, def = 75, spd = 60 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[270196] = {
     name = "Jai'vhanel",
@@ -22629,7 +22629,7 @@ FS.CreatureDB[270196] = {
     classification = 0,
     isBoss = false,
     zones = {148},
-    baseStats = { hp = 95, atk = 29, def = 24, spd = 21 },
+    baseStats = { hp = 57, atk = 17, def = 14, spd = 12 },
 }
 FS.CreatureDB[270294] = {
     name = "Baron Marinous",
@@ -22641,7 +22641,7 @@ FS.CreatureDB[270294] = {
     classification = 1,
     isBoss = false,
     zones = {148},
-    baseStats = { hp = 196, atk = 73, def = 52, spd = 31 },
+    baseStats = { hp = 61, atk = 23, def = 16, spd = 10 },
 }
 FS.CreatureDB[270298] = {
     name = "Child of Jai'vhanel",
@@ -22653,7 +22653,7 @@ FS.CreatureDB[270298] = {
     classification = 0,
     isBoss = false,
     zones = {148},
-    baseStats = { hp = 90, atk = 27, def = 22, spd = 20 },
+    baseStats = { hp = 56, atk = 17, def = 14, spd = 13 },
 }
 FS.CreatureDB[270589] = {
     name = "Nightveiled Rotheap",
@@ -22665,7 +22665,7 @@ FS.CreatureDB[270589] = {
     classification = 1,
     isBoss = false,
     zones = {11},
-    baseStats = { hp = 266, atk = 102, def = 73, spd = 42 },
+    baseStats = { hp = 60, atk = 23, def = 17, spd = 10 },
 }
 FS.CreatureDB[270693] = {
     name = "Daggerfang",
@@ -22677,7 +22677,7 @@ FS.CreatureDB[270693] = {
     classification = 0,
     isBoss = false,
     zones = {38},
-    baseStats = { hp = 110, atk = 35, def = 28, spd = 24 },
+    baseStats = { hp = 56, atk = 18, def = 14, spd = 12 },
 }
 FS.CreatureDB[271334] = {
     name = "Maddened Rotclaw",
@@ -22689,7 +22689,7 @@ FS.CreatureDB[271334] = {
     classification = 0,
     isBoss = false,
     zones = {11},
-    baseStats = { hp = 192, atk = 53, def = 49, spd = 30 },
+    baseStats = { hp = 60, atk = 16, def = 15, spd = 9 },
 }
 FS.CreatureDB[271338] = {
     name = "Ados",
@@ -22701,7 +22701,7 @@ FS.CreatureDB[271338] = {
     classification = 1,
     isBoss = false,
     zones = {11},
-    baseStats = { hp = 273, atk = 104, def = 75, spd = 44 },
+    baseStats = { hp = 60, atk = 23, def = 17, spd = 10 },
 }
 FS.CreatureDB[271460] = {
     name = "Modr",
@@ -22713,7 +22713,7 @@ FS.CreatureDB[271460] = {
     classification = 1,
     isBoss = false,
     zones = {11},
-    baseStats = { hp = 273, atk = 104, def = 75, spd = 44 },
+    baseStats = { hp = 60, atk = 23, def = 17, spd = 10 },
 }
 FS.CreatureDB[271462] = {
     name = "Golm",
@@ -22725,7 +22725,7 @@ FS.CreatureDB[271462] = {
     classification = 1,
     isBoss = false,
     zones = {11},
-    baseStats = { hp = 273, atk = 104, def = 75, spd = 44 },
+    baseStats = { hp = 60, atk = 23, def = 17, spd = 10 },
 }
 FS.CreatureDB[271898] = {
     name = "Greater Tarantula",
@@ -22737,7 +22737,7 @@ FS.CreatureDB[271898] = {
     classification = 0,
     isBoss = false,
     zones = {44},
-    baseStats = { hp = 125, atk = 40, def = 33, spd = 28 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[272096] = {
     name = "Befouled Webwood",
@@ -22749,7 +22749,7 @@ FS.CreatureDB[272096] = {
     classification = 0,
     isBoss = false,
     zones = {141},
-    baseStats = { hp = 85, atk = 26, def = 21, spd = 19 },
+    baseStats = { hp = 56, atk = 17, def = 14, spd = 13 },
 }
 FS.CreatureDB[272173] = {
     name = "Venture Co. Clearclutter",
@@ -22761,7 +22761,7 @@ FS.CreatureDB[272173] = {
     classification = 1,
     isBoss = false,
     zones = {215},
-    baseStats = { hp = 133, atk = 41, def = 33, spd = 21 },
+    baseStats = { hp = 64, atk = 20, def = 16, spd = 10 },
 }
 FS.CreatureDB[272228] = {
     name = "Harvest Sentry",
@@ -22773,7 +22773,7 @@ FS.CreatureDB[272228] = {
     classification = 0,
     isBoss = false,
     zones = {16591},
-    baseStats = { hp = 215, atk = 72, def = 60, spd = 48 },
+    baseStats = { hp = 55, atk = 18, def = 15, spd = 12 },
 }
 FS.CreatureDB[275164] = {
     name = "Arcane Sentry",
@@ -22785,7 +22785,7 @@ FS.CreatureDB[275164] = {
     classification = 1,
     isBoss = false,
     zones = {36},
-    baseStats = { hp = 259, atk = 98, def = 71, spd = 41 },
+    baseStats = { hp = 60, atk = 23, def = 17, spd = 10 },
 }
 FS.CreatureDB[275703] = {
     name = "Lasher Sproutling",
@@ -22797,7 +22797,7 @@ FS.CreatureDB[275703] = {
     classification = 0,
     isBoss = false,
     zones = {141},
-    baseStats = { hp = 65, atk = 20, def = 15, spd = 14 },
+    baseStats = { hp = 57, atk = 18, def = 13, spd = 12 },
 }
 FS.CreatureDB[275708] = {
     name = "Blooming Lasher",
@@ -22809,7 +22809,7 @@ FS.CreatureDB[275708] = {
     classification = 0,
     isBoss = false,
     zones = {141},
-    baseStats = { hp = 80, atk = 27, def = 19, spd = 17 },
+    baseStats = { hp = 56, atk = 19, def = 13, spd = 12 },
 }
 FS.CreatureDB[276003] = {
     name = "Minor Ice Elemental",
@@ -22821,7 +22821,7 @@ FS.CreatureDB[276003] = {
     classification = 0,
     isBoss = false,
     zones = {1},
-    baseStats = { hp = 70, atk = 23, def = 16, spd = 15 },
+    baseStats = { hp = 56, atk = 19, def = 13, spd = 12 },
 }
 FS.CreatureDB[276009] = {
     name = "Avala",
@@ -22833,7 +22833,7 @@ FS.CreatureDB[276009] = {
     classification = 0,
     isBoss = false,
     zones = {1},
-    baseStats = { hp = 75, atk = 25, def = 18, spd = 16 },
+    baseStats = { hp = 56, atk = 19, def = 13, spd = 12 },
 }
 FS.CreatureDB[276020] = {
     name = "Riptear",
@@ -22845,7 +22845,7 @@ FS.CreatureDB[276020] = {
     classification = 1,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 140, atk = 43, def = 35, spd = 22 },
+    baseStats = { hp = 64, atk = 20, def = 16, spd = 10 },
 }
 FS.CreatureDB[276061] = {
     name = "Decrepit Harvester",
@@ -22857,7 +22857,7 @@ FS.CreatureDB[276061] = {
     classification = 4,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 105, atk = 31, def = 25, spd = 16 },
+    baseStats = { hp = 59, atk = 18, def = 14, spd = 9 },
 }
 FS.CreatureDB[276089] = {
     name = "The Condemned One",
@@ -22869,7 +22869,7 @@ FS.CreatureDB[276089] = {
     classification = 4,
     isBoss = false,
     zones = {85},
-    baseStats = { hp = 125, atk = 38, def = 31, spd = 20 },
+    baseStats = { hp = 59, atk = 18, def = 14, spd = 9 },
 }
 FS.CreatureDB[276099] = {
     name = "Wrathvine",
@@ -22881,7 +22881,7 @@ FS.CreatureDB[276099] = {
     classification = 4,
     isBoss = false,
     zones = {141},
-    baseStats = { hp = 105, atk = 35, def = 25, spd = 16 },
+    baseStats = { hp = 58, atk = 19, def = 14, spd = 9 },
 }
 FS.CreatureDB[276101] = {
     name = "Nightscreech",
@@ -22893,7 +22893,7 @@ FS.CreatureDB[276101] = {
     classification = 4,
     isBoss = false,
     zones = {141},
-    baseStats = { hp = 118, atk = 36, def = 29, spd = 19 },
+    baseStats = { hp = 59, atk = 18, def = 14, spd = 9 },
 }
 FS.CreatureDB[276111] = {
     name = "Ghostfang",
@@ -22905,7 +22905,7 @@ FS.CreatureDB[276111] = {
     classification = 4,
     isBoss = false,
     zones = {1},
-    baseStats = { hp = 118, atk = 43, def = 29, spd = 26 },
+    baseStats = { hp = 55, atk = 20, def = 13, spd = 12 },
 }
 FS.CreatureDB[276189] = {
     name = "Matriarch Bristlefur",
@@ -22917,7 +22917,7 @@ FS.CreatureDB[276189] = {
     classification = 4,
     isBoss = false,
     zones = {12},
-    baseStats = { hp = 141, atk = 36, def = 33, spd = 16 },
+    baseStats = { hp = 62, atk = 16, def = 15, spd = 7 },
 }
 FS.CreatureDB[276198] = {
     name = "Shal'ma",
@@ -22929,7 +22929,7 @@ FS.CreatureDB[276198] = {
     classification = 4,
     isBoss = false,
     zones = {14},
-    baseStats = { hp = 112, atk = 39, def = 27, spd = 24 },
+    baseStats = { hp = 56, atk = 19, def = 13, spd = 12 },
 }
 
 -- Dynamic Inverted Indexing for Zero-Latency Lookups

@@ -330,31 +330,43 @@ function DB:ClaimStarterKit()
     if not playerRace or playerRace == "" then playerRace = "Human" end
 
     local starterConfig = {
-        ["Human"]     = { name = "Mangy Wolf",       type = "Beast", displayId = 903,    family = "Canine", element = "Beast", moves = { 101, 107, 102, 126 } },
-        ["Dwarf"]     = { name = "Young Black Bear", type = "Beast", displayId = 8843,   family = "Bear",   element = "Beast", moves = { 108, 105, 119, 118 } },
-        ["Gnome"]     = { name = "Crag Boar",        type = "Beast", displayId = 138623, family = "Boar",   element = "Beast", moves = { 108, 107, 119, 125 } },
-        ["NightElf"]  = { name = "Young Nightsaber", type = "Beast", displayId = 11454,  family = "Feline", element = "Beast", moves = { 103, 104, 121, 124 } },
-        ["Orc"]       = { name = "Scorpid Worker",   type = "Beast", displayId = 2485,   family = "Scorpid",element = "Beast", moves = { 501, 502, 108, 510 } },
-        ["Troll"]     = { name = "Bloodtalon Raptor",type = "Beast", displayId = 1960,   family = "Raptor", element = "Beast", moves = { 103, 101, 107, 121 } },
-        ["Tauren"]    = { name = "Kodo Calf",        type = "Beast", displayId = 1451,   family = "Kodo",   element = "Beast", moves = { 108, 105, 118, 119 } },
-        ["Scourge"]   = { name = "Mangy Duskbat",    type = "Beast", displayId = 9535,   family = "Bat",    element = "Flying",moves = { 202, 709, 204, 126 } },
-        ["Undead"]    = { name = "Mangy Duskbat",    type = "Beast", displayId = 9535,   family = "Bat",    element = "Flying",moves = { 202, 709, 204, 126 } },
+        ["Human"]     = { name = "Mangy Wolf",       type = "Beast", displayId = 903,    family = "Canine", element = "Beast", baseStats = { hp = 40, atk = 22, def = 18, spd = 20 }, moves = { 101, 104 } },
+        ["Dwarf"]     = { name = "Young Black Bear", type = "Beast", displayId = 8843,   family = "Bear",   element = "Beast", baseStats = { hp = 45, atk = 20, def = 20, spd = 15 }, moves = { 101, 102 } },
+        ["Gnome"]     = { name = "Crag Boar",        type = "Beast", displayId = 138623, family = "Boar",   element = "Beast", baseStats = { hp = 42, atk = 20, def = 22, spd = 16 }, moves = { 108, 107 } },
+        ["NightElf"]  = { name = "Young Nightsaber", type = "Beast", displayId = 11454,  family = "Feline", element = "Beast", baseStats = { hp = 36, atk = 25, def = 16, spd = 23 }, moves = { 103, 107 } },
+        ["Orc"]       = { name = "Scorpid Worker",   type = "Beast", displayId = 2485,   family = "Scorpid",element = "Beast", baseStats = { hp = 38, atk = 24, def = 22, spd = 16 }, moves = { 501, 502 } },
+        ["Troll"]     = { name = "Bloodtalon Raptor",type = "Beast", displayId = 1960,   family = "Raptor", element = "Beast", baseStats = { hp = 36, atk = 26, def = 16, spd = 22 }, moves = { 103, 121 } },
+        ["Tauren"]    = { name = "Kodo Calf",        type = "Beast", displayId = 1451,   family = "Kodo",   element = "Beast", baseStats = { hp = 48, atk = 18, def = 22, spd = 12 }, moves = { 108, 102 } },
+        ["Scourge"]   = { name = "Mangy Duskbat",    type = "Flying",displayId = 9535,   family = "Bat",    element = "Flying",baseStats = { hp = 35, atk = 22, def = 15, spd = 28 }, moves = { 202, 709 } },
+        ["Undead"]    = { name = "Mangy Duskbat",    type = "Flying",displayId = 9535,   family = "Bat",    element = "Flying",baseStats = { hp = 35, atk = 22, def = 15, spd = 28 }, moves = { 202, 709 } },
     }
 
     local data = starterConfig[playerRace] or starterConfig["Human"]
+    local SE = ns.StatEngine
+    local calc = SE and SE:CalculateStats(data.element or data.type, 0, false, data.baseStats)
+    local maxHP = calc and calc.maxHP or data.baseStats.hp
+    local atk = calc and calc.atk or data.baseStats.atk
+    local def = calc and calc.def or data.baseStats.def
+    local spd = calc and calc.spd or data.baseStats.spd
+
     local starterMob = {
         name = data.name,
         customNickname = "Starter " .. data.name,
         family = data.family,
         element = data.element,
+        creatureType = data.element or data.type,
         displayId = data.displayId,
         level = 1,
-        hp = 60,
-        maxHP = 60,
-        currentHP = 60,
-        attack = 16,
-        defense = 12,
-        speed = 14,
+        hp = maxHP,
+        maxHP = maxHP,
+        currentHP = maxHP,
+        attack = atk,
+        atk = atk,
+        defense = def,
+        def = def,
+        speed = spd,
+        spd = spd,
+        baseStats = data.baseStats,
         moves = data.moves,
         attunementRank = 1,
         attunementPoints = 0,

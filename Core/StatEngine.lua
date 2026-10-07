@@ -75,24 +75,31 @@ function SE:GetMoveCapacity(mob)
     return rankData.moveSlots or 1
 end
 
--- Calculate 4 Core Stats (HP, ATK, DEF, SPD) using True Base Stats * Attunement Multiplier
+-- Calculate 4 Core Stats (HP, ATK, DEF, SPD) using True Base Stats * Type Multiplier * Attunement Multiplier
+-- Non-rares distribute 100 base points; Rares distribute 110 base points
 function SE:CalculateStats(creatureType, points, isElite, baseStatsOverride)
     local rankData = SE:GetAttunementRank(points)
     local typeData = C.CREATURE_TYPES[creatureType] or C.CREATURE_TYPES["Beast"]
     local typeMult = typeData.baseStats or { hp = 1.0, atk = 1.0, def = 1.0, spd = 1.0 }
     
-    local eliteMod = isElite and 1.30 or 1.00
+    local eliteMod = isElite and 1.20 or 1.00
     local attunementMod = rankData.statMult or 1.00
 
-    local rawHP = baseStatsOverride and baseStatsOverride.hp or 65
-    local rawAtk = baseStatsOverride and baseStatsOverride.atk or 18
-    local rawDef = baseStatsOverride and baseStatsOverride.def or 14
-    local rawSpd = baseStatsOverride and baseStatsOverride.spd or 15
+    -- Default budget: 100 points for normal, 110 points for elite/rare
+    local defaultHP = isElite and 44 or 40
+    local defaultAtk = isElite and 24 or 22
+    local defaultDef = isElite and 20 or 18
+    local defaultSpd = isElite and 22 or 20
 
-    local maxHP = math.floor(rawHP * typeMult.hp * eliteMod * attunementMod)
-    local atk = math.floor(rawAtk * typeMult.atk * eliteMod * attunementMod)
-    local def = math.floor(rawDef * typeMult.def * eliteMod * attunementMod)
-    local spd = math.floor(rawSpd * typeMult.spd * attunementMod)
+    local rawHP = baseStatsOverride and baseStatsOverride.hp or defaultHP
+    local rawAtk = baseStatsOverride and baseStatsOverride.atk or defaultAtk
+    local rawDef = baseStatsOverride and baseStatsOverride.def or defaultDef
+    local rawSpd = baseStatsOverride and baseStatsOverride.spd or defaultSpd
+
+    local maxHP = math.max(1, math.floor(rawHP * (typeMult.hp or 1.0) * eliteMod * attunementMod))
+    local atk = math.max(1, math.floor(rawAtk * (typeMult.atk or 1.0) * eliteMod * attunementMod))
+    local def = math.max(1, math.floor(rawDef * (typeMult.def or 1.0) * eliteMod * attunementMod))
+    local spd = math.max(1, math.floor(rawSpd * (typeMult.spd or 1.0) * attunementMod))
 
     return {
         maxHP = maxHP,
@@ -107,79 +114,83 @@ function SE:CalculateStats(creatureType, points, isElite, baseStatsOverride)
     }
 end
 
--- Generate starting abilities restricted by initial rank capacity (Rank 1 = 1 move)
-function SE:GenerateAbilities(creatureType, family, signatureAbilities)
-    local abilities = {}
-    
-    -- Check if custom/signature abilities were provided
-    if signatureAbilities and type(signatureAbilities) == "table" and #signatureAbilities > 0 then
-        for _, sig in ipairs(signatureAbilities) do
-            local move = C.ABILITIES and C.ABILITIES[sig]
-            if move and move.name then
-                table.insert(abilities, move.name)
-            elseif type(sig) == "string" then
-                table.insert(abilities, sig)
-            end
-        end
-        if #abilities > 0 then
-            return abilities
-        end
+-- Generate starting abilities: all creatures start with only 2 abilities:
+-- Slot 1: Their basic attack
+-- Slot 2: One other ability that fits their family tree
+-- Slots 3 & 4: empty (unlocked through training grimoire at higher attunement ranks)
+function SE:GenerateAbilities(creatureType, family, signatureAbilities, speciesMovepool)
+    local moves = {}
+
+    -- 1. Check if species has a defined Bestiary movepool
+    if speciesMovepool and type(speciesMovepool) == "table" and #speciesMovepool >= 2 then
+        return { speciesMovepool[1], speciesMovepool[2] }
     end
 
-    -- Check if FamilyMovepools has default moves defined in MoveDB
+    -- 2. If signature abilities were specified, take top 2
+    if signatureAbilities and type(signatureAbilities) == "table" and #signatureAbilities >= 2 then
+        return { signatureAbilities[1], signatureAbilities[2] }
+    end
+
+    -- 3. Check FamilyMovepools from MoveDB
     if ForeverSafari.FamilyMovepools and ForeverSafari.FamilyMovepools[family] then
         local pool = ForeverSafari.FamilyMovepools[family]
-        for _, moveId in ipairs(pool) do
-            local move = ForeverSafari:GetMove(moveId) or (C.ABILITIES and C.ABILITIES[moveId])
-            if move and move.name then
-                table.insert(abilities, move.name)
-                if #abilities >= 4 then break end
-            end
-        end
-        if #abilities > 0 then
-            return abilities
+        if #pool >= 2 then
+            return { pool[1], pool[2] }
         end
     end
-    
-    -- Assign family-specific starter moves
+
+    -- 4. Canonical 2-Ability Starter Templates per Family
+    local basicMove = 101 -- Bite / Strike
+    local familyMove = 102 -- Growl
+
     if family == "Canine" or family == "Wolf" or family == "Fox" then
-        table.insert(abilities, "Bite")
-    elseif family == "Feline" or family == "Cat" or family == "Raptor" then
-        table.insert(abilities, "Claw_Frenzy")
-    elseif family == "Spider" or family == "Scorpid" then
-        table.insert(abilities, "Poison_Sting")
-    elseif family == "Bear" or family == "Boar" or family == "Kodo" or family == "Gorilla" or family == "Tallstrider" then
-        table.insert(abilities, "Tackle")
-    elseif family == "Bat" then
-        table.insert(abilities, "Shadow_Fang")
+        basicMove = 101 -- Bite
+        familyMove = 104 -- Furious Howl
+    elseif family == "Feline" or family == "Cat" then
+        basicMove = 103 -- Claw Frenzy
+        familyMove = 107 -- Prowl
+    elseif family == "Raptor" then
+        basicMove = 103 -- Claw Frenzy
+        familyMove = 121 -- Shred
+    elseif family == "Bear" then
+        basicMove = 101 -- Bite
+        familyMove = 102 -- Growl
+    elseif family == "Boar" then
+        basicMove = 108 -- Gore
+        familyMove = 107 -- Boar Charge
+    elseif family == "Spider" then
+        basicMove = 501 -- Poison Sting
+        familyMove = 502 -- Sticky Web
+    elseif family == "Scorpid" then
+        basicMove = 501 -- Poison Sting
+        familyMove = 502 -- Hardened Shell
+    elseif family == "Bat" or family == "Avian" or family == "Flying" or creatureType == "Flying" then
+        basicMove = 202 -- Swoop
+        familyMove = 709 -- Dive
     elseif family == "Crab" or family == "Crocolisk" or family == "Aquatic" or creatureType == "Aquatic" then
-        table.insert(abilities, "Water_Jet")
-    elseif creatureType == "Dragonkin" then
-        table.insert(abilities, "Tail_Sweep")
-    elseif creatureType == "Elemental" then
-        table.insert(abilities, "Flame_Breath")
-    elseif creatureType == "Flying" then
-        table.insert(abilities, "Peck")
+        basicMove = 401 -- Water Jet
+        familyMove = 402 -- Bubble Shield
+    elseif family == "Mechanical" or creatureType == "Mechanical" then
+        basicMove = 601 -- Cog Strike
+        familyMove = 602 -- Overclock
+    elseif family == "Undead" or creatureType == "Undead" then
+        basicMove = 301 -- Shadow Claw
+        familyMove = 302 -- Unholy Frenzy
+    elseif family == "Elemental" or creatureType == "Elemental" then
+        basicMove = 801 -- Flame Blast
+        familyMove = 802 -- Primal Surge
+    elseif family == "Dragonkin" or creatureType == "Dragonkin" then
+        basicMove = 901 -- Tail Sweep
+        familyMove = 902 -- Draconic Roar
     elseif creatureType == "Humanoid" then
-        table.insert(abilities, "Mortal_Strike")
+        basicMove = 101 -- Strike
+        familyMove = 120 -- Mangle
     elseif creatureType == "Magic" then
-        table.insert(abilities, "Arcane_Blast")
-    elseif creatureType == "Mechanical" then
-        table.insert(abilities, "Cog_Strike")
-    elseif creatureType == "Undead" then
-        table.insert(abilities, "Shadow_Fang")
-    elseif creatureType == "Beast" then
-        table.insert(abilities, "Bite")
-    else
-        table.insert(abilities, "Tackle")
+        basicMove = 101 -- Mana Strike
+        familyMove = 123 -- Faerie Fire
     end
 
-    -- Safety guarantee: ensures at least 1 legal, registered ability always exists
-    if #abilities == 0 or not C.ABILITIES or not C.ABILITIES[abilities[1]] then
-        abilities = { "Tackle" }
-    end
-
-    return abilities
+    return { basicMove, familyMove }
 end
 
 -- Create a newly captured companion instance (Rank I: Wild / Unbroken)
