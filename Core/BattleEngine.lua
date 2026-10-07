@@ -61,16 +61,33 @@ function BE:GetEffectiveSpeed(mob)
     return spd
 end
 
+-- Helper: Resolve ability data from either C.ABILITIES or MoveDB
+function BE:GetMoveData(moveKey)
+    if not moveKey then return nil end
+    if C.ABILITIES and C.ABILITIES[moveKey] then
+        return C.ABILITIES[moveKey]
+    end
+    local numKey = tonumber(moveKey)
+    if numKey and ForeverSafari.MoveDB and ForeverSafari.MoveDB[numKey] then
+        return ForeverSafari.MoveDB[numKey]
+    end
+    if ForeverSafari.MoveDB and ForeverSafari.MoveDB[moveKey] then
+        return ForeverSafari.MoveDB[moveKey]
+    end
+    return nil
+end
+
 -- Initialize move cooldowns & battle usages for a participant
 function BE:InitMoveStates(mob, side)
     BE.State.moveState[side] = {}
-    for _, moveKey in ipairs(mob.abilities or { "Tackle" }) do
-        local m = C.ABILITIES[moveKey]
+    local moveList = mob.abilities or mob.moves or { "Tackle" }
+    for _, moveKey in ipairs(moveList) do
+        local m = BE:GetMoveData(moveKey)
         if m then
             BE.State.moveState[side][moveKey] = {
                 currentCD = 0,
-                usesLeft = m.maxUses or 10,
-                maxUses = m.maxUses or 10,
+                usesLeft = m.maxUses or m.pp or 10,
+                maxUses = m.maxUses or m.pp or 10,
                 cooldown = m.cooldown or 0,
             }
         end
@@ -163,19 +180,51 @@ function BE:HandlePlayerFaint()
     end
 end
 
--- Handle Enemy Companion Faint (PvE ends immediately; PvP prompts for next mob)
+-- Handle Enemy Companion Faint (PvE ends immediately; Trainer switches; PvP prompts for next mob)
 function BE:HandleEnemyFaint()
     local enemy = BE.State.enemyMob
     local eName = enemy and enemy.name or "Enemy target"
     if enemy then enemy.currentHP = 0 end
 
-    -- 1. PvE Wild / Dungeon Encounter: Battle ends immediately with Victory!
+    -- 1. AI Trainer Battle: Check if trainer has remaining bench companions
+    if BE.State.isTrainerBattle and BE.State.enemyTeam then
+        local nextSlot = nil
+        for slotIdx, mob in ipairs(BE.State.enemyTeam) do
+            if (mob.currentHP or 0) > 0 then
+                nextSlot = slotIdx
+                break
+            end
+        end
+
+        if nextSlot then
+            local nextMob = BE.State.enemyTeam[nextSlot]
+            BE.State.enemyActiveSlot = nextSlot
+            BE.State.enemyMob = nextMob
+            BE:InitMoveStates(nextMob, "enemy")
+
+            local trainerTitle = BE.State.enemyTrainer and BE.State.enemyTrainer.trainerTitle or "Rival Trainer"
+            BE.State.dialogueText = string.format("%s sent out %s!", trainerTitle, nextMob.name)
+            BE:AddLog(string.format("|cffff6666%s sent out %s (Lv %d %s)!|r", trainerTitle, nextMob.name, nextMob.level, nextMob.creatureType))
+
+            if ForeverSafari.BattleFrame then
+                ForeverSafari.BattleFrame:UpdateModels()
+                ForeverSafari.BattleFrame:UpdateUI()
+            end
+            return
+        end
+
+        -- All trainer companions defeated: Victory!
+        BE:HandleVictory()
+        return
+    end
+
+    -- 2. PvE Wild / Dungeon Encounter: Battle ends immediately with Victory!
     if not BE.State.isPvP then
         BE:HandleVictory()
         return
     end
 
-    -- 2. PvP Duel: Check if opponent has remaining conscious team members
+    -- 3. PvP Duel: Check if opponent has remaining conscious team members
     local hasRemaining = false
     if BE.State.enemyTeam then
         for _, mob in ipairs(BE.State.enemyTeam) do
@@ -268,11 +317,69 @@ function BE:StartWildBattle(unit)
         isElite = true
     end
 
+    local isTrainer = ns.TrainerEngine and ns.TrainerEngine:IsHumanoidTrainer(unit)
+    if isTrainer then
+        local match = ns.TrainerEngine:GenerateTrainerMatch(unit)
+        local enemyMob = match.team[1]
+
+        BE.State.inBattle = true
+        BE.State.isTrainerBattle = true
+        BE.State.enemyTrainer = match
+        BE.State.enemyTeam = match.team
+        BE.State.enemyActiveSlot = 1
+        BE.State.playerMob = activeMob
+        BE.State.enemyMob = enemyMob
+        BE.State.isPvP = false
+        BE.State.round = 1
+        BE.State.buffs.player = {}
+        BE.State.buffs.enemy = {}
+        BE.State.passives.dragonkinEnraged = { player = false, enemy = false }
+        BE.State.passives.mechanicalRevived = { player = false, enemy = false }
+        BE.State.passives.undeadImmortal = { player = 0, enemy = 0 }
+        BE.State.passives.undeadTriggered = { player = false, enemy = false }
+
+        -- Initialize Move Cooldowns & Limits
+        BE:InitMoveStates(activeMob, "player")
+        BE:InitMoveStates(enemyMob, "enemy")
+
+        BE.State.logs = {}
+        local trainerTitle = match.trainerTitle or "Rival Trainer"
+        BE.State.dialogueText = string.format("%s: \"%s\"", trainerTitle, match.introQuote or "Let's battle!")
+
+        local pSpd = BE:GetEffectiveSpeed(activeMob)
+        local eSpd = BE:GetEffectiveSpeed(enemyMob)
+        BE.State.turn = (pSpd >= eSpd) and "player" or "enemy"
+
+        BE:AddLog(string.format("|cffffcc00[Trainer Battle]|r %s challenged you to a battle!", trainerTitle))
+        BE:AddLog(string.format("|cffffd100%s: \"%s\"|r", trainerTitle, match.introQuote or "Let's battle!"))
+        BE:AddLog(string.format("|cffff6666%s sent out %s (Lv %d %s)!|r", trainerTitle, enemyMob.name, enemyMob.level, enemyMob.creatureType))
+
+        if ForeverSafari.BattleFrame then
+            ForeverSafari.BattleFrame:ShowBattle()
+        end
+
+        if BE.State.turn == "enemy" then
+            C_Timer.After(1.4, function()
+                BE:ExecuteEnemyTurn()
+            end)
+        else
+            C_Timer.After(1.2, function()
+                BE.State.dialogueText = string.format("What will %s do?", activeMob.nickname ~= "" and activeMob.nickname or activeMob.name)
+                if ForeverSafari.BattleFrame then ForeverSafari.BattleFrame:UpdateUI() end
+            end)
+        end
+
+        return true
+    end
+
     local displayId = C.GetDefaultDisplayId(rawType, name)
 
     local enemyMob = SE:CreateMobInstance(name, rawType, level, isElite, displayId)
 
     BE.State.inBattle = true
+    BE.State.isTrainerBattle = false
+    BE.State.enemyTrainer = nil
+    BE.State.enemyTeam = nil
     BE.State.playerMob = activeMob
     BE.State.enemyMob = enemyMob
     BE.State.isPvP = false
@@ -340,7 +447,7 @@ end
 function BE:ExecutePlayerMove(moveKey)
     if not BE.State.inBattle or BE.State.turn ~= "player" then return end
 
-    local move = C.ABILITIES[moveKey]
+    local move = BE:GetMoveData(moveKey)
     if not move then return end
 
     local player = BE.State.playerMob
@@ -512,8 +619,9 @@ function BE:ExecuteEnemyTurn()
 
     -- Pick best available move that is off cooldown and has uses left
     local availableMoves = {}
-    for _, moveKey in ipairs(enemy.abilities or { "Tackle" }) do
-        local m = C.ABILITIES[moveKey]
+    local moveList = enemy.abilities or enemy.moves or { "Tackle" }
+    for _, moveKey in ipairs(moveList) do
+        local m = BE:GetMoveData(moveKey)
         local mState = BE.State.moveState.enemy[moveKey]
         if m and mState and mState.usesLeft > 0 and mState.currentCD == 0 then
             table.insert(availableMoves, { key = moveKey, move = m, state = mState })
@@ -525,7 +633,8 @@ function BE:ExecuteEnemyTurn()
         chosen = availableMoves[math.random(1, #availableMoves)]
     else
         -- Fallback to basic Tackle if all on cooldown
-        chosen = { key = "Tackle", move = C.ABILITIES["Tackle"], state = BE.State.moveState.enemy["Tackle"] or { usesLeft = 10, currentCD = 0, maxUses = 10 } }
+        local fallbackMove = BE:GetMoveData("Tackle") or (C.ABILITIES and C.ABILITIES["Tackle"])
+        chosen = { key = "Tackle", move = fallbackMove, state = BE.State.moveState.enemy["Tackle"] or { usesLeft = 10, currentCD = 0, maxUses = 10 } }
     end
 
     chosen.state.usesLeft = math.max(0, chosen.state.usesLeft - 1)
@@ -811,6 +920,13 @@ function BE:ThrowCageInCombat(cageId)
     local enemy = BE.State.enemyMob
     if not enemy then return end
 
+    if BE.State.isTrainerBattle or (enemy and enemy.isTrainerPet) then
+        BE.State.dialogueText = "You cannot capture another hunter's companion!"
+        BE:AddLog("|cffff4444You cannot capture another hunter's companion!|r")
+        if ForeverSafari.BattleFrame then ForeverSafari.BattleFrame:UpdateUI() end
+        return
+    end
+
     if enemy.creatureType == "Humanoid" or (C.ELIGIBLE_CAPTURE_TYPES and not C.ELIGIBLE_CAPTURE_TYPES[enemy.creatureType]) then
         BE.State.dialogueText = "Humanoids cannot be captured!"
         BE:AddLog("|cffff4444Humanoids and civilized targets cannot be captured!|r")
@@ -954,6 +1070,41 @@ function BE:HandleVictory()
     local player = BE.State.playerMob
     local enemy = BE.State.enemyMob
 
+    -- 1. AI Trainer Battle Victory
+    if BE.State.isTrainerBattle and BE.State.enemyTrainer then
+        local trainer = BE.State.enemyTrainer
+        local trainerTitle = trainer.trainerTitle or "Rival Trainer"
+        local defeatQuote = trainer.defeatQuote or "Well played..."
+        local tokenReward = trainer.tokenReward or 8
+
+        BE.State.dialogueText = string.format("%s: \"%s\" Victory!", trainerTitle, defeatQuote)
+        BE:AddLog(string.format("|cffffd100%s: \"%s\"|r", trainerTitle, defeatQuote))
+        BE:AddLog(string.format("|cff00ff00Defeated %s! Victory!|r", trainerTitle))
+        PlaySound(1195)
+
+        if player and (player.currentHP or 0) > 0 then
+            DB:AddAttunement(player.id, 50, "Trainer Battle Victory")
+        end
+
+        DB:AddTokens(tokenReward, "Trainer Battle Victory")
+        BE:AddLog(string.format("|cffffd100Awarded %d Safari Tokens for trainer victory!|r", tokenReward))
+
+        player.battlesWon = (player.battlesWon or 0) + 1
+        player.battlesTotal = (player.battlesTotal or 0) + 1
+        ForeverSafariDB.stats.totalBattlesWon = (ForeverSafariDB.stats.totalBattlesWon or 0) + 1
+
+        if ForeverSafari.Toast then
+            ForeverSafari.Toast:ShowReward(string.format("%s Defeated!", trainerTitle), string.format("+%d Safari Tokens", tokenReward))
+        end
+
+        BE.State.inBattle = false
+        if ForeverSafari.BattleFrame then
+            ForeverSafari.BattleFrame:UpdateUI()
+        end
+        return
+    end
+
+    -- 2. Wild / PvE Creature Victory
     BE.State.dialogueText = string.format("Wild %s fainted! Victory!", enemy.name)
     BE:AddLog(string.format("|cff00ff00Wild %s fainted! Victory!|r", enemy.name))
     PlaySound(1195)

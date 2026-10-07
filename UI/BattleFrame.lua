@@ -491,6 +491,18 @@ function BF:UpdateUI()
     local player = BE.State.playerMob
     local enemy = BE.State.enemyMob
 
+    -- Update Header Banner Text
+    if frame.HeaderText then
+        if BE.State.isTrainerBattle and BE.State.enemyTrainer then
+            local tTitle = BE.State.enemyTrainer.trainerTitle or "Rival Trainer"
+            frame.HeaderText:SetText(string.format("|cffffd100Forever Safari|r  -  |cffffcc00TRAINER BATTLE: %s|r", tTitle))
+        elseif BE.State.isPvP then
+            frame.HeaderText:SetText("|cffffd100Forever Safari|r  -  |cffff8800PVP DUEL|r")
+        else
+            frame.HeaderText:SetText("|cffffd100Forever Safari|r  -  |cff00ff99WILD BATTLE|r")
+        end
+    end
+
     -- Update Dialogue Text
     frame.DialogueText:SetText(BE.State.dialogueText or "What will you do?")
 
@@ -536,14 +548,16 @@ function BF:UpdateUI()
 
         -- Update Fight Menu Move Buttons (Uses: X/Y & CD status)
         local isPlayerTurn = (BE.State.turn == "player" and BE.State.inBattle)
+        local playerMoves = player.abilities or player.moves or {}
         for i = 1, 4 do
             local btn = moveButtons[i]
-            local moveKey = player.abilities and player.abilities[i]
-            if moveKey and C.ABILITIES[moveKey] then
-                local m = C.ABILITIES[moveKey]
+            local moveKey = playerMoves[i]
+            local m = (BE.GetMoveData and BE:GetMoveData(moveKey)) or (moveKey and C.ABILITIES and C.ABILITIES[moveKey]) or (moveKey and ForeverSafari.MoveDB and ForeverSafari.MoveDB[moveKey])
+            if moveKey and m then
                 local mState = BE.State.moveState.player and BE.State.moveState.player[moveKey]
-                local usesLeft = mState and mState.usesLeft or m.maxUses or 10
-                local maxUses = mState and mState.maxUses or m.maxUses or 10
+                local maxU = m.maxUses or m.pp or 10
+                local usesLeft = mState and mState.usesLeft or maxU
+                local maxUses = mState and mState.maxUses or maxU
                 local currentCD = mState and mState.currentCD or 0
 
                 btn.moveKey = moveKey
