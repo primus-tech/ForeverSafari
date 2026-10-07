@@ -135,11 +135,47 @@ local function HandleSlash(msg)
         if dialog then
             dialog.data = { mobId = activeMob.id }
         end
+    elseif cmd == "give" or cmd == "add" then
+        local itemKey, countStr = strsplit(" ", arg or "", 2)
+        itemKey = string.lower(itemKey or "nets")
+        local count = tonumber(countStr) or 10
+
+        if itemKey == "nets" or itemKey == "net" or itemKey == "copper" or itemKey == "copper_cage" then
+            DB:AddItem("copper_cage", count)
+            DEFAULT_CHAT_FRAME:AddMessage(string.format("%sAdded |cffffffff[%dx Copper Safari Net]|r to your Safari Bag.", C.PREFIX, count))
+        elseif itemKey == "iron" or itemKey == "iron_cage" then
+            DB:AddItem("iron_cage", count)
+            DEFAULT_CHAT_FRAME:AddMessage(string.format("%sAdded |cff1eff00[%dx Reinforced Iron Net]|r to your Safari Bag.", C.PREFIX, count))
+        elseif itemKey == "mithril" or itemKey == "mithril_cage" then
+            DB:AddItem("mithril_cage", count)
+            DEFAULT_CHAT_FRAME:AddMessage(string.format("%sAdded |cff0070dd[%dx Mithril Safari Net]|r to your Safari Bag.", C.PREFIX, count))
+        elseif itemKey == "arcanite" or itemKey == "arcanite_capsule" or itemKey == "capsule" then
+            DB:AddItem("arcanite_capsule", count)
+            DEFAULT_CHAT_FRAME:AddMessage(string.format("%sAdded |cffa335ee[%dx Arcanite Safari Capsule]|r to your Safari Bag.", C.PREFIX, count))
+        elseif itemKey == "salve" or itemKey == "salves" or itemKey == "heal" or itemKey == "healing_salve" then
+            DB:AddItem("healing_salve", count)
+            DEFAULT_CHAT_FRAME:AddMessage(string.format("%sAdded |cffffffff[%dx Safari Healing Salve]|r to your Safari Bag.", C.PREFIX, count))
+        elseif itemKey == "revive" or itemKey == "revives" or itemKey == "crystal" or itemKey == "revival_crystal" then
+            DB:AddItem("revival_crystal", count)
+            DEFAULT_CHAT_FRAME:AddMessage(string.format("%sAdded |cff00ffff[%dx Safari Revival Crystal]|r to your Safari Bag.", C.PREFIX, count))
+        elseif itemKey == "treat" or itemKey == "treats" or itemKey == "az_treat" then
+            DB:AddItem("az_treat", count)
+            DEFAULT_CHAT_FRAME:AddMessage(string.format("%sAdded |cff1eff00[%dx Safari Treat]|r to your Safari Bag.", C.PREFIX, count))
+        elseif itemKey == "token" or itemKey == "tokens" then
+            DB:AddTokens(count, "Admin /give")
+            DEFAULT_CHAT_FRAME:AddMessage(string.format("%sAdded |cffffd100[%d Safari Tokens]|r to your balance.", C.PREFIX, count))
+        else
+            DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Usage: /fs give <nets|iron|mithril|arcanite|salves|revives|treats|tokens> [count]|r")
+        end
+        if ForeverSafari.SafariBagFrame and ForeverSafari.SafariBagFrame:IsShown() then
+            ForeverSafari.SafariBagFrame:UpdateUI()
+        end
     elseif cmd == "reset" then
         DB:ResetDB()
     elseif cmd == "help" then
         DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cff00ff99Available Slash Commands:|r")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/safari|r or |cffffd100/fs|r - Open Field Guide & Team Manager")
+        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/safari give <item> [count]|r - Grant nets, salves, revives, treats, or tokens")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/safari bounties|r - View Active Field Directives & Quest Tracker")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsbag|r or |cffffd100/safari bag|r - Open Virtual Safari Bag")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsmail|r or |cffffd100/safari mail|r - View Nesingwary Dispatches (Turn in at Mailbox)")
