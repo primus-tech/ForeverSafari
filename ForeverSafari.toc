@@ -6,18 +6,27 @@
 ## SavedVariables: ForeverSafariDB, ForeverSafariSettings
 ## IconTexture: Interface\Icons\Ability_Hunter_BeastTaming
 
-Core\Constants.lua
-Data\CreatureDB.lua
+# Canonical Data Registries
+Data\ItemDB.lua
 Data\MoveDB.lua
-Data\EvolutionDB.lua
+Data\CreatureDB.lua
 Data\BestiaryDB.lua
+Data\EvolutionDB.lua
+
+# Core Engine & Database
+Core\Constants.lua
 Core\Database.lua
+Core\DB\DB_Pets.lua
+Core\DB\DB_Kennel.lua
+Core\DB\DB_Bestiary.lua
+Core\DB\DB_Inventory.lua
 Core\StatEngine.lua
 Core\CaptureEngine.lua
 Core\BattleEngine.lua
 Core\QuestHooks.lua
 Core\Comms.lua
 
+# Base UI Framework
 UI\Theme.lua
 UI\Toast.lua
 UI\MinimapButton.lua
@@ -29,7 +38,16 @@ UI\CaptureHUD.lua
 UI\ShopFrame.lua
 UI\KennelFrame.lua
 UI\SafariBagFrame.lua
-UI\JournalFrame.lua
-UI\BattleFrame.lua
 
+# Modular Field Guide Journal (Components & Views)
+UI\Components\JournalTeamDock.lua
+UI\Components\JournalTrainingDrawer.lua
+UI\Views\JournalRosterView.lua
+UI\Views\JournalGridView.lua
+UI\Views\JournalBestiaryView.lua
+UI\Views\JournalBountiesView.lua
+UI\JournalFrame.lua
+
+# Battle Arena & Bootstrap
+UI\BattleFrame.lua
 ForeverSafari.lua

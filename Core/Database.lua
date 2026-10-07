@@ -1,7 +1,7 @@
 --[[
-    Forever Safari: Database & Persistence Layer
-    Handles SavedVariables, default data structures, inventory, party management,
-    storage, and the Vanilla WoW style Unlocked Ability Training Grimoire.
+    Forever Safari: Database Core & Persistence Manager (Database.lua)
+    Handles SavedVariables initialization, schema migrations, cryptographic signatures,
+    DNA string import/export, user settings, and Nesingwary mail/quest progression.
 ]]
 
 local addonName, ns = ...
@@ -25,17 +25,17 @@ local DEFAULT_DB = {
         ["revival_crystal"] = 0,
     },
     collection = {}, -- List of all captured companions
-    team = {},       -- Array of up to 4 active team companion IDs
+    team = {},       -- Array of up to 4 active squad companion IDs
     activeSlot = 1,  -- Currently active deployed companion slot (1-4)
     discovered = {}, -- Legacy discovered table
-    bestiary = {}, -- Modern Pokédex discovery: [speciesId] = { id, name, status ("seen"|"caught"), firstSeen, firstCaught, caughtCount }
-    unlockedAbilities = { -- Learned abilities known to the trainer (Vanilla WoW pet training style)
-        ["Tackle"] = true,
-        ["Bite"] = true,
-        ["Furious_Howl"] = true,
-        ["Water_Jet"] = true,
+    bestiary = {},   -- Modern 3-tier Pokédex discovery table
+    unlockedAbilities = {
+        ["101"] = true, -- Bite
+        ["102"] = true, -- Growl
+        ["108"] = true, -- Maul
+        ["401"] = true, -- Water Jet
     },
-    unlockedTypes = { -- Unlocked creature research permits
+    unlockedTypes = {
         ["Beast"] = true,
         ["Flying"] = true,
         ["Aquatic"] = true,
@@ -74,7 +74,9 @@ local DEFAULT_SETTINGS = {
     }
 }
 
--- Initialize DB on ADDON_LOADED
+-- =========================================================================
+-- 💾 DATABASE INITIALIZATION & SCHEMA MIGRATIONS
+-- =========================================================================
 function DB:Initialize()
     if ForeverSafari.BuildDatabaseIndexes then
         ForeverSafari:BuildDatabaseIndexes()
@@ -108,7 +110,6 @@ function DB:Initialize()
         if not ForeverSafariDB.unlockedTypes then
             ForeverSafariDB.unlockedTypes = CopyTable(DEFAULT_DB.unlockedTypes)
         end
-
         if not ForeverSafariDB.bestiary then
             ForeverSafariDB.bestiary = {}
         end
@@ -119,8 +120,10 @@ function DB:Initialize()
             ForeverSafariDB.inventory["arcanite_capsule"] = 0
         end
 
-        -- Auto-backfill Bestiary from current squad and kennel
-        DB:BackfillBestiaryFromCollection()
+        -- Auto-backfill Bestiary from current collection
+        if self.BackfillBestiaryFromCollection then
+            self:BackfillBestiaryFromCollection()
+        end
     end
 
     if not ForeverSafariSettings then
@@ -137,14 +140,13 @@ function DB:Initialize()
         end
     end
 
-    DB:ValidateAndRepairSignatures()
-    DB:ValidateTeam()
+    self:ValidateAndRepairSignatures()
+    self:ValidateTeam()
 end
 
 -- =========================================================================
--- CRYPTOGRAPHIC INTEGRITY & ANTI-TAMPER SIGNATURES
+-- 🔐 CRYPTOGRAPHIC INTEGRITY & ANTI-TAMPER SIGNATURES
 -- =========================================================================
-
 local SECRET_SALT = "ForeverSafari_Nesingwary_League_2026_Secure"
 
 function DB:Hash(str)
@@ -171,77 +173,37 @@ function DB:GenerateSignature(mob)
         tonumber(mob.speed or 5),
         tostring(mob.displayId or 0)
     )
-    return DB:Hash(str)
+    return self:Hash(str)
 end
 
 function DB:SignMob(mob)
     if not mob then return end
-    mob.sig = DB:GenerateSignature(mob)
+    mob.sig = self:GenerateSignature(mob)
     return mob
 end
 
 function DB:ValidateAndRepairSignatures()
-    if not ForeverSafariDB.collection then return end
-    local abilitiesDB = ForeverSafari.Constants and ForeverSafari.Constants.ABILITIES or {}
+    if not ForeverSafariDB or not ForeverSafariDB.collection then return end
 
     for _, mob in ipairs(ForeverSafariDB.collection) do
-        -- Heal empty or invalid abilities on existing companions
-        if not mob.abilities or #mob.abilities == 0 then
-            if ForeverSafari.StatEngine and ForeverSafari.StatEngine.GenerateAbilities then
-                mob.abilities = ForeverSafari.StatEngine:GenerateAbilities(mob.creatureType, mob.family)
-            else
-                mob.abilities = { (mob.creatureType == "Beast" and "Bite") or "Tackle" }
-            end
-        else
-            for i, moveKey in ipairs(mob.abilities) do
-                if not abilitiesDB[moveKey] then
-                    mob.abilities[i] = (mob.creatureType == "Beast" and "Bite") or "Tackle"
-                end
-            end
+        -- Ensure default moves
+        if not mob.moves or #mob.moves == 0 then
+            mob.moves = { 101, 107, 102, 118 }
         end
 
-        -- Guarantee all companion moves are unlocked in Trainer Grimoire
-        if mob.abilities then
-            for _, moveKey in ipairs(mob.abilities) do
-                if abilitiesDB[moveKey] then
-                    DB:UnlockAbility(moveKey, mob.name, true)
-                end
-            end
-        end
-
-        local expectedSig = DB:GenerateSignature(mob)
+        local expectedSig = self:GenerateSignature(mob)
         if not mob.sig or mob.sig ~= expectedSig then
-            -- If tampered or legacy, recompute legal bounds
-            if ForeverSafari.StatEngine and ForeverSafari.StatEngine.CalculateStats then
-                local baseStats = nil
-                if ForeverSafari.CreatureDB then
-                    for _, entry in pairs(ForeverSafari.CreatureDB) do
-                        if entry.name == mob.name and entry.baseStats then
-                            baseStats = entry.baseStats
-                            break
-                        end
-                    end
-                end
-                local stats = ForeverSafari.StatEngine:CalculateStats(mob.creatureType, mob.attunement or 0, mob.isElite, baseStats)
-                mob.maxHP = stats.maxHP
-                mob.hp = stats.maxHP
-                mob.attack = stats.atk
-                mob.atk = stats.atk
-                mob.defense = stats.def
-                mob.def = stats.def
-                mob.speed = stats.spd
-                mob.spd = stats.spd
-                mob.rank = stats.rankData.rank
+            if not mob.maxHP or mob.maxHP <= 0 then
+                mob.maxHP = mob.hp or 60
             end
-            if not mob.currentHP or mob.currentHP > (mob.maxHP or 10) then
-                mob.currentHP = mob.maxHP or 10
+            if not mob.currentHP or mob.currentHP > mob.maxHP then
+                mob.currentHP = mob.maxHP
             end
             mob.hp = mob.currentHP
-            mob.sig = DB:GenerateSignature(mob)
+            self:SignMob(mob)
         else
-            -- Ensure currentHP and maxHP are valid numbers
             if not mob.maxHP or mob.maxHP <= 0 then
-                mob.maxHP = mob.hp or 10
+                mob.maxHP = mob.hp or 60
             end
             if mob.currentHP == nil then
                 mob.currentHP = mob.maxHP
@@ -252,9 +214,8 @@ function DB:ValidateAndRepairSignatures()
 end
 
 -- =========================================================================
--- BASE64 & DNA STRING COMPANION SHARING
+-- 🧬 BASE64 & DNA STRING COMPANION SHARING
 -- =========================================================================
-
 local B64_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
 
 function DB:EncodeBase64(data)
@@ -277,7 +238,7 @@ function DB:DecodeBase64(data)
         local r,f='',(B64_CHARS:find(x)-1)
         for i=6,1,-1 do r=r..(f%2^i-f%2^(i-1)>0 and '1' or '0') end
         return r
-    end):gsub('%d%d%d?%d?%d?%d?%d?%d?', function(x)
+    end):gsub('%d%d%d?%d?%d?%d?', function(x)
         if (#x ~= 8) then return '' end
         local c=0
         for i=1,8 do c=c+(x:sub(i,i)=='1' and 2^(8-i) or 0) end
@@ -287,27 +248,27 @@ end
 
 function DB:ExportCompanionDNA(mob)
     if not mob then return "" end
-    local abilitiesStr = table.concat(mob.abilities or {}, ",")
+    local movesStr = table.concat(mob.moves or {}, ",")
     local raw = string.format("%s~%s~%d~%d~%d~%d~%d~%d~%s~%s~%s",
         tostring(mob.name or "Wild Mob"),
-        tostring(mob.nickname or mob.name or "Wild Mob"),
+        tostring(mob.customNickname or mob.name or "Wild Mob"),
         tonumber(mob.level or 1),
         tonumber(mob.hp or 10),
         tonumber(mob.attack or 5),
         tonumber(mob.defense or 5),
         tonumber(mob.speed or 5),
         tonumber(mob.displayId or 903),
-        tostring(mob.creatureType or "Beast"),
-        abilitiesStr,
+        tostring(mob.family or "Canine"),
+        movesStr,
         tostring(mob.sig or "")
     )
-    return "!FS:" .. DB:EncodeBase64(raw)
+    return "!FS:" .. self:EncodeBase64(raw)
 end
 
 function DB:ImportCompanionDNA(dnaStr)
     if not dnaStr or not dnaStr:find("^!FS:") then return nil end
     local b64 = dnaStr:sub(5)
-    local raw = DB:DecodeBase64(b64)
+    local raw = self:DecodeBase64(b64)
     if not raw or raw == "" then return nil end
 
     local parts = {}
@@ -316,16 +277,16 @@ function DB:ImportCompanionDNA(dnaStr)
     end
     if #parts < 8 then return nil end
 
-    local abilities = {}
+    local moves = {}
     if parts[10] and parts[10] ~= "" then
-        for ab in string.gmatch(parts[10], "[^,]+") do
-            table.insert(abilities, ab)
+        for mv in string.gmatch(parts[10], "[^,]+") do
+            table.insert(moves, tonumber(mv) or mv)
         end
     end
 
     return {
         name = parts[1],
-        nickname = parts[2],
+        customNickname = parts[2],
         level = tonumber(parts[3]) or 1,
         hp = tonumber(parts[4]) or 10,
         maxHp = tonumber(parts[4]) or 10,
@@ -333,776 +294,81 @@ function DB:ImportCompanionDNA(dnaStr)
         defense = tonumber(parts[6]) or 5,
         speed = tonumber(parts[7]) or 5,
         displayId = tonumber(parts[8]) or 903,
-        creatureType = parts[9] or "Beast",
-        abilities = abilities,
+        family = parts[9] or "Canine",
+        moves = moves,
         sig = parts[11] or ""
     }
 end
 
-function DB:GetTokens()
-    return ForeverSafariDB.tokens or 0
-end
-
-function DB:AddTokens(amount, reason)
-    if not amount or amount <= 0 then return end
-    ForeverSafariDB.tokens = (ForeverSafariDB.tokens or 0) + amount
-    ForeverSafariDB.stats.totalTokensEarned = (ForeverSafariDB.stats.totalTokensEarned or 0) + amount
-    if ForeverSafari.Toast then
-        ForeverSafari.Toast:ShowReward(string.format("+%d Safari Tokens!", amount), reason or "Quest Reward")
-    end
-    if ForeverSafari.ShopFrame and ForeverSafari.ShopFrame:IsShown() then
-        ForeverSafari.ShopFrame:UpdateUI()
-    end
-end
-
-function DB:SpendTokens(amount)
-    if not amount or amount <= 0 then return false end
-    if DB:GetTokens() >= amount then
-        ForeverSafariDB.tokens = ForeverSafariDB.tokens - amount
-        if ForeverSafari.ShopFrame and ForeverSafari.ShopFrame:IsShown() then
-            ForeverSafari.ShopFrame:UpdateUI()
-        end
-        return true
-    end
-    return false
-end
-
-function DB:GetItemCount(itemId)
-    return (ForeverSafariDB.inventory and ForeverSafariDB.inventory[itemId]) or 0
-end
-
-function DB:GetInventory()
-    return ForeverSafariDB.inventory or {}
-end
-
-function DB:AddItem(itemId, count)
-    count = count or 1
-    if not ForeverSafariDB.inventory[itemId] then
-        ForeverSafariDB.inventory[itemId] = 0
-    end
-    ForeverSafariDB.inventory[itemId] = ForeverSafariDB.inventory[itemId] + count
-    if ForeverSafari.ShopFrame and ForeverSafari.ShopFrame:IsShown() then
-        ForeverSafari.ShopFrame:UpdateUI()
-    end
-    if ForeverSafari.CaptureHUD and ForeverSafari.CaptureHUD:IsShown() then
-        ForeverSafari.CaptureHUD:UpdateUI()
-    end
-    if ForeverSafari.SafariBagFrame and ForeverSafari.SafariBagFrame:IsShown() then
-        ForeverSafari.SafariBagFrame:UpdateUI()
-    end
-end
-
-function DB:AddInventoryItem(itemId, count)
-    return self:AddItem(itemId, count)
-end
-
-function DB:RemoveItem(itemId, count)
-    count = count or 1
-    local current = DB:GetItemCount(itemId)
-    if current >= count then
-        ForeverSafariDB.inventory[itemId] = current - count
-        if ForeverSafari.ShopFrame and ForeverSafari.ShopFrame:IsShown() then
-            ForeverSafari.ShopFrame:UpdateUI()
-        end
-        if ForeverSafari.CaptureHUD and ForeverSafari.CaptureHUD:IsShown() then
-            ForeverSafari.CaptureHUD:UpdateUI()
-        end
-        if ForeverSafari.SafariBagFrame and ForeverSafari.SafariBagFrame:IsShown() then
-            ForeverSafari.SafariBagFrame:UpdateUI()
-        end
-        return true
-    end
-    return false
-end
-
-function DB:GetCollection()
-    return ForeverSafariDB.collection or {}
-end
-
-function DB:GetMobById(id)
-    for _, mob in ipairs(ForeverSafariDB.collection) do
-        if mob.id == id then
-            return mob
-        end
-    end
-    return nil
-end
-
 -- =========================================================================
--- 🌟 ATTUNEMENT PROGRESSION & NOURISHMENT
+-- ⚙️ SETTINGS & PREFERENCES
 -- =========================================================================
-
-function DB:AddAttunement(mobId, points, reason)
-    local mob = DB:GetMobById(mobId)
-    if not mob then return false end
-
-    points = math.max(1, tonumber(points) or 0)
-    local prevRankData = ForeverSafari.StatEngine:GetAttunementRank(mob.attunement or 0)
-    
-    mob.attunement = (mob.attunement or 0) + points
-    local newRankData = ForeverSafari.StatEngine:GetAttunementRank(mob.attunement)
-    mob.rank = newRankData.rank
-
-    -- Recalculate stats for the new Attunement Rank
-    local stats = ForeverSafari.StatEngine:CalculateStats(mob.creatureType, mob.attunement, mob.isElite)
-    mob.maxHP = stats.maxHP
-    mob.hp = math.min(mob.hp or stats.maxHP, stats.maxHP)
-    mob.attack = stats.atk
-    mob.atk = stats.atk
-    mob.defense = stats.def
-    mob.def = stats.def
-    mob.speed = stats.spd
-    mob.spd = stats.spd
-
-    DB:SignMob(mob)
-
-    -- Did the companion rank up?
-    if newRankData.rank > prevRankData.rank then
-        PlaySound(1195) -- SOUNDKIT.IG_QUEST_LOG_COMPLETE
-        local rankMsg = string.format("%s|cff00ff00[Attunement Rank Up!]|r |cffffd100%s|r achieved |cff%sRank %s: %s|r! (Unlocked %d Move Slots, %.2fx Stats)",
-            ForeverSafari.Constants.PREFIX,
-            mob.nickname ~= "" and mob.nickname or mob.name,
-            newRankData.color,
-            newRankData.roman,
-            newRankData.title,
-            newRankData.moveSlots,
-            newRankData.statMult
-        )
-        DEFAULT_CHAT_FRAME:AddMessage(rankMsg)
-
-        if ForeverSafari.Toast then
-            ForeverSafari.Toast:ShowReward(
-                "Attunement Rank Up!",
-                string.format("%s reached Rank %s: %s!", mob.nickname ~= "" and mob.nickname or mob.name, newRankData.roman, newRankData.title)
-            )
-        end
-    elseif reason then
-        DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cffffd100%s|r gained |cff00ff00+%d Attunement|r (%s).",
-            ForeverSafari.Constants.PREFIX, mob.nickname ~= "" and mob.nickname or mob.name, points, reason))
-    end
-
-    if ForeverSafari.JournalFrame and ForeverSafari.JournalFrame:IsShown() then
-        ForeverSafari.JournalFrame:UpdateUI()
-    end
-    return true
-end
-
-function DB:FeedCompanion(mobId, resourceItem)
-    local mob = DB:GetMobById(mobId)
-    if not mob then return false, "Companion not found." end
-
-    local count = DB:GetItemCount(resourceItem)
-    if count < 1 then
-        return false, "You do not have any of this nourishment resource."
-    end
-
-    DB:RemoveItem(resourceItem, 1)
-    DB:AddAttunement(mobId, 25, "Nourished with " .. resourceItem)
-    PlaySound(844)
-    return true, "Nourished companion."
-end
-
-function DB:IsReservedRareName(name)
-    if not name or name == "" then return false end
-    local lowerName = string.lower(string.trim(name))
-    
-    -- Check CreatureDB for any rare/boss species with this name
-    if ForeverSafari.CreatureDB then
-        for _, entry in pairs(ForeverSafari.CreatureDB) do
-            if (entry.classification == 4 or entry.classification == 2 or entry.isBoss) and entry.name then
-                if string.lower(entry.name) == lowerName then
-                    return true, entry.name
-                end
-            end
-        end
-    end
-    return false
-end
-
-function DB:SetMobNickname(mobId, newNickname)
-    local mob = DB:GetMobById(mobId)
-    if not mob then return false, "Companion not found." end
-
-    newNickname = string.trim(newNickname or "")
-    if newNickname == "" then
-        mob.nickname = mob.name
-        DB:SignMob(mob)
-        return true, "Nickname reset."
-    end
-
-    -- Check if attempting to forge a reserved rare spawn name
-    local isReserved, realRareName = DB:IsReservedRareName(newNickname)
-    if isReserved then
-        local mobRealLower = string.lower(mob.name or "")
-        if mobRealLower ~= string.lower(realRareName) then
-            local msg = string.format("The name '%s' belongs to a wild Rare Spawn and cannot be used!", realRareName)
-            DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cffff2020[Registry Alert]|r %s", ForeverSafari.Constants.PREFIX, msg))
-            return false, msg
-        end
-    end
-
-    mob.nickname = newNickname
-    DB:SignMob(mob)
-
-    if ForeverSafari.JournalFrame and ForeverSafari.JournalFrame:IsShown() then
-        ForeverSafari.JournalFrame:UpdateUI()
-    end
-    return true, "Nickname updated."
-end
-
-function DB:AddMob(mobData, toSquad)
-    -- Check if this is an authentic rare spawn
-    if mobData.name and DB:IsReservedRareName(mobData.name) then
-        mobData.isRareSpawn = true
-    end
-
-    mobData.kennelBox = mobData.kennelBox or 1
-
-    DB:SignMob(mobData)
-    table.insert(ForeverSafariDB.collection, mobData)
-    ForeverSafariDB.stats.totalCaptured = (ForeverSafariDB.stats.totalCaptured or 0) + 1
-
-    -- Mark dex caught
-    if mobData.name then
-        if not ForeverSafariDB.discovered[mobData.name] then
-            ForeverSafariDB.discovered[mobData.name] = { seen = 1, caught = 1, type = mobData.creatureType }
-        else
-            ForeverSafariDB.discovered[mobData.name].caught = (ForeverSafariDB.discovered[mobData.name].caught or 0) + 1
-        end
-    end
-
-    -- Automatically unlock the mob's starting moves in training grimoire
-    if mobData.abilities then
-        for _, moveKey in ipairs(mobData.abilities) do
-            DB:UnlockAbility(moveKey, mobData.name, true)
-        end
-    end
-
-    -- Auto add to team if slot available and requested
-    if toSquad ~= false and #ForeverSafariDB.team < 4 then
-        table.insert(ForeverSafariDB.team, mobData.id)
-    end
-
-    if ForeverSafari.JournalFrame and ForeverSafari.JournalFrame:IsShown() then
-        ForeverSafari.JournalFrame:UpdateUI()
-    end
-    if ForeverSafari.KennelFrame and ForeverSafari.KennelFrame:IsShown() then
-        ForeverSafari.KennelFrame:UpdateUI()
-    end
-
-    return mobData
-end
-
-function DB:RemoveMob(id)
-    for idx, mob in ipairs(ForeverSafariDB.collection) do
-        if mob.id == id then
-            table.remove(ForeverSafariDB.collection, idx)
-            break
-        end
-    end
-    for idx, memberId in ipairs(ForeverSafariDB.team) do
-        if memberId == id then
-            table.remove(ForeverSafariDB.team, idx)
-            break
-        end
-    end
-    DB:ValidateTeam()
-    if ForeverSafari.JournalFrame and ForeverSafari.JournalFrame:IsShown() then
-        ForeverSafari.JournalFrame:UpdateUI()
-    end
-    if ForeverSafari.KennelFrame and ForeverSafari.KennelFrame:IsShown() then
-        ForeverSafari.KennelFrame:UpdateUI()
-    end
-end
-
-function DB:AbandonMob(id)
-    local mob = DB:GetMobById(id)
-    if not mob then return false, "Companion not found." end
-    local name = mob.nickname ~= "" and mob.nickname or mob.name
-
-    DB:RemoveMob(id)
-
-    local C = ForeverSafari.Constants
-    DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cffff4444[Companion Released]|r You unsealed %s's cage and released it back into the wild. Farewell!", C.PREFIX, name))
-
-    if ForeverSafari.Toast then
-        ForeverSafari.Toast:ShowAlert("Companion Released", string.format("%s was released back to the wild.", name))
-    end
-    PlaySound(847)
-
-    if ForeverSafari.JournalFrame and ForeverSafari.JournalFrame:IsShown() then
-        if ForeverSafari.JournalFrame.SelectMob then
-            ForeverSafari.JournalFrame:SelectMob(nil)
-        end
-        ForeverSafari.JournalFrame:UpdateUI()
-    end
-    if ForeverSafari.MinimapButton then
-        ForeverSafari.MinimapButton:UpdatePosition()
-    end
-    return true
-end
-
-function DB:GetTeam()
-    local team = {}
-    for _, id in ipairs(ForeverSafariDB.team or {}) do
-        local mob = DB:GetMobById(id)
-        if mob then
-            table.insert(team, mob)
-        end
-    end
-    return team
-end
-
-function DB:GetActiveMob()
-    local team = DB:GetTeam()
-    if #team == 0 then return nil end
-    local slot = ForeverSafariDB.activeSlot or 1
-    if slot > #team or slot < 1 then
-        slot = 1
-        ForeverSafariDB.activeSlot = 1
-    end
-    return team[slot]
-end
-
-function DB:SetActiveSlot(slot)
-    local team = DB:GetTeam()
-    if slot >= 1 and slot <= #team then
-        ForeverSafariDB.activeSlot = slot
-        if ForeverSafari.JournalFrame and ForeverSafari.JournalFrame:IsShown() then
-            ForeverSafari.JournalFrame:UpdateUI()
-        end
-    end
-end
-
-function DB:SetTeamSlot(slotIndex, mobId)
-    if slotIndex < 1 or slotIndex > 4 or not mobId then return end
-    if not DB:GetMobById(mobId) then return end
-
-    ForeverSafariDB.team = ForeverSafariDB.team or {}
-
-    -- Check if mob is already in another slot
-    local existingIndex = nil
-    for i, id in ipairs(ForeverSafariDB.team) do
-        if id == mobId then
-            existingIndex = i
-            break
-        end
-    end
-
-    if existingIndex then
-        -- If already in that exact slot, do nothing
-        if existingIndex == slotIndex then return end
-        -- Swap slots if target slot has a companion
-        if ForeverSafariDB.team[slotIndex] then
-            local temp = ForeverSafariDB.team[slotIndex]
-            ForeverSafariDB.team[slotIndex] = mobId
-            ForeverSafariDB.team[existingIndex] = temp
-        else
-            -- Move to target slot
-            table.remove(ForeverSafariDB.team, existingIndex)
-            table.insert(ForeverSafariDB.team, slotIndex, mobId)
-        end
-    else
-        -- If target slot is within or directly adjacent to current team length
-        if slotIndex <= #ForeverSafariDB.team then
-            ForeverSafariDB.team[slotIndex] = mobId
-        else
-            table.insert(ForeverSafariDB.team, mobId)
-        end
-    end
-
-    DB:ValidateTeam()
-    if ForeverSafari.JournalFrame and ForeverSafari.JournalFrame:IsShown() then
-        ForeverSafari.JournalFrame:UpdateUI()
-    end
-    if ForeverSafari.KennelFrame and ForeverSafari.KennelFrame:IsShown() then
-        ForeverSafari.KennelFrame:UpdateUI()
-    end
-end
-
-function DB:SwapTeamSlots(slot1, slot2)
-    if slot1 < 1 or slot1 > 4 or slot2 < 1 or slot2 > 4 or slot1 == slot2 then return end
-    ForeverSafariDB.team = ForeverSafariDB.team or {}
-    local m1 = ForeverSafariDB.team[slot1]
-    local m2 = ForeverSafariDB.team[slot2]
-    if m1 and m2 then
-        ForeverSafariDB.team[slot1] = m2
-        ForeverSafariDB.team[slot2] = m1
-        DB:ValidateTeam()
-        if ForeverSafari.JournalFrame and ForeverSafari.JournalFrame:IsShown() then
-            ForeverSafari.JournalFrame:UpdateUI()
-        end
-        if ForeverSafari.KennelFrame and ForeverSafari.KennelFrame:IsShown() then
-            ForeverSafari.KennelFrame:UpdateUI()
-        end
-    end
-end
-
-function DB:RemoveTeamSlot(slotIndex)
-    ForeverSafariDB.team = ForeverSafariDB.team or {}
-    if #ForeverSafariDB.team <= 1 then return end -- Keep at least 1 companion
-    if slotIndex >= 1 and slotIndex <= #ForeverSafariDB.team then
-        table.remove(ForeverSafariDB.team, slotIndex)
-        DB:ValidateTeam()
-        if ForeverSafari.JournalFrame and ForeverSafari.JournalFrame:IsShown() then
-            ForeverSafari.JournalFrame:UpdateUI()
-        end
-        if ForeverSafari.KennelFrame and ForeverSafari.KennelFrame:IsShown() then
-            ForeverSafari.KennelFrame:UpdateUI()
-        end
-    end
-end
-
-function DB:ValidateTeam()
-    local validTeam = {}
-    local seen = {}
-    for _, id in ipairs(ForeverSafariDB.team or {}) do
-        if DB:GetMobById(id) and not seen[id] then
-            table.insert(validTeam, id)
-            seen[id] = true
-        end
-    end
-    if #validTeam == 0 and #ForeverSafariDB.collection > 0 then
-        table.insert(validTeam, ForeverSafariDB.collection[1].id)
-    end
-    ForeverSafariDB.team = validTeam
-    if (ForeverSafariDB.activeSlot or 1) > #ForeverSafariDB.team or (ForeverSafariDB.activeSlot or 1) < 1 then
-        ForeverSafariDB.activeSlot = 1
-    end
-end
-
--- =========================================================================
--- 🏡 SAFARI KENNEL & ACTIVE SQUAD MANAGEMENT (4 Active / Banked Enclosures)
--- =========================================================================
-
-function DB:GetSquad()
-    return DB:GetTeam()
-end
-
-function DB:GetSquadCount()
-    return #(ForeverSafariDB.team or {})
-end
-
-function DB:IsMobInSquad(mobId)
-    if not mobId or not ForeverSafariDB.team then return false end
-    for _, id in ipairs(ForeverSafariDB.team) do
-        if id == mobId then return true end
-    end
-    return false
-end
-
-function DB:GetKennelMobs(boxId)
-    local kennel = {}
-    local targetBox = tonumber(boxId)
-    for _, mob in ipairs(ForeverSafariDB.collection or {}) do
-        if not DB:IsMobInSquad(mob.id) then
-            local mBox = tonumber(mob.kennelBox) or 1
-            if not targetBox or mBox == targetBox then
-                table.insert(kennel, mob)
-            end
-        end
-    end
-    return kennel
-end
-
-function DB:MoveToSquad(mobId, targetSlot)
-    local mob = DB:GetMobById(mobId)
-    if not mob then return false, "Companion not found." end
-    if DB:IsMobInSquad(mobId) then return false, "Already in active squad." end
-
-    ForeverSafariDB.team = ForeverSafariDB.team or {}
-    if targetSlot and targetSlot >= 1 and targetSlot <= 4 then
-        if ForeverSafariDB.team[targetSlot] then
-            local oldMobId = ForeverSafariDB.team[targetSlot]
-            ForeverSafariDB.team[targetSlot] = mobId
-            local oldMob = DB:GetMobById(oldMobId)
-            if oldMob then oldMob.kennelBox = mob.kennelBox or 1 end
-        else
-            table.insert(ForeverSafariDB.team, mobId)
-        end
-    else
-        if #ForeverSafariDB.team < 4 then
-            table.insert(ForeverSafariDB.team, mobId)
-        else
-            return false, "Active squad is full (4/4)."
-        end
-    end
-
-    DB:ValidateTeam()
-    if ForeverSafari.JournalFrame and ForeverSafari.JournalFrame:IsShown() then
-        ForeverSafari.JournalFrame:UpdateUI()
-    end
-    if ForeverSafari.KennelFrame and ForeverSafari.KennelFrame:IsShown() then
-        ForeverSafari.KennelFrame:UpdateUI()
-    end
-    return true
-end
-
-function DB:MoveToKennel(mobId, targetBox)
-    local mob = DB:GetMobById(mobId)
-    if not mob then return false, "Companion not found." end
-    if not DB:IsMobInSquad(mobId) then return false, "Not in active squad." end
-    if #ForeverSafariDB.team <= 1 then return false, "You must keep at least 1 active companion in your squad!" end
-
-    for idx, id in ipairs(ForeverSafariDB.team) do
-        if id == mobId then
-            table.remove(ForeverSafariDB.team, idx)
-            break
-        end
-    end
-
-    mob.kennelBox = tonumber(targetBox) or 1
-    DB:ValidateTeam()
-    if ForeverSafari.JournalFrame and ForeverSafari.JournalFrame:IsShown() then
-        ForeverSafari.JournalFrame:UpdateUI()
-    end
-    if ForeverSafari.KennelFrame and ForeverSafari.KennelFrame:IsShown() then
-        ForeverSafari.KennelFrame:UpdateUI()
-    end
-    return true
-end
-
-function DB:SwapSquadAndKennel(squadSlot, kennelMobId)
-    if not squadSlot or squadSlot < 1 or squadSlot > 4 or not kennelMobId then return false end
-    local kennelMob = DB:GetMobById(kennelMobId)
-    if not kennelMob then return false end
-
-    ForeverSafariDB.team = ForeverSafariDB.team or {}
-    local oldMobId = ForeverSafariDB.team[squadSlot]
-    ForeverSafariDB.team[squadSlot] = kennelMobId
-
-    if oldMobId then
-        local oldMob = DB:GetMobById(oldMobId)
-        if oldMob then
-            oldMob.kennelBox = kennelMob.kennelBox or 1
-        end
-    end
-
-    DB:ValidateTeam()
-    if ForeverSafari.JournalFrame and ForeverSafari.JournalFrame:IsShown() then
-        ForeverSafari.JournalFrame:UpdateUI()
-    end
-    if ForeverSafari.KennelFrame and ForeverSafari.KennelFrame:IsShown() then
-        ForeverSafari.KennelFrame:UpdateUI()
-    end
-    return true
-end
-
--- =========================================================================
--- 📦 TRANSPORT CRATES (1 / 5 / 10 / 25 Token Logistics)
--- =========================================================================
-
-local CRATE_ORDER = {
-    [1] = { "crate_copper", "transport_crate", "crate_iron", "crate_mithril", "crate_thorium" },
-    [2] = { "crate_iron", "crate_mithril", "crate_thorium" },
-    [3] = { "crate_mithril", "crate_thorium" },
-    [4] = { "crate_thorium" },
-}
-
-function DB:HasTransportCrate(requiredQuality)
-    local q = math.max(1, math.min(4, tonumber(requiredQuality) or 1))
-    local candidateList = CRATE_ORDER[q] or CRATE_ORDER[1]
-    for _, crateId in ipairs(candidateList) do
-        if DB:GetItemCount(crateId) > 0 then
-            return true, crateId
-        end
-    end
-    return false, nil
-end
-
-function DB:ConsumeBestTransportCrate(requiredQuality)
-    local q = math.max(1, math.min(4, tonumber(requiredQuality) or 1))
-    local candidateList = CRATE_ORDER[q] or CRATE_ORDER[1]
-    for _, crateId in ipairs(candidateList) do
-        if DB:GetItemCount(crateId) > 0 then
-            DB:RemoveItem(crateId, 1)
-            local itemData = ForeverSafari.Constants.SAFARI_ITEMS[crateId] or ForeverSafari.Constants.SHOP_ITEMS[crateId]
-            return true, crateId, itemData
-        end
-    end
-    return false, nil, nil
-end
-
--- =========================================================================
--- VANILLA WOW PET ABILITY LEARNING & TRAINING SYSTEM
--- =========================================================================
-
--- Unlock an ability into the trainer's Grimoire (learned by observing higher level wild mobs)
-function DB:UnlockAbility(moveKey, sourceMobName, silent)
-    if not moveKey then return false end
-    if not ForeverSafariDB.unlockedAbilities then
-        ForeverSafariDB.unlockedAbilities = {}
-    end
-
-    if not ForeverSafariDB.unlockedAbilities[moveKey] then
-        ForeverSafariDB.unlockedAbilities[moveKey] = true
-        ForeverSafariDB.stats.totalAbilitiesLearned = (ForeverSafariDB.stats.totalAbilitiesLearned or 0) + 1
-
-        if not silent then
-            local moveData = ForeverSafari.Constants.ABILITIES[moveKey]
-            local moveName = moveData and moveData.name or moveKey
-            local src = sourceMobName or "Wild Mob"
-
-            PlaySound(1195) -- SOUNDKIT.IG_QUEST_LOG_COMPLETE
-            DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00[Ability Learned!]|r You observed |cffffd100%s|r use |cff00ff99[%s]|r and learned how to teach it!",
-                ForeverSafari.Constants.PREFIX, src, moveName))
-
-            if ForeverSafari.Toast then
-                ForeverSafari.Toast:ShowReward(
-                    "New Ability Learned!",
-                    string.format("Learned %s from %s!", moveName, src)
-                )
-            end
-        end
-        return true
-    end
-    return false
-end
-
-function DB:IsAbilityUnlocked(moveKey)
-    return ForeverSafariDB.unlockedAbilities and ForeverSafariDB.unlockedAbilities[moveKey] == true
-end
-
-function DB:GetUnlockedAbilities()
-    return ForeverSafariDB.unlockedAbilities or {}
-end
-
--- =========================================================================
--- CREATURE TYPE PERMITS & RESEARCH UNLOCKS
--- =========================================================================
-
-function DB:IsTypeUnlocked(creatureType)
-    if not creatureType or creatureType == "Humanoid" then return false end
-    if not ForeverSafari.Constants.LOCKED_CREATURE_TYPES[creatureType] then return true end
-    if not ForeverSafariDB.unlockedTypes then
-        ForeverSafariDB.unlockedTypes = CopyTable(ForeverSafari.Constants.DEFAULT_UNLOCKED_TYPES)
-    end
-    return ForeverSafariDB.unlockedTypes[creatureType] == true
-end
-
-function DB:UnlockType(creatureType, silent)
-    if not creatureType or creatureType == "Humanoid" then return end
-    if not ForeverSafariDB.unlockedTypes then
-        ForeverSafariDB.unlockedTypes = CopyTable(ForeverSafari.Constants.DEFAULT_UNLOCKED_TYPES)
-    end
-    ForeverSafariDB.unlockedTypes[creatureType] = true
-
-    if not silent then
-        local permit = ForeverSafari.Constants.TYPE_RESEARCH_PERMITS and ForeverSafari.Constants.TYPE_RESEARCH_PERMITS[creatureType]
-        local permitName = permit and permit.name or (creatureType .. " Research Permit")
-
-        PlaySound(1195)
-        DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00[Research Permit Granted]|r You can now stalk, battle, and capture |cffffd100%s|r creatures! ([%s])",
-            ForeverSafari.Constants.PREFIX, creatureType, permitName))
-
-        if ForeverSafari.Toast then
-            ForeverSafari.Toast:ShowReward(
-                creatureType .. " Permit Unlocked!",
-                string.format("You can now research %s creatures!", creatureType)
-            )
-        end
-    end
-
-    if ForeverSafari.JournalFrame and ForeverSafari.JournalFrame:IsShown() then
-        ForeverSafari.JournalFrame:UpdateUI()
-    end
-end
-
-function DB:LockType(creatureType)
-    if not creatureType then return end
-    if not ForeverSafariDB.unlockedTypes then
-        ForeverSafariDB.unlockedTypes = CopyTable(ForeverSafari.Constants.DEFAULT_UNLOCKED_TYPES)
-    end
-    ForeverSafariDB.unlockedTypes[creatureType] = nil
-    if ForeverSafari.JournalFrame and ForeverSafari.JournalFrame:IsShown() then
-        ForeverSafari.JournalFrame:UpdateUI()
-    end
-end
-
-function DB:GetUnlockedTypes()
-    return ForeverSafariDB.unlockedTypes or ForeverSafari.Constants.DEFAULT_UNLOCKED_TYPES
-end
-
--- Teach a known unlocked ability to a specific slot on a companion
-function DB:SetMobAbility(mobId, slotIndex, moveKey)
-    local mob = DB:GetMobById(mobId)
-    if not mob or slotIndex < 1 or slotIndex > 4 then return false end
-
-    mob.abilities = mob.abilities or {}
-    
-    -- Check if move is already in another slot on this mob
-    for i, existingKey in ipairs(mob.abilities) do
-        if existingKey == moveKey and i ~= slotIndex then
-            mob.abilities[i] = mob.abilities[slotIndex] -- Swap slots
-            break
-        end
-    end
-
-    mob.abilities[slotIndex] = moveKey
-
-    if ForeverSafari.JournalFrame and ForeverSafari.JournalFrame:IsShown() then
-        ForeverSafari.JournalFrame:UpdateUI()
-    end
-    return true
-end
-
-function DB:RecordSeenMob(name, creatureType)
-    if not name then return end
-    if not ForeverSafariDB.discovered[name] then
-        ForeverSafariDB.discovered[name] = { seen = 1, caught = 0, type = creatureType or "Beast" }
-    else
-        ForeverSafariDB.discovered[name].seen = (ForeverSafariDB.discovered[name].seen or 0) + 1
-    end
-end
-
 function DB:GetSetting(key)
+    if not ForeverSafariSettings then return nil end
     return ForeverSafariSettings[key]
 end
 
 function DB:SetSetting(key, value)
+    if not ForeverSafariSettings then ForeverSafariSettings = {} end
     ForeverSafariSettings[key] = value
 end
 
 -- =========================================================================
--- ✉️ NESINGWARY MAILBOX & QUEST DISPATCH PERSISTENCE
+-- ✉️ NESINGWARY MAILBOX & QUEST DISPATCH PROGRESSION
 -- =========================================================================
 function DB:IsStarterClaimed()
-    if not ForeverSafariDB.mail then return false end
-    return ForeverSafariDB.mail.starterClaimed == true or #DB:GetCollection() > 0
+    if not ForeverSafariDB or not ForeverSafariDB.mail then return false end
+    return ForeverSafariDB.mail.starterClaimed == true or #self:GetCollection() > 0
 end
 
 function DB:ClaimStarterKit()
-    if not ForeverSafariDB.mail then ForeverSafariDB.mail = {} end
-    if DB:IsStarterClaimed() then return false, "Starter kit already claimed." end
+    if not ForeverSafariDB then return false end
+    ForeverSafariDB.mail = ForeverSafariDB.mail or {}
+    if self:IsStarterClaimed() then return false, "Starter kit already claimed." end
 
     local _, playerRace = UnitRace("player")
     if not playerRace or playerRace == "" then playerRace = "Human" end
 
     local starterConfig = {
-        ["Human"]     = { name = "Mangy Wolf",       type = "Beast", displayId = 903,  family = "Canine" },
-        ["Dwarf"]     = { name = "Young Black Bear", type = "Beast", displayId = 8843, family = "Bear" },
-        ["Gnome"]     = { name = "Crag Boar",        type = "Beast", displayId = 138623, family = "Boar" },
-        ["NightElf"]  = { name = "Young Nightsaber", type = "Beast", displayId = 11454, family = "Cat" },
-        ["Orc"]       = { name = "Scorpid Worker",   type = "Beast", displayId = 2485, family = "Scorpid" },
-        ["Troll"]     = { name = "Bloodtalon Raptor",type = "Beast", displayId = 1960, family = "Raptor" },
-        ["Tauren"]    = { name = "Kodo Calf",        type = "Beast", displayId = 1451, family = "Kodo" },
-        ["Scourge"]   = { name = "Mangy Duskbat",    type = "Beast", displayId = 9535, family = "Bat" },
-        ["Undead"]    = { name = "Mangy Duskbat",    type = "Beast", displayId = 9535, family = "Bat" },
+        ["Human"]     = { name = "Mangy Wolf",       type = "Beast", displayId = 903,    family = "Canine", element = "Beast", moves = { 101, 107, 102, 126 } },
+        ["Dwarf"]     = { name = "Young Black Bear", type = "Beast", displayId = 8843,   family = "Bear",   element = "Beast", moves = { 108, 105, 119, 118 } },
+        ["Gnome"]     = { name = "Crag Boar",        type = "Beast", displayId = 138623, family = "Boar",   element = "Beast", moves = { 108, 107, 119, 125 } },
+        ["NightElf"]  = { name = "Young Nightsaber", type = "Beast", displayId = 11454,  family = "Feline", element = "Beast", moves = { 103, 104, 121, 124 } },
+        ["Orc"]       = { name = "Scorpid Worker",   type = "Beast", displayId = 2485,   family = "Scorpid",element = "Beast", moves = { 501, 502, 108, 510 } },
+        ["Troll"]     = { name = "Bloodtalon Raptor",type = "Beast", displayId = 1960,   family = "Raptor", element = "Beast", moves = { 103, 101, 107, 121 } },
+        ["Tauren"]    = { name = "Kodo Calf",        type = "Beast", displayId = 1451,   family = "Kodo",   element = "Beast", moves = { 108, 105, 118, 119 } },
+        ["Scourge"]   = { name = "Mangy Duskbat",    type = "Beast", displayId = 9535,   family = "Bat",    element = "Flying",moves = { 202, 709, 204, 126 } },
+        ["Undead"]    = { name = "Mangy Duskbat",    type = "Beast", displayId = 9535,   family = "Bat",    element = "Flying",moves = { 202, 709, 204, 126 } },
     }
 
-    local starterData = starterConfig[playerRace] or starterConfig["Human"]
-    local starterMob = ForeverSafari.StatEngine:CreateMobInstance(starterData.name, starterData.type, 1, false, starterData.displayId)
-    starterMob.nickname = "Starter " .. starterData.name
-    starterMob.family = starterData.family
-    
-    DB:AddMob(starterMob)
-    DB:AddItem("copper_cage", 10)
-    DB:AddItem("healing_salve", 5)
-    DB:AddItem("revival_crystal", 1)
+    local data = starterConfig[playerRace] or starterConfig["Human"]
+    local starterMob = {
+        name = data.name,
+        customNickname = "Starter " .. data.name,
+        family = data.family,
+        element = data.element,
+        displayId = data.displayId,
+        level = 1,
+        hp = 60,
+        maxHP = 60,
+        currentHP = 60,
+        attack = 16,
+        defense = 12,
+        speed = 14,
+        moves = data.moves,
+        attunementRank = 1,
+        attunementPoints = 0,
+    }
+
+    self:AddMob(starterMob, true)
+    self:AddItem("copper_cage", 10)
+    self:AddItem("copper_crate", 3)
+    self:AddItem("healing_salve", 5)
+    self:AddItem("revival_crystal", 1)
     ForeverSafariDB.mail.starterClaimed = true
 
-    if ForeverSafari.Toast then
-        ForeverSafari.Toast:ShowReward("Starter Kit Unboxed!", string.format("Received %s, 10x Nets, 5x Salves & 1x Revive Crystal", starterData.name))
+    if ns.Toast and ns.Toast.ShowReward then
+        ns.Toast:ShowReward("Starter Kit Unboxed!", string.format("Received %s, 10x Snares, 3x Crates & Supplies", data.name))
     end
     PlaySound(1195)
     return true, starterMob
@@ -1129,266 +395,18 @@ function DB:GetQuestProgress(questType)
     return ForeverSafariDB.mail.questProgress[questType] or 0
 end
 
-function DB:UpdateQuestProgress(questType, increment, param)
+function DB:UpdateQuestProgress(questType, increment)
     if not ForeverSafariDB.mail then ForeverSafariDB.mail = {} end
     if not ForeverSafariDB.mail.questProgress then ForeverSafariDB.mail.questProgress = {} end
-    
     local current = ForeverSafariDB.mail.questProgress[questType] or 0
     ForeverSafariDB.mail.questProgress[questType] = current + (increment or 1)
-
-    if ForeverSafari.SafariMailFrame and ForeverSafari.SafariMailFrame:IsShown() then
-        ForeverSafari.SafariMailFrame:UpdateUI()
-    end
 end
 
-function DB:ClaimQuestReward(letterId)
-    local dispatch = ForeverSafari.Constants.NESINGWARY_DISPATCHES[letterId]
-    if not dispatch then return false, "Invalid letter." end
-    if DB:IsQuestClaimed(letterId) then return false, "Reward already claimed." end
-
-    local progress = DB:GetQuestProgress(dispatch.questType)
-    if dispatch.targetCount and progress < dispatch.targetCount then
-        return false, "Quest objective not yet completed."
-    end
-
-    if not ForeverSafariDB.mail then ForeverSafariDB.mail = {} end
-    if not ForeverSafariDB.mail.claimedQuests then ForeverSafariDB.mail.claimedQuests = {} end
-    ForeverSafariDB.mail.claimedQuests[letterId] = true
-
-    if dispatch.rewards then
-        if dispatch.rewards.tokens and dispatch.rewards.tokens > 0 then
-            DB:AddTokens(dispatch.rewards.tokens, dispatch.title)
-        end
-        if dispatch.rewards.items then
-            for _, item in ipairs(dispatch.rewards.items) do
-                DB:AddItem(item.id, item.count)
-            end
-        end
-    end
-
-    if dispatch.unlocksType then
-        DB:UnlockType(dispatch.unlocksType)
-    end
-
-    PlaySound(1195)
-    if ForeverSafari.Toast then
-        ForeverSafari.Toast:ShowReward(dispatch.title .. " Complete!", string.format("+%d Safari Tokens & Supplies", dispatch.rewards.tokens or 0))
-    end
-    if ForeverSafari.SafariMailFrame and ForeverSafari.SafariMailFrame:IsShown() then
-        ForeverSafari.SafariMailFrame:UpdateUI()
-    end
-    return true
-end
-
--- Full clean reset of player progress to new recruit state
 function DB:ResetDB()
-    ForeverSafariDB = {
-        version = 2,
-        tokens = 0,
-        inventory = {
-            ["copper_cage"] = 0,
-            ["iron_cage"] = 0,
-            ["mithril_cage"] = 0,
-            ["arcanite_capsule"] = 0,
-            ["az_treat"] = 0,
-            ["healing_salve"] = 0,
-            ["revival_crystal"] = 0,
-        },
-        collection = {},
-        team = {},
-        activeSlot = 1,
-        discovered = {},
-        unlockedAbilities = {
-            ["Tackle"] = true,
-            ["Bite"] = true,
-            ["Furious_Howl"] = true,
-            ["Water_Jet"] = true,
-        },
-        unlockedTypes = {
-            ["Beast"] = true,
-            ["Flying"] = true,
-            ["Aquatic"] = true,
-            ["Critter"] = true,
-            ["Magic"] = true,
-        },
-        stats = {
-            totalCaptured = 0,
-            totalCagesThrown = 0,
-            totalQuestsCompleted = 0,
-            totalTokensEarned = 0,
-            totalBattlesWon = 0,
-            totalBattlesLost = 0,
-            totalAbilitiesLearned = 4,
-        },
-        mail = {
-            starterClaimed = false,
-            readLetters = {},
-            claimedQuests = {},
-            questProgress = {
-                ["CAPTURE_TOTAL"] = 0,
-                ["FEED"] = 0,
-                ["CAPTURE_RARE"] = 0,
-                ["BOSS_KILL"] = 0,
-            },
-        },
-        settings = {
-            minimapAngle = 220,
-        }
-    }
-
-    if ForeverSafari.JournalFrame and ForeverSafari.JournalFrame:IsShown() then
-        ForeverSafari.JournalFrame:UpdateUI()
-    end
-    if ForeverSafari.SafariBagFrame and ForeverSafari.SafariBagFrame:IsShown() then
-        ForeverSafari.SafariBagFrame:UpdateUI()
-    end
-    if ForeverSafari.SafariMailFrame and ForeverSafari.SafariMailFrame:IsShown() then
-        ForeverSafari.SafariMailFrame:UpdateUI()
-        ForeverSafari.SafariMailFrame:UpdateTabBadge()
-    end
-    if ForeverSafari.MinimapButton then
-        ForeverSafari.MinimapButton:UpdatePosition()
-    end
-
-    local C = ForeverSafari.Constants
-    DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00Database reset! You are now a brand new recruit.|r Visit any town mailbox to unbox your welcome parcel from the |cffffd100[Safari Dispatch]|r hub!", C.PREFIX))
-    if ForeverSafari.Toast then
-        ForeverSafari.Toast:ShowReward("Safari League Reset", "New recruit profile initialized! Visit any town mailbox.")
+    ForeverSafariDB = CopyTable(DEFAULT_DB)
+    DEFAULT_CHAT_FRAME:AddMessage("|cffffd100[Forever Safari]|r |cff00ff00Database reset! You are now a brand new recruit.|r Visit any town mailbox to unbox your starter kit.")
+    if ns.Toast and ns.Toast.ShowReward then
+        ns.Toast:ShowReward("Safari League Reset", "New recruit profile initialized! Visit any town mailbox.")
     end
     PlaySound(844)
 end
-
-function DB:HealMob(mobId)
-    local mob = DB:GetMobById(mobId)
-    if not mob then return false end
-    mob.maxHP = mob.maxHP or mob.hp or 10
-    mob.currentHP = mob.maxHP
-    mob.hp = mob.maxHP
-    DB:SignMob(mob)
-    if ForeverSafari.JournalFrame and ForeverSafari.JournalFrame:IsShown() then
-        ForeverSafari.JournalFrame:UpdateUI()
-    end
-    if ForeverSafari.CaptureHUD and ForeverSafari.CaptureHUD:IsShown() then
-        ForeverSafari.CaptureHUD:UpdateUI()
-    end
-    return true
-end
-
-function DB:HealTeam(silent)
-    local team = DB:GetTeam()
-    local healedCount = 0
-    for _, mob in ipairs(team) do
-        if mob and DB:HealMob(mob.id) then
-            healedCount = healedCount + 1
-        end
-    end
-    if not silent then
-        local C = ForeverSafari.Constants
-        DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00Your active team has been fully healed and revived!|r", C.PREFIX))
-        if ForeverSafari.Toast then
-            ForeverSafari.Toast:ShowReward("Team Restored!", "All active companions are fully healed & revived.")
-        end
-        PlaySound(895)
-    end
-    return healedCount
-end
-
--- =========================================================================
--- 📖 BESTIARY / POKÉDEX DISCOVERY SYSTEM
--- =========================================================================
-function DB:GetBestiary()
-    if not ForeverSafariDB or not ForeverSafariDB.bestiary then
-        if ForeverSafariDB then ForeverSafariDB.bestiary = {} end
-        return {}
-    end
-    return ForeverSafariDB.bestiary
-end
-
-function DB:GetBestiaryEntry(speciesId)
-    local bestiary = DB:GetBestiary()
-    return bestiary[speciesId]
-end
-
-function DB:DiscoverSpecies(speciesIdOrName, status)
-    if not speciesIdOrName then return false end
-    local BestiaryDB = ForeverSafari.BestiaryDB
-    if not BestiaryDB then return false end
-
-    local species
-    if type(speciesIdOrName) == "number" then
-        species = BestiaryDB:GetSpecies(speciesIdOrName)
-    else
-        species = BestiaryDB:FindSpeciesByName(speciesIdOrName)
-    end
-
-    if not species then return false end
-
-    local bestiary = DB:GetBestiary()
-    local entry = bestiary[species.id]
-    local now = time()
-    local isNew = false
-
-    if not entry then
-        entry = {
-            id = species.id,
-            name = species.name,
-            status = status or "seen",
-            firstSeen = now,
-            firstCaught = (status == "caught") and now or nil,
-            caughtCount = (status == "caught") and 1 or 0,
-        }
-        bestiary[species.id] = entry
-        isNew = true
-    else
-        if status == "caught" then
-            if entry.status ~= "caught" then
-                entry.status = "caught"
-                entry.firstCaught = entry.firstCaught or now
-                isNew = true
-            end
-            entry.caughtCount = (entry.caughtCount or 0) + 1
-        elseif status == "seen" and entry.status ~= "caught" then
-            entry.status = "seen"
-        end
-    end
-
-    return isNew, species, entry
-end
-
-function DB:GetBestiaryStats()
-    local BestiaryDB = ForeverSafari.BestiaryDB
-    local allSpecies = BestiaryDB and BestiaryDB:GetAllSpecies() or {}
-    local total = #allSpecies
-    local seen = 0
-    local caught = 0
-
-    local bestiary = DB:GetBestiary()
-    for _, sp in ipairs(allSpecies) do
-        local entry = bestiary[sp.id]
-        if entry then
-            if entry.status == "caught" then
-                caught = caught + 1
-                seen = seen + 1
-            elseif entry.status == "seen" then
-                seen = seen + 1
-            end
-        end
-    end
-
-    return { total = total, seen = seen, caught = caught }
-end
-
-function DB:BackfillBestiaryFromCollection()
-    for _, mob in ipairs(DB:GetCollection()) do
-        if mob and mob.name then
-            DB:DiscoverSpecies(mob.name, "caught")
-        end
-    end
-    for _, mob in ipairs(DB:GetKennelMobs()) do
-        if mob and mob.name then
-            DB:DiscoverSpecies(mob.name, "caught")
-        end
-    end
-end
-
-
