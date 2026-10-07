@@ -266,6 +266,12 @@ function HUD:OnTargetChanged()
         return
     end
 
+    local classification = UnitClassification("target")
+    if classification == "worldboss" then
+        frame:Hide()
+        return
+    end
+
     local name = UnitName("target")
     if isSecret(name) or not name or name == "" then name = "Wild Creature" end
 
@@ -273,6 +279,16 @@ function HUD:OnTargetChanged()
     if isSecret(rawType) then rawType = "Beast" end
 
     local creatureType = C.NormalizeCreatureType(rawType, name)
+
+    -- If target is Humanoid, Giant, or not an eligible capture type, do not show the capture HUD!
+    if rawType == "Humanoid" or rawType == "Giant" or creatureType == "Humanoid" or (C.ELIGIBLE_CAPTURE_TYPES and not C.ELIGIBLE_CAPTURE_TYPES[creatureType]) then
+        if CE:IsChanneling() then
+            CE:CancelSnareChannel("Target is ineligible.")
+        end
+        frame:Hide()
+        return
+    end
+
     DB:RecordSeenMob(name, creatureType)
 
     frame:Show()
@@ -294,6 +310,12 @@ function HUD:UpdateUI()
     local rawType = UnitCreatureType("target") or "Beast"
     if isSecret(rawType) then rawType = "Beast" end
     local creatureType = C.NormalizeCreatureType(rawType, name)
+
+    if rawType == "Humanoid" or rawType == "Giant" or creatureType == "Humanoid" or (C.ELIGIBLE_CAPTURE_TYPES and not C.ELIGIBLE_CAPTURE_TYPES[creatureType]) then
+        frame:Hide()
+        return
+    end
+
     local typeInfo = C.CREATURE_TYPES[creatureType] or C.CREATURE_TYPES["Beast"]
     local typeColor = typeInfo.color or "ffffff"
 
