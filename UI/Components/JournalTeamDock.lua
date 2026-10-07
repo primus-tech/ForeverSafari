@@ -63,12 +63,16 @@ function Journal:BuildTeamDock(parent)
         hpBg:SetColorTexture(0.1, 0.1, 0.1, 0.8)
         slot.HPBar = hpBar
 
-        slot:SetScript("OnClick", function(self)
+        slot:EnableMouse(true)
+        slot:SetScript("OnMouseDown", function(self, button)
             local team = DB:GetTeam()
             local mobId = team[self.slotIndex]
             if mobId then
                 DB:SetActiveSlot(self.slotIndex)
-                Journal:SelectCompanion(mobId)
+                if Journal.SelectCompanion then
+                    Journal:SelectCompanion(mobId)
+                end
+                Journal:UpdateUI()
                 PlaySound(856)
             end
         end)
@@ -104,8 +108,9 @@ function Journal:BuildTeamDock(parent)
 end
 
 function Journal:UpdateTeamDock()
-    local frame = self.Frame
-    if not frame or not frame.TeamSlots then return end
+    local frame = self.frame or self
+    local teamSlots = frame.TeamSlots or (self.frame and self.frame.TeamSlots)
+    if not teamSlots then return end
 
     local team = DB:GetTeam()
     local activeSlot = ForeverSafariDB and ForeverSafariDB.activeSlot or 1
