@@ -121,9 +121,21 @@ end
 
 -- Create styled modern button
 function Theme:CreateButton(parent, text, width, height, isAccent)
+    -- Robust parameter detection for (parent, width, height, text) vs (parent, text, width, height)
+    if type(text) == "number" and (type(height) == "string" or type(isAccent) == "string") then
+        local actualText = type(height) == "string" and height or isAccent
+        local actualWidth = text
+        local actualHeight = type(width) == "number" and width or 28
+        local actualAccent = (type(height) == "boolean" and height) or (type(isAccent) == "boolean" and isAccent)
+        text = actualText
+        width = actualWidth
+        height = actualHeight
+        isAccent = actualAccent
+    end
+
     local btn = CreateFrame("Button", nil, parent, "UIPanelButtonTemplate")
-    btn:SetSize(width or 120, height or 28)
-    btn:SetText(text or "Button")
+    btn:SetSize(type(width) == "number" and width or 120, type(height) == "number" and height or 28)
+    btn:SetText(tostring(text or "Button"))
 
     -- Custom Styling
     local font = btn:GetFontString()

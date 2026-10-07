@@ -144,7 +144,7 @@ function Journal:BuildRosterView(parent)
     local animCard = Theme:CreateCard(centerStage, 280, 36)
     animCard:SetPoint("BOTTOM", centerStage, "BOTTOM", 0, 8)
 
-    local btnRotL = Theme:CreateButton(animCard, 32, 22, "◄")
+    local btnRotL = Theme:CreateButton(animCard, "◄", 32, 22)
     btnRotL:SetPoint("LEFT", 6, 0)
     btnRotL:SetScript("OnClick", function()
         local facing = mainModel:GetFacing() or 0
@@ -152,7 +152,7 @@ function Journal:BuildRosterView(parent)
         PlaySound(856)
     end)
 
-    local btnRotR = Theme:CreateButton(animCard, 32, 22, "►")
+    local btnRotR = Theme:CreateButton(animCard, "►", 32, 22)
     btnRotR:SetPoint("LEFT", btnRotL, "RIGHT", 4, 0)
     btnRotR:SetScript("OnClick", function()
         local facing = mainModel:GetFacing() or 0
@@ -160,21 +160,21 @@ function Journal:BuildRosterView(parent)
         PlaySound(856)
     end)
 
-    local btnAtk = Theme:CreateButton(animCard, 48, 22, "Attack")
+    local btnAtk = Theme:CreateButton(animCard, "Attack", 48, 22)
     btnAtk:SetPoint("LEFT", btnRotR, "RIGHT", 6, 0)
     btnAtk:SetScript("OnClick", function()
         if mainModel.SetAnimation then mainModel:SetAnimation(16) end
         PlaySound(856)
     end)
 
-    local btnRoar = Theme:CreateButton(animCard, 46, 22, "Roar")
+    local btnRoar = Theme:CreateButton(animCard, "Roar", 46, 22)
     btnRoar:SetPoint("LEFT", btnAtk, "RIGHT", 4, 0)
     btnRoar:SetScript("OnClick", function()
         if mainModel.SetAnimation then mainModel:SetAnimation(26) end
         PlaySound(856)
     end)
 
-    local btnVic = Theme:CreateButton(animCard, 46, 22, "Victory")
+    local btnVic = Theme:CreateButton(animCard, "Victory", 46, 22)
     btnVic:SetPoint("LEFT", btnRoar, "RIGHT", 4, 0)
     btnVic:SetScript("OnClick", function()
         if mainModel.SetAnimation then mainModel:SetAnimation(4) end
@@ -199,7 +199,7 @@ function Journal:BuildRosterView(parent)
     nameEdit:SetTextInsets(6, 6, 0, 0)
     rightPanel.NameEdit = nameEdit
 
-    local renameBtn = Theme:CreateButton(rightPanel, 64, 24, "Save")
+    local renameBtn = Theme:CreateButton(rightPanel, "Save", 64, 24)
     renameBtn:SetPoint("LEFT", nameEdit, "RIGHT", 6, 0)
     renameBtn:SetScript("OnClick", function()
         local mob = Journal:GetSelectedCompanion()
@@ -318,7 +318,7 @@ function Journal:BuildRosterView(parent)
     feedTitle:SetText("|cffffd100Favorite Sustenance:|r Wolf Meat")
     rightPanel.FeedTitle = feedTitle
 
-    local feedBtn = Theme:CreateButton(feedCard, 234, 20, "Feed Nourishment (+25 Attunement)")
+    local feedBtn = Theme:CreateButton(feedCard, "Feed Nourishment (+25 Attunement)", 234, 20)
     feedBtn:SetPoint("BOTTOM", 0, 4)
     feedBtn:SetScript("OnClick", function()
         local mob = Journal:GetSelectedCompanion()
