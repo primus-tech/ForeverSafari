@@ -318,20 +318,54 @@ function Journal:BuildRosterView(parent)
     feedTitle:SetText("|cffffd100Favorite Sustenance:|r Wolf Meat")
     rightPanel.FeedTitle = feedTitle
 
-    local feedBtn = Theme:CreateButton(feedCard, "Feed Nourishment (+25 Attunement)", 234, 20)
+    local feedBtn = Theme:CreateButton(feedCard, "Feed Safari Diet (+25 Attunement)", 234, 20)
     feedBtn:SetPoint("BOTTOM", 0, 4)
     feedBtn:SetScript("OnClick", function()
         local mob = Journal:GetSelectedCompanion()
         if mob then
-            local diet = ns.ItemDB and ns.ItemDB:GetFamilyDiet(mob.family)
-            local itemKey = diet and diet.item or "Wolf Flank"
-            local success, isFav = DB:FeedCompanion(mob.id, itemKey)
-            if success then
-                if ns.Toast and ns.Toast.ShowReward then
-                    ns.Toast:ShowReward("Nourished!", string.format("%s enjoyed %s (+%d Attunement)", mob.customNickname or mob.name, itemKey, isFav and 25 or 15))
+            local diet, favItem = ns.ItemDB and ns.ItemDB:GetFamilyDietInfo(mob.family, mob.creatureType)
+            local foodKey = favItem and favItem.id or "food_meat"
+            local count = DB:GetItemCount(foodKey)
+
+            -- If player has 0 favorite food, check if they have any accepted alternative
+            if count <= 0 and diet and diet.accepted then
+                for _, altKey in ipairs(diet.accepted) do
+                    if DB:GetItemCount(altKey) > 0 then
+                        foodKey = altKey
+                        break
+                    end
                 end
+            end
+
+            local success, resType, bonus = DB:FeedCompanion(mob.id, foodKey)
+            if success then
+                local foodData = ns.ItemDB and ns.ItemDB:GetDiet(foodKey)
+                local foodName = foodData and foodData.name or "Safari Food"
+                local mobName = mob.customNickname or mob.name
+                if ns.Toast and ns.Toast.ShowReward then
+                    local isFav = (resType == "favorite")
+                    ns.Toast:ShowReward(isFav and "Loved It! ⭐" or "Nourished! 🐾", string.format("%s enjoyed %s (+%d Attunement)", mobName, foodName, bonus))
+                end
+
+                local container = Journal.RosterContainer or (Journal.frame and Journal.frame.RosterContainer)
+                if container and container.CenterStage and container.CenterStage.Model3D then
+                    container.CenterStage.Model3D:SetAnimation(4)
+                    C_Timer.After(0.8, function()
+                        if container.CenterStage.Model3D:IsShown() then container.CenterStage.Model3D:SetAnimation(0) end
+                    end)
+                end
+
                 Journal:UpdateRosterView()
                 PlaySound(856)
+            else
+                local foodData = ns.ItemDB and ns.ItemDB:GetDiet(foodKey)
+                local foodName = foodData and foodData.name or "Safari Food"
+                if resType == "out_of_stock" then
+                    DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. string.format("|cffff4444You have no %s in your Safari Bag! Defeat wild creatures or visit Hemet's shop.|r", foodName))
+                elseif resType == "refused" then
+                    local mobName = mob.customNickname or mob.name
+                    DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. string.format("|cffffaa00%s refused to eat that food!|r", mobName))
+                end
             end
         end
     end)
@@ -530,6 +564,12 @@ function Journal:UpdateRosterView()
     end
 
     -- Update Feeding Tray
-    local diet = ns.ItemDB and ns.ItemDB:GetFamilyDiet(mob.family)
-    rPanel.FeedTitle:SetText(string.format("|cffffd100Favorite Sustenance:|r %s", diet and diet.item or "Fresh Meat"))
+    local diet, favItem = ns.ItemDB and ns.ItemDB:GetFamilyDietInfo(mob.family, mob.creatureType)
+    local favName = favItem and favItem.name or "Safari Meat"
+    local favId = favItem and favItem.id or "food_meat"
+    local count = DB:GetItemCount(favId)
+    rPanel.FeedTitle:SetText(string.format("|cffffd100Favorite Diet:|r %s", favName))
+    if rPanel.FeedBtn then
+        rPanel.FeedBtn:SetText(string.format("Feed %s (x%d)", favName, count))
+    end
 end

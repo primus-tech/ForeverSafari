@@ -138,8 +138,10 @@ Companions progress through bonding, feeding, and battlefield survival rather th
     * **Tier 1 (Common)**: **Copper Transport Crate** (`INV_Box_PetCarrier_01` — 1 Token, Common/Small Game)
     * **Tier 2 (Uncommon)**: **Iron Transport Crate** (`INV_Box_PetCarrier_01` — 5 Tokens, Uncommon)
     * **Tier 3 (Rare)**: **Mithril Transport Crate** (`INV_Box_PetCarrier_01` — 10 Tokens, Rare)
-    * **Tier 4 (Epic)**: **Thorium Transport Crate** (`INV_Box_PetCarrier_01` — 25 Tokens, Epic/Dungeon Behemoths)
-  * 🥩 **Family Nourishment**: 17 harvested wild creature diet types for feeding active companions (+25 Attunement for favorite diets, +15 for standard sustenance).
+  * 🥩 **11 Safari Diet Sustenance Items**:
+    * **Natural Diets**: **Safari Meat** (Carnivores), **Safari Fish** (Shore / Aquatic hunters), **Safari Bread** (Herbivores / Grazers), **Safari Cheese** (Omnivores / Rodents), **Safari Fruit** (Avians, Bats, Primates), **Safari Fungus** (Cave & Swamp scavengers).
+    * **Special Diets**: **Safari Parts** (Mechanicals), **Safari Bonedust** (Undead), **Safari Shards** (Magic), **Safari Crystals** (Elementals), **Safari Runes** (Dragonkin).
+    * **Feeding Rewards**: +25 Attunement for Favorite Diets (with happy roar animation), +15 Attunement for Accepted Diets. Incompatible food is rejected without item loss.
   * 🧬 **Evolution Catalysts**: Dungeon boss drops (Shadowfang Essence, Hydra Bile, Venomous Gland, Overclocked Core, Volcanic Core).
   * 🍖 **Consumables**: Safari Treats (+50 Attunement), Grand Safari Feasts (+100 Attunement to full team), Safari Healing Salves (100% HP heal), and Revival Crystals.
 * **Context-Sensitive Actions**: Right-Clicking items in the bag automatically uses or feeds your active companion, or opens the 3D Metamorphosis pedestal. Shift-Clicking any item links it directly into chat.

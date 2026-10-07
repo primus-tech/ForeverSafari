@@ -146,29 +146,58 @@ ItemDB.TRANSPORT_CRATES = {
 }
 
 -- =========================================================================
--- 🥩 3. HARVESTED FAMILY NOURISHMENT DIETS (+25 Attunement Bonus)
+-- 🥩 3. THE 11 CANONICAL SAFARI DIET ITEMS
 -- =========================================================================
-ItemDB.FAMILY_NOURISHMENT = {
-    ["Canine"]       = { item = "Wolf Flank",          icon = "Interface\\Icons\\INV_Misc_Food_14", desc = "Fresh gamy meat harvested from wild wolves.", favoriteFamily = "Canine" },
-    ["Feline"]       = { item = "Panther Flank",       icon = "Interface\\Icons\\INV_Misc_Food_16", desc = "Lean, muscular meat harvested from wild big cats.", favoriteFamily = "Feline" },
-    ["Bear"]         = { item = "Bear Ribs",           icon = "Interface\\Icons\\INV_Misc_Food_18", desc = "Thick, fatty ribs harvested from wild bears.", favoriteFamily = "Bear" },
-    ["Boar"]         = { item = "Boar Ribs",           icon = "Interface\\Icons\\INV_Misc_Food_18", desc = "Tough, savory ribs harvested from wild boars.", favoriteFamily = "Boar" },
-    ["Raptor"]       = { item = "Raptor Flesh",        icon = "Interface\\Icons\\INV_Misc_Food_17", desc = "Stringy, pungent reptile meat from raptors.", favoriteFamily = "Raptor" },
-    ["Avian"]        = { item = "Wild Poultry Flank",  icon = "Interface\\Icons\\INV_Misc_Food_05", desc = "Plump game bird meat harvested from predatory birds.", favoriteFamily = "Avian" },
-    ["Bat"]          = { item = "Bat Wing Flank",      icon = "Interface\\Icons\\INV_Misc_Food_15", desc = "Dark, leathery meat from giant bats.", favoriteFamily = "Bat" },
-    ["Crocolisk"]    = { item = "Crocolisk Flank",     icon = "Interface\\Icons\\INV_Misc_Food_17", desc = "Dense, chewy meat harvested from river crocolisks.", favoriteFamily = "Crocolisk" },
-    ["Spider"]       = { item = "Spider Venom Flank",  icon = "Interface\\Icons\\INV_Misc_Food_19", desc = "Delicately toxic spider tissue and glands.", favoriteFamily = "Spider" },
-    ["Scorpid"]      = { item = "Scorpid Flank",       icon = "Interface\\Icons\\INV_Misc_Food_19", desc = "Chitin-shelled meat harvested from giant scorpids.", favoriteFamily = "Scorpid" },
-    ["Hydra"]        = { item = "Hydra Tri-Flank",     icon = "Interface\\Icons\\INV_Misc_Food_16", desc = "Mystical tri-colored meat harvested from ancient hydras.", favoriteFamily = "Hydra" },
-    ["Wind Serpent"] = { item = "Serpent Crest Flank",  icon = "Interface\\Icons\\INV_Misc_Food_17", desc = "Lightning-charged reptilian meat from wind serpents.", favoriteFamily = "Wind Serpent" },
-    ["Gorilla"]      = { item = "Gorilla Flank",       icon = "Interface\\Icons\\INV_Misc_Food_14", desc = "Heavy red game meat harvested from jungle gorillas.", favoriteFamily = "Gorilla" },
-    ["Kodo"]         = { item = "Kodo Meat",           icon = "Interface\\Icons\\INV_Misc_Food_18", desc = "Rich, hearty plains steak harvested from wild kodos.", favoriteFamily = "Kodo" },
-    ["Tallstrider"]  = { item = "Tallstrider Flank",   icon = "Interface\\Icons\\INV_Misc_Food_05", desc = "Lean game meat harvested from flightless plainstriders.", favoriteFamily = "Tallstrider" },
-    ["Dragonkin"]    = { item = "Dragonkin Flank",     icon = "Interface\\Icons\\INV_Misc_Food_17", desc = "Fire-seared scales and meat from wild whelps.", favoriteFamily = "Dragonkin" },
-    ["Crab"]         = { item = "Crawler Meat",        icon = "Interface\\Icons\\INV_Misc_Food_16", desc = "Sweet succulent meat harvested from coast crawlers.", favoriteFamily = "Crab" },
-    ["Mechanical"]   = { item = "Machine Oil",         icon = "Interface\\Icons\\INV_Misc_EngGizmos_17", desc = "High-grade lubricating fluid for mechanical units.", favoriteFamily = "Mechanical" },
-    ["Undead"]       = { item = "Plagued Ichor",       icon = "Interface\\Icons\\Spell_Shadow_DeadofNight", desc = "Necrotic fluid harvested from undead beasts.", favoriteFamily = "Undead" },
-    ["Elemental"]    = { item = "Elemental Core",      icon = "Interface\\Icons\\Spell_Fire_Elemental_Totem", desc = "Concentrated primal energy core from wild elementals.", favoriteFamily = "Elemental" },
+ItemDB.DIET_ITEMS = {
+    ["food_meat"]     = { id = "food_meat",     name = "Safari Meat",     category = "Natural Diet", icon = "Interface\\Icons\\INV_Misc_Food_14", tokenCost = 1, desc = "Fresh raw cuts of game meat. Loved by carnivorous beasts." },
+    ["food_fish"]     = { id = "food_fish",     name = "Safari Fish",     category = "Natural Diet", icon = "Interface\\Icons\\INV_Misc_Fish_08", tokenCost = 1, desc = "Freshly caught river and coastal fish. Loved by shore and aquatic hunters." },
+    ["food_bread"]    = { id = "food_bread",    name = "Safari Bread",    category = "Natural Diet", icon = "Interface\\Icons\\INV_Misc_Food_11", tokenCost = 1, desc = "Hardy expedition trail bread. Loved by grazers and omnivores." },
+    ["food_cheese"]   = { id = "food_cheese",   name = "Safari Cheese",   category = "Natural Diet", icon = "Interface\\Icons\\INV_Misc_Food_17", tokenCost = 1, desc = "Aged safari cheese wedge. Loved by rodents and omnivores." },
+    ["food_fruit"]    = { id = "food_fruit",    name = "Safari Fruit",    category = "Natural Diet", icon = "Interface\\Icons\\INV_Misc_Food_19", tokenCost = 1, desc = "Sun-ripened wild forest berries and fruit. Loved by avians, bats, and primates." },
+    ["food_fungus"]   = { id = "food_fungus",   name = "Safari Fungus",   category = "Natural Diet", icon = "Interface\\Icons\\INV_Mushroom_08",  tokenCost = 1, desc = "Earthy cave mushrooms and sporecaps. Loved by cave crawlers and scavengers." },
+    ["food_parts"]    = { id = "food_parts",    name = "Safari Parts",    category = "Special Diet", icon = "Interface\\Icons\\INV_Misc_Gear_01", tokenCost = 1, desc = "Cogs, copper wires, and lubricating oil for maintaining mechanical units." },
+    ["food_bonedust"] = { id = "food_bonedust", name = "Safari Bonedust", category = "Special Diet", icon = "Interface\\Icons\\INV_Misc_Dust_02", tokenCost = 1, desc = "Preserved necrotic bone dust for sustaining undead companions." },
+    ["food_shards"]   = { id = "food_shards",   name = "Safari Shards",   category = "Special Diet", icon = "Interface\\Icons\\INV_Misc_Gem_Sapphire_01", tokenCost = 1, desc = "Glimmering arcane crystal shards for feeding magical anomalies." },
+    ["food_crystals"] = { id = "food_crystals", name = "Safari Crystals", category = "Special Diet", icon = "Interface\\Icons\\INV_Misc_Gem_Diamond_02",  tokenCost = 1, desc = "Resonant primal elemental crystals for igniting elemental companions." },
+    ["food_runes"]    = { id = "food_runes",    name = "Safari Runes",    category = "Special Diet", icon = "Interface\\Icons\\INV_Misc_Rune_01", tokenCost = 1, desc = "Ancient etched dragon runes for empowering wild dragonkin." },
+}
+
+-- Backward compatibility alias
+ItemDB.FAMILY_NOURISHMENT = ItemDB.DIET_ITEMS
+
+-- Family & Creature Type Diet Matrix (Favorite = +25 Attunement, Accepted = +15 Attunement)
+ItemDB.FAMILY_DIETS = {
+    -- Beasts
+    ["Canine"]       = { favorite = "food_meat",     accepted = { "food_meat" } },
+    ["Wolf"]         = { favorite = "food_meat",     accepted = { "food_meat" } },
+    ["Fox"]          = { favorite = "food_meat",     accepted = { "food_meat" } },
+    ["Hyena"]        = { favorite = "food_meat",     accepted = { "food_meat" } },
+    ["Feline"]       = { favorite = "food_meat",     accepted = { "food_meat", "food_fish" } },
+    ["Cat"]          = { favorite = "food_meat",     accepted = { "food_meat", "food_fish" } },
+    ["Raptor"]       = { favorite = "food_meat",     accepted = { "food_meat" } },
+    ["Bear"]         = { favorite = "food_fish",     accepted = { "food_meat", "food_fish", "food_bread", "food_cheese", "food_fruit", "food_fungus" } },
+    ["Boar"]         = { favorite = "food_fungus",   accepted = { "food_meat", "food_bread", "food_cheese", "food_fruit", "food_fungus" } },
+    ["Spider"]       = { favorite = "food_meat",     accepted = { "food_meat", "food_fungus" } },
+    ["Scorpid"]      = { favorite = "food_meat",     accepted = { "food_meat", "food_fungus" } },
+    ["Crab"]         = { favorite = "food_fish",     accepted = { "food_fish", "food_meat", "food_fungus" } },
+    ["Crocolisk"]    = { favorite = "food_fish",     accepted = { "food_fish", "food_meat", "food_fungus" } },
+    ["Turtle"]       = { favorite = "food_fish",     accepted = { "food_fish", "food_meat", "food_fungus" } },
+    ["Avian"]        = { favorite = "food_fruit",    accepted = { "food_fruit", "food_meat", "food_fish" } },
+    ["Bat"]          = { favorite = "food_fruit",    accepted = { "food_fruit", "food_meat", "food_fish" } },
+    ["Wind Serpent"] = { favorite = "food_fruit",    accepted = { "food_fruit", "food_meat", "food_fish" } },
+    ["Gorilla"]      = { favorite = "food_fruit",    accepted = { "food_fruit", "food_bread", "food_fungus" } },
+    ["Kodo"]         = { favorite = "food_bread",    accepted = { "food_bread", "food_fruit", "food_cheese" } },
+    ["Tallstrider"]  = { favorite = "food_bread",    accepted = { "food_bread", "food_fruit", "food_meat" } },
+    ["Hydra"]        = { favorite = "food_meat",     accepted = { "food_meat", "food_fish" } },
+
+    -- Special Types
+    ["Mechanical"]   = { favorite = "food_parts",    accepted = { "food_parts" } },
+    ["Undead"]       = { favorite = "food_bonedust", accepted = { "food_bonedust", "food_meat" } },
+    ["Magic"]        = { favorite = "food_shards",   accepted = { "food_shards" } },
+    ["Elemental"]    = { favorite = "food_crystals", accepted = { "food_crystals" } },
+    ["Dragonkin"]    = { favorite = "food_runes",    accepted = { "food_runes", "food_meat" } },
+    ["Aquatic"]      = { favorite = "food_fish",     accepted = { "food_fish", "food_meat" } },
+    ["Flying"]       = { favorite = "food_fruit",    accepted = { "food_fruit", "food_meat" } },
 }
 
 -- =========================================================================
@@ -246,10 +275,36 @@ function ItemDB:GetCrate(id)
     return self.TRANSPORT_CRATES[id]
 end
 
+function ItemDB:GetDiet(id)
+    return self.DIET_ITEMS[id]
+end
+
 function ItemDB:GetItem(id)
-    return self.ITEMS[id] or self.CAGES[id] or self.TRANSPORT_CRATES[id]
+    return self.ITEMS[id] or self.DIET_ITEMS[id] or self.CAGES[id] or self.TRANSPORT_CRATES[id]
+end
+
+function ItemDB:GetFamilyDietInfo(family, creatureType)
+    local key = family or creatureType or "Beast"
+    local diet = self.FAMILY_DIETS[key] or self.FAMILY_DIETS[creatureType] or self.FAMILY_DIETS["Canine"]
+    local favItem = diet and self.DIET_ITEMS[diet.favorite]
+    return diet, favItem
 end
 
 function ItemDB:GetFamilyDiet(family)
-    return self.FAMILY_NOURISHMENT[family]
+    local _, favItem = self:GetFamilyDietInfo(family, "Beast")
+    return favItem or self.DIET_ITEMS["food_meat"]
+end
+
+function ItemDB:CanEatFood(family, creatureType, foodKey)
+    local diet = self:GetFamilyDietInfo(family, creatureType)
+    if not diet then return false, false end
+    if diet.favorite == foodKey then
+        return true, true
+    end
+    for _, acceptedKey in ipairs(diet.accepted or {}) do
+        if acceptedKey == foodKey then
+            return true, false
+        end
+    end
+    return false, false
 end

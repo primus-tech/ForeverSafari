@@ -1114,13 +1114,13 @@ function BE:HandleVictory()
         DB:AddAttunement(player.id, 35, "Battle Resilience")
     end
 
-    -- Harvest Family Nourishment Resource from defeated wild creature
+    -- Harvest Ecosystem Sustenance from defeated wild creature
     local family = enemy.family or enemy.creatureType or "Beast"
-    local foodData = C.FAMILY_NOURISHMENT[family]
+    local foodData = C.FAMILY_NOURISHMENT[family] or C.FAMILY_NOURISHMENT[enemy.creatureType] or C.FAMILY_NOURISHMENT["Beast"]
     if foodData then
-        local foodKey = "food_" .. string.lower(family)
+        local foodKey = foodData.key or "food_meat"
         DB:AddItem(foodKey, 1)
-        BE:AddLog(string.format("|cffffd100Looted [1x %s] for nourishing %s companions!|r", foodData.item, foodData.yield))
+        BE:AddLog(string.format("|cffffd100Looted [1x %s]!|r", foodData.item or "Safari Meat"))
     end
 
     player.battlesWon = (player.battlesWon or 0) + 1

@@ -128,16 +128,33 @@ function DB:AddAttunement(mobId, points, reason)
     self:SignMob(mob)
 end
 
-function DB:FeedCompanion(mobId, resourceItem)
+function DB:FeedCompanion(mobId, foodKey)
     local mob = self:GetMobById(mobId)
-    if not mob then return false, "Companion not found." end
+    if not mob then return false, "not_found", 0 end
 
-    local diet = ns.ItemDB and ns.ItemDB:GetFamilyDiet(mob.family)
-    local isFav = diet and (diet.item == resourceItem or diet.favoriteFamily == mob.family)
+    if not foodKey or self:GetItemCount(foodKey) <= 0 then
+        return false, "out_of_stock", 0
+    end
+
+    local canEat, isFav = false, false
+    if ns.ItemDB and ns.ItemDB.CanEatFood then
+        canEat, isFav = ns.ItemDB:CanEatFood(mob.family, mob.creatureType, foodKey)
+    else
+        canEat, isFav = true, true
+    end
+
+    if not canEat then
+        return false, "refused", 0
+    end
+
+    -- Consume 1 item from inventory
+    self:RemoveItem(foodKey, 1)
+
     local bonus = isFav and 25 or 15
+    local reason = isFav and "Favorite Safari Diet" or "Safari Sustenance"
+    self:AddAttunement(mobId, bonus, reason)
 
-    self:AddAttunement(mobId, bonus, isFav and "Favorite Diet" or "Sustenance")
-    return true, isFav
+    return true, isFav and "favorite" or "accepted", bonus
 end
 
 -- =========================================================================

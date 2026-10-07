@@ -515,33 +515,33 @@ function Bag:UseItem(itemId, itemData)
         return
     end
 
-    -- 2. 🥩 Family Nourishment: Feed active companion for Attunement
-    if itemData.category == "Family Nourishment" then
+    -- 2. 🥩 Safari Diet Sustenance: Feed active companion for Attunement
+    if itemData.category == "Family Nourishment" or itemData.category == "Natural Diet" or itemData.category == "Special Diet" or string.find(itemId, "^food_") then
         if not activeMob then
             DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444You do not have an active companion summoned to feed.|r")
             PlaySound(847)
             return
         end
 
-        local mobFam = activeMob.family or activeMob.creatureType or "Beast"
-        local isFavorite = (itemData.family and string.lower(itemData.family) == string.lower(mobFam))
-        local attunementGain = isFavorite and 25 or 15
-
-        if DB:RemoveItem(itemId, 1) then
-            PlaySound(844) -- SOUNDKIT.IG_SPELLBOOK_OPEN (chew)
-            local pName = activeMob.nickname ~= "" and activeMob.nickname or activeMob.name
-            DB:AddAttunement(activeMob.id, attunementGain, "Nourished with " .. itemData.name)
+        local success, resType, bonus = DB:FeedCompanion(activeMob.id, itemId)
+        local pName = activeMob.nickname ~= "" and activeMob.nickname or activeMob.name
+        if success then
+            PlaySound(844)
             DB:UpdateQuestProgress("FEED", 1)
-
-            if isFavorite then
+            if resType == "favorite" then
                 DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00Fed favorite [%s] to %s! (+%d Attunement Loyalty)|r",
-                    C.PREFIX, itemData.name, pName, attunementGain))
+                    C.PREFIX, itemData.name, pName, bonus))
             else
                 DEFAULT_CHAT_FRAME:AddMessage(string.format("%sFed |cffffd100[%s]|r to %s (+%d Attunement).",
-                    C.PREFIX, itemData.name, pName, attunementGain))
+                    C.PREFIX, itemData.name, pName, bonus))
             end
-
             Bag:UpdateUI()
+        else
+            if resType == "refused" then
+                DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cffffaa00%s sniffed the [%s] and turned away in disgust!|r",
+                    C.PREFIX, pName, itemData.name))
+                PlaySound(847)
+            end
         end
         return
     end

@@ -384,19 +384,22 @@ function Shop:BuildShopItems()
         end
 
         local foodKeys = {
-            "food_canine", "food_feline", "food_bear", "food_boar", "food_raptor",
-            "food_spider", "food_scorpid", "food_kodo", "food_bat", "food_aquatic",
-            "food_reptile", "food_avian", "food_wind serpent"
+            "food_meat", "food_fish", "food_bread", "food_cheese", "food_fruit", "food_fungus",
+            "food_parts", "food_bonedust", "food_shards", "food_crystals", "food_runes"
         }
         for _, id in ipairs(foodKeys) do
-            local itemData = C.SAFARI_ITEMS[id]
+            local itemData = (ns.ItemDB and ns.ItemDB.DIET_ITEMS and ns.ItemDB.DIET_ITEMS[id]) or (C.SAFARI_ITEMS and C.SAFARI_ITEMS[id])
             if itemData then
+                local iconPath = itemData.icon or "INV_Misc_Food_14"
+                if not string.find(iconPath, "\\") then
+                    iconPath = "Interface\\Icons\\" .. iconPath
+                end
                 local dataCopy = {
                     name = itemData.name,
-                    icon = "Interface\\Icons\\" .. (itemData.icon or "INV_Misc_Food_14"),
-                    color = itemData.color or "1eff00",
-                    description = itemData.desc or "Fresh harvested sustenance. (+25 Attunement)",
-                    price = 3,
+                    icon = iconPath,
+                    color = itemData.color or "ffffff",
+                    description = itemData.desc or "Fresh Safari diet sustenance (+25 Favorite / +15 Accepted Attunement).",
+                    price = itemData.tokenCost or 1,
                 }
                 local row = Shop:CreateShopItemRow(content, dataCopy, id, yOffset)
                 table.insert(itemListFrames, row)
