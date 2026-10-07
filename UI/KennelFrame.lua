@@ -13,6 +13,7 @@ ns.KennelFrame = ns.KennelFrame or {}
 local Kennel = ns.KennelFrame
 local C = ns.Constants
 local DB = ns.Database
+local SE = ns.StatEngine
 local Theme = ns.Theme
 
 local frame = nil

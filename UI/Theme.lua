@@ -51,6 +51,32 @@ function Theme:ApplyFrameBackdrop(frame, hasGlow)
     end
 end
 
+-- Aliases for window backdrops
+Theme.ApplyWindowBackdrop = Theme.ApplyFrameBackdrop
+
+-- Apply header subpanel backdrop
+function Theme:ApplyHeaderBackdrop(frame)
+    if not frame then return end
+    if not frame.SetBackdrop then
+        if BackdropTemplateMixin then
+            Mixin(frame, BackdropTemplateMixin)
+        end
+    end
+
+    if frame.SetBackdrop then
+        frame:SetBackdrop({
+            bgFile = "Interface\\Buttons\\WHITE8X8",
+            edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+            tile = false,
+            tileSize = 16,
+            edgeSize = 10,
+            insets = { left = 2, right = 2, top = 2, bottom = 2 }
+        })
+        frame:SetBackdropColor(0.05, 0.07, 0.10, 0.95)
+        frame:SetBackdropBorderColor(0.2, 0.28, 0.38, 0.7)
+    end
+end
+
 -- Apply card backdrop to an existing frame
 function Theme:ApplyCardBackdrop(frame, hasGlow)
     if not frame then return end
