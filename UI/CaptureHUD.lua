@@ -126,7 +126,7 @@ function HUD:Initialize()
 
     -- Net Selection Container & Action Buttons
     frame.CageButtons = {}
-    local cageTypes = { "copper_cage", "iron_cage", "mithril_cage", "arcanite_capsule" }
+    local cageTypes = { "copper_cage", "iron_cage", "mithril_cage", "thorium_trap" }
     local btnSize = 30
     local startX = 10
 
@@ -141,7 +141,7 @@ function HUD:Initialize()
         local icon = cBtn:CreateTexture(nil, "ARTWORK")
         icon:SetPoint("TOPLEFT", 2, -2)
         icon:SetPoint("BOTTOMRIGHT", -2, 2)
-        icon:SetTexture(cageData.icon or "Interface\\Icons\\INV_Misc_Net_01")
+        icon:SetTexture(cageData.icon or "Interface\\Icons\\INV_Misc_Rope_01")
         icon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
         cBtn.Icon = icon
 

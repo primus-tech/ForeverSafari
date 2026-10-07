@@ -16,7 +16,6 @@ local Theme = ns.Theme
 
 local frame = nil
 local itemListFrames = {}
-local gossipBtn = nil
 Shop.isAtVendor = false
 Shop.vendorType = nil
 
@@ -55,12 +54,12 @@ function Shop:Initialize()
 
     -- Category Subheader / Banner
     local bannerFrame = CreateFrame("Frame", nil, frame, "BackdropTemplate")
-    bannerFrame:SetSize(456, 32)
-    bannerFrame:SetPoint("TOPLEFT", 12, -42)
+    bannerFrame:SetSize(456, 26)
+    bannerFrame:SetPoint("TOPLEFT", 12, -38)
     bannerFrame:SetBackdrop({
         bgFile = "Interface\\Buttons\\WHITE8X8",
         edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
-        edgeSize = 10,
+        edgeSize = 8,
     })
     bannerFrame:SetBackdropColor(0.08, 0.10, 0.14, 0.9)
     bannerFrame:SetBackdropBorderColor(0.0, 0.9, 0.4, 0.8)
@@ -72,9 +71,61 @@ function Shop:Initialize()
     bannerText:SetJustifyH("LEFT")
     frame.BannerText = bannerText
 
+    -- Interactive Rest & Tend Squad Button (Gated Heal & Revive Action)
+    local healBtn = CreateFrame("Button", "ForeverSafariShopHealBtn", frame, "BackdropTemplate")
+    healBtn:SetSize(456, 32)
+    healBtn:SetPoint("TOPLEFT", bannerFrame, "BOTTOMLEFT", 0, -4)
+    Theme:ApplyCardBackdrop(healBtn, true)
+
+    local healIcon = healBtn:CreateTexture(nil, "ARTWORK")
+    healIcon:SetSize(20, 20)
+    healIcon:SetPoint("LEFT", 8, 0)
+    healIcon:SetTexture("Interface\\Icons\\Spell_Holy_Renew")
+    healIcon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+    healBtn.Icon = healIcon
+
+    local healText = healBtn:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
+    healText:SetPoint("LEFT", healIcon, "RIGHT", 6, 0)
+    healText:SetPoint("RIGHT", -8, 0)
+    healText:SetJustifyH("LEFT")
+    healBtn.Text = healText
+
+    healBtn:SetScript("OnClick", function(self)
+        if DB and DB.HealTeam then
+            local team = DB:GetTeam()
+            local needsHealing = false
+            for _, m in ipairs(team) do
+                if m and (not m.currentHP or m.currentHP < (m.maxHP or 10)) then
+                    needsHealing = true
+                    break
+                end
+            end
+            if needsHealing then
+                DB:HealTeam(false)
+                Shop:UpdateHealButton()
+            else
+                DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cff00ff00Your active companion squad is already at full health and vigor!|r")
+                PlaySound(856)
+            end
+        end
+    end)
+
+    healBtn:SetScript("OnEnter", function(self)
+        self:SetBackdropBorderColor(0.0, 1.0, 0.6, 1.0)
+        GameTooltip:SetOwner(self, "ANCHOR_TOP")
+        GameTooltip:AddLine("Tend, Revive & Rest Companion Squad", 1, 0.82, 0)
+        GameTooltip:AddLine("Click to have the merchant tend to your battle companions, restoring all active squad members to 100% HP and reviving fainted pets.", 1, 1, 1, true)
+        GameTooltip:Show()
+    end)
+    healBtn:SetScript("OnLeave", function(self)
+        Shop:UpdateHealButton()
+        GameTooltip:Hide()
+    end)
+    frame.HealButton = healBtn
+
     -- Scroll Area Container
     local scrollFrame = CreateFrame("ScrollFrame", "ForeverSafariShopScrollFrame", frame, "UIPanelScrollFrameTemplate")
-    scrollFrame:SetPoint("TOPLEFT", frame, "TOPLEFT", 12, -80)
+    scrollFrame:SetPoint("TOPLEFT", healBtn, "BOTTOMLEFT", 0, -6)
     scrollFrame:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -32, 16)
 
     local content = CreateFrame("Frame", "ForeverSafariShopContentFrame", scrollFrame)
@@ -86,6 +137,31 @@ function Shop:Initialize()
     Shop:RegisterGossipEvents()
 
     frame:Hide()
+end
+
+function Shop:UpdateHealButton()
+    if not frame or not frame.HealButton then return end
+    local team = DB:GetTeam()
+    local needsHealing = false
+    local woundedCount = 0
+    for _, m in ipairs(team) do
+        if m and (not m.currentHP or m.currentHP < (m.maxHP or 10)) then
+            needsHealing = true
+            woundedCount = woundedCount + 1
+        end
+    end
+
+    local btn = frame.HealButton
+    if needsHealing then
+        btn:Enable()
+        btn:SetBackdropBorderColor(0.0, 1.0, 0.5, 1.0)
+        btn:SetBackdropColor(0.06, 0.18, 0.10, 0.95)
+        btn.Text:SetText(string.format("|cff00ff00💖 Tend & Revive Squad (%d wounded/fainted) — Click to Heal|r", woundedCount))
+    else
+        btn:SetBackdropBorderColor(0.3, 0.4, 0.5, 0.6)
+        btn:SetBackdropColor(0.08, 0.10, 0.14, 0.8)
+        btn.Text:SetText("|cffaaaaaa✔ All Active Companions Fully Restored & In Peak Health|r")
+    end
 end
 
 -- =========================================================================
@@ -127,19 +203,6 @@ function Shop:IsAtAuthorizedVendor()
         end
     end
 
-    -- 3. Innkeeper gossip option ("Make this inn your home")
-    if C_GossipInfo and C_GossipInfo.GetOptions then
-        local options = C_GossipInfo.GetOptions()
-        if options then
-            for _, opt in ipairs(options) do
-                local name = opt.name or opt.title or ""
-                if name ~= "" and not isSecret(name) and string.find(string.lower(name), "inn your home", 1, true) then
-                    return true, "Innkeeper"
-                end
-            end
-        end
-    end
-
     return false, nil
 end
 
@@ -163,101 +226,24 @@ function Shop:OnGossipShow()
         Shop.isAtVendor = true
         Shop.vendorType = vType or "Pet Trainer"
 
-        -- Auto-heal & revive companion squad when visiting an Innkeeper or Pet Trainer
-        if DB and DB.HealTeam then
-            local team = DB:GetTeam()
-            local needsHealing = false
-            for _, m in ipairs(team) do
-                if m and (not m.currentHP or m.currentHP < (m.maxHP or 10)) then
-                    needsHealing = true
-                    break
-                end
-            end
-            if needsHealing then
-                DB:HealTeam(true)
-                local C = ForeverSafari.Constants
-                DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00%s tended to your Safari companions! All active team members are fully healed & revived.|r", C.PREFIX, Shop.vendorType))
-                if ForeverSafari.Toast then
-                    ForeverSafari.Toast:ShowReward("Companions Restored!", string.format("Tended by %s (Team fully healed & revived).", Shop.vendorType))
-                end
-                PlaySound(895)
-            end
+        -- Open Standalone Safari Supplies Sidecar docked to GossipFrame (Zero Taint)
+        if GossipFrame and GossipFrame:IsShown() then
+            frame:ClearAllPoints()
+            frame:SetPoint("TOPLEFT", GossipFrame, "TOPRIGHT", 10, 0)
         end
-
-        -- Create or Attach Gossip Menu Button to GossipFrame
-        if GossipFrame then
-            if not gossipBtn then
-                gossipBtn = CreateFrame("Button", "ForeverSafariGossipButton", GossipFrame, "BackdropTemplate")
-                gossipBtn:SetSize(290, 34)
-                gossipBtn:SetPoint("BOTTOM", GossipFrame, "BOTTOM", 0, 24)
-                gossipBtn:SetFrameLevel(GossipFrame:GetFrameLevel() + 10)
-
-                gossipBtn:SetBackdrop({
-                    bgFile = "Interface\\Buttons\\WHITE8X8",
-                    edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
-                    edgeSize = 12,
-                    insets = { left = 2, right = 2, top = 2, bottom = 2 }
-                })
-                gossipBtn:SetBackdropColor(0.12, 0.08, 0.04, 0.95)
-                gossipBtn:SetBackdropBorderColor(1.0, 0.82, 0.0, 1.0)
-
-                local icon = gossipBtn:CreateTexture(nil, "ARTWORK")
-                icon:SetSize(22, 22)
-                icon:SetPoint("LEFT", 8, 0)
-                icon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
-                gossipBtn.Icon = icon
-
-                local label = gossipBtn:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
-                label:SetPoint("LEFT", icon, "RIGHT", 6, 0)
-                label:SetPoint("RIGHT", -6, 0)
-                label:SetJustifyH("LEFT")
-                gossipBtn.Label = label
-
-                gossipBtn:SetScript("OnClick", function()
-                    Shop:ShowShop(true)
-                end)
-
-                gossipBtn:SetScript("OnEnter", function(self)
-                    self:SetBackdropBorderColor(0.0, 1.0, 0.6, 1.0)
-                    GameTooltip:SetOwner(self, "ANCHOR_TOP")
-                    if Shop.vendorType == "Innkeeper" then
-                        GameTooltip:AddLine("Nesingwary Safari Provisions", 1, 0.82, 0)
-                        GameTooltip:AddLine("Authorized Innkeeper merchant. Purchase Safari Treats, Feasts, and fresh diets.", 1, 1, 1, true)
-                    else
-                        GameTooltip:AddLine("Nesingwary Safari Supplies", 1, 0.82, 0)
-                        GameTooltip:AddLine("Authorized Pet Trainer merchant. Purchase Safari Nets, capsules, and gear.", 1, 1, 1, true)
-                    end
-                    GameTooltip:Show()
-                end)
-
-                gossipBtn:SetScript("OnLeave", function(self)
-                    self:SetBackdropBorderColor(1.0, 0.82, 0.0, 1.0)
-                    GameTooltip:Hide()
-                end)
-            end
-
-            -- Update button style based on vendor type
-            if Shop.vendorType == "Innkeeper" then
-                gossipBtn.Icon:SetTexture("Interface\\Icons\\INV_Misc_Food_54")
-                gossipBtn.Label:SetText("|cffffd100[ 🍖 Browse Safari Treats & Provisions ]|r")
-            else
-                gossipBtn.Icon:SetTexture("Interface\\Icons\\Ability_Hunter_BeastTaming")
-                gossipBtn.Label:SetText("|cffffd100[ 🐾 Browse Safari Nets & Gear ]|r")
-            end
-
-            gossipBtn:Show()
-        end
+        Shop:ShowShop(true)
     else
         Shop.isAtVendor = false
         Shop.vendorType = nil
-        if gossipBtn then gossipBtn:Hide() end
+        if frame and frame:IsShown() then
+            frame:Hide()
+        end
     end
 end
 
 function Shop:OnGossipClosed()
     Shop.isAtVendor = false
     Shop.vendorType = nil
-    if gossipBtn then gossipBtn:Hide() end
     -- Close shop immediately when leaving vendor
     if frame and frame:IsShown() then
         frame:Hide()
@@ -328,17 +314,17 @@ function Shop:BuildShopItems()
             end
         end
     else
-        -- PET TRAINER: Nets, Capsules & Field Gear
+        -- PET TRAINER: Snares, Nets, Traps & Expedition Cages
         frame.Header.Title:SetText("Nesingwary Safari Supplies")
-        frame.VendorStatus:SetText("|cff00ff00[ Pet Trainer — Nets & Gear ]|r")
-        frame.BannerText:SetText("|cff00ff99🐾 Licensed Pet Trainer: Stock up on field research nets, capsules, and revival gear.|r")
+        frame.VendorStatus:SetText("|cff00ff00[ Pet Trainer — Capture Gear & Supplies ]|r")
+        frame.BannerText:SetText("|cff00ff99🐾 Licensed Pet Trainer: Stock up on field research snares, nets, traps, cages, and revival gear.|r")
 
         local sec1 = content:CreateFontString(nil, "OVERLAY", "GameFontHighlightLarge")
         sec1:SetPoint("TOPLEFT", 6, yOffset)
-        sec1:SetText("|cffffd100Safari Nets & Capsules|r")
+        sec1:SetText("|cffffd100Snares, Traps & Expedition Cages|r")
         yOffset = yOffset - 26
 
-        local cageKeys = { "copper_cage", "iron_cage", "mithril_cage", "arcanite_capsule" }
+        local cageKeys = { "copper_cage", "iron_cage", "mithril_cage", "thorium_trap" }
         for _, id in ipairs(cageKeys) do
             local itemData = C.CAGES[id]
             local row = Shop:CreateShopItemRow(content, itemData, id, yOffset)
@@ -470,12 +456,14 @@ function Shop:UpdateUI()
             card.BuyBtn:SetText("Buy x1")
         end
     end
+
+    Shop:UpdateHealButton()
 end
 
 function Shop:ShowShop(fromVendor)
     local isAuth, vType = Shop:IsAtAuthorizedVendor()
     if not isAuth and not fromVendor then
-        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Store access is restricted! Speak with a Pet Trainer (for Safari Nets & Gear) or an Innkeeper (for Safari Treats & Food Provisions).|r")
+        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Store access is restricted! Speak with a Pet Trainer (for Capture Gear & Supplies) or an Innkeeper (for Safari Treats & Food Provisions).|r")
         if ForeverSafari.Toast then
             ForeverSafari.Toast:ShowAlert("Vendor Required", "Speak to a Pet Trainer or Innkeeper!")
         end
@@ -497,7 +485,7 @@ end
 function Shop:Toggle()
     local isAuth, vType = Shop:IsAtAuthorizedVendor()
     if not isAuth then
-        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Store access is restricted! Speak with a Pet Trainer (for Safari Nets & Gear) or an Innkeeper (for Safari Treats & Food Provisions).|r")
+        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Store access is restricted! Speak with a Pet Trainer (for Capture Gear & Supplies) or an Innkeeper (for Safari Treats & Food Provisions).|r")
         if ForeverSafari.Toast then
             ForeverSafari.Toast:ShowAlert("Vendor Required", "Speak to a Pet Trainer or Innkeeper!")
         end

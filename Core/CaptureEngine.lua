@@ -90,7 +90,7 @@ function CE:CanInitiateSnare(unit)
     end
 
     -- Check if in stalking range (within 28 yards)
-    local inRange = CheckInteractDistance(unit, 4)
+    local inRange = SafeCheckInteractDistance(unit, 4)
     if not inRange then
         return false, "Quarry is too far away (>28 yd). Close the distance!"
     end

@@ -201,42 +201,51 @@ C.ATTUNEMENT_RANKS = {
 -- 🎒 VIRTUAL SAFARI BAG ITEMS & METADATA
 -- =========================================================================
 C.SAFARI_ITEMS = {
-    -- 🕸️ Safari Nets
+    -- 🕸️ Safari Snares, Nets, Traps & Expedition Cages
     ["copper_cage"] = {
-        name = "Copper Safari Net",
-        category = "Safari Net",
-        icon = "INV_Misc_Net_01",
+        name = "Copper Snare",
+        category = "Capture Gear",
+        icon = "INV_Misc_Rope_01",
         quality = 1,
         color = "ffffff",
-        desc = "Standard woven net used to snare low-level wild creatures in the field (1.0x Rate).",
-        useText = "Right-Click to equip as active capture net.",
+        desc = "Standard rope slip-noose used to snare low-level wild critters and cubs in the field (35% Base Catch).",
+        useText = "Right-Click to equip as active snare.",
     },
     ["iron_cage"] = {
         name = "Iron Safari Net",
-        category = "Safari Net",
-        icon = "INV_Misc_Net_02",
+        category = "Capture Gear",
+        icon = "INV_Misc_Net_01",
         quality = 2,
         color = "1eff00",
-        desc = "Reinforced chain netting with improved capture hold (1.5x Rate).",
-        useText = "Right-Click to equip as active capture net.",
+        desc = "Reinforced iron-weighted woven mesh with improved capture hold for territory predators (55% Base Catch).",
+        useText = "Right-Click to equip as active safari net.",
     },
     ["mithril_cage"] = {
-        name = "Mithril Safari Net",
-        category = "Safari Net",
-        icon = "INV_Misc_Net_03",
+        name = "Mithril Hunter Trap",
+        category = "Capture Gear",
+        icon = "INV_Misc_MonsterClaw_04",
         quality = 3,
         color = "0070dd",
-        desc = "Heavy-gauge woven mithril net designed for fast and elusive beasts (2.0x Rate).",
-        useText = "Right-Click to equip as active capture net.",
+        desc = "High-tensile spring-loaded steel jaws designed to snap and pin fast, exotic predators (75% Base Catch).",
+        useText = "Right-Click to equip as active hunter trap.",
     },
-    ["arcanite_capsule"] = {
-        name = "Arcanite Safari Capsule",
-        category = "Safari Net",
-        icon = "INV_Misc_EngGizmos_17",
+    ["thorium_trap"] = {
+        name = "Thorium Expedition Cage",
+        category = "Capture Gear",
+        icon = "INV_Box_01",
         quality = 4,
         color = "a335ee",
-        desc = "Master-crafted engineering capture sphere. Guaranteed 100% capture rate on any non-boss wild fauna.",
-        useText = "Right-Click to equip as active capture net.",
+        desc = "Heavy reinforced Thorium-alloy expedition cage engineered to secure massive apex behemoths and dungeon monstrosities (98% Base Catch).",
+        useText = "Right-Click to equip as active expedition cage.",
+    },
+    ["arcanite_capsule"] = {
+        name = "Thorium Expedition Cage",
+        category = "Capture Gear",
+        icon = "INV_Box_01",
+        quality = 4,
+        color = "a335ee",
+        desc = "Heavy reinforced Thorium-alloy expedition cage engineered to secure massive apex behemoths and dungeon monstrosities (98% Base Catch).",
+        useText = "Right-Click to equip as active expedition cage.",
     },
 
     -- 🍖 Consumables & Balms
@@ -473,55 +482,67 @@ function C.GetDefaultDisplayId(creatureType, mobName)
     return C.DEFAULT_DISPLAY_IDS[cType] or 181
 end
 
--- Capture Cages Definition (Field Research Snares)
+-- Capture Cages Definition (Field Research Snares, Nets, Traps & Expedition Cages)
 C.CAGES = {
     ["copper_cage"] = {
         id = "copper_cage",
-        name = "Copper Safari Net",
+        name = "Copper Snare",
         price = 5,
         catchPower = 0.35,
         rateMultiplier = 1.0,
         channelTime = 5.0,
         quality = 1,
         color = "ffffff",
-        icon = "Interface\\Icons\\INV_Misc_Net_01",
-        description = "Standard woven field research snare. Effective for basic wild tagging (35% Base Catch).",
+        icon = "Interface\\Icons\\INV_Misc_Rope_01",
+        description = "Standard rope slip-noose snare. Effective for small game and cub tagging (35% Base Catch).",
     },
     ["iron_cage"] = {
         id = "iron_cage",
-        name = "Reinforced Iron Net",
+        name = "Iron Safari Net",
         price = 15,
         catchPower = 0.55,
         rateMultiplier = 1.5,
         channelTime = 4.5,
         quality = 2,
         color = "1eff00",
-        icon = "Interface\\Icons\\INV_Misc_Net_02",
-        description = "Reinforced weighted netting with improved hold (55% Base Catch).",
+        icon = "Interface\\Icons\\INV_Misc_Net_01",
+        description = "Reinforced iron-weighted woven mesh with improved capture hold for territory predators (55% Base Catch).",
     },
     ["mithril_cage"] = {
         id = "mithril_cage",
-        name = "Mithril Safari Net",
+        name = "Mithril Hunter Trap",
         price = 35,
         catchPower = 0.75,
         rateMultiplier = 2.0,
         channelTime = 4.0,
         quality = 3,
         color = "0070dd",
-        icon = "Interface\\Icons\\INV_Misc_Net_03",
-        description = "Heavy-gauge woven mithril net designed for fast and elusive beasts (75% Base Catch).",
+        icon = "Interface\\Icons\\INV_Misc_MonsterClaw_04",
+        description = "High-tensile spring-loaded hunter trap designed for fast and exotic predators (75% Base Catch).",
     },
-    ["arcanite_capsule"] = {
-        id = "arcanite_capsule",
-        name = "Arcanite Safari Capsule",
+    ["thorium_trap"] = {
+        id = "thorium_trap",
+        name = "Thorium Expedition Cage",
         price = 80,
         catchPower = 0.98,
         rateMultiplier = 3.2,
         channelTime = 3.0,
         quality = 4,
         color = "a335ee",
-        icon = "Interface\\Icons\\INV_Misc_EngGizmos_17",
-        description = "Masterwork gnomish stasis capsule. Near guaranteed capture on any wild quarry (98% Base Catch).",
+        icon = "Interface\\Icons\\INV_Box_01",
+        description = "Heavy reinforced Thorium-alloy expedition cage engineered to secure massive apex behemoths and dungeon monstrosities (98% Base Catch).",
+    },
+    ["arcanite_capsule"] = {
+        id = "thorium_trap",
+        name = "Thorium Expedition Cage",
+        price = 80,
+        catchPower = 0.98,
+        rateMultiplier = 3.2,
+        channelTime = 3.0,
+        quality = 4,
+        color = "a335ee",
+        icon = "Interface\\Icons\\INV_Box_01",
+        description = "Heavy reinforced Thorium-alloy expedition cage engineered to secure massive apex behemoths and dungeon monstrosities (98% Base Catch).",
     }
 }
 
@@ -637,8 +658,8 @@ C.NESINGWARY_DISPATCHES = {
         date = "Official Commission",
         icon = "Interface\\Icons\\INV_Box_01",
         isStarter = true,
-        summary = "Unbox your racial starter companion, 10 Copper Safari Nets, 5 Healing Salves, and 1 Revival Crystal.",
-        body = "Greetings, recruit!\n\nIf you are reading this dispatch, your petition to join the Junior Safari League has been officially accepted by the Nesingwary Expedition!\n\nWhether you hail from the dense glades of Teldrassil, the red canyons of Durotar, or the snowpeaks of Dun Morogh, Azeroth is teeming with majestic wildlife waiting to be researched, bonded with, and tested in honorable battle.\n\nAttached to this parcel is your Caged Starter Companion native to your homeland, along with ten field research nets, five soothing healing salves, and an emergency revival crystal. Treat your companion well, nourish it with native diets, and protect the wild balance!\n\nGood hunting,\n— Hemet Nesingwary Sr.",
+        summary = "Unbox your racial starter companion, 10 Copper Snares, 5 Healing Salves, and 1 Revival Crystal.",
+        body = "Greetings, recruit!\n\nIf you are reading this dispatch, your petition to join the Junior Safari League has been officially accepted by the Nesingwary Expedition!\n\nWhether you hail from the dense glades of Teldrassil, the red canyons of Durotar, or the snowpeaks of Dun Morogh, Azeroth is teeming with majestic wildlife waiting to be researched, bonded with, and tested in honorable battle.\n\nAttached to this parcel is your Caged Starter Companion native to your homeland, along with ten field research snares, five soothing healing salves, and an emergency revival crystal. Treat your companion well, nourish it with native diets, and protect the wild balance!\n\nGood hunting,\n— Hemet Nesingwary Sr.",
         rewards = {
             tokens = 0,
             items = {

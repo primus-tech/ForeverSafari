@@ -29,23 +29,61 @@ local listButtons = {}
 local gridCards = {}
 local bestiaryButtons = {}
 local trainerButtons = {}
+local abandonModal = nil
 
--- Static Confirmation Dialog for Releasing / Abandoning a Companion
-StaticPopupDialogs["FOREVERSAFARI_CONFIRM_ABANDON"] = {
-    text = "Are you sure you want to abandon %s and release it back into the wild?\n\n|cffff4444This action cannot be undone.|r",
-    button1 = "Release to Wild",
-    button2 = "Cancel",
-    OnAccept = function(self, data)
-        local mobId = (data and data.mobId) or selectedMobId
-        if mobId then
-            DB:AbandonMob(mobId)
-        end
-    end,
-    timeout = 0,
-    whileDead = true,
-    hideOnEscape = true,
-    preferredIndex = 3,
-}
+function Journal:ShowAbandonConfirmation(mobId)
+    if not mobId then return end
+    local mob = DB:GetMobById(mobId)
+    if not mob then return end
+    local mName = mob.nickname ~= "" and mob.nickname or mob.name
+
+    if not abandonModal then
+        abandonModal = CreateFrame("Frame", "ForeverSafariAbandonModal", UIParent, "BackdropTemplate")
+        abandonModal:SetSize(360, 160)
+        abandonModal:SetPoint("CENTER", UIParent, "CENTER", 0, 80)
+        abandonModal:SetFrameStrata("DIALOG")
+        abandonModal:EnableMouse(true)
+        abandonModal:SetClampedToScreen(true)
+
+        Theme:ApplyFrameBackdrop(abandonModal, true)
+        abandonModal:SetBackdropColor(0.10, 0.06, 0.06, 0.98)
+        abandonModal:SetBackdropBorderColor(1.0, 0.3, 0.3, 0.9)
+
+        local title = abandonModal:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
+        title:SetPoint("TOP", 0, -14)
+        title:SetText("|cffff4444Release Companion to Wild|r")
+        abandonModal.Title = title
+
+        local desc = abandonModal:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+        desc:SetPoint("TOPLEFT", 16, -42)
+        desc:SetPoint("TOPRIGHT", -16, -42)
+        desc:SetJustifyH("CENTER")
+        desc:SetSpacing(3)
+        abandonModal.Desc = desc
+
+        local releaseBtn = Theme:CreateButton(abandonModal, "Release to Wild", 140, 28)
+        releaseBtn:SetPoint("BOTTOMLEFT", 24, 16)
+        local rFont = releaseBtn:GetFontString()
+        if rFont then rFont:SetTextColor(1.0, 0.4, 0.4) end
+        releaseBtn:SetScript("OnClick", function()
+            if abandonModal.targetMobId then
+                DB:AbandonMob(abandonModal.targetMobId)
+            end
+            abandonModal:Hide()
+        end)
+
+        local cancelBtn = Theme:CreateButton(abandonModal, "Cancel", 140, 28)
+        cancelBtn:SetPoint("BOTTOMRIGHT", -24, 16)
+        cancelBtn:SetScript("OnClick", function()
+            abandonModal:Hide()
+        end)
+    end
+
+    abandonModal.targetMobId = mobId
+    abandonModal.Desc:SetText(string.format("Are you sure you want to abandon\n|cffffd100%s|r (Lv %d %s)?\n\n|cffff4444This action cannot be undone.|r", mName, mob.level, mob.creatureType))
+    abandonModal:Show()
+    PlaySound(847)
+end
 
 function Journal:SelectMob(mobId)
     selectedMobId = mobId
@@ -213,7 +251,7 @@ function Journal:Initialize()
     bagBtn:SetScript("OnEnter", function(self)
         GameTooltip:SetOwner(self, "ANCHOR_TOP")
         GameTooltip:AddLine("|cffffd100Virtual Safari Bag|r", 1, 1, 1)
-        GameTooltip:AddLine("Open your 20-slot container for safari nets, family diets, catalysts, and balms.", 0.8, 0.8, 0.8, true)
+        GameTooltip:AddLine("Open your 20-slot container for snares, traps, cages, family diets, catalysts, and balms.", 0.8, 0.8, 0.8, true)
         GameTooltip:Show()
     end)
     bagBtn:SetScript("OnLeave", function() GameTooltip:Hide() end)
@@ -620,13 +658,7 @@ function Journal:BuildDossierPanel(panel)
     if aFont then aFont:SetTextColor(1.0, 0.45, 0.45) end
     abandonBtn:SetScript("OnClick", function()
         if selectedMobId then
-            local mob = DB:GetMobById(selectedMobId)
-            if not mob then return end
-            local mName = mob.nickname ~= "" and mob.nickname or mob.name
-            local dialog = StaticPopup_Show("FOREVERSAFARI_CONFIRM_ABANDON", string.format("|cffffd100%s|r (Lv %d %s)", mName, mob.level, mob.creatureType))
-            if dialog then
-                dialog.data = { mobId = selectedMobId }
-            end
+            Journal:ShowAbandonConfirmation(selectedMobId)
         end
     end)
     abandonBtn:SetScript("OnEnter", function(self)
@@ -1958,7 +1990,7 @@ function Journal:UpdateBountiesView()
             objCard.ProgressBar:SetValue(0)
             objCard.ProgressBar:SetStatusBarColor(1.0, 0.6, 0.0)
             objCard.ProgressText:SetText("0 / 1 — Parcel Waiting at Town Mailbox")
-            objCard.RewardText:SetText("|cffffd100Rewards Waiting:|r Racial Starter Companion + 5x Copper Safari Nets")
+            objCard.RewardText:SetText("|cffffd100Rewards Waiting:|r Racial Starter Companion + 10x Copper Snares")
         end
     else
         local progress = DB:GetQuestProgress(currentDispatch.questType)

@@ -55,7 +55,6 @@ function QH:Initialize()
     local f = CreateFrame("Frame", "ForeverSafariBossEventFrame")
     f:RegisterEvent("BOSS_KILL")
     f:RegisterEvent("ENCOUNTER_END")
-    f:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
     f:RegisterEvent("PLAYER_REGEN_ENABLED")
 
     f:SetScript("OnEvent", function(self, event, ...)
@@ -66,13 +65,6 @@ function QH:Initialize()
             local encounterID, encounterName, difficultyID, groupSize, success = ...
             if success == 1 then
                 QH:OnBossDefeated(encounterName)
-            end
-        elseif event == "COMBAT_LOG_EVENT_UNFILTERED" then
-            if CombatLogGetCurrentEventInfo then
-                local _, subevent, _, _, _, _, _, destGUID, destName = CombatLogGetCurrentEventInfo()
-                if subevent == "UNIT_DIED" and destName then
-                    QH:OnBossDefeated(destName)
-                end
             end
         elseif event == "PLAYER_REGEN_ENABLED" then
             QH:FlushPendingCelebrations()

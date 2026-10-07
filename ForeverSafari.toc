@@ -1,4 +1,4 @@
-## Interface: 16001, 11509, 120100
+## Interface: 16001, 11509, 120100, 110007, 110100, 110200
 ## Title: |cffffd100Forever Safari|r
 ## Notes: Hemet Nesingwary's Junior Safari League! Capture wild beasts, discover movepools, evolve companions, and battle across Azeroth!
 ## Author: Forever Safari Team

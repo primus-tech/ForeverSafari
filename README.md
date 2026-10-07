@@ -11,11 +11,11 @@
 
 ## 📜 The Nesingwary Junior Safari League
 
-Upon first logging into Azeroth, players receive an official **Safari Dispatch** from Hemet Nesingwary welcoming them to the *Junior Safari League*. 
+Upon first logging into Azeroth, players receive an official **Safari Dispatch** from Hemet Nesingwary welcoming them to the *Junior Safari League*.
 
 Recruits are supplied with:
 1. **[Caged Starter Companion]** — A wild companion native to their race's starting region.
-2. **[Nesingwary Safari Nets x 10]** — Essential capture nets to snare wild creatures in the field.
+2. **[Copper Snares x 10]** — Essential hemp rope slip-nooses to snare wild creatures in the field.
 3. **[Safari Healing Salves x 5]** — Soothing remedies to restore a wounded companion's health.
 4. **[Revival Crystal x 1]** — Shard of rejuvenation to restore a fainted companion in emergencies.
 5. **[Forever Safari Field Guide]** — The interactive 3D Paperdoll Journal and creature encyclopedia.
@@ -47,7 +47,7 @@ Every playable race receives an authentic wild companion indigenous to their hom
 Companions progress through bonding, feeding, and battlefield survival rather than numerical XP leveling:
 
 | Rank | Title | Combat Behavior & Checks | Move Slots | Stat Mult | Metamorphosis |
-| :---: | :--- | :--- | :---: | :---: | :---: |
+| :---: | :--- | :--- | :--- | :---: | :---: |
 | **I** | **Wild / Unbroken** | 25% Disobedience chance (slips into wild turns, loafs, or hesitates). | **1** | **0.85x** | ❌ Destabilizes |
 | **II** | **Tolerant** | 15% Disobedience chance. Basic orders execute cleanly. | **2** | **0.95x** | ❌ Destabilizes |
 | **III** | **Trusting** | 5% Disobedience chance. Reliable in combat. | **3** | **1.00x** | ❌ Destabilizes |
@@ -80,49 +80,51 @@ Companions progress through bonding, feeding, and battlefield survival rather th
 ### 7. Virtual Safari Bag (Addon-Exclusive Storage)
 * **Authentic Container Experience**: Styled as a classic 20-slot World of Warcraft backpack container with gold-trimmed borders, quality-tinted slots, stack count badges, and authentic sound effects.
 * **Addon-Exclusive Items**: Stores only items tied directly to the addon without cluttering default Blizzard bags:
-  * 🕸️ **Safari Nets**: Copper, Iron, and Mithril Nets, plus Master Arcanite Capsules.
+  * 🕸️ **Capture Gear Progression**:
+    * **Tier 1 (Common)**: **Copper Snare** (`INV_Misc_Rope_01` — Rope Noose, 35% Base Catch)
+    * **Tier 2 (Uncommon)**: **Iron Safari Net** (`INV_Misc_Net_01` — Woven Mesh, 55% Base Catch)
+    * **Tier 3 (Rare)**: **Mithril Hunter Trap** (`INV_Misc_MonsterClaw_04` — Bear Trap, 75% Base Catch)
+    * **Tier 4 (Epic)**: **Thorium Expedition Cage** (`INV_Box_01` — Pet Crate/Cage, 98% Base Catch)
   * 🥩 **Family Nourishment**: 17 harvested wild creature diet types (Wolf Meat, Feline Flank, Bear Ribs, Raptor Flesh, etc.) for feeding active companions (+25 Attunement for favorite diets, +15 for standard sustenance).
   * 🧬 **Evolution Catalysts**: Dungeon boss drops (Shadowfang Essence, Hydra Bile, Venomous Gland, Overclocked Core, Volcanic Core).
   * 🍖 **Consumables**: Safari Treats (+50 Attunement), Grand Safari Feasts (+100 Attunement to full team), Safari Healing Salves (100% HP heal), and Revival Crystals.
-* **Context-Sensitive Actions**: Right-Clicking items in the bag automatically equips nets, feeds or heals your active companion, or opens the 3D Metamorphosis pedestal. Shift-Clicking any item links it directly into chat.
+* **Context-Sensitive Actions**: Right-Clicking items in the bag automatically equips capture tools, feeds or heals your active companion, or opens the 3D Metamorphosis pedestal. Shift-Clicking any item links it directly into chat.
 
-### 8. Physical Mailbox Hub & Authentic Two-Window Mail System ("Safari Dispatch")
-* **Blizzard Mailbox Tab ("Safari")**: Authentic custom tab attached directly to Blizzard's `MailFrame` (`MAIL_SHOW`).
+### 8. Physical Mailbox Hub & Authentic Standalone Sidecar ("Safari Dispatch")
+* **Zero-Taint Mailbox Sidecar**: Standalone Nesingwary Dispatch Hub docked seamlessly alongside Blizzard's `MailFrame` (`MAIL_SHOW`) on `UIParent`.
 * **Full-Width Inbox Column**: Displays a full-width list of received Nesingwary dispatches and field bounties with sender names, titles, status tags (`[ 📦 Unopened Parcel ]`, `[ ✔ Ready to Claim ]`, `[ ✉️ New ]`), and row hover highlights.
-* **Secondary Sidecar OpenMail Window**: Clicking any dispatch opens a dedicated `OpenMail` window attached to the side of `MailFrame`, styled with Nesingwary gold/dark theme, antique parchment letter body, and a parcel attachment tray with tooltips and one-click unbox/claim actions.
-* **First-Load Starter Parcel**: Recruits unbox their racial companion starter kit, 10x Copper Safari Nets, 5x Safari Healing Salves, and 1x Revival Crystal (0 free token handouts) directly from Hemet Nesingwary's welcome dispatch.
+* **Secondary OpenMail Window**: Clicking any dispatch opens a dedicated `OpenMail` window attached to the side, styled with Nesingwary gold/dark theme, antique parchment letter body, and a parcel attachment tray with tooltips and one-click unbox/claim actions.
+* **First-Load Starter Parcel**: Recruits unbox their racial companion starter kit, 10x Copper Snares, 5x Safari Healing Salves, and 1x Revival Crystal (0 free token handouts) directly from Hemet Nesingwary's welcome dispatch.
 * **Field Research Bounty Turn-Ins**: Completed bounties are unboxed and turned in at a physical town mailbox to collect earned Safari Tokens and supplies.
 
-### 9. Innkeeper & Pet Trainer Vendor Specialization (Gossip Box Only)
-* **Zero Out-of-World Access**: Supply and food purchases cannot be made out in the field. Store interfaces are accessed **exclusively by clicking gossip menu options** when interacting with authorized NPCs in town.
-* **Pet Trainers (Safari Nets & Capture Gear — Universal Class Access)**:
-  * **Accessible to ALL Classes**: Non-Hunter classes (Warriors, Mages, Rogues, Priests, Warlocks, Paladins, Shamans, Druids) and Hunters alike can interact with town Pet Trainers to access the gossip window.
-  * Gossip Option: `[ 🐾 Browse Safari Nets & Gear ]`
-  * Inventory: Copper, Iron, Mithril Safari Nets, Arcanite Capsules, Revival Crystals, and Salves.
+### 9. Innkeeper & Pet Trainer Vendor Specialization (Gossip Sidecar)
+* **Zero Out-of-World Access**: Supply and food purchases cannot be made out in the field. Store interfaces are accessed **exclusively when interacting with authorized NPCs in town** via a zero-taint standalone sidecar window.
+* **Pet Trainers (Snares, Nets, Traps & Expedition Cages — Universal Class Access)**:
+  * **Accessible to ALL Classes**: Non-Hunter classes (Warriors, Mages, Rogues, Priests, Warlocks, Paladins, Shamans, Druids) and Hunters alike can interact with town Pet Trainers.
+  * Inventory: Copper Snares, Iron Safari Nets, Mithril Hunter Traps, Thorium Expedition Cages, Revival Crystals, and Salves.
 * **Innkeepers (Safari Treats & Food Provisions)**:
-  * Gossip Option: `[ 🍖 Browse Safari Treats & Food Provisions ]`
   * Inventory: Safari Treats, Grand Safari Feasts, Healing Salves, and fresh harvested family meats (Wolf, Feline, Bear, Boar, Raptor, etc.).
-* **Rest & Recovery**: Opening an Innkeeper's or Pet Trainer's gossip window fully heals and revives your active team. Out in the field, fainted companions need a Revival Crystal or Healing Salve.
-* **Instant Auto-Close**: Closing the NPC gossip window immediately closes the shop interface.
+* **Interactive Rest & Tend Squad Button**: Click the `[ 💖 Tend & Revive Squad ]` button in the vendor shop window to fully heal and revive your active squad. Out in the field, fainted companions need a Revival Crystal or Healing Salve.
+* **Instant Auto-Close**: Leaving the NPC immediately closes the shop interface.
 
 ### 10. The "Field Research" Snare & Hunter Coexistence (0% Mob Damage)
 Forever Safari decouples creature capturing completely from world-mob HP, transforming the capture minigame into an authentic, peaceful **Stalking & Snare Channeling** system:
 
 ```
-[Target In Range (15-28 yd)] ──► [Begin Net Channel (3-5 sec)]
+[Target In Range (15-28 yd)] ──► [Begin Tool Channel (3-5 sec)]
                                          │
                         (Beast Awareness & Range Check)
                                          ▼
                            [Channel Completes Intact]
                                          │
-                        (Roll Net Tier vs Quarry Rank)
+                        (Roll Gear Tier vs Quarry Rank)
                                          ▼
                           [Success: Virtual Snare Added]
                         (Live mob remains untouched in world!)
 ```
 
 * 🌿 **Zero Kill Guilt & 100% Mob Preservation**: The live creature in the world remains **100% untouched, at full health, and un-tagged**.
-* 🏹 **Hunter Coexistence**: A Hunter camping *Broken Tooth* or *Humar the Pridelord* can let an expedition researcher channel their net first. The researcher catalogs the companion into their Safari Bag, and the rare beast is still standing right there at 100% health for the Hunter to cast *Tame Beast*.
+* 🏹 **Hunter Coexistence**: A Hunter camping *Broken Tooth* or *Humar the Pridelord* can let an expedition researcher channel their capture gear first. The researcher catalogs the companion into their Safari Bag, and the rare beast is still standing right there at 100% health for the Hunter to cast *Tame Beast*.
 * 🎯 **Level-Agnostic Stalking**: High-level characters can stalk a Level 10 Duskbat without any risk of one-shotting it with auto-attacks or damage auras.
 * 🔭 **Proximity & Stalking Radar HUD (`UI/CaptureHUD.lua`)**:
   * Automatically pops when targeting any eligible wild creature in the world.
@@ -132,7 +134,7 @@ Forever Safari decouples creature capturing completely from world-mob HP, transf
   * **Close Stalk (~10 yards)**: High risk, optimal focus granting a **+25% Catch Power Bonus** (`1.25x`).
   * **Standard Perimeter (15–28 yards)**: Safe stalking distance (`1.0x`).
   * **Beyond Perimeter (>28 yards)**: Out of range; close distance to begin channeling.
-* ⏱️ **Channeling Minigame**: Channeling lasts 3.0–5.0 seconds based on net quality. Breaking line of sight or allowing the quarry to path beyond 28 yards interrupts the snare channel.
+* ⏱️ **Channeling Minigame**: Channeling lasts 3.0–5.0 seconds based on gear quality. Breaking line of sight or allowing the quarry to path beyond 28 yards interrupts the snare channel.
 
 ### 11. Catchable Creature Categories & Taxonomy
 Forever Safari focuses purely on non-humanoid monsters, wild fauna, constructs, and legendary dungeon behemoths:
@@ -155,7 +157,7 @@ Forever Safari focuses purely on non-humanoid monsters, wild fauna, constructs, 
 * `/fsbag` or `/safari bag` — Open the Virtual Safari Bag container
 * `/fsmail` or `/safari mail` — Open Nesingwary Safari Correspondence (Turn in at Mailbox)
 * `/fsshop` — Open Nesingwary Safari Supplies (Requires Pet Trainer or Innkeeper interaction)
-* `/fsnet` — Throw selected safari net at target
+* `/fsnet` — Deploy active capture tool (Snare/Net/Trap/Cage) at target
 * `/fsbattle` — Engage targeted creature in turn-based combat
 * `/fsduel` — Challenge targeted player to a companion duel
 * `/safari tokens` — Check your current Safari Token balance

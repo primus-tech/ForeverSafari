@@ -18,6 +18,7 @@ local DEFAULT_DB = {
         ["copper_cage"] = 0,
         ["iron_cage"] = 0,
         ["mithril_cage"] = 0,
+        ["thorium_trap"] = 0,
         ["arcanite_capsule"] = 0,
         ["az_treat"] = 0,
         ["healing_salve"] = 0,
@@ -105,6 +106,12 @@ function DB:Initialize()
         end
         if not ForeverSafariDB.unlockedTypes then
             ForeverSafariDB.unlockedTypes = CopyTable(DEFAULT_DB.unlockedTypes)
+        end
+
+        -- Seamless migration: arcanite_capsule -> thorium_trap
+        if ForeverSafariDB.inventory["arcanite_capsule"] and ForeverSafariDB.inventory["arcanite_capsule"] > 0 then
+            ForeverSafariDB.inventory["thorium_trap"] = (ForeverSafariDB.inventory["thorium_trap"] or 0) + ForeverSafariDB.inventory["arcanite_capsule"]
+            ForeverSafariDB.inventory["arcanite_capsule"] = 0
         end
     end
 
@@ -1067,7 +1074,7 @@ function DB:ResetDB()
     end
 
     local C = ForeverSafari.Constants
-    DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00Database reset! You are now a brand new recruit.|r Visit any town mailbox and click the |cffffd100[Safari]|r tab to unbox your welcome parcel!", C.PREFIX))
+    DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00Database reset! You are now a brand new recruit.|r Visit any town mailbox to unbox your welcome parcel from the |cffffd100[Safari Dispatch]|r hub!", C.PREFIX))
     if ForeverSafari.Toast then
         ForeverSafari.Toast:ShowReward("Safari League Reset", "New recruit profile initialized! Visit any town mailbox.")
     end

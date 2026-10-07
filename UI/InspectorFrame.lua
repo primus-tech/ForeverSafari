@@ -276,7 +276,7 @@ end
 -- Secure Chat Link Hook
 if hooksecurefunc then
     hooksecurefunc("SetItemRef", function(link, text, button, chatFrame)
-        if link and link:find("^safari:") then
+        if type(link) == "string" and link:sub(1, 7) == "safari:" then
             local dnaStr = link:sub(8)
             local mob = ForeverSafari.Database:ImportCompanionDNA(dnaStr)
             if mob then

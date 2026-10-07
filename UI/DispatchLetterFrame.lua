@@ -73,7 +73,7 @@ function Dispatch:Initialize()
 
     local letterText = "Greetings, recruit!\n\n"
         .. "Hemet Nesingwary here. Slaying beasts is fine and dandy, but any amateur with a blunderbuss can shoot a raptor. The REAL test of a true outdoorsman is taming the wild beasts of Azeroth, raising 'em from cubs, and testing their mettle in battle!\n\n"
-        .. "I had my boys ship a hardy wild companion native to your homeland along with a set of my patent Safari Nets and your official 3D Field Guide.\n\n"
+        .. "I had my boys ship a hardy wild companion native to your homeland along with a set of my patent hunting snares and your official 3D Field Guide.\n\n"
         .. "Raise it well, discover wild moves in the field, and make the Safari League proud!\n\n"
         .. "— Hemet Nesingwary Sr."
     letterBody:SetText(letterText)

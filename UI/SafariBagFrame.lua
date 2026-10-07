@@ -54,12 +54,12 @@ function Bag:GetItemData(itemId)
         return {
             id = itemId,
             name = cage.name or itemId,
-            category = "Safari Net",
-            icon = cage.icon or "INV_Misc_Net_01",
+            category = "Capture Gear",
+            icon = cage.icon or "INV_Misc_Rope_01",
             quality = cage.quality or 1,
             color = cage.color or "ffffff",
             desc = cage.description or string.format("Increases capture rate by %.1fx.", cage.rateMultiplier or 1.0),
-            useText = "Right-Click to equip as active capture net.",
+            useText = "Right-Click to equip as active capture gear.",
         }
     end
 
@@ -116,7 +116,7 @@ end
 local function GetCategoryPriority(itemData)
     if not itemData then return 99 end
     local cat = itemData.category or ""
-    if cat == "Safari Net" then
+    if cat == "Capture Gear" or cat == "Safari Net" then
         return 1
     elseif cat == "Consumable" then
         return 2
@@ -419,7 +419,7 @@ function Bag:OnSlotEnter(slotBtn)
     if not item or not item.data then
         GameTooltip:SetOwner(slotBtn, "ANCHOR_RIGHT")
         GameTooltip:AddLine("Empty Safari Slot", 0.6, 0.6, 0.6)
-        GameTooltip:AddLine("Defeat wild beasts, earn dungeon catalysts, or buy safari nets to fill your bag.", 0.5, 0.5, 0.5, true)
+        GameTooltip:AddLine("Defeat wild beasts, earn dungeon catalysts, or buy snares, nets, and traps to fill your bag.", 0.5, 0.5, 0.5, true)
         GameTooltip:Show()
         return
     end
@@ -434,7 +434,7 @@ function Bag:OnSlotEnter(slotBtn)
     local catColor = "ffd100"
     if d.category == "Family Nourishment" then catColor = "00ff99"
     elseif d.category == "Evolution Catalyst" then catColor = "a335ee"
-    elseif d.category == "Safari Net" then catColor = "00bfff" end
+    elseif d.category == "Capture Gear" or d.category == "Safari Net" then catColor = "00bfff" end
     GameTooltip:AddDoubleLine(string.format("|cff%s%s|r", catColor, d.category), string.format("|cffffffffCount: %d|r", item.count))
 
     -- Line 3: Description
@@ -501,8 +501,8 @@ end
 function Bag:UseItem(itemId, itemData)
     local activeMob = DB:GetActiveMob()
 
-    -- 1. 🕸️ Safari Nets: Equip as active net or attempt capture
-    if itemData.category == "Safari Net" then
+    -- 1. 🕸️ Safari Capture Gear: Equip as active tool or attempt capture
+    if itemData.category == "Capture Gear" or itemData.category == "Safari Net" then
         if ForeverSafari.CaptureHUD and ForeverSafari.CaptureHUD.SelectCage then
             ForeverSafari.CaptureHUD:SelectCage(itemId)
             if not ForeverSafari.CaptureHUD:IsShown() and UnitExists("target") then
@@ -510,7 +510,7 @@ function Bag:UseItem(itemId, itemData)
             end
         end
         PlaySound(856) -- SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON
-        DEFAULT_CHAT_FRAME:AddMessage(string.format("%sEquipped |cff%s[%s]|r as your active safari capture net.",
+        DEFAULT_CHAT_FRAME:AddMessage(string.format("%sEquipped |cff%s[%s]|r as your active capture gear.",
             C.PREFIX, itemData.color or "ffffff", itemData.name))
         return
     end

@@ -63,7 +63,7 @@ local function GetMinimapPosition(angle)
 end
 
 function MB:Initialize()
-    local parent = MinimapBackdrop or MinimapCluster or Minimap or UIParent
+    local parent = Minimap or MinimapBackdrop or UIParent
     btn = CreateFrame("Button", "ForeverSafariMinimapButton", parent)
     btn:SetSize(32, 32)
     btn:SetFrameStrata("MEDIUM")

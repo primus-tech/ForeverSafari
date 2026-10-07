@@ -97,7 +97,7 @@ local function HandleSlash(msg)
         if ForeverSafari.ShopFrame and ForeverSafari.ShopFrame.IsAtAuthorizedVendor and ForeverSafari.ShopFrame:IsAtAuthorizedVendor() then
             Shop:Toggle()
         else
-            DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Store access is restricted! Speak with a Pet Trainer (for Safari Nets & Gear) or an Innkeeper (for Safari Treats & Food Provisions).|r")
+            DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Store access is restricted! Speak with a Pet Trainer (for Capture Gear & Supplies) or an Innkeeper (for Safari Treats & Food Provisions).|r")
             if ForeverSafari.Toast then
                 ForeverSafari.Toast:ShowAlert("Vendor Required", "Speak to a Pet Trainer or Innkeeper!")
             end
@@ -116,7 +116,7 @@ local function HandleSlash(msg)
                 ForeverSafari.JournalFrame:ShowTab("BOUNTIES")
             end
         end
-    elseif cmd == "net" or cmd == "catch" or cmd == "snare" or cmd == "trap" then
+    elseif cmd == "net" or cmd == "catch" or cmd == "snare" or cmd == "trap" or cmd == "cage" then
         ForeverSafari.CaptureEngine:AttemptCapture("target")
     elseif cmd == "battle" or cmd == "fight" then
         ForeverSafari.BattleEngine:StartWildBattle("target")
@@ -130,10 +130,8 @@ local function HandleSlash(msg)
             DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444No active companion to abandon.|r")
             return
         end
-        local mName = activeMob.nickname ~= "" and activeMob.nickname or activeMob.name
-        local dialog = StaticPopup_Show("FOREVERSAFARI_CONFIRM_ABANDON", string.format("|cffffd100%s|r (Lv %d %s)", mName, activeMob.level, activeMob.creatureType))
-        if dialog then
-            dialog.data = { mobId = activeMob.id }
+        if ForeverSafari.JournalFrame and ForeverSafari.JournalFrame.ShowAbandonConfirmation then
+            ForeverSafari.JournalFrame:ShowAbandonConfirmation(activeMob.id)
         end
     elseif cmd == "reset" then
         DB:ResetDB()
@@ -144,7 +142,7 @@ local function HandleSlash(msg)
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsbag|r or |cffffd100/safari bag|r - Open Virtual Safari Bag")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsmail|r or |cffffd100/safari mail|r - View Nesingwary Dispatches (Turn in at Mailbox)")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/safari abandon|r - Release active companion back into the wild")
-        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsnet|r - Throw selected safari net at target")
+        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsnet|r - Deploy active capture tool (Snare/Net/Trap/Cage) at target")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsbattle|r - Engage targeted wild creature in turn-based battle")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsduel|r - Challenge targeted player to a companion duel")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/safari tokens|r - Check current Safari Token balance")
@@ -160,7 +158,7 @@ SlashCmdList["FSSHOP"] = function()
     if ForeverSafari.ShopFrame and ForeverSafari.ShopFrame.IsAtAuthorizedVendor and ForeverSafari.ShopFrame:IsAtAuthorizedVendor() then
         Shop:Toggle()
     else
-        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Store access is restricted! Speak with a Pet Trainer (for Safari Nets & Gear) or an Innkeeper (for Safari Treats & Food Provisions).|r")
+        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Store access is restricted! Speak with a Pet Trainer (for Capture Gear & Supplies) or an Innkeeper (for Safari Treats & Food Provisions).|r")
         if ForeverSafari.Toast then
             ForeverSafari.Toast:ShowAlert("Vendor Required", "Speak to a Pet Trainer or Innkeeper!")
         end

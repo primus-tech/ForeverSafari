@@ -85,7 +85,7 @@
   * Styled as an authentic World of Warcraft container bag with gold-trimmed border, quality borders, stack badges, and authentic container sounds.
   * **Addon-Exclusive Storage**: Stores exclusively items tied to Forever Safari without using player inventory bag slots.
   * **Categorized Inventory**:
-    * 🕸️ **Safari Nets**: Copper, Iron, and Mithril Nets, Arcanite Capsules.
+    * 🕸️ **Capture Gear**: Copper Snares, Iron Safari Nets, Mithril Hunter Traps, Thorium Expedition Cages.
     * 🥩 **Family Nourishment**: 17 wild harvested diets (Canine, Feline, Bear, Boar, Raptor, etc.) with favorite food attunement bonuses (+25 Attunement).
     * 🧬 **Evolution Catalysts**: Dungeon boss drops (Shadowfang Essence, Hydra Bile, Venomous Gland, Overclocked Core, Volcanic Core).
     * 🍖 **Consumables**: Treats (+50 Attunement), Feasts (+100 Attunement team-wide), Salves (100% Heal), and Revival Crystals.
@@ -103,11 +103,11 @@
   * **Standard Perimeter (15–28 yards)**: Baseline stalking perimeter (`1.0x`).
   * **Beyond Perimeter (>28 yards)**: Out of range; requires closing distance before channeling.
 * [x] **Channeling Minigame & Stalking Castbar**:
-  * Channeled snare cast (3.0–5.0 seconds based on net tier) with live line-of-sight and range heartbeat.
+  * Channeled snare cast (3.0–5.0 seconds based on gear tier) with live line-of-sight and range heartbeat.
   * Breaking range (>28 yd), losing target, or entering combat interrupts the channel.
   * Real-time radar gauge smoothly transforms into a channeled castbar with percentage progress.
 * [x] **Capture Resolution minigame**:
-  * Resolves: `Catch Rate = Net Power * Stalking Distance Bonus * Level Delta * Apex Rarity Resistance`.
+  * Resolves: `Catch Rate = Tool Power * Stalking Distance Bonus * Level Delta * Apex Rarity Resistance`.
   * Success adds companion DNA to collection while leaving the world mob completely unharmed and available.
 
 ---
@@ -131,7 +131,7 @@
   * Full-width inbox column with mail items, sender names, subject titles, and dynamic status badges (`[ 📦 Unopened Parcel ]`, `[ ✔ Ready to Claim ]`, `[ ✉️ New ]`).
   * Secondary sidecar `OpenMail` window attached to `MailFrame` with custom gold/dark styling, scrollable parchment body, item tooltip previews, and one-click unbox/claim action buttons.
 * [x] **First-Load Starter Companion Crate Unboxing**:
-  * First-login parcel from Hemet Nesingwary delivering the racial starter companion crate and 5x Copper Safari Nets (0 free tokens).
+  * First-login parcel from Hemet Nesingwary delivering the racial starter companion crate and 10x Copper Snares (0 free tokens).
 * [x] **Official Nesingwary Field Bounties & Turn-Ins**:
   * Scrollable parchment letters distributing field research quests (Field Stalking 101, The Wild Nourishment, Apex Rares, Dungeon Catalysts).
   * Objective progress bars and physical turn-in requirements: players must return to a town mailbox to unbox parcels and collect their earned Safari Tokens and supplies.
@@ -143,14 +143,15 @@
 ## 📍 Phase 10: Gossip Store & Strict Vendor Specialization (Completed ✅)
 * [x] **Zero Out-of-World Store Access**:
   * Shop opening from field commands, bags, and journals removed. Access is strictly gated through NPC gossip interaction.
-* [x] **Pet Trainer Specialization (Safari Nets & Capture Gear — Universal Class Access)**:
-  * Gossip Button: `[ 🐾 Browse Safari Nets & Gear ]`
+* [x] **Pet Trainer Specialization (Capture Gear & Supplies — Universal Class Access)**:
+  * Standalone Sidecar Window attached cleanly to `UIParent`.
   * Accessible to all classes (Hunters and non-hunters alike).
-  * Offers Copper, Iron, Mithril Safari Nets, Arcanite Capsules, Revival Crystals, and Salves.
+  * Offers Copper Snares, Iron Safari Nets, Mithril Hunter Traps, Thorium Expedition Cages, Revival Crystals, and Salves.
 * [x] **Innkeeper Specialization (Safari Treats & Food Provisions)**:
-  * Gossip Button: `[ 🍖 Browse Safari Treats & Food Provisions ]`
   * Offers Safari Treats, Grand Safari Feasts, Healing Salves, and harvested family meats.
+* [x] **Interactive Rest & Tend Squad Button**:
+  * `[ 💖 Tend & Revive Squad ]` button heals and revives companions when talking to trainers or innkeepers.
 * [x] **Instant Gossip Cleanup**:
-  * Closing gossip immediately dismisses the merchant frame and clears vendor credentials.
+  * Closing NPC interaction immediately dismisses the merchant frame.
 
 
