@@ -79,6 +79,56 @@ function QH:HandleMechanicalBossKill(bossName)
     end
 end
 
+local ELEMENTAL_BFD_NPCS = {
+    [12876] = "Baron Aquanis",
+    [213334] = "Baron Aquanis",
+    [4887] = "Baron Aquanis",
+}
+
+local ELEMENTAL_BFD_NAMES = {
+    ["baron aquanis"] = true,
+    ["aquanis"] = true,
+}
+
+function QH:IsElementalBfdBoss(name, npcID)
+    if npcID and ELEMENTAL_BFD_NPCS[npcID] then
+        return true
+    end
+    if name and ELEMENTAL_BFD_NAMES[string.lower(name)] then
+        return true
+    end
+    return false
+end
+
+function QH:HandleElementalBossKill(bossName)
+    if not bossName or bossName == "" then bossName = "Baron Aquanis" end
+    local now = GetTime()
+    if recentKills[bossName] and (now - recentKills[bossName]) < 15 then
+        return
+    end
+    recentKills[bossName] = now
+
+    -- Update Quest Progress
+    DB:UpdateQuestProgress("KILL_ELEMENTAL_BOSS", 1)
+    DB:UpdateQuestProgress("BOSS_KILL", 1)
+
+    -- Award tokens to player on the spot
+    DB:AddTokens(25, bossName .. " Defeated")
+
+    -- Unlock Elemental research permit
+    local wasUnlocked = DB:IsTypeUnlocked("Elemental")
+    if not wasUnlocked then
+        DB:UnlockType("Elemental")
+    else
+        DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00[%s Defeated]|r +25 Safari Tokens awarded!", C.PREFIX, bossName))
+    end
+
+    -- Broadcast to party/raid addon users
+    if ns.Comms and ns.Comms.SendMessage then
+        ns.Comms:SendMessage("PERMIT_UNLOCK", "Elemental:" .. bossName)
+    end
+end
+
 function QH:Initialize()
     local f = CreateFrame("Frame", "ForeverSafariQuestEventFrame")
     f:RegisterEvent("QUEST_TURNED_IN")
@@ -109,6 +159,8 @@ function QH:Initialize()
                     end
                     if QH:IsMechanicalDeadminesBoss(destName, npcID) then
                         QH:HandleMechanicalBossKill(destName)
+                    elseif QH:IsElementalBfdBoss(destName, npcID) then
+                        QH:HandleElementalBossKill(destName)
                     end
                 end
             end
@@ -120,8 +172,12 @@ function QH:OnBossKilled(encounterID, name)
     -- Update Dungeon Expedition Quest Progress
     DB:UpdateQuestProgress("BOSS_KILL", 1)
 
-    if name and QH:IsMechanicalDeadminesBoss(name) then
-        QH:HandleMechanicalBossKill(name)
+    if name then
+        if QH:IsMechanicalDeadminesBoss(name) then
+            QH:HandleMechanicalBossKill(name)
+        elseif QH:IsElementalBfdBoss(name) then
+            QH:HandleElementalBossKill(name)
+        end
     end
 
     -- Check if this boss drops a catalyst

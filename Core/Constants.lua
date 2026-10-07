@@ -734,6 +734,24 @@ C.NESINGWARY_DISPATCHES = {
             items = { { id = "iron_cage", count = 5 }, { id = "healing_salve", count = 5 } },
         }
     },
+    [7] = {
+        id = 7,
+        key = "bfd_elemental_permit",
+        title = "Research Permit: Primal Attunement",
+        sender = "Ajeck Rouack",
+        location = "Alchemical Sanctuary",
+        date = "Priority Directive",
+        icon = "Interface\\Icons\\Spell_Fire_Elemental_Devastation",
+        questType = "KILL_ELEMENTAL_BOSS",
+        targetCount = 1,
+        unlocksType = "Elemental",
+        summary = "Defeat the elemental boss Baron Aquanis in Blackfathom Deeps to earn the Primal Attunement Permit.",
+        body = "Naturalist,\n\nRaw elemental energy is inherently chaotic and violently resists standard containment nets. To attune our safari gear to capture and bond with elemental spirits, we require a condensed primal focus.\n\nDeep within the sunken temple of Blackfathom Deeps resides the water elemental entity Baron Aquanis. Delve into the depths, vanquish the elemental lord, and harness the pure primal resonance!\n\nAll party members assisting in the defeat will immediately earn their Primal Attunement Permit and Safari Tokens!\n\n— Ajeck Rouack, Senior Safari Alchemist",
+        rewards = {
+            tokens = 50,
+            items = { { id = "mithril_cage", count = 3 }, { id = "az_treat", count = 5 } },
+        }
+    },
 }
 
 -- Abilities Database (Cooldown in turns & Limited Usages per battle)

@@ -73,9 +73,18 @@ function Comms:OnMessageReceived(text, channel, sender)
         -- Format: PERMIT_UNLOCK:Type:BossName
         local cType, bName = strsplit(":", data or "", 2)
         cType = cType or "Mechanical"
-        bName = bName or "Mechanical Boss"
+        bName = bName or "Boss"
 
-        DB:UpdateQuestProgress("KILL_MECHANICAL_BOSS", 1)
+        if cType == "Mechanical" then
+            DB:UpdateQuestProgress("KILL_MECHANICAL_BOSS", 1)
+        elseif cType == "Elemental" then
+            DB:UpdateQuestProgress("KILL_ELEMENTAL_BOSS", 1)
+        elseif cType == "Undead" then
+            DB:UpdateQuestProgress("KILL_UNDEAD_BOSS", 1)
+        elseif cType == "Dragonkin" then
+            DB:UpdateQuestProgress("KILL_DRAGONKIN_BOSS", 1)
+        end
+
         DB:UpdateQuestProgress("BOSS_KILL", 1)
         DB:AddTokens(25, bName .. " Defeated")
 
