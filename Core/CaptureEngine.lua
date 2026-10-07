@@ -26,6 +26,15 @@ local function isSecret(v)
     return false
 end
 
+local function SafeCheckInteractDistance(unit, index)
+    if not unit or not UnitExists(unit) then return false end
+    local ok, inRange = pcall(CheckInteractDistance, unit, index)
+    if ok and not isSecret(inRange) and inRange == true then
+        return true
+    end
+    return false
+end
+
 -- Active Channel State
 CE.ChannelState = {
     isChanneling = false,
@@ -50,12 +59,12 @@ function CE:GetStalkingDistance(unit)
     end
 
     -- Close Stalk (~10 yards, CheckInteractDistance 3 = duel/trade range) -> High Risk, High Reward (+25% catch)
-    if CheckInteractDistance(unit, 3) then
+    if SafeCheckInteractDistance(unit, 3) then
         return "CLOSE", 1.25, "Close Stalk (~10 yd) - Optimal Focus (+25% Catch Bonus)", "00ff99"
     end
 
     -- Standard Stalking Perimeter (~15-28 yards, CheckInteractDistance 4 = follow/inspect range)
-    if CheckInteractDistance(unit, 4) then
+    if SafeCheckInteractDistance(unit, 4) then
         return "PERIMETER", 1.00, "In Perimeter (15-28 yd) - Standard Tension", "ffd100"
     end
 

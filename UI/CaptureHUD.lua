@@ -234,11 +234,19 @@ function HUD:Initialize()
             if CE:IsChanneling() then
                 CE:CancelSnareChannel("Combat interrupted stalking focus.")
             end
+            if frame and frame:IsShown() then
+                frame:Hide()
+            end
+        elseif event == "PLAYER_REGEN_ENABLED" then
+            if UnitExists("target") then
+                HUD:OnTargetChanged()
+            end
         end
     end)
 
     -- Poller for smooth live proximity detection
     eventFrame:SetScript("OnUpdate", function(self, elapsed)
+        if InCombatLockdown and InCombatLockdown() then return end
         if not frame:IsShown() or not UnitExists("target") then return end
         
         lastRangeCheck = lastRangeCheck + elapsed
@@ -252,6 +260,11 @@ function HUD:Initialize()
 end
 
 function HUD:OnTargetChanged()
+    if InCombatLockdown and InCombatLockdown() then
+        if frame and frame:IsShown() then frame:Hide() end
+        return
+    end
+
     if not UnitExists("target") or UnitIsDead("target") or UnitIsPlayer("target") then
         if CE:IsChanneling() then
             CE:CancelSnareChannel("Target lost.")
@@ -261,7 +274,7 @@ function HUD:OnTargetChanged()
     end
 
     local reaction = UnitReaction("player", "target")
-    if not isSecret(reaction) and reaction and reaction > 4 then
+    if not isSecret(reaction) and type(reaction) == "number" and reaction > 4 then
         frame:Hide()
         return
     end
@@ -296,6 +309,7 @@ function HUD:OnTargetChanged()
 end
 
 function HUD:UpdateUI()
+    if InCombatLockdown and InCombatLockdown() then return end
     if not frame:IsShown() or not UnitExists("target") then return end
 
     local name = UnitName("target")

@@ -221,7 +221,7 @@ function BE:StartWildBattle(unit)
     if isSecret(rawType) or not rawType or rawType == "" then rawType = "Beast" end
 
     local level = UnitLevel(unit)
-    if isSecret(level) or not level or level <= 0 then level = activeMob.level or 1 end
+    if isSecret(level) or not level or type(level) ~= "number" or level <= 0 then level = activeMob.level or 1 end
 
     local isElite = false
     local classification = UnitClassification(unit)

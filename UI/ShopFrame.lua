@@ -106,18 +106,15 @@ function Shop:IsAtAuthorizedVendor()
     end
 
     if unit then
-        -- 1. Scan Unit Tooltip subtitle
-        local tooltip = ForeverSafariTooltipScan or CreateFrame("GameTooltip", "ForeverSafariTooltipScan", nil, "GameTooltipTemplate")
-        tooltip:SetOwner(WorldFrame, "ANCHOR_NONE")
-        tooltip:ClearLines()
-        tooltip:SetUnit(unit)
-        for i = 1, tooltip:NumLines() do
-            local line = _G["ForeverSafariTooltipScanTextLeft" .. i]
-            if line then
-                local text = line:GetText()
-                if text and not isSecret(text) then
-                    local vType = classify(text)
-                    if vType then return true, vType end
+        -- 1. Modern C_TooltipInfo scan (Zero taint in modern protected API)
+        if C_TooltipInfo and C_TooltipInfo.GetUnit then
+            local ok, info = pcall(C_TooltipInfo.GetUnit, unit)
+            if ok and info and info.lines then
+                for _, line in ipairs(info.lines) do
+                    if line.leftText and not isSecret(line.leftText) then
+                        local vType = classify(line.leftText)
+                        if vType then return true, vType end
+                    end
                 end
             end
         end
