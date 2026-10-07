@@ -102,17 +102,30 @@ Companions progress through bonding, feeding, and battlefield survival rather th
   * **Snarlmane** (NPC `1948`): **Shadowfang Rend** (`[1004]`, shadow necrotic curse).
   * **Rotgrip** (NPC `12258`): **Crushing Clamp** (`[1005]`, high-damage crocolisk lock-jaw clamp).
 
-### 5. Evolution Catalysts & Greed-Only Boss Loot
+### 5. NPC Rival Battler Engine (Humanoids as AI Trainers)
+* **Challenging Azeroth's Humanoids**: Targeting and challenging any roaming Humanoid mob across Azeroth (e.g. Defias Cutthroats, Kobold Miners, Murloc Tidecallers, Riverpaw Gnolls, Kolkar Centaurs, Scarlet Crusaders, Dark Iron Dwarves, Syndicate Rogues, Southsea Pirates, Bloodscalp Trolls, Boulderfist Ogres, Venture Co. Engineers, Twilight Cultists, or Nesingwary Safari Trackers) initiates an **AI Trainer Battle** rather than a wild creature encounter.
+* **14 Themed Faction Archetypes**: Each faction possesses a distinct title, immersive intro quote, defeat quote, token bounty payout, and a themed 1-to-3 companion roster scaling with level (Lv 1–15: 1 companion; Lv 16–35: 2 companions; Lv 36+: 3 companions).
+* **AI Trainer Pet Switching**: When a trainer's active pet faints, they automatically send out their next companion from their bench with custom battle announcements.
+* **Trainer Companion Protection**: Cages and snares cannot be thrown at trainer-owned pets (`"You cannot capture another hunter's companion!"`).
+
+### 6. 100/110 Stat Budget Formula & 2-Move Starter Loadout
+* **Normalized Base Stat Budgets**:
+  * **Non-Rare Species**: Exactly **100 base stat points** distributed across HP, Attack, Defense, and Speed.
+  * **Rare & Apex Species**: Exactly **110 base stat points** distributed across HP, Attack, Defense, and Speed.
+* **Elemental Type Multipliers**: Multiplied by creature type passive modifiers (e.g. Beast 1.1x Attack, Mechanical 1.15x Defense, Flying 1.15x Speed).
+* **2 Starting Abilities**: Every wild companion begins with exactly **2 starting moves** (Slot 1: Basic Attack, Slot 2: Family Signature/Utility Move). Slots 3 & 4 remain empty until unlocked and trained via the Beast Training Grimoire at higher Attunement Ranks.
+
+### 7. Evolution Catalysts & Greed-Only Boss Loot
 * Dungeon bosses drop rare **Evolution Catalysts** (such as *[Shadowfang Essence]* from SFK or *[Hydra Bile]* from BFD).
 * **Secondary Loot Window**: Pops on boss defeat with a **Greed-Only fair roll** (Need is permanently disabled for all players).
 * **Rank V Metamorphosis**: Using a catalyst on a companion at Rank V transforms its 3D model (e.g. Mangy Wolf ➔ **Slavering Worg**), scales base stats, and unlocks apex abilities while preserving its custom nickname and learned grimoire.
 
-### 6. Rare Spawn Protection & Reserved Names
+### 8. Rare Spawn Protection & Reserved Names
 * **Reserved Name Registry**: Prevents common pets from being renamed after iconic world rares (e.g. *Humar the Pridelord*, *The Rake*, *Broken Tooth*, *Aku'mai*).
 * **Golden Dragon Crest**: Genuine wild rares display an unforgeable golden dragon crest and authentication stamp in the 3D Inspector.
 * **Evolution Exemption**: World rares are legendary apex beasts and cannot be evolved, preserving their iconic wild prestige.
 
-### 7. Virtual Safari Bag & 5-Tier Capture Gear Progression
+### 9. Virtual Safari Bag & 5-Tier Capture Gear Progression
 * **Authentic Container Experience**: Styled as a classic 20-slot World of Warcraft backpack container with gold-trimmed borders, quality-tinted slots, stack count badges, and authentic sound effects.
 * **Addon-Exclusive Items**:
   * 🕸️ **Capture Gear Progression**:
