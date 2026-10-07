@@ -88,9 +88,11 @@ function Comms:OnMessageReceived(text, channel, sender)
         DB:UpdateQuestProgress("BOSS_KILL", 1)
         DB:AddTokens(25, bName .. " Defeated")
 
+        local inCombat = InCombatLockdown and InCombatLockdown()
         if not DB:IsTypeUnlocked(cType) then
-            DB:UnlockType(cType)
+            DB:UnlockType(cType, inCombat)
         end
+        DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00[%s Defeated]|r Party sync: +25 Safari Tokens! You unlocked |cffffd100%s|r research!", C.PREFIX, bName, cType))
     elseif msgType == "SHARE_MOB" then
         -- Received shared companion link from player
     end

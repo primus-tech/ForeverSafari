@@ -1,7 +1,7 @@
 --[[
-    Forever Safari: Virtual Quest & Expedition Directive Engine
-    Completely virtualized quest tracking, boss takedowns, and research permit milestones.
-    Zero interaction with protected Blizzard quest logs, unit frames, or combat log events.
+    Forever Safari: Boss Death & Research Permit Engine
+    Listens for dungeon boss defeats and synchronizes research permit unlocks
+    and Safari Token bounties across all party members with the addon.
 ]]
 
 local addonName, ns = ...
@@ -14,6 +14,7 @@ local C = ns.Constants
 local DB = ns.Database
 
 local recentKills = {}
+local pendingToasts = {}
 
 local MECHANICAL_BOSSES = {
     ["sneed's shredder"] = true,
@@ -51,56 +52,86 @@ local DRAGONKIN_BOSSES = {
 }
 
 function QH:Initialize()
-    -- Purely virtual: Zero Blizzard event registration to eliminate taint
+    local f = CreateFrame("Frame", "ForeverSafariBossEventFrame")
+    f:RegisterEvent("BOSS_KILL")
+    f:RegisterEvent("ENCOUNTER_END")
+    f:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
+    f:RegisterEvent("PLAYER_REGEN_ENABLED")
+
+    f:SetScript("OnEvent", function(self, event, ...)
+        if event == "BOSS_KILL" then
+            local encounterID, name = ...
+            QH:OnBossDefeated(name)
+        elseif event == "ENCOUNTER_END" then
+            local encounterID, encounterName, difficultyID, groupSize, success = ...
+            if success == 1 then
+                QH:OnBossDefeated(encounterName)
+            end
+        elseif event == "COMBAT_LOG_EVENT_UNFILTERED" then
+            if CombatLogGetCurrentEventInfo then
+                local _, subevent, _, _, _, _, _, destGUID, destName = CombatLogGetCurrentEventInfo()
+                if subevent == "UNIT_DIED" and destName then
+                    QH:OnBossDefeated(destName)
+                end
+            end
+        elseif event == "PLAYER_REGEN_ENABLED" then
+            QH:FlushPendingCelebrations()
+        end
+    end)
 end
 
-function QH:OnBattleVictory(enemyMob)
-    if not enemyMob then return end
-    local name = enemyMob.name or "Wild Creature"
-    local lowerName = string.lower(name)
-    local isElite = enemyMob.isElite or false
+function QH:OnBossDefeated(bossName)
+    if not bossName or bossName == "" then return end
+    local lowerName = string.lower(bossName)
 
-    -- 1. Check Dungeon Expedition / Boss Kill Directives
-    if isElite or enemyMob.classification == "boss" or enemyMob.classification == "elite" then
-        DB:UpdateQuestProgress("BOSS_KILL", 1)
+    -- 1. Check Mechanical Bosses (Deadmines)
+    if MECHANICAL_BOSSES[lowerName] then
+        QH:HandlePermitUnlock("Mechanical", bossName, "KILL_MECHANICAL_BOSS")
+        return
     end
 
-    -- 2. Check Virtual Mechanical Boss Directives (Deadmines)
-    if MECHANICAL_BOSSES[lowerName] or (enemyMob.creatureType == "Mechanical" and isElite) then
-        QH:HandlePermitUnlock("Mechanical", name, "KILL_MECHANICAL_BOSS")
+    -- 2. Check Elemental Bosses (BFD)
+    if ELEMENTAL_BOSSES[lowerName] then
+        QH:HandlePermitUnlock("Elemental", bossName, "KILL_ELEMENTAL_BOSS")
+        return
     end
 
-    -- 3. Check Virtual Elemental Boss Directives (BFD)
-    if ELEMENTAL_BOSSES[lowerName] or (enemyMob.creatureType == "Elemental" and isElite) then
-        QH:HandlePermitUnlock("Elemental", name, "KILL_ELEMENTAL_BOSS")
+    -- 3. Check Undead Bosses (RFD)
+    if UNDEAD_BOSSES[lowerName] then
+        QH:HandlePermitUnlock("Undead", bossName, "KILL_UNDEAD_BOSS")
+        return
     end
 
-    -- 4. Check Virtual Undead Boss Directives (RFD)
-    if UNDEAD_BOSSES[lowerName] or (enemyMob.creatureType == "Undead" and isElite) then
-        QH:HandlePermitUnlock("Undead", name, "KILL_UNDEAD_BOSS")
+    -- 4. Check Dragonkin Bosses (Sunken Temple)
+    if DRAGONKIN_BOSSES[lowerName] then
+        QH:HandlePermitUnlock("Dragonkin", bossName, "KILL_DRAGONKIN_BOSS")
+        return
     end
 
-    -- 5. Check Virtual Dragonkin Boss Directives (Sunken Temple)
-    if DRAGONKIN_BOSSES[lowerName] or (enemyMob.creatureType == "Dragonkin" and isElite) then
-        QH:HandlePermitUnlock("Dragonkin", name, "KILL_DRAGONKIN_BOSS")
-    end
-
-    -- 6. Check Virtual Catalyst Loot Roll
+    -- Check Evolution Catalysts
     if ForeverSafari.EvolutionDB and ForeverSafari.CatalystLootFrame then
         for catId, evo in pairs(ForeverSafari.EvolutionDB) do
             if evo.source and string.find(string.lower(evo.source), lowerName, 1, true) then
-                ForeverSafari.CatalystLootFrame:StartRoll(catId, name)
+                ForeverSafari.CatalystLootFrame:StartRoll(catId, bossName)
                 break
             end
         end
     end
 end
 
+function QH:OnBattleVictory(enemyMob)
+    if not enemyMob then return end
+    local name = enemyMob.name or "Wild Creature"
+    QH:OnBossDefeated(name)
+end
+
 function QH:HandlePermitUnlock(cType, bossName, questTypeKey)
     local now = GetTime()
-    if recentKills[bossName] and (now - recentKills[bossName]) < 10 then return end
-    recentKills[bossName] = now
+    local key = cType .. ":" .. (bossName or "")
+    if recentKills[key] and (now - recentKills[key]) < 12 then return end
+    recentKills[key] = now
 
+    -- Update Virtual Database Progress
     if questTypeKey then
         DB:UpdateQuestProgress(questTypeKey, 1)
     end
@@ -108,13 +139,40 @@ function QH:HandlePermitUnlock(cType, bossName, questTypeKey)
     DB:AddTokens(25, bossName .. " Defeated")
 
     local wasUnlocked = DB:IsTypeUnlocked(cType)
+    local inCombat = InCombatLockdown and InCombatLockdown()
+
     if not wasUnlocked then
-        DB:UnlockType(cType)
+        DB:UnlockType(cType, true) -- silent during combat
+        if inCombat then
+            table.insert(pendingToasts, {
+                title = cType .. " Permit Unlocked!",
+                desc = string.format("Defeated %s! %s research unlocked.", bossName, cType),
+            })
+        else
+            DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00[%s Defeated]|r +25 Safari Tokens! You unlocked |cffffd100%s|r pets!", C.PREFIX, bossName, cType))
+            if ForeverSafari.Toast then
+                ForeverSafari.Toast:ShowReward(cType .. " Permit Unlocked!", string.format("Defeated %s! %s research unlocked.", bossName, cType))
+            end
+            PlaySound(1195)
+        end
     else
         DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00[%s Defeated]|r +25 Safari Tokens awarded!", C.PREFIX, bossName))
     end
 
+    -- Broadcast to entire party/raid so everyone receives the token & unlock
     if ns.Comms and ns.Comms.SendMessage then
         ns.Comms:SendMessage("PERMIT_UNLOCK", cType .. ":" .. bossName)
     end
+end
+
+function QH:FlushPendingCelebrations()
+    if #pendingToasts == 0 then return end
+    for _, toast in ipairs(pendingToasts) do
+        DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00[Research Permit Granted]|r %s", C.PREFIX, toast.desc))
+        if ForeverSafari.Toast then
+            ForeverSafari.Toast:ShowReward(toast.title, toast.desc)
+        end
+        PlaySound(1195)
+    end
+    pendingToasts = {}
 end
