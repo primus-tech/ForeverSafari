@@ -289,10 +289,7 @@ function CE:CompleteSnareChannel()
 
     -- Bestiary Sighting Discovery
     if DB and DB.DiscoverSpecies then
-        local isNew, sp = DB:DiscoverSpecies(targetName, "seen")
-        if isNew and ForeverSafari.Toast then
-            ForeverSafari.Toast:ShowReward("Bestiary Sighted!", string.format("Stalked %s and added to Field Catalog!", sp.name))
-        end
+        DB:DiscoverSpecies(targetName, "seen")
     end
 
     if ForeverSafari.CreatureDB then

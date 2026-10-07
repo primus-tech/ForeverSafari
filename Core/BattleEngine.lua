@@ -414,10 +414,7 @@ function BE:StartWildBattle(unit)
 
     -- Bestiary / Pokédex Encounter Discovery
     if DB and DB.DiscoverSpecies then
-        local isNew, sp = DB:DiscoverSpecies(enemyMob.name, "seen")
-        if isNew and ForeverSafari.Toast then
-            ForeverSafari.Toast:ShowReward("Bestiary Sighted!", string.format("Added %s to your Field Catalog!", sp.name))
-        end
+        DB:DiscoverSpecies(enemyMob.name, "seen")
     end
 
     if ForeverSafari.BattleFrame then

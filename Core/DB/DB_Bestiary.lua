@@ -57,19 +57,21 @@ function DB:DiscoverSpecies(nameOrId, status)
         if ns.Toast and ns.Toast.ShowBestiaryDiscovery then
             ns.Toast:ShowBestiaryDiscovery(spec, status or "seen")
         end
-        return bestiary[spec.id]
+        return bestiary[spec.id], true, spec
     else
+        local wasNew = false
         if status == "caught" then
             if existing.status ~= "caught" then
                 existing.status = "caught"
                 existing.firstCaught = now
+                wasNew = true
                 if ns.Toast and ns.Toast.ShowBestiaryDiscovery then
                     ns.Toast:ShowBestiaryDiscovery(spec, "caught")
                 end
             end
             existing.caughtCount = (existing.caughtCount or 0) + 1
         end
-        return existing
+        return existing, wasNew, spec
     end
 end
 
