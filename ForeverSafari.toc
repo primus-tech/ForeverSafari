@@ -10,6 +10,7 @@ Core\Constants.lua
 Data\CreatureDB.lua
 Data\MoveDB.lua
 Data\EvolutionDB.lua
+Data\BestiaryDB.lua
 Core\Database.lua
 Core\StatEngine.lua
 Core\CaptureEngine.lua

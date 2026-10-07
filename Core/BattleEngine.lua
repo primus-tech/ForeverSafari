@@ -303,6 +303,14 @@ function BE:StartWildBattle(unit)
 
     BE:AddLog(string.format("|cffffff00Wild %s (Lv %d %s) appeared!|r", enemyMob.name, enemyMob.level, enemyMob.creatureType))
 
+    -- Bestiary / Pokédex Encounter Discovery
+    if DB and DB.DiscoverSpecies then
+        local isNew, sp = DB:DiscoverSpecies(enemyMob.name, "seen")
+        if isNew and ForeverSafari.Toast then
+            ForeverSafari.Toast:ShowReward("Bestiary Sighted!", string.format("Added %s to your Field Catalog!", sp.name))
+        end
+    end
+
     if ForeverSafari.BattleFrame then
         ForeverSafari.BattleFrame:ShowBattle()
     end
@@ -864,6 +872,9 @@ function BE:ThrowCageInCombat(cageId)
             C_Timer.After(1.4, function() BE:ExecuteEnemyTurn() end)
         elseif roll <= finalRate then
             PlaySound(1195)
+            if DB and DB.DiscoverSpecies then
+                DB:DiscoverSpecies(enemy.name, "caught")
+            end
             if isSquadFull then
                 local ok, crateId, crateData = DB:ConsumeBestTransportCrate(enemyQuality)
                 DB:AddMob(enemy, false)

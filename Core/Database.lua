@@ -27,7 +27,8 @@ local DEFAULT_DB = {
     collection = {}, -- List of all captured companions
     team = {},       -- Array of up to 4 active team companion IDs
     activeSlot = 1,  -- Currently active deployed companion slot (1-4)
-    discovered = {}, -- Bestiary seen/caught records [npcName] = { seen = 1, caught = 0, type = "Beast" }
+    discovered = {}, -- Legacy discovered table
+    bestiary = {}, -- Modern Pokédex discovery: [speciesId] = { id, name, status ("seen"|"caught"), firstSeen, firstCaught, caughtCount }
     unlockedAbilities = { -- Learned abilities known to the trainer (Vanilla WoW pet training style)
         ["Tackle"] = true,
         ["Bite"] = true,
@@ -108,11 +109,18 @@ function DB:Initialize()
             ForeverSafariDB.unlockedTypes = CopyTable(DEFAULT_DB.unlockedTypes)
         end
 
+        if not ForeverSafariDB.bestiary then
+            ForeverSafariDB.bestiary = {}
+        end
+
         -- Seamless migration: arcanite_capsule -> thorium_trap
         if ForeverSafariDB.inventory["arcanite_capsule"] and ForeverSafariDB.inventory["arcanite_capsule"] > 0 then
             ForeverSafariDB.inventory["thorium_trap"] = (ForeverSafariDB.inventory["thorium_trap"] or 0) + ForeverSafariDB.inventory["arcanite_capsule"]
             ForeverSafariDB.inventory["arcanite_capsule"] = 0
         end
+
+        -- Auto-backfill Bestiary from current squad and kennel
+        DB:BackfillBestiaryFromCollection()
     end
 
     if not ForeverSafariSettings then
@@ -1284,4 +1292,103 @@ function DB:HealTeam(silent)
     end
     return healedCount
 end
+
+-- =========================================================================
+-- 📖 BESTIARY / POKÉDEX DISCOVERY SYSTEM
+-- =========================================================================
+function DB:GetBestiary()
+    if not ForeverSafariDB or not ForeverSafariDB.bestiary then
+        if ForeverSafariDB then ForeverSafariDB.bestiary = {} end
+        return {}
+    end
+    return ForeverSafariDB.bestiary
+end
+
+function DB:GetBestiaryEntry(speciesId)
+    local bestiary = DB:GetBestiary()
+    return bestiary[speciesId]
+end
+
+function DB:DiscoverSpecies(speciesIdOrName, status)
+    if not speciesIdOrName then return false end
+    local BestiaryDB = ForeverSafari.BestiaryDB
+    if not BestiaryDB then return false end
+
+    local species
+    if type(speciesIdOrName) == "number" then
+        species = BestiaryDB:GetSpecies(speciesIdOrName)
+    else
+        species = BestiaryDB:FindSpeciesByName(speciesIdOrName)
+    end
+
+    if not species then return false end
+
+    local bestiary = DB:GetBestiary()
+    local entry = bestiary[species.id]
+    local now = time()
+    local isNew = false
+
+    if not entry then
+        entry = {
+            id = species.id,
+            name = species.name,
+            status = status or "seen",
+            firstSeen = now,
+            firstCaught = (status == "caught") and now or nil,
+            caughtCount = (status == "caught") and 1 or 0,
+        }
+        bestiary[species.id] = entry
+        isNew = true
+    else
+        if status == "caught" then
+            if entry.status ~= "caught" then
+                entry.status = "caught"
+                entry.firstCaught = entry.firstCaught or now
+                isNew = true
+            end
+            entry.caughtCount = (entry.caughtCount or 0) + 1
+        elseif status == "seen" and entry.status ~= "caught" then
+            entry.status = "seen"
+        end
+    end
+
+    return isNew, species, entry
+end
+
+function DB:GetBestiaryStats()
+    local BestiaryDB = ForeverSafari.BestiaryDB
+    local allSpecies = BestiaryDB and BestiaryDB:GetAllSpecies() or {}
+    local total = #allSpecies
+    local seen = 0
+    local caught = 0
+
+    local bestiary = DB:GetBestiary()
+    for _, sp in ipairs(allSpecies) do
+        local entry = bestiary[sp.id]
+        if entry then
+            if entry.status == "caught" then
+                caught = caught + 1
+                seen = seen + 1
+            elseif entry.status == "seen" then
+                seen = seen + 1
+            end
+        end
+    end
+
+    return { total = total, seen = seen, caught = caught }
+end
+
+function DB:BackfillBestiaryFromCollection()
+    for _, mob in ipairs(DB:GetCollection()) do
+        if mob and mob.name then
+            DB:DiscoverSpecies(mob.name, "caught")
+        end
+    end
+    for _, mob in ipairs(DB:GetKennelMobs()) do
+        if mob and mob.name then
+            DB:DiscoverSpecies(mob.name, "caught")
+        end
+    end
+end
+
 

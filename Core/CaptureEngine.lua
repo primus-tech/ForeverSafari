@@ -287,6 +287,14 @@ function CE:CompleteSnareChannel()
     local targetName = state.targetName or "Wild Creature"
     local cType = state.creatureType or "Beast"
 
+    -- Bestiary Sighting Discovery
+    if DB and DB.DiscoverSpecies then
+        local isNew, sp = DB:DiscoverSpecies(targetName, "seen")
+        if isNew and ForeverSafari.Toast then
+            ForeverSafari.Toast:ShowReward("Bestiary Sighted!", string.format("Stalked %s and added to Field Catalog!", sp.name))
+        end
+    end
+
     if ForeverSafari.CreatureDB then
         for _, entry in pairs(ForeverSafari.CreatureDB) do
             if entry.name and string.lower(entry.name) == string.lower(targetName) and entry.abilities then
