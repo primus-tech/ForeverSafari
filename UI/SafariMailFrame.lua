@@ -22,6 +22,8 @@ local mailTabBtn = nil
 local selectedLetterId = 1
 local listButtons = {}
 
+local hooksInitialized = false
+
 function Mail:Initialize()
     -- Register Blizzard Mailbox Events
     local eventFrame = CreateFrame("Frame", "ForeverSafariMailEventFrame")
@@ -35,29 +37,40 @@ function Mail:Initialize()
             Mail:OnMailboxClose()
         end
     end)
+
+    if not hooksInitialized and hooksecurefunc then
+        hooksInitialized = true
+        if MailFrameTab_OnClick then
+            hooksecurefunc("MailFrameTab_OnClick", function(tab)
+                if mailContainer then mailContainer:Hide() end
+                if openMailFrame then openMailFrame:Hide() end
+                Mail:UpdateTabVisuals(false)
+            end)
+        end
+    end
 end
 
 function Mail:OnMailboxOpen()
     if not MailFrame then return end
 
-    -- Create or attach custom Tab 3 to MailFrame
+    -- Create custom Safari Tab button attached to MailFrame
     if not mailTabBtn then
-        local ok, btn = pcall(CreateFrame, "Button", "ForeverSafariMailTab", MailFrame, "PanelTabButtonTemplate")
-        if not ok or not btn then
-            btn = CreateFrame("Button", "ForeverSafariMailTab", MailFrame, "BackdropTemplate")
-            Theme:ApplyButtonBackdrop(btn)
-        end
-        mailTabBtn = btn
-        mailTabBtn:SetText("Safari")
-        if PanelTemplates_TabResize then
-            pcall(PanelTemplates_TabResize, mailTabBtn, 0)
-        end
+        mailTabBtn = CreateFrame("Button", "ForeverSafariMailTab", MailFrame, "BackdropTemplate")
+        mailTabBtn:SetSize(72, 28)
+        Theme:ApplyCardBackdrop(mailTabBtn, true)
+        mailTabBtn:SetBackdropColor(0.10, 0.14, 0.20, 0.95)
+        mailTabBtn:SetBackdropBorderColor(0.3, 0.4, 0.5, 0.8)
+
+        local tabLabel = mailTabBtn:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+        tabLabel:SetPoint("CENTER", 0, 0)
+        tabLabel:SetText("|cffffd100Safari|r")
+        mailTabBtn.Label = tabLabel
         
-        -- Anchor tab to MailFrameTab2
+        -- Anchor tab to MailFrameTab2 or MailFrame
         if MailFrameTab2 then
-            mailTabBtn:SetPoint("LEFT", MailFrameTab2, "RIGHT", -12, 0)
+            mailTabBtn:SetPoint("LEFT", MailFrameTab2, "RIGHT", 4, 0)
         elseif MailFrameTab1 then
-            mailTabBtn:SetPoint("LEFT", MailFrameTab1, "RIGHT", -12, 0)
+            mailTabBtn:SetPoint("LEFT", MailFrameTab1, "RIGHT", 4, 0)
         else
             mailTabBtn:SetPoint("BOTTOMLEFT", MailFrame, "BOTTOMLEFT", 130, -30)
         end
@@ -66,21 +79,15 @@ function Mail:OnMailboxOpen()
             Mail:SelectSafariTab()
         end)
 
-        -- Hook standard Blizzard tabs to hide our Safari Mail pane and sidecar window
-        if MailFrameTab1 then
-            MailFrameTab1:HookScript("OnClick", function()
-                if mailContainer then mailContainer:Hide() end
-                if openMailFrame then openMailFrame:Hide() end
-                Mail:UpdateTabVisuals(1)
-            end)
-        end
-        if MailFrameTab2 then
-            MailFrameTab2:HookScript("OnClick", function()
-                if mailContainer then mailContainer:Hide() end
-                if openMailFrame then openMailFrame:Hide() end
-                Mail:UpdateTabVisuals(2)
-            end)
-        end
+        mailTabBtn:SetScript("OnEnter", function(self)
+            GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+            GameTooltip:AddLine("Nesingwary Safari Dispatches", 1, 0.82, 0)
+            GameTooltip:AddLine("View official expedition directives, bounties, and unbox reward parcels.", 1, 1, 1, true)
+            GameTooltip:Show()
+        end)
+        mailTabBtn:SetScript("OnLeave", function()
+            GameTooltip:Hide()
+        end)
     end
 
     -- Create inner Mail Container inside MailFrame (covering the main Inbox area)
@@ -94,7 +101,7 @@ function Mail:OnMailboxOpen()
             mailContainer:SetPoint("TOPLEFT", MailFrame, "TOPLEFT", 14, -62)
             mailContainer:SetPoint("BOTTOMRIGHT", MailFrame, "BOTTOMRIGHT", -14, 28)
         end
-        mailContainer:SetFrameLevel(MailFrame:GetFrameLevel() + 5)
+        mailContainer:SetFrameLevel(MailFrame:GetFrameLevel() + 20)
         mailContainer:Hide()
 
         Mail:BuildInboxList(mailContainer)
@@ -106,6 +113,7 @@ function Mail:OnMailboxOpen()
     end
 
     mailTabBtn:Show()
+    Mail:UpdateTabVisuals(false)
     Mail:UpdateTabBadge()
 
     -- Auto-select Safari Dispatch tab if starter kit is waiting to be unboxed!
@@ -126,39 +134,31 @@ function Mail:OnMailboxClose()
     if openMailFrame then
         openMailFrame:Hide()
     end
+    Mail:UpdateTabVisuals(false)
 end
 
 function Mail:SelectSafariTab()
     if not MailFrame or not mailContainer then return end
 
-    -- Hide Blizzard standard mail panes
-    if InboxFrame then InboxFrame:Hide() end
-    if SendMailFrame then SendMailFrame:Hide() end
-    if OpenMailFrame then OpenMailFrame:Hide() end
-
     mailContainer:Show()
-    Mail:UpdateTabVisuals(3)
+    Mail:UpdateTabVisuals(true)
     Mail:UpdateUI()
     PlaySound(844) -- SOUNDKIT.IG_SPELLBOOK_OPEN
 end
 
-function Mail:UpdateTabVisuals(selectedTab)
+function Mail:UpdateTabVisuals(isSelected)
     if not mailTabBtn then return end
-    if selectedTab == 3 then
-        if PanelTemplates_SelectTab then
-            pcall(PanelTemplates_SelectTab, mailTabBtn)
-        end
-        if MailFrameTab1 and PanelTemplates_DeselectTab then pcall(PanelTemplates_DeselectTab, MailFrameTab1) end
-        if MailFrameTab2 and PanelTemplates_DeselectTab then pcall(PanelTemplates_DeselectTab, MailFrameTab2) end
+    if isSelected then
+        mailTabBtn:SetBackdropBorderColor(0.0, 1.0, 0.6, 1.0)
+        mailTabBtn:SetBackdropColor(0.06, 0.16, 0.12, 0.98)
     else
-        if PanelTemplates_DeselectTab then
-            pcall(PanelTemplates_DeselectTab, mailTabBtn)
-        end
+        mailTabBtn:SetBackdropBorderColor(0.3, 0.4, 0.5, 0.8)
+        mailTabBtn:SetBackdropColor(0.10, 0.14, 0.20, 0.95)
     end
 end
 
 function Mail:UpdateTabBadge()
-    if not mailTabBtn then return end
+    if not mailTabBtn or not mailTabBtn.Label then return end
     local hasUnclaimedOrUnread = false
     if not DB:IsStarterClaimed() then
         hasUnclaimedOrUnread = true
@@ -179,12 +179,9 @@ function Mail:UpdateTabBadge()
     end
 
     if hasUnclaimedOrUnread then
-        mailTabBtn:SetText("|cff00ff00Safari (!)|r")
+        mailTabBtn.Label:SetText("|cff00ff00Safari (!)|r")
     else
-        mailTabBtn:SetText("Safari")
-    end
-    if PanelTemplates_TabResize then
-        pcall(PanelTemplates_TabResize, mailTabBtn, 0)
+        mailTabBtn.Label:SetText("|cffffd100Safari|r")
     end
 end
 
