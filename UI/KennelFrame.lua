@@ -424,6 +424,10 @@ function Kennel:Hide()
     if frame then frame:Hide() end
 end
 
+function Kennel:IsShown()
+    return frame and frame:IsShown()
+end
+
 function Kennel:Toggle()
     if frame and frame:IsShown() then
         Kennel:Hide()

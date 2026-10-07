@@ -273,6 +273,14 @@ function Inspector:InspectCompanion(companionData)
     frame:Show()
 end
 
+function Inspector:Hide()
+    if frame then frame:Hide() end
+end
+
+function Inspector:IsShown()
+    return frame and frame:IsShown()
+end
+
 -- Secure Chat Link Hook
 if hooksecurefunc then
     hooksecurefunc("SetItemRef", function(link, text, button, chatFrame)
