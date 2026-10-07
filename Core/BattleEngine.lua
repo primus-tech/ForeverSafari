@@ -147,8 +147,9 @@ end
 -- Check if player has any conscious companion on team
 function BE:HasConsciousTeamMember()
     local team = DB:GetTeam()
-    for _, mob in ipairs(team) do
-        if (mob.currentHP or 0) > 0 then
+    for _, mobId in ipairs(team) do
+        local mob = type(mobId) == "table" and mobId or DB:GetMobById(mobId)
+        if mob and (mob.currentHP or 0) > 0 then
             return true
         end
     end
@@ -288,8 +289,9 @@ function BE:StartWildBattle(unit)
         -- Attempt to auto-promote first conscious team member
         local team = DB:GetTeam()
         local foundConscious = nil
-        for slotIdx, mob in ipairs(team) do
-            if (mob.currentHP or 0) > 0 then
+        for slotIdx, mobId in ipairs(team) do
+            local mob = type(mobId) == "table" and mobId or DB:GetMobById(mobId)
+            if mob and (mob.currentHP or 0) > 0 then
                 foundConscious = mob
                 DB:SetActiveSlot(slotIdx)
                 activeMob = mob

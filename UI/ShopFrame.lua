@@ -139,7 +139,8 @@ function Shop:Initialize()
         if DB and DB.HealTeam then
             local team = DB:GetTeam()
             local needsHealing = false
-            for _, m in ipairs(team) do
+            for _, mobId in ipairs(team) do
+                local m = mobId and (type(mobId) == "table" and mobId or DB:GetMobById(mobId))
                 if m and (not m.currentHP or m.currentHP < (m.maxHP or 10)) then
                     needsHealing = true
                     break
@@ -208,7 +209,8 @@ function Shop:UpdateHealButton()
     local team = DB:GetTeam()
     local needsHealing = false
     local woundedCount = 0
-    for _, m in ipairs(team) do
+    for _, mobId in ipairs(team) do
+        local m = mobId and (type(mobId) == "table" and mobId or DB:GetMobById(mobId))
         if m and (not m.currentHP or m.currentHP < (m.maxHP or 10)) then
             needsHealing = true
             woundedCount = woundedCount + 1

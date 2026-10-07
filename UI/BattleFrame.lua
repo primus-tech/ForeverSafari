@@ -612,7 +612,8 @@ function BF:UpdateUI()
     local team = DB:GetTeam()
     for i = 1, 4 do
         local btn = partyButtons[i]
-        local mob = team[i]
+        local mobId = team[i]
+        local mob = mobId and (type(mobId) == "table" and mobId or DB:GetMobById(mobId))
         if mob then
             btn.mobId = mob.id
             local pName = mob.nickname ~= "" and mob.nickname or mob.name
@@ -628,7 +629,7 @@ function BF:UpdateUI()
                 btn.Title:SetText(string.format("|cffff4444%s (KO'd)|r", pName))
             else
                 btn:Enable()
-                btn.Title:SetText(string.format("|cffffffff%s|r |cff00ff99Lv%d (%d/%d)|r", pName, mob.level, mob.currentHP, mob.maxHP))
+                btn.Title:SetText(string.format("|cffffffff%s|r |cff00ff99Lv%d (%d/%d)|r", pName, mob.level or 1, mob.currentHP or mob.hp or 10, mob.maxHP or mob.hp or 10))
             end
             btn:Show()
         else

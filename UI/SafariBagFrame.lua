@@ -572,7 +572,8 @@ function Bag:UseItem(itemId, itemData)
         if DB:RemoveItem("az_feast", 1) then
             PlaySound(1195)
             for _, member in ipairs(team) do
-                DB:AddAttunement(member.id, 100, "Grand Safari Feast")
+                local mobId = type(member) == "table" and member.id or member
+                DB:AddAttunement(mobId, 100, "Grand Safari Feast")
             end
             DB:UpdateQuestProgress("FEED", math.max(1, #team))
             DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00Served [Grand Safari Feast] to all %d companions in your team! (+100 Attunement each)|r", C.PREFIX, #team))
