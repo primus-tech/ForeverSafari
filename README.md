@@ -42,18 +42,32 @@ Every playable race receives an authentic wild companion indigenous to their hom
 
 ## 🌟 Core Features
 
-### 1. 3D Paperdoll Journal & Field Guide
-* **Interactive 3D Showcase**: Full 360° mouse drag rotation, zoom, animation triggers (Attack, Roar, Victory, Idle), and 4-stat combat radar dossier.
-* **Paperdoll Gallery**: Browse your entire menagerie in live 3D card tiles with 9-element type filters and pagination.
-* **Azeroth Bestiary**: 1,909 cataloged creatures with habitat maps, display previews, and diet specifications.
-* **Field Directives & Quest Tracker (Tab 4)**: Track active Nesingwary research directives, target objectives, kill/tame quotas, progress bars, and lore dossiers directly from the field (`/safari` or `/safari bounties`).
-* **3D Team Dock**: Live mini-paperdoll pedestals for your active 4-member battle squad.
+### 1. Modular 3D Field Guide Journal (`/safari`)
+Deconstructed into decoupled, high-performance UI views and components:
+* **View 1: 3D Squad Spotlight (`ROSTER`)**: A single-companion high-definition 3D pedestal stage featuring fluid 360° mouse drag rotation, zoom, instant animation triggers (`[ ⚔ Attack ]`, `[ 🦁 Roar ]`, `[ 🏆 Victory ]`, `[ 🐾 Idle ]`), real-time nickname editing, attunement gauge, stat radar, 4-move cards, and an interactive nourishment feeding tray.
+* **View 2: 3D Menagerie Gallery (`GRID`)**: Browse your entire captured collection in a 6-card 3D paperdoll grid with 9-type filter ribbon, pagination, real-time HP bars, and squad leader toggles.
+* **View 3: Azeroth Bestiary (`BESTIARY`)**: Complete 215-species field Pokédex tracking discoveries (`seen`, `caught`), 9-element filter menu, search box, live 3D species stage with animations, native habitats, base stats, Nesingwary lore notes, and natural family movepools.
+* **View 4: Field Directives & Quest Log (`BOUNTIES`)**: Track active Nesingwary research directives, target objectives, kill/tame quotas, progress bars, and lore dossiers directly from the field.
+* **Active Party Dock (`JournalTeamDock.lua`)**: Bottom 4-slot party dock with live mini 3D pedestals and health gauges.
+* **Beast Training Grimoire Drawer (`JournalTrainingDrawer.lua`)**: Popout grimoire drawer for slot ability training and move customisation.
 
-### 2. 5-Rank Attunement & Loyalty Progression (Replaces Leveling)
-Companions progress through bonding, feeding, and battlefield survival rather than numerical XP leveling:
+### 2. 215-Species Azeroth Bestiary (Authentic Field Pokédex)
+A curated, lore-accurate field catalog spanning all 9 creature types of Classic Azeroth:
+* 🐾 **Beasts**: Wolves, Cats, Bears, Boars, Raptors, Spiders, Crocolisks, Kodos, Bats, Wind Serpents, Scorpids, Hyenas, Tallstriders, Gorillas, Carrion Birds, Crabs, Turtles.
+* ⚙️ **Mechanicals**: Harvest Watchers, Clockwork Gnomes, Mechano-Striders, Peacekeeper Units, Compact Harvesters.
+* 💀 **Undead**: Plague Rats, Skittering Spiders, Scourge Ghouls, Ghost Claws, Spectral Wolves.
+* 🌋 **Elementals**: Fire Elementals, Tar Elementals, Earth Rumbles, Water Elementals, Air Elementals.
+* 🐉 **Dragonkin**: Whelps, Dragonhawks, Proto-Drakes, Fey Dragons.
+* 🌊 **Aquatics**: Frenzies, Reef Crabs, River Crocolisks, Snapjaw Turtles.
+* 🦅 **Flyers**: Owls, Vultures, Bats, Dragonhawks, Gryphons, Wind Serpents.
+* ✨ **Magic**: Arcane Anomalies, Mana Wyrms, Sprite Darters.
+* 🛡️ **Humanoids**: Murlocs, Troggs, Defias Outlaws, Kobolds.
+
+### 3. 5-Rank Attunement & Loyalty Progression (Replaces Numerical Leveling)
+Companions progress through bonding, feeding, and battlefield survival rather than numerical XP grind:
 
 | Rank | Title | Combat Behavior & Checks | Move Slots | Stat Mult | Metamorphosis |
-| :---: | :--- | :--- | :--- | :---: | :---: |
+| :---: | :--- | :--- | :--- | :--- :---: | :---: |
 | **I** | **Wild / Unbroken** | 25% Disobedience chance (slips into wild turns, loafs, or hesitates). | **1** | **0.85x** | ❌ Destabilizes |
 | **II** | **Tolerant** | 15% Disobedience chance. Basic orders execute cleanly. | **2** | **0.95x** | ❌ Destabilizes |
 | **III** | **Trusting** | 5% Disobedience chance. Reliable in combat. | **3** | **1.00x** | ❌ Destabilizes |
@@ -61,10 +75,10 @@ Companions progress through bonding, feeding, and battlefield survival rather th
 | **V** | **Bestial Symbiosis** | 0% Disobedience. Maximum harmony and power. | **4 + Perk** | **1.15x** | ✅ **Catalyst Ready!** |
 
 * **Battle Resilience**: Winning battles where your companion does not faint (+35 Attunement).
-* **Family Nourishment**: Feeding wild meats/essences harvested from downed animals of the same family (+25 Attunement).
+* **Family Nourishment**: Feeding wild meats and essences harvested from downed animals of the matching family (+25 Attunement).
 * **Zone Acclimation**: Exploring with your companion active in its native regional habitat (+15 Acclimation).
 
-### 3. Shared Family Movepools, Feral Druid Abilities & Apex Signatures
+### 4. Shared Family Movepools, Feral Druid Abilities & Apex Signatures
 * **Shared Family Grimoires**: All creatures within the same family (e.g. all Felines) share a universal movepool.
 * **Feral Druid & Tactical Movepool**:
   * **Dash** (`[117]`): +50% Speed burst for 3 turns.
@@ -88,21 +102,17 @@ Companions progress through bonding, feeding, and battlefield survival rather th
   * **Snarlmane** (NPC `1948`): **Shadowfang Rend** (`[1004]`, shadow necrotic curse).
   * **Rotgrip** (NPC `12258`): **Crushing Clamp** (`[1005]`, high-damage crocolisk lock-jaw clamp).
 
-### 4. Evolution Catalysts & Greed-Only Boss Loot
+### 5. Evolution Catalysts & Greed-Only Boss Loot
 * Dungeon bosses drop rare **Evolution Catalysts** (such as *[Shadowfang Essence]* from SFK or *[Hydra Bile]* from BFD).
 * **Secondary Loot Window**: Pops on boss defeat with a **Greed-Only fair roll** (Need is permanently disabled for all players).
-* **Rank V Metamorphosis**: Using a catalyst on a companion at Rank V transforms its 3D model (e.g. Mangy Wolf ➔ **Slavering Worg**), scales base stats, and unlocks apex abilities while preserving its nickname and grimoire.
+* **Rank V Metamorphosis**: Using a catalyst on a companion at Rank V transforms its 3D model (e.g. Mangy Wolf ➔ **Slavering Worg**), scales base stats, and unlocks apex abilities while preserving its custom nickname and learned grimoire.
 
-### 5. Rare Spawn Protection & Reserved Names
-* **Reserved Name Registry**: Prevents common pets from being renamed after world rares (e.g. *Humar the Pridelord*, *The Rake*, *Broken Tooth*, *Aku'mai*).
+### 6. Rare Spawn Protection & Reserved Names
+* **Reserved Name Registry**: Prevents common pets from being renamed after iconic world rares (e.g. *Humar the Pridelord*, *The Rake*, *Broken Tooth*, *Aku'mai*).
 * **Golden Dragon Crest**: Genuine wild rares display an unforgeable golden dragon crest and authentication stamp in the 3D Inspector.
 * **Evolution Exemption**: World rares are legendary apex beasts and cannot be evolved, preserving their iconic wild prestige.
 
-### 6. Social 3D Chat Links & Paperdoll Inspector
-* **Shift-Click Chat Links**: Shift-Click any companion in your Field Guide to post an interactive `[Safari: Nickname Lv.X (3D)]` link into chat.
-* **Live 3D Inspector**: Clicking chat links opens a dedicated 3D Paperdoll Inspector showing live rotatable model, full stats, custom nickname, and active 4-move loadout.
-
-### 7. Virtual Safari Bag & Item Management
+### 7. Virtual Safari Bag & 5-Tier Capture Gear Progression
 * **Authentic Container Experience**: Styled as a classic 20-slot World of Warcraft backpack container with gold-trimmed borders, quality-tinted slots, stack count badges, and authentic sound effects.
 * **Addon-Exclusive Items**:
   * 🕸️ **Capture Gear Progression**:
@@ -120,41 +130,35 @@ Companions progress through bonding, feeding, and battlefield survival rather th
   * 🍖 **Consumables**: Safari Treats (+50 Attunement), Grand Safari Feasts (+100 Attunement to full team), Safari Healing Salves (100% HP heal), and Revival Crystals.
 * **Context-Sensitive Actions**: Right-Clicking items in the bag automatically uses or feeds your active companion, or opens the 3D Metamorphosis pedestal. Shift-Clicking any item links it directly into chat.
 
-### 8. Physical Mailbox Hub & Standalone Sidecar ("Safari Dispatch")
-* **Zero-Taint Mailbox Sidecar**: Standalone Nesingwary Dispatch Hub docked seamlessly alongside Blizzard's `MailFrame` (`MAIL_SHOW`) on `UIParent`.
-* **Full-Width Inbox Column**: Displays received Nesingwary dispatches and field bounties with sender names, titles, and status tags (`[ 📦 Unopened Parcel ]`, `[ ✔ Ready to Claim ]`, `[ ✉️ New ]`).
-* **Secondary OpenMail Window**: Dedicated `OpenMail` window attached to the side, styled with Nesingwary gold/dark theme, antique parchment letter body, and a parcel attachment tray with tooltips and one-click unbox/claim actions.
-
-### 9. Innkeeper Safari Kennel & Pet Trainer Outfitter
+### 8. Innkeeper Safari Kennel (10 Enclosure Boxes = 200 Banked Pets)
 * **Zero Out-of-World Access**: Store and bank interfaces are accessed **exclusively when interacting with authorized NPCs in town** via zero-taint standalone sidecar windows.
 * **Innkeepers (Safari Kennel — The Pokémon Bank of Azeroth)**:
-  * **Active Squad vs. Bank Enclosures**: Players carry up to 4 active battle companions in their field squad. The remaining creatures are stored across **5 Enclosure Bank Boxes** (20 slots per box = 100 banked companions).
+  * **Active Squad vs. Bank Enclosures**: Players carry up to 4 active battle companions in their field squad. The remaining creatures are stored across **10 Enclosure Bank Boxes** (20 slots per box = 200 banked companions).
   * **Interactive Pedestals & Transfer**: Withdraw, deposit, and swap companions seamlessly between your active 4-member squad and bank enclosures.
   * **`[ 💖 Tend & Rest All Pets ]`**: Instant full heal and revival for all active and banked companions while resting at any Inn.
-* **Pet Trainers (Nesingwary Safari Outfitter — Universal Class Access)**:
-  * **Accessible to ALL Classes**: Non-Hunter classes (Warriors, Mages, Rogues, Priests, Warlocks, Paladins, Shamans, Druids) and Hunters alike can interact with town Pet Trainers.
-  * **Category Tabs**:
-    * 🕸️ **Capture Gear**: Copper Snare, Iron Net, Mithril Trap, Thorium Cage.
-    * 📦 **Transport Crates**: Copper, Iron, Mithril, and Thorium Crates with color-coded quality tints.
-    * 🥩 **Treats & Diets**: Azsharan Treats, Feasts, and 13 species-specific dietary meals.
-    * 🧪 **Medicine & Aid**: Healing Salve and Revival Crystals.
-  * **Beneath-the-Item Card Layout**: Each item displays the number owned (`Owned: X`), token cost (`Cost: X Tokens`), and `[ Buy x1 ]` button directly beneath the item name and description.
-* **Instant Auto-Close**: Leaving the NPC immediately closes the shop or kennel interface.
-
-### 10. In-Battle Captures, 4-Tier Transport Crates & Out-of-Battle Stalking
-* **In-Battle Captures Only**: Captures occur strictly during turn-based combat (`BattleFrame` / `BattleEngine`). Players select **[ BAG ] ➔ [ CAPTURE ]** during combat to deploy their snares, nets, traps, or cages.
 * **Transport Crate Logistics**:
   * If the player's active squad is full (**4/4**), capturing a wild beast auto-consumes **1 matching (or higher tier) Transport Crate** from the Safari Bag and safely ships the specimen to the **Safari Kennel** at the Innkeeper.
   * If the squad has an open slot (< 4), the wild beast is recruited directly into the active team with no crate required.
-* **Out-of-Battle HUD (`CaptureHUD.lua`)**:
-  * **`[ ⚔️ BATTLE ]`**: Instantly engages the targeted wild creature in turn-based combat.
-  * **`[ 🔭 OBSERVE ]`**: Initiates channeled field stalking (15–28 yards). Completing the observation channel analyzes the wild beast's fighting style and **discovers and unlocks unlearned family abilities** into your **Trainer Grimoire** (or grants +15 Attunement if all moves are known).
+
+### 9. Pet Trainers (Nesingwary Safari Outfitter — Universal Class Access)
+* **Accessible to ALL Classes**: Non-Hunter classes (Warriors, Mages, Rogues, Priests, Warlocks, Paladins, Shamans, Druids) and Hunters alike can interact with town Pet Trainers.
+* **Category Tabs**:
+  * 🕸️ **Capture Gear**: Copper Snare, Iron Net, Mithril Trap, Thorium Cage.
+  * 📦 **Transport Crates**: Copper, Iron, Mithril, and Thorium Crates with color-coded quality tints.
+  * 🥩 **Treats & Diets**: Azsharan Treats, Feasts, and 17 species-specific dietary meals.
+  * 🧪 **Medicine & Aid**: Healing Salve and Revival Crystals.
+* **Beneath-the-Item Card Layout**: Each item displays the number owned (`Owned: X`), token cost (`Cost: X Tokens`), and `[ Buy x1 ]` button directly beneath the item name and description.
+
+### 10. Physical Mailbox Hub & Standalone Sidecar ("Safari Dispatch")
+* **Zero-Taint Mailbox Sidecar**: Standalone Nesingwary Dispatch Hub docked seamlessly alongside Blizzard's `MailFrame` (`MAIL_SHOW`) on `UIParent`.
+* **Full-Width Inbox Column**: Displays received Nesingwary dispatches and field bounties with sender names, titles, and status tags (`[ 📦 Unopened Parcel ]`, `[ ✔ Ready to Claim ]`, `[ ✉️ New ]`).
+* **Secondary OpenMail Window**: Dedicated `OpenMail` window attached to the side, styled with Nesingwary gold/dark theme, antique parchment letter body, and a parcel attachment tray with tooltips and one-click unbox/claim actions.
 
 ---
 
 ## 🎮 Slash Commands
 
-* `/safari` or `/fs` — Open the Forever Safari 3D Field Guide & Team Manager
+* `/safari` or `/fs` — Open the Forever Safari 3D Field Guide & Squad Manager
 * `/safari kennel` or `/fskennel` — Open the Safari Kennel (Requires Innkeeper interaction)
 * `/safari bounties` — View Active Field Directives & Quest Tracker (Tab 4)
 * `/safari observe` or `/fsnet` — Channel field observation to stalk target and discover new moves
@@ -175,24 +179,31 @@ Companions progress through bonding, feeding, and battlefield survival rather th
 ForeverSafari/
 ├── ForeverSafari.toc                  # Addon Manifest (WoW Forever Beta 1.60.1)
 ├── ForeverSafari.lua                  # Main Addon Bootstrap & Slash Commands
-├── README.md                          # Player & Architecture Manual
-├── ROADMAP.md                         # Master Milestone Tracker
+├── README.md                          # Comprehensive Documentation & Architecture Manual
+├── ROADMAP.md                         # Master Milestone & Feature Tracker
 │
-├── Data/
-│   ├── CreatureDB.lua                 # 1,909 Normalized Species & 715 3D Displays
+├── Data/                              # Canonical Data Registries
+│   ├── ItemDB.lua                     # Snares, Traps, Cages, Crates, Diets & Consumables
 │   ├── MoveDB.lua                     # 94 Moves (Feral Druid, Utility, Boss Signatures)
+│   ├── CreatureDB.lua                 # 1,909 Normalized Species & 715 3D Displays
+│   ├── BestiaryDB.lua                 # 215 Curated Classic Species across 9 Families
 │   └── EvolutionDB.lua                # Metamorphosis Recipes & Boss Drops
 │
-├── Core/
+├── Core/                              # Core Engine & Subsystem Logic
 │   ├── Constants.lua                  # Types, Elements, Attunement Ranks, Diets, Crates
-│   ├── Database.lua                   # Salted Signatures, Base64 DNA, Nicknames, Kennel
-│   ├── StatEngine.lua                 # Attunement Scaling, Disobedience, Move Loadouts
-│   ├── CaptureEngine.lua              # Capture Rates, Gear Modifiers, Crate Logistics
-│   ├── BattleEngine.lua               # Turn-based Combat Loop, HoTs, Bleeds, Signatures
+│   ├── Database.lua                   # Core Initialization, Signatures, DNA & Settings
+│   ├── DB/                            # Domain-Specific Database Sub-Modules
+│   │   ├── DB_Pets.lua                # Companion CRUD, Active Party & Nicknames
+│   │   ├── DB_Kennel.lua              # 10 Storage Enclosure Boxes & Crate Logistics
+│   │   ├── DB_Bestiary.lua            # Pokédex Discovery & Progress Tracking
+│   │   └── DB_Inventory.lua           # Token Vault & Virtual Bag Management
+│   ├── StatEngine.lua                 # Attunement Scaling, Disobedience & Stat Engine
+│   ├── CaptureEngine.lua              # Capture Formulas, Catch Rates & Crate Logistics
+│   ├── BattleEngine.lua               # Turn-Based Combat Loop, HoTs, Bleeds & Statuses
 │   ├── QuestHooks.lua                 # Boss Kills, Quest Hooks & Token Rewards
 │   └── Comms.lua                      # P2P Multiplayer Sync & Chat Hyperlinks
 │
-└── UI/
+└── UI/                                # User Interface & Views
     ├── Theme.lua                      # Nesingwary Safari Gold & Dark Theme Tokens
     ├── Toast.lua                      # Animated Reward & Capture Notifications
     ├── MinimapButton.lua              # Minimap Radar Icon & Coordinates Tooltip
@@ -200,12 +211,21 @@ ForeverSafari/
     ├── DispatchLetterFrame.lua        # Nesingwary Parchment First-Login Onboarding
     ├── InspectorFrame.lua             # 3D Paperdoll Popup for Chat Hyperlinks
     ├── CatalystLootFrame.lua          # Greed-Only Secondary Boss Loot Window
-    ├── CaptureHUD.lua                 # Real-time Proximity & Move Discovery HUD
+    ├── CaptureHUD.lua                 # Real-Time Proximity & Move Discovery HUD
     ├── ShopFrame.lua                  # Pet Trainer Outfitter (Tabs & Below-Card Layout)
-    ├── KennelFrame.lua                # Innkeeper Companion Bank (4 Squad + 5 Enclosures)
+    ├── KennelFrame.lua                # Innkeeper Companion Bank (4 Squad + 10 Enclosures)
     ├── SafariBagFrame.lua             # Virtual Safari Bag 20-Slot Authentic Container
-    ├── JournalFrame.lua               # 3D Paperdoll Stage, Dossier, Gallery, Dock
-    └── BattleFrame.lua                # Retro 3D Combat Arena & Command Menu
+    ├── BattleFrame.lua                # Retro 3D Combat Arena & Command Menu
+    │
+    ├── Components/                    # Modular UI Components
+    │   ├── JournalTeamDock.lua        # Bottom 4-Slot Active Squad Dock
+    │   └── JournalTrainingDrawer.lua  # Beast Training Grimoire Slide-Out Drawer
+    │
+    └── Views/                         # Modular Journal Views
+        ├── JournalRosterView.lua      # View 1: 3D Companion Spotlight & Dossier
+        ├── JournalGridView.lua        # View 2: 3D Menagerie Gallery Grid (6-Card)
+        ├── JournalBestiaryView.lua    # View 3: 215-Species Azeroth Bestiary Pokédex
+        └── JournalBountiesView.lua    # View 4: Field Directives & Research Quest Log
 ```
 
 ---
@@ -217,7 +237,7 @@ Forever Safari is architected in 100% strict compliance with the **10 Commandmen
 1. **`Interface: 16001`**: Multi-client compatible TOC with `16001` primary declaration for Forever Beta.
 2. **Lua 5.1 Environment**: Zero prohibited keywords (`goto`, `//`, direct bitwise operators, `_ENV`, `require`, `dofile`, `loadfile`). Module loading handled strictly via `.toc`.
 3. **Mainline 12.1.5 Engine**: Conforms to modern Mainline UI architecture, disarmament restrictions, and protected execution paths.
-4. **`C_` Namespaces & Offline Data Integrity**: Fully decoupled from deprecated global APIs (`GetSpellInfo`, `GetItemInfo`), utilizing internal high-speed databases (`CreatureDB`, `MoveDB`, `EvolutionDB`, `Constants`).
+4. **`C_` Namespaces & Offline Data Integrity**: Fully decoupled from deprecated global APIs (`GetSpellInfo`, `GetItemInfo`), utilizing internal high-speed databases (`ItemDB`, `CreatureDB`, `MoveDB`, `BestiaryDB`, `EvolutionDB`, `Constants`).
 5. **Namespace Isolation**: Every module starts with `local addonName, ns = ...` and attaches shared state directly to `ns`, preventing global namespace collision.
 6. **Event-Driven Subsystems**: Zero `COMBAT_LOG_EVENT_UNFILTERED` registration. All game logic runs through clean high-level events (`ENCOUNTER_END`, `BOSS_KILL`, `QUEST_TURNED_IN`, `PLAYER_TARGET_CHANGED`, `UNIT_HEALTH`).
 7. **Secret Value Protection**: All unit reads (`UnitHealth`, `UnitHealthMax`, `UnitLevel`, `UnitName`, `UnitReaction`, `UnitRace`) are guarded with `issecretvalue()` checks. Status bars draw raw unit health directly to prevent protected arithmetic blocking.
