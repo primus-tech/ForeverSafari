@@ -1162,9 +1162,7 @@ function BE:RunAway()
     BE.State.dialogueText = "Got away safely!"
     BE:AddLog("|cffffaa00Escaped safely from battle!|r")
     BE.State.inBattle = false
-    C_Timer.After(1.0, function()
-        if ForeverSafari.BattleFrame then
-            ForeverSafari.BattleFrame:Hide()
-        end
-    end)
+    if ForeverSafari.BattleFrame then
+        ForeverSafari.BattleFrame:UpdateUI()
+    end
 end

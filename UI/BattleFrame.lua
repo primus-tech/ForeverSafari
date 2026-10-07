@@ -157,6 +157,7 @@ function BF:Initialize()
     BF:BuildFightMenu(menuContainer)
     BF:BuildBagMenu(menuContainer)
     BF:BuildPartyMenu(menuContainer)
+    BF:BuildEndBattleMenu(menuContainer)
 
     frame:Hide()
 end
@@ -408,9 +409,30 @@ function BF:BuildPartyMenu(parent)
     p:Hide()
 end
 
+-- =========================================================================
+-- MENU 5: END BATTLE MENU (Close / Return to Field)
+-- =========================================================================
+function BF:BuildEndBattleMenu(parent)
+    local p = CreateFrame("Frame", "ForeverSafariBattleEndMenu", parent)
+    p:SetAllPoints()
+    frame.EndMenu = p
+
+    local btnClose = Theme:CreateButton(p, "CLOSE BATTLE", 250, 48, true)
+    btnClose:SetPoint("CENTER", p, "CENTER", 0, 0)
+    btnClose:SetScript("OnClick", function()
+        BF:Hide()
+        PlaySound(856)
+    end)
+    p.CloseBtn = btnClose
+
+    p:Hide()
+end
+
 -- Switch Menu Sub-Panels
 function BF:SetMenuMode(mode)
-    if BE.State.forcedSwitch and mode ~= "PARTY" then
+    if not BE.State.inBattle then
+        mode = "END"
+    elseif BE.State.forcedSwitch and mode ~= "PARTY" then
         return
     end
 
@@ -419,8 +441,11 @@ function BF:SetMenuMode(mode)
     frame.FightMenu:Hide()
     frame.BagMenu:Hide()
     frame.PartyMenu:Hide()
+    if frame.EndMenu then frame.EndMenu:Hide() end
 
-    if mode == "FIGHT" then
+    if mode == "END" or mode == "CLOSE" then
+        if frame.EndMenu then frame.EndMenu:Show() end
+    elseif mode == "FIGHT" then
         frame.FightMenu:Show()
     elseif mode == "BAG" then
         frame.BagMenu:Show()
@@ -499,6 +524,12 @@ end
 -- Main Refresh Loop
 function BF:UpdateUI()
     if not frame or not frame:IsShown() then return end
+
+    -- Automatically switch to End Menu if battle is over
+    if not BE.State.inBattle and menuMode ~= "END" then
+        BF:SetMenuMode("END")
+        return
+    end
 
     local player = BE.State.playerMob
     local enemy = BE.State.enemyMob
