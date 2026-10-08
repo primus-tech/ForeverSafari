@@ -107,15 +107,10 @@ function QH:SyncCompletedQuests(isManual)
     local completed = C_QuestLog.GetAllCompletedQuestIDs()
     if not completed or type(completed) ~= "table" then return 0 end
 
-    if not ForeverSafariDB then return 0 end
-    ForeverSafariDB.rewardedQuests = ForeverSafariDB.rewardedQuests or {}
-
     local newlyRewardedCount = 0
     for _, qId in ipairs(completed) do
-        local qNum = tonumber(qId)
-        local qKey = tostring(qId)
-        if qNum and not ForeverSafariDB.rewardedQuests[qNum] and not ForeverSafariDB.rewardedQuests[qKey] then
-            ForeverSafariDB.rewardedQuests[qNum] = true
+        if not DB:IsQuestRewarded(qId) then
+            DB:MarkQuestRewarded(qId)
             newlyRewardedCount = newlyRewardedCount + 1
         end
     end
@@ -124,7 +119,7 @@ function QH:SyncCompletedQuests(isManual)
         local tokenPayout = newlyRewardedCount * 5
         DB:AddTokens(tokenPayout, string.format("Retroactive Grant (%d Quests)", newlyRewardedCount))
         DB:UpdateQuestProgress("QUEST", newlyRewardedCount)
-        if ForeverSafariDB.stats then
+        if ForeverSafariDB and ForeverSafariDB.stats then
             ForeverSafariDB.stats.totalQuestsCompleted = (ForeverSafariDB.stats.totalQuestsCompleted or 0) + newlyRewardedCount
         end
 
@@ -137,7 +132,7 @@ function QH:SyncCompletedQuests(isManual)
 
         PlaySound(1195)
     elseif isManual then
-        DEFAULT_CHAT_FRAME:AddMessage(string.format("%sAll %d completed quests are already synchronized and rewarded!", C.PREFIX, #completed))
+        DEFAULT_CHAT_FRAME:AddMessage(string.format("%sAll %d completed quests are already recorded and rewarded (No double-dipping).", C.PREFIX, #completed))
     end
 
     return newlyRewardedCount
@@ -146,17 +141,13 @@ end
 function QH:OnQuestTurnedIn(questID, xpReward, moneyReward)
     if not questID then return end
 
-    -- Check and record in rewardedQuests table to prevent double rewards
-    if ForeverSafariDB then
-        ForeverSafariDB.rewardedQuests = ForeverSafariDB.rewardedQuests or {}
-        local qNum = tonumber(questID)
-        local qKey = tostring(questID)
-        if (qNum and ForeverSafariDB.rewardedQuests[qNum]) or ForeverSafariDB.rewardedQuests[qKey] then
-            return
-        end
-        if qNum then ForeverSafariDB.rewardedQuests[qNum] = true end
-        ForeverSafariDB.rewardedQuests[qKey] = true
+    -- Check if quest was already rewarded to prevent double dipping
+    if DB:IsQuestRewarded(questID) then
+        return
     end
+
+    -- Permanently register this quest as rewarded in SavedVariables
+    DB:MarkQuestRewarded(questID)
 
     -- Deduplicate repeated event triggers in short windows
     local now = GetTime()

@@ -29,6 +29,7 @@ local DEFAULT_DB = {
     activeSlot = 1,  -- Currently active deployed companion slot (1-4)
     discovered = {}, -- Legacy discovered table
     bestiary = {},   -- Modern 3-tier Pokédex discovery table
+    rewardedQuests = {}, -- Map of questID -> timestamp (prevents double-dipping across sessions)
     unlockedAbilities = {
         ["101"] = true, -- Bite
         ["102"] = true, -- Growl
@@ -436,6 +437,37 @@ function DB:UpdateQuestProgress(questType, increment)
     if not ForeverSafariDB.mail.questProgress then ForeverSafariDB.mail.questProgress = {} end
     local current = ForeverSafariDB.mail.questProgress[questType] or 0
     ForeverSafariDB.mail.questProgress[questType] = current + (increment or 1)
+end
+
+-- =========================================================================
+-- 📜 REAL QUEST REWARD TRACKING (PREVENT DOUBLE-DIPPING)
+-- =========================================================================
+function DB:IsQuestRewarded(questId)
+    if not ForeverSafariDB or not ForeverSafariDB.rewardedQuests then return false end
+    local qNum = tonumber(questId)
+    local qKey = tostring(questId)
+    return (qNum and ForeverSafariDB.rewardedQuests[qNum] ~= nil) or (ForeverSafariDB.rewardedQuests[qKey] ~= nil)
+end
+
+function DB:MarkQuestRewarded(questId)
+    if not ForeverSafariDB then return end
+    ForeverSafariDB.rewardedQuests = ForeverSafariDB.rewardedQuests or {}
+    local qNum = tonumber(questId)
+    local qKey = tostring(questId)
+    local val = time()
+    if qNum then ForeverSafariDB.rewardedQuests[qNum] = val end
+    ForeverSafariDB.rewardedQuests[qKey] = val
+end
+
+function DB:GetRewardedQuestCount()
+    if not ForeverSafariDB or not ForeverSafariDB.rewardedQuests then return 0 end
+    local count = 0
+    for k, _ in pairs(ForeverSafariDB.rewardedQuests) do
+        if type(k) == "number" then
+            count = count + 1
+        end
+    end
+    return count
 end
 
 function DB:ResetDB()
