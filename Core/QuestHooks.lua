@@ -13,6 +13,16 @@ local QH = ns.QuestHooks
 local C = ns.Constants
 local DB = ns.Database
 
+local function isSecret(v)
+    if v == nil then return false end
+    if issecretpassphrase and issecretpassphrase(v) then return true end
+    if type(v) == "userdata" or type(v) == "table" then
+        local mt = getmetatable(v)
+        if mt and type(mt) == "string" and mt == "secret" then return true end
+    end
+    return false
+end
+
 local recentKills = {}
 local recentQuests = {}
 local pendingToasts = {}
