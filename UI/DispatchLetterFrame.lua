@@ -70,13 +70,7 @@ function Dispatch:Initialize()
     letterBody:SetJustifyV("TOP")
     letterBody:SetSpacing(4)
     letterBody:SetTextColor(0.20, 0.12, 0.05, 1)
-
-    local letterText = "Greetings, recruit!\n\n"
-        .. "Hemet Nesingwary here. Slaying beasts is fine and dandy, but any amateur with a blunderbuss can shoot a raptor. The REAL test of a true outdoorsman is taming the wild beasts of Azeroth, raising 'em from cubs, and testing their mettle in battle!\n\n"
-        .. "I had my boys ship a hardy wild companion native to your homeland along with a set of my patent hunting snares and your official 3D Field Guide.\n\n"
-        .. "Raise it well, discover wild moves in the field, and make the Safari League proud!\n\n"
-        .. "— Hemet Nesingwary Sr."
-    letterBody:SetText(letterText)
+    frame.LetterBody = letterBody
 
     -- Starter Rewards Crate Box
     local crateBox = CreateFrame("Frame", nil, frame, "BackdropTemplate")
@@ -98,6 +92,7 @@ function Dispatch:Initialize()
     local rewardsList = crateBox:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
     rewardsList:SetPoint("TOPLEFT", rewardsLabel, "BOTTOMLEFT", 0, -4)
     rewardsList:SetText("🐾 Level 1 Companion  •  🕸️ 10x Nets  •  🧪 5x Salves  •  💎 1x Revive")
+    frame.RewardsList = rewardsList
 
     -- Claim & Unbox Button
     local claimBtn = CreateFrame("Button", nil, frame, "UIPanelButtonTemplate")
@@ -112,6 +107,35 @@ end
 
 function Dispatch:ShowDispatch()
     if not frame then Dispatch:Initialize() end
+
+    -- Calculate any retroactive completed quests for veteran grant
+    local grantCount = 0
+    if C_QuestLog and C_QuestLog.GetAllCompletedQuestIDs then
+        local completed = C_QuestLog.GetAllCompletedQuestIDs()
+        if completed and type(completed) == "table" then
+            for _, qId in ipairs(completed) do
+                if not DB:IsQuestRewarded(qId) then
+                    grantCount = grantCount + 1
+                end
+            end
+        end
+    end
+
+    local letterText = "Greetings, recruit!\n\n"
+        .. "Hemet Nesingwary here. Slaying beasts is fine and dandy, but any amateur with a blunderbuss can shoot a raptor. The REAL test of a true outdoorsman is taming the wild beasts of Azeroth, raising 'em from cubs, and testing their mettle in battle!\n\n"
+        .. "I had my boys ship a hardy wild companion native to your homeland along with a set of my patent hunting snares, transport crates, and your official 3D Field Guide.\n\n"
+
+    if grantCount > 0 then
+        local grantTokens = grantCount * 5
+        letterText = letterText .. string.format("I see by your expedition records that you've already completed |cff006600%d quests|r across Azeroth! As an experienced veteran, the Safari League has authorized a Veteran Research Grant of |cff884400+%d Safari Tokens|r enclosed within this parcel!\n\n", grantCount, grantTokens)
+        frame.RewardsList:SetText(string.format("🐾 Companion • 🕸️ 10x Nets • 📦 3x Crates • 🧪 5x Salves • |cffffd100💰 +%d Tokens|r", grantTokens))
+    else
+        frame.RewardsList:SetText("🐾 Level 1 Companion  •  🕸️ 10x Nets  •  📦 3x Crates  •  🧪 5x Salves  •  💎 1x Revive")
+    end
+
+    letterText = letterText .. "Raise it well, discover wild moves in the field, and make the Safari League proud!\n\n— Hemet Nesingwary Sr."
+    frame.LetterBody:SetText(letterText)
+
     PlaySound(844) -- SOUNDKIT.IG_SPELLBOOK_OPEN
     frame:Show()
 end

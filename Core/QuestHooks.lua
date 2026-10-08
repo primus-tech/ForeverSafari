@@ -97,6 +97,12 @@ end
 
 -- Retroactively grant Safari Tokens for all previously completed quests on the character
 function QH:SyncCompletedQuests(isManual)
+    -- If starter kit hasn't been claimed yet, do not trigger popup during initial login;
+    -- the grant is proudly bundled as part of their official Nesingwary Welcome Package!
+    if not isManual and DB and DB.IsStarterClaimed and not DB:IsStarterClaimed() then
+        return 0
+    end
+
     if not C_QuestLog or not C_QuestLog.GetAllCompletedQuestIDs then
         if isManual then
             DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444C_QuestLog.GetAllCompletedQuestIDs API unavailable on this game client.|r")

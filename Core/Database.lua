@@ -404,9 +404,42 @@ function DB:ClaimStarterKit()
     self:AddItem("revival_crystal", 1)
     ForeverSafariDB.mail.starterClaimed = true
 
-    if ns.Toast and ns.Toast.ShowReward then
-        ns.Toast:ShowReward("Starter Kit Unboxed!", string.format("Received %s, 10x Snares, 3x Crates & Supplies", data.name))
+    -- Calculate & award Veteran Field Grant from completed quests
+    local grantCount = 0
+    if C_QuestLog and C_QuestLog.GetAllCompletedQuestIDs then
+        local completed = C_QuestLog.GetAllCompletedQuestIDs()
+        if completed and type(completed) == "table" then
+            for _, qId in ipairs(completed) do
+                if not self:IsQuestRewarded(qId) then
+                    self:MarkQuestRewarded(qId)
+                    grantCount = grantCount + 1
+                end
+            end
+        end
     end
+
+    if grantCount > 0 then
+        local grantTokens = grantCount * 5
+        self:AddTokens(grantTokens, string.format("Veteran Welcome Grant (%d Quests)", grantCount))
+        self:UpdateQuestProgress("QUEST", grantCount)
+        if ForeverSafariDB.stats then
+            ForeverSafariDB.stats.totalQuestsCompleted = (ForeverSafariDB.stats.totalQuestsCompleted or 0) + grantCount
+        end
+
+        DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00[Nesingwary Welcome Package]|r Unboxed %s, Field Gear, and an authorized Veteran Field Grant of |cffffd100+%d Safari Tokens|r for %d completed quests!", 
+            ns.Constants.PREFIX, data.name, grantTokens, grantCount))
+
+        if ns.Toast and ns.Toast.ShowReward then
+            ns.Toast:ShowReward("Welcome Kit & Veteran Grant!", string.format("Received %s, Gear & +%d Safari Tokens (%d Quests)", data.name, grantTokens, grantCount))
+        end
+    else
+        DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00[Nesingwary Welcome Package]|r Unboxed %s and Starter Field Supplies!", ns.Constants.PREFIX, data.name))
+
+        if ns.Toast and ns.Toast.ShowReward then
+            ns.Toast:ShowReward("Starter Kit Unboxed!", string.format("Received %s, 10x Snares, 3x Crates & Supplies", data.name))
+        end
+    end
+
     PlaySound(1195)
     return true, starterMob
 end
