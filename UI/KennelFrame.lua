@@ -334,7 +334,8 @@ function Kennel:UpdateUI()
     local team = DB:GetTeam()
     for i = 1, 4 do
         local card = activeCards[i]
-        local mob = team[i]
+        local mobId = team[i]
+        local mob = mobId and (type(mobId) == "table" and mobId or DB:GetMobById(mobId))
         if mob then
             card.mobId = mob.id
             local pName = mob.nickname ~= "" and mob.nickname or mob.name
