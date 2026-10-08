@@ -14,7 +14,9 @@ local C = ns.Constants
 local DB = ns.Database
 
 local recentKills = {}
+local recentQuests = {}
 local pendingToasts = {}
+local lastCompletedQuestTitle = nil
 
 local MECHANICAL_BOSSES = {
     ["sneed's shredder"] = true,
@@ -51,14 +53,30 @@ local DRAGONKIN_BOSSES = {
     ["morphaz"] = true,
 }
 
+local isInitialized = false
+
 function QH:Initialize()
+    if isInitialized then return end
+    isInitialized = true
+
     local f = CreateFrame("Frame", "ForeverSafariBossEventFrame")
     f:RegisterEvent("BOSS_KILL")
     f:RegisterEvent("ENCOUNTER_END")
     f:RegisterEvent("PLAYER_REGEN_ENABLED")
+    f:RegisterEvent("QUEST_TURNED_IN")
+    f:RegisterEvent("QUEST_COMPLETE")
+    f:RegisterEvent("QUEST_FINISHED")
 
     f:SetScript("OnEvent", function(self, event, ...)
-        if event == "BOSS_KILL" then
+        if event == "QUEST_COMPLETE" then
+            local title = GetTitleText and GetTitleText()
+            if title and title ~= "" then
+                lastCompletedQuestTitle = title
+            end
+        elseif event == "QUEST_TURNED_IN" then
+            local questID, xpReward, moneyReward = ...
+            QH:OnQuestTurnedIn(questID, xpReward, moneyReward)
+        elseif event == "BOSS_KILL" then
             local encounterID, name = ...
             QH:OnBossDefeated(name)
         elseif event == "ENCOUNTER_END" then
@@ -70,6 +88,55 @@ function QH:Initialize()
             QH:FlushPendingCelebrations()
         end
     end)
+end
+
+function QH:OnQuestTurnedIn(questID, xpReward, moneyReward)
+    if not questID then return end
+
+    -- Deduplicate repeated event triggers in short windows
+    local now = GetTime()
+    if recentQuests[questID] and (now - recentQuests[questID]) < 4 then return end
+    recentQuests[questID] = now
+
+    local questTitle = nil
+    if C_QuestLog and C_QuestLog.GetTitleForQuestID then
+        questTitle = C_QuestLog.GetTitleForQuestID(questID)
+    end
+    if (not questTitle or questTitle == "") and lastCompletedQuestTitle then
+        questTitle = lastCompletedQuestTitle
+    end
+    if not questTitle or questTitle == "" then
+        questTitle = string.format("Quest #%s", tostring(questID))
+    end
+
+    -- Scale token rewards based on character level
+    local tokenReward = 5
+    local pLevel = UnitLevel("player") or 1
+    if not isSecret(pLevel) and type(pLevel) == "number" then
+        if pLevel >= 40 then
+            tokenReward = 10
+        elseif pLevel >= 20 then
+            tokenReward = 7
+        end
+    end
+
+    -- Award Safari Tokens
+    DB:AddTokens(tokenReward, string.format("Quest: %s", questTitle))
+    DB:UpdateQuestProgress("QUEST", 1)
+
+    -- Bond with active squad companion
+    local activeMob = DB:GetActiveMob()
+    if activeMob then
+        DB:AddAttunement(activeMob.id, 20, "Quest Completed with Companion")
+    end
+
+    DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00[Quest Complete: %s]|r Awarded |cffffd100+%d Safari Tokens|r for field service!", C.PREFIX, questTitle, tokenReward))
+
+    if ForeverSafari.Toast and ForeverSafari.Toast.ShowReward then
+        ForeverSafari.Toast:ShowReward("Safari Research Grant", string.format("+%d Safari Tokens (%s)", tokenReward, questTitle))
+    end
+
+    PlaySound(1195)
 end
 
 function QH:OnBossDefeated(bossName)
@@ -165,6 +232,8 @@ function QH:FlushPendingCelebrations()
             ForeverSafari.Toast:ShowReward(toast.title, toast.desc)
         end
         PlaySound(1195)
-    end
     pendingToasts = {}
 end
+
+-- Auto-initialize hooks immediately
+QH:Initialize()

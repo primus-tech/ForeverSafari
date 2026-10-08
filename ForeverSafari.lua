@@ -48,6 +48,9 @@ eventFrame:SetScript("OnEvent", function(self, event, arg1)
         if Mail and Mail.Initialize then
             Mail:Initialize()
         end
+        if QH and QH.Initialize then
+            QH:Initialize()
+        end
 
         -- Auto-fix / migrate display IDs for any existing collection mobs
         for _, mob in ipairs(DB:GetCollection()) do
