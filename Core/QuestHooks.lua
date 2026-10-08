@@ -63,12 +63,17 @@ function QH:Initialize()
     f:RegisterEvent("BOSS_KILL")
     f:RegisterEvent("ENCOUNTER_END")
     f:RegisterEvent("PLAYER_REGEN_ENABLED")
+    f:RegisterEvent("PLAYER_ENTERING_WORLD")
     f:RegisterEvent("QUEST_TURNED_IN")
     f:RegisterEvent("QUEST_COMPLETE")
     f:RegisterEvent("QUEST_FINISHED")
 
     f:SetScript("OnEvent", function(self, event, ...)
-        if event == "QUEST_COMPLETE" then
+        if event == "PLAYER_ENTERING_WORLD" then
+            C_Timer.After(2.0, function()
+                QH:SyncCompletedQuests(false)
+            end)
+        elseif event == "QUEST_COMPLETE" then
             local title = GetTitleText and GetTitleText()
             if title and title ~= "" then
                 lastCompletedQuestTitle = title
@@ -90,8 +95,68 @@ function QH:Initialize()
     end)
 end
 
+-- Retroactively grant Safari Tokens for all previously completed quests on the character
+function QH:SyncCompletedQuests(isManual)
+    if not C_QuestLog or not C_QuestLog.GetAllCompletedQuestIDs then
+        if isManual then
+            DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444C_QuestLog.GetAllCompletedQuestIDs API unavailable on this game client.|r")
+        end
+        return 0
+    end
+
+    local completed = C_QuestLog.GetAllCompletedQuestIDs()
+    if not completed or type(completed) ~= "table" then return 0 end
+
+    if not ForeverSafariDB then return 0 end
+    ForeverSafariDB.rewardedQuests = ForeverSafariDB.rewardedQuests or {}
+
+    local newlyRewardedCount = 0
+    for _, qId in ipairs(completed) do
+        local qNum = tonumber(qId)
+        local qKey = tostring(qId)
+        if qNum and not ForeverSafariDB.rewardedQuests[qNum] and not ForeverSafariDB.rewardedQuests[qKey] then
+            ForeverSafariDB.rewardedQuests[qNum] = true
+            newlyRewardedCount = newlyRewardedCount + 1
+        end
+    end
+
+    if newlyRewardedCount > 0 then
+        local tokenPayout = newlyRewardedCount * 5
+        DB:AddTokens(tokenPayout, string.format("Retroactive Grant (%d Quests)", newlyRewardedCount))
+        DB:UpdateQuestProgress("QUEST", newlyRewardedCount)
+        if ForeverSafariDB.stats then
+            ForeverSafariDB.stats.totalQuestsCompleted = (ForeverSafariDB.stats.totalQuestsCompleted or 0) + newlyRewardedCount
+        end
+
+        DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00[Safari Research Grant]|r Retroactively awarded |cffffd100+%d Safari Tokens|r for %d completed field quests!", 
+            C.PREFIX, tokenPayout, newlyRewardedCount))
+
+        if ForeverSafari.Toast and ForeverSafari.Toast.ShowReward then
+            ForeverSafari.Toast:ShowReward("Retroactive Research Grant", string.format("+%d Safari Tokens (%d Quests)", tokenPayout, newlyRewardedCount))
+        end
+
+        PlaySound(1195)
+    elseif isManual then
+        DEFAULT_CHAT_FRAME:AddMessage(string.format("%sAll %d completed quests are already synchronized and rewarded!", C.PREFIX, #completed))
+    end
+
+    return newlyRewardedCount
+end
+
 function QH:OnQuestTurnedIn(questID, xpReward, moneyReward)
     if not questID then return end
+
+    -- Check and record in rewardedQuests table to prevent double rewards
+    if ForeverSafariDB then
+        ForeverSafariDB.rewardedQuests = ForeverSafariDB.rewardedQuests or {}
+        local qNum = tonumber(questID)
+        local qKey = tostring(questID)
+        if (qNum and ForeverSafariDB.rewardedQuests[qNum]) or ForeverSafariDB.rewardedQuests[qKey] then
+            return
+        end
+        if qNum then ForeverSafariDB.rewardedQuests[qNum] = true end
+        ForeverSafariDB.rewardedQuests[qKey] = true
+    end
 
     -- Deduplicate repeated event triggers in short windows
     local now = GetTime()

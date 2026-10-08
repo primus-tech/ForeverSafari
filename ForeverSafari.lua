@@ -142,6 +142,10 @@ local function HandleSlash(msg)
         ForeverSafari.Comms:ChallengeTarget()
     elseif cmd == "tokens" then
         DEFAULT_CHAT_FRAME:AddMessage(string.format("%sYou currently have |cffffd100%d Safari Tokens|r.", C.PREFIX, DB:GetTokens()))
+    elseif cmd == "syncquests" or cmd == "sync" or cmd == "backpay" then
+        if QH and QH.SyncCompletedQuests then
+            QH:SyncCompletedQuests(true)
+        end
     elseif cmd == "abandon" or cmd == "release" then
         local activeMob = DB:GetActiveMob()
         if not activeMob then
