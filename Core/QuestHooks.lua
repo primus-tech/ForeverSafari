@@ -232,6 +232,7 @@ function QH:FlushPendingCelebrations()
             ForeverSafari.Toast:ShowReward(toast.title, toast.desc)
         end
         PlaySound(1195)
+    end
     pendingToasts = {}
 end
 
