@@ -72,12 +72,12 @@ function CE:GetStalkingDistance(unit)
     return "OUT_OF_RANGE", 0.00, "Out of Range (>28 yd) - Close the Distance!", "ff4444"
 end
 
--- Validate if player can initiate a snare channel on the unit
+-- Validate if player can initiate an observation channel on the unit
 function CE:CanInitiateSnare(unit)
     unit = unit or "target"
     if not UnitExists(unit) then return false, "No quarry selected." end
     if UnitIsDead(unit) then return false, "Quarry is dead." end
-    if UnitIsPlayer(unit) then return false, "Cannot snare players!" end
+    if UnitIsPlayer(unit) then return false, "Cannot observe players!" end
 
     local reaction = UnitReaction("player", unit)
     if not isSecret(reaction) and reaction and reaction > 4 then
@@ -86,7 +86,7 @@ function CE:CanInitiateSnare(unit)
 
     local classification = UnitClassification(unit)
     if classification == "worldboss" then
-        return false, "World Bosses are immune to field snares!"
+        return false, "World Bosses cannot be observed in the field!"
     end
 
     -- Check if in stalking range (within 28 yards)
@@ -102,7 +102,7 @@ function CE:CanInitiateSnare(unit)
     local creatureType = C.NormalizeCreatureType(rawType, name)
 
     if rawType == "Humanoid" or rawType == "Giant" or creatureType == "Humanoid" or (C.ELIGIBLE_CAPTURE_TYPES and not C.ELIGIBLE_CAPTURE_TYPES[creatureType]) then
-        return false, "Humanoids and civilized targets cannot be snared!"
+        return false, "Humanoids and civilized targets cannot be observed for wild techniques!"
     end
 
     if not DB:IsTypeUnlocked(creatureType) then
@@ -180,34 +180,21 @@ function CE:IsChanneling()
     return CE.ChannelState.isChanneling == true
 end
 
--- Start Net Channeling Sequence
+-- Start Observation Channeling Sequence
 function CE:StartSnareChannel(unit, cageId)
     unit = unit or "target"
-    cageId = cageId or "copper_cage"
 
     -- Check if already channeling
     if CE.ChannelState.isChanneling then
-        CE:CancelSnareChannel("Cast interrupted by new command.")
+        CE:CancelSnareChannel("Observation interrupted by new command.")
     end
 
-    local canCapture, reason = CE:CanInitiateSnare(unit)
-    if not canCapture then
+    local canObserve, reason = CE:CanInitiateSnare(unit)
+    if not canObserve then
         if ForeverSafari.Toast then
-            ForeverSafari.Toast:ShowAlert("Cannot Snare", reason)
+            ForeverSafari.Toast:ShowAlert("Cannot Observe", reason)
         end
         DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444" .. reason .. "|r")
-        return false
-    end
-
-    -- Check net inventory
-    local cageCount = DB:GetItemCount(cageId)
-    if cageCount <= 0 then
-        local cageData = C.CAGES[cageId] or {}
-        local cageName = cageData.name or "Safari Net"
-        if ForeverSafari.Toast then
-            ForeverSafari.Toast:ShowAlert("Out of Nets", string.format("You have no %s left! Restock at Nesingwary Supplies.", cageName))
-        end
-        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444You do not have any " .. cageName .. " in your Safari Bag!|r")
         return false
     end
 
@@ -226,8 +213,7 @@ function CE:StartSnareChannel(unit, cageId)
     local isElite = UnitClassification(unit) == "elite" or UnitClassification(unit) == "rareelite"
     local displayId = C.GetDefaultDisplayId(creatureType, name)
 
-    local cageData = C.CAGES[cageId] or C.CAGES["copper_cage"]
-    local channelDuration = cageData.channelTime or 5.0
+    local channelDuration = 4.0
 
     -- Set active channel state
     CE.ChannelState.isChanneling = true
@@ -244,12 +230,12 @@ function CE:StartSnareChannel(unit, cageId)
     -- Play start audio
     PlaySound(844) -- SOUNDKIT.IG_SPELLBOOK_OPEN
 
-    DEFAULT_CHAT_FRAME:AddMessage(string.format("%sBegan stalking & snaring |cffffd100%s|r with |cff%s[%s]|r (Channel: %.1fs)... Stay in range!", 
-        C.PREFIX, name, cageData.color or "ffffff", cageData.name or "Safari Net", channelDuration))
+    DEFAULT_CHAT_FRAME:AddMessage(string.format("%sBegan observing & studying |cffffd100%s|r (Channel: %.1fs)... Maintain line of sight & range!", 
+        C.PREFIX, name, channelDuration))
 
     -- Notify HUD to show channeling bar
     if ForeverSafari.CaptureHUD and ForeverSafari.CaptureHUD.StartChannelBar then
-        ForeverSafari.CaptureHUD:StartChannelBar(name, channelDuration, cageData.name or "Safari Net")
+        ForeverSafari.CaptureHUD:StartChannelBar(name, channelDuration, "Field Study")
     end
 
     return true
@@ -261,13 +247,13 @@ function CE:CancelSnareChannel(reason)
     CE.ChannelState.isChanneling = false
 
     if ForeverSafari.CaptureHUD and ForeverSafari.CaptureHUD.StopChannelBar then
-        ForeverSafari.CaptureHUD:StopChannelBar(reason or "Snare Cancelled")
+        ForeverSafari.CaptureHUD:StopChannelBar(reason or "Observation Cancelled")
     end
 
     if reason then
-        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Snare cancelled: " .. reason .. "|r")
+        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Observation cancelled: " .. reason .. "|r")
         if ForeverSafari.Toast then
-            ForeverSafari.Toast:ShowAlert("Snare Interrupted", reason)
+            ForeverSafari.Toast:ShowAlert("Observation Interrupted", reason)
         end
     end
 end
@@ -318,9 +304,14 @@ function CE:CompleteSnareChannel()
 
     if discoveredMove then
         DB:UnlockAbility(discoveredMove, targetName, false)
+        local moveData = C.ABILITIES[discoveredMove]
+        local mName = moveData and moveData.name or discoveredMove
+        DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00[Field Research Complete]|r Successfully observed |cffffd100%s|r and learned technique: |cffffd100[%s]|r!",
+            C.PREFIX, targetName, mName))
+        if ForeverSafari.Toast then
+            ForeverSafari.Toast:ShowReward("Technique Mastered", string.format("Learned [%s] from %s!", mName, targetName))
+        end
         if ForeverSafari.CaptureHUD and ForeverSafari.CaptureHUD.ShowCaptureResult then
-            local moveData = C.ABILITIES[discoveredMove]
-            local mName = moveData and moveData.name or discoveredMove
             ForeverSafari.CaptureHUD:ShowCaptureResult(true, string.format("Learned [%s]!", mName), 1.0)
         end
     else
