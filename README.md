@@ -48,14 +48,14 @@ Every playable race receives an authentic wild companion indigenous to their hom
 ### 1. Modular 3D Field Guide Journal (`/safari`)
 Deconstructed into decoupled, high-performance UI views and components:
 * **View 1: 3D Squad Spotlight (`ROSTER`)**: A single-companion high-definition 3D pedestal stage featuring fluid 360° mouse drag rotation, zoom, instant animation triggers (`[ ⚔ Attack ]`, `[ 🦁 Roar ]`, `[ 🏆 Victory ]`, `[ 🐾 Idle ]`), real-time nickname editing, attunement gauge, stat radar, 4-move cards, and an interactive nourishment feeding tray.
-* **View 2: 3D Menagerie Gallery (`GRID`)**: Browse your entire captured collection in a 6-card 3D paperdoll grid with 9-type filter ribbon, pagination, real-time HP bars, and squad leader toggles.
-* **View 3: Azeroth Bestiary (`BESTIARY`)**: Complete 215-species field Pokédex tracking discoveries (`seen`, `caught`), 9-element filter menu, search box, live 3D species stage with animations, native habitats, base stats, Nesingwary lore notes, and natural family movepools.
+* **View 2: 3D Menagerie Gallery (`GRID`)**: Browse your entire captured collection in a 6-card 3D paperdoll grid with 8-type filter ribbon, pagination, real-time HP bars, and squad leader toggles.
+* **View 3: Azeroth Bestiary (`BESTIARY`)**: Complete 215-species field Pokédex tracking discoveries (`seen`, `caught`), 8-element filter menu, search box, live 3D species stage with animations, native habitats, base stats, Nesingwary lore notes, and natural family movepools.
 * **View 4: Field Directives & Quest Log (`BOUNTIES`)**: Track active Nesingwary research directives, target objectives, kill/tame quotas, progress bars, and lore dossiers directly from the field.
 * **Active Party Dock (`JournalTeamDock.lua`)**: Bottom 4-slot party dock with live mini 3D pedestals and health gauges.
 * **Beast Training Grimoire Drawer (`JournalTrainingDrawer.lua`)**: Popout grimoire drawer for slot ability training and move customisation.
 
 ### 2. 215-Species Azeroth Bestiary (Authentic Field Pokédex)
-A curated, lore-accurate field catalog spanning all 9 creature types of Classic Azeroth:
+A curated, lore-accurate field catalog spanning all 8 playable creature types of Classic Azeroth:
 * 🐾 **Beasts**: Wolves, Cats, Bears, Boars, Raptors, Spiders, Crocolisks, Kodos, Bats, Wind Serpents, Scorpids, Hyenas, Tallstriders, Gorillas, Carrion Birds, Crabs, Turtles.
 * ⚙️ **Mechanicals**: Harvest Watchers, Clockwork Gnomes, Mechano-Striders, Peacekeeper Units, Compact Harvesters.
 * 💀 **Undead**: Plague Rats, Skittering Spiders, Scourge Ghouls, Ghost Claws, Spectral Wolves.

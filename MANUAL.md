@@ -227,21 +227,20 @@ Target any creature or rival NPC and type `/fsbattle` (or click `[ BATTLE ]` on 
 +------------------------------+------------------------------+
 ```
 
-### 🌀 The 9-Element 150% Advantage Matrix
+### 🌀 The 8-Element 150% Advantage Matrix
 
-Each of the 9 creature types deals **150% Super Effective Damage (+50%)** against its prey type and possesses a distinct innate trait:
+Each of the 8 playable creature types deals **150% Super Effective Damage (+50%)** against its prey type and possesses a distinct innate trait:
 
 | Attacking Type | Strong Against (150% Damage) | Innate Trait / Passive Ability |
 | :--- | :--- | :--- |
-| 🐾 **Beast** | 🛡️ **Humanoid** | **Beast Fury**: +10% Attack Power. |
-| 🛡️ **Humanoid** | 🐉 **Dragonkin** | **Tactical Cunning**: Restores 5% Max HP on critical hits. |
-| 🐉 **Dragonkin** | 🦅 **Flying** | **Draconic Fury**: Deals +25% damage when HP falls below 50%. |
-| 🦅 **Flying** | 🌊 **Aquatic** | **Swift Flight**: +15% Speed bonus. |
+| 🐾 **Beast** | 💀 **Undead** | **Enrage**: Deals +25% extra damage when dropping below 50% HP. |
+| 💀 **Undead** | 🐉 **Dragonkin** | **Unholy Immortality**: Survives 1 extra round upon defeat before fainting. |
+| 🐉 **Dragonkin** | ✨ **Magic** | **Draconic Fury**: Deals +50% bonus damage after reducing a foe below 50% HP. |
+| ✨ **Magic** | 🦅 **Flying** | **Spell Ward**: Cannot take more than 35% Max HP from a single attack. |
+| 🦅 **Flying** | 🌊 **Aquatic** | **Aerial Agility**: +50% Speed bonus while above 50% HP. |
 | 🌊 **Aquatic** | 🌋 **Elemental** | **Aquatic Resilience**: 50% reduced duration on DoT effects. |
-| 🌋 **Elemental** | ⚙️ **Mechanical** | **Primal Affinity**: Immune to weather and environmental penalties. |
+| 🌋 **Elemental** | ⚙️ **Mechanical** | **Primal Purity**: Immune to negative weather & environmental debuffs. |
 | ⚙️ **Mechanical** | 🐾 **Beast** | **Fail-Safe Reboot**: Revives once per battle at 20% HP upon fatal blow. |
-| ✨ **Magic** | 🦅 **Flying** | **Arcane Ward**: Cannot take more than 35% Max HP in a single strike. |
-| 💀 **Undead** | 🛡️ **Humanoid** | **Crypt Resilience**: Survives 1 extra turn after fainting. |
 
 > [!NOTE]
 > **The Nesingwary Safari Code (Zero Humanoid Captures)**: Humanoids across Azeroth (Defias, Kobolds, Murlocs, Pirates, Centaurs, Cultists) are strictly **Rival AI Trainers / Battlers**. You duel them for battle experience and Safari Tokens, but under the League Code, humanoids can **never be snared, caged, or owned as pets**.

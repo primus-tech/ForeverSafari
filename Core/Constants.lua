@@ -59,7 +59,7 @@ C.CREATURE_TYPES = {
         passiveName = "Draconic Fury",
         passiveDesc = "Deals 50% additional damage on the next round after reducing an opponent below 50% health.",
         strongAgainst = "Magic",
-        weakAgainst = "Humanoid",
+        weakAgainst = "Undead",
         baseStats = { hp = 1.20, atk = 1.25, def = 1.15, spd = 0.90 },
     },
     ["Elemental"] = {
@@ -81,16 +81,6 @@ C.CREATURE_TYPES = {
         strongAgainst = "Aquatic",
         weakAgainst = "Magic",
         baseStats = { hp = 0.90, atk = 1.10, def = 0.85, spd = 1.45 },
-    },
-    ["Humanoid"] = {
-        name = "Humanoid",
-        color = "3399ff",
-        icon = "Interface\\Icons\\Achievement_Character_Human_Male",
-        passiveName = "Martial Recovery",
-        passiveDesc = "Recovers 4% of their maximum health every round they deal damage.",
-        strongAgainst = "Dragonkin",
-        weakAgainst = "Undead",
-        baseStats = { hp = 1.05, atk = 1.05, def = 1.10, spd = 1.00 },
     },
     ["Magic"] = {
         name = "Magic",
@@ -118,7 +108,7 @@ C.CREATURE_TYPES = {
         icon = "Interface\\Icons\\Spell_Shadow_DeadofNight",
         passiveName = "Unholy Immortality",
         passiveDesc = "Returns to life as immortal for one round after being defeated (dealing 25% less damage during that round).",
-        strongAgainst = "Humanoid",
+        strongAgainst = "Dragonkin",
         weakAgainst = "Beast",
         baseStats = { hp = 1.20, atk = 1.00, def = 0.90, spd = 0.85 },
     }
@@ -431,17 +421,16 @@ C.FAMILY_NOURISHMENT = {
     ["Beast"]        = { item = "Safari Meat",     key = "food_meat" },
 }
 
--- 9-Type Closed-Loop Effectiveness Matrix
+-- 8-Type Closed-Loop Effectiveness Matrix
 C.TYPE_ADVANTAGES = {
     ["Aquatic"]     = { ["Elemental"] = 1.5, ["Flying"] = 0.67 },
     ["Beast"]       = { ["Undead"] = 1.5,    ["Mechanical"] = 0.67 },
-    ["Dragonkin"]   = { ["Magic"] = 1.5,     ["Humanoid"] = 0.67 },
+    ["Dragonkin"]   = { ["Magic"] = 1.5,     ["Undead"] = 0.67 },
     ["Elemental"]   = { ["Mechanical"] = 1.5,["Aquatic"] = 0.67 },
     ["Flying"]      = { ["Aquatic"] = 1.5,   ["Magic"] = 0.67 },
-    ["Humanoid"]    = { ["Dragonkin"] = 1.5, ["Undead"] = 0.67 },
     ["Magic"]       = { ["Flying"] = 1.5,    ["Dragonkin"] = 0.67 },
     ["Mechanical"]  = { ["Beast"] = 1.5,     ["Elemental"] = 0.67 },
-    ["Undead"]      = { ["Humanoid"] = 1.5,  ["Beast"] = 0.67 },
+    ["Undead"]      = { ["Dragonkin"] = 1.5,  ["Beast"] = 0.67 },
 }
 
 -- Normalize WoW creature types into the 9 types
