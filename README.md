@@ -64,7 +64,7 @@ A curated, lore-accurate field catalog spanning all 9 creature types of Classic 
 * 🌊 **Aquatics**: Frenzies, Reef Crabs, River Crocolisks, Snapjaw Turtles.
 * 🦅 **Flyers**: Owls, Vultures, Bats, Dragonhawks, Gryphons, Wind Serpents.
 * ✨ **Magic**: Arcane Anomalies, Mana Wyrms, Sprite Darters.
-* 🛡️ **Humanoids**: Murlocs, Troggs, Defias Outlaws, Kobolds.
+*(Humanoids like Defias, Kobolds, Murlocs, and Centaurs are strictly **Rival AI Trainers**, never catchable companions).*
 
 ### 3. 5-Rank Attunement & Loyalty Progression (Replaces Numerical Leveling)
 Companions progress through bonding, feeding, and battlefield survival rather than numerical XP grind:

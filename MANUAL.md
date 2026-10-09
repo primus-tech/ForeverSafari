@@ -91,7 +91,7 @@ Type `/safari` or `/fs` to open your interactive 3D Field Guide. The journal is 
 
 ### View 2: 3D Menagerie Gallery (`GRID`)
 * Browse your entire captured collection in a 6-card 3D paperdoll grid.
-* Filter instantly by any of the 9 creature types (*Beast, Mechanical, Undead, Elemental, Dragonkin, Aquatic, Flying, Magic, Humanoid*).
+* Filter instantly by any of the 8 creature types (*Beast, Mechanical, Undead, Elemental, Dragonkin, Aquatic, Flying, Magic*).
 * View real-time health gauges, attunement rank stars, and click `[ Set Active Leader ]` to swap your lead battle companion.
 
 ### View 3: Azeroth Bestiary (`BESTIARY`)
@@ -234,6 +234,9 @@ Each of the 9 creature types deals **150% Super Effective Damage (+50%)** agains
 | ⚙️ **Mechanical** | 🐾 **Beast** | **Fail-Safe Reboot**: Revives once per battle at 20% HP upon fatal blow. |
 | ✨ **Magic** | 🦅 **Flying** | **Arcane Ward**: Cannot take more than 35% Max HP in a single strike. |
 | 💀 **Undead** | 🛡️ **Humanoid** | **Crypt Resilience**: Survives 1 extra turn after fainting. |
+
+> [!NOTE]
+> **The Nesingwary Safari Code (Zero Humanoid Captures)**: Humanoids across Azeroth (Defias, Kobolds, Murlocs, Pirates, Centaurs, Cultists) are strictly **Rival AI Trainers / Battlers**. You duel them for battle experience and Safari Tokens, but under the League Code, humanoids can **never be snared, caged, or owned as pets**.
 
 ### 🤺 Roaming Humanoid AI Trainers (14 Faction Archetypes)
 Targeting any roaming Humanoid NPC across Azeroth (e.g. *Defias Cutthroats, Kobold Miners, Murloc Tidecallers, Riverpaw Gnolls, Kolkar Centaurs, Scarlet Crusaders, Dark Iron Dwarves, Syndicate Rogues, Southsea Pirates, Ogres, Twilight Cultists, or Nesingwary Safari Trackers*) triggers an **AI Trainer Battle**:
