@@ -181,7 +181,7 @@ Companions progress through bonding, feeding, and battlefield survival rather th
 ### 13. Dungeon Boss Permits, Minor Shards & Evolution Catalyst Fair Loot (`UI/CatalystLootFrame.lua`)
 * **Dungeon Boss Research Permits**: Defeating iconic dungeon bosses unlocks locked creature type research permits across the entire party:
   * **Mechanical Research Permit**: Defeating *Sneed's Shredder* or *Foe Reaper* in Deadmines.
-  * **Elemental Research Permit**: Defeating *Aku'mai* or *Twilight Lord Kelris* in Blackfathom Deeps.
+  * **Elemental Research Permit**: Defeating *Viscous Fallout* in Gnomeregan (or *Baron Aquanis* in BFD).
   * **Undead Research Permit**: Defeating *Amnennar the Coldbringer* in Razorfen Downs.
   * **Dragonkin Research Permit**: Defeating *Avatar of Hakkar* or *Morphaz/Hazzas* in Sunken Temple.
 * **Greed-Only Evolution Catalyst Rolling**:

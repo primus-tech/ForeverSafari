@@ -103,6 +103,7 @@ FS.BossCatalystDrops = {
     [643]  = 1018, -- Sneed (Deadmines)
     [3654] = 1019, -- Mutanus the Devourer (Wailing Caverns)
     [3669] = 1019, -- Lord Cobrahn (Wailing Caverns)
+    [7079] = 1019, -- Viscous Fallout (Gnomeregan)
 }
 
 function FS:GetEvolution(catalystId)

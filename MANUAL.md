@@ -294,7 +294,7 @@ Interact with any physical **Mailbox** in town:
 Certain creature types require specialized field research permits before they can be snared in the wild. Defeating iconic dungeon bosses synchronizes permits across your entire party:
 
 * ⚙️ **Mechanical Permit**: Defeat *Sneed's Shredder* or *Foe Reaper* in Deadmines.
-* 🌋 **Elemental Permit**: Defeat *Aku'mai* or *Twilight Lord Kelris* in Blackfathom Deeps.
+* 🌋 **Elemental Permit**: Defeat *Viscous Fallout* in Gnomeregan (or *Baron Aquanis* in BFD).
 * 💀 **Undead Permit**: Defeat *Amnennar the Coldbringer* in Razorfen Downs.
 * 🐉 **Dragonkin Permit**: Defeat *Avatar of Hakkar* or *Morphaz/Hazzas* in Sunken Temple.
 

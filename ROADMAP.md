@@ -263,7 +263,7 @@
 * [x] **Double-Dip Prevention (`SafariCharacterDB.rewardedQuests`)**:
   * Persistent quest registry in SavedVariables ensures each quest ID in Azeroth is rewarded exactly once per character.
 * [x] **Dungeon Boss Research Permits**:
-  * Defeating key dungeon bosses (Sneed's Shredder, Aku'mai, Amnennar, Avatar of Hakkar) synchronizes Mechanical, Elemental, Undead, and Dragonkin research permits across all party members.
+  * Defeating key dungeon bosses (Sneed's Shredder in Deadmines, Viscous Fallout in Gnomeregan, Amnennar in RFD, Avatar of Hakkar in Sunken Temple) synchronizes Mechanical, Elemental, Undead, and Dragonkin research permits across all party members.
 
 ---
 

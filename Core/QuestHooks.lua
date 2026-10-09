@@ -39,9 +39,12 @@ local MECHANICAL_BOSSES = {
 }
 
 local ELEMENTAL_BOSSES = {
+    ["viscous fallout"] = true,
+    ["viscous"] = true,
     ["baron aquanis"] = true,
     ["aquanis"] = true,
     ["fathom core"] = true,
+    ["grubbis"] = true,
 }
 
 local UNDEAD_BOSSES = {
