@@ -597,7 +597,16 @@ C.CAGES = {
 -- Transport Crates Definition (Kennel Transfer Logistics)
 C.TRANSPORT_CRATES = {
     ["crate_copper"] = {
-        id = "crate_copper",
+        id = "copper_crate",
+        name = "Copper Transport Crate",
+        price = 1,
+        quality = 1,
+        color = "ffffff",
+        icon = "Interface\\Icons\\INV_Box_PetCarrier_01",
+        description = "Crates Common & Small Game wild catches for Kennel transfer when squad is full (4/4).",
+    },
+    ["copper_crate"] = {
+        id = "copper_crate",
         name = "Copper Transport Crate",
         price = 1,
         quality = 1,
@@ -606,7 +615,16 @@ C.TRANSPORT_CRATES = {
         description = "Crates Common & Small Game wild catches for Kennel transfer when squad is full (4/4).",
     },
     ["crate_iron"] = {
-        id = "crate_iron",
+        id = "iron_crate",
+        name = "Iron Transport Crate",
+        price = 5,
+        quality = 2,
+        color = "1eff00",
+        icon = "Interface\\Icons\\INV_Box_PetCarrier_01",
+        description = "Crates Uncommon territory catches for Kennel transfer when squad is full (4/4).",
+    },
+    ["iron_crate"] = {
+        id = "iron_crate",
         name = "Iron Transport Crate",
         price = 5,
         quality = 2,
@@ -615,7 +633,16 @@ C.TRANSPORT_CRATES = {
         description = "Crates Uncommon territory catches for Kennel transfer when squad is full (4/4).",
     },
     ["crate_mithril"] = {
-        id = "crate_mithril",
+        id = "mithril_crate",
+        name = "Mithril Transport Crate",
+        price = 10,
+        quality = 3,
+        color = "0070dd",
+        icon = "Interface\\Icons\\INV_Box_PetCarrier_01",
+        description = "Crates Rare world beasts for Kennel transfer when squad is full (4/4).",
+    },
+    ["mithril_crate"] = {
+        id = "mithril_crate",
         name = "Mithril Transport Crate",
         price = 10,
         quality = 3,
@@ -624,14 +651,23 @@ C.TRANSPORT_CRATES = {
         description = "Crates Rare world beasts for Kennel transfer when squad is full (4/4).",
     },
     ["crate_thorium"] = {
-        id = "crate_thorium",
+        id = "thorium_crate",
         name = "Thorium Transport Crate",
         price = 25,
         quality = 4,
         color = "a335ee",
         icon = "Interface\\Icons\\INV_Box_PetCarrier_01",
         description = "Crates Epic dungeon behemoths for Kennel transfer when squad is full (4/4).",
-    }
+    },
+    ["thorium_crate"] = {
+        id = "thorium_crate",
+        name = "Thorium Transport Crate",
+        price = 25,
+        quality = 4,
+        color = "a335ee",
+        icon = "Interface\\Icons\\INV_Box_PetCarrier_01",
+        description = "Crates Epic dungeon behemoths for Kennel transfer when squad is full (4/4).",
+    },
 }
 
 -- Eligible Wild Creature Types for Field Snaring (Humanoids are strictly prohibited)

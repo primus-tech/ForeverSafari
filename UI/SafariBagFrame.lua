@@ -28,11 +28,49 @@ local frame = nil
 local slotButtons = {}
 local bagItems = {}
 
--- Retrieve item metadata from Constants, Cages, Shop, or Evolution DB
+-- Retrieve item metadata from ItemDB, Constants, Cages, Shop, or Evolution DB
 function Bag:GetItemData(itemId)
     if not itemId then return nil end
 
-    -- 1. Check Constants.SAFARI_ITEMS
+    -- 1. Check Canonical ItemDB (Cages, Transport Crates, Diets, Catalysts, Consumables)
+    local ItemDB = ns.ItemDB
+    if ItemDB and ItemDB.GetItem then
+        local item = ItemDB:GetItem(itemId)
+        if item then
+            return {
+                id = itemId,
+                name = item.name or itemId,
+                category = item.category or "Transport Crates",
+                icon = item.icon or "INV_Box_PetCarrier_01",
+                quality = item.quality or 1,
+                color = item.color or "ffffff",
+                desc = item.desc or item.description or "",
+                useText = item.useText or "Right-Click to use.",
+                family = item.family,
+                tier = item.tier,
+                tokenCost = item.tokenCost,
+            }
+        end
+    end
+
+    -- 2. Check Transport Crates in Constants
+    if C.TRANSPORT_CRATES then
+        local crate = C.TRANSPORT_CRATES[itemId] or C.TRANSPORT_CRATES["crate_" .. itemId] or C.TRANSPORT_CRATES[itemId:gsub("crate_", "") .. "_crate"]
+        if crate then
+            return {
+                id = itemId,
+                name = crate.name or "Transport Crate",
+                category = "Transport Crates",
+                icon = crate.icon or "INV_Box_PetCarrier_01",
+                quality = crate.quality or 1,
+                color = crate.color or "ffffff",
+                desc = crate.description or crate.desc or "Carrier used to safely ship excess wild captures to the Safari Kennel.",
+                useText = "Passive crate for kennel transfer.",
+            }
+        end
+    end
+
+    -- 3. Check Constants.SAFARI_ITEMS
     if C.SAFARI_ITEMS and C.SAFARI_ITEMS[itemId] then
         local item = C.SAFARI_ITEMS[itemId]
         return {
@@ -48,7 +86,7 @@ function Bag:GetItemData(itemId)
         }
     end
 
-    -- 2. Check Constants.CAGES
+    -- 4. Check Constants.CAGES
     if C.CAGES and C.CAGES[itemId] then
         local cage = C.CAGES[itemId]
         return {
@@ -63,7 +101,7 @@ function Bag:GetItemData(itemId)
         }
     end
 
-    -- 3. Check Constants.SHOP_ITEMS
+    -- 5. Check Constants.SHOP_ITEMS
     if C.SHOP_ITEMS and C.SHOP_ITEMS[itemId] then
         local shopItem = C.SHOP_ITEMS[itemId]
         return {
@@ -78,7 +116,7 @@ function Bag:GetItemData(itemId)
         }
     end
 
-    -- 4. Check Evolution DB for catalysts
+    -- 6. Check Evolution DB for catalysts
     if itemId:find("^catalyst_") then
         local catId = tonumber(itemId:match("catalyst_(%d+)"))
         if catId and ForeverSafari.EvolutionDB and ForeverSafari.EvolutionDB[catId] then
@@ -100,14 +138,15 @@ function Bag:GetItemData(itemId)
     end
 
     -- Fallback generic item
+    local isCrate = itemId:find("crate") ~= nil
     return {
         id = itemId,
         name = itemId,
-        category = "Expedition Item",
-        icon = "INV_Misc_Bag_08",
+        category = isCrate and "Transport Crates" or "Expedition Item",
+        icon = isCrate and "INV_Box_PetCarrier_01" or "INV_Misc_Bag_08",
         quality = 1,
         color = "ffffff",
-        desc = "An expedition item used in the Safari League.",
+        desc = isCrate and "Carrier used to ship captured beasts to the Safari Kennel." or "An expedition item used in the Safari League.",
         useText = "Right-Click to use.",
     }
 end
@@ -118,14 +157,16 @@ local function GetCategoryPriority(itemData)
     local cat = itemData.category or ""
     if cat == "Capture Gear" or cat == "Safari Net" then
         return 1
-    elseif cat == "Consumable" then
+    elseif cat == "Transport Crates" or cat == "Transport Crate" then
         return 2
-    elseif cat == "Evolution Catalyst" then
+    elseif cat == "Consumable" or cat == "Treats & Diets" or cat == "Medicine & Aid" then
         return 3
-    elseif cat == "Family Nourishment" then
+    elseif cat == "Evolution Catalyst" or cat == "Evolution Catalysts" then
         return 4
+    elseif cat == "Family Nourishment" then
+        return 5
     end
-    return 5
+    return 6
 end
 
 -- Format texture paths cleanly
