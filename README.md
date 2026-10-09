@@ -1,6 +1,10 @@
 # 🐾 Forever Safari
 **The Premier Creature Taming, Battling & Evolution Addon for World of Warcraft: Forever Beta**
 
+<p align="center">
+  <img src="Media/ForeverSafari_Badge.jpg" alt="Forever Safari Official Badge" width="480"/>
+</p>
+
 ---
 
 ## 📖 Overview

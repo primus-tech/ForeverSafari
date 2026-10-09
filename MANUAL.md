@@ -2,6 +2,10 @@
 **The Definitive Handbook for the Nesingwary Junior Safari League**  
 *World of Warcraft: Forever Beta (`_classic_beta_` / `dataEnv: 16`)*
 
+<p align="center">
+  <img src="Media/ForeverSafari_Badge.jpg" alt="Forever Safari Official Badge" width="480"/>
+</p>
+
 ---
 
 ## 🧭 Table of Contents
