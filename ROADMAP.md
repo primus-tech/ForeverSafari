@@ -94,21 +94,21 @@
 
 ---
 
-## 📍 Phase 7: Field Research Stalking & Channeling Engine (Completed ✅)
-* [x] **0% Mob Damage Decoupling (Hunter Coexistence Architecture)**:
+## 📍 Phase 7: Field Research Stalking & Observation Engine (Completed ✅)
+* [x] **0% Mob Damage Decoupling (Field Research & Observation Architecture)**:
   * Eliminates mob HP whittling entirely. Live world quarry remains **100% untouched, un-tagged, and at full HP** in the game world.
   * Solves high-level one-shot accidents, tap theft, and hunter griefing over world rare spawns.
 * [x] **Proximity & Stalking Radar (`Core/CaptureEngine.lua`, `UI/CaptureHUD.lua`)**:
-  * **Close Stalk (~10 yards)**: High-risk proximity yielding **+25% Catch Power Bonus** (`1.25x`).
-  * **Standard Perimeter (15–28 yards)**: Baseline stalking perimeter (`1.0x`).
+  * **Close Stalk (~10 yards)**: High-risk proximity yielding **+25% Attunement & Move Discovery Bonus** (`1.25x`).
+  * **Standard Perimeter (15–28 yards)**: Baseline observation perimeter (`1.0x`).
   * **Beyond Perimeter (>28 yards)**: Out of range; requires closing distance before channeling.
-* [x] **Channeling Minigame & Stalking Castbar**:
-  * Channeled snare cast (3.0–5.0 seconds based on gear tier) with live line-of-sight and range heartbeat.
-  * Breaking range (>28 yd), losing target, or entering combat interrupts the channel.
+* [x] **Channeling Minigame & Observation Castbar**:
+  * Channeled field study cast (3.0–5.0 seconds) with live line-of-sight and range heartbeat.
+  * Breaking range (>28 yd), losing target, or entering combat interrupts observation.
   * Real-time radar gauge smoothly transforms into a channeled castbar with percentage progress.
-* [x] **Capture Resolution minigame**:
-  * Resolves: `Catch Rate = Tool Power * Stalking Distance Bonus * Level Delta * Apex Rarity Resistance`.
-  * Success adds companion DNA to collection while leaving the world mob completely unharmed and available.
+* [x] **Field Study Resolution & Move Discovery**:
+  * Studies target quarry from afar, unlocks species abilities for Trainer Grimoires, registers `[ 🔭 Seen ]` Bestiary sighting, and awards +15 Attunement.
+  * Capturing creatures into your party/kennel takes place during turn-based combat (`/fsbattle` -> `[ BAG ] ➔ [ CAPTURE ]`).
 
 ---
 

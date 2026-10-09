@@ -9,7 +9,7 @@
 1. [Welcome to the Junior Safari League](#1-welcome-to-the-junior-safari-league)
 2. [Racial Starter Companions](#2-racial-starter-companions)
 3. [The 3D Field Guide Journal (`/safari`)](#3-the-3d-field-guide-journal-safari)
-4. [Field Stalking & Capturing Quarry (0% Mob Damage)](#4-field-stalking--capturing-quarry-0-mob-damage)
+4. [Field Stalking & Creature Observation (0% Mob Damage)](#4-field-stalking--creature-observation-0-mob-damage)
 5. [Attunement Loyalty, Diets & Move Training](#5-attunement-loyalty-diets--move-training)
 6. [Turn-Based Combat & Roaming AI Rival Battlers](#6-turn-based-combat--roaming-ai-rival-battlers)
 7. [The Safari Token Economy & Real Quest Rewards](#7-the-safari-token-economy--real-quest-rewards)
@@ -29,7 +29,7 @@ Upon stepping into Azeroth for the first time with **Forever Safari** installed,
 ### 📦 The Welcome Package
 Every recruit is supplied with an official onboarding kit delivered directly to their **Virtual Safari Bag**:
 1. **[Caged Starter Companion]** — An authentic wild companion native to your race's starting region, already bonded at **Rank III: Trusting**.
-2. **[Copper Snares x 10]** — Hemp rope slip-nooses used to observe and snare wild beasts in the field.
+2. **[Copper Snares x 10]** — Hemp rope slip-nooses used to capture wild creatures during turn-based combat.
 3. **[Copper Transport Crates x 3]** — Reinforced wooden crates to safely transport excess captures to the town Kennel when your 4-member battle squad is full.
 4. **[Safari Healing Salves x 5]** — Soothing remedies to fully restore a wounded companion's health.
 5. **[Revival Crystal x 1]** — A charged crystal shard capable of reviving a fainted companion in emergencies.
@@ -108,41 +108,49 @@ Type `/safari` or `/fs` to open your interactive 3D Field Guide. The journal is 
 
 ---
 
-## 4. Field Stalking & Capturing Quarry (0% Mob Damage)
+## 4. Field Stalking & Creature Observation (0% Mob Damage)
 
-Forever Safari uses a revolutionary **0% Mob Damage Hunter Coexistence Architecture**. You never have to damage, whittle down, or kill wild animals to capture them. The wild creature remains **100% untouched, un-tagged, and at full health** in the world for hunters and questing adventurers!
+Forever Safari uses a revolutionary **0% Mob Damage Field Observation Architecture**. You never have to damage, whittle down, or kill wild animals to study them. The wild creature remains **100% untouched, un-tagged, and at full health** in the world for hunters and questing adventurers!
 
 ```
          [ Quarry Target: Elder Timber Wolf (Lv 10) ]
                             ▲
                             │
                Range: 8 yd  │  Proximity: CLOSE STALK
-                            │  Catch Bonus: +25% (1.25x)
+                            │  Observation Focus: +25%
                             │
                       [ Player ]
 ```
 
-### Stalking Distance Tiers & Radar HUD
-Target any eligible beast in the wild. The **Capture HUD** will appear above your action bars:
+### Stalking Distance Tiers & Observation Radar HUD
+Target any eligible wild creature in the world. The **Observation HUD** (`CaptureHUD`) will appear above your action bars:
 
-1. **Close Stalk (~10 Yards / High Risk)**:
-   * **+25% Catch Power Bonus** (`1.25x Multiplier`).
-   * Highest risk of pulling aggro, but optimal snare focus.
+1. **Close Stalk (~10 Yards / High Focus)**:
+   * **Optimal Observation Focus** (`+25% Attunement & Move Discovery Bonus`).
+   * Highest risk of pulling aggro, but optimal vantage point for field study.
 2. **Perimeter Range (15–28 Yards / Standard)**:
-   * **Baseline Catch Power** (`1.00x Multiplier`).
-   * Safe observation distance.
+   * **Baseline Observation Focus** (`1.00x Multiplier`).
+   * Safe stalking and observation distance.
 3. **Beyond Perimeter (>28 Yards / Out of Range)**:
-   * Snare cannot be thrown; close the distance to begin observation.
+   * Quarry is too far; close the distance to begin observation.
 
 ### Channeled Observation Sequence
-1. Target an eligible wild creature.
-2. Type `/safari observe`, click the Capture HUD button, or use a snare from your Safari Bag.
-3. A **3.0 to 5.0-second channeled cast** begins. Keep line-of-sight and stay within 28 yards.
-4. Upon completion, the capture formula resolves:
-   $$\text{Final Threshold} = \text{Gear Power} \times \text{Distance Mod} \times \text{Level Delta Mod} \times \text{Apex Rarity Mod}$$
-5. On success, the creature's DNA is added to your collection, its entry is registered in your Bestiary Pokédex, and the wild mob remains peaceful and untouched in the game world!
+1. Target an eligible wild creature in the open world.
+2. Type `/safari observe`, `/fsnet`, or click the `[ 🔭 Observe Quarry ]` button on the Observation HUD.
+3. A **3.0 to 5.0-second channeled cast** begins ("Field Study"). Maintain line-of-sight and stay within 28 yards.
+4. Upon completion:
+   * **Move Discovery**: The quarry's natural moves are unlocked into your Trainer Grimoire.
+   * **Bestiary Sighting**: The species is registered as `[ 🔭 Seen / Sighted ]` in your 215-entry Bestiary Pokédex.
+   * **Field Loyalty**: Awards **+15 Attunement** to your active companion.
+   * The wild creature remains completely unharmed and untouched in the game world!
 
-### 📦 Transport Crate Logistics
+> [!NOTE]
+> **Observation vs. In-Battle Capturing**:
+> - **Field Observation (`/safari observe` / HUD)** is used peacefully in the open world to study wild creatures, record Bestiary sightings, and learn new abilities into your Grimoire from a distance.
+> - **Capturing with Snares, Nets, Traps & Cages** takes place during **Turn-Based Battle (`/fsbattle`)** by opening `[ BAG ] ➔ [ CAPTURE ]` and deploying physical capture gear against the wild foe.
+
+### 📦 In-Battle Capture & Transport Crate Logistics
+When capturing a wild beast during turn-based battle (`/fsbattle`):
 * **Open Squad Slot (< 4 members)**: The captured creature joins your active 4-member party immediately with **0 crates consumed**.
 * **Full Squad (4/4 members)**: The capture automatically consumes **1 matching (or higher tier) Transport Crate** from your Safari Bag and safely ships the specimen directly to the **Safari Kennel** at the Innkeeper.
 
