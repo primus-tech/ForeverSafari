@@ -14,6 +14,16 @@ local C = ns.Constants
 local SE = ns.StatEngine
 local TrainerDB = ns.TrainerDB
 
+local function isSecret(v)
+    if v == nil then return false end
+    if issecretpassphrase and issecretpassphrase(v) then return true end
+    if type(v) == "userdata" or type(v) == "table" then
+        local mt = getmetatable(v)
+        if mt and type(mt) == "string" and mt == "secret" then return true end
+    end
+    return false
+end
+
 function TE:IsHumanoidTrainer(unit)
     unit = unit or "target"
     if not UnitExists(unit) or UnitIsDead(unit) or UnitIsPlayer(unit) then
@@ -21,13 +31,13 @@ function TE:IsHumanoidTrainer(unit)
     end
 
     local rawType = UnitCreatureType(unit)
-    if rawType == "Humanoid" then
+    if not isSecret(rawType) and rawType == "Humanoid" then
         return true
     end
 
     -- Name-based fallback for classic clients
     local name = UnitName(unit)
-    if name then
+    if name and not isSecret(name) and type(name) == "string" then
         local lower = string.lower(name)
         if string.find(lower, "defias") or string.find(lower, "murloc") or string.find(lower, "kobold")
             or string.find(lower, "gnoll") or string.find(lower, "centaur") or string.find(lower, "scarlet")
@@ -42,13 +52,19 @@ end
 
 function TE:GenerateTrainerMatch(unit)
     unit = unit or "target"
-    local unitName = UnitName(unit) or "Rival Hunter"
-    local rawType = UnitCreatureType(unit) or "Humanoid"
-    local level = UnitLevel(unit)
-    if not level or level <= 0 or type(level) ~= "number" then level = 10 end
+    local unitName = UnitName(unit)
+    if isSecret(unitName) or not unitName or unitName == "" or type(unitName) ~= "string" then unitName = "Rival Hunter" end
 
-    local zoneName = GetZoneText() or "Azeroth"
-    local archetype = (TrainerDB and TrainerDB.GetArchetypeForUnit) and TrainerDB:GetArchetypeForUnit(unitName, rawType, zoneName) or TrainerDB.ARCHETYPES["Default"]
+    local rawType = UnitCreatureType(unit)
+    if isSecret(rawType) or not rawType or rawType == "" or type(rawType) ~= "string" then rawType = "Humanoid" end
+
+    local level = UnitLevel(unit)
+    if isSecret(level) or not level or level <= 0 or type(level) ~= "number" then level = 10 end
+
+    local zoneName = GetZoneText and GetZoneText()
+    if isSecret(zoneName) or not zoneName then zoneName = "Azeroth" end
+
+    local archetype = (TrainerDB and TrainerDB.GetArchetypeForUnit) and TrainerDB:GetArchetypeForUnit(unitName, rawType, zoneName) or (TrainerDB and TrainerDB.ARCHETYPES and TrainerDB.ARCHETYPES["Default"])
 
     -- Determine team size based on NPC level
     local teamSize = 1

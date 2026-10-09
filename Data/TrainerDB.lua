@@ -172,10 +172,20 @@ TrainerDB.ARCHETYPES = {
     }
 }
 
+local function isSecret(v)
+    if v == nil then return false end
+    if issecretpassphrase and issecretpassphrase(v) then return true end
+    if type(v) == "userdata" or type(v) == "table" then
+        local mt = getmetatable(v)
+        if mt and type(mt) == "string" and mt == "secret" then return true end
+    end
+    return false
+end
+
 function TrainerDB:GetArchetypeForUnit(unitName, unitType, zoneName)
-    if not unitName then return self.ARCHETYPES["Default"] end
+    if not unitName or isSecret(unitName) or type(unitName) ~= "string" then return self.ARCHETYPES["Default"] end
     local lower = string.lower(unitName)
-    local lowerZone = string.lower(zoneName or "")
+    local lowerZone = (zoneName and not isSecret(zoneName) and type(zoneName) == "string") and string.lower(zoneName) or ""
 
     if string.find(lower, "defias") or string.find(lower, "brigand") or string.find(lower, "thief") or string.find(lower, "highwayman") then
         return self.ARCHETYPES["Defias"]

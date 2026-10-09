@@ -297,7 +297,7 @@ function HUD:OnTargetChanged()
     end
 
     local classification = UnitClassification("target")
-    if classification == "worldboss" then
+    if not isSecret(classification) and classification == "worldboss" then
         frame:Hide()
         return
     end
