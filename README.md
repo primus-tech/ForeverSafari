@@ -227,7 +227,10 @@ ForeverSafari/
 ├── ForeverSafari.toc                  # Addon Manifest (WoW Forever Beta 1.60.1)
 ├── ForeverSafari.lua                  # Main Addon Bootstrap & Slash Commands
 ├── README.md                          # Comprehensive Documentation & Architecture Manual
+├── MANUAL.md                          # Official Player Field Guide
 ├── ROADMAP.md                         # Master Milestone & Feature Tracker
+├── Docs/                              # Deep-Dive System Design Documentation
+│   └── SAFARI_OUTPOST_SYSTEM.md       # Regional Outposts, Gym Leaders & Neutral Orders
 │
 ├── Data/                              # Canonical Data Registries
 │   ├── ItemDB.lua                     # Snares, Traps, Cages, Crates, 11 Diets & Consumables
