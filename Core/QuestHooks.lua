@@ -15,11 +15,11 @@ local DB = ns.Database
 
 local function isSecret(v)
     if v == nil then return false end
+    if issecretvalue and issecretvalue(v) then return true end
     if issecretpassphrase and issecretpassphrase(v) then return true end
-    if type(v) == "userdata" or type(v) == "table" then
-        local mt = getmetatable(v)
-        if mt and type(mt) == "string" and mt == "secret" then return true end
-    end
+    if issecretvariable and issecretvariable(v) then return true end
+    local ok = pcall(function() local _ = (v == "") end)
+    if not ok then return true end
     return false
 end
 
@@ -212,7 +212,7 @@ function QH:OnQuestTurnedIn(questID, xpReward, moneyReward)
 end
 
 function QH:OnBossDefeated(bossName)
-    if not bossName or bossName == "" then return end
+    if isSecret(bossName) or not bossName or type(bossName) ~= "string" or bossName == "" then return end
     local lowerName = string.lower(bossName)
 
     -- 1. Check Mechanical Bosses (Deadmines)

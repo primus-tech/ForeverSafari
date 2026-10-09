@@ -15,9 +15,11 @@ local C = ns.Constants
 -- Secret value guard helper for WoW 12.1.5 / Forever Beta architecture
 local function isSecret(v)
     if v == nil then return false end
-    if issecretvalue and issecretvalue(v) then
-        return true
-    end
+    if issecretvalue and issecretvalue(v) then return true end
+    if issecretpassphrase and issecretpassphrase(v) then return true end
+    if issecretvariable and issecretvariable(v) then return true end
+    local ok = pcall(function() local _ = (v == "") end)
+    if not ok then return true end
     return false
 end
 C.IsSecret = isSecret
@@ -443,16 +445,20 @@ C.TYPE_ADVANTAGES = {
 
 -- Normalize WoW creature types into the 9 types
 function C.NormalizeCreatureType(rawType, mobName)
-    if not rawType or rawType == "" then rawType = "Beast" end
+    if isSecret(rawType) or not rawType or type(rawType) ~= "string" or rawType == "" then rawType = "Beast" end
+    if isSecret(mobName) or not mobName or type(mobName) ~= "string" then mobName = "" end
     local clean = string.lower(rawType)
 
     if clean == "aquatic" or clean == "water" then
         return "Aquatic"
     elseif clean == "beast" or clean == "critter" or clean == "animal" then
-        if mobName and (string.find(string.lower(mobName), "bat") or string.find(string.lower(mobName), "owl") or string.find(string.lower(mobName), "bird") or string.find(string.lower(mobName), "eagle") or string.find(string.lower(mobName), "hawk") or string.find(string.lower(mobName), "wasp") or string.find(string.lower(mobName), "buzzard") or string.find(string.lower(mobName), "strigid")) then
-            return "Flying"
-        elseif mobName and (string.find(string.lower(mobName), "crab") or string.find(string.lower(mobName), "fish") or string.find(string.lower(mobName), "turtle") or string.find(string.lower(mobName), "murloc") or string.find(string.lower(mobName), "clam") or string.find(string.lower(mobName), "crocolisk")) then
-            return "Aquatic"
+        if mobName and mobName ~= "" then
+            local mobLower = string.lower(mobName)
+            if (string.find(mobLower, "bat") or string.find(mobLower, "owl") or string.find(mobLower, "bird") or string.find(mobLower, "eagle") or string.find(mobLower, "hawk") or string.find(mobLower, "wasp") or string.find(mobLower, "buzzard") or string.find(mobLower, "strigid")) then
+                return "Flying"
+            elseif (string.find(mobLower, "crab") or string.find(mobLower, "fish") or string.find(mobLower, "turtle") or string.find(mobLower, "murloc") or string.find(mobLower, "clam") or string.find(mobLower, "crocolisk")) then
+                return "Aquatic"
+            end
         end
         return "Beast"
     elseif clean == "dragonkin" or clean == "dragon" then
@@ -489,7 +495,7 @@ C.DEFAULT_DISPLAY_IDS = {
 
 function C.GetDefaultDisplayId(creatureType, mobName)
     local cType = C.NormalizeCreatureType(creatureType, mobName)
-    if mobName then
+    if mobName and not isSecret(mobName) and type(mobName) == "string" and mobName ~= "" then
         local nameLower = string.lower(mobName)
         if string.find(nameLower, "murloc") then return 1042 end
         if string.find(nameLower, "crab") or string.find(nameLower, "crawler") then return 1153 end

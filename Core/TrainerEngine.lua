@@ -16,11 +16,11 @@ local TrainerDB = ns.TrainerDB
 
 local function isSecret(v)
     if v == nil then return false end
+    if issecretvalue and issecretvalue(v) then return true end
     if issecretpassphrase and issecretpassphrase(v) then return true end
-    if type(v) == "userdata" or type(v) == "table" then
-        local mt = getmetatable(v)
-        if mt and type(mt) == "string" and mt == "secret" then return true end
-    end
+    if issecretvariable and issecretvariable(v) then return true end
+    local ok = pcall(function() local _ = (v == "") end)
+    if not ok then return true end
     return false
 end
 
@@ -31,8 +31,11 @@ function TE:IsHumanoidTrainer(unit)
     end
 
     local rawType = UnitCreatureType(unit)
-    if not isSecret(rawType) and rawType == "Humanoid" then
-        return true
+    if not isSecret(rawType) then
+        local ok, isHuman = pcall(function() return rawType == "Humanoid" end)
+        if ok and isHuman then
+            return true
+        end
     end
 
     -- Name-based fallback for classic clients

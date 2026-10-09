@@ -15,9 +15,11 @@ local DB = ns.Database
 
 local function isSecret(v)
     if v == nil then return false end
-    if issecretvalue and issecretvalue(v) then
-        return true
-    end
+    if issecretvalue and issecretvalue(v) then return true end
+    if issecretpassphrase and issecretpassphrase(v) then return true end
+    if issecretvariable and issecretvariable(v) then return true end
+    local ok = pcall(function() local _ = (v == "") end)
+    if not ok then return true end
     return false
 end
 

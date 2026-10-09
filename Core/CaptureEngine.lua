@@ -20,9 +20,11 @@ local SE = ns.StatEngine
 
 local function isSecret(v)
     if v == nil then return false end
-    if issecretvalue and issecretvalue(v) then
-        return true
-    end
+    if issecretvalue and issecretvalue(v) then return true end
+    if issecretpassphrase and issecretpassphrase(v) then return true end
+    if issecretvariable and issecretvariable(v) then return true end
+    local ok = pcall(function() local _ = (v == "") end)
+    if not ok then return true end
     return false
 end
 
@@ -85,7 +87,7 @@ function CE:CanInitiateSnare(unit)
     end
 
     local classification = UnitClassification(unit)
-    if classification == "worldboss" then
+    if not isSecret(classification) and classification == "worldboss" then
         return false, "World Bosses cannot be observed in the field!"
     end
 
@@ -96,9 +98,9 @@ function CE:CanInitiateSnare(unit)
     end
 
     local rawType = UnitCreatureType(unit)
-    if isSecret(rawType) then rawType = "Beast" end
+    if isSecret(rawType) or not rawType or type(rawType) ~= "string" then rawType = "Beast" end
     local name = UnitName(unit)
-    if isSecret(name) then name = "Wild Creature" end
+    if isSecret(name) or not name or type(name) ~= "string" then name = "Wild Creature" end
     local creatureType = C.NormalizeCreatureType(rawType, name)
 
     if rawType == "Humanoid" or rawType == "Giant" or creatureType == "Humanoid" or (C.ELIGIBLE_CAPTURE_TYPES and not C.ELIGIBLE_CAPTURE_TYPES[creatureType]) then
@@ -143,8 +145,12 @@ function CE:CalculateSnareRoll(unit, cageId)
 
     -- Rare Apex Quarry Resistance Modifier
     local classification = UnitClassification(unit)
-    local isRare = (classification == "rare" or classification == "rareelite")
-    local isElite = (classification == "elite")
+    local isRare = false
+    local isElite = false
+    if not isSecret(classification) and type(classification) == "string" then
+        isRare = (classification == "rare" or classification == "rareelite")
+        isElite = (classification == "elite")
+    end
     local rarityMod = isRare and 0.50 or (isElite and 0.70 or 1.0)
 
     -- Calculate final threshold (clamped 5% to 99%)
@@ -199,18 +205,22 @@ function CE:StartSnareChannel(unit, cageId)
     end
 
     local name = UnitName(unit)
-    if isSecret(name) or not name or name == "" then name = "Wild Creature" end
+    if isSecret(name) or not name or type(name) ~= "string" or name == "" then name = "Wild Creature" end
 
     local rawType = UnitCreatureType(unit) or "Unknown"
-    if isSecret(rawType) then rawType = "Unknown" end
+    if isSecret(rawType) or type(rawType) ~= "string" then rawType = "Unknown" end
 
     local creatureType = C.NormalizeCreatureType(rawType, name)
     local level = UnitLevel(unit)
-    if isSecret(level) or not level or level <= 0 then 
+    if isSecret(level) or not level or level <= 0 or type(level) ~= "number" then 
         local pLvl = UnitLevel("player")
-        level = (not isSecret(pLvl) and pLvl) or 1 
+        level = (not isSecret(pLvl) and type(pLvl) == "number" and pLvl) or 1 
     end
-    local isElite = UnitClassification(unit) == "elite" or UnitClassification(unit) == "rareelite"
+    local rawClass = UnitClassification(unit)
+    local isEliteTarget = false
+    if not isSecret(rawClass) and type(rawClass) == "string" then
+        isEliteTarget = (rawClass == "elite" or rawClass == "rareelite")
+    end
     local displayId = C.GetDefaultDisplayId(creatureType, name)
 
     local channelDuration = 4.0
@@ -222,7 +232,7 @@ function CE:StartSnareChannel(unit, cageId)
     CE.ChannelState.targetName = name
     CE.ChannelState.creatureType = creatureType
     CE.ChannelState.level = level
-    CE.ChannelState.isElite = isElite
+    CE.ChannelState.isElite = isEliteTarget
     CE.ChannelState.displayId = displayId
     CE.ChannelState.duration = channelDuration
     CE.ChannelState.elapsed = 0
