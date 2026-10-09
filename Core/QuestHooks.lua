@@ -29,6 +29,7 @@ local pendingToasts = {}
 local lastCompletedQuestTitle = nil
 
 local MECHANICAL_BOSSES = {
+    -- Deadmines
     ["sneed's shredder"] = true,
     ["sneeds shredder"] = true,
     ["foe reaper 5000"] = true,
@@ -36,15 +37,28 @@ local MECHANICAL_BOSSES = {
     ["defias harvest reaper"] = true,
     ["defias watcher"] = true,
     ["sneed"] = true,
+    -- Gnomeregan
+    ["mekgineer thermaplugg"] = true,
+    ["thermaplugg"] = true,
+    ["electrocutioner 6000"] = true,
+    ["electrocutioner"] = true,
+    ["crowd pummeler 9-60"] = true,
+    ["crowd pummeler"] = true,
 }
 
 local ELEMENTAL_BOSSES = {
+    -- Gnomeregan
     ["viscous fallout"] = true,
     ["viscous"] = true,
+    ["grubbis"] = true,
+    -- Blackfathom Deeps
     ["baron aquanis"] = true,
     ["aquanis"] = true,
     ["fathom core"] = true,
-    ["grubbis"] = true,
+    ["aku'mai"] = true,
+    ["akumai"] = true,
+    ["twilight lord kelris"] = true,
+    ["kelris"] = true,
 }
 
 local UNDEAD_BOSSES = {
