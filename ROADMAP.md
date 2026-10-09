@@ -254,7 +254,30 @@
 
 ---
 
-## 📍 Phase 18: Future Expansions & Social Leagues (Pending ⏳)
+## 📍 Phase 18: Real Quest Token Grants & Retroactive Back-Quest Compensation (Completed ✅)
+* [x] **Real Quest Turn-In Integration (`QUEST_TURNED_IN`)**:
+  * Turning in quests across Azeroth awards Safari Tokens scaled dynamically by player level (+5 Tokens for Lv 1–19, +7 Tokens for Lv 20–39, +10 Tokens for Lv 40+).
+  * Awards **+20 Attunement Points** to the active squad companion per completed quest.
+* [x] **Retroactive Back-Quest Compensation (`C_QuestLog.GetAllCompletedQuestIDs`)**:
+  * Onboarding grant for existing characters automatically calculates all previously completed quests and awards a lump-sum Safari Research Grant upon first installation.
+* [x] **Double-Dip Prevention (`SafariCharacterDB.rewardedQuests`)**:
+  * Persistent quest registry in SavedVariables ensures each quest ID in Azeroth is rewarded exactly once per character.
+* [x] **Dungeon Boss Research Permits**:
+  * Defeating key dungeon bosses (Sneed's Shredder, Aku'mai, Amnennar, Avatar of Hakkar) synchronizes Mechanical, Elemental, Undead, and Dragonkin research permits across all party members.
+
+---
+
+## 📍 Phase 19: Zero-Taint & Secret Value Resilience for Dungeons / Combat (Completed ✅)
+* [x] **Universal `pcall`-Guarded Secret Value Detector**:
+  * Standardized `isSecret(v)` implementation supporting `issecretvalue()`, `issecretpassphrase()`, `issecretvariable()`, `C_Secrets.IsSecret()`, and `pcall(function() local _ = (v == "") end)` comparison probing across all 38 Lua modules.
+* [x] **Dungeon / Instance Anti-Automation Immune**:
+  * Fortified `UnitCreatureType()`, `UnitClassification()`, `UnitReaction()`, `UnitLevel()`, `UnitName()`, and `GetZoneText()` against tainted secret string equality comparisons during dungeon/instance encounters.
+* [x] **Zero UI Taint in Combat & Raids**:
+  * Standalone sidecar windows, secure-safe frame hooks, and isolated namespace execution ensure zero Lua errors and zero tainted action blocks.
+
+---
+
+## 📍 Phase 20: Future Expansions & Social Leagues (Pending ⏳)
 * [ ] **PvP Safari Tournaments & Guild Ladders**: Cross-faction companion duel tournaments and leaderboards.
 * [ ] **Safari Attunement Quests**: Epic class and race-specific questlines to earn Master attunement and legendary nets.
 * [ ] **World Boss Safari Raids**: Instanced raid encounter mechanics for legendary apex creatures.

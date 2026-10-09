@@ -168,7 +168,28 @@ Companions progress through bonding, feeding, and battlefield survival rather th
   * 🧪 **Medicine & Aid**: Healing Salve and Revival Crystals.
 * **Beneath-the-Item Card Layout**: Each item displays the number owned (`Owned: X`), token cost (`Cost: X Tokens`), and `[ Buy x1 ]` button directly beneath the item name and description.
 
-### 12. Physical Mailbox Hub & Standalone Sidecar ("Safari Dispatch")
+### 12. Real Quest Token Grants, Retroactive Compensation & Companion Bonding
+* **Real Quest Completion Rewards**: Turning in quests across Azeroth (`QUEST_TURNED_IN`) directly rewards the player with **Safari Tokens** scaled by character level:
+  * **Level 1–19**: **+5 Safari Tokens** per quest.
+  * **Level 20–39**: **+7 Safari Tokens** per quest.
+  * **Level 40+**: **+10 Safari Tokens** per quest.
+* **Active Companion Bonding**: Every completed quest awards **+20 Attunement Points** to your active squad companion, forging a deeper bond through field adventures.
+* **Retroactive Back-Quest Compensation (`C_QuestLog.GetAllCompletedQuestIDs`)**:
+  * When installing Forever Safari on an existing character (e.g. at Level 30 or 60), the addon automatically queries all previously completed quests and awards a lump-sum retroactive **Safari Research Grant** (e.g. 5 tokens per quest) in the welcome onboarding package.
+  * **Double-Dip Protection**: Every rewarded quest ID is permanently recorded in `SafariCharacterDB.rewardedQuests`, ensuring each quest in Azeroth pays out exactly once.
+
+### 13. Dungeon Boss Permits & Evolution Catalyst Fair Loot (`UI/CatalystLootFrame.lua`)
+* **Dungeon Boss Research Permits**: Defeating iconic dungeon bosses unlocks locked creature type research permits across the entire party:
+  * **Mechanical Research Permit**: Defeating *Sneed's Shredder* or *Foe Reaper* in Deadmines.
+  * **Elemental Research Permit**: Defeating *Aku'mai* or *Twilight Lord Kelris* in Blackfathom Deeps.
+  * **Undead Research Permit**: Defeating *Amnennar the Coldbringer* in Razorfen Downs.
+  * **Dragonkin Research Permit**: Defeating *Avatar of Hakkar* or *Morphaz/Hazzas* in Sunken Temple.
+* **Greed-Only Evolution Catalyst Rolling**:
+  * Dungeon bosses drop rare **Evolution Catalysts** (e.g. *[Shadowfang Essence]*, *[Hydra Bile]*, *[Overclocked Core]*, *[Volcanic Core]*).
+  * Triggers a dedicated, fair secondary loot window for all party members with **Greed-Only rolls** (Need is permanently disabled).
+* **Rank V Metamorphosis**: Applying a catalyst to a companion at **Rank V: Bestial Symbiosis** evolves its 3D model, elevates its base stats, and unlocks apex moves while retaining custom nicknames and grimoires.
+
+### 14. Physical Mailbox Hub & Standalone Sidecar ("Safari Dispatch")
 * **Zero-Taint Mailbox Sidecar**: Standalone Nesingwary Dispatch Hub docked seamlessly alongside Blizzard's `MailFrame` (`MAIL_SHOW`) on `UIParent`.
 * **Full-Width Inbox Column**: Displays received Nesingwary dispatches and field bounties with sender names, titles, and status tags (`[ 📦 Unopened Parcel ]`, `[ ✔ Ready to Claim ]`, `[ ✉️ New ]`).
 * **Secondary OpenMail Window**: Dedicated `OpenMail` window attached to the side, styled with Nesingwary gold/dark theme, antique parchment letter body, and a parcel attachment tray with tooltips and one-click unbox/claim actions.
@@ -261,7 +282,7 @@ Forever Safari is architected in 100% strict compliance with the **10 Commandmen
 4. **`C_` Namespaces & Offline Data Integrity**: Fully decoupled from deprecated global APIs (`GetSpellInfo`, `GetItemInfo`), utilizing internal high-speed databases (`ItemDB`, `CreatureDB`, `MoveDB`, `BestiaryDB`, `EvolutionDB`, `Constants`).
 5. **Namespace Isolation**: Every module starts with `local addonName, ns = ...` and attaches shared state directly to `ns`, preventing global namespace collision.
 6. **Event-Driven Subsystems**: Zero `COMBAT_LOG_EVENT_UNFILTERED` registration. All game logic runs through clean high-level events (`ENCOUNTER_END`, `BOSS_KILL`, `QUEST_TURNED_IN`, `PLAYER_TARGET_CHANGED`, `UNIT_HEALTH`).
-7. **Secret Value Protection**: All unit reads (`UnitHealth`, `UnitHealthMax`, `UnitLevel`, `UnitName`, `UnitReaction`, `UnitRace`) are guarded with `issecretvalue()` checks. Status bars draw raw unit health directly to prevent protected arithmetic blocking.
+7. **Zero-Taint & Secret Value Resilience**: All unit and environment queries (`UnitCreatureType`, `UnitClassification`, `UnitReaction`, `UnitHealth`, `UnitLevel`, `UnitName`, `GetZoneText`) are fortified with robust `issecretvalue()`, `issecretpassphrase()`, `issecretvariable()`, and `pcall`-wrapped comparison guards. Fully immune to anti-automation secret string errors in dungeons, raids, and active combat.
 8. **Capability-Based Detection**: No naive `WOW_PROJECT_ID` branching; feature probes are used instead.
 9. **Zero Secure-Snippet Dependency**: Operates solely with custom `UIPanelButtonTemplate` and standard frame events without `loadstring_untainted` or secure unit frame tainting.
 10. **Deterministic Load Order & Persistence**: Modular TOC load sequence with comprehensive `ADDON_LOADED` SavedVariables initialization.
