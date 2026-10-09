@@ -178,7 +178,7 @@ Companions progress through bonding, feeding, and battlefield survival rather th
   * When installing Forever Safari on an existing character (e.g. at Level 30 or 60), the addon automatically queries all previously completed quests and awards a lump-sum retroactive **Safari Research Grant** (e.g. 5 tokens per quest) in the welcome onboarding package.
   * **Double-Dip Protection**: Every rewarded quest ID is permanently recorded in `SafariCharacterDB.rewardedQuests`, ensuring each quest in Azeroth pays out exactly once.
 
-### 13. Dungeon Boss Permits & Evolution Catalyst Fair Loot (`UI/CatalystLootFrame.lua`)
+### 13. Dungeon Boss Permits, Minor Shards & Evolution Catalyst Fair Loot (`UI/CatalystLootFrame.lua`)
 * **Dungeon Boss Research Permits**: Defeating iconic dungeon bosses unlocks locked creature type research permits across the entire party:
   * **Mechanical Research Permit**: Defeating *Sneed's Shredder* or *Foe Reaper* in Deadmines.
   * **Elemental Research Permit**: Defeating *Aku'mai* or *Twilight Lord Kelris* in Blackfathom Deeps.
@@ -187,6 +187,9 @@ Companions progress through bonding, feeding, and battlefield survival rather th
 * **Greed-Only Evolution Catalyst Rolling**:
   * Dungeon bosses drop rare **Evolution Catalysts** (e.g. *[Shadowfang Essence]*, *[Hydra Bile]*, *[Overclocked Core]*, *[Volcanic Core]*).
   * Triggers a dedicated, fair secondary loot window for all party members with **Greed-Only rolls** (Need is permanently disabled).
+* **✨ Minor Evolution Shards & Instant Forge (10-to-1 Combining)**:
+  * Regular dungeon trash mobs have a **0.1% chance (1 in 1,000)** to drop a **[Minor Evolution Shard]** into your Safari Bag.
+  * Right-clicking a stack of **10 Minor Evolution Shards** in your Safari Bag instantly consumes them and forges **1 Full Evolution Catalyst**!
 * **Rank V Metamorphosis**: Applying a catalyst to a companion at **Rank V: Bestial Symbiosis** evolves its 3D model, elevates its base stats, and unlocks apex moves while retaining custom nicknames and grimoires.
 
 ### 14. Physical Mailbox Hub & Standalone Sidecar ("Safari Dispatch")

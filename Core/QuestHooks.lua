@@ -77,6 +77,8 @@ function QH:Initialize()
     f:RegisterEvent("QUEST_TURNED_IN")
     f:RegisterEvent("QUEST_COMPLETE")
     f:RegisterEvent("QUEST_FINISHED")
+    f:RegisterEvent("PARTY_KILL")
+    f:RegisterEvent("LOOT_OPENED")
 
     f:SetScript("OnEvent", function(self, event, ...)
         if event == "PLAYER_ENTERING_WORLD" then
@@ -99,6 +101,8 @@ function QH:Initialize()
             if success == 1 then
                 QH:OnBossDefeated(encounterName)
             end
+        elseif event == "PARTY_KILL" or event == "LOOT_OPENED" then
+            QH:CheckTrashDropChance()
         elseif event == "PLAYER_REGEN_ENABLED" then
             QH:FlushPendingCelebrations()
         end
@@ -306,6 +310,31 @@ function QH:FlushPendingCelebrations()
         PlaySound(1195)
     end
     pendingToasts = {}
+end
+
+local lastTrashRollTime = 0
+
+function QH:CheckTrashDropChance()
+    local inInstance, instanceType = IsInInstance()
+    if not inInstance or (instanceType ~= "party" and instanceType ~= "raid") then return end
+
+    local now = GetTime()
+    if (now - lastTrashRollTime) < 0.5 then return end
+    lastTrashRollTime = now
+
+    -- 0.1% chance (1 in 1000) for a Minor Evolution Shard
+    if math.random(1, 1000) == 1 then
+        QH:AwardMinorCatalyst()
+    end
+end
+
+function QH:AwardMinorCatalyst()
+    DB:AddItem("minor_catalyst", 1)
+    PlaySound(1195)
+    DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff1eff00[Minor Evolution Shard]|r dropped from dungeon quarry! Added to your Safari Bag. (Collect 10 to forge a full Catalyst)", C.PREFIX))
+    if ForeverSafari.Toast and ForeverSafari.Toast.ShowReward then
+        ForeverSafari.Toast:ShowReward("Minor Catalyst Discovered!", "+1x [Minor Evolution Shard] (Collect 10 to Forge)")
+    end
 end
 
 -- Auto-initialize hooks immediately

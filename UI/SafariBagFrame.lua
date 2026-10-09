@@ -631,8 +631,42 @@ function Bag:UseItem(itemId, itemData)
         return
     end
 
-    -- 4. 🧬 Evolution Catalysts: Initiate Metamorphosis
-    if itemData.category == "Evolution Catalyst" or itemId:find("^catalyst_") then
+    -- 4. ✨ Minor Evolution Shards: Instant Forge (10x Shards ➔ 1x Full Catalyst)
+    if itemId == "minor_catalyst" then
+        local count = DB:GetItemCount("minor_catalyst") or 0
+        if count < 10 then
+            DEFAULT_CHAT_FRAME:AddMessage(string.format("%sYou have |cffffd100%d/10|r [Minor Evolution Shards]. Collect 10 to instantly forge a full Evolution Catalyst!", C.PREFIX, count))
+            PlaySound(847)
+            return
+        end
+
+        if DB:RemoveItem("minor_catalyst", 10) then
+            -- Determine forged catalyst type based on zone context
+            local targetCat = "shadowfang_essence"
+            local zone = GetZoneText and GetZoneText()
+            if zone and type(zone) == "string" and not isSecret(zone) then
+                local lowerZone = string.lower(zone)
+                if string.find(lowerZone, "blackfathom") or string.find(lowerZone, "ashenvale") or string.find(lowerZone, "deep") then
+                    targetCat = "hydra_bile"
+                end
+            end
+
+            DB:AddItem(targetCat, 1)
+            PlaySound(1195)
+            local itemInfo = ItemDB:GetItem(targetCat)
+            local catName = itemInfo and itemInfo.name or "Shadowfang Essence"
+
+            DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cffa335ee[Evolution Catalyst Forged!]|r Fused 10x [Minor Evolution Shards] into 1x |cffa335ee[%s]|r!", C.PREFIX, catName))
+            if ForeverSafari.Toast and ForeverSafari.Toast.ShowReward then
+                ForeverSafari.Toast:ShowReward("Catalyst Forged!", string.format("Fused 10x Shards into 1x [%s]!", catName))
+            end
+            Bag:UpdateUI()
+        end
+        return
+    end
+
+    -- 5. 🧬 Evolution Catalysts: Initiate Metamorphosis
+    if itemData.category == "Evolution Catalyst" or itemData.category == "Evolution Catalysts" or itemId:find("^catalyst_") or itemId == "shadowfang_essence" or itemId == "hydra_bile" then
         local catId = itemData.catalystId or tonumber(itemId:match("catalyst_(%d+)"))
         if not catId then return end
 

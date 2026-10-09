@@ -298,9 +298,12 @@ Certain creature types require specialized field research permits before they ca
 * 💀 **Undead Permit**: Defeat *Amnennar the Coldbringer* in Razorfen Downs.
 * 🐉 **Dragonkin Permit**: Defeat *Avatar of Hakkar* or *Morphaz/Hazzas* in Sunken Temple.
 
-### 🧬 Evolution Catalysts & Greed-Only Boss Loot
-* Dungeon bosses drop rare **Evolution Catalysts** (such as *[Shadowfang Essence]* or *[Hydra Bile]*).
-* A secondary **Greed-Only fair roll window** appears for all party members (Need is permanently disabled).
+### 🧬 Evolution Catalysts, Minor Shards & Greed-Only Boss Loot
+* **Dungeon Boss Catalysts**: Dungeon bosses drop rare **Evolution Catalysts** (such as *[Shadowfang Essence]* or *[Hydra Bile]*).
+* **Greed-Only Fair Roll**: Defeating a dungeon boss triggers a dedicated secondary roll window for all party members (Need is permanently disabled).
+* **✨ Minor Evolution Shards (0.1% Dungeon Trash Drops)**:
+  * Regular dungeon trash mobs have a **0.1% chance (1 in 1,000)** to drop a **[Minor Evolution Shard]** directly into your Virtual Safari Bag.
+  * **Instant Forge (10-to-1 Combining)**: Right-clicking a stack of **10 Minor Evolution Shards** in your Safari Bag instantly consumes them and forges **1 Full Evolution Catalyst** with an enchanting fanfare and toast notification!
 * **Rank V Metamorphosis**: When a companion reaches **Rank V: Bestial Symbiosis** (2,000 Attunement), using its matching catalyst triggers a magnificent 3D evolution:
   * **Mangy Wolf** ➔ **Slavering Worg**
   * **Young Black Bear** ➔ **Ironfur Patriarch**
@@ -309,6 +312,9 @@ Certain creature types require specialized field research permits before they ca
   * **Scorpid Worker** ➔ **Deathstalker Scorpid**
   * **Bloodtalon Raptor** ➔ **Savage Bloodseeker**
   * Evolutions scale base stats, unlock apex move pools, and update 3D display models while preserving custom nicknames and learned grimoires!
+
+### 🛡️ Instance HUD Suppression
+* While inside any dungeon, raid, or PvP battleground instance, the **Capture Radar HUD is automatically suppressed and hidden**. This ensures zero UI distractions during group combat while keeping boss drops, quest turn-ins, and minor catalyst shard looting active in the background.
 
 ### 👑 World Rare Spawn Protection
 * Genuine wild rare spawns (e.g. *Humar the Pridelord*, *Broken Tooth*, *The Rake*) display an unforgeable **Golden Rare Dragon Crest** in the 3D Inspector.

@@ -290,6 +290,16 @@ function HUD:OnTargetChanged()
         return
     end
 
+    -- Suppress HUD completely inside dungeons, raids, and PvP instances
+    local inInstance, instanceType = IsInInstance()
+    if inInstance and (instanceType == "party" or instanceType == "raid" or instanceType == "pvp" or instanceType == "arena") then
+        if CE:IsChanneling() then
+            CE:CancelSnareChannel("Inside instance.")
+        end
+        if frame and frame:IsShown() then frame:Hide() end
+        return
+    end
+
     if not UnitExists("target") or UnitIsDead("target") or UnitIsPlayer("target") then
         if CE:IsChanneling() then
             CE:CancelSnareChannel("Target lost.")
@@ -345,6 +355,11 @@ end
 
 function HUD:UpdateUI()
     if InCombatLockdown and InCombatLockdown() then return end
+    local inInstance, instanceType = IsInInstance()
+    if inInstance and (instanceType == "party" or instanceType == "raid" or instanceType == "pvp" or instanceType == "arena") then
+        if frame and frame:IsShown() then frame:Hide() end
+        return
+    end
     if not frame:IsShown() or not UnitExists("target") then return end
 
     local name = UnitName("target")

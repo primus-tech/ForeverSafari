@@ -264,6 +264,16 @@ ItemDB.ITEMS = {
         desc = "Primordial acid collected from Blackfathom Deeps. Induces Rank V Metamorphosis.",
         useText = "Right-Click in Field Guide at Rank V to Metamorphose companion.",
     },
+    ["minor_catalyst"] = {
+        name = "Minor Evolution Shard",
+        category = "Evolution Catalysts",
+        icon = "Interface\\Icons\\INV_Misc_Gem_Amethyst_01",
+        quality = 2,
+        color = "1eff00",
+        tokenCost = 5,
+        desc = "A shimmering shard of raw metamorphic energy dropped by dungeon quarry. Collect 10 to instantly forge a full Evolution Catalyst!",
+        useText = "Right-Click a stack of 10 to instantly forge 1x Evolution Catalyst.",
+    },
 }
 
 -- Fast Helper Methods
