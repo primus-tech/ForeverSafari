@@ -428,19 +428,47 @@ local bankTab = nil
 
 local function EnsureBankTab()
     if bankTab or not BankFrame then return bankTab end
-    bankTab = CreateFrame("Button", "ForeverSafariBankReserveTab", BankFrame, "CharacterFrameTabButtonTemplate")
+
+    local templates = { "PanelTabButtonTemplate", "CharacterFrameTabButtonTemplate", "TabButtonTemplate" }
+    local tab = nil
+    for _, template in ipairs(templates) do
+        local ok, res = pcall(CreateFrame, "Button", "ForeverSafariBankReserveTab", BankFrame, template)
+        if ok and res then
+            tab = res
+            break
+        end
+    end
+
+    if not tab then
+        local ok, res = pcall(CreateFrame, "Button", "ForeverSafariBankReserveTab", BankFrame, "UIPanelButtonTemplate")
+        if ok and res then
+            tab = res
+        else
+            tab = CreateFrame("Button", "ForeverSafariBankReserveTab", BankFrame, "BackdropTemplate")
+            if Theme and Theme.ApplyButtonBackdrop then
+                Theme:ApplyButtonBackdrop(tab)
+            end
+        end
+    end
+
+    bankTab = tab
     bankTab:SetText("Junior Safari Reserve")
     if PanelTemplates_TabResize then
         pcall(PanelTemplates_TabResize, bankTab, 0)
     end
+    if bankTab:GetWidth() < 120 then
+        bankTab:SetSize(160, 24)
+    end
+
     -- Dock cleanly to BankFrame tab bar
-    if BankFrameTab2 and BankFrameTab2:GetPoint() then
+    if BankFrameTab2 and BankFrameTab2.GetPoint and BankFrameTab2:GetPoint() then
         bankTab:SetPoint("LEFT", BankFrameTab2, "RIGHT", -15, 0)
-    elseif BankFrameTab1 and BankFrameTab1:GetPoint() then
+    elseif BankFrameTab1 and BankFrameTab1.GetPoint and BankFrameTab1:GetPoint() then
         bankTab:SetPoint("LEFT", BankFrameTab1, "RIGHT", -15, 0)
     else
         bankTab:SetPoint("BOTTOMLEFT", BankFrame, "BOTTOMLEFT", 15, -30)
     end
+
     bankTab:SetScript("OnClick", function()
         if frame and frame:IsShown() then
             Kennel:Hide()
@@ -452,6 +480,7 @@ local function EnsureBankTab()
             end
         end
     end)
+
     return bankTab
 end
 
