@@ -125,8 +125,8 @@ local function HandleSlash(msg)
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/safari reset|r - Reset all progress back to a fresh recruit")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsbag|r - Toggle Virtual Safari Bag")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsmail|r - Open Safari Mail tab at any town mailbox")
-        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fskennel|r - Open Safari Kennel at any town Innkeeper")
-        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsshop|r - Open Safari Outfitter at Pet Trainers / Innkeepers")
+        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fskennel|r - Open Safari Kennel at any town Banker")
+        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsshop|r - Open Safari Outfitter at any Pet Trainer")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsnet|r - Attempt live field observation/capture on target")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsbattle|r - Engage targeted wild creature in battle")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsduel|r - Challenge targeted player to a companion duel")
@@ -138,12 +138,12 @@ end
 SlashCmdList["SAFARI"] = HandleSlash
 SlashCmdList["FSBAG"] = function() if ForeverSafari.SafariBagFrame then ForeverSafari.SafariBagFrame:Toggle() end end
 SlashCmdList["FSKENNEL"] = function()
-    if ForeverSafari.ShopFrame and ForeverSafari.ShopFrame.IsAtAuthorizedVendor and ForeverSafari.ShopFrame:IsAtAuthorizedVendor() and ForeverSafari.ShopFrame.vendorType == "Innkeeper" then
-        if ForeverSafari.KennelFrame then ForeverSafari.KennelFrame:ShowKennel() end
+    if ForeverSafari.KennelFrame and ForeverSafari.KennelFrame.IsAtBanker and ForeverSafari.KennelFrame:IsAtBanker() then
+        ForeverSafari.KennelFrame:ShowKennel()
     else
-        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Safari Kennel access restricted! Speak with an Innkeeper at any inn to manage your companion bank.|r")
+        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Safari Kennel access restricted! Speak with a Banker at any bank vault to manage your companion bank.|r")
         if ForeverSafari.Toast then
-            ForeverSafari.Toast:ShowAlert("Innkeeper Required", "Speak to an Innkeeper to access the Safari Kennel!")
+            ForeverSafari.Toast:ShowAlert("Banker Required", "Speak to a Banker to access the Safari Kennel!")
         end
         PlaySound(847)
     end
@@ -152,9 +152,9 @@ SlashCmdList["FSSHOP"] = function()
     if ForeverSafari.ShopFrame and ForeverSafari.ShopFrame.IsAtAuthorizedVendor and ForeverSafari.ShopFrame:IsAtAuthorizedVendor() then
         Shop:Toggle()
     else
-        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Store access is restricted! Speak with a Pet Trainer (for Capture Gear & Supplies) or an Innkeeper (for Safari Treats & Food Provisions).|r")
+        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Store access is restricted! Speak with a Pet Trainer to purchase capture gear, crates, diet provisions, and supplies.|r")
         if ForeverSafari.Toast then
-            ForeverSafari.Toast:ShowAlert("Vendor Required", "Speak to a Pet Trainer or Innkeeper!")
+            ForeverSafari.Toast:ShowAlert("Pet Trainer Required", "Speak to a Pet Trainer to access the Safari Outfitter!")
         end
         PlaySound(847)
     end
@@ -172,3 +172,53 @@ end
 SlashCmdList["FSNET"] = function() ForeverSafari.CaptureEngine:AttemptCapture("target") end
 SlashCmdList["FSBATTLE"] = function() ForeverSafari.BattleEngine:StartWildBattle("target") end
 SlashCmdList["FSDUEL"] = function() ForeverSafari.Comms:ChallengeTarget() end
+
+-- =========================================================================
+-- 🏨 INNKEEPER COMPANION REST & REVIVE LISTENER (Pokémon Center Experience)
+-- =========================================================================
+local innkeeperRestFrame = CreateFrame("Frame", "ForeverSafariInnkeeperRestFrame")
+innkeeperRestFrame:RegisterEvent("GOSSIP_SHOW")
+
+local lastInnkeeperHeal = 0
+innkeeperRestFrame:SetScript("OnEvent", function()
+    local unit = UnitExists("npc") and "npc" or (UnitExists("target") and "target" or nil)
+    local function isInnkeeperText(text)
+        if not text then return false end
+        local lower = string.lower(text)
+        return string.find(lower, "innkeeper", 1, true) ~= nil or string.find(lower, "tavern", 1, true) ~= nil
+    end
+
+    local isInn = false
+    if GossipFrameTitleText and GossipFrameTitleText:GetText() and isInnkeeperText(GossipFrameTitleText:GetText()) then
+        isInn = true
+    elseif unit then
+        if C_TooltipInfo and C_TooltipInfo.GetUnit then
+            local ok, info = pcall(C_TooltipInfo.GetUnit, unit)
+            if ok and info and info.lines then
+                for _, line in ipairs(info.lines) do
+                    if line.leftText and isInnkeeperText(line.leftText) then
+                        isInn = true
+                        break
+                    end
+                end
+            end
+        end
+        if not isInn then
+            local unitName = UnitName(unit)
+            if unitName and isInnkeeperText(unitName) then
+                isInn = true
+            end
+        end
+    end
+
+    if isInn then
+        local now = GetTime()
+        if (now - lastInnkeeperHeal) > 3 then
+            lastInnkeeperHeal = now
+            if DB and DB.HealAllPets then
+                DB:HealAllPets(false)
+            end
+        end
+    end
+end)
+

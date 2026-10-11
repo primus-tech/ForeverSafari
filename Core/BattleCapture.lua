@@ -120,7 +120,7 @@ function BattleCapture:ExecuteCapture(cageId)
                 BE.State.dialogueText = string.format("Gotcha! %s was caught & crated in %s!", enemy.name, cName)
                 BE:AddLog(string.format("|cff00ff00Gotcha! Wild %s was captured, crated in [%s], and sent to the Safari Kennel!|r", enemy.name, cName))
                 if ForeverSafari.Toast then
-                    ForeverSafari.Toast:ShowAlert("Captured & Banked", string.format("%s was crated & sent to Innkeeper's Kennel!", enemy.name))
+                    ForeverSafari.Toast:ShowAlert("Captured & Banked", string.format("%s was crated & sent to Banker's Kennel!", enemy.name))
                 end
             else
                 DB:AddMob(enemy, true)

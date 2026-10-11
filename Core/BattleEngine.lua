@@ -300,7 +300,7 @@ function BE:StartWildBattle(unit)
             end
         end
         if not foundConscious then
-            DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444All companions in your party have fainted! Visit an Innkeeper, Pet Trainer, or use a Revival Crystal.|r")
+            DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444All companions in your party have fainted! Visit an Innkeeper to revive and heal your squad, or use a Revival Crystal.|r")
             return false
         end
     end

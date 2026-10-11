@@ -1,6 +1,6 @@
 --[[
-    Forever Safari: Safari Kennel & Lodge Sidecar (Innkeeper "Pokémon Bank")
-    - Accessed exclusively when interacting with Innkeepers in towns.
+    Forever Safari: Safari Kennel & Vault Sidecar (Banker NPC Companion Bank)
+    - Accessed exclusively when interacting with Bankers in town vaults.
     - Manages the player's 4 Active Squad members vs. Banked Enclosure Boxes (1..5, 20 pets each = 100 pets).
     - 100% Zero-Taint: Standalone frame parented strictly to UIParent.
 ]]
@@ -23,15 +23,32 @@ local currentBox = 1
 local selectedKennelMobId = nil
 local selectedSquadSlot = nil
 
--- Check if currently interacting with an Innkeeper
-function Kennel:IsAtInnkeeper()
-    if not GossipFrame or not GossipFrame:IsShown() then
-        return false
+-- Check if currently interacting with a Banker
+function Kennel:IsAtBanker()
+    if BankFrame and BankFrame:IsShown() then
+        return true
     end
-    local title = GossipFrameTitleText and GossipFrameTitleText:GetText() or ""
-    local unitName = UnitName("npc") or UnitName("target") or ""
-    local isInn = (title:find("Innkeeper") ~= nil or title:find("Tavern") ~= nil or unitName:find("Innkeeper") ~= nil)
-    return isInn
+    local unit = UnitExists("npc") and "npc" or (UnitExists("target") and "target" or nil)
+    if unit then
+        if C_TooltipInfo and C_TooltipInfo.GetUnit then
+            local ok, info = pcall(C_TooltipInfo.GetUnit, unit)
+            if ok and info and info.lines then
+                for _, line in ipairs(info.lines) do
+                    if line.leftText then
+                        local lower = string.lower(line.leftText)
+                        if string.find(lower, "banker", 1, true) then
+                            return true
+                        end
+                    end
+                end
+            end
+        end
+        local unitName = UnitName(unit)
+        if unitName and string.find(string.lower(unitName), "banker", 1, true) then
+            return true
+        end
+    end
+    return false
 end
 
 function Kennel:Initialize()
@@ -59,12 +76,12 @@ function Kennel:Initialize()
 
     local title = header:CreateFontString(nil, "OVERLAY", "GameFontHighlightLarge")
     title:SetPoint("LEFT", 16, 0)
-    title:SetText("|cffffd100🏡 Safari Kennel & Lodge|r")
+    title:SetText("|cffffd100🏦 Safari Kennel & Vault|r")
     header.Title = title
 
     local subTitle = header:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
     subTitle:SetPoint("LEFT", title, "RIGHT", 12, 0)
-    subTitle:SetText("|cff00ff99[ Innkeeper Boarding Stables ]|r")
+    subTitle:SetText("|cff00ff99[ Banker Companion Vault ]|r")
 
     -- Close Button
     local closeBtn = CreateFrame("Button", nil, header, "UIPanelCloseButton")
@@ -254,33 +271,9 @@ function Kennel:Initialize()
     bottomBar:SetPoint("BOTTOM", 0, 0)
     Theme:ApplyHeaderBackdrop(bottomBar)
 
-    local healBtn = CreateFrame("Button", "ForeverSafariKennelTendBtn", bottomBar, "UIPanelButtonTemplate")
-    healBtn:SetSize(190, 30)
-    healBtn:SetPoint("LEFT", 16, 0)
-    healBtn:SetText("💖 Tend & Rest All Pets")
-    healBtn:SetScript("OnClick", function()
-        for _, mob in ipairs(DB:GetCollection()) do
-            mob.currentHP = mob.maxHP or mob.hp or 10
-            mob.hp = mob.currentHP
-        end
-        PlaySound(1195)
-        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cff00ff00All active and boarded companions were tended and fully restored at the Inn!|r")
-        if ForeverSafari.Toast then
-            ForeverSafari.Toast:ShowAlert("Squad & Kennel Rested", "All companions restored to 100% HP!")
-        end
-        Kennel:UpdateUI()
-    end)
-    healBtn:SetScript("OnEnter", function(self)
-        GameTooltip:SetOwner(self, "ANCHOR_TOP")
-        GameTooltip:AddLine("💖 Tend & Rest All Companions", 1, 0.82, 0)
-        GameTooltip:AddLine("Fully heals and revives all active squad members and banked companions staying at the Inn.", 1, 1, 1, true)
-        GameTooltip:Show()
-    end)
-    healBtn:SetScript("OnLeave", function() GameTooltip:Hide() end)
-
     local withdrawBtn = CreateFrame("Button", "ForeverSafariKennelWithdrawBtn", bottomBar, "UIPanelButtonTemplate")
     withdrawBtn:SetSize(160, 30)
-    withdrawBtn:SetPoint("LEFT", healBtn, "RIGHT", 12, 0)
+    withdrawBtn:SetPoint("LEFT", 16, 0)
     withdrawBtn:SetText("⬆ Move to Squad")
     withdrawBtn:SetScript("OnClick", function()
         if selectedKennelMobId then
@@ -303,12 +296,26 @@ function Kennel:Initialize()
     statusText:SetText("Boarded: 0 companions")
     frame.StatusText = statusText
 
-    -- Auto-dismiss when closing Gossip
-    local eventFrame = CreateFrame("Frame", nil, frame)
+    -- Auto-dock and show with Banker BankFrame
+    local eventFrame = CreateFrame("Frame", "ForeverSafariKennelBankEvents", frame)
+    eventFrame:RegisterEvent("BANKFRAME_OPENED")
+    eventFrame:RegisterEvent("BANKFRAME_CLOSED")
     eventFrame:RegisterEvent("GOSSIP_CLOSED")
     eventFrame:SetScript("OnEvent", function(self, event)
-        if event == "GOSSIP_CLOSED" and frame and frame:IsShown() then
-            frame:Hide()
+        if event == "BANKFRAME_OPENED" then
+            Kennel:ShowKennel()
+            if BankFrame and BankFrame:IsShown() and frame then
+                frame:ClearAllPoints()
+                frame:SetPoint("TOPLEFT", BankFrame, "TOPRIGHT", 10, 0)
+            end
+        elseif event == "BANKFRAME_CLOSED" then
+            if frame and frame:IsShown() then
+                frame:Hide()
+            end
+        elseif event == "GOSSIP_CLOSED" then
+            if frame and frame:IsShown() and not (BankFrame and BankFrame:IsShown()) then
+                frame:Hide()
+            end
         end
     end)
 end

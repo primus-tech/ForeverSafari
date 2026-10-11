@@ -156,7 +156,7 @@ Target any eligible wild creature in the world. The **Observation HUD** (`Captur
 ### 📦 In-Battle Capture & Transport Crate Logistics
 When capturing a wild beast during turn-based battle (`/fsbattle`):
 * **Open Squad Slot (< 4 members)**: The captured creature joins your active 4-member party immediately with **0 crates consumed**.
-* **Full Squad (4/4 members)**: The capture automatically consumes **1 matching (or higher tier) Transport Crate** from your Safari Bag and safely ships the specimen directly to the **Safari Kennel** at the Innkeeper.
+* **Full Squad (4/4 members)**: The capture automatically consumes **1 matching (or higher tier) Transport Crate** from your Safari Bag and safely ships the specimen directly to the **Safari Kennel** at the Banker.
 
 ---
 
@@ -280,21 +280,28 @@ Safari Tokens (`[INV_Misc_Coin_02]`) are the official currency of the Nesingwary
 
 Forever Safari operates with **Zero Out-of-World Cheat Access**. Storage, shopping, and mailing facilities are accessed strictly by visiting authorized NPCs in towns and settlements.
 
-### 🏨 1. Innkeepers (Safari Kennel — The Pokémon Bank of Azeroth)
-Interact with any town **Innkeeper** to open the Safari Kennel:
+### 🏦 1. Bankers (Safari Kennel — The Pokémon Bank of Azeroth)
+Interact with any town **Banker** (or open any Bank Vault) to open the Safari Kennel:
 * **Active Squad (4 Slots)**: Your active adventuring party.
-* **10 Storage Enclosure Boxes (200 Pets Total)**: 20 slots per box. Deposit, withdraw, and organize captured companions.
-* **`[ 💖 Tend & Rest All Pets ]`**: Instantly heals and revives all companions in your active squad and kennel boxes.
+* **Storage Enclosure Boxes**: Deposit, withdraw, and organize captured companions.
+* **Storage Vault Only**: Bankers strictly manage companion boarding; they do not sell supplies or heal pets.
 
-### 🏹 2. Pet Trainers (Nesingwary Safari Outfitter — Universal Class Access)
+### 🏨 2. Innkeepers (Rest & Revive — The Pokémon Center of Azeroth)
+Interact with any town **Innkeeper**:
+* **Universal Rest & Revive**: Speaking with an Innkeeper automatically tends to your companions, restoring all active squad members and banked companions to full 100% HP and reviving fainted pets.
+* **Exclusive Medical Sanctuary**: Innkeepers are the **only** NPCs that can revive and heal pets in towns.
+* **No Outfitter or Banking**: Innkeepers strictly handle squad recuperation and resting.
+
+### 🎯 3. Pet Trainers (Nesingwary Safari Outfitter — Universal Class Access)
 Interact with any **Pet Trainer** in any major city or outpost (accessible to **all classes**, not just Hunters):
+* **Exclusive Outfitter Access**: Pet Trainers are the **only** NPCs with access to the Safari Outfitter shop (`/fsshop`).
 * **Capture Gear**: Purchase Copper Snares (1 Token), Iron Nets (5 Tokens), Mithril Traps (10 Tokens), and Thorium Cages (25 Tokens).
 * **Transport Crates**: Stock up on Copper, Iron, Mithril, and Thorium Crates.
 * **Diets & Treats**: Buy Safari Treats, Grand Feasts, and 11 dietary sustenance items.
-* **Medicine**: Purchase Healing Salves and Revival Crystals.
-* **`[ 💖 Tend & Revive Squad ]`**: Free field medical care for your active squad.
+* **Medicine**: Purchase Healing Salves and Revival Crystals for field emergencies.
+* **Supplies Only**: Pet Trainers do not heal or revive pets in town; players must visit an Innkeeper to rest.
 
-### 📮 3. Mailboxes (Nesingwary Safari Dispatch Hub)
+### 📮 4. Mailboxes (Nesingwary Safari Dispatch Hub)
 Interact with any physical **Mailbox** in town:
 * Click the custom **[Safari]** tab docked to Blizzard's `MailFrame`.
 * View received letters, bounty assignments, and unbox parcels containing earned token grants and supplies.
@@ -374,7 +381,7 @@ Type `/fsbag` or `/safari bag` to open your 20-slot Virtual Safari Bag.
 | :--- | :--- | :--- |
 | `/safari` | `/fs` | Opens the 3D Field Guide Journal & Squad Manager. |
 | `/safari bag` | `/fsbag` | Opens the 20-slot Virtual Safari Bag container. |
-| `/safari kennel` | `/fskennel` | Opens the Safari Kennel (Requires Innkeeper interaction). |
+| `/safari kennel` | `/fskennel` | Opens the Safari Kennel (Requires Banker interaction). |
 | `/safari shop` | `/fsshop` | Opens the Nesingwary Safari Outfitter (Requires Pet Trainer). |
 | `/safari mail` | `/fsmail` | Opens Nesingwary Safari Correspondence at a Mailbox. |
 | `/safari bounties` | — | Opens Tab 4: Field Directives & Research Quest Log. |
@@ -396,7 +403,7 @@ Type `/fsbag` or `/safari bag` to open your 20-slot Virtual Safari Bag.
 **A**: No! Forever Safari is built for **all classes** (Warriors, Mages, Rogues, Priests, Warlocks, Paladins, Shamans, Druids, and Hunters). All classes can capture, train, battle, feed, and evolve companions.
 
 ### Q: Where are my captured pets if my party is full?
-**A**: When your 4-member active squad is full, new captures are crated and shipped directly to the **Safari Kennel**. Visit any **Innkeeper** in town to view and withdraw your banked companions across 10 storage boxes.
+**A**: When your 4-member active squad is full, new captures are crated and shipped directly to the **Safari Kennel**. Visit any **Banker** in town to view and withdraw your banked companions across 5 storage boxes.
 
 ### Q: Does Forever Safari cause UI taint in dungeons or raids?
 **A**: Zero taint! Forever Safari features full `pcall`-guarded secret value inspection compatible with modern anti-automation systems in dungeons, raids, and active combat. All windows operate as standalone sidecars without modifying Blizzard's secure execution paths.

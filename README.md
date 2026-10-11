@@ -153,24 +153,28 @@ Companions progress through bonding, feeding, and battlefield survival rather th
   * 🍖 **Consumables**: Safari Treats (+50 Attunement), Grand Safari Feasts (+100 Attunement to full team), Safari Healing Salves (100% HP heal), and Revival Crystals.
 * **Context-Sensitive Actions**: Right-Clicking items in the bag automatically uses or feeds your active companion, or opens the 3D Metamorphosis pedestal. Shift-Clicking any item links it directly into chat.
 
-### 10. Innkeeper Safari Kennel (10 Enclosure Boxes = 200 Banked Pets)
+### 10. Town Logistics: Bankers, Innkeepers & Pet Trainers
 * **Zero Out-of-World Access**: Store and bank interfaces are accessed **exclusively when interacting with authorized NPCs in town** via zero-taint standalone sidecar windows.
-* **Innkeepers (Safari Kennel — The Pokémon Bank of Azeroth)**:
-  * **Active Squad vs. Bank Enclosures**: Players carry up to 4 active battle companions in their field squad. The remaining creatures are stored across **10 Enclosure Bank Boxes** (20 slots per box = 200 banked companions).
+* **🏦 Bankers (Safari Kennel — The Pokémon Bank of Azeroth)**:
+  * **Bank Vault Access**: Interacting with any town **Banker** (or opening the Bank vault) opens the **Safari Kennel** sidecar.
+  * **Active Squad vs. Bank Enclosures**: Players carry up to 4 active battle companions in their field squad. The remaining creatures are stored across **Enclosure Bank Boxes** (20 slots per box = 100 banked companions).
   * **Interactive Pedestals & Transfer**: Withdraw, deposit, and swap companions seamlessly between your active 4-member squad and bank enclosures.
-  * **`[ 💖 Tend & Rest All Pets ]`**: Instant full heal and revival for all active and banked companions while resting at any Inn.
-* **Transport Crate Logistics**:
-  * If the player's active squad is full (**4/4**), capturing a wild beast auto-consumes **1 matching (or higher tier) Transport Crate** from the Safari Bag and safely ships the specimen to the **Safari Kennel** at the Innkeeper.
-  * If the squad has an open slot (< 4), the wild beast is recruited directly into the active team with no crate required.
-
-### 11. Pet Trainers (Nesingwary Safari Outfitter — Universal Class Access)
-* **Accessible to ALL Classes**: Non-Hunter classes (Warriors, Mages, Rogues, Priests, Warlocks, Paladins, Shamans, Druids) and Hunters alike can interact with town Pet Trainers.
-* **Category Tabs**:
-  * 🕸️ **Capture Gear**: Copper Snare, Iron Net, Mithril Trap, Thorium Cage.
-  * 📦 **Transport Crates**: Copper, Iron, Mithril, and Thorium Crates with color-coded quality tints.
-  * 🥩 **Treats & Diets**: Safari Treats, Grand Feasts, and 11 canonical Safari diet items.
-  * 🧪 **Medicine & Aid**: Healing Salve and Revival Crystals.
-* **Beneath-the-Item Card Layout**: Each item displays the number owned (`Owned: X`), token cost (`Cost: X Tokens`), and `[ Buy x1 ]` button directly beneath the item name and description.
+  * **Transport Crate Logistics**: If the player's active squad is full (**4/4**), capturing a wild beast auto-consumes **1 matching (or higher tier) Transport Crate** from the Safari Bag and safely ships the specimen to the **Safari Kennel** at the Banker.
+  * **Vault Storage Only**: Bankers strictly manage companion boarding; they do not sell supplies or heal pets.
+* **🏨 Innkeepers (Rest & Revive — The Pokémon Center of Azeroth)**:
+  * **Universal Rest & Revive**: Speaking with any town **Innkeeper** automatically tends to your companions, restoring all active and banked companions to full 100% HP and reviving fainted pets.
+  * **Exclusive Medical Sanctuary**: Innkeepers are the **only** NPCs that can revive and heal pets in towns.
+  * **No Outfitter or Banking**: Innkeepers strictly handle squad recuperation and resting.
+* **🎯 Pet Trainers (Nesingwary Safari Outfitter — Universal Class Access)**:
+  * **Accessible to ALL Classes**: Non-Hunter classes (Warriors, Mages, Rogues, Priests, Warlocks, Paladins, Shamans, Druids) and Hunters alike can interact with town Pet Trainers.
+  * **Exclusive Outfitter Access**: Pet Trainers are the **only** NPCs with access to the Safari Outfitter shop (`/fsshop`).
+  * **Category Tabs**:
+    * 🕸️ **Capture Gear**: Copper Snare, Iron Net, Mithril Trap, Thorium Cage.
+    * 📦 **Transport Crates**: Copper, Iron, Mithril, and Thorium Crates with color-coded quality tints.
+    * 🥩 **Treats & Diets**: Safari Treats, Grand Feasts, and 11 canonical Safari diet items.
+    * 🧪 **Medicine & Aid**: Healing Salve and Revival Crystals for field emergencies.
+  * **Beneath-the-Item Card Layout**: Each item displays the number owned (`Owned: X`), token cost (`Cost: X Tokens`), and `[ Buy x1 ]` button directly beneath the item name and description.
+  * **Supplies Only**: Pet Trainers do not heal or revive pets in town; players must visit an Innkeeper to rest.
 
 ### 12. Real Quest Token Grants, Retroactive Compensation & Companion Bonding
 * **Real Quest Completion Rewards**: Turning in quests across Azeroth (`QUEST_TURNED_IN`) directly rewards the player with **Safari Tokens** calculated as **1/10 of the quest level, rounded up** (`math.ceil(QuestLevel / 10)`), minimum 1 Token.
@@ -204,7 +208,7 @@ Companions progress through bonding, feeding, and battlefield survival rather th
 ## 🎮 Slash Commands
 
 * `/safari` or `/fs` — Open the Forever Safari 3D Field Guide & Squad Manager
-* `/safari kennel` or `/fskennel` — Open the Safari Kennel (Requires Innkeeper interaction)
+* `/safari kennel` or `/fskennel` — Open the Safari Kennel (Requires Banker interaction)
 * `/safari bounties` — View Active Field Directives & Quest Tracker (Tab 4)
 * `/safari observe` or `/fsnet` — Channel field observation to stalk target and discover new moves
 * `/safari abandon` or `/safari release` — Release active companion back into the wild (with confirmation)
@@ -243,7 +247,7 @@ ForeverSafari/
 │   ├── Database.lua                   # Core Initialization, Signatures, DNA & Settings
 │   ├── DB/                            # Domain-Specific Database Sub-Modules
 │   │   ├── DB_Pets.lua                # Companion CRUD, Active Party & Nicknames
-│   │   ├── DB_Kennel.lua              # 10 Storage Enclosure Boxes & Crate Logistics
+│   │   ├── DB_Kennel.lua              # Storage Enclosure Boxes & Crate Logistics
 │   │   ├── DB_Bestiary.lua            # Pokédex Discovery & Progress Tracking
 │   │   └── DB_Inventory.lua           # Token Vault & Virtual Bag Management
 │   ├── StatEngine.lua                 # Attunement Scaling, 100/110 Budget & Stat Engine
@@ -263,7 +267,7 @@ ForeverSafari/
     ├── CatalystLootFrame.lua          # Greed-Only Secondary Boss Loot Window
     ├── CaptureHUD.lua                 # Real-Time Proximity & Move Discovery HUD
     ├── ShopFrame.lua                  # Pet Trainer Outfitter (Tabs & Below-Card Layout)
-    ├── KennelFrame.lua                # Innkeeper Companion Bank (4 Squad + 10 Enclosures)
+    ├── KennelFrame.lua                # Banker Companion Vault (4 Squad + 5 Enclosures)
     ├── SafariBagFrame.lua             # Virtual Safari Bag 20-Slot Authentic Container
     ├── BattleFrame.lua                # Retro 3D Combat Arena & Command Menu
     │

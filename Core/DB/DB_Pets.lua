@@ -323,21 +323,21 @@ function DB:HealTeam(silent)
 
     if not silent then
         PlaySound(1195)
-        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cff00ff00[Pet Trainer]|r Tended to your squad! All active companions restored to full health and vigor.")
+        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cff00ff00[Innkeeper Rest]|r Tended to your squad! All active companions restored to full health and vigor.")
         if ns.Toast and ns.Toast.ShowReward then
-            ns.Toast:ShowReward("Squad Tended & Restored!", "All battle companions healed to 100% HP")
+            ns.Toast:ShowReward("Squad Rested & Restored!", "All battle companions healed to 100% HP")
         end
     end
 
     -- Refresh UI frames if open
-    if ns.Shop and ns.Shop.UpdateHealButton then
-        ns.Shop:UpdateHealButton()
-    end
     if ns.JournalTeamDock and ns.JournalTeamDock.UpdateDock then
         ns.JournalTeamDock:UpdateDock()
     end
     if ns.JournalRosterView and ns.JournalRosterView.UpdateUI then
         ns.JournalRosterView:UpdateUI()
+    end
+    if ns.KennelFrame and ns.KennelFrame.UpdateUI then
+        ns.KennelFrame:UpdateUI()
     end
 
     return count
@@ -353,10 +353,21 @@ function DB:HealAllPets(silent)
 
     if not silent then
         PlaySound(1195)
-        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cff00ff00[Innkeeper]|r All active and banked companions rested and fully healed!")
+        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cff00ff00[Innkeeper Rest]|r All active and banked companions rested at the Inn and were fully healed!")
         if ns.Toast and ns.Toast.ShowReward then
-            ns.Toast:ShowReward("Companions Rested!", string.format("All %d companions restored to full health", count))
+            ns.Toast:ShowReward("Companions Rested!", string.format("All %d companions revived and restored to full health", count))
         end
+    end
+
+    -- Refresh UI frames if open
+    if ns.JournalTeamDock and ns.JournalTeamDock.UpdateDock then
+        ns.JournalTeamDock:UpdateDock()
+    end
+    if ns.JournalRosterView and ns.JournalRosterView.UpdateUI then
+        ns.JournalRosterView:UpdateUI()
+    end
+    if ns.KennelFrame and ns.KennelFrame.UpdateUI then
+        ns.KennelFrame:UpdateUI()
     end
 
     return count
