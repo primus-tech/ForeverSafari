@@ -76,12 +76,12 @@ function Kennel:Initialize()
 
     local title = header:CreateFontString(nil, "OVERLAY", "GameFontHighlightLarge")
     title:SetPoint("LEFT", 16, 0)
-    title:SetText("|cffffd100🏦 Safari Kennel & Vault|r")
+    title:SetText("|cffffd100🐾 Junior Safari Reserve|r")
     header.Title = title
 
     local subTitle = header:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
     subTitle:SetPoint("LEFT", title, "RIGHT", 12, 0)
-    subTitle:SetText("|cff00ff99[ Banker Companion Vault ]|r")
+    subTitle:SetText("|cff00ff99[ Banked Companion Vault ]|r")
 
     -- Close Button
     local closeBtn = CreateFrame("Button", nil, header, "UIPanelCloseButton")
@@ -170,7 +170,7 @@ function Kennel:Initialize()
     -- Right Area: Enclosure Boxes (Bank)
     local boxTitle = frame:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
     boxTitle:SetPoint("TOPLEFT", 256, -52)
-    boxTitle:SetText("|cffffd100Boarded Enclosures (Kennel Bank)|r")
+    boxTitle:SetText("|cffffd100Reserve Enclosures (Bank)|r")
 
     -- Box Tab Buttons (1 to 5)
     frame.BoxTabs = {}
@@ -293,31 +293,8 @@ function Kennel:Initialize()
 
     local statusText = bottomBar:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
     statusText:SetPoint("RIGHT", -16, 0)
-    statusText:SetText("Boarded: 0 companions")
+    statusText:SetText("Reserved: 0 companions")
     frame.StatusText = statusText
-
-    -- Auto-dock and show with Banker BankFrame
-    local eventFrame = CreateFrame("Frame", "ForeverSafariKennelBankEvents", frame)
-    eventFrame:RegisterEvent("BANKFRAME_OPENED")
-    eventFrame:RegisterEvent("BANKFRAME_CLOSED")
-    eventFrame:RegisterEvent("GOSSIP_CLOSED")
-    eventFrame:SetScript("OnEvent", function(self, event)
-        if event == "BANKFRAME_OPENED" then
-            Kennel:ShowKennel()
-            if BankFrame and BankFrame:IsShown() and frame then
-                frame:ClearAllPoints()
-                frame:SetPoint("TOPLEFT", BankFrame, "TOPRIGHT", 10, 0)
-            end
-        elseif event == "BANKFRAME_CLOSED" then
-            if frame and frame:IsShown() then
-                frame:Hide()
-            end
-        elseif event == "GOSSIP_CLOSED" then
-            if frame and frame:IsShown() and not (BankFrame and BankFrame:IsShown()) then
-                frame:Hide()
-            end
-        end
-    end)
 end
 
 function Kennel:UpdateUI()
@@ -418,7 +395,7 @@ function Kennel:UpdateUI()
     end
 
     local totalBanked = #DB:GetKennelMobs()
-    frame.StatusText:SetText(string.format("Boarded: |cffffd100%d companions|r across all Enclosures", totalBanked))
+    frame.StatusText:SetText(string.format("Reserved: |cffffd100%d companions|r across all Enclosures", totalBanked))
 end
 
 function Kennel:ShowKennel()
@@ -443,3 +420,62 @@ function Kennel:Toggle()
         Kennel:ShowKennel()
     end
 end
+
+-- =========================================================================
+-- 🏦 BANKFRAME TAB INTEGRATION ("Junior Safari Reserve")
+-- =========================================================================
+local bankTab = nil
+
+local function EnsureBankTab()
+    if bankTab or not BankFrame then return bankTab end
+    bankTab = CreateFrame("Button", "ForeverSafariBankReserveTab", BankFrame, "CharacterFrameTabButtonTemplate")
+    bankTab:SetText("Junior Safari Reserve")
+    if PanelTemplates_TabResize then
+        pcall(PanelTemplates_TabResize, bankTab, 0)
+    end
+    -- Dock cleanly to BankFrame tab bar
+    if BankFrameTab2 and BankFrameTab2:GetPoint() then
+        bankTab:SetPoint("LEFT", BankFrameTab2, "RIGHT", -15, 0)
+    elseif BankFrameTab1 and BankFrameTab1:GetPoint() then
+        bankTab:SetPoint("LEFT", BankFrameTab1, "RIGHT", -15, 0)
+    else
+        bankTab:SetPoint("BOTTOMLEFT", BankFrame, "BOTTOMLEFT", 15, -30)
+    end
+    bankTab:SetScript("OnClick", function()
+        if frame and frame:IsShown() then
+            Kennel:Hide()
+        else
+            Kennel:ShowKennel()
+            if BankFrame and BankFrame:IsShown() and frame then
+                frame:ClearAllPoints()
+                frame:SetPoint("TOPLEFT", BankFrame, "TOPRIGHT", 10, 0)
+            end
+        end
+    end)
+    return bankTab
+end
+
+local bankEvents = CreateFrame("Frame", "ForeverSafariKennelBankEvents")
+bankEvents:RegisterEvent("BANKFRAME_OPENED")
+bankEvents:RegisterEvent("BANKFRAME_CLOSED")
+bankEvents:RegisterEvent("GOSSIP_CLOSED")
+
+bankEvents:SetScript("OnEvent", function(self, event)
+    if event == "BANKFRAME_OPENED" then
+        local tab = EnsureBankTab()
+        if tab then
+            tab:Show()
+        end
+    elseif event == "BANKFRAME_CLOSED" then
+        if frame and frame:IsShown() then
+            frame:Hide()
+        end
+        if bankTab then
+            bankTab:Hide()
+        end
+    elseif event == "GOSSIP_CLOSED" then
+        if frame and frame:IsShown() and not (BankFrame and BankFrame:IsShown()) then
+            frame:Hide()
+        end
+    end
+end)

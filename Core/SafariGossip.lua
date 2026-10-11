@@ -184,21 +184,6 @@ function SG:IsInnkeeper(unit)
         end
     end
 
-    -- 5. Olympus Check: If Olympus's "Bones" option is shown, we are 100% at an Innkeeper!
-    local f = rawget(_G, "GossipFrame")
-    local panel = f and f.GreetingPanel
-    local scroll = panel and panel.ScrollBox
-    if panel and scroll then
-        for _, child in ipairs({ panel:GetChildren() }) do
-            if child:IsShown() and child ~= scroll and not SG.IsOurButton(child) then
-                local text = child.GetText and child:GetText()
-                if text and string.find(text, "Bones", 1, true) then
-                    return true
-                end
-            end
-        end
-    end
-
     return false
 end
 
@@ -323,34 +308,37 @@ local function AcquireButton(parent, width, caption, iconTexture, onClick)
     return b
 end
 
--- Strictly identify addon-injected gossip rows (like Olympus's row), excluding GoodbyeButton / ScrollBars
-local function IsAddonGossipRow(child, scroll)
+-- Strictly identify addon-injected gossip rows (any third-party addon), excluding GoodbyeButton / ScrollBars / CloseButtons
+local function IsAddonGossipRow(child, scroll, panel)
     if not child or not child:IsShown() then return false end
     if child == scroll then return false end
     if SG.IsOurButton(child) then return false end
     if not child.GetObjectType or child:GetObjectType() ~= "Button" then return false end
 
     -- Exclude native Blizzard close/goodbye buttons
-    local name = child:GetName() or ""
-    if string.find(name, "Goodbye", 1, true) or string.find(name, "Close", 1, true) then
+    if panel and (child == panel.GoodbyeButton or child == panel.CloseButton) then
         return false
     end
-    local text = child.GetText and child:GetText() or ""
-    if text == "Goodbye" or text == "Cancel" then
+    local name = (child.GetName and child:GetName()) or ""
+    if string.find(name, "Goodbye", 1, true) or string.find(name, "Close", 1, true)
+        or string.find(name, "ScrollBar", 1, true) or string.find(name, "Thumb", 1, true) then
+        return false
+    end
+    local text = (child.GetText and child:GetText()) or ""
+    if text == "Goodbye" or text == "Cancel" or text == "Close" then
         return false
     end
 
-    -- Custom addon rows use GossipTitleButtonTemplate (possessing child.Icon or child.icon)
-    if child.Icon or child.icon then
-        return true
+    -- Position filter: native window footer buttons sit at the very bottom (within 22px of panel bottom)
+    if panel and panel.GetBottom and child.GetBottom then
+        local pBottom = panel:GetBottom()
+        local cBottom = child:GetBottom()
+        if pBottom and cBottom and cBottom < (pBottom + 22) then
+            return false
+        end
     end
 
-    -- Or title matches known addon option prefixes
-    if string.find(text, "Bones", 1, true) or string.find(text, ": ", 1, true) then
-        return true
-    end
-
-    return false
+    return true
 end
 
 -- Detect lowest external addon row on GreetingPanel
@@ -360,7 +348,7 @@ local function FindLowestExternalButton(panel, scroll, bar)
 
     if panel and panel.GetChildren then
         for _, child in ipairs({ panel:GetChildren() }) do
-            if child ~= bar and IsAddonGossipRow(child, scroll) then
+            if child ~= bar and IsAddonGossipRow(child, scroll, panel) then
                 local bottom = child:GetBottom()
                 if bottom and bottom < minBottom then
                     minBottom = bottom
