@@ -23,7 +23,7 @@ function SE:GetAttunementRank(points)
     for i = #ranks, 1, -1 do
         local minPoints = ranks[i].minPoints
         if CP and CP.GetDruidRankThreshold then
-            minPoints = CP:GetDruidRankThreshold(minPoints, pClass)
+            minPoints = CP:GetDruidRankThreshold(minPoints, pClass, i)
         end
         if points >= minPoints then
             return ranks[i]
@@ -42,20 +42,20 @@ function SE:GetRankProgress(points)
 
     local curMin = currentRank.minPoints
     if CP and CP.GetDruidRankThreshold then
-        curMin = CP:GetDruidRankThreshold(curMin, pClass)
+        curMin = CP:GetDruidRankThreshold(curMin, pClass, currentRank.rank)
     end
 
     if not nextRank then
         local maxPts = currentRank.maxPoints
         if CP and CP.GetDruidRankThreshold then
-            maxPts = CP:GetDruidRankThreshold(maxPts, pClass)
+            maxPts = CP:GetDruidRankThreshold(maxPts, pClass, currentRank.rank)
         end
         return currentRank, points, maxPts, 1.0 -- Max Rank V
     end
 
     local nextMin = nextRank.minPoints
     if CP and CP.GetDruidRankThreshold then
-        nextMin = CP:GetDruidRankThreshold(nextMin, pClass)
+        nextMin = CP:GetDruidRankThreshold(nextMin, pClass, nextRank.rank)
     end
 
     local pointsInCurrent = points - curMin
@@ -124,12 +124,13 @@ function SE:CalculateStats(creatureType, points, isElite, baseStatsOverride)
     local def = math.max(1, math.floor(rawDef * (typeMult.def or 1.0) * eliteMod * attunementMod))
     local spd = math.max(1, math.floor(rawSpd * (typeMult.spd or 1.0) * attunementMod))
 
-    -- 🏹 Hunter Class Passive: Pathfinder's Mastery (+25% Attack and Defense)
+    -- 🏹 Hunter Class Passive: Pathfinder's Mastery (+5% to +25% Attack and Defense)
     local CP = ns.ClassPassives
     if CP and CP.ApplyHunterStatBonus then
         local pClass = CP:GetPlayerClass()
-        atk = CP:ApplyHunterStatBonus(atk, "atk", pClass, nil)
-        def = CP:ApplyHunterStatBonus(def, "def", pClass, nil)
+        local mobRank = rankData and rankData.rank or 1
+        atk = CP:ApplyHunterStatBonus(atk, "atk", pClass, nil, mobRank)
+        def = CP:ApplyHunterStatBonus(def, "def", pClass, nil, mobRank)
     end
 
     return {

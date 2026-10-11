@@ -379,19 +379,19 @@ Type `/fsbag` or `/safari bag` to open your 20-slot Virtual Safari Bag.
 
 ## 12. Player Class Passives & Combat Mechanics
 
-Every character class in World of Warcraft grants an authentic, persistent tactical bonus to all active companions owned by that character. All percentage calculations and thresholds are strictly rounded up via `math.ceil()`.
+Every character class in World of Warcraft grants an authentic, persistent tactical bonus to all active companions owned by that character. **Bonus percentages scale dynamically with companion Attunement Rank**: at Rank 1 bonuses start at **1/5** of the maximum, scaling linearly up to the full **5/5** values at Rank V (Bestial Symbiosis). All percentage calculations and thresholds are strictly rounded up via `math.ceil()`.
 
-| Class | Passive Name | Core Mechanic | Effect Details |
+| Class | Passive Name | Core Mechanic | Effect Details (Rank 1 ➔ Rank 5) |
 | :--- | :--- | :--- | :--- |
-| 🛡️ **Warrior** | **Marshal's Tenacity** | Physical Damage Mitigation | Reduces all incoming physical damage dealt to your companion by **25%** (rounded up). |
-| 🛡️ **Paladin** | **Aura of Light** | Damage-to-Healing Conversion | Exactly **25%** of all incoming damage taken by your companion is converted back into healing HP (rounded up). |
-| ⚡ **Shaman** | **Primal Rebirth** | Ancestral Revive | Flat **50% chance** to revive at **50% health** the first time your companion is knocked out in any battle. |
-| 🔮 **Mage** | **Arcane Celerity & Ward** | Celerity Slow & Spell Ward | Halves attacker speed for `Attunement Rank` turns when hit; companion takes **25% reduced** non-physical damage. |
-| 🗡️ **Rogue** | **Shadow Evasion** | Opportunistic Evasion | Increases opponent base miss chance against your companion by **+25%**. |
-| ✝️ **Priest** | **Divine Grace** | Tactical Emergency Heal | Grants an active **`[Divine Grace]`** button in `/fsbattle`. Usable up to `Rank` times (1–5) per battle; restores **25% Max HP** without consuming attacking turn. |
-| 🏹 **Hunter** | **Pathfinder's Mastery** | Baseline Conditioning | Companions gain a permanent **+25% bonus** to baseline Attack and Defense stats. |
-| 🍃 **Druid** | **Wild Symbiosis** | Rapid Attunement & Discount | Companions gain **+25% Attunement points** from all sources; Attunement rank thresholds are reduced by **25%**. |
-| 🔮 **Warlock** | **Curse of Suppression** | Passive Nullification | Reduces opposed player class bonuses by **50%** in trainer battles and multiplayer duels. |
+| 🛡️ **Warrior** | **Marshal's Tenacity** | Physical Damage Mitigation | Reduces all incoming physical damage dealt to your companion by **5% per Rank** (5% at Rank 1, up to **25%** at Rank V, rounded up). |
+| 🛡️ **Paladin** | **Aura of Light** | Damage-to-Healing Conversion | Converts **5% per Rank** of all incoming damage taken back into healing HP (5% at Rank 1, up to **25%** at Rank V, rounded up). |
+| ⚡ **Shaman** | **Primal Rebirth** | Ancestral Revive | Flat **10% per Rank chance** (10% at Rank 1, up to **50%** at Rank V) to revive at **50% health** the first time your companion is knocked out in battle. |
+| 🔮 **Mage** | **Arcane Celerity & Ward** | Celerity Slow & Spell Ward | Halves attacker speed for `Attunement Rank` turns (1–5 turns) when hit; companion gains **5% per Rank** (up to **25%** at Rank V) non-physical damage resistance. |
+| 🗡️ **Rogue** | **Shadow Evasion** | Opportunistic Evasion | Increases opponent base miss chance against your companion by **+5% per Rank** (+5% at Rank 1, up to **+25%** at Rank V). |
+| ✝️ **Priest** | **Divine Grace** | Tactical Emergency Heal | Grants active **`[Divine Grace]`** console button in `/fsbattle`. Usable up to `Rank` times (1–5) per battle; restores **5% Max HP per Rank** (up to **25%** at Rank V, rounded up). |
+| 🏹 **Hunter** | **Pathfinder's Mastery** | Baseline Conditioning | Companions gain **+5% per Rank** (+5% at Rank 1, up to **+25%** at Rank V, rounded up) to baseline Attack and Defense stats. |
+| 🍃 **Druid** | **Wild Symbiosis** | Rapid Attunement & Discount | Companions gain **+5% per Rank** (up to **+25%** at Rank V) Attunement points; Attunement rank thresholds are reduced by **5% per Rank** (up to **-25%** at Rank V). |
+| 🔮 **Warlock** | **Curse of Suppression** | Passive Nullification | Reduces opposed player class bonuses by **10% per Rank** (10% at Rank 1, up to **50%** at Rank V) in trainer battles and multiplayer duels. |
 
 ---
 

@@ -666,7 +666,8 @@ function BE:ExecuteEnemyTurn()
     local CP = ns.ClassPassives
     if CP and CP.GetRogueMissBonus then
         local pClass = CP:GetPlayerClass()
-        local missPenalty = CP:GetRogueMissBonus(pClass, BE.State.opponentClass)
+        local pRank = player and player.attunementRank or 1
+        local missPenalty = CP:GetRogueMissBonus(pClass, BE.State.opponentClass, pRank)
         effectiveAccuracy = math.max(1, effectiveAccuracy - missPenalty)
     end
 
@@ -854,16 +855,18 @@ function BE:ApplyMoveEffects(move, attacker, defender, side)
         local oppClass = BE.State.opponentClass
 
         if targetSide == "player" and CP then
-            -- 🛡️ Warrior: Physical Damage Mitigation (-25%)
+            local dRank = defender and defender.attunementRank or 1
+
+            -- 🛡️ Warrior: Physical Damage Mitigation (5% to 25%)
             if move.type == "Physical" or move.type == "Normal" then
-                local red = CP:CalculatePhysicalDamageReduction(finalDmg, pClass, oppClass)
+                local red = CP:CalculatePhysicalDamageReduction(finalDmg, pClass, oppClass, dRank)
                 if red > 0 then
                     finalDmg = math.max(1, finalDmg - red)
                     BE:AddLog(string.format("|cff996633[Marshal's Tenacity]|r Mitigated %d physical damage!", red))
                 end
             else
-                -- 🔮 Mage: Non-physical Damage Mitigation (-25%)
-                local red = CP:CalculateMageSpellReduction(finalDmg, move.type, pClass, oppClass)
+                -- 🔮 Mage: Non-physical Damage Mitigation (5% to 25%)
+                local red = CP:CalculateMageSpellReduction(finalDmg, move.type, pClass, oppClass, dRank)
                 if red > 0 then
                     finalDmg = math.max(1, finalDmg - red)
                     BE:AddLog(string.format("|cff33ccff[Arcane Ward]|r Absorbed %d non-physical damage!", red))
@@ -872,7 +875,7 @@ function BE:ApplyMoveEffects(move, attacker, defender, side)
 
             -- 🔮 Mage: Speed Suppression (Halves enemy speed for Attunement Rank turns)
             if pClass == "MAGE" and attacker then
-                local slowTurns = CP:GetMageSlowDuration(defender.attunementRank or 1, oppClass)
+                local slowTurns = CP:GetMageSlowDuration(dRank, oppClass)
                 BE.State.buffs[side].spd = {
                     multiplier = 0.5,
                     turns = slowTurns,
@@ -880,8 +883,8 @@ function BE:ApplyMoveEffects(move, attacker, defender, side)
                 BE:AddLog(string.format("|cff33ccff[Arcane Celerity]|r %s's speed halved for %d turns!", attacker.name, slowTurns))
             end
 
-            -- 🛡️ Paladin: Damage-to-Healing Conversion (25%)
-            local healBack = CP:CalculatePaladinHealback(finalDmg, pClass, oppClass)
+            -- 🛡️ Paladin: Damage-to-Healing Conversion (5% to 25%)
+            local healBack = CP:CalculatePaladinHealback(finalDmg, pClass, oppClass, dRank)
             if healBack > 0 then
                 defender.currentHP = math.min(defender.maxHP, defender.currentHP + healBack)
                 BE:AddLog(string.format("|cffffd100[Aura of Light]|r Converted %d damage into holy healing!", healBack))
@@ -904,9 +907,10 @@ function BE:ApplyMoveEffects(move, attacker, defender, side)
             defender.currentHP = math.max(0, defender.currentHP - finalDmg)
         end
 
-        -- ⚡ Shaman: Primal Rebirth (Flat 50% revive at 50% max HP)
+        -- ⚡ Shaman: Primal Rebirth (10% to 50% chance to revive at 50% max HP)
         if targetSide == "player" and defender.currentHP <= 0 and pClass == "SHAMAN" and not BE.State.shamanRevived then
-            local canRevive = CP:CanShamanRevive(pClass, BE.State.shamanRevived, oppClass)
+            local dRank = defender and defender.attunementRank or 1
+            local canRevive = CP:CanShamanRevive(pClass, BE.State.shamanRevived, oppClass, dRank)
             if canRevive then
                 BE.State.shamanRevived = true
                 local reviveHP = math.ceil(defender.maxHP * 0.5)
@@ -1155,7 +1159,7 @@ function BE:UseDivineGrace()
     end
 
     BE.State.priestHealUses = BE.State.priestHealUses + 1
-    local healAmt = CP:GetPriestHealAmount(player.maxHP, pClass, BE.State.opponentClass)
+    local healAmt = CP:GetPriestHealAmount(player.maxHP, pClass, BE.State.opponentClass, player.attunementRank or 1)
     player.currentHP = math.min(player.maxHP, player.currentHP + healAmt)
     PlaySound(895)
     BE:AddLog(string.format("|cffffffff[Divine Grace]|r Restored |cff00ff00%d HP|r to %s! (%d/%d used)", healAmt, player.name, BE.State.priestHealUses, maxUses))

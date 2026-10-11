@@ -205,16 +205,17 @@ Companions progress through bonding, feeding, and battlefield survival rather th
 
 ### 15. Player Class Passives & Combat Mechanics
 * **Authentic Class Synergy**: Every player class grants an authentic, persistent tactical bonus to all active companions owned by that character.
+* **Attunement Rank Scaling**: All bonus percentages scale linearly with companion Attunement Rank: **1/5 at Rank 1, 2/5 at Rank 2 ... up to full 5/5 values at Rank 5**.
 * **Strict Rounding**: All percentage calculations and thresholds strictly round up via `math.ceil()`.
-  * 🛡️ **Warrior (Marshal's Tenacity)**: Physical damage taken reduced by 25%.
-  * 🛡️ **Paladin (Aura of Light)**: 25% of incoming damage converted back into healing HP.
-  * ⚡ **Shaman (Primal Rebirth)**: 50% chance to revive at 50% HP on companion knockout.
-  * 🔮 **Mage (Arcane Celerity & Ward)**: Halves attacker speed for Attunement Rank turns; 25% non-physical damage resistance.
-  * 🗡️ **Rogue (Shadow Evasion)**: +25% opponent miss chance.
-  * ✝️ **Priest (Divine Grace)**: Active `[Divine Grace]` emergency heal console button (1–5 uses per battle, heals 25% Max HP).
-  * 🏹 **Hunter (Pathfinder's Mastery)**: +25% baseline Attack and Defense stats.
-  * 🍃 **Druid (Wild Symbiosis)**: +25% Attunement gains from all sources, -25% Attunement rank thresholds.
-  * 🔮 **Warlock (Curse of Suppression)**: Reduces opposed player class bonuses by 50% in trainer battles and duels.
+  * 🛡️ **Warrior (Marshal's Tenacity)**: Physical damage taken reduced by **5% per Rank** (up to 25% at Rank V).
+  * 🛡️ **Paladin (Aura of Light)**: **5% per Rank** of incoming damage converted back into healing HP (up to 25% at Rank V).
+  * ⚡ **Shaman (Primal Rebirth)**: **10% per Rank chance** (up to 50% at Rank V) to revive at 50% HP on companion knockout.
+  * 🔮 **Mage (Arcane Celerity & Ward)**: Halves attacker speed for `Rank` turns; **5% per Rank** (up to 25% at Rank V) non-physical damage resistance.
+  * 🗡️ **Rogue (Shadow Evasion)**: **+5% per Rank** (up to +25% at Rank V) opponent miss chance.
+  * ✝️ **Priest (Divine Grace)**: Active `[Divine Grace]` emergency heal console button (1–5 uses per battle, heals **5% per Rank**, up to 25% Max HP).
+  * 🏹 **Hunter (Pathfinder's Mastery)**: **+5% per Rank** (up to +25% at Rank V) baseline Attack and Defense stats.
+  * 🍃 **Druid (Wild Symbiosis)**: **+5% per Rank** (up to +25% at Rank V) Attunement gains; Attunement rank thresholds reduced by **5% per Rank** (up to -25% at Rank V).
+  * 🔮 **Warlock (Curse of Suppression)**: Reduces opposed player class bonuses by **10% per Rank** (up to 50% at Rank V) in trainer battles and duels.
 
 ### 16. Moonglade Cenarion Nursery & Co-op Breeding Program
 * **Moonglade Sacred Sanctuary**: Gated at the Cenarion Circle in Moonglade (Nighthaven) via NPC gossip or `/fsnursery`.
