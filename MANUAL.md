@@ -202,11 +202,16 @@ Companions in Forever Safari do not gain numerical levels through grinding. Inst
 > [!IMPORTANT]
 > **Anti-Cannibalism Safeguard**: Companions will reject incompatible food with friendly dialogue (e.g. *"A Wolf refuses to eat Gears!"*). Incompatible food is never consumed or wasted.
 
-### 📜 Beast Training Grimoire & Move Teaching
+### 📜 Beast Training Grimoire, Move Teaching & 4-Role Taxonomy
 * All creatures within the same family (e.g. all Felines) share a universal **Family Grimoire**.
 * Capturing new wild beasts automatically discovers and unlocks their natural abilities into your Grimoire.
 * Open the **Training Drawer** in your Field Guide to assign moves to unlocked Slots (Slot 1–4 unlock as Attunement Rank increases).
-* Choose from 94 lore-authentic abilities including Feral Druid staples (**Dash**, **Cower**, **Mangle**, **Shred**, **Swipe**, **Faerie Fire**, **Tiger's Fury**, **Skull Bash**) and legendary Apex Signatures (**Hyper Velocity**, **King's Roar**, **Void Stream**).
+* Choose from 94 lore-authentic abilities categorized into a structured **4-Role Taxonomy**:
+  * ⚔️ **Offensive** (63 Moves): All damaging attacks (`power > 0`). In turn-based combat, advances the Druid Ecliptic Tides pendulum toward **Solar** power.
+  * 🛡️ **Defensive** (8 Moves): Protective barriers, evasion, recovery, and shields (`Cower`, `Shell Shield`, `Frenzied Regeneration`, `Burrow`, `Prowl`, `Hardened Carapace`, `Stone Form`, `Barkskin`). Advances Ecliptic Tides toward **Lunar** power.
+  * ⚠️ **Field Hazard** (11 Moves): Ground traps, debuffs, status effects, and control moves (`Screech`, `Faerie Fire`, `Web Wrap`, `Alarm Bark`, `Hyena Cackle`, `Slumbering Venom`, `Sticky Web`, `Spore Cloud`, `Intimidating Roar`, `Stun Needle`, `Dust Cloud`). Advances Ecliptic Tides toward **Lunar** power.
+  * 🌦️ **Weather** (12 Moves): Atmospheric environmental shifts and domain conditions (`Rain Dance`, `Sunny Day`, `Sandstorm`, `Blizzard`, `Moonlight`, `Thunderstorm`, `Shadow Mist`, `Toxic Fog`, `Clear Skies`, `Nature's Wrath`, `Volcanic Ash`, `Arcane Winds`). Advances Ecliptic Tides toward **Lunar** power.
+* Includes legendary Apex Signatures (**Hyper Velocity**, **King's Roar**, **Void Stream**, **Shadowfang Rend**, **Crushing Clamp**).
 
 ---
 
@@ -278,32 +283,42 @@ Safari Tokens (`[INV_Misc_Coin_02]`) are the official currency of the Nesingwary
 
 ---
 
-## 8. Town Facilities & Logistics (Kennel, Outfitter, Mailbox)
+## 8. Town Facilities & Logistics (Junior Safari League Gossip & Vault)
 
-Forever Safari operates with **Zero Out-of-World Cheat Access**. Storage, shopping, and mailing facilities are accessed strictly by visiting authorized NPCs in towns and settlements.
+Forever Safari operates with **Zero Out-of-World Cheat Access** and **Zero Automatic Frame Intrusions**. Services are accessed strictly on demand through Blizzard's native NPC dialogue and banking interfaces.
 
-### 🏦 1. Bankers (Safari Kennel — The Pokémon Bank of Azeroth)
-Interact with any town **Banker** (or open any Bank Vault) to open the Safari Kennel:
-* **Active Squad (4 Slots)**: Your active adventuring party.
-* **Storage Enclosure Boxes**: Deposit, withdraw, and organize captured companions.
-* **Storage Vault Only**: Bankers strictly manage companion boarding; they do not sell supplies or heal pets.
+> [!NOTE]
+> **Silence on Non-Service NPCs**: Interacting with generic world NPCs (guards, vendors, flight masters, quest givers) will never trigger addon popups or HUD elements.
+> **Universal Row-Stacking**: On any NPC dialogue with third-party addon modifications (e.g. Olympus's *Bones!: Teach me Bones*, Questie), Forever Safari dynamically anchors directly beneath the lowest external element, guaranteed to sit at the bottom without overlapping.
 
-### 🏨 2. Innkeepers (Rest & Revive — The Pokémon Center of Azeroth)
+### 🏨 1. Innkeepers (Junior Safari League: Rest & Revive Squad)
 Interact with any town **Innkeeper**:
-* **Universal Rest & Revive**: Speaking with an Innkeeper automatically tends to your companions, restoring all active squad members and banked companions to full 100% HP and reviving fainted pets.
-* **Exclusive Medical Sanctuary**: Innkeepers are the **only** NPCs that can revive and heal pets in towns.
-* **No Outfitter or Banking**: Innkeepers strictly handle squad recuperation and resting.
+* **Opt-In Dialogue Option**: Appends `Junior Safari League: Rest and Revive Squad` to Blizzard's native `GossipFrame`.
+* **Squad Restoration**: Fully revives fainted companions and heals all squad and reserve companions to 100% HP.
+* **Exclusive Medical Sanctuary**: Innkeepers strictly handle squad recuperation and resting; they do not sell supplies or manage bank vaults.
 
-### 🎯 3. Pet Trainers (Nesingwary Safari Outfitter — Universal Class Access)
-Interact with any **Pet Trainer** in any major city or outpost (accessible to **all classes**, not just Hunters):
-* **Exclusive Outfitter Access**: Pet Trainers are the **only** NPCs with access to the Safari Outfitter shop (`/fsshop`).
+### 🎯 2. Pet Trainers (Outpost Battles & Nesingwary Safari Outfitter)
+Interact with any **Pet Trainer** in any major city or settlement (accessible to **all classes**, not just Hunters):
+* **Junior Safari League: Challenge Outpost Leader**: Issue an official battle challenge against the Outpost Leader right from the dialogue window.
+* **Junior Safari League: Visit Outfitter**: Opens the Nesingwary Safari Outfitter shop (`/fsshop`).
 * **Capture Gear**: Purchase Copper Snares (1 Token), Iron Nets (5 Tokens), Mithril Traps (10 Tokens), and Thorium Cages (25 Tokens).
 * **Transport Crates**: Stock up on Copper, Iron, Mithril, and Thorium Crates.
 * **Diets & Treats**: Buy Safari Treats, Grand Feasts, and 11 dietary sustenance items.
 * **Medicine**: Purchase Healing Salves and Revival Crystals for field emergencies.
-* **Supplies Only**: Pet Trainers do not heal or revive pets in town; players must visit an Innkeeper to rest.
 
-### 📮 4. Mailboxes (Nesingwary Safari Dispatch Hub)
+### 🌿 3. Cenarion Keepers (Moonglade Co-Op Breeding Nursery)
+Interact with any Cenarion Keeper in Moonglade (Nighthaven):
+* **Junior Safari League: Breed My Pet**: Opens the Cenarion Nursery interface (`/fsnursery`) to breed compatible companions and discover egg offspring with inherited moves and stats.
+
+### 🏦 4. Bankers (Junior Safari Reserve Tab on BankFrame)
+Interact with any town **Banker** (or open any Bank Vault):
+* **Integrated Bank Tab**: Adds a dedicated **Junior Safari Reserve** tab directly to Blizzard's `BankFrame`.
+* **On-Demand Companion Vault**: Clicking the tab opens the companion vault docked alongside `BankFrame`.
+* **Active Squad (4 Slots)**: Your active adventuring party.
+* **Storage Enclosure Boxes**: Deposit, withdraw, and organize up to 100 captured companions across 5 bank boxes.
+* **Clean Cleanup**: Closes cleanly whenever `BankFrame` closes.
+
+### 📮 5. Mailboxes (Nesingwary Safari Dispatch Hub)
 Interact with any physical **Mailbox** in town:
 * Click the custom **[Safari]** tab docked to Blizzard's `MailFrame`.
 * View received letters, bounty assignments, and unbox parcels containing earned token grants and supplies.

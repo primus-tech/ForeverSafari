@@ -277,7 +277,29 @@
 
 ---
 
-## 📍 Phase 20: Beast Taxonomy Refinement & Elemental Saurians (Pending ⏳)
+## 📍 Phase 20: Junior Safari League NPC Gossip, Bank Reserve & Ecliptic Tides (Completed ✅)
+* [x] **Junior Safari League NPC Gossip Menu Integration (`Core/SafariGossip.lua`)**:
+  * Clean, opt-in client-side integration with Blizzard's native `GossipFrame.GreetingPanel`.
+  * **Pet Trainers**: `Junior Safari League: Challenge Outpost Leader` and `Junior Safari League: Visit Outfitter`.
+  * **Innkeepers**: `Junior Safari League: Rest and Revive Squad` (100% squad HP restoration and fainted pet revival).
+  * **Cenarion Keepers (Moonglade)**: `Junior Safari League: Breed My Pet` (Nursery interface).
+  * **Non-Service NPCs**: Generic NPCs remain silent and never trigger addon popups or HUD elements.
+* [x] **Universal Addon Row Stacking Engine**:
+  * Dynamically scans visible button children on `GreetingPanel` to identify external third-party modifications (such as Olympus's `Bones!: Teach me Bones` or Questie).
+  * Evaluates screen bottom coordinates (`child:GetBottom()`) and anchors Forever Safari's rows beneath the lowest external button, guaranteed to sit lowest on screen with zero hardcoded strings.
+  * Dual-pass execution (Frame 0 immediate render + Frame 2 re-anchor) to cleanly handle event loop timings across different addons.
+* [x] **Junior Safari Reserve Bank Tab (`UI/KennelFrame.lua`)**:
+  * Replaced intrusive auto-open behavior with an integrated **Junior Safari Reserve** tab mounted on Blizzard's `BankFrame`.
+  * Multi-template discovery (`PanelTabButtonTemplate`, `CharacterFrameTabButtonTemplate`, `UIPanelButtonTemplate`, and fallback) to support both legacy and modern `PortraitFrameTemplate` BankFrame architectures without Lua errors.
+  * Toggles the companion vault docked alongside `BankFrame` and cleans up automatically on `BANKFRAME_CLOSED`.
+* [x] **Druid Class Passive: Ecliptic Tides & 4-Role Ability Taxonomy**:
+  * **Ecliptic Tides**: In-combat celestial pendulum tracking Solar vs. Lunar power up to companion Attunement Rank (1-5).
+  * 5% per point surge check per turn with automatic 100% discharge at full meter capacity (Solar cleanses a debuff and grants a HoT; Lunar applies a Brambles Nature damage shield).
+  * Standardized all 94 abilities across a 4-role taxonomy: Offensive (63 moves, builds Solar), Defensive (8 moves, builds Lunar), Field Hazard (11 moves, builds Lunar), and Weather (12 moves, builds Lunar).
+
+---
+
+## 📍 Phase 21: Beast Taxonomy Refinement & Elemental Saurians (Pending ⏳)
 * [ ] **Discrete Beast Family Stratification**:
   * Formalize **Kodos** and **Tallstriders** as strictly decoupled, distinct families within the Beast genus across all database tables, dietary rules, and family movepools.
   * Establish **Thunder Lizards** as their own dedicated saurian family (`Thunder Lizard` / `Lizard`) within Beasts.
@@ -293,7 +315,7 @@
 
 ---
 
-## 📍 Phase 21: Future Expansions & Social Leagues (Pending ⏳)
+## 📍 Phase 22: Future Expansions & Social Leagues (Pending ⏳)
 * [ ] **Safari Outpost & Regional League System**: Implementation of the 5-Tier Faction-Parallel circuit, gym leaders, and 3D Field Guide Badge Case (`Docs/SAFARI_OUTPOST_SYSTEM.md`).
   * **Outpost Defeat Lockout (Anti-Farm Protection)**: Once an Outpost Leader / Gym is bested and awards its regional badge/crest, the outpost is locked against battle farming; subsequent interactions provide congratulatory dialogue and route the player to the next regional tier.
 * [ ] **PvP Safari Tournaments & Guild Ladders**: Cross-faction companion duel tournaments and leaderboards.

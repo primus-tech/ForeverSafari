@@ -127,9 +127,9 @@ Stationed at **Hemet Nesingwary's Safari Camp** in central Stranglethorn Vale. O
 
 ## ⚙️ Addon Technical Architecture
 
-1. **Zero-Taint Interaction**:
-   * Outposts anchor cleanly to existing world NPC targets or proximity triggers on `UIParent`.
-   * Never modifies Blizzard's native gossip or quest frames.
+1. **Zero-Taint Dialogue Integration**:
+   * Outpost leaders are challenged directly via native `GossipFrame` integration (`Junior Safari League: Challenge Outpost Leader`).
+   * Never injects into server gossip tables or replaces Blizzard templates; uses client-side extent borrowing and universal stacking beneath any third-party addon rows.
 2. **Faction Isolation Guarantee**:
    * Uses standard same-faction Addon Comm channels (`ForeverSafariComm`).
    * Alliance and Horde retain completely distinct ladder tracks until meeting in neutral territory.

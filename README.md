@@ -108,6 +108,11 @@ Companions progress through bonding, feeding, and battlefield survival rather th
   * **Aku'mai** (NPC `4829`): **Void Stream** (`[1003]`, hybrid Water/Shadow surge dealing bonus damage against poisoned foes).
   * **Snarlmane** (NPC `1948`): **Shadowfang Rend** (`[1004]`, shadow necrotic curse).
   * **Rotgrip** (NPC `12258`): **Crushing Clamp** (`[1005]`, high-damage crocolisk lock-jaw clamp).
+* **4-Role Ability Taxonomy Across All 94 Moves**:
+  * ⚔️ **Offensive** (63 Moves): All direct damaging abilities (`power > 0`). In turn-based combat, advances the Druid Ecliptic Tides meter toward **Solar** power.
+  * 🛡️ **Defensive** (8 Moves): Protective barriers, evasion, recovery, and shields (`Cower`, `Shell Shield`, `Frenzied Regeneration`, `Burrow`, `Prowl`, `Hardened Carapace`, `Stone Form`, `Barkskin`). Advances Ecliptic Tides toward **Lunar** power.
+  * ⚠️ **Field Hazard** (11 Moves): Ground traps, debuffs, status effects, and control moves (`Screech`, `Faerie Fire`, `Web Wrap`, `Alarm Bark`, `Hyena Cackle`, `Slumbering Venom`, `Sticky Web`, `Spore Cloud`, `Intimidating Roar`, `Stun Needle`, `Dust Cloud`). Advances Ecliptic Tides toward **Lunar** power.
+  * 🌦️ **Weather** (12 Moves): Atmospheric environmental shifts and domain conditions (`Rain Dance`, `Sunny Day`, `Sandstorm`, `Blizzard`, `Moonlight`, `Thunderstorm`, `Shadow Mist`, `Toxic Fog`, `Clear Skies`, `Nature's Wrath`, `Volcanic Ash`, `Arcane Winds`). Advances Ecliptic Tides toward **Lunar** power.
 
 ### 5. NPC Rival Battler Engine (Humanoids as AI Trainers)
 * **Challenging Azeroth's Humanoids**: Targeting and challenging any roaming Humanoid mob across Azeroth (e.g. Defias Cutthroats, Kobold Miners, Murloc Tidecallers, Riverpaw Gnolls, Kolkar Centaurs, Scarlet Crusaders, Dark Iron Dwarves, Syndicate Rogues, Southsea Pirates, Bloodscalps, Ogres, Venture Co., Twilight Cultists, or Nesingwary Safari Trackers) initiates an **AI Trainer Battle** rather than a wild creature encounter.
@@ -153,28 +158,26 @@ Companions progress through bonding, feeding, and battlefield survival rather th
   * 🍖 **Consumables**: Safari Treats (+50 Attunement), Grand Safari Feasts (+100 Attunement to full team), Safari Healing Salves (100% HP heal), and Revival Crystals.
 * **Context-Sensitive Actions**: Right-Clicking items in the bag automatically uses or feeds your active companion, or opens the 3D Metamorphosis pedestal. Shift-Clicking any item links it directly into chat.
 
-### 10. Town Logistics: Bankers, Innkeepers & Pet Trainers
-* **Zero Out-of-World Access**: Store and bank interfaces are accessed **exclusively when interacting with authorized NPCs in town** via zero-taint standalone sidecar windows.
-* **🏦 Bankers (Safari Kennel — The Pokémon Bank of Azeroth)**:
-  * **Bank Vault Access**: Interacting with any town **Banker** (or opening the Bank vault) opens the **Safari Kennel** sidecar.
-  * **Active Squad vs. Bank Enclosures**: Players carry up to 4 active battle companions in their field squad. The remaining creatures are stored across **Enclosure Bank Boxes** (20 slots per box = 100 banked companions).
-  * **Interactive Pedestals & Transfer**: Withdraw, deposit, and swap companions seamlessly between your active 4-member squad and bank enclosures.
-  * **Transport Crate Logistics**: If the player's active squad is full (**4/4**), capturing a wild beast auto-consumes **1 matching (or higher tier) Transport Crate** from the Safari Bag and safely ships the specimen to the **Safari Kennel** at the Banker.
-  * **Vault Storage Only**: Bankers strictly manage companion boarding; they do not sell supplies or heal pets.
-* **🏨 Innkeepers (Rest & Revive — The Pokémon Center of Azeroth)**:
-  * **Universal Rest & Revive**: Speaking with any town **Innkeeper** automatically tends to your companions, restoring all active and banked companions to full 100% HP and reviving fainted pets.
-  * **Exclusive Medical Sanctuary**: Innkeepers are the **only** NPCs that can revive and heal pets in towns.
-  * **No Outfitter or Banking**: Innkeepers strictly handle squad recuperation and resting.
-* **🎯 Pet Trainers (Nesingwary Safari Outfitter — Universal Class Access)**:
-  * **Accessible to ALL Classes**: Non-Hunter classes (Warriors, Mages, Rogues, Priests, Warlocks, Paladins, Shamans, Druids) and Hunters alike can interact with town Pet Trainers.
-  * **Exclusive Outfitter Access**: Pet Trainers are the **only** NPCs with access to the Safari Outfitter shop (`/fsshop`).
-  * **Category Tabs**:
-    * 🕸️ **Capture Gear**: Copper Snare, Iron Net, Mithril Trap, Thorium Cage.
-    * 📦 **Transport Crates**: Copper, Iron, Mithril, and Thorium Crates with color-coded quality tints.
-    * 🥩 **Treats & Diets**: Safari Treats, Grand Feasts, and 11 canonical Safari diet items.
-    * 🧪 **Medicine & Aid**: Healing Salve and Revival Crystals for field emergencies.
-  * **Beneath-the-Item Card Layout**: Each item displays the number owned (`Owned: X`), token cost (`Cost: X Tokens`), and `[ Buy x1 ]` button directly beneath the item name and description.
-  * **Supplies Only**: Pet Trainers do not heal or revive pets in town; players must visit an Innkeeper to rest.
+### 10. Town Logistics: Junior Safari League Gossip & Vault Integration
+* **Zero Out-of-World Access & Zero Popup Intrusions**: Town interactions are unified directly under Blizzard's native dialogue and banking frames. No popups or sidecars appear automatically; all services are accessed on demand.
+* **Non-Service NPCs Remain Silent**: Interacting with generic NPCs across Azeroth (guards, vendors, flight masters, mayors) will never trigger addon popups or HUD elements.
+* **🏨 Innkeepers (Junior Safari League: Rest & Revive Squad)**:
+  * **Opt-In Dialogue Option**: Speaking with an Innkeeper appends `Junior Safari League: Rest and Revive Squad` to Blizzard's native `GossipFrame`.
+  * **Restoration**: Fully revives fainted companions, heals all squad and reserve companions to 100% HP, and plays the rest toast.
+  * **Exclusive Sanctuary**: Innkeepers strictly handle squad recuperation and resting; they do not sell supplies or manage bank vaults.
+* **🎯 Pet Trainers (Junior Safari League: Outpost Battles & Outfitter)**:
+  * **Accessible to ALL Classes**: Non-Hunter classes and Hunters alike can interact with town Pet Trainers.
+  * **Junior Safari League: Challenge Outpost Leader**: Issue a formal battle challenge against the Outpost Leader right from the dialogue window.
+  * **Junior Safari League: Visit Outfitter**: Opens the Nesingwary Safari Supplies shop (`/fsshop`) with Capture Gear, Transport Crates, Diets, and Medicine.
+* **🌿 Cenarion Keepers in Moonglade (Junior Safari League: Breed My Pet)**:
+  * **Cenarion Nursery Access**: Speaking with Keepers in Moonglade (Nighthaven) appends `Junior Safari League: Breed My Pet` to the gossip window, opening the co-op companion breeding nursery.
+* **🏦 Bankers (Junior Safari Reserve Tab on BankFrame)**:
+  * **Seamless Tab Integration**: Interacting with any town **Banker** adds a dedicated **Junior Safari Reserve** tab directly to Blizzard's `BankFrame`.
+  * **On-Demand Companion Vault**: Clicking the tab opens the companion vault docked alongside `BankFrame`, managing your 4-member active squad and 5 Enclosure Bank Boxes (100 banked companions).
+  * **Zero Taint**: Closes cleanly when the bank window closes (`BANKFRAME_CLOSED`).
+* **Universal Gossip Row-Stacking Guarantee**:
+  * On any NPC with gossip integration, Forever Safari dynamically evaluates all third-party addon rows on `GossipFrame.GreetingPanel` (e.g. Olympus's `Bones!: Teach me Bones`, Questie, etc.) and anchors directly beneath the lowest external row.
+  * Forever Safari options are guaranteed to always be the bottom-most choices on screen with zero hardcoded strings or addon flags.
 
 ### 12. Real Quest Token Grants, Retroactive Compensation & Companion Bonding
 * **Real Quest Completion Rewards**: Turning in quests across Azeroth (`QUEST_TURNED_IN`) directly rewards the player with **Safari Tokens** calculated as **1/10 of the quest level, rounded up** (`math.ceil(QuestLevel / 10)`), minimum 1 Token.
