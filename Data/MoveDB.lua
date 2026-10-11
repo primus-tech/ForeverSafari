@@ -1444,26 +1444,19 @@ FS.FamilyMovepools = {
     ["Earth"]        = { 902, 904, 905, 903, 901 },
 }
 
--- Cross-register into Constants.ABILITIES for zero-friction engine interoperability
-if FS.Constants then
-    FS.Constants.ABILITIES = FS.Constants.ABILITIES or {}
-    for id, move in pairs(FS.MoveDB) do
-        FS.Constants.ABILITIES[id] = move
-        local key = string.gsub(move.name, "%s+", "_")
-        if not FS.Constants.ABILITIES[key] then
-            FS.Constants.ABILITIES[key] = move
-        end
-        if not FS.Constants.ABILITIES[move.name] then
-            FS.Constants.ABILITIES[move.name] = move
-        end
-    end
+function MoveDB:GetMove(moveId)
+    return self[moveId]
+end
+
+function MoveDB:GetFamilyDefaultMoves(family)
+    return self.FamilyMovepools and (self.FamilyMovepools[family] or self.FamilyMovepools["Canine"])
 end
 
 function FS:GetMove(moveId)
-    return self.MoveDB[moveId]
+    return MoveDB:GetMove(moveId)
 end
 
 function FS:GetFamilyDefaultMoves(family)
-    local pool = self.FamilyMovepools[family] or self.FamilyMovepools["Canine"]
-    return pool
+    return MoveDB:GetFamilyDefaultMoves(family)
 end
+

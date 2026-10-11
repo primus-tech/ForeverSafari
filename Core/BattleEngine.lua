@@ -63,18 +63,17 @@ function BE:GetEffectiveSpeed(mob)
     return spd
 end
 
--- Helper: Resolve ability data from either C.ABILITIES or MoveDB
+-- Helper: Resolve ability data directly from MoveDB
 function BE:GetMoveData(moveKey)
     if not moveKey then return nil end
-    if C.ABILITIES and C.ABILITIES[moveKey] then
-        return C.ABILITIES[moveKey]
-    end
+    local MoveDB = ns.MoveDB
+    if not MoveDB then return nil end
     local numKey = tonumber(moveKey)
-    if numKey and ForeverSafari.MoveDB and ForeverSafari.MoveDB[numKey] then
-        return ForeverSafari.MoveDB[numKey]
+    if numKey and MoveDB[numKey] then
+        return MoveDB[numKey]
     end
-    if ForeverSafari.MoveDB and ForeverSafari.MoveDB[moveKey] then
-        return ForeverSafari.MoveDB[moveKey]
+    if MoveDB[moveKey] then
+        return MoveDB[moveKey]
     end
     return nil
 end
@@ -633,8 +632,8 @@ function BE:ExecuteEnemyTurn()
     if #availableMoves > 0 then
         chosen = availableMoves[math.random(1, #availableMoves)]
     else
-        -- Fallback to basic Tackle if all on cooldown
-        local fallbackMove = BE:GetMoveData("Tackle") or (C.ABILITIES and C.ABILITIES["Tackle"])
+        -- Fallback to basic Tackle/Bite if all on cooldown
+        local fallbackMove = BE:GetMoveData("Tackle") or BE:GetMoveData(101)
         chosen = { key = "Tackle", move = fallbackMove, state = BE.State.moveState.enemy["Tackle"] or { usesLeft = 10, currentCD = 0, maxUses = 10 } }
     end
 
@@ -904,8 +903,10 @@ function BE:UseBagItem(itemId)
         DB:RemoveItem("az_treat", 1)
         SE:AddExperience(player, 100)
         BE.State.dialogueText = string.format("Fed %s a Safari Treat! (+100 XP)", player.nickname ~= "" and player.nickname or player.name)
-    elseif C.CAGES[itemId] then
-        BE:ThrowCageInCombat(itemId)
+    elseif ns.ItemDB and ns.ItemDB:GetCage(itemId) then
+        if ns.BattleCapture then
+            ns.BattleCapture:ExecuteCapture(itemId)
+        end
         return
     end
 
@@ -913,109 +914,6 @@ function BE:UseBagItem(itemId)
     if ForeverSafari.BattleFrame then ForeverSafari.BattleFrame:UpdateUI() end
     C_Timer.After(1.4, function()
         BE:ExecuteEnemyTurn()
-    end)
-end
-
--- Throw net during battle
-function BE:ThrowCageInCombat(cageId)
-    local enemy = BE.State.enemyMob
-    if not enemy then return end
-
-    if BE.State.isTrainerBattle or (enemy and enemy.isTrainerPet) then
-        BE.State.dialogueText = "You cannot capture another hunter's companion!"
-        BE:AddLog("|cffff4444You cannot capture another hunter's companion!|r")
-        if ForeverSafari.BattleFrame then ForeverSafari.BattleFrame:UpdateUI() end
-        return
-    end
-
-    if enemy.creatureType == "Humanoid" or (C.ELIGIBLE_CAPTURE_TYPES and not C.ELIGIBLE_CAPTURE_TYPES[enemy.creatureType]) then
-        BE.State.dialogueText = "Humanoids cannot be captured!"
-        BE:AddLog("|cffff4444Humanoids and civilized targets cannot be captured!|r")
-        if ForeverSafari.BattleFrame then ForeverSafari.BattleFrame:UpdateUI() end
-        return
-    end
-
-    if not DB:IsTypeUnlocked(enemy.creatureType) then
-        local permit = C.TYPE_RESEARCH_PERMITS and C.TYPE_RESEARCH_PERMITS[enemy.creatureType]
-        local permitName = permit and permit.name or (enemy.creatureType .. " Research Permit")
-        BE.State.dialogueText = string.format("%s research locked! Requires [%s]!", enemy.creatureType, permitName)
-        BE:AddLog(string.format("|cffff4444Cannot capture %s! Requires research permit [%s]!|r", enemy.creatureType, permitName))
-        if ForeverSafari.BattleFrame then ForeverSafari.BattleFrame:UpdateUI() end
-        return
-    end
-
-    -- Check squad capacity and transport crate requirement
-    local isSquadFull = (DB:GetSquadCount() >= 4)
-    local enemyQuality = enemy.quality or (enemy.isBoss and 4) or (enemy.isRareSpawn and 3) or (enemy.isElite and 2) or 1
-    if isSquadFull and not DB:HasTransportCrate(enemyQuality) then
-        local crateData = C.TRANSPORT_CRATES and C.TRANSPORT_CRATES[enemyQuality == 4 and "crate_thorium" or enemyQuality == 3 and "crate_mithril" or enemyQuality == 2 and "crate_iron" or "crate_copper"]
-        local crateName = crateData and crateData.name or "Transport Crate"
-        BE.State.dialogueText = string.format("Active squad full (4/4)! Need %s!", crateName)
-        BE:AddLog(string.format("|cffff4444Active squad is full (4/4)! You need a %s (or higher) to ship wild catches to the Safari Kennel!|r", crateName))
-        if ForeverSafari.BattleFrame then ForeverSafari.BattleFrame:UpdateUI() end
-        return
-    end
-
-    DB:RemoveItem(cageId, 1)
-    local cageData = C.CAGES[cageId] or C.CAGES["copper_cage"]
-    local hpPct = (enemy.currentHP / enemy.maxHP) * 100
-
-    BE.State.dialogueText = string.format("Threw a %s!", cageData.name)
-    BE:AddLog(string.format("Threw |cff%s[%s]|r at wild %s!", cageData.color or "ffffff", cageData.name, enemy.name))
-
-    -- Calculate capture probability based on requirements (2% at 50% HP -> 50% at 25% HP)
-    local baseRate = 0
-    if hpPct > 50 then
-        baseRate = 0.0
-    elseif hpPct >= 25 then
-        local t = (hpPct - 25.0) / 25.0
-        baseRate = 0.50 - (t * 0.48)
-    else
-        local t = (25.0 - hpPct) / 25.0
-        baseRate = 0.50 + (t * 0.45)
-    end
-
-    local finalRate = math.min(0.99, math.max(0.01, baseRate * (cageData.rateMultiplier or 1.0)))
-    local roll = math.random()
-
-    if ForeverSafari.BattleFrame then ForeverSafari.BattleFrame:UpdateUI() end
-
-    C_Timer.After(1.0, function()
-        if hpPct > 50 then
-            BE.State.dialogueText = "The creature was too strong! Weaken it below 50% HP!"
-            BE:AddLog("|cffff4444Creature was too healthy to catch! Weaken below 50% HP!|r")
-            BE.State.turn = "enemy"
-            if ForeverSafari.BattleFrame then ForeverSafari.BattleFrame:UpdateUI() end
-            C_Timer.After(1.4, function() BE:ExecuteEnemyTurn() end)
-        elseif roll <= finalRate then
-            PlaySound(1195)
-            if DB and DB.DiscoverSpecies then
-                DB:DiscoverSpecies(enemy.name, "caught")
-            end
-            if isSquadFull then
-                local ok, crateId, crateData = DB:ConsumeBestTransportCrate(enemyQuality)
-                DB:AddMob(enemy, false)
-                local cName = crateData and crateData.name or "Transport Crate"
-                BE.State.dialogueText = string.format("Gotcha! %s was caught & crated in %s!", enemy.name, cName)
-                BE:AddLog(string.format("|cff00ff00Gotcha! Wild %s was captured, crated in [%s], and sent to the Safari Kennel!|r", enemy.name, cName))
-                if ForeverSafari.Toast then
-                    ForeverSafari.Toast:ShowAlert("Captured & Banked", string.format("%s was crated & sent to Innkeeper's Kennel!", enemy.name))
-                end
-            else
-                DB:AddMob(enemy, true)
-                BE.State.dialogueText = string.format("Gotcha! %s joined your squad!", enemy.name)
-                BE:AddLog(string.format("|cff00ff00Gotcha! Wild %s was captured and joined your active squad!|r", enemy.name))
-                if ForeverSafari.Toast then ForeverSafari.Toast:ShowCapture(enemy) end
-            end
-            BE.State.inBattle = false
-            if ForeverSafari.BattleFrame then ForeverSafari.BattleFrame:UpdateUI() end
-        else
-            BE.State.dialogueText = string.format("Oh no! %s broke free!", enemy.name)
-            BE:AddLog(string.format("|cffff4444Wild %s broke free from the net!|r", enemy.name))
-            BE.State.turn = "enemy"
-            if ForeverSafari.BattleFrame then ForeverSafari.BattleFrame:UpdateUI() end
-            C_Timer.After(1.4, function() BE:ExecuteEnemyTurn() end)
-        end
     end)
 end
 
@@ -1117,7 +1015,8 @@ function BE:HandleVictory()
 
     -- Harvest Ecosystem Sustenance from defeated wild creature
     local family = enemy.family or enemy.creatureType or "Beast"
-    local foodData = C.FAMILY_NOURISHMENT[family] or C.FAMILY_NOURISHMENT[enemy.creatureType] or C.FAMILY_NOURISHMENT["Beast"]
+    local ItemDB = ns.ItemDB
+    local foodData = ItemDB and ItemDB.FAMILY_NOURISHMENT and (ItemDB.FAMILY_NOURISHMENT[family] or ItemDB.FAMILY_NOURISHMENT[enemy.creatureType] or ItemDB.FAMILY_NOURISHMENT["Beast"])
     if foodData then
         local foodKey = foodData.key or "food_meat"
         DB:AddItem(foodKey, 1)

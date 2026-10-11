@@ -135,3 +135,6 @@ Stationed at **Hemet Nesingwary's Safari Camp** in central Stranglethorn Vale. O
    * Alliance and Horde retain completely distinct ladder tracks until meeting in neutral territory.
 3. **3D Field Guide Badge Case**:
    * A dedicated Ribbon/Drawer in `/safari` displaying earned badges, pins, and faction crests in high-resolution gold frames.
+4. **Outpost Defeat Lockout (Anti-Farm Protection)**:
+   * Once an Outpost Leader / Gym is defeated and awards its regional badge/pin/crest, that outpost is locked against further battle farming.
+   * Interacting with a defeated Outpost Leader provides congratulatory dialogue and guidance to the next regional circuit rather than re-initiating combat.

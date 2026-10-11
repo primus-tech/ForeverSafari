@@ -11,6 +11,7 @@ ns.Database = ns.Database or {}
 
 local DB = ns.Database
 local C = ns.Constants
+local Crypto = ns.Crypto
 
 -- =========================================================================
 -- 🐾 COLLECTION & COMPANION LOOKUPS
@@ -48,7 +49,7 @@ function DB:SetMobNickname(mobId, newNickname)
     newNickname = strtrim(newNickname or "")
     if newNickname == "" then
         mob.customNickname = nil
-        self:SignMob(mob)
+        if Crypto then Crypto:SignMob(mob) end
         return true, "Reset to default name."
     end
 
@@ -57,7 +58,7 @@ function DB:SetMobNickname(mobId, newNickname)
     end
 
     mob.customNickname = string.sub(newNickname, 1, 16)
-    self:SignMob(mob)
+    if Crypto then Crypto:SignMob(mob) end
     return true, "Nickname updated!"
 end
 
@@ -74,7 +75,7 @@ function DB:AddMob(mobData, toSquad)
     mobData.acclimationZones = mobData.acclimationZones or {}
 
     -- Sign companion DNA
-    self:SignMob(mobData)
+    if Crypto then Crypto:SignMob(mobData) end
     table.insert(ForeverSafariDB.collection, mobData)
 
     -- Auto-assign to squad if space is available
@@ -125,7 +126,7 @@ function DB:AddAttunement(mobId, points, reason)
         end
     end
 
-    self:SignMob(mob)
+    if Crypto then Crypto:SignMob(mob) end
 end
 
 function DB:FeedCompanion(mobId, foodKey)
@@ -268,7 +269,7 @@ function DB:SetMobAbility(mobId, slotIndex, moveKey)
     if not mob then return false, "Companion not found." end
     mob.moves = mob.moves or { 101 }
     mob.moves[slotIndex] = moveKey
-    self:SignMob(mob)
+    if Crypto then Crypto:SignMob(mob) end
     return true
 end
 
@@ -305,7 +306,7 @@ function DB:HealMob(mobId, silent)
     mob.currentHP = maxHP
     mob.isFainted = false
 
-    self:SignMob(mob)
+    if Crypto then Crypto:SignMob(mob) end
     return true
 end
 

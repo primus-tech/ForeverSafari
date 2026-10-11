@@ -14,6 +14,8 @@ local Mail = ns.SafariMailFrame
 local C = ns.Constants
 local DB = ns.Database
 local Theme = ns.Theme
+local BountyDB = ns.BountyDB
+local ItemDB = ns.ItemDB
 
 local mailFrame = nil
 local openMailFrame = nil
@@ -90,7 +92,7 @@ function Mail:Initialize()
 
     -- Build row buttons
     listButtons = {}
-    local dispatches = C.NESINGWARY_DISPATCHES or {}
+    local dispatches = ns.BountyDB and ns.BountyDB:GetAllDispatches() or {}
 
     for i, dispatch in ipairs(dispatches) do
         local btn = CreateFrame("Button", "ForeverSafariMailItem" .. i, scrollChild, "BackdropTemplate")
@@ -232,7 +234,8 @@ function Mail:UpdateTabBadge()
         hasUnclaimedOrUnread = true
     end
 
-    for _, dispatch in ipairs(C.NESINGWARY_DISPATCHES or {}) do
+    local allDispatches = ns.BountyDB and ns.BountyDB:GetAllDispatches() or {}
+    for _, dispatch in ipairs(allDispatches) do
         if not DB:IsLetterRead(dispatch.id) then
             hasUnclaimedOrUnread = true
             break
@@ -247,7 +250,7 @@ function Mail:UpdateTabBadge()
     end
 
     if mailFrame and mailFrame.CountText then
-        local count = #(C.NESINGWARY_DISPATCHES or {})
+        local count = #allDispatches
         if hasUnclaimedOrUnread then
             mailFrame.CountText:SetText(string.format("|cff00ff00Dispatches: %d (!)|r", count))
         else
@@ -409,7 +412,7 @@ end
 function Mail:UpdateUI()
     if not mailFrame or not mailFrame:IsShown() then return end
 
-    local dispatches = C.NESINGWARY_DISPATCHES or {}
+    local dispatches = ns.BountyDB and ns.BountyDB:GetAllDispatches() or {}
     local currentDispatch = dispatches[selectedLetterId] or dispatches[1]
 
     for i, btn in ipairs(listButtons) do
@@ -480,8 +483,8 @@ function Mail:UpdateUI()
                 end
                 if currentDispatch.rewards and currentDispatch.rewards.items then
                     for _, itm in ipairs(currentDispatch.rewards.items) do
-                        local itemsDB = C.SAFARI_ITEMS or C.ITEMS or {}
-                        local cagesDB = C.CAGES or {}
+                        local itemsDB = ns.ItemDB and ns.ItemDB.ITEMS or {}
+                        local cagesDB = ns.ItemDB and ns.ItemDB.CAGES or {}
                         local itmData = itemsDB[itm.id] or cagesDB[itm.id] or {}
                         GameTooltip:AddDoubleLine(itmData.name or itm.id, string.format("x%d", itm.count), 0.8, 0.9, 1, 1, 1, 1)
                     end

@@ -595,7 +595,7 @@ function BF:UpdateUI()
         for i = 1, 4 do
             local btn = moveButtons[i]
             local moveKey = playerMoves[i]
-            local m = (BE.GetMoveData and BE:GetMoveData(moveKey)) or (moveKey and C.ABILITIES and C.ABILITIES[moveKey]) or (moveKey and ForeverSafari.MoveDB and ForeverSafari.MoveDB[moveKey])
+            local m = (BE.GetMoveData and BE:GetMoveData(moveKey)) or (moveKey and ns.MoveDB and (ns.MoveDB[moveKey] or (tonumber(moveKey) and ns.MoveDB[tonumber(moveKey)])))
             if moveKey and m then
                 local mState = BE.State.moveState.player and BE.State.moveState.player[moveKey]
                 local maxU = m.maxUses or m.pp or 10
@@ -629,7 +629,8 @@ function BF:UpdateUI()
     for i, btn in ipairs(bagButtons) do
         local id = btn.itemId
         local count = DB:GetItemCount(id)
-        local itemData = C.CAGES[id] or C.SHOP_ITEMS[id]
+        local ItemDB = ns.ItemDB
+        local itemData = ItemDB and ((ItemDB.CAGES and ItemDB.CAGES[id]) or (ItemDB.ITEMS and ItemDB.ITEMS[id]))
         if itemData then
             btn:SetText(string.format("%s (x%d)", itemData.name, count))
             if count > 0 and BE.State.turn == "player" and BE.State.inBattle then

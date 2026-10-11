@@ -277,7 +277,25 @@
 
 ---
 
-## 📍 Phase 20: Future Expansions & Social Leagues (Pending ⏳)
+## 📍 Phase 20: Beast Taxonomy Refinement & Elemental Saurians (Pending ⏳)
+* [ ] **Discrete Beast Family Stratification**:
+  * Formalize **Kodos** and **Tallstriders** as strictly decoupled, distinct families within the Beast genus across all database tables, dietary rules, and family movepools.
+  * Establish **Thunder Lizards** as their own dedicated saurian family (`Thunder Lizard` / `Lizard`) within Beasts.
+* [ ] **Elemental License Gating for Thunder Lizards**:
+  * Thunder Lizards harness primal nature and lightning fury. While taxonomically classified under the Beast genus, **capturing Thunder Lizards in the wild is strictly gated behind the Elemental Research Permit / License** (earned by defeating *Viscous Fallout* in Gnomeregan or *Baron Aquanis* in BFD).
+* [ ] **Kalimdor Saurian Species Roster**:
+  * Add canonical Barrens and Desolace species (*Thunder Lizard*, *Lightning Hide*, *Stormsnout*, and rare apex *Thunderhead*) to both `Data/CreatureDB.lua` and `Data/BestiaryDB.lua` with verified 3D display IDs, 100/110 base stat distributions, and thematic lightning movepools.
+* [ ] **Spawn-Instance GUID Anti-Farm Lockouts (`UnitGUID`)**:
+  * Track individual world spawn instances via `UnitGUID("target")` to eliminate duplicate engagements on the same living NPC.
+  * **Observation / Scanning Lockout**: Successfully completing a field observation channel (`/safari observe`) marks the entity's GUID in `ForeverSafariDB.scannedGuids`, preventing redundant channels against that same wild specimen.
+  * **Roaming AI Trainer Lockout**: Defeating a humanoid NPC in turn-based combat records their spawn GUID in `ForeverSafariDB.defeatedTrainers`, preventing players from repeatedly battling the same living humanoid for infinite Safari Tokens.
+  * **Automated Expiration & Pruning**: Daily reset / 24-hour timestamp pruning to prevent SavedVariables bloat while allowing respawned world encounters.
+
+---
+
+## 📍 Phase 21: Future Expansions & Social Leagues (Pending ⏳)
+* [ ] **Safari Outpost & Regional League System**: Implementation of the 5-Tier Faction-Parallel circuit, gym leaders, and 3D Field Guide Badge Case (`Docs/SAFARI_OUTPOST_SYSTEM.md`).
+  * **Outpost Defeat Lockout (Anti-Farm Protection)**: Once an Outpost Leader / Gym is bested and awards its regional badge/crest, the outpost is locked against battle farming; subsequent interactions provide congratulatory dialogue and route the player to the next regional tier.
 * [ ] **PvP Safari Tournaments & Guild Ladders**: Cross-faction companion duel tournaments and leaderboards.
 * [ ] **Safari Attunement Quests**: Epic class and race-specific questlines to earn Master attunement and legendary nets.
 * [ ] **World Boss Safari Raids**: Instanced raid encounter mechanics for legendary apex creatures.

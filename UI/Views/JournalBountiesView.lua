@@ -13,6 +13,7 @@ local Journal = ns.JournalFrame
 local Theme = ns.Theme
 local DB = ns.Database
 local C = ns.Constants
+local BountyDB = ns.BountyDB
 
 local selectedBountyId = 1
 local bountyButtons = {}
@@ -41,7 +42,7 @@ function Journal:BuildBountiesView(parent)
     scrollFrame:SetScrollChild(listContent)
     parent.ListContent = listContent
 
-    local dispatches = C.NESINGWARY_DISPATCHES or {}
+    local dispatches = ns.BountyDB and ns.BountyDB:GetAllDispatches() or {}
     for i, dispatch in ipairs(dispatches) do
         local btn = CreateFrame("Button", nil, listContent, "BackdropTemplate")
         btn:SetSize(210, 68)
@@ -183,7 +184,7 @@ function Journal:BuildBountiesView(parent)
 end
 
 function Journal:UpdateBountiesView()
-    local dispatches = C.NESINGWARY_DISPATCHES or {}
+    local dispatches = ns.BountyDB and ns.BountyDB:GetAllDispatches() or {}
     local currentDispatch = dispatches[selectedBountyId] or dispatches[1]
 
     -- Update List Cards

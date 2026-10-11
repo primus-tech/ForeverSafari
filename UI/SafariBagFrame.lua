@@ -17,6 +17,7 @@ local Bag = ns.SafariBagFrame
 local C = ns.Constants
 local DB = ns.Database
 local Theme = ns.Theme
+local Crypto = ns.Crypto
 
 local TOTAL_SLOTS = 20
 local COLUMNS = 4
@@ -53,70 +54,7 @@ function Bag:GetItemData(itemId)
         end
     end
 
-    -- 2. Check Transport Crates in Constants
-    if C.TRANSPORT_CRATES then
-        local crate = C.TRANSPORT_CRATES[itemId] or C.TRANSPORT_CRATES["crate_" .. itemId] or C.TRANSPORT_CRATES[itemId:gsub("crate_", "") .. "_crate"]
-        if crate then
-            return {
-                id = itemId,
-                name = crate.name or "Transport Crate",
-                category = "Transport Crates",
-                icon = crate.icon or "INV_Box_PetCarrier_01",
-                quality = crate.quality or 1,
-                color = crate.color or "ffffff",
-                desc = crate.description or crate.desc or "Carrier used to safely ship excess wild captures to the Safari Kennel.",
-                useText = "Passive crate for kennel transfer.",
-            }
-        end
-    end
-
-    -- 3. Check Constants.SAFARI_ITEMS
-    if C.SAFARI_ITEMS and C.SAFARI_ITEMS[itemId] then
-        local item = C.SAFARI_ITEMS[itemId]
-        return {
-            id = itemId,
-            name = item.name or itemId,
-            category = item.category or "Safari Item",
-            icon = item.icon or "INV_Misc_QuestionMark",
-            quality = item.quality or 1,
-            color = item.color or "ffffff",
-            desc = item.desc or item.description or "",
-            useText = item.useText or "Right-Click to use.",
-            family = item.family,
-        }
-    end
-
-    -- 4. Check Constants.CAGES
-    if C.CAGES and C.CAGES[itemId] then
-        local cage = C.CAGES[itemId]
-        return {
-            id = itemId,
-            name = cage.name or itemId,
-            category = "Capture Gear",
-            icon = cage.icon or "INV_Misc_Rope_01",
-            quality = cage.quality or 1,
-            color = cage.color or "ffffff",
-            desc = cage.description or string.format("Increases capture rate by %.1fx.", cage.rateMultiplier or 1.0),
-            useText = "Right-Click to equip as active capture gear.",
-        }
-    end
-
-    -- 5. Check Constants.SHOP_ITEMS
-    if C.SHOP_ITEMS and C.SHOP_ITEMS[itemId] then
-        local shopItem = C.SHOP_ITEMS[itemId]
-        return {
-            id = itemId,
-            name = shopItem.name or itemId,
-            category = "Consumable",
-            icon = shopItem.icon or "INV_Misc_Food_11",
-            quality = shopItem.quality or 1,
-            color = shopItem.color or "ffffff",
-            desc = shopItem.description or "",
-            useText = "Right-Click to feed or treat companion.",
-        }
-    end
-
-    -- 6. Check Evolution DB for catalysts
+    -- 2. Check Evolution DB for catalysts
     if itemId:find("^catalyst_") then
         local catId = tonumber(itemId:match("catalyst_(%d+)"))
         if catId and ForeverSafari.EvolutionDB and ForeverSafari.EvolutionDB[catId] then
@@ -636,7 +574,7 @@ function Bag:UseItem(itemId, itemData)
         if DB:RemoveItem("healing_salve", 1) then
             activeMob.hp = maxHP
             activeMob.currentHP = maxHP
-            DB:SignMob(activeMob)
+            if Crypto then Crypto:SignMob(activeMob) end
             PlaySound(895)
             local pName = activeMob.nickname ~= "" and activeMob.nickname or activeMob.name
             DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00Applied Safari Healing Salve! %s restored to full health (%d HP).|r", C.PREFIX, pName, maxHP))
@@ -660,7 +598,7 @@ function Bag:UseItem(itemId, itemData)
         if DB:RemoveItem("revival_crystal", 1) then
             activeMob.hp = activeMob.maxHP
             activeMob.currentHP = activeMob.maxHP
-            DB:SignMob(activeMob)
+            if Crypto then Crypto:SignMob(activeMob) end
             PlaySound(1195)
             local pName = activeMob.nickname ~= "" and activeMob.nickname or activeMob.name
             DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00Used Revival Crystal! %s was revived back to full health!|r", C.PREFIX, pName))

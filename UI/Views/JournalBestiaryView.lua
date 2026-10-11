@@ -510,7 +510,7 @@ function Journal:UpdateBestiaryDossier()
         local movesStr = ""
         if spec.movepool then
             for _, moveId in ipairs(spec.movepool) do
-                local m = ForeverSafari:GetMove(moveId) or (C.ABILITIES and C.ABILITIES[moveId])
+                local m = (ns.MoveDB and (ns.MoveDB[moveId] or (tonumber(moveId) and ns.MoveDB[tonumber(moveId)]))) or (ForeverSafari.GetMove and ForeverSafari:GetMove(moveId))
                 if m then
                     local cdText = (m.cooldown and m.cooldown > 0) and string.format(" (%dt CD)", m.cooldown) or " (Instant)"
                     local pwrText = (m.power and m.power > 0) and string.format(" [Pwr %d]", m.power) or ""

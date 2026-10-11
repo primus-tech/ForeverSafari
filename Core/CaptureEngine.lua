@@ -17,6 +17,7 @@ local CE = ns.CaptureEngine
 local C = ns.Constants
 local DB = ns.Database
 local SE = ns.StatEngine
+local ItemDB = ns.ItemDB
 
 local function isSecret(v)
     if v == nil then return false end
@@ -122,7 +123,7 @@ function CE:CalculateSnareRoll(unit, cageId)
     unit = unit or "target"
     cageId = cageId or "copper_cage"
 
-    local cageData = C.CAGES[cageId] or C.CAGES["copper_cage"]
+    local cageData = ItemDB:GetCage(cageId) or ItemDB:GetCage("copper_cage")
     local baseCatchRate = cageData.catchPower or (cageData.rateMultiplier and (cageData.rateMultiplier * 0.35)) or 0.35
 
     -- Distance Modifier
@@ -314,7 +315,8 @@ function CE:CompleteSnareChannel()
 
     if discoveredMove then
         DB:UnlockAbility(discoveredMove, targetName, false)
-        local moveData = C.ABILITIES[discoveredMove]
+        local MoveDB = ns.MoveDB
+        local moveData = MoveDB and (MoveDB[discoveredMove] or (tonumber(discoveredMove) and MoveDB[tonumber(discoveredMove)]))
         local mName = moveData and moveData.name or discoveredMove
         DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00[Field Research Complete]|r Successfully observed |cffffd100%s|r and learned technique: |cffffd100[%s]|r!",
             C.PREFIX, targetName, mName))

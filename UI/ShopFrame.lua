@@ -13,6 +13,7 @@ local Shop = ns.ShopFrame
 local C = ns.Constants
 local DB = ns.Database
 local Theme = ns.Theme
+local ItemDB = ns.ItemDB
 
 local frame = nil
 local itemListFrames = {}
@@ -341,7 +342,7 @@ function Shop:BuildShopItems()
         frame.BannerText:SetText("|cff00ff99🕸 Field Capture Gear: Snares, nets, traps, and cages for wild capture.|r")
         local cageKeys = { "copper_cage", "iron_cage", "mithril_cage", "thorium_trap" }
         for _, id in ipairs(cageKeys) do
-            local itemData = C.CAGES[id]
+            local itemData = ItemDB and ItemDB.CAGES and ItemDB.CAGES[id]
             if itemData then
                 local row = Shop:CreateShopItemRow(content, itemData, id, yOffset)
                 table.insert(itemListFrames, row)
@@ -353,7 +354,7 @@ function Shop:BuildShopItems()
         frame.BannerText:SetText("|cff00ff99📦 Transport Crates: Secure cages used to auto-board excess captures into Kennels.|r")
         local crateKeys = { "crate_copper", "crate_iron", "crate_mithril", "crate_thorium" }
         for _, id in ipairs(crateKeys) do
-            local itemData = C.TRANSPORT_CRATES[id] or C.SHOP_ITEMS[id]
+            local itemData = ItemDB and ((ItemDB.TRANSPORT_CRATES and ItemDB.TRANSPORT_CRATES[id]) or (ItemDB.ITEMS and ItemDB.ITEMS[id]))
             if itemData then
                 local row = Shop:CreateShopItemRow(content, itemData, id, yOffset)
                 table.insert(itemListFrames, row)
@@ -363,9 +364,9 @@ function Shop:BuildShopItems()
 
     elseif currentCategory == "food" then
         frame.BannerText:SetText("|cff00ff99🥩 Treats & Diets: Nourishing feasts and family diets granting +25 Attunement.|r")
-        local treatKeys = { "az_treat", "az_feast" }
+        local treatKeys = { "az_treat", "az_feast", "safari_treats", "grand_safari_feast" }
         for _, id in ipairs(treatKeys) do
-            local itemData = C.SHOP_ITEMS[id]
+            local itemData = ItemDB and ItemDB.ITEMS and ItemDB.ITEMS[id]
             if itemData then
                 local row = Shop:CreateShopItemRow(content, itemData, id, yOffset)
                 table.insert(itemListFrames, row)
@@ -378,7 +379,7 @@ function Shop:BuildShopItems()
             "food_parts", "food_bonedust", "food_shards", "food_crystals", "food_runes"
         }
         for _, id in ipairs(foodKeys) do
-            local itemData = (ns.ItemDB and ns.ItemDB.DIET_ITEMS and ns.ItemDB.DIET_ITEMS[id]) or (C.SAFARI_ITEMS and C.SAFARI_ITEMS[id])
+            local itemData = ItemDB and ItemDB.DIET_ITEMS and ItemDB.DIET_ITEMS[id]
             if itemData then
                 local iconPath = itemData.icon or "INV_Misc_Food_14"
                 if not string.find(iconPath, "\\") then
@@ -401,7 +402,7 @@ function Shop:BuildShopItems()
         frame.BannerText:SetText("|cff00ff99🧪 Medicine & Aid: Salves and revival crystals for quick recovery in the field.|r")
         local medKeys = { "healing_salve", "revival_crystal" }
         for _, id in ipairs(medKeys) do
-            local itemData = C.SHOP_ITEMS[id]
+            local itemData = ItemDB and ItemDB.ITEMS and ItemDB.ITEMS[id]
             if itemData then
                 local row = Shop:CreateShopItemRow(content, itemData, id, yOffset)
                 table.insert(itemListFrames, row)

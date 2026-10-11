@@ -9,6 +9,7 @@
 # Canonical Data Registries
 Data\ItemDB.lua
 Data\MoveDB.lua
+Data\BountyDB.lua
 Data\CreatureDB.lua
 Data\BestiaryDB.lua
 Data\EvolutionDB.lua
@@ -16,6 +17,7 @@ Data\TrainerDB.lua
 
 # Core Engine & Database
 Core\Constants.lua
+Core\Crypto.lua
 Core\Database.lua
 Core\DB\DB_Pets.lua
 Core\DB\DB_Kennel.lua
@@ -24,6 +26,7 @@ Core\DB\DB_Inventory.lua
 Core\StatEngine.lua
 Core\TrainerEngine.lua
 Core\CaptureEngine.lua
+Core\BattleCapture.lua
 Core\BattleEngine.lua
 Core\QuestHooks.lua
 Core\Comms.lua

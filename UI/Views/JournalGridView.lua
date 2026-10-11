@@ -13,6 +13,7 @@ local Journal = ns.JournalFrame
 local Theme = ns.Theme
 local DB = ns.Database
 local C = ns.Constants
+local Crypto = ns.Crypto
 
 local gridPage = 1
 local gridTypeFilter = "ALL"
@@ -115,7 +116,7 @@ function Journal:BuildGridView(parent)
                 if IsShiftKeyDown() then
                     local mob = DB:GetMobById(card.mobId)
                     if mob and ChatEdit_InsertLink then
-                        local dna = DB:ExportCompanionDNA(mob)
+                        local dna = Crypto and Crypto:ExportCompanionDNA(mob) or ""
                         local link = string.format("|cffffd100|Hsafari:%s|h[Safari: %s Lv.%d (3D)]|h|r",
                             dna, mob.nickname ~= "" and mob.nickname or mob.name, mob.level)
                         if not ChatEdit_InsertLink(link) then

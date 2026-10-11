@@ -235,8 +235,6 @@ function Theme:ShowAbilityTooltip(owner, moveKeyOrData, anchor, moveState, defen
             move = MoveDB[moveKeyOrData]
         elseif BE and BE.GetMoveData then
             move = BE:GetMoveData(moveKeyOrData)
-        elseif C and C.ABILITIES and C.ABILITIES[moveKeyOrData] then
-            move = C.ABILITIES[moveKeyOrData]
         end
     end
     if not move then return end

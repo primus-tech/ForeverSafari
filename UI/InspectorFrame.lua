@@ -11,6 +11,7 @@ ns.InspectorFrame = ns.InspectorFrame or {}
 
 local Inspector = ns.InspectorFrame
 local C = ns.Constants
+local Crypto = ns.Crypto
 
 local frame = nil
 
@@ -268,7 +269,7 @@ function Inspector:InspectCompanion(companionData)
             local moveKey = abilities[i]
             slot.moveKey = moveKey
             if moveKey then
-                local moveData = ForeverSafari.Constants.ABILITIES[moveKey]
+                local moveData = ns.MoveDB and ns.MoveDB:GetMove(moveKey)
                 local mName = moveData and moveData.name or moveKey
                 local mIcon = moveData and moveData.icon or "Ability_Hunter_Pet_Wolf"
                 slot.icon:SetTexture("Interface\\Icons\\" .. mIcon)
@@ -281,8 +282,8 @@ function Inspector:InspectCompanion(companionData)
     end
 
     -- Verify signature
-    local expectedSig = ForeverSafari.Database:GenerateSignature(companionData)
-    if companionData.sig and companionData.sig == expectedSig then
+    local isValid = Crypto and Crypto:ValidateSignature(companionData)
+    if isValid then
         if isRare then
             frame.sigText:SetText("|cffffd100🔒 Authentic Nesingwary League Verified Rare Spawn (Protected)|r")
         else
@@ -309,7 +310,7 @@ if hooksecurefunc then
     hooksecurefunc("SetItemRef", function(link, text, button, chatFrame)
         if type(link) == "string" and link:sub(1, 7) == "safari:" then
             local dnaStr = link:sub(8)
-            local mob = ForeverSafari.Database:ImportCompanionDNA(dnaStr)
+            local mob = Crypto and Crypto:ImportCompanionDNA(dnaStr)
             if mob then
                 Inspector:InspectCompanion(mob)
             end

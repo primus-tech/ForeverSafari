@@ -554,7 +554,7 @@ function Journal:UpdateRosterView()
     for i = 1, 4 do
         local mCard = rPanel.MoveCards[i]
         local moveId = mob.moves and mob.moves[i]
-        local move = moveId and (MoveDB[moveId] or (C.ABILITIES and C.ABILITIES[moveId]))
+        local move = moveId and (MoveDB[moveId] or (tonumber(moveId) and MoveDB[tonumber(moveId)]))
 
         if move then
             mCard.Icon:SetTexture(move.icon or "Interface\\Icons\\Ability_GhoulFrenzy")
