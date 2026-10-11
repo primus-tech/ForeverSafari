@@ -38,6 +38,10 @@ local buttonPool = {}
 local hookedFrames = setmetatable({}, { __mode = "k" })
 local generation = 0
 
+-- Hidden scanner tooltip for 100% reliable unit subtitle / title inspection (<Innkeeper>, <Pet Trainer>)
+local scanTooltip = CreateFrame("GameTooltip", "ForeverSafariGossipScanTooltip", nil, "GameTooltipTemplate")
+scanTooltip:SetOwner(WorldFrame, "ANCHOR_NONE")
+
 local function Method(obj, key)
     return obj and type(obj[key]) == "function"
 end
@@ -50,7 +54,6 @@ local function CloseGossipWindow()
     end
 end
 
--- Tagging function to differentiate our buttons from third-party addon buttons
 function SG.IsOurButton(frame)
     return frame and frame.isSafariGossipButton == true
 end
@@ -73,12 +76,33 @@ local function MatchesKeyword(text, keywords)
     return false
 end
 
+local function ScanUnitTooltipForKeywords(unit, keywords)
+    if not unit or not UnitExists(unit) then return false end
+    scanTooltip:ClearLines()
+    local ok = pcall(scanTooltip.SetUnit, scanTooltip, unit)
+    if not ok then return false end
+
+    for i = 1, scanTooltip:NumLines() do
+        local fontString = _G["ForeverSafariGossipScanTooltipTextLeft" .. i]
+        local text = fontString and fontString:GetText()
+        if text and MatchesKeyword(text, keywords) then
+            return true
+        end
+    end
+    return false
+end
+
 function SG:IsPetTrainer(unit)
     unit = unit or GetGossipUnit()
-    if not unit then return false end
     local keywords = { "pet trainer", "beast trainer", "pet master", "hunter trainer" }
 
-    if C_TooltipInfo and C_TooltipInfo.GetUnit then
+    -- 1. Tooltip line scanning (catches <Pet Trainer> subtitle)
+    if unit and ScanUnitTooltipForKeywords(unit, keywords) then
+        return true
+    end
+
+    -- 2. C_TooltipInfo scan
+    if unit and C_TooltipInfo and C_TooltipInfo.GetUnit then
         local ok, info = pcall(C_TooltipInfo.GetUnit, unit)
         if ok and info and info.lines then
             for _, line in ipairs(info.lines) do
@@ -89,9 +113,12 @@ function SG:IsPetTrainer(unit)
         end
     end
 
-    local name = UnitName(unit)
-    if name and MatchesKeyword(name, keywords) then
-        return true
+    -- 3. Unit Name
+    if unit then
+        local name = UnitName(unit)
+        if name and MatchesKeyword(name, keywords) then
+            return true
+        end
     end
 
     return false
@@ -99,14 +126,15 @@ end
 
 function SG:IsInnkeeper(unit)
     unit = unit or GetGossipUnit()
-    if not unit then return false end
     local keywords = { "innkeeper", "tavern", "bartender" }
 
-    if GossipFrameTitleText and GossipFrameTitleText:GetText() and MatchesKeyword(GossipFrameTitleText:GetText(), keywords) then
+    -- 1. Tooltip line scanning (catches <Innkeeper> subtitle with 100% reliability in Classic)
+    if unit and ScanUnitTooltipForKeywords(unit, keywords) then
         return true
     end
 
-    if C_TooltipInfo and C_TooltipInfo.GetUnit then
+    -- 2. C_TooltipInfo scan
+    if unit and C_TooltipInfo and C_TooltipInfo.GetUnit then
         local ok, info = pcall(C_TooltipInfo.GetUnit, unit)
         if ok and info and info.lines then
             for _, line in ipairs(info.lines) do
@@ -117,9 +145,58 @@ function SG:IsInnkeeper(unit)
         end
     end
 
-    local name = UnitName(unit)
-    if name and MatchesKeyword(name, keywords) then
+    -- 3. Unit Name & Title Text
+    if unit then
+        local name = UnitName(unit)
+        if name and MatchesKeyword(name, keywords) then
+            return true
+        end
+    end
+    if GossipFrameTitleText and GossipFrameTitleText:GetText() and MatchesKeyword(GossipFrameTitleText:GetText(), keywords) then
         return true
+    end
+
+    -- 4. Native Gossip Options check (Every Innkeeper in WoW offers "Make this inn your home")
+    if C_GossipInfo and C_GossipInfo.GetOptions then
+        local ok, opts = pcall(C_GossipInfo.GetOptions)
+        if ok and opts then
+            for _, opt in ipairs(opts) do
+                local name = opt.name or opt.title
+                if name and MatchesKeyword(name, { "home", "hearth", "inn" }) then
+                    return true
+                end
+                if opt.icon == 132057 or opt.type == "binder" then
+                    return true
+                end
+            end
+        end
+    end
+    if GetGossipOptions then
+        local ok, opts = pcall(function() return { GetGossipOptions() } end)
+        if ok and opts then
+            for i = 1, #opts, 2 do
+                local title = opts[i]
+                local gType = opts[i+1]
+                if gType == "binder" or (title and MatchesKeyword(title, { "home", "hearth", "inn" })) then
+                    return true
+                end
+            end
+        end
+    end
+
+    -- 5. Olympus Check: If Olympus's "Bones" option is shown, we are 100% at an Innkeeper!
+    local f = rawget(_G, "GossipFrame")
+    local panel = f and f.GreetingPanel
+    local scroll = panel and panel.ScrollBox
+    if panel and scroll then
+        for _, child in ipairs({ panel:GetChildren() }) do
+            if child:IsShown() and child ~= scroll and not SG.IsOurButton(child) then
+                local text = child.GetText and child:GetText()
+                if text and string.find(text, "Bones", 1, true) then
+                    return true
+                end
+            end
+        end
     end
 
     return false
@@ -141,6 +218,10 @@ function SG:IsCenarionKeeper(unit)
 
     local keywords = { "cenarion", "keeper", "remulos", "loganaar", "nursery", "druid" }
     if inMoonglade then return true end
+
+    if ScanUnitTooltipForKeywords(unit, keywords) then
+        return true
+    end
 
     if C_TooltipInfo and C_TooltipInfo.GetUnit then
         local ok, info = pcall(C_TooltipInfo.GetUnit, unit)
@@ -242,20 +323,48 @@ local function AcquireButton(parent, width, caption, iconTexture, onClick)
     return b
 end
 
--- Detect if another addon (like Olympus's "Bones!: Teach me Bones") added a row to GreetingPanel
+-- Strictly identify addon-injected gossip rows (like Olympus's row), excluding GoodbyeButton / ScrollBars
+local function IsAddonGossipRow(child, scroll)
+    if not child or not child:IsShown() then return false end
+    if child == scroll then return false end
+    if SG.IsOurButton(child) then return false end
+    if not child.GetObjectType or child:GetObjectType() ~= "Button" then return false end
+
+    -- Exclude native Blizzard close/goodbye buttons
+    local name = child:GetName() or ""
+    if string.find(name, "Goodbye", 1, true) or string.find(name, "Close", 1, true) then
+        return false
+    end
+    local text = child.GetText and child:GetText() or ""
+    if text == "Goodbye" or text == "Cancel" then
+        return false
+    end
+
+    -- Custom addon rows use GossipTitleButtonTemplate (possessing child.Icon or child.icon)
+    if child.Icon or child.icon then
+        return true
+    end
+
+    -- Or title matches known addon option prefixes
+    if string.find(text, "Bones", 1, true) or string.find(text, ": ", 1, true) then
+        return true
+    end
+
+    return false
+end
+
+-- Detect lowest external addon row on GreetingPanel
 local function FindLowestExternalButton(panel, scroll, bar)
     local lowestBtn = nil
     local minBottom = math.huge
 
     if panel and panel.GetChildren then
         for _, child in ipairs({ panel:GetChildren() }) do
-            if child:IsShown() and child ~= scroll and child ~= bar and not SG.IsOurButton(child) then
-                if child.GetObjectType and child:GetObjectType() == "Button" then
-                    local bottom = child:GetBottom()
-                    if bottom and bottom < minBottom then
-                        minBottom = bottom
-                        lowestBtn = child
-                    end
+            if child ~= bar and IsAddonGossipRow(child, scroll) then
+                local bottom = child:GetBottom()
+                if bottom and bottom < minBottom then
+                    minBottom = bottom
+                    lowestBtn = child
                 end
             end
         end
@@ -340,7 +449,13 @@ function SG.ShowGossip()
         return false
     end
 
-    SG.Park()
+    -- Recycle previous buttons without wiping saved original scroll height
+    for _, btn in ipairs(activeButtons) do
+        btn:Hide()
+        btn:ClearAllPoints()
+        table.insert(buttonPool, btn)
+    end
+    activeButtons = {}
 
     local scrollWidth = scroll:GetWidth()
     local scrollHeight = scroll:GetHeight()
@@ -364,16 +479,18 @@ function SG.ShowGossip()
         end
     end
 
-    saved = {
-        scroll = scroll,
-        bar = bar,
-        height = scrollHeight,
-        scrollShown = scroll:IsShown(),
-        barShown = bar:IsShown(),
-    }
+    if not saved then
+        saved = {
+            scroll = scroll,
+            bar = bar,
+            height = scrollHeight,
+            scrollShown = scroll:IsShown(),
+            barShown = bar:IsShown(),
+        }
+    end
     host = f
 
-    -- Check if another addon (like Olympus) has added a row to the GreetingPanel
+    -- Check if another addon (like Olympus) has added a row to GreetingPanel
     local lowestExternal = FindLowestExternalButton(panel, scroll, bar)
 
     if lowestExternal then
@@ -388,7 +505,7 @@ function SG.ShowGossip()
             local btn = item.btn
             btn:ClearAllPoints()
             btn:SetPoint("TOPLEFT", prevAnchor, "BOTTOMLEFT", 0, -SG.ROW_GAP)
-            btn:SetPoint("TOPRIGHT", prevAnchor, "BOTTOMRIGHT", 0, -SG.ROW_GAP)
+            btn:SetWidth(scrollWidth)
             btn:Show()
             table.insert(activeButtons, btn)
             prevAnchor = btn
@@ -421,6 +538,7 @@ function SG.ShowGossip()
             local btn = item.btn
             btn:ClearAllPoints()
             btn:SetPoint("TOPLEFT", scroll, "TOPLEFT", 0, currentOffsetY)
+            btn:SetWidth(scrollWidth)
             btn:Show()
             table.insert(activeButtons, btn)
             currentOffsetY = currentOffsetY - (item.height + SG.ROW_GAP)
@@ -456,10 +574,18 @@ eventFrame:SetScript("OnEvent", function(self, event)
     if event == "GOSSIP_SHOW" then
         SG.Park()
         local curGen = generation
-        -- Wait 0.02 seconds (2 frames) so Blizzard and any other addons (e.g. Olympus)
-        -- finish their layout pass first, allowing us to safely detect and place below them.
-        C_Timer.After(0.02, function()
-            if curGen == generation then
+
+        -- Frame 0 layout pass: show immediately
+        C_Timer.After(0, function()
+            if curGen == generation and GossipFrame and GossipFrame:IsShown() then
+                SG.ShowGossip()
+            end
+        end)
+
+        -- Frame 2 re-anchor pass (0.025s): if another addon (like Olympus) added a row,
+        -- smoothly adjust our position so we are guaranteed to sit directly beneath it.
+        C_Timer.After(0.025, function()
+            if curGen == generation and GossipFrame and GossipFrame:IsShown() then
                 SG.ShowGossip()
             end
         end)
