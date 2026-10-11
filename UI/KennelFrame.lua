@@ -1,8 +1,9 @@
 --[[
-    Forever Safari: Safari Kennel & Vault Sidecar (Banker NPC Companion Bank)
-    - Accessed exclusively when interacting with Bankers in town vaults.
-    - Manages the player's 4 Active Squad members vs. Banked Enclosure Boxes (1..5, 20 pets each = 100 pets).
-    - 100% Zero-Taint: Standalone frame parented strictly to UIParent.
+    Forever Safari: Junior Safari Reserve (In-Frame Bank Vault)
+    - Embedded single-window view inside Blizzard's native BankFrame (738 x 460).
+    - Dedicated vertical side tab mounted on BankFrame's right border with paw icon 🐾.
+    - Zero bag collision: Player bags on the right remain 100% visible and unobstructed.
+    - Zero-Taint: Swaps view cleanly with BankPanel without modifying secure Blizzard tables.
 ]]
 
 local addonName, ns = ...
@@ -17,11 +18,14 @@ local SE = ns.StatEngine
 local Theme = ns.Theme
 
 local frame = nil
+local sideTab = nil
 local activeCards = {}
 local kennelTiles = {}
 local currentBox = 1
 local selectedKennelMobId = nil
 local selectedSquadSlot = nil
+local isReserveActive = false
+local nativeHooked = false
 
 -- Check if currently interacting with a Banker
 function Kennel:IsAtBanker()
@@ -53,82 +57,68 @@ end
 
 function Kennel:Initialize()
     if frame then return end
+    local parent = BankFrame or UIParent
 
-    frame = CreateFrame("Frame", "ForeverSafariKennelFrame", UIParent, "BackdropTemplate")
-    frame:SetSize(720, 520)
-    frame:SetPoint("CENTER", UIParent, "CENTER", 60, 0)
+    frame = CreateFrame("Frame", "ForeverSafariBankReservePanel", parent, "BackdropTemplate")
+    frame:SetPoint("TOPLEFT", parent, "TOPLEFT", 12, -42)
+    frame:SetPoint("BOTTOMRIGHT", parent, "BOTTOMRIGHT", -12, 32)
     frame:SetFrameStrata("HIGH")
-    frame:SetToplevel(true)
     frame:EnableMouse(true)
-    frame:SetMovable(true)
-    frame:RegisterForDrag("LeftButton")
-    frame:SetScript("OnDragStart", frame.StartMoving)
-    frame:SetScript("OnDragStop", frame.StopMovingOrSizing)
     frame:Hide()
 
     Theme:ApplyFrameBackdrop(frame)
 
-    -- Header
-    local header = CreateFrame("Frame", nil, frame, "BackdropTemplate")
-    header:SetSize(720, 44)
-    header:SetPoint("TOP", 0, 0)
-    Theme:ApplyHeaderBackdrop(header)
+    -- Subheader
+    local header = CreateFrame("Frame", nil, frame)
+    header:SetSize(710, 24)
+    header:SetPoint("TOPLEFT", frame, "TOPLEFT", 10, -6)
 
-    local title = header:CreateFontString(nil, "OVERLAY", "GameFontHighlightLarge")
-    title:SetPoint("LEFT", 16, 0)
+    local title = header:CreateFontString(nil, "OVERLAY", "GameFontHighlightMedium")
+    title:SetPoint("LEFT", 4, 0)
     title:SetText("|cffffd100🐾 Junior Safari Reserve|r")
     header.Title = title
 
     local subTitle = header:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
-    subTitle:SetPoint("LEFT", title, "RIGHT", 12, 0)
+    subTitle:SetPoint("LEFT", title, "RIGHT", 10, 0)
     subTitle:SetText("|cff00ff99[ Banked Companion Vault ]|r")
-
-    -- Close Button
-    local closeBtn = CreateFrame("Button", nil, header, "UIPanelCloseButton")
-    closeBtn:SetPoint("RIGHT", -6, 0)
-    closeBtn:SetScript("OnClick", function() Kennel:Hide() end)
 
     -- Left Column: Active Squad (4 Slots)
     local squadTitle = frame:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
-    squadTitle:SetPoint("TOPLEFT", 16, -52)
+    squadTitle:SetPoint("TOPLEFT", 14, -34)
     squadTitle:SetText("|cffffd100Active Squad (4 Max)|r")
-
-    local squadDesc = frame:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
-    squadDesc:SetPoint("TOPLEFT", 16, -68)
-    squadDesc:SetText("Companions traveling with you in the field.")
 
     for i = 1, 4 do
         local card = CreateFrame("Button", "ForeverSafariKennelSquadCard" .. i, frame, "BackdropTemplate")
-        card:SetSize(220, 78)
-        card:SetPoint("TOPLEFT", 16, -88 - ((i - 1) * 84))
+        card:SetSize(218, 68)
+        card:SetPoint("TOPLEFT", 14, -54 - ((i - 1) * 72))
         Theme:ApplyCardBackdrop(card)
         card.slotIndex = i
 
         -- 3D Model
         local model = CreateFrame("PlayerModel", nil, card)
-        model:SetSize(60, 60)
+        model:SetSize(52, 52)
         model:SetPoint("LEFT", 6, 0)
         if model.SetPortraitZoom then model:SetPortraitZoom(0.85) end
         if model.SetRotation then model:SetRotation(math.rad(25)) end
         card.Model = model
 
         -- Name Text
-        local nameText = card:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
-        nameText:SetPoint("TOPLEFT", model, "TOPRIGHT", 8, -4)
+        local nameText = card:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+        nameText:SetPoint("TOPLEFT", model, "TOPRIGHT", 8, -2)
         nameText:SetJustifyH("LEFT")
         nameText:SetText("Empty Slot")
         card.NameText = nameText
 
         -- Info / Rank Text
         local infoText = card:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
-        infoText:SetPoint("TOPLEFT", nameText, "BOTTOMLEFT", 0, -3)
+        infoText:SetPoint("TOPLEFT", nameText, "BOTTOMLEFT", 0, -2)
         infoText:SetText("")
         card.InfoText = infoText
 
         -- HP Status Bar
         local hpBar = CreateFrame("StatusBar", nil, card)
-        hpBar:SetSize(130, 10)
-        hpBar:SetPoint("TOPLEFT", infoText, "BOTTOMLEFT", 0, -4)
+        hpBar:SetSize(130, 8)
+        hpBar:SetPoint("TOPLEFT", infoText, "BOTTOMLEFT", 0, -3)
         hpBar:SetStatusBarTexture("Interface\\TargetingFrame\\UI-StatusBar")
         hpBar:SetStatusBarColor(0.2, 0.8, 0.4)
         hpBar:SetMinMaxValues(0, 100)
@@ -137,7 +127,7 @@ function Kennel:Initialize()
 
         -- Deposit Button
         local depBtn = CreateFrame("Button", nil, card, "UIPanelButtonTemplate")
-        depBtn:SetSize(65, 18)
+        depBtn:SetSize(58, 18)
         depBtn:SetPoint("BOTTOMRIGHT", -4, 4)
         depBtn:SetText("Deposit")
         depBtn:SetScript("OnClick", function()
@@ -169,15 +159,15 @@ function Kennel:Initialize()
 
     -- Right Area: Enclosure Boxes (Bank)
     local boxTitle = frame:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
-    boxTitle:SetPoint("TOPLEFT", 256, -52)
+    boxTitle:SetPoint("TOPLEFT", 246, -34)
     boxTitle:SetText("|cffffd100Reserve Enclosures (Bank)|r")
 
     -- Box Tab Buttons (1 to 5)
     frame.BoxTabs = {}
     for b = 1, 5 do
         local tab = CreateFrame("Button", "ForeverSafariKennelTab" .. b, frame, "BackdropTemplate")
-        tab:SetSize(84, 22)
-        tab:SetPoint("TOPLEFT", 256 + ((b - 1) * 88), -72)
+        tab:SetSize(84, 20)
+        tab:SetPoint("TOPLEFT", 246 + ((b - 1) * 88), -52)
         Theme:ApplyCardBackdrop(tab)
         tab.boxId = b
 
@@ -196,19 +186,19 @@ function Kennel:Initialize()
         frame.BoxTabs[b] = tab
     end
 
-    -- Kennel 20-Slot Grid (4 columns x 5 rows)
+    -- Kennel 20-Slot Grid (4 rows x 5 columns)
     local gridContainer = CreateFrame("Frame", nil, frame, "BackdropTemplate")
-    gridContainer:SetSize(448, 335)
-    gridContainer:SetPoint("TOPLEFT", 256, -100)
+    gridContainer:SetSize(448, 252)
+    gridContainer:SetPoint("TOPLEFT", 246, -74)
     Theme:ApplyCardBackdrop(gridContainer)
 
-    local tileSize = 48
+    local tileSize = 42
     for row = 1, 4 do
         for col = 1, 5 do
             local idx = (row - 1) * 5 + col
             local tile = CreateFrame("Button", "ForeverSafariKennelTile" .. idx, gridContainer, "BackdropTemplate")
             tile:SetSize(tileSize, tileSize)
-            tile:SetPoint("TOPLEFT", 12 + ((col - 1) * 86), -10 - ((row - 1) * 78))
+            tile:SetPoint("TOPLEFT", 12 + ((col - 1) * 86), -6 - ((row - 1) * 60))
             Theme:ApplyCardBackdrop(tile)
 
             local icon = tile:CreateTexture(nil, "ARTWORK")
@@ -265,15 +255,10 @@ function Kennel:Initialize()
         end
     end
 
-    -- Bottom Bar
-    local bottomBar = CreateFrame("Frame", nil, frame, "BackdropTemplate")
-    bottomBar:SetSize(720, 48)
-    bottomBar:SetPoint("BOTTOM", 0, 0)
-    Theme:ApplyHeaderBackdrop(bottomBar)
-
-    local withdrawBtn = CreateFrame("Button", "ForeverSafariKennelWithdrawBtn", bottomBar, "UIPanelButtonTemplate")
-    withdrawBtn:SetSize(160, 30)
-    withdrawBtn:SetPoint("LEFT", 16, 0)
+    -- Bottom Bar Controls
+    local withdrawBtn = CreateFrame("Button", "ForeverSafariKennelWithdrawBtn", frame, "UIPanelButtonTemplate")
+    withdrawBtn:SetSize(150, 24)
+    withdrawBtn:SetPoint("BOTTOMLEFT", 246, 10)
     withdrawBtn:SetText("⬆ Move to Squad")
     withdrawBtn:SetScript("OnClick", function()
         if selectedKennelMobId then
@@ -291,8 +276,8 @@ function Kennel:Initialize()
         end
     end)
 
-    local statusText = bottomBar:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
-    statusText:SetPoint("RIGHT", -16, 0)
+    local statusText = frame:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+    statusText:SetPoint("BOTTOMRIGHT", -16, 14)
     statusText:SetText("Reserved: 0 companions")
     frame.StatusText = statusText
 end
@@ -319,76 +304,80 @@ function Kennel:UpdateUI()
     for i = 1, 4 do
         local card = activeCards[i]
         local mobId = team[i]
-        local mob = mobId and (type(mobId) == "table" and mobId or DB:GetMobById(mobId))
+        local mob = mobId and (type(mobId) == "table" and mobId or DB:GetMobById(mobId)) or nil
+
         if mob then
             card.mobId = mob.id
-            local pName = mob.nickname ~= "" and mob.nickname or mob.name
+            local name = mob.nickname ~= "" and mob.nickname or mob.name
+            card.NameText:SetText(string.format("|cffffffff%s|r", name))
+
             local rankData = SE:GetAttunementRank(mob.attunement or 0)
-            card.NameText:SetText(string.format("|cff%s%s|r", rankData.color or "ffffff", pName))
-            card.InfoText:SetText(string.format("Lv %d %s |cffffd100[Rank %s]|r", mob.level or 1, mob.creatureType or "Beast", rankData.roman))
+            card.InfoText:SetText(string.format("Lv.%d %s — |cff%s%s|r", mob.level or 1, mob.creatureType or "Beast", rankData.color or "ffffff", rankData.roman))
 
             local curHP = mob.currentHP or mob.hp or 10
             local maxHP = mob.maxHP or mob.hp or 10
+            local pct = math.floor((curHP / math.max(1, maxHP)) * 100)
             card.HPBar:SetMinMaxValues(0, maxHP)
             card.HPBar:SetValue(curHP)
-            if (curHP / maxHP) <= 0.25 then
-                card.HPBar:SetStatusBarColor(0.9, 0.2, 0.2)
-            else
+            if pct > 50 then
                 card.HPBar:SetStatusBarColor(0.2, 0.8, 0.4)
+            elseif pct > 20 then
+                card.HPBar:SetStatusBarColor(0.9, 0.8, 0.2)
+            else
+                card.HPBar:SetStatusBarColor(0.9, 0.2, 0.2)
             end
 
-            local dispId = tonumber(mob.displayId) or 181
-            if card.Model and card.Model.SetCreatureByDisplayID then
-                pcall(function() card.Model:SetCreatureByDisplayID(dispId) end)
-            elseif card.Model and card.Model.SetDisplayInfo then
-                pcall(function() card.Model:SetDisplayInfo(dispId) end)
+            -- Model Display
+            if card.Model then
+                card.Model:Show()
+                local displayId = mob.displayId or 903
+                pcall(card.Model.SetDisplayInfo, card.Model, displayId)
             end
-            card.Model:Show()
+
             card.DepositBtn:Show()
-            card.DepositBtn:SetEnabled(#team > 1) -- Must keep at least 1 pet in squad
+            card:SetBackdropBorderColor(0.3, 0.4, 0.5, 0.8)
         else
             card.mobId = nil
-            card.NameText:SetText("|cff666666Empty Squad Slot|r")
-            card.InfoText:SetText("Select a banked pet to add")
+            card.NameText:SetText("|cff888888Empty Slot|r")
+            card.InfoText:SetText("")
             card.HPBar:SetValue(0)
             if card.Model then card.Model:Hide() end
             card.DepositBtn:Hide()
+            card:SetBackdropBorderColor(0.2, 0.2, 0.2, 0.5)
         end
     end
 
-    -- Update Banked Grid (20 slots for current box)
-    local kennelMobs = DB:GetKennelMobs(currentBox)
+    -- Update Enclosure 20 Tiles
+    local boxMobs = DB:GetKennelBox(currentBox)
     for idx = 1, 20 do
         local tile = kennelTiles[idx]
-        local mob = kennelMobs[idx]
+        local mobId = boxMobs[idx]
+        local mob = mobId and (type(mobId) == "table" and mobId or DB:GetMobById(mobId)) or nil
+
         if mob then
             tile.mobId = mob.id
-            local pName = mob.nickname ~= "" and mob.nickname or mob.name
-            local rankData = SE:GetAttunementRank(mob.attunement or 0)
-            tile.Label:SetText(string.format("|cff%s%s|r", rankData.color or "ffffff", pName:sub(1, 10)))
-
-            local iconPath = "Interface\\Icons\\INV_Box_PetCarrier_01"
-            if mob.creatureType == "Beast" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Wolf"
-            elseif mob.creatureType == "Flying" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Bat"
-            elseif mob.creatureType == "Undead" then iconPath = "Interface\\Icons\\Spell_Shadow_DeadofNight"
-            elseif mob.creatureType == "Elemental" then iconPath = "Interface\\Icons\\Spell_Fire_Elemental_Totem"
-            elseif mob.creatureType == "Mechanical" then iconPath = "Interface\\Icons\\INV_Misc_EngGizmos_17"
-            elseif mob.creatureType == "Dragonkin" then iconPath = "Interface\\Icons\\INV_Misc_Head_Dragon_01"
-            end
-            tile.Icon:SetTexture(iconPath)
+            local iconTex = mob.icon or "Interface\\Icons\\INV_Box_PetCarrier_01"
+            tile.Icon:SetTexture(iconTex)
             tile.Icon:Show()
+
+            local name = mob.nickname ~= "" and mob.nickname or mob.name
+            if string.len(name) > 10 then
+                name = string.sub(name, 1, 9) .. "…"
+            end
+            local rankData = SE:GetAttunementRank(mob.attunement or 0)
+            tile.Label:SetText(string.format("|cff%s%s|r\n|cffaaaaaaLv.%d|r", rankData.color or "ffffff", name, mob.level or 1))
 
             if selectedKennelMobId == mob.id then
                 tile.SelGlow:Show()
-                tile:SetBackdropBorderColor(0, 1, 0.6, 1)
+                tile:SetBackdropBorderColor(1, 0.82, 0, 1)
             else
                 tile.SelGlow:Hide()
-                tile:SetBackdropBorderColor(0.3, 0.3, 0.3, 0.8)
+                tile:SetBackdropBorderColor(0.25, 0.35, 0.45, 0.8)
             end
         else
             tile.mobId = nil
-            tile.Label:SetText("")
             tile.Icon:Hide()
+            tile.Label:SetText("")
             tile.SelGlow:Hide()
             tile:SetBackdropBorderColor(0.15, 0.15, 0.15, 0.5)
         end
@@ -398,90 +387,164 @@ function Kennel:UpdateUI()
     frame.StatusText:SetText(string.format("Reserved: |cffffd100%d companions|r across all Enclosures", totalBanked))
 end
 
-function Kennel:ShowKennel()
-    if not frame then Kennel:Initialize() end
-    frame:Show()
-    Kennel:UpdateUI()
-    PlaySound(844)
-end
-
-function Kennel:Hide()
-    if frame then frame:Hide() end
-end
-
-function Kennel:IsShown()
-    return frame and frame:IsShown()
-end
-
-function Kennel:Toggle()
-    if frame and frame:IsShown() then
-        Kennel:Hide()
-    else
-        Kennel:ShowKennel()
-    end
-end
-
 -- =========================================================================
--- 🏦 BANKFRAME TAB INTEGRATION ("Junior Safari Reserve")
+-- 🐾 IN-FRAME VIEW SWAPPING & SIDE TAB INTEGRATION
 -- =========================================================================
-local bankTab = nil
+local function EnsureSideTab()
+    if sideTab or not BankFrame then return sideTab end
 
-local function EnsureBankTab()
-    if bankTab or not BankFrame then return bankTab end
+    sideTab = CreateFrame("Button", "ForeverSafariBankReserveSideTab", BankFrame, "BackdropTemplate")
+    sideTab:SetSize(32, 32)
+    sideTab:SetPoint("TOPLEFT", BankFrame, "TOPRIGHT", -2, -60)
+    Theme:ApplyCardBackdrop(sideTab)
 
-    local templates = { "PanelTabButtonTemplate", "CharacterFrameTabButtonTemplate", "TabButtonTemplate" }
-    local tab = nil
-    for _, template in ipairs(templates) do
-        local ok, res = pcall(CreateFrame, "Button", "ForeverSafariBankReserveTab", BankFrame, template)
-        if ok and res then
-            tab = res
-            break
-        end
-    end
+    local icon = sideTab:CreateTexture(nil, "ARTWORK")
+    icon:SetSize(22, 22)
+    icon:SetPoint("CENTER", 0, 0)
+    icon:SetTexture("Interface\\Icons\\Ability_Hunter_Pet_Cat")
+    icon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+    sideTab.Icon = icon
 
-    if not tab then
-        local ok, res = pcall(CreateFrame, "Button", "ForeverSafariBankReserveTab", BankFrame, "UIPanelButtonTemplate")
-        if ok and res then
-            tab = res
+    local glow = sideTab:CreateTexture(nil, "OVERLAY")
+    glow:SetAllPoints()
+    glow:SetTexture("Interface\\Buttons\\CheckButtonHilight")
+    glow:SetBlendMode("ADD")
+    glow:Hide()
+    sideTab.Glow = glow
+
+    sideTab:SetScript("OnEnter", function(self)
+        GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+        GameTooltip:AddLine("|cffffd100Junior Safari Reserve|r", 1, 1, 1)
+        GameTooltip:AddLine("Manage your active squad and banked companion enclosures.", 0.8, 0.8, 0.8, true)
+        GameTooltip:Show()
+    end)
+    sideTab:SetScript("OnLeave", function() GameTooltip:Hide() end)
+
+    sideTab:SetScript("OnClick", function()
+        if Kennel:IsReserveActive() then
+            Kennel:DeactivateReserve()
         else
-            tab = CreateFrame("Button", "ForeverSafariBankReserveTab", BankFrame, "BackdropTemplate")
-            if Theme and Theme.ApplyButtonBackdrop then
-                Theme:ApplyButtonBackdrop(tab)
-            end
-        end
-    end
-
-    bankTab = tab
-    bankTab:SetText("Junior Safari Reserve")
-    if PanelTemplates_TabResize then
-        pcall(PanelTemplates_TabResize, bankTab, 0)
-    end
-    if bankTab:GetWidth() < 120 then
-        bankTab:SetSize(160, 24)
-    end
-
-    -- Dock cleanly to BankFrame tab bar
-    if BankFrameTab2 and BankFrameTab2.GetPoint and BankFrameTab2:GetPoint() then
-        bankTab:SetPoint("LEFT", BankFrameTab2, "RIGHT", -15, 0)
-    elseif BankFrameTab1 and BankFrameTab1.GetPoint and BankFrameTab1:GetPoint() then
-        bankTab:SetPoint("LEFT", BankFrameTab1, "RIGHT", -15, 0)
-    else
-        bankTab:SetPoint("BOTTOMLEFT", BankFrame, "BOTTOMLEFT", 15, -30)
-    end
-
-    bankTab:SetScript("OnClick", function()
-        if frame and frame:IsShown() then
-            Kennel:Hide()
-        else
-            Kennel:ShowKennel()
-            if BankFrame and BankFrame:IsShown() and frame then
-                frame:ClearAllPoints()
-                frame:SetPoint("TOPLEFT", BankFrame, "TOPRIGHT", 10, 0)
-            end
+            Kennel:ActivateReserve()
         end
     end)
 
-    return bankTab
+    return sideTab
+end
+
+function Kennel:IsReserveActive()
+    return isReserveActive
+end
+
+function Kennel:ActivateReserve()
+    if not BankFrame or not BankFrame:IsShown() then return end
+    if not frame then Kennel:Initialize() end
+    if not frame then return end
+
+    isReserveActive = true
+
+    -- Hide native BankPanel and AutoDepositFrame
+    if BankFrame.BankPanel and BankFrame.BankPanel:IsShown() then
+        BankFrame.BankPanel:Hide()
+    end
+    if BankFrame.AutoDepositFrame and BankFrame.AutoDepositFrame:IsShown() then
+        BankFrame.AutoDepositFrame:Hide()
+    end
+
+    frame:Show()
+    Kennel:UpdateUI()
+
+    -- Highlight side tab
+    if sideTab then
+        sideTab.Glow:Show()
+        sideTab:SetBackdropBorderColor(1, 0.82, 0, 1)
+    end
+
+    PlaySound(844)
+end
+
+function Kennel:DeactivateReserve()
+    isReserveActive = false
+
+    if frame and frame:IsShown() then
+        frame:Hide()
+    end
+
+    -- Unhighlight side tab
+    if sideTab then
+        sideTab.Glow:Hide()
+        sideTab:SetBackdropBorderColor(0.25, 0.35, 0.45, 0.8)
+    end
+
+    -- Restore native BankPanel
+    if BankFrame then
+        if BankFrame.BankPanel and not BankFrame.BankPanel:IsShown() then
+            BankFrame.BankPanel:Show()
+        end
+        if BankFrame.AutoDepositFrame and not BankFrame.AutoDepositFrame:IsShown() then
+            BankFrame.AutoDepositFrame:Show()
+        end
+    end
+end
+
+function Kennel:ShowKennel()
+    if BankFrame and BankFrame:IsShown() then
+        Kennel:ActivateReserve()
+    end
+end
+
+function Kennel:Hide()
+    Kennel:DeactivateReserve()
+end
+
+function Kennel:IsShown()
+    return isReserveActive
+end
+
+function Kennel:Toggle()
+    if isReserveActive then
+        Kennel:DeactivateReserve()
+    else
+        Kennel:ActivateReserve()
+    end
+end
+
+-- =========================================================================
+-- ⚡ EVENT LISTENERS & SECURE TAB HOOKS
+-- =========================================================================
+local function HookNativeBankTabs()
+    if nativeHooked then return end
+    nativeHooked = true
+
+    -- Hook BankFrame:SetTab so clicking native tabs restores bank items
+    if BankFrame and BankFrame.SetTab then
+        hooksecurefunc(BankFrame, "SetTab", function()
+            if isReserveActive then
+                Kennel:DeactivateReserve()
+            end
+        end)
+    end
+
+    if BankFrameTab1 and not BankFrameTab1.safariHooked then
+        BankFrameTab1.safariHooked = true
+        BankFrameTab1:HookScript("OnClick", function()
+            if isReserveActive then Kennel:DeactivateReserve() end
+        end)
+    end
+    if BankFrameTab2 and not BankFrameTab2.safariHooked then
+        BankFrameTab2.safariHooked = true
+        BankFrameTab2:HookScript("OnClick", function()
+            if isReserveActive then Kennel:DeactivateReserve() end
+        end)
+    end
+
+    -- Hook BankFrame OnHide to clean up state
+    if BankFrame and not BankFrame.safariHideHooked then
+        BankFrame.safariHideHooked = true
+        BankFrame:HookScript("OnHide", function()
+            Kennel:DeactivateReserve()
+            if sideTab then sideTab:Hide() end
+        end)
+    end
 end
 
 local bankEvents = CreateFrame("Frame", "ForeverSafariKennelBankEvents")
@@ -491,20 +554,15 @@ bankEvents:RegisterEvent("GOSSIP_CLOSED")
 
 bankEvents:SetScript("OnEvent", function(self, event)
     if event == "BANKFRAME_OPENED" then
-        local tab = EnsureBankTab()
-        if tab then
-            tab:Show()
-        end
+        local tab = EnsureSideTab()
+        if tab then tab:Show() end
+        HookNativeBankTabs()
     elseif event == "BANKFRAME_CLOSED" then
-        if frame and frame:IsShown() then
-            frame:Hide()
-        end
-        if bankTab then
-            bankTab:Hide()
-        end
+        Kennel:DeactivateReserve()
+        if sideTab then sideTab:Hide() end
     elseif event == "GOSSIP_CLOSED" then
-        if frame and frame:IsShown() and not (BankFrame and BankFrame:IsShown()) then
-            frame:Hide()
+        if not (BankFrame and BankFrame:IsShown()) then
+            Kennel:DeactivateReserve()
         end
     end
 end)

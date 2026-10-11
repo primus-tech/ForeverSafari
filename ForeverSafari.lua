@@ -94,6 +94,8 @@ local function HandleSlash(msg)
 
     if cmd == "" or cmd == "journal" then
         Journal:Toggle()
+    elseif cmd == "kennel" or cmd == "reserve" then
+        SlashCmdList["FSKENNEL"]()
     elseif cmd == "bounties" then
         if ForeverSafari.JournalFrame then
             ForeverSafari.JournalFrame:ShowTab("BOUNTIES")
