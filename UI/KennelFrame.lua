@@ -390,47 +390,97 @@ end
 -- =========================================================================
 -- 🐾 IN-FRAME VIEW SWAPPING & SIDE TAB INTEGRATION
 -- =========================================================================
+local function UpdateSideTabPosition()
+    if not sideTab or not BankFrame then return end
+
+    local lowestTab = nil
+    local minBottom = math.huge
+
+    if BankFrame.bankPageTabPool and BankFrame.bankPageTabPool.EnumerateActive then
+        for pageTab in BankFrame.bankPageTabPool:EnumerateActive() do
+            if pageTab:IsShown() and pageTab ~= sideTab then
+                local bottom = pageTab:GetBottom()
+                if bottom and bottom < minBottom then
+                    minBottom = bottom
+                    lowestTab = pageTab
+                end
+            end
+        end
+    end
+
+    sideTab:ClearAllPoints()
+    if lowestTab then
+        sideTab:SetPoint("TOPLEFT", lowestTab, "BOTTOMLEFT", 0, -2)
+    else
+        sideTab:SetPoint("TOPLEFT", BankFrame, "TOPRIGHT", 3, -60)
+    end
+    sideTab:Show()
+end
+
 local function EnsureSideTab()
     if sideTab then return sideTab end
     if not BankFrame then return nil end
 
-    sideTab = CreateFrame("Button", "ForeverSafariBankReserveSideTab", BankFrame, "BackdropTemplate")
-    sideTab:SetSize(36, 36)
-    sideTab:SetPoint("TOPLEFT", BankFrame, "TOPRIGHT", 0, -56)
-    sideTab:SetFrameStrata(BankFrame:GetFrameStrata() or "DIALOG")
-    sideTab:SetFrameLevel((BankFrame:GetFrameLevel() or 10) + 20)
-    Theme:ApplyCardBackdrop(sideTab)
-
-    local icon = sideTab:CreateTexture(nil, "ARTWORK")
-    icon:SetSize(26, 26)
-    icon:SetPoint("CENTER", 0, 0)
-    icon:SetTexture("Interface\\Icons\\Ability_Hunter_Pet_Cat")
-    icon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
-    sideTab.Icon = icon
-
-    local glow = sideTab:CreateTexture(nil, "OVERLAY")
-    glow:SetAllPoints()
-    glow:SetTexture("Interface\\Buttons\\CheckButtonHilight")
-    glow:SetBlendMode("ADD")
-    glow:Hide()
-    sideTab.Glow = glow
-
-    sideTab:SetScript("OnEnter", function(self)
-        GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
-        GameTooltip:AddLine("|cffffd100Junior Safari Reserve|r", 1, 1, 1)
-        GameTooltip:AddLine("Manage your active squad and banked companion enclosures.", 0.8, 0.8, 0.8, true)
-        GameTooltip:Show()
-    end)
-    sideTab:SetScript("OnLeave", function() GameTooltip:Hide() end)
-
-    sideTab:SetScript("OnClick", function()
-        if Kennel:IsReserveActive() then
-            Kennel:DeactivateReserve()
-        else
-            Kennel:ActivateReserve()
+    local tab = nil
+    local ok, res = pcall(CreateFrame, "Frame", "ForeverSafariBankReserveSideTab", BankFrame, "LargeSideTabButtonTemplate")
+    if ok and res then
+        tab = res
+        if tab.OnLoad then tab:OnLoad() end
+        if tab.Icon then
+            tab.Icon:SetTexture("Interface\\Icons\\Ability_Hunter_Pet_Cat")
         end
-    end)
+        tab.tooltipText = "|cffffd100Junior Safari Reserve|r\n|cffaaaaaaManage your active squad and banked companion enclosures.|r"
+        if tab.SetCustomOnMouseUpHandler then
+            tab:SetCustomOnMouseUpHandler(function(self, button, upInside)
+                if button == "LeftButton" and upInside then
+                    if Kennel:IsReserveActive() then
+                        Kennel:DeactivateReserve()
+                    else
+                        Kennel:ActivateReserve()
+                    end
+                end
+            end)
+        end
+    else
+        tab = CreateFrame("Button", "ForeverSafariBankReserveSideTab", BankFrame, "BackdropTemplate")
+        tab:SetSize(40, 40)
+        tab:SetFrameStrata(BankFrame:GetFrameStrata() or "DIALOG")
+        tab:SetFrameLevel((BankFrame:GetFrameLevel() or 10) + 20)
+        Theme:ApplyCardBackdrop(tab)
 
+        local icon = tab:CreateTexture(nil, "ARTWORK")
+        icon:SetSize(28, 28)
+        icon:SetPoint("CENTER", 0, 0)
+        icon:SetTexture("Interface\\Icons\\Ability_Hunter_Pet_Cat")
+        icon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+        tab.Icon = icon
+
+        local glow = tab:CreateTexture(nil, "OVERLAY")
+        glow:SetAllPoints()
+        glow:SetTexture("Interface\\Buttons\\CheckButtonHilight")
+        glow:SetBlendMode("ADD")
+        glow:Hide()
+        tab.Glow = glow
+
+        tab:SetScript("OnEnter", function(self)
+            GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+            GameTooltip:AddLine("|cffffd100Junior Safari Reserve|r", 1, 1, 1)
+            GameTooltip:AddLine("Manage your active squad and banked companion enclosures.", 0.8, 0.8, 0.8, true)
+            GameTooltip:Show()
+        end)
+        tab:SetScript("OnLeave", function() GameTooltip:Hide() end)
+
+        tab:SetScript("OnClick", function()
+            if Kennel:IsReserveActive() then
+                Kennel:DeactivateReserve()
+            else
+                Kennel:ActivateReserve()
+            end
+        end)
+    end
+
+    sideTab = tab
+    UpdateSideTabPosition()
     return sideTab
 end
 
@@ -467,8 +517,19 @@ function Kennel:ActivateReserve()
 
     -- Highlight side tab
     if sideTab then
-        sideTab.Glow:Show()
-        sideTab:SetBackdropBorderColor(1, 0.82, 0, 1)
+        if sideTab.SetChecked then
+            sideTab:SetChecked(true)
+        elseif sideTab.Glow then
+            sideTab.Glow:Show()
+            sideTab:SetBackdropBorderColor(1, 0.82, 0, 1)
+        end
+    end
+
+    -- Uncheck Blizzard page tabs
+    if BankFrame.bankPageTabPool and BankFrame.bankPageTabPool.EnumerateActive then
+        for pageTab in BankFrame.bankPageTabPool:EnumerateActive() do
+            if pageTab.SetChecked then pageTab:SetChecked(false) end
+        end
     end
 
     PlaySound(844)
@@ -483,8 +544,12 @@ function Kennel:DeactivateReserve()
 
     -- Unhighlight side tab
     if sideTab then
-        sideTab.Glow:Hide()
-        sideTab:SetBackdropBorderColor(0.25, 0.35, 0.45, 0.8)
+        if sideTab.SetChecked then
+            sideTab:SetChecked(false)
+        elseif sideTab.Glow then
+            sideTab.Glow:Hide()
+            sideTab:SetBackdropBorderColor(0.25, 0.35, 0.45, 0.8)
+        end
     end
 
     -- Restore native BankPanel
@@ -562,20 +627,48 @@ end
 local function SetupBankIntegration()
     if not BankFrame then return end
 
-    local tab = EnsureSideTab()
+    EnsureSideTab()
     HookNativeBankTabs()
 
-    if BankFrame:IsShown() and tab then
-        tab:Show()
+    if not BankFrame.safariTabsHooked then
+        BankFrame.safariTabsHooked = true
+
+        -- Secure hook RefreshPageTabs to always stack our tab below the lowest active page tab
+        if BankFrame.RefreshPageTabs then
+            hooksecurefunc(BankFrame, "RefreshPageTabs", function()
+                UpdateSideTabPosition()
+                if isReserveActive then
+                    if BankFrame.bankPageTabPool and BankFrame.bankPageTabPool.EnumerateActive then
+                        for pageTab in BankFrame.bankPageTabPool:EnumerateActive() do
+                            if pageTab.SetChecked then pageTab:SetChecked(false) end
+                        end
+                    end
+                    if sideTab and sideTab.SetChecked then sideTab:SetChecked(true) end
+                end
+            end)
+        end
+
+        -- Hook EventRegistry for page selections
+        if EventRegistry and EventRegistry.RegisterCallback then
+            EventRegistry:RegisterCallback("BankPanelMixin.PageSelected", function()
+                if isReserveActive then
+                    Kennel:DeactivateReserve()
+                end
+            end, "ForeverSafariKennel")
+        end
     end
 
     if not BankFrame.safariShowHooked then
         BankFrame.safariShowHooked = true
         BankFrame:HookScript("OnShow", function()
-            local t = EnsureSideTab()
-            if t then t:Show() end
+            EnsureSideTab()
             HookNativeBankTabs()
+            C_Timer.After(0.02, UpdateSideTabPosition)
         end)
+    end
+
+    if BankFrame:IsShown() then
+        UpdateSideTabPosition()
     end
 end
 
@@ -594,7 +687,7 @@ bankEvents:SetScript("OnEvent", function(self, event, ...)
         SetupBankIntegration()
     elseif event == "BANKFRAME_OPENED" then
         SetupBankIntegration()
-        if sideTab then sideTab:Show() end
+        UpdateSideTabPosition()
     elseif event == "PLAYER_INTERACTION_MANAGER_FRAME_SHOW" then
         local interactionType = ...
         local pit = Enum and Enum.PlayerInteractionType
@@ -604,7 +697,7 @@ bankEvents:SetScript("OnEvent", function(self, event, ...)
             interactionType == pit.AccountBanker
         ) then
             SetupBankIntegration()
-            if sideTab then sideTab:Show() end
+            UpdateSideTabPosition()
         end
     elseif event == "BANKFRAME_CLOSED" then
         Kennel:DeactivateReserve()
