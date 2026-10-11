@@ -29,6 +29,7 @@ Core\TrainerEngine.lua
 Core\CaptureEngine.lua
 Core\BattleCapture.lua
 Core\BattleEngine.lua
+Core\SafariGossip.lua
 Core\QuestHooks.lua
 Core\Comms.lua
 

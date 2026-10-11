@@ -814,19 +814,10 @@ function Nursery:RegisterGossipEvents()
     eventFrame:RegisterEvent("GOSSIP_CLOSED")
 
     eventFrame:SetScript("OnEvent", function(self, event)
-        if event == "GOSSIP_SHOW" then
-            if Nursery:IsAtMoongladeCenarionNPC() then
-                isAtNurseryNPC = true
-                if GossipFrame and GossipFrame:IsShown() and frame then
-                    frame:ClearAllPoints()
-                    frame:SetPoint("TOPLEFT", GossipFrame, "TOPRIGHT", 10, 0)
-                end
-                Nursery:Show()
-            end
-        elseif event == "GOSSIP_CLOSED" then
+        if event == "GOSSIP_CLOSED" then
             isAtNurseryNPC = false
             if frame and frame:IsShown() and not isCoopMode then
-                -- Close only if docked to gossip
+                frame:Hide()
             end
         end
     end)

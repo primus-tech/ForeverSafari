@@ -210,24 +210,7 @@ function Shop:RegisterGossipEvents()
 end
 
 function Shop:OnGossipShow()
-    local isAuthorized, vType = Shop:IsAtAuthorizedVendor()
-    if isAuthorized then
-        Shop.isAtVendor = true
-        Shop.vendorType = vType or "Pet Trainer"
-
-        -- Open Standalone Safari Supplies Outfitter docked to GossipFrame (Zero Taint)
-        if GossipFrame and GossipFrame:IsShown() then
-            frame:ClearAllPoints()
-            frame:SetPoint("TOPLEFT", GossipFrame, "TOPRIGHT", 10, 0)
-        end
-        Shop:ShowShop(true)
-    else
-        Shop.isAtVendor = false
-        Shop.vendorType = nil
-        if frame and frame:IsShown() then
-            frame:Hide()
-        end
-    end
+    -- Native gossip options now handle opening the Outfitter on-demand via Junior Safari League gossip button
 end
 
 function Shop:OnGossipClosed()
