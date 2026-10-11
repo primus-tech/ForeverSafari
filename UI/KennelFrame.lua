@@ -393,28 +393,56 @@ end
 local function UpdateSideTabPosition()
     if not sideTab or not BankFrame then return end
 
-    local lowestTab = nil
-    local minBottom = math.huge
+    local lastTab = nil
+    local maxRank = -1
 
+    -- 1. Logical detection: rank active tabs by bankType and pageNumber (Frame 0 reliable)
     if BankFrame.bankPageTabPool and BankFrame.bankPageTabPool.EnumerateActive then
         for pageTab in BankFrame.bankPageTabPool:EnumerateActive() do
             if pageTab:IsShown() and pageTab ~= sideTab then
-                local bottom = pageTab:GetBottom()
-                if bottom and bottom < minBottom then
-                    minBottom = bottom
-                    lowestTab = pageTab
+                local bType = (pageTab.bankType == (Enum.BankType and Enum.BankType.Account)) and 100 or 0
+                local pNum = pageTab.pageNumber or 1
+                local rank = bType + pNum
+                if rank > maxRank then
+                    maxRank = rank
+                    lastTab = pageTab
                 end
             end
         end
     end
 
+    -- 2. Screen geometry verification: if GetBottom() is valid, verify lowest screen point
+    if BankFrame.bankPageTabPool and BankFrame.bankPageTabPool.EnumerateActive then
+        local minBottom = math.huge
+        local lowestByCoord = nil
+        for pageTab in BankFrame.bankPageTabPool:EnumerateActive() do
+            if pageTab:IsShown() and pageTab ~= sideTab then
+                local b = pageTab:GetBottom()
+                if b and b < minBottom then
+                    minBottom = b
+                    lowestByCoord = pageTab
+                end
+            end
+        end
+        if lowestByCoord then
+            lastTab = lowestByCoord
+        end
+    end
+
     sideTab:ClearAllPoints()
-    if lowestTab then
-        sideTab:SetPoint("TOPLEFT", lowestTab, "BOTTOMLEFT", 0, -2)
+    if lastTab then
+        sideTab:SetPoint("TOPLEFT", lastTab, "BOTTOMLEFT", 0, -2)
     else
-        sideTab:SetPoint("TOPLEFT", BankFrame, "TOPRIGHT", 3, -60)
+        -- If no page tab is detected yet, anchor 55px below Page 1 to NEVER collide with Page 1 at (3, -60)
+        sideTab:SetPoint("TOPLEFT", BankFrame, "TOPRIGHT", 3, -115)
     end
     sideTab:Show()
+end
+
+local function SchedulePositionUpdate()
+    UpdateSideTabPosition()
+    C_Timer.After(0.02, UpdateSideTabPosition)
+    C_Timer.After(0.08, UpdateSideTabPosition)
 end
 
 local function EnsureSideTab()
@@ -426,10 +454,21 @@ local function EnsureSideTab()
     if ok and res then
         tab = res
         if tab.OnLoad then tab:OnLoad() end
+        tab:SetFrameStrata(BankFrame:GetFrameStrata() or "DIALOG")
+        tab:SetFrameLevel((BankFrame:GetFrameLevel() or 10) + 25)
+        tab:EnableMouse(true)
+
         if tab.Icon then
+            tab.Icon:ClearAllPoints()
+            tab.Icon:SetPoint("CENTER", -4, 0)
+            tab.Icon:SetSize(32, 32)
             tab.Icon:SetTexture("Interface\\Icons\\Ability_Hunter_Pet_Cat")
+            tab.Icon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+            tab.Icon:Show()
         end
+
         tab.tooltipText = "|cffffd100Junior Safari Reserve|r\n|cffaaaaaaManage your active squad and banked companion enclosures.|r"
+
         if tab.SetCustomOnMouseUpHandler then
             tab:SetCustomOnMouseUpHandler(function(self, button, upInside)
                 if button == "LeftButton" and upInside then
@@ -445,7 +484,7 @@ local function EnsureSideTab()
         tab = CreateFrame("Button", "ForeverSafariBankReserveSideTab", BankFrame, "BackdropTemplate")
         tab:SetSize(40, 40)
         tab:SetFrameStrata(BankFrame:GetFrameStrata() or "DIALOG")
-        tab:SetFrameLevel((BankFrame:GetFrameLevel() or 10) + 20)
+        tab:SetFrameLevel((BankFrame:GetFrameLevel() or 10) + 25)
         Theme:ApplyCardBackdrop(tab)
 
         local icon = tab:CreateTexture(nil, "ARTWORK")
@@ -480,7 +519,7 @@ local function EnsureSideTab()
     end
 
     sideTab = tab
-    UpdateSideTabPosition()
+    SchedulePositionUpdate()
     return sideTab
 end
 
@@ -636,7 +675,7 @@ local function SetupBankIntegration()
         -- Secure hook RefreshPageTabs to always stack our tab below the lowest active page tab
         if BankFrame.RefreshPageTabs then
             hooksecurefunc(BankFrame, "RefreshPageTabs", function()
-                UpdateSideTabPosition()
+                SchedulePositionUpdate()
                 if isReserveActive then
                     if BankFrame.bankPageTabPool and BankFrame.bankPageTabPool.EnumerateActive then
                         for pageTab in BankFrame.bankPageTabPool:EnumerateActive() do
@@ -663,12 +702,12 @@ local function SetupBankIntegration()
         BankFrame:HookScript("OnShow", function()
             EnsureSideTab()
             HookNativeBankTabs()
-            C_Timer.After(0.02, UpdateSideTabPosition)
+            SchedulePositionUpdate()
         end)
     end
 
     if BankFrame:IsShown() then
-        UpdateSideTabPosition()
+        SchedulePositionUpdate()
     end
 end
 
@@ -687,7 +726,7 @@ bankEvents:SetScript("OnEvent", function(self, event, ...)
         SetupBankIntegration()
     elseif event == "BANKFRAME_OPENED" then
         SetupBankIntegration()
-        UpdateSideTabPosition()
+        SchedulePositionUpdate()
     elseif event == "PLAYER_INTERACTION_MANAGER_FRAME_SHOW" then
         local interactionType = ...
         local pit = Enum and Enum.PlayerInteractionType
@@ -697,7 +736,7 @@ bankEvents:SetScript("OnEvent", function(self, event, ...)
             interactionType == pit.AccountBanker
         ) then
             SetupBankIntegration()
-            UpdateSideTabPosition()
+            SchedulePositionUpdate()
         end
     elseif event == "BANKFRAME_CLOSED" then
         Kennel:DeactivateReserve()
