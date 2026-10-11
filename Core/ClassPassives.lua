@@ -58,9 +58,9 @@ CP.PASSIVES = {
     },
     ["DRUID"] = {
         id = "DRUID",
-        name = "Wild Symbiosis",
-        icon = "Interface\\Icons\\Ability_Druid_Flourish",
-        desc = "Accelerated Evolution & Bonding: Attunement rewards are boosted by 5% per Attunement Rank (up to +25% at Rank V, rounded up), and Attunement rank thresholds are reduced by 5% per Rank (up to -25% at Rank V, rounded up).",
+        name = "Ecliptic Tides",
+        icon = "Interface\\Icons\\Spell_Arcane_Starfall",
+        desc = "Celestial Pendulum: Offensive moves build Solar power; Defensive, Healing, and Utility moves build Lunar power (pool capped at companion Attunement Rank). Moves siphon points from the opposite side when full. Each cast rolls a 5% per point chance to trigger a Surge (cleansing and applying a HoT for Solar, or a Bramble damage shield for Lunar). Reaching full capacity on either side automatically triggers a maximum surge! Both pools reset to 0 upon triggering.",
     },
     ["WARLOCK"] = {
         id = "WARLOCK",
@@ -187,19 +187,95 @@ function CP:ApplyHunterStatBonus(statVal, statType, playerClass, opponentClass, 
     return statVal
 end
 
--- 🍃 Druid: Wild Symbiosis Attunement Boost (+5% per Rank, up to +25% at Rank V)
-function CP:ApplyDruidAttunementGain(gain, playerClass, rank)
-    if playerClass ~= "DRUID" or not gain or gain <= 0 then return gain end
-    local rankMult = self:GetRankScale(rank)
-    local bonus = 0.25 * rankMult
-    return gain + math.ceil(gain * bonus)
+-- =========================================================================
+-- 🍃 Druid: Ecliptic Tides (In-Combat Celestial Pendulum & Surges)
+-- =========================================================================
+
+--- Advances the Druid Eclipse meter based on move role and companion Attunement Rank.
+-- Capped at companion rank (1-5). Once full, points are siphoned from the opposite side.
+-- Returns: didAutoDischarge (bool), surgeType ("SOLAR"|"LUNAR"|nil), surgePoints (number)
+function CP:UpdateEclipseMeter(meter, moveRole, maxRank)
+    if not meter then return false, nil, 0 end
+    maxRank = math.max(1, math.min(5, tonumber(maxRank) or 1))
+    meter.solar = meter.solar or 0
+    meter.lunar = meter.lunar or 0
+
+    if moveRole == "Offensive" then
+        if (meter.solar + meter.lunar) < maxRank then
+            meter.solar = meter.solar + 1
+        else
+            -- Pool is at max capacity: siphon from Lunar
+            if meter.lunar > 0 then
+                meter.lunar = meter.lunar - 1
+            end
+            meter.solar = math.min(maxRank, meter.solar + 1)
+        end
+    else
+        -- Non-Offensive: Defensive, Healing, Utility -> Lunar
+        if (meter.solar + meter.lunar) < maxRank then
+            meter.lunar = meter.lunar + 1
+        else
+            -- Pool is at max capacity: siphon from Solar
+            if meter.solar > 0 then
+                meter.solar = meter.solar - 1
+            end
+            meter.lunar = math.min(maxRank, meter.lunar + 1)
+        end
+    end
+
+    -- Automatic 100% discharge if meter is filled to either end
+    if meter.solar >= maxRank then
+        local pts = meter.solar
+        meter.solar = 0
+        meter.lunar = 0
+        return true, "SOLAR", pts
+    elseif meter.lunar >= maxRank then
+        local pts = meter.lunar
+        meter.solar = 0
+        meter.lunar = 0
+        return true, "LUNAR", pts
+    end
+
+    return false, nil, 0
 end
 
--- 🍃 Druid: Rank Threshold Discount (-5% per Rank, up to -25% at Rank V)
-function CP:GetDruidRankThreshold(baseThreshold, playerClass, targetRank)
-    if playerClass ~= "DRUID" or not baseThreshold or baseThreshold <= 0 then return baseThreshold end
-    local r = tonumber(targetRank) or 5
-    local rankMult = self:GetRankScale(r)
-    local discount = 0.25 * rankMult
-    return math.max(1, math.ceil(baseThreshold * (1 - discount)))
+--- Rolls chance for an early Eclipse surge on cast (5% per point on the cast side).
+-- If opponent is Warlock, applies suppression multiplier.
+-- Returns: didProc (bool)
+function CP:RollEclipseSurge(points, opponentClass)
+    points = tonumber(points) or 0
+    if points <= 0 then return false end
+    local chance = (points * 5) * self:GetSuppressionMultiplier(opponentClass)
+    local roll = math.random(1, 100)
+    return roll <= chance
 end
+
+--- Calculates Rejuvenating Bloom HoT amount (5% Max HP per Solar point).
+-- Duration equals Solar points (1-5 rounds).
+-- Returns: healPerRound (number), duration (number)
+function CP:GetSolarHoT(maxHP, points)
+    points = math.max(1, math.min(5, tonumber(points) or 1))
+    local percent = points * 0.05
+    local amount = math.ceil((tonumber(maxHP) or 100) * percent)
+    return amount, points
+end
+
+--- Calculates Bramble Damage Shield reflected damage (5% per Lunar point).
+-- Reflects Nature damage back to attacker.
+-- Returns: reflectDamage (number)
+function CP:GetLunarBrambles(incomingDmg, points, opponentClass)
+    points = math.max(1, math.min(5, tonumber(points) or 1))
+    if not incomingDmg or incomingDmg <= 0 then return 0 end
+    local mult = (points * 0.05) * self:GetSuppressionMultiplier(opponentClass)
+    return math.ceil(incomingDmg * mult)
+end
+
+-- Backwards-compatibility stubs
+function CP:ApplyDruidAttunementGain(gain, playerClass, rank)
+    return gain
+end
+
+function CP:GetDruidRankThreshold(baseThreshold, playerClass, targetRank)
+    return baseThreshold
+end
+

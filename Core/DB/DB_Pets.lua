@@ -115,13 +115,6 @@ function DB:AddAttunement(mobId, points, reason)
     local mob = self:GetMobById(mobId)
     if not mob then return end
 
-    -- 🍃 Druid Class Passive: Wild Symbiosis (+5% to +25% Attunement Gains)
-    local CP = ns.ClassPassives
-    if CP and CP.ApplyDruidAttunementGain then
-        local curRank = mob.attunementRank or 1
-        points = CP:ApplyDruidAttunementGain(points, CP:GetPlayerClass(), curRank)
-    end
-
     mob.attunementPoints = (mob.attunementPoints or 0) + points
     mob.attunement = mob.attunementPoints
 

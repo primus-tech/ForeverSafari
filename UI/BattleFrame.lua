@@ -113,7 +113,7 @@ function BF:Initialize()
     -- =========================================================================
     -- BOTTOM-RIGHT: PLAYER STATUS BOX (with EXP/HP)
     -- =========================================================================
-    local playerHUD = BF:CreateRetroStatusBox(stage, 250, 80, true)
+    local playerHUD = BF:CreateRetroStatusBox(stage, 250, 86, true)
     playerHUD:SetPoint("BOTTOMRIGHT", stage, "BOTTOMRIGHT", -10, 15)
     frame.PlayerHUD = playerHUD
 
@@ -225,6 +225,11 @@ function BF:CreateRetroStatusBox(parent, width, height, isPlayer)
         expBg:SetAllPoints()
         expBg:SetColorTexture(0.15, 0.15, 0.15, 0.9)
         box.ExpBar = expBar
+
+        local eclipseText = box:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+        eclipseText:SetPoint("TOPLEFT", 8, -66)
+        eclipseText:SetText("")
+        box.EclipseText = eclipseText
     end
 
     return box
@@ -627,7 +632,10 @@ function BF:UpdateUI()
                 local currentCD = mState and mState.currentCD or 0
 
                 btn.moveKey = moveKey
-                btn.Title:SetText(string.format("|cffffffff%s|r", m.name))
+                local role = m.role or (ns.MoveDB and ns.MoveDB:GetMoveRole(m)) or "Utility"
+                local roleCol = (role == "Offensive") and "ffaa00" or ((role == "Defensive") and "66ccff" or ((role == "Healing") and "00ff99" or "d188ff"))
+                local roleBadge = string.format("|cff%s[%s]|r", roleCol, string.sub(role, 1, 3))
+                btn.Title:SetText(string.format("%s |cffffffff%s|r", roleBadge, m.name))
 
                 -- Info line: CD status & remaining uses
                 local cdText = (currentCD > 0) and string.format("|cffff4444CD:%d|r", currentCD) or "|cff00ff99READY|r"
@@ -644,6 +652,25 @@ function BF:UpdateUI()
                 btn:Show()
             else
                 btn:Hide()
+            end
+        end
+
+        -- Update Druid Ecliptic Tides status text
+        if frame.PlayerHUD and frame.PlayerHUD.EclipseText then
+            local CP = ns.ClassPassives
+            if CP and CP:GetPlayerClass() == "DRUID" and BE.State.druidEclipse then
+                local e = BE.State.druidEclipse
+                local r = player.attunementRank or 1
+                local surgeStatus = ""
+                if (e.hotTurns or 0) > 0 then
+                    surgeStatus = string.format(" |cff00ff99[Bloom: %dr]|r", e.hotTurns)
+                elseif (e.brambleTurns or 0) > 0 then
+                    surgeStatus = string.format(" |cff3399ff[Brambles: %dr]|r", e.brambleTurns)
+                end
+                frame.PlayerHUD.EclipseText:SetText(string.format("|cffffaa00☀️ %d/%d|r  |cff66ccff🌙 %d/%d|r%s", e.solar or 0, r, e.lunar or 0, r, surgeStatus))
+                frame.PlayerHUD.EclipseText:Show()
+            else
+                frame.PlayerHUD.EclipseText:Hide()
             end
         end
     end

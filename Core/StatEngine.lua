@@ -17,15 +17,9 @@ local C = ns.Constants
 function SE:GetAttunementRank(points)
     points = math.max(0, tonumber(points) or 0)
     local ranks = C.ATTUNEMENT_RANKS
-    local CP = ns.ClassPassives
-    local pClass = CP and CP:GetPlayerClass()
 
     for i = #ranks, 1, -1 do
-        local minPoints = ranks[i].minPoints
-        if CP and CP.GetDruidRankThreshold then
-            minPoints = CP:GetDruidRankThreshold(minPoints, pClass, i)
-        end
-        if points >= minPoints then
+        if points >= ranks[i].minPoints then
             return ranks[i]
         end
     end
@@ -37,27 +31,14 @@ function SE:GetRankProgress(points)
     points = math.max(0, tonumber(points) or 0)
     local currentRank = SE:GetAttunementRank(points)
     local nextRank = C.ATTUNEMENT_RANKS[currentRank.rank + 1]
-    local CP = ns.ClassPassives
-    local pClass = CP and CP:GetPlayerClass()
 
     local curMin = currentRank.minPoints
-    if CP and CP.GetDruidRankThreshold then
-        curMin = CP:GetDruidRankThreshold(curMin, pClass, currentRank.rank)
-    end
 
     if not nextRank then
-        local maxPts = currentRank.maxPoints
-        if CP and CP.GetDruidRankThreshold then
-            maxPts = CP:GetDruidRankThreshold(maxPts, pClass, currentRank.rank)
-        end
-        return currentRank, points, maxPts, 1.0 -- Max Rank V
+        return currentRank, points, currentRank.maxPoints, 1.0 -- Max Rank V
     end
 
     local nextMin = nextRank.minPoints
-    if CP and CP.GetDruidRankThreshold then
-        nextMin = CP:GetDruidRankThreshold(nextMin, pClass, nextRank.rank)
-    end
-
     local pointsInCurrent = points - curMin
     local pointsRequired = nextMin - curMin
     local fraction = math.min(1.0, math.max(0, pointsInCurrent / pointsRequired))

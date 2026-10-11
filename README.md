@@ -214,7 +214,7 @@ Companions progress through bonding, feeding, and battlefield survival rather th
   * 🗡️ **Rogue (Shadow Evasion)**: **+5% per Rank** (up to +25% at Rank V) opponent miss chance.
   * ✝️ **Priest (Divine Grace)**: Active `[Divine Grace]` emergency heal console button (1–5 uses per battle, heals **5% per Rank**, up to 25% Max HP).
   * 🏹 **Hunter (Pathfinder's Mastery)**: **+5% per Rank** (up to +25% at Rank V) baseline Attack and Defense stats.
-  * 🍃 **Druid (Wild Symbiosis)**: **+5% per Rank** (up to +25% at Rank V) Attunement gains; Attunement rank thresholds reduced by **5% per Rank** (up to -25% at Rank V).
+  * 🍃 **Druid (Ecliptic Tides)**: Celestial Tug-of-War pendulum. Offensive moves build Solar; Defensive/Healing/Utility build Lunar (cap equal to companion Rank, 1-5). Siphons points from the opposing side when full. 5% per point chance on cast to trigger a Surge (Solar: Cleanses debuff + HoT; Lunar: Bramble damage shield reflecting Nature damage). Auto-discharges with 100% chance upon reaching full capacity on either side. Resets both sides to 0 on trigger.
   * 🔮 **Warlock (Curse of Suppression)**: Reduces opposed player class bonuses by **10% per Rank** (up to 50% at Rank V) in trainer battles and duels.
 
 ### 16. Moonglade Cenarion Nursery & Co-op Breeding Program

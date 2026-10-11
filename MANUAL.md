@@ -390,7 +390,7 @@ Every character class in World of Warcraft grants an authentic, persistent tacti
 | 🗡️ **Rogue** | **Shadow Evasion** | Opportunistic Evasion | Increases opponent base miss chance against your companion by **+5% per Rank** (+5% at Rank 1, up to **+25%** at Rank V). |
 | ✝️ **Priest** | **Divine Grace** | Tactical Emergency Heal | Grants active **`[Divine Grace]`** console button in `/fsbattle`. Usable up to `Rank` times (1–5) per battle; restores **5% Max HP per Rank** (up to **25%** at Rank V, rounded up). |
 | 🏹 **Hunter** | **Pathfinder's Mastery** | Baseline Conditioning | Companions gain **+5% per Rank** (+5% at Rank 1, up to **+25%** at Rank V, rounded up) to baseline Attack and Defense stats. |
-| 🍃 **Druid** | **Wild Symbiosis** | Rapid Attunement & Discount | Companions gain **+5% per Rank** (up to **+25%** at Rank V) Attunement points; Attunement rank thresholds are reduced by **5% per Rank** (up to **-25%** at Rank V). |
+| 🍃 **Druid** | **Ecliptic Tides** | Celestial Tug-of-War & Surges | Offensive moves build Solar power; Defensive/Healing/Utility moves build Lunar power (pool capped at companion Rank, 1-5). Points siphon from the opposite side when full. Each cast rolls a 5% per point chance to trigger a Surge (cleansing 1 debuff and applying a HoT for Solar, or a Bramble damage shield reflecting Nature damage for Lunar). Reaching full capacity on either side automatically discharges a 100% maximum surge! Both sides reset to 0 upon triggering. |
 | 🔮 **Warlock** | **Curse of Suppression** | Passive Nullification | Reduces opposed player class bonuses by **10% per Rank** (10% at Rank 1, up to **50%** at Rank V) in trainer battles and multiplayer duels. |
 
 ---

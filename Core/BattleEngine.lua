@@ -49,6 +49,15 @@ BE.State = {
         player = {}, -- [moveKey] = { currentCD = 0, usesLeft = X }
         enemy = {},  -- [moveKey] = { currentCD = 0, usesLeft = X }
     },
+    druidEclipse = {
+        solar = 0,
+        lunar = 0,
+        hotTurns = 0,
+        hotAmount = 0,
+        brambleTurns = 0,
+        bramblePercent = 0,
+        bramblePoints = 0,
+    },
     logs = {},
     dialogueText = "What will you do?",
 }
@@ -143,6 +152,54 @@ function BE:TickRoundBuffsAndHoTs()
             end
         end
     end
+
+    -- 🍃 Druid Class Passive: Ecliptic Tides HoT (Rejuvenating Bloom) & Brambles Decay
+    local eclipse = BE.State.druidEclipse
+    if eclipse then
+        if (eclipse.hotTurns or 0) > 0 and BE.State.playerMob and (BE.State.playerMob.currentHP or 0) > 0 then
+            local healAmount = eclipse.hotAmount or 0
+            BE.State.playerMob.currentHP = math.min(BE.State.playerMob.maxHP, BE.State.playerMob.currentHP + healAmount)
+            local pMob = BE.State.playerMob
+            local mName = (pMob.nickname ~= "" and pMob.nickname) or pMob.name
+            BE:AddLog(string.format("|cff00ff99[Solar Surge: Rejuvenating Bloom]|r %s restored %d HP! (%d rounds remaining)", mName, healAmount, eclipse.hotTurns - 1))
+            eclipse.hotTurns = eclipse.hotTurns - 1
+            if eclipse.hotTurns <= 0 then
+                eclipse.hotAmount = 0
+            end
+        end
+        if (eclipse.brambleTurns or 0) > 0 then
+            eclipse.brambleTurns = eclipse.brambleTurns - 1
+            if eclipse.brambleTurns <= 0 then
+                eclipse.bramblePercent = 0
+                eclipse.bramblePoints = 0
+            end
+        end
+    end
+end
+
+-- Cleanse 1 active negative status/debuff effect from player companion
+function BE:CleansePlayerDebuff()
+    if BE.State.buffs.player and BE.State.buffs.player.sleep then
+        BE.State.buffs.player.sleep = nil
+        return "Sleep"
+    end
+    if BE.State.flinch and BE.State.flinch.player then
+        BE.State.flinch.player = false
+        return "Flinch"
+    end
+    if BE.State.buffs.player and BE.State.buffs.player.bleedVuln then
+        BE.State.buffs.player.bleedVuln = nil
+        return "Bleed Vulnerability"
+    end
+    if BE.State.buffs.player then
+        for _, stat in ipairs({ "atk", "def", "spd" }) do
+            if BE.State.buffs.player[stat] and (BE.State.buffs.player[stat].multiplier or 1.0) < 1.0 then
+                BE.State.buffs.player[stat] = nil
+                return string.upper(stat) .. " Reduction"
+            end
+        end
+    end
+    return nil
 end
 
 -- Check if player has any conscious companion on team
@@ -343,6 +400,15 @@ function BE:StartWildBattle(unit)
         BE.State.shamanRevived = false
         BE.State.priestHealUses = 0
         BE.State.opponentClass = match.trainerClass
+        BE.State.druidEclipse = {
+            solar = 0,
+            lunar = 0,
+            hotTurns = 0,
+            hotAmount = 0,
+            brambleTurns = 0,
+            bramblePercent = 0,
+            bramblePoints = 0,
+        }
 
         -- Initialize Move Cooldowns & Limits
         BE:InitMoveStates(activeMob, "player")
@@ -399,6 +465,15 @@ function BE:StartWildBattle(unit)
     BE.State.shamanRevived = false
     BE.State.priestHealUses = 0
     BE.State.opponentClass = nil
+    BE.State.druidEclipse = {
+        solar = 0,
+        lunar = 0,
+        hotTurns = 0,
+        hotAmount = 0,
+        brambleTurns = 0,
+        bramblePercent = 0,
+        bramblePoints = 0,
+    }
     
     -- Initialize Move Cooldowns & Limits
     BE:InitMoveStates(activeMob, "player")
@@ -530,6 +605,66 @@ function BE:ExecutePlayerMove(moveKey)
     local priorityText = (move.priority and move.priority > 0) and " |cffffcc00[Priority Strike!]|r" or ""
     BE.State.dialogueText = string.format("%s used %s!", pName, move.name)
     BE:AddLog(string.format("|cff00ff99%s|r used |cffffd100%s|r!%s (Uses: %d/%d)", pName, move.name, priorityText, moveData.usesLeft, moveData.maxUses))
+
+    -- 🍃 Druid Class Passive: Ecliptic Tides (Solar / Lunar Tug-of-War & Surges)
+    local CP = ns.ClassPassives
+    local MoveDB = ns.MoveDB
+    if CP and CP:GetPlayerClass() == "DRUID" and MoveDB then
+        local moveRole = MoveDB:GetMoveRole(moveKey)
+        local curRank = player.attunementRank or 1
+        local oppClass = BE.State.opponentClass
+        local eclipse = BE.State.druidEclipse
+
+        if not eclipse then
+            eclipse = { solar = 0, lunar = 0, hotTurns = 0, hotAmount = 0, brambleTurns = 0, bramblePercent = 0, bramblePoints = 0 }
+            BE.State.druidEclipse = eclipse
+        end
+
+        local autoDischarge, surgeType, surgePoints = CP:UpdateEclipseMeter(eclipse, moveRole, curRank)
+
+        if autoDischarge then
+            -- 100% Guaranteed Automatic Discharge at Max Capacity
+            if surgeType == "SOLAR" then
+                local cleansed = BE:CleansePlayerDebuff()
+                local hotAmount, hotDuration = CP:GetSolarHoT(player.maxHP, surgePoints)
+                eclipse.hotTurns = hotDuration
+                eclipse.hotAmount = hotAmount
+                local cleanMsg = cleansed and string.format(" (cleansed %s)", cleansed) or ""
+                BE:AddLog(string.format("|cffffcc00[Solar Surge - 100%% Discharge!]|r Rejuvenating Bloom restored! (+%d HP/round for %d rounds)%s", hotAmount, hotDuration, cleanMsg))
+            elseif surgeType == "LUNAR" then
+                local brambleTurns = surgePoints
+                eclipse.brambleTurns = brambleTurns
+                eclipse.bramblePoints = surgePoints
+                BE:AddLog(string.format("|cff3399ff[Lunar Surge - 100%% Discharge!]|r Bramble Damage Shield active! (Reflecting %d%% Nature damage for %d rounds)", surgePoints * 5, brambleTurns))
+            end
+        else
+            -- Check for Early Proc Roll on cast (5% per point on the cast side)
+            local currentPoints = (moveRole == "Offensive") and eclipse.solar or eclipse.lunar
+            if currentPoints > 0 and CP:RollEclipseSurge(currentPoints, oppClass) then
+                if moveRole == "Offensive" then
+                    local pts = eclipse.solar
+                    eclipse.solar = 0
+                    eclipse.lunar = 0
+                    local cleansed = BE:CleansePlayerDebuff()
+                    local hotAmount, hotDuration = CP:GetSolarHoT(player.maxHP, pts)
+                    eclipse.hotTurns = hotDuration
+                    eclipse.hotAmount = hotAmount
+                    local cleanMsg = cleansed and string.format(" (cleansed %s)", cleansed) or ""
+                    BE:AddLog(string.format("|cffffcc00[Solar Surge Procced (%d%% roll)!]|r Rejuvenating Bloom restored! (+%d HP/round for %d rounds)%s - Meter reset to 0.", pts * 5, hotAmount, hotDuration, cleanMsg))
+                else
+                    local pts = eclipse.lunar
+                    eclipse.solar = 0
+                    eclipse.lunar = 0
+                    eclipse.brambleTurns = pts
+                    eclipse.bramblePoints = pts
+                    BE:AddLog(string.format("|cff3399ff[Lunar Surge Procced (%d%% roll)!]|r Bramble Damage Shield active! (Reflecting %d%% Nature damage for %d rounds) - Meter reset to 0.", pts * 5, pts * 5, pts))
+                end
+            else
+                local roleCol = (moveRole == "Offensive") and "|cffffaa00Solar|r" or "|cff66ccffLunar|r"
+                BE:AddLog(string.format("|cffffffff[Ecliptic Tides]|r %s move advanced meter: [☀️ Solar: %d/%d | 🌙 Lunar: %d/%d]", roleCol, eclipse.solar, curRank, eclipse.lunar, curRank))
+            end
+        end
+    end
 
     -- Trigger Player Attack Animation in UI
     if ForeverSafari.BattleFrame and ForeverSafari.BattleFrame.TriggerAttackAnimation then
@@ -689,6 +824,14 @@ function BE:ExecuteEnemyTurn()
         BE:AddLog(string.format("|cff9966ccWild %s's Unholy Immortality has expired!|r", enemy.name))
         BE:HandleEnemyFaint()
         return
+    end
+
+    -- Check if enemy fainted (including from Bramble shield reflection)
+    if enemy.currentHP <= 0 then
+        if not BE:CheckDefeatPassives(enemy, "enemy") then
+            BE:HandleEnemyFaint()
+            return
+        end
     end
 
     -- Check if player fainted
@@ -888,6 +1031,16 @@ function BE:ApplyMoveEffects(move, attacker, defender, side)
             if healBack > 0 then
                 defender.currentHP = math.min(defender.maxHP, defender.currentHP + healBack)
                 BE:AddLog(string.format("|cffffd100[Aura of Light]|r Converted %d damage into holy healing!", healBack))
+            end
+
+            -- 🍃 Druid: Ecliptic Tides (Bramble Damage Shield Reflection)
+            if pClass == "DRUID" and BE.State.druidEclipse and (BE.State.druidEclipse.brambleTurns or 0) > 0 and finalDmg > 0 then
+                local bramblePts = BE.State.druidEclipse.bramblePoints or dRank
+                local reflectDmg = CP:GetLunarBrambles(finalDmg, bramblePts, oppClass)
+                if reflectDmg > 0 and attacker and attacker.currentHP > 0 then
+                    attacker.currentHP = math.max(0, attacker.currentHP - reflectDmg)
+                    BE:AddLog(string.format("|cff33ff33[Lunar Surge: Brambles]|r Reflected %d Nature damage back to %s! (%d rounds remaining)", reflectDmg, attacker.name, BE.State.druidEclipse.brambleTurns))
+                end
             end
         end
 
