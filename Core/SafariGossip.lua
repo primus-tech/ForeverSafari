@@ -227,6 +227,69 @@ function SG:IsCenarionKeeper(unit)
     return false
 end
 
+function SG:IsBanker(unit)
+    unit = unit or GetGossipUnit()
+    local keywords = { "banker", "vault", "bank", "deposit box", "teller" }
+
+    -- 1. Tooltip line scanning (catches <Banker> subtitle with 100% reliability)
+    if unit and ScanUnitTooltipForKeywords(unit, keywords) then
+        return true
+    end
+
+    -- 2. C_TooltipInfo scan
+    if unit and C_TooltipInfo and C_TooltipInfo.GetUnit then
+        local ok, info = pcall(C_TooltipInfo.GetUnit, unit)
+        if ok and info and info.lines then
+            for _, line in ipairs(info.lines) do
+                if line.leftText and MatchesKeyword(line.leftText, keywords) then
+                    return true
+                end
+            end
+        end
+    end
+
+    -- 3. Unit Name & Title Text
+    if unit then
+        local name = UnitName(unit)
+        if name and MatchesKeyword(name, keywords) then
+            return true
+        end
+    end
+    if GossipFrameTitleText and GossipFrameTitleText:GetText() and MatchesKeyword(GossipFrameTitleText:GetText(), keywords) then
+        return true
+    end
+
+    -- 4. Native Gossip Options check (banker options)
+    if C_GossipInfo and C_GossipInfo.GetOptions then
+        local ok, opts = pcall(C_GossipInfo.GetOptions)
+        if ok and opts then
+            for _, opt in ipairs(opts) do
+                local name = opt.name or opt.title
+                if name and MatchesKeyword(name, { "bank", "deposit", "vault" }) then
+                    return true
+                end
+                if opt.icon == 132058 or opt.type == "banker" then
+                    return true
+                end
+            end
+        end
+    end
+    if GetGossipOptions then
+        local ok, opts = pcall(function() return { GetGossipOptions() } end)
+        if ok and opts then
+            for i = 1, #opts, 2 do
+                local title = opts[i]
+                local gType = opts[i+1]
+                if gType == "banker" or (title and MatchesKeyword(title, { "bank", "deposit", "vault" })) then
+                    return true
+                end
+            end
+        end
+    end
+
+    return false
+end
+
 -- =========================================================================
 -- 🏛️ NATIVE GOSSIP FRAME GEOMETRY INSPECTION
 -- =========================================================================
@@ -417,6 +480,29 @@ function SG:BuildOptionsForCurrentNPC()
                 C_Timer.After(0.05, function()
                     if ns.Nursery and ns.Nursery.Show then
                         ns.Nursery:Show()
+                    end
+                end)
+            end,
+        })
+    elseif self:IsBanker(unit) then
+        -- 5. Access Companion Reserve
+        table.insert(options, {
+            text = "Junior Safari League: Access Companion Reserve",
+            icon = SG.ICON_SHOP,
+            onClick = function()
+                CloseGossipWindow()
+                C_Timer.After(0.05, function()
+                    if BankFrame then
+                        if not BankFrame:IsShown() then
+                            if BankFrame_Open then
+                                BankFrame_Open()
+                            else
+                                ShowUIPanel(BankFrame)
+                            end
+                        end
+                        if ns.Kennel and ns.Kennel.ActivateReserve then
+                            ns.Kennel:ActivateReserve()
+                        end
                     end
                 end)
             end,

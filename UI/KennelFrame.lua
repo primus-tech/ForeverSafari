@@ -391,15 +391,18 @@ end
 -- 🐾 IN-FRAME VIEW SWAPPING & SIDE TAB INTEGRATION
 -- =========================================================================
 local function EnsureSideTab()
-    if sideTab or not BankFrame then return sideTab end
+    if sideTab then return sideTab end
+    if not BankFrame then return nil end
 
     sideTab = CreateFrame("Button", "ForeverSafariBankReserveSideTab", BankFrame, "BackdropTemplate")
-    sideTab:SetSize(32, 32)
-    sideTab:SetPoint("TOPLEFT", BankFrame, "TOPRIGHT", -2, -60)
+    sideTab:SetSize(36, 36)
+    sideTab:SetPoint("TOPLEFT", BankFrame, "TOPRIGHT", 0, -56)
+    sideTab:SetFrameStrata(BankFrame:GetFrameStrata() or "DIALOG")
+    sideTab:SetFrameLevel((BankFrame:GetFrameLevel() or 10) + 20)
     Theme:ApplyCardBackdrop(sideTab)
 
     local icon = sideTab:CreateTexture(nil, "ARTWORK")
-    icon:SetSize(22, 22)
+    icon:SetSize(26, 26)
     icon:SetPoint("CENTER", 0, 0)
     icon:SetTexture("Interface\\Icons\\Ability_Hunter_Pet_Cat")
     icon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
@@ -436,6 +439,15 @@ function Kennel:IsReserveActive()
 end
 
 function Kennel:ActivateReserve()
+    if not BankFrame or not BankFrame:IsShown() then
+        if BankFrame then
+            if BankFrame_Open then
+                BankFrame_Open()
+            else
+                ShowUIPanel(BankFrame)
+            end
+        end
+    end
     if not BankFrame or not BankFrame:IsShown() then return end
     if not frame then Kennel:Initialize() end
     if not frame then return end
@@ -547,22 +559,73 @@ local function HookNativeBankTabs()
     end
 end
 
+local function SetupBankIntegration()
+    if not BankFrame then return end
+
+    local tab = EnsureSideTab()
+    HookNativeBankTabs()
+
+    if BankFrame:IsShown() and tab then
+        tab:Show()
+    end
+
+    if not BankFrame.safariShowHooked then
+        BankFrame.safariShowHooked = true
+        BankFrame:HookScript("OnShow", function()
+            local t = EnsureSideTab()
+            if t then t:Show() end
+            HookNativeBankTabs()
+        end)
+    end
+end
+
 local bankEvents = CreateFrame("Frame", "ForeverSafariKennelBankEvents")
+bankEvents:RegisterEvent("PLAYER_LOGIN")
 bankEvents:RegisterEvent("BANKFRAME_OPENED")
 bankEvents:RegisterEvent("BANKFRAME_CLOSED")
+if Enum and Enum.PlayerInteractionType then
+    bankEvents:RegisterEvent("PLAYER_INTERACTION_MANAGER_FRAME_SHOW")
+    bankEvents:RegisterEvent("PLAYER_INTERACTION_MANAGER_FRAME_HIDE")
+end
 bankEvents:RegisterEvent("GOSSIP_CLOSED")
 
-bankEvents:SetScript("OnEvent", function(self, event)
-    if event == "BANKFRAME_OPENED" then
-        local tab = EnsureSideTab()
-        if tab then tab:Show() end
-        HookNativeBankTabs()
+bankEvents:SetScript("OnEvent", function(self, event, ...)
+    if event == "PLAYER_LOGIN" then
+        SetupBankIntegration()
+    elseif event == "BANKFRAME_OPENED" then
+        SetupBankIntegration()
+        if sideTab then sideTab:Show() end
+    elseif event == "PLAYER_INTERACTION_MANAGER_FRAME_SHOW" then
+        local interactionType = ...
+        local pit = Enum and Enum.PlayerInteractionType
+        if pit and (
+            interactionType == pit.Banker or
+            interactionType == pit.CharacterBanker or
+            interactionType == pit.AccountBanker
+        ) then
+            SetupBankIntegration()
+            if sideTab then sideTab:Show() end
+        end
     elseif event == "BANKFRAME_CLOSED" then
         Kennel:DeactivateReserve()
         if sideTab then sideTab:Hide() end
+    elseif event == "PLAYER_INTERACTION_MANAGER_FRAME_HIDE" then
+        local interactionType = ...
+        local pit = Enum and Enum.PlayerInteractionType
+        if pit and (
+            interactionType == pit.Banker or
+            interactionType == pit.CharacterBanker or
+            interactionType == pit.AccountBanker
+        ) then
+            Kennel:DeactivateReserve()
+            if sideTab then sideTab:Hide() end
+        end
     elseif event == "GOSSIP_CLOSED" then
         if not (BankFrame and BankFrame:IsShown()) then
             Kennel:DeactivateReserve()
         end
     end
 end)
+
+-- Run immediate setup on load
+SetupBankIntegration()
