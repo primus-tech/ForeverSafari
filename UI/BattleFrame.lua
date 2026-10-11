@@ -255,6 +255,29 @@ function BF:BuildMainMenu(parent)
     btnRun:SetScript("OnClick", function()
         BE:RunAway()
     end)
+
+    -- 🌿 Priest Class Passive: Divine Grace Action Button
+    local btnGrace = CreateFrame("Button", "ForeverSafariBattleGraceBtn", p, "BackdropTemplate")
+    btnGrace:SetSize(256, 18)
+    btnGrace:SetPoint("BOTTOM", p, "BOTTOM", 0, -8)
+    btnGrace:SetBackdrop({
+        bgFile = "Interface\\Buttons\\WHITE8X8",
+        edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+        edgeSize = 8,
+    })
+    btnGrace:SetBackdropColor(0.18, 0.12, 0.22, 0.95)
+    btnGrace:SetBackdropBorderColor(1.0, 0.85, 0.4, 0.9)
+
+    local graceText = btnGrace:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    graceText:SetPoint("CENTER", 0, 0)
+    graceText:SetText("|cffffd100💖 Divine Grace (Heal 25%)|r")
+    btnGrace.Text = graceText
+
+    btnGrace:SetScript("OnClick", function()
+        BE:UseDivineGrace()
+    end)
+    p.GraceBtn = btnGrace
+    btnGrace:Hide()
 end
 
 -- =========================================================================
@@ -650,6 +673,18 @@ function BF:UpdateUI()
             frame.PartyMenu.BackBtn:Enable()
             frame.PartyMenu.BackBtn:SetText("< BACK")
         end
+    end
+
+    -- Priest Divine Grace Action Refresh
+    local CP = ns.ClassPassives
+    if CP and CP:GetPlayerClass() == "PRIEST" and frame.MainMenu and frame.MainMenu.GraceBtn then
+        local maxUses = CP:GetPriestMaxHeals(player and player.attunementRank or 1, "PRIEST", BE.State.opponentClass)
+        local used = BE.State.priestHealUses or 0
+        local left = math.max(0, maxUses - used)
+        frame.MainMenu.GraceBtn.Text:SetText(string.format("|cffffd100💖 Divine Grace (%d/%d left)|r", left, maxUses))
+        frame.MainMenu.GraceBtn:SetShown(left > 0 and BE.State.turn == "player" and menuMode == "MAIN")
+    elseif frame.MainMenu and frame.MainMenu.GraceBtn then
+        frame.MainMenu.GraceBtn:Hide()
     end
 
     -- Update Party Buttons

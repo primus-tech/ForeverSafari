@@ -460,7 +460,8 @@ function Journal:UpdateRosterList()
         local inSquad = DB:IsMobInSquad(mob.id)
         local squadTag = inSquad and " |cffffd100[Squad]|r" or ""
         btn.Title:SetText((mob.customNickname or mob.name) .. squadTag)
-        btn.Sub:SetText(string.format("Rank %s | %s", mob.attunementRank or 1, mob.family or "Beast"))
+        local anatBadge = mob.anatomy == "Dam" and "|cffff99cc♀ Dam|r" or "|cff66ccff♂ Sire|r"
+        btn.Sub:SetText(string.format("Rank %s | %s | %s", mob.attunementRank or 1, mob.family or "Beast", anatBadge))
 
         local iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Wolf"
         if mob.family == "Feline" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Cat"
@@ -528,7 +529,8 @@ function Journal:UpdateRosterView()
 
     local rank = mob.attunementRank or 1
     local rankInfo = C.ATTUNEMENT_RANKS and C.ATTUNEMENT_RANKS[rank] or { title = "Wild", maxPoints = 250, roman = "I" }
-    rPanel.AttunementHeader:SetText(string.format("Attunement: |cffffd100Rank %s (%s)|r", rankInfo.roman or rank, rankInfo.title or "Wild"))
+    local anatBadge = mob.anatomy == "Dam" and "|cffff99cc♀ Dam|r" or "|cff66ccff♂ Sire|r"
+    rPanel.AttunementHeader:SetText(string.format("Attunement: |cffffd100Rank %s (%s)|r  %s", rankInfo.roman or rank, rankInfo.title or "Wild", anatBadge))
 
     local curPts = mob.attunementPoints or 0
     local maxPts = rankInfo.maxPoints or 250

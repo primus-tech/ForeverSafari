@@ -17,8 +17,15 @@ local C = ns.Constants
 function SE:GetAttunementRank(points)
     points = math.max(0, tonumber(points) or 0)
     local ranks = C.ATTUNEMENT_RANKS
+    local CP = ns.ClassPassives
+    local pClass = CP and CP:GetPlayerClass()
+
     for i = #ranks, 1, -1 do
-        if points >= ranks[i].minPoints then
+        local minPoints = ranks[i].minPoints
+        if CP and CP.GetDruidRankThreshold then
+            minPoints = CP:GetDruidRankThreshold(minPoints, pClass)
+        end
+        if points >= minPoints then
             return ranks[i]
         end
     end
@@ -30,13 +37,29 @@ function SE:GetRankProgress(points)
     points = math.max(0, tonumber(points) or 0)
     local currentRank = SE:GetAttunementRank(points)
     local nextRank = C.ATTUNEMENT_RANKS[currentRank.rank + 1]
+    local CP = ns.ClassPassives
+    local pClass = CP and CP:GetPlayerClass()
 
-    if not nextRank then
-        return currentRank, points, currentRank.maxPoints, 1.0 -- Max Rank V
+    local curMin = currentRank.minPoints
+    if CP and CP.GetDruidRankThreshold then
+        curMin = CP:GetDruidRankThreshold(curMin, pClass)
     end
 
-    local pointsInCurrent = points - currentRank.minPoints
-    local pointsRequired = nextRank.minPoints - currentRank.minPoints
+    if not nextRank then
+        local maxPts = currentRank.maxPoints
+        if CP and CP.GetDruidRankThreshold then
+            maxPts = CP:GetDruidRankThreshold(maxPts, pClass)
+        end
+        return currentRank, points, maxPts, 1.0 -- Max Rank V
+    end
+
+    local nextMin = nextRank.minPoints
+    if CP and CP.GetDruidRankThreshold then
+        nextMin = CP:GetDruidRankThreshold(nextMin, pClass)
+    end
+
+    local pointsInCurrent = points - curMin
+    local pointsRequired = nextMin - curMin
     local fraction = math.min(1.0, math.max(0, pointsInCurrent / pointsRequired))
 
     return currentRank, pointsInCurrent, pointsRequired, fraction
@@ -100,6 +123,14 @@ function SE:CalculateStats(creatureType, points, isElite, baseStatsOverride)
     local atk = math.max(1, math.floor(rawAtk * (typeMult.atk or 1.0) * eliteMod * attunementMod))
     local def = math.max(1, math.floor(rawDef * (typeMult.def or 1.0) * eliteMod * attunementMod))
     local spd = math.max(1, math.floor(rawSpd * (typeMult.spd or 1.0) * attunementMod))
+
+    -- 🏹 Hunter Class Passive: Pathfinder's Mastery (+25% Attack and Defense)
+    local CP = ns.ClassPassives
+    if CP and CP.ApplyHunterStatBonus then
+        local pClass = CP:GetPlayerClass()
+        atk = CP:ApplyHunterStatBonus(atk, "atk", pClass, nil)
+        def = CP:ApplyHunterStatBonus(def, "def", pClass, nil)
+    end
 
     return {
         maxHP = maxHP,
@@ -226,6 +257,7 @@ function SE:CreateMobInstance(name, rawCreatureType, initialAttunement, isElite,
         nickname = "",
         creatureType = creatureType,
         family = family,
+        anatomy = (math.random(1, 2) == 1 and "Sire" or "Dam"),
         attunement = attunement,
         rank = stats.rankData.rank,
         isElite = isElite or false,

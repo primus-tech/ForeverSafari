@@ -224,14 +224,15 @@ function Inspector:InspectCompanion(companionData)
 
     local rankData = ForeverSafari.StatEngine:GetAttunementRank(companionData.attunement or 0)
 
+    local anatBadge = companionData.anatomy == "Dam" and "|cffff99cc♀ Dam|r" or "|cff66ccff♂ Sire|r"
     if isRare then
         frame.rareBadge:Show()
         frame.nameText:SetText(string.format("|cffffd100★ %s ★|r", companionData.nickname or companionData.name or "Rare Spawn"))
-        frame.speciesText:SetText(string.format("(%s - |cffffd100Rare %s|r)", companionData.name or "Rare Beast", companionData.creatureType or "Beast"))
+        frame.speciesText:SetText(string.format("(%s - |cffffd100Rare %s|r  %s)", companionData.name or "Rare Beast", companionData.creatureType or "Beast", anatBadge))
     else
         frame.rareBadge:Hide()
         frame.nameText:SetText(string.format("|cffffd100%s|r", companionData.nickname or companionData.name or "Unknown"))
-        frame.speciesText:SetText(string.format("(%s - %s)", companionData.name or "Wild Fauna", companionData.creatureType or "Beast"))
+        frame.speciesText:SetText(string.format("(%s - %s  %s)", companionData.name or "Wild Fauna", companionData.creatureType or "Beast", anatBadge))
     end
     frame.levelText:SetText(string.format("|cff%sRank %s: %s|r", rankData.color, rankData.roman, rankData.title))
 

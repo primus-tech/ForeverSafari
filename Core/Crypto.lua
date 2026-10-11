@@ -28,7 +28,7 @@ end
 
 function Crypto:GenerateSignature(mob)
     if not mob then return "" end
-    local str = string.format("%s:%s:%d:%d:%d:%d:%d:%s",
+    local str = string.format("%s:%s:%d:%d:%d:%d:%d:%s:%s",
         tostring(mob.id or 0),
         tostring(mob.name or ""),
         tonumber(mob.level or 1),
@@ -36,13 +36,17 @@ function Crypto:GenerateSignature(mob)
         tonumber(mob.attack or 5),
         tonumber(mob.defense or 5),
         tonumber(mob.speed or 5),
-        tostring(mob.displayId or 0)
+        tostring(mob.displayId or 0),
+        tostring(mob.anatomy or "Sire")
     )
     return self:Hash(str)
 end
 
 function Crypto:SignMob(mob)
     if not mob then return end
+    if not mob.anatomy or (mob.anatomy ~= "Sire" and mob.anatomy ~= "Dam") then
+        mob.anatomy = (math.random(1, 2) == 1 and "Sire" or "Dam")
+    end
     mob.sig = self:GenerateSignature(mob)
     return mob
 end
@@ -56,6 +60,13 @@ function Crypto:ValidateAndRepairSignatures(collection)
     if not collection then return end
 
     for _, mob in ipairs(collection) do
+        -- Ensure biological anatomy designation (Sire / Dam)
+        if not mob.anatomy or (mob.anatomy ~= "Sire" and mob.anatomy ~= "Dam") then
+            local hashVal = self:Hash(tostring(mob.id or math.random(1, 1000)))
+            local lastChar = string.byte(hashVal, #hashVal) or 0
+            mob.anatomy = (lastChar % 2 == 0) and "Sire" or "Dam"
+        end
+
         -- Ensure default moves
         if not mob.moves or #mob.moves == 0 then
             mob.moves = { 101, 107, 102, 118 }

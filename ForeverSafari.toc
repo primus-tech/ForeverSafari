@@ -17,6 +17,7 @@ Data\TrainerDB.lua
 
 # Core Engine & Database
 Core\Constants.lua
+Core\ClassPassives.lua
 Core\Crypto.lua
 Core\Database.lua
 Core\DB\DB_Pets.lua
@@ -43,6 +44,7 @@ UI\CaptureHUD.lua
 UI\ShopFrame.lua
 UI\KennelFrame.lua
 UI\SafariBagFrame.lua
+UI\NurseryFrame.lua
 
 # Modular Field Guide Journal (Components & Views)
 UI\Components\JournalTeamDock.lua

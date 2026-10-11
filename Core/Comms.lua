@@ -97,7 +97,31 @@ function Comms:OnMessageReceived(text, channel, sender)
         DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00[%s Defeated]|r Party sync: +25 Safari Tokens! You unlocked |cffffd100%s|r research!", C.PREFIX, bName, cType))
     elseif msgType == "SHARE_MOB" then
         -- Received shared companion link from player
+    elseif msgType == "NURSERY_INVITE" then
+        if ForeverSafari.NurseryFrame then
+            ForeverSafari.NurseryFrame:ReceiveInvite(sender)
+        end
+    elseif msgType == "NURSERY_CANDIDATE" then
+        if ForeverSafari.NurseryFrame then
+            ForeverSafari.NurseryFrame:ReceivePartnerCandidate(sender, data)
+        end
+    elseif msgType == "NURSERY_READY" then
+        if ForeverSafari.NurseryFrame then
+            ForeverSafari.NurseryFrame:ReceivePartnerReady(sender, data)
+        end
+    elseif msgType == "NURSERY_CONFIRM" then
+        if ForeverSafari.NurseryFrame then
+            ForeverSafari.NurseryFrame:ReceivePartnerSacrifice(sender, data)
+        end
+    elseif msgType == "NURSERY_CANCEL" then
+        if ForeverSafari.NurseryFrame then
+            ForeverSafari.NurseryFrame:ReceivePartnerCancel(sender)
+        end
     end
+end
+
+function Comms:SendNurseryMessage(msgType, data, targetPlayer)
+    self:SendMessage(msgType, data, targetPlayer)
 end
 
 function Comms:ChallengeTarget()

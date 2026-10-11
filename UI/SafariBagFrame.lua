@@ -680,6 +680,16 @@ function Bag:UseItem(itemId, itemData)
         end
     end
 
+    -- 6. 🥚 Safari Nursery Eggs: Hatch Newborn Companion
+    if itemData.category == "Safari Nursery Egg" or itemId == "safari_egg" or string.find(itemId, "^safari_egg_") then
+        local Nursery = ForeverSafari.NurseryFrame
+        if Nursery and Nursery.HatchEgg then
+            Nursery:HatchEgg(itemId, itemData)
+            Bag:UpdateUI()
+            return
+        end
+    end
+
     DEFAULT_CHAT_FRAME:AddMessage(string.format("%sUsed [%s].", C.PREFIX, itemData.name))
 end
 

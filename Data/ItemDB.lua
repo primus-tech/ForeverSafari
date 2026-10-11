@@ -287,7 +287,29 @@ function ItemDB:GetDiet(id)
 end
 
 function ItemDB:GetItem(id)
-    return self.ITEMS[id] or self.DIET_ITEMS[id] or self.CAGES[id] or self.TRANSPORT_CRATES[id]
+    if not id then return nil end
+    if self.ITEMS[id] then return self.ITEMS[id] end
+    if self.DIET_ITEMS[id] then return self.DIET_ITEMS[id] end
+    if self.CAGES[id] then return self.CAGES[id] end
+    if self.TRANSPORT_CRATES[id] then return self.TRANSPORT_CRATES[id] end
+
+    if id == "safari_egg" or string.find(id, "^safari_egg_") then
+        local rawFam = id:match("^safari_egg_(.+)$") or "Beast"
+        local famTitle = rawFam:gsub("^%l", string.upper)
+        return {
+            id = id,
+            name = famTitle .. " Safari Egg",
+            category = "Safari Nursery Egg",
+            icon = "Interface\\Icons\\INV_Egg_02",
+            quality = 3,
+            color = "0070dd",
+            tokenCost = 0,
+            desc = string.format("A warm, pulsating egg produced from the Moonglade Cenarion Breeding ritual of two Rank V %s champions. Right-Click to hatch into a purebred newborn companion!", famTitle),
+            useText = "Right-Click to incubate and hatch newborn companion into your squad.",
+            family = famTitle,
+        }
+    end
+    return nil
 end
 
 function ItemDB:GetFamilyDietInfo(family, creatureType)

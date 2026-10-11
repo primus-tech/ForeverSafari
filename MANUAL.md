@@ -21,8 +21,10 @@
 9. [Dungeons, Boss Permits & Evolution Catalysts](#9-dungeons-boss-permits--evolution-catalysts)
 10. [Virtual Safari Bag & Gear Progression](#10-virtual-safari-bag--gear-progression)
 11. [Multiplayer Duels & 3D Companion Sharing](#11-multiplayer-duels--3d-companion-sharing)
-12. [Complete Slash Command Reference](#12-complete-slash-command-reference)
-13. [Troubleshooting & FAQ](#13-troubleshooting--faq)
+12. [Player Class Passives & Combat Mechanics](#12-player-class-passives--combat-mechanics)
+13. [Moonglade Cenarion Nursery & Endgame Breeding](#13-moonglade-cenarion-nursery--endgame-breeding)
+14. [Complete Slash Command Reference](#14-complete-slash-command-reference)
+15. [Troubleshooting & FAQ](#15-troubleshooting--faq)
 
 ---
 
@@ -375,7 +377,66 @@ Type `/fsbag` or `/safari bag` to open your 20-slot Virtual Safari Bag.
 
 ---
 
-## 12. Complete Slash Command Reference
+## 12. Player Class Passives & Combat Mechanics
+
+Every character class in World of Warcraft grants an authentic, persistent tactical bonus to all active companions owned by that character. All percentage calculations and thresholds are strictly rounded up via `math.ceil()`.
+
+| Class | Passive Name | Core Mechanic | Effect Details |
+| :--- | :--- | :--- | :--- |
+| 🛡️ **Warrior** | **Marshal's Tenacity** | Physical Damage Mitigation | Reduces all incoming physical damage dealt to your companion by **25%** (rounded up). |
+| 🛡️ **Paladin** | **Aura of Light** | Damage-to-Healing Conversion | Exactly **25%** of all incoming damage taken by your companion is converted back into healing HP (rounded up). |
+| ⚡ **Shaman** | **Primal Rebirth** | Ancestral Revive | Flat **50% chance** to revive at **50% health** the first time your companion is knocked out in any battle. |
+| 🔮 **Mage** | **Arcane Celerity & Ward** | Celerity Slow & Spell Ward | Halves attacker speed for `Attunement Rank` turns when hit; companion takes **25% reduced** non-physical damage. |
+| 🗡️ **Rogue** | **Shadow Evasion** | Opportunistic Evasion | Increases opponent base miss chance against your companion by **+25%**. |
+| ✝️ **Priest** | **Divine Grace** | Tactical Emergency Heal | Grants an active **`[Divine Grace]`** button in `/fsbattle`. Usable up to `Rank` times (1–5) per battle; restores **25% Max HP** without consuming attacking turn. |
+| 🏹 **Hunter** | **Pathfinder's Mastery** | Baseline Conditioning | Companions gain a permanent **+25% bonus** to baseline Attack and Defense stats. |
+| 🍃 **Druid** | **Wild Symbiosis** | Rapid Attunement & Discount | Companions gain **+25% Attunement points** from all sources; Attunement rank thresholds are reduced by **25%**. |
+| 🔮 **Warlock** | **Curse of Suppression** | Passive Nullification | Reduces opposed player class bonuses by **50%** in trainer battles and multiplayer duels. |
+
+---
+
+## 13. Moonglade Cenarion Nursery & Endgame Breeding
+
+The **Moonglade Cenarion Nursery** (`/fsnursery`) provides an endgame co-op breeding program hosted by the Cenarion Circle in Moonglade (Nighthaven).
+
+```
++-----------------------------------------------------------------------+
+|  🌿 MOONGLADE CENARION NURSERY — SACRED CO-OP BREEDING SANCTUARY      |
++-----------------------------------------------------------------------+
+|  [ Candidate 1: Trainer ]             [ Candidate 2: Mate / Partner ] |
+|  +-----------------------+            +-----------------------+       |
+|  |     3D PEDESTAL       |            |     3D PEDESTAL       |       |
+|  |   Rank V: Apex Canine |            |   Rank V: Apex Canine |       |
+|  |     ♂ Sire (Signed)   |            |     ♀ Dam (Signed)    |       |
+|  +-----------------------+            +-----------------------+       |
+|                                                                       |
+|  CHECKLIST:                                                           |
+|  1. Family Harmony:         [ ✔ Purebred Canine Match ]               |
+|  2. Apex Attunement:        [ ✔ Both Rank V: Bestial Symbiosis ]      |
+|  3. Biological Designation: [ ✔ 1x Sire (♂) + 1x Dam (♀) ]            |
+|                                                                       |
+|  ⚠ THE ULTIMATE SACRIFICE: Parents are PERMANENTLY consumed from vault|
+|  [ Guaranteed 2 Safari Eggs (Split) + 20% Chance for 3rd Bonus Egg ]  |
+|                                                                       |
+|             [ COMMENCE SACRED BREEDING RITUAL ]                       |
++-----------------------------------------------------------------------+
+```
+
+### 🧬 Biological Designation & Requirements
+* **Anatomy**: Every companion is born or captured as either **Sire (♂)** or **Dam (♀)** (50/50 distribution), cryptographically signed into their League DNA signature.
+* **Exact Same Family**: Both candidates must belong to the same species family (e.g. Canine + Canine, Feline + Feline, Bear + Bear).
+* **Rank V (Bestial Symbiosis)**: Both candidates must be fully attuned at Rank V (1000 Loyalty).
+* **Compatible Pair**: Must pair exactly **1x Sire (♂)** and **1x Dam (♀)**.
+
+### 💀 The Ultimate Sacrifice & Egg Payout
+* Breeding requires both parents to merge their life forces: **both candidates are PERMANENTLY consumed from your vault/collection**.
+* **Guaranteed Eggs**: Each trainer receives **1 purebred Safari Egg** stored in their Safari Bag (`/fsbag`).
+* **20% Bonus 3rd Egg Roll**: Exactly a 20% chance to produce a 3rd bonus egg! In co-op, the bonus egg is awarded via a 50/50 roll between the two trainers. In solo breeding, the trainer receives all 3 eggs.
+* **Incubation**: Open your Safari Bag (`/fsbag`) and **Right-Click** any Safari Egg to hatch a purebred level 1 newborn with superior inherited IV baseline stats and learned family moves!
+
+---
+
+## 14. Complete Slash Command Reference
 
 | Command | Shorthand | Description |
 | :--- | :--- | :--- |
@@ -384,6 +445,7 @@ Type `/fsbag` or `/safari bag` to open your 20-slot Virtual Safari Bag.
 | `/safari kennel` | `/fskennel` | Opens the Safari Kennel (Requires Banker interaction). |
 | `/safari shop` | `/fsshop` | Opens the Nesingwary Safari Outfitter (Requires Pet Trainer). |
 | `/safari mail` | `/fsmail` | Opens Nesingwary Safari Correspondence at a Mailbox. |
+| `/safari nursery` | `/fsnursery`, `/fsbreed` | Opens Moonglade Cenarion Nursery Breeding Sanctuary. |
 | `/safari bounties` | — | Opens Tab 4: Field Directives & Research Quest Log. |
 | `/safari observe` | `/fsnet` | Starts field observation channel on your targeted quarry. |
 | `/safari battle` | `/fsbattle` | Engages targeted creature or humanoid in turn-based combat. |
@@ -394,7 +456,7 @@ Type `/fsbag` or `/safari bag` to open your 20-slot Virtual Safari Bag.
 
 ---
 
-## 13. Troubleshooting & FAQ
+## 15. Troubleshooting & FAQ
 
 ### Q: Why can't I catch Humanoids, Centaurs, or Murlocs with snares?
 **A**: Under the Nesingwary Safari Code, sapient and civilized humanoids cannot be captured into cages. Instead, targeting humanoids initiates a **Rival Battler AI Trainer Battle**, rewarding you with Safari Tokens!

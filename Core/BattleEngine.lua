@@ -340,6 +340,9 @@ function BE:StartWildBattle(unit)
         BE.State.passives.mechanicalRevived = { player = false, enemy = false }
         BE.State.passives.undeadImmortal = { player = 0, enemy = 0 }
         BE.State.passives.undeadTriggered = { player = false, enemy = false }
+        BE.State.shamanRevived = false
+        BE.State.priestHealUses = 0
+        BE.State.opponentClass = match.trainerClass
 
         -- Initialize Move Cooldowns & Limits
         BE:InitMoveStates(activeMob, "player")
@@ -393,6 +396,9 @@ function BE:StartWildBattle(unit)
     BE.State.passives.mechanicalRevived = { player = false, enemy = false }
     BE.State.passives.undeadImmortal = { player = 0, enemy = 0 }
     BE.State.passives.undeadTriggered = { player = false, enemy = false }
+    BE.State.shamanRevived = false
+    BE.State.priestHealUses = 0
+    BE.State.opponentClass = nil
     
     -- Initialize Move Cooldowns & Limits
     BE:InitMoveStates(activeMob, "player")
@@ -656,9 +662,18 @@ function BE:ExecuteEnemyTurn()
     end
 
     local hitRoll = math.random(1, 100)
-    if hitRoll > chosen.move.accuracy then
+    local effectiveAccuracy = chosen.move.accuracy
+    local CP = ns.ClassPassives
+    if CP and CP.GetRogueMissBonus then
+        local pClass = CP:GetPlayerClass()
+        local missPenalty = CP:GetRogueMissBonus(pClass, BE.State.opponentClass)
+        effectiveAccuracy = math.max(1, effectiveAccuracy - missPenalty)
+    end
+
+    if hitRoll > effectiveAccuracy then
         BE.State.dialogueText = string.format("Enemy %s's attack missed!", enemy.name)
-        BE:AddLog("|cffff8800The attack missed!|r")
+        local shadowMsg = (CP and CP:GetPlayerClass() == "ROGUE") and " |cff00ff99[Shadow Evasion]|r" or ""
+        BE:AddLog(string.format("|cffff8800The attack missed!%s|r", shadowMsg))
     else
         BE:ApplyMoveEffects(chosen.move, enemy, player, "enemy")
         if ForeverSafari.BattleFrame and ForeverSafari.BattleFrame.TriggerHitAnimation then
@@ -833,6 +848,46 @@ function BE:ApplyMoveEffects(move, attacker, defender, side)
         local rawDmg = (((atk * move.power * 0.7) / (def * 0.75 + 15)) + math.random(2, 6)) * bleedMod
         local finalDmg = math.max(1, math.floor(rawDmg * typeMult * critMult))
 
+        -- 🛡️ Player Class Passives (Mitigation & Conversion)
+        local CP = ns.ClassPassives
+        local pClass = CP and CP:GetPlayerClass()
+        local oppClass = BE.State.opponentClass
+
+        if targetSide == "player" and CP then
+            -- 🛡️ Warrior: Physical Damage Mitigation (-25%)
+            if move.type == "Physical" or move.type == "Normal" then
+                local red = CP:CalculatePhysicalDamageReduction(finalDmg, pClass, oppClass)
+                if red > 0 then
+                    finalDmg = math.max(1, finalDmg - red)
+                    BE:AddLog(string.format("|cff996633[Marshal's Tenacity]|r Mitigated %d physical damage!", red))
+                end
+            else
+                -- 🔮 Mage: Non-physical Damage Mitigation (-25%)
+                local red = CP:CalculateMageSpellReduction(finalDmg, move.type, pClass, oppClass)
+                if red > 0 then
+                    finalDmg = math.max(1, finalDmg - red)
+                    BE:AddLog(string.format("|cff33ccff[Arcane Ward]|r Absorbed %d non-physical damage!", red))
+                end
+            end
+
+            -- 🔮 Mage: Speed Suppression (Halves enemy speed for Attunement Rank turns)
+            if pClass == "MAGE" and attacker then
+                local slowTurns = CP:GetMageSlowDuration(defender.attunementRank or 1, oppClass)
+                BE.State.buffs[side].spd = {
+                    multiplier = 0.5,
+                    turns = slowTurns,
+                }
+                BE:AddLog(string.format("|cff33ccff[Arcane Celerity]|r %s's speed halved for %d turns!", attacker.name, slowTurns))
+            end
+
+            -- 🛡️ Paladin: Damage-to-Healing Conversion (25%)
+            local healBack = CP:CalculatePaladinHealback(finalDmg, pClass, oppClass)
+            if healBack > 0 then
+                defender.currentHP = math.min(defender.maxHP, defender.currentHP + healBack)
+                BE:AddLog(string.format("|cffffd100[Aura of Light]|r Converted %d damage into holy healing!", healBack))
+            end
+        end
+
         -- Passive 7: Magic (Cannot take more than 35% max HP from a single attack)
         if defender.creatureType == "Magic" then
             local maxCap = math.floor(defender.maxHP * 0.35)
@@ -847,6 +902,19 @@ function BE:ApplyMoveEffects(move, attacker, defender, side)
             defender.currentHP = 1
         else
             defender.currentHP = math.max(0, defender.currentHP - finalDmg)
+        end
+
+        -- ⚡ Shaman: Primal Rebirth (Flat 50% revive at 50% max HP)
+        if targetSide == "player" and defender.currentHP <= 0 and pClass == "SHAMAN" and not BE.State.shamanRevived then
+            local canRevive = CP:CanShamanRevive(pClass, BE.State.shamanRevived, oppClass)
+            if canRevive then
+                BE.State.shamanRevived = true
+                local reviveHP = math.ceil(defender.maxHP * 0.5)
+                defender.currentHP = reviveHP
+                defender.isFainted = false
+                PlaySound(1195)
+                BE:AddLog(string.format("|cff0070dd[Primal Rebirth]|r %s's spirit returned with %d HP (50%%)!|r", defender.name, reviveHP))
+            end
         end
 
         local effText = ""
@@ -1067,4 +1135,40 @@ function BE:RunAway()
     if ForeverSafari.BattleFrame then
         ForeverSafari.BattleFrame:UpdateUI()
     end
+end
+
+-- 🌿 Priest Class Passive: Divine Grace Active Emergency Heal
+function BE:UseDivineGrace()
+    if not BE.State.inBattle or BE.State.turn ~= "player" then return false end
+    local player = BE.State.playerMob
+    if not player or player.currentHP <= 0 then return false end
+
+    local CP = ns.ClassPassives
+    local pClass = CP and CP:GetPlayerClass()
+    if pClass ~= "PRIEST" then return false end
+
+    local maxUses = CP:GetPriestMaxHeals(player.attunementRank or 1, pClass, BE.State.opponentClass)
+    BE.State.priestHealUses = BE.State.priestHealUses or 0
+    if BE.State.priestHealUses >= maxUses then
+        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444No Divine Grace charges remaining this battle!|r")
+        return false
+    end
+
+    BE.State.priestHealUses = BE.State.priestHealUses + 1
+    local healAmt = CP:GetPriestHealAmount(player.maxHP, pClass, BE.State.opponentClass)
+    player.currentHP = math.min(player.maxHP, player.currentHP + healAmt)
+    PlaySound(895)
+    BE:AddLog(string.format("|cffffffff[Divine Grace]|r Restored |cff00ff00%d HP|r to %s! (%d/%d used)", healAmt, player.name, BE.State.priestHealUses, maxUses))
+
+    BE.State.dialogueText = string.format("You channeled Divine Grace on %s!", player.name)
+    if ForeverSafari.BattleFrame and ForeverSafari.BattleFrame.UpdateUI then
+        ForeverSafari.BattleFrame:UpdateUI()
+    end
+
+    C_Timer.After(1.2, function()
+        if BE.State.inBattle then
+            BE:ExecuteEnemyTurn()
+        end
+    end)
+    return true
 end

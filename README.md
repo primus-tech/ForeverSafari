@@ -203,12 +203,39 @@ Companions progress through bonding, feeding, and battlefield survival rather th
 * **Full-Width Inbox Column**: Displays received Nesingwary dispatches and field bounties with sender names, titles, and status tags (`[ 📦 Unopened Parcel ]`, `[ ✔ Ready to Claim ]`, `[ ✉️ New ]`).
 * **Secondary OpenMail Window**: Dedicated `OpenMail` window attached to the side, styled with Nesingwary gold/dark theme, antique parchment letter body, and a parcel attachment tray with tooltips and one-click unbox/claim actions.
 
+### 15. Player Class Passives & Combat Mechanics
+* **Authentic Class Synergy**: Every player class grants an authentic, persistent tactical bonus to all active companions owned by that character.
+* **Strict Rounding**: All percentage calculations and thresholds strictly round up via `math.ceil()`.
+  * 🛡️ **Warrior (Marshal's Tenacity)**: Physical damage taken reduced by 25%.
+  * 🛡️ **Paladin (Aura of Light)**: 25% of incoming damage converted back into healing HP.
+  * ⚡ **Shaman (Primal Rebirth)**: 50% chance to revive at 50% HP on companion knockout.
+  * 🔮 **Mage (Arcane Celerity & Ward)**: Halves attacker speed for Attunement Rank turns; 25% non-physical damage resistance.
+  * 🗡️ **Rogue (Shadow Evasion)**: +25% opponent miss chance.
+  * ✝️ **Priest (Divine Grace)**: Active `[Divine Grace]` emergency heal console button (1–5 uses per battle, heals 25% Max HP).
+  * 🏹 **Hunter (Pathfinder's Mastery)**: +25% baseline Attack and Defense stats.
+  * 🍃 **Druid (Wild Symbiosis)**: +25% Attunement gains from all sources, -25% Attunement rank thresholds.
+  * 🔮 **Warlock (Curse of Suppression)**: Reduces opposed player class bonuses by 50% in trainer battles and duels.
+
+### 16. Moonglade Cenarion Nursery & Co-op Breeding Program
+* **Moonglade Sacred Sanctuary**: Gated at the Cenarion Circle in Moonglade (Nighthaven) via NPC gossip or `/fsnursery`.
+* **Biological Designation**: Every companion possesses a signed biological designation: **Sire (♂)** or **Dam (♀)** (50/50 distribution).
+* **Breeding Rules**:
+  * 1. Exact Same Family (purebred lineage).
+  * 2. Both candidates must be Rank V (Bestial Symbiosis / 1000 Loyalty).
+  * 3. Compatible pairing: Exactly 1x Sire (♂) and 1x Dam (♀).
+* **The Ultimate Sacrifice**: Both parent candidates are **PERMANENTLY consumed** from the player vault to merge life forces.
+* **Egg Yield & Bonus Roll**:
+  * Guaranteed: 1 purebred Safari Egg (`safari_egg_<family>`) to each trainer deposited into `/fsbag`.
+  * Lucky Clutch: Exactly a **20% flat chance** to produce a 3rd bonus egg (50/50 roll between trainers in co-op).
+* **Incubation**: Right-click any egg in `/fsbag` to hatch a newborn purebred companion with superior inherited IVs!
+
 ---
 
 ## 🎮 Slash Commands
 
 * `/safari` or `/fs` — Open the Forever Safari 3D Field Guide & Squad Manager
 * `/safari kennel` or `/fskennel` — Open the Safari Kennel (Requires Banker interaction)
+* `/safari nursery` or `/fsnursery`, `/fsbreed` — Open Moonglade Cenarion Breeding Nursery
 * `/safari bounties` — View Active Field Directives & Quest Tracker (Tab 4)
 * `/safari observe` or `/fsnet` — Channel field observation to stalk target and discover new moves
 * `/safari abandon` or `/safari release` — Release active companion back into the wild (with confirmation)
@@ -235,7 +262,7 @@ ForeverSafari/
 │   └── SAFARI_OUTPOST_SYSTEM.md       # Regional Outposts, Gym Leaders & Neutral Orders
 │
 ├── Data/                              # Canonical Data Registries
-│   ├── ItemDB.lua                     # Snares, Traps, Cages, Crates, 11 Diets & Consumables
+│   ├── ItemDB.lua                     # Snares, Traps, Cages, Crates, 11 Diets, Eggs & Consumables
 │   ├── MoveDB.lua                     # 94 Moves (Feral Druid, Utility, Boss Signatures)
 │   ├── CreatureDB.lua                 # 1,910 Normalized Species & 715 3D Displays
 │   ├── BestiaryDB.lua                 # 215 Curated Classic Species across 9 Families
@@ -244,6 +271,8 @@ ForeverSafari/
 │
 ├── Core/                              # Core Engine & Subsystem Logic
 │   ├── Constants.lua                  # Types, Elements, Attunement Ranks, Diets, Crates
+│   ├── ClassPassives.lua              # 9 Player Class Tactical Passives (math.ceil)
+│   ├── Crypto.lua                     # HMAC-SHA1 DNA Signatures & Anatomy Validation
 │   ├── Database.lua                   # Core Initialization, Signatures, DNA & Settings
 │   ├── DB/                            # Domain-Specific Database Sub-Modules
 │   │   ├── DB_Pets.lua                # Companion CRUD, Active Party & Nicknames
@@ -253,9 +282,10 @@ ForeverSafari/
 │   ├── StatEngine.lua                 # Attunement Scaling, 100/110 Budget & Stat Engine
 │   ├── TrainerEngine.lua              # Roaming Humanoid NPC AI Trainer Battle Matcher
 │   ├── CaptureEngine.lua              # Capture Formulas, Catch Rates & Crate Logistics
-│   ├── BattleEngine.lua               # Turn-Based Combat Loop, AI Trainers & Statuses
+│   ├── BattleCapture.lua              # In-Battle Trap Throwing & Capture Logic
+│   ├── BattleEngine.lua               # Turn-Based Combat Loop, Passives, AI Trainers
 │   ├── QuestHooks.lua                 # Boss Kills, Quest Hooks & Token Rewards
-│   └── Comms.lua                      # P2P Multiplayer Sync & Chat Hyperlinks
+│   └── Comms.lua                      # P2P Multiplayer Sync, Nursery Protocol & Links
 │
 └── UI/                                # User Interface & Views
     ├── Theme.lua                      # Nesingwary Safari Gold & Dark Theme Tokens
@@ -263,6 +293,7 @@ ForeverSafari/
     ├── MinimapButton.lua              # Minimap Radar Icon & Coordinates Tooltip
     ├── SafariMailFrame.lua            # Mailbox Custom Tab & Quest Correspondence Hub
     ├── DispatchLetterFrame.lua        # Nesingwary Parchment First-Login Onboarding
+    ├── NurseryFrame.lua               # Moonglade Cenarion Nursery Breeding Sanctuary
     ├── InspectorFrame.lua             # 3D Paperdoll Popup for Chat Hyperlinks
     ├── CatalystLootFrame.lua          # Greed-Only Secondary Boss Loot Window
     ├── CaptureHUD.lua                 # Real-Time Proximity & Move Discovery HUD
