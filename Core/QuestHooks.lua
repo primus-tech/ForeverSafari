@@ -126,6 +126,42 @@ function QH:Initialize()
     end)
 end
 
+-- Safely retrieve the difficulty/content level of a quest
+function QH:GetQuestLevel(questID)
+    local qLevel = nil
+    if C_QuestLog and C_QuestLog.GetQuestDifficultyLevel then
+        qLevel = C_QuestLog.GetQuestDifficultyLevel(questID)
+    end
+    if (not qLevel or qLevel <= 0) and C_QuestLog and C_QuestLog.GetInfo then
+        local info = C_QuestLog.GetInfo(questID)
+        if info and info.level and info.level > 0 then
+            qLevel = info.level
+        end
+    end
+    if (not qLevel or qLevel <= 0) and GetQuestLevel then
+        local lvl = GetQuestLevel(questID)
+        if lvl and lvl > 0 then
+            qLevel = lvl
+        end
+    end
+    if not qLevel or qLevel <= 0 then
+        local pLevel = UnitLevel("player") or 1
+        if not isSecret(pLevel) and type(pLevel) == "number" and pLevel > 0 then
+            qLevel = pLevel
+        else
+            qLevel = 1
+        end
+    end
+    return qLevel
+end
+
+-- Calculate token payout: 1/10 of the quest level, rounded up (minimum 1)
+function QH:CalculateQuestTokens(questID)
+    local qLevel = self:GetQuestLevel(questID)
+    local tokens = math.max(1, math.ceil(qLevel / 10))
+    return tokens, qLevel
+end
+
 -- Retroactively grant Safari Tokens for all previously completed quests on the character
 function QH:SyncCompletedQuests(isManual)
     -- If starter kit hasn't been claimed yet, do not trigger popup during initial login;
@@ -145,15 +181,17 @@ function QH:SyncCompletedQuests(isManual)
     if not completed or type(completed) ~= "table" then return 0 end
 
     local newlyRewardedCount = 0
+    local tokenPayout = 0
     for _, qId in ipairs(completed) do
         if not DB:IsQuestRewarded(qId) then
             DB:MarkQuestRewarded(qId)
             newlyRewardedCount = newlyRewardedCount + 1
+            local payout = QH:CalculateQuestTokens(qId)
+            tokenPayout = tokenPayout + payout
         end
     end
 
     if newlyRewardedCount > 0 then
-        local tokenPayout = newlyRewardedCount * 5
         DB:AddTokens(tokenPayout, string.format("Retroactive Grant (%d Quests)", newlyRewardedCount))
         DB:UpdateQuestProgress("QUEST", newlyRewardedCount)
         if ForeverSafariDB and ForeverSafariDB.stats then
@@ -202,16 +240,8 @@ function QH:OnQuestTurnedIn(questID, xpReward, moneyReward)
         questTitle = string.format("Quest #%s", tostring(questID))
     end
 
-    -- Scale token rewards based on character level
-    local tokenReward = 5
-    local pLevel = UnitLevel("player") or 1
-    if not isSecret(pLevel) and type(pLevel) == "number" then
-        if pLevel >= 40 then
-            tokenReward = 10
-        elseif pLevel >= 20 then
-            tokenReward = 7
-        end
-    end
+    -- Scale token rewards: 1/10 of the quest level, rounded up (minimum 1)
+    local tokenReward, questLevel = QH:CalculateQuestTokens(questID)
 
     -- Award Safari Tokens
     DB:AddTokens(tokenReward, string.format("Quest: %s", questTitle))
@@ -223,10 +253,10 @@ function QH:OnQuestTurnedIn(questID, xpReward, moneyReward)
         DB:AddAttunement(activeMob.id, 20, "Quest Completed with Companion")
     end
 
-    DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00[Quest Complete: %s]|r Awarded |cffffd100+%d Safari Tokens|r for field service!", C.PREFIX, questTitle, tokenReward))
+    DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00[Quest Complete: %s]|r Awarded |cffffd100+%d Safari Tokens|r (Lv.%d field quest)!", C.PREFIX, questTitle, tokenReward, questLevel))
 
     if ForeverSafari.Toast and ForeverSafari.Toast.ShowReward then
-        ForeverSafari.Toast:ShowReward("Safari Research Grant", string.format("+%d Safari Tokens (%s)", tokenReward, questTitle))
+        ForeverSafari.Toast:ShowReward("Safari Research Grant", string.format("+%d Safari Tokens (Lv.%d: %s)", tokenReward, questLevel, questTitle))
     end
 
     PlaySound(1195)

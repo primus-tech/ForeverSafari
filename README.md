@@ -173,10 +173,8 @@ Companions progress through bonding, feeding, and battlefield survival rather th
 * **Beneath-the-Item Card Layout**: Each item displays the number owned (`Owned: X`), token cost (`Cost: X Tokens`), and `[ Buy x1 ]` button directly beneath the item name and description.
 
 ### 12. Real Quest Token Grants, Retroactive Compensation & Companion Bonding
-* **Real Quest Completion Rewards**: Turning in quests across Azeroth (`QUEST_TURNED_IN`) directly rewards the player with **Safari Tokens** scaled by character level:
-  * **Level 1–19**: **+5 Safari Tokens** per quest.
-  * **Level 20–39**: **+7 Safari Tokens** per quest.
-  * **Level 40+**: **+10 Safari Tokens** per quest.
+* **Real Quest Completion Rewards**: Turning in quests across Azeroth (`QUEST_TURNED_IN`) directly rewards the player with **Safari Tokens** calculated as **1/10 of the quest level, rounded up** (`math.ceil(QuestLevel / 10)`), minimum 1 Token.
+  * *Examples*: Lv.1–10 = **+1 Token**; Lv.11–20 = **+2 Tokens**; Lv.21–30 = **+3 Tokens**; Lv.31–40 = **+4 Tokens**; Lv.41–50 = **+5 Tokens**; Lv.51–60 = **+6 Tokens**; Lv.61–70 = **+7 Tokens**; Lv.71–80 = **+8 Tokens**.
 * **Active Companion Bonding**: Every completed quest awards **+20 Attunement Points** to your active squad companion, forging a deeper bond through field adventures.
 * **Retroactive Back-Quest Compensation (`C_QuestLog.GetAllCompletedQuestIDs`)**:
   * When installing Forever Safari on an existing character (e.g. at Level 30 or 60), the addon automatically queries all previously completed quests and awards a lump-sum retroactive **Safari Research Grant** (e.g. 5 tokens per quest) in the welcome onboarding package.

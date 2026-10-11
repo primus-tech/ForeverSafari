@@ -229,6 +229,7 @@ function DB:ClaimStarterKit()
 
     -- Calculate & award Veteran Field Grant from completed quests
     local grantCount = 0
+    local grantTokens = 0
     if C_QuestLog and C_QuestLog.GetAllCompletedQuestIDs then
         local completed = C_QuestLog.GetAllCompletedQuestIDs()
         if completed and type(completed) == "table" then
@@ -236,13 +237,22 @@ function DB:ClaimStarterKit()
                 if not self:IsQuestRewarded(qId) then
                     self:MarkQuestRewarded(qId)
                     grantCount = grantCount + 1
+                    local qLvl = nil
+                    if C_QuestLog.GetQuestDifficultyLevel then
+                        qLvl = C_QuestLog.GetQuestDifficultyLevel(qId)
+                    end
+                    if not qLvl or qLvl <= 0 then
+                        local pLvl = UnitLevel("player") or 1
+                        qLvl = (not isSecret(pLvl) and type(pLvl) == "number") and pLvl or 1
+                    end
+                    local tokenReward = math.max(1, math.ceil(qLvl / 10))
+                    grantTokens = grantTokens + tokenReward
                 end
             end
         end
     end
 
     if grantCount > 0 then
-        local grantTokens = grantCount * 5
         self:AddTokens(grantTokens, string.format("Veteran Welcome Grant (%d Quests)", grantCount))
         self:UpdateQuestProgress("QUEST", grantCount)
         if ForeverSafariDB.stats then

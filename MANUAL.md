@@ -268,9 +268,8 @@ Safari Tokens (`[INV_Misc_Coin_02]`) are the official currency of the Nesingwary
 
 ### 💰 Earning Safari Tokens
 1. **Real Quest Turn-Ins across Azeroth (`QUEST_TURNED_IN`)**:
-   * **Level 1–19 Quests**: **+5 Safari Tokens**
-   * **Level 20–39 Quests**: **+7 Safari Tokens**
-   * **Level 40+ Quests**: **+10 Safari Tokens**
+   * Earn **1/10 of the quest level, rounded up** (`math.ceil(QuestLevel / 10)`), minimum 1 Token.
+   * *Examples*: Lv.1–10 = **+1 Token**; Lv.11–20 = **+2 Tokens**; Lv.21–30 = **+3 Tokens**; Lv.31–40 = **+4 Tokens**; Lv.41–50 = **+5 Tokens**; Lv.51–60 = **+6 Tokens**; Lv.61–70 = **+7 Tokens**; Lv.71–80 = **+8 Tokens**.
 2. **Defeating Roaming Humanoid AI Trainers**: **+6 to +18 Tokens** based on faction tier and level.
 3. **Completing Official Nesingwary Mailbox Bounties**: **+15 to +50 Tokens** per completed research directive.
 4. **Retroactive Back-Quest Compensation**: Installing Forever Safari on an existing character automatically calculates all previously completed quests (`C_QuestLog.GetAllCompletedQuestIDs`) and delivers a lump-sum **Safari Research Grant** in your welcome dispatch.
