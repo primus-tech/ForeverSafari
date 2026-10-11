@@ -288,8 +288,6 @@ end
 -- ROUTING & NAVIGATION
 -- =========================================================================
 function Journal:SetTab(tabId)
-    -- Backwards compatibility aliases
-    if tabId == "SHOWCASE" then tabId = "ROSTER" end
     currentTab = tabId
 
     if frame and frame.TabButtons then

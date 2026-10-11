@@ -1455,12 +1455,5 @@ function MoveDB:GetFamilyDefaultMoves(family)
     return self.FamilyMovepools and (self.FamilyMovepools[family] or self.FamilyMovepools["Canine"])
 end
 
-function FS:GetMove(moveId)
-    return MoveDB:GetMove(moveId)
-end
-
-function FS:GetFamilyDefaultMoves(family)
-    return MoveDB:GetFamilyDefaultMoves(family)
-end
 
 

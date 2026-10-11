@@ -49,7 +49,7 @@ function Kennel:Initialize()
     frame:SetScript("OnDragStop", frame.StopMovingOrSizing)
     frame:Hide()
 
-    Theme:ApplyWindowBackdrop(frame)
+    Theme:ApplyFrameBackdrop(frame)
 
     -- Header
     local header = CreateFrame("Frame", nil, frame, "BackdropTemplate")

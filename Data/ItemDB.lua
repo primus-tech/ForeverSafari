@@ -162,9 +162,6 @@ ItemDB.DIET_ITEMS = {
     ["food_runes"]    = { id = "food_runes",    name = "Safari Runes",    category = "Special Diet", icon = "Interface\\Icons\\INV_Misc_Rune_01", tokenCost = 1, desc = "Ancient etched dragon runes for empowering wild dragonkin." },
 }
 
--- Backward compatibility alias
-ItemDB.FAMILY_NOURISHMENT = ItemDB.DIET_ITEMS
-
 -- Family & Creature Type Diet Matrix (Favorite = +25 Attunement, Accepted = +15 Attunement)
 ItemDB.FAMILY_DIETS = {
     -- Beasts

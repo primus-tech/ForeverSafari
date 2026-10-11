@@ -1016,11 +1016,12 @@ function BE:HandleVictory()
     -- Harvest Ecosystem Sustenance from defeated wild creature
     local family = enemy.family or enemy.creatureType or "Beast"
     local ItemDB = ns.ItemDB
-    local foodData = ItemDB and ItemDB.FAMILY_NOURISHMENT and (ItemDB.FAMILY_NOURISHMENT[family] or ItemDB.FAMILY_NOURISHMENT[enemy.creatureType] or ItemDB.FAMILY_NOURISHMENT["Beast"])
-    if foodData then
-        local foodKey = foodData.key or "food_meat"
+    local dietInfo = ItemDB and ItemDB.FAMILY_DIETS and (ItemDB.FAMILY_DIETS[family] or ItemDB.FAMILY_DIETS[enemy.creatureType] or ItemDB.FAMILY_DIETS["Beast"])
+    local foodKey = dietInfo and dietInfo.favorite or "food_meat"
+    local foodItem = ItemDB and ItemDB.DIET_ITEMS and ItemDB.DIET_ITEMS[foodKey]
+    if foodItem then
         DB:AddItem(foodKey, 1)
-        BE:AddLog(string.format("|cffffd100Looted [1x %s]!|r", foodData.item or "Safari Meat"))
+        BE:AddLog(string.format("|cffffd100Looted [1x %s]!|r", foodItem.name or "Safari Meat"))
     end
 
     player.battlesWon = (player.battlesWon or 0) + 1

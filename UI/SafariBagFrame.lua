@@ -658,8 +658,8 @@ function Bag:UseItem(itemId, itemData)
             if canEvolve then
                 if ForeverSafari.JournalFrame then
                     ForeverSafari.JournalFrame:ShowJournal()
-                    -- Switch to Showcase and open Metamorphosis drawer
-                    if ForeverSafari.JournalFrame.SetTab then ForeverSafari.JournalFrame:SetTab("SHOWCASE") end
+                    -- Switch to Roster and open Metamorphosis drawer
+                    if ForeverSafari.JournalFrame.SetTab then ForeverSafari.JournalFrame:SetTab("ROSTER") end
                     if ForeverSafari.JournalFrame.OpenMetamorphosisDrawer then
                         ForeverSafari.JournalFrame:OpenMetamorphosisDrawer(catId)
                     end

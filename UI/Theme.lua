@@ -51,9 +51,6 @@ function Theme:ApplyFrameBackdrop(frame, hasGlow)
     end
 end
 
--- Aliases for window backdrops
-Theme.ApplyWindowBackdrop = Theme.ApplyFrameBackdrop
-
 -- Apply header subpanel backdrop
 function Theme:ApplyHeaderBackdrop(frame)
     if not frame then return end
