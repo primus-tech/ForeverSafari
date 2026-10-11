@@ -5,6 +5,18 @@
 ## Version: 0.1a
 ## SavedVariables: ForeverSafariDB, ForeverSafariSettings
 ## IconTexture: Interface\Icons\Ability_Hunter_BeastTaming
+## Category: Minigames
+## Category-enUS: Minigames
+## Category-deDE: Minispiele
+## Category-esES: Minijuegos
+## Category-esMX: Minijuegos
+## Category-frFR: Mini-jeux
+## Category-itIT: Minigiochi
+## Category-koKR: 미니게임
+## Category-ptBR: Minijogos
+## Category-ruRU: Мини-игры
+## Category-zhCN: 迷你游戏
+## Category-zhTW: 迷你遊戲
 
 # Canonical Data Registries
 Data\ItemDB.lua
