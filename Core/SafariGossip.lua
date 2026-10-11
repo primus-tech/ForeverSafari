@@ -9,6 +9,11 @@
       * "Junior Safari League: Rest and Revive Squad"
     - Cenarion Keepers (Moonglade):
       * "Junior Safari League: Breed My Pet"
+
+    Stacked Hierarchy Guarantee:
+    If another addon (e.g. Olympus's "Bones!: Teach me Bones") modifies the greeting panel,
+    Junior Safari League dynamically detects the external row and anchors directly below it,
+    guaranteeing it is always the lowest option on the screen without overlapping.
 ]]
 
 local addonName, ns = ...
@@ -29,6 +34,7 @@ SG.ICON_BREED = "Interface\\Icons\\Ability_Druid_Flourish"
 
 local host, saved
 local activeButtons = {}
+local buttonPool = {}
 local hookedFrames = setmetatable({}, { __mode = "k" })
 local generation = 0
 
@@ -42,6 +48,11 @@ local function CloseGossipWindow()
     elseif CloseGossip then
         pcall(CloseGossip)
     end
+end
+
+-- Tagging function to differentiate our buttons from third-party addon buttons
+function SG.IsOurButton(frame)
+    return frame and frame.isSafariGossipButton == true
 end
 
 -- =========================================================================
@@ -183,12 +194,16 @@ local function Native()
     return f, panel, scroll, bar
 end
 
--- Restore native ScrollBox dimensions cleanly
+-- Restore native ScrollBox dimensions cleanly and recycle buttons
 function SG.Park()
     generation = generation + 1
     for _, btn in ipairs(activeButtons) do
         btn:Hide()
+        btn:ClearAllPoints()
+        table.insert(buttonPool, btn)
     end
+    activeButtons = {}
+
     if saved then
         saved.scroll:SetHeight(saved.height)
         if saved.scrollShown then saved.scroll:Show() else saved.scroll:Hide() end
@@ -200,13 +215,12 @@ end
 -- =========================================================================
 -- 🔘 BUTTON FACTORY
 -- =========================================================================
-local buttonPool = {}
-
 local function AcquireButton(parent, width, caption, iconTexture, onClick)
     local b = table.remove(buttonPool)
     if not b then
         b = CreateFrame("Button", nil, parent, "GossipTitleButtonTemplate")
         b.label, b.icon = b:GetFontString(), b.Icon
+        b.isSafariGossipButton = true
     end
 
     b:SetParent(parent)
@@ -226,6 +240,27 @@ local function AcquireButton(parent, width, caption, iconTexture, onClick)
     b:Show()
 
     return b
+end
+
+-- Detect if another addon (like Olympus's "Bones!: Teach me Bones") added a row to GreetingPanel
+local function FindLowestExternalButton(panel, scroll, bar)
+    local lowestBtn = nil
+    local minBottom = math.huge
+
+    if panel and panel.GetChildren then
+        for _, child in ipairs({ panel:GetChildren() }) do
+            if child:IsShown() and child ~= scroll and child ~= bar and not SG.IsOurButton(child) then
+                if child.GetObjectType and child:GetObjectType() == "Button" then
+                    local bottom = child:GetBottom()
+                    if bottom and bottom < minBottom then
+                        minBottom = bottom
+                        lowestBtn = child
+                    end
+                end
+            end
+        end
+    end
+    return lowestBtn
 end
 
 -- =========================================================================
@@ -257,8 +292,8 @@ function SG:BuildOptionsForCurrentNPC()
             onClick = function()
                 CloseGossipWindow()
                 C_Timer.After(0.05, function()
-                    if ns.Shop and ns.Shop.Show then
-                        ns.Shop:Show()
+                    if ns.Shop and ns.Shop.ShowShop then
+                        ns.Shop:ShowShop(true)
                     end
                 end)
             end,
@@ -338,21 +373,58 @@ function SG.ShowGossip()
     }
     host = f
 
-    -- Borrow geometry from bottom of ScrollBox
-    local availableHeight = math.max(60, scrollHeight - totalRowHeight)
-    local rowTop = math.min(extent, availableHeight)
-    if extent > rowTop then
-        scroll:SetHeight(rowTop)
-    end
+    -- Check if another addon (like Olympus) has added a row to the GreetingPanel
+    local lowestExternal = FindLowestExternalButton(panel, scroll, bar)
 
-    local currentOffsetY = -(rowTop + SG.ROW_GAP)
-    for _, item in ipairs(created) do
-        local btn = item.btn
-        btn:ClearAllPoints()
-        btn:SetPoint("TOPLEFT", scroll, "TOPLEFT", 0, currentOffsetY)
-        btn:Show()
-        table.insert(activeButtons, btn)
-        currentOffsetY = currentOffsetY - (item.height + SG.ROW_GAP)
+    if lowestExternal then
+        -- 🌟 Another addon modified the screen!
+        -- Anchor directly below the lowest external button so we are guaranteed to be lowest.
+        local curH = scroll:GetHeight()
+        local newH = math.max(60, curH - totalRowHeight)
+        scroll:SetHeight(newH)
+
+        local prevAnchor = lowestExternal
+        for _, item in ipairs(created) do
+            local btn = item.btn
+            btn:ClearAllPoints()
+            btn:SetPoint("TOPLEFT", prevAnchor, "BOTTOMLEFT", 0, -SG.ROW_GAP)
+            btn:SetPoint("TOPRIGHT", prevAnchor, "BOTTOMRIGHT", 0, -SG.ROW_GAP)
+            btn:Show()
+            table.insert(activeButtons, btn)
+            prevAnchor = btn
+        end
+
+        -- Synchronize visibility if external addon shows its own modal/dialog (e.g. Olympus Farkle dialog)
+        if not lowestExternal.safariHooked then
+            lowestExternal.safariHooked = true
+            lowestExternal:HookScript("OnHide", function()
+                for _, btn in ipairs(activeButtons) do
+                    btn:Hide()
+                end
+            end)
+            lowestExternal:HookScript("OnShow", function()
+                for _, btn in ipairs(activeButtons) do
+                    btn:Show()
+                end
+            end)
+        end
+    else
+        -- Native screen only (no third-party modifications)
+        local availableHeight = math.max(60, scrollHeight - totalRowHeight)
+        local rowTop = math.min(extent, availableHeight)
+        if extent > rowTop then
+            scroll:SetHeight(rowTop)
+        end
+
+        local currentOffsetY = -(rowTop + SG.ROW_GAP)
+        for _, item in ipairs(created) do
+            local btn = item.btn
+            btn:ClearAllPoints()
+            btn:SetPoint("TOPLEFT", scroll, "TOPLEFT", 0, currentOffsetY)
+            btn:Show()
+            table.insert(activeButtons, btn)
+            currentOffsetY = currentOffsetY - (item.height + SG.ROW_GAP)
+        end
     end
 
     -- Register with Blizzard's contrast & accessibility engine
@@ -384,8 +456,9 @@ eventFrame:SetScript("OnEvent", function(self, event)
     if event == "GOSSIP_SHOW" then
         SG.Park()
         local curGen = generation
-        -- Wait 0 frames for Blizzard's layout to complete
-        C_Timer.After(0, function()
+        -- Wait 0.02 seconds (2 frames) so Blizzard and any other addons (e.g. Olympus)
+        -- finish their layout pass first, allowing us to safely detect and place below them.
+        C_Timer.After(0.02, function()
             if curGen == generation then
                 SG.ShowGossip()
             end
