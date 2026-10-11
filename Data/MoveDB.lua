@@ -1444,6 +1444,9 @@ FS.FamilyMovepools = {
     ["Earth"]        = { 902, 904, 905, 903, 901 },
 }
 
+local MoveDB = FS.MoveDB
+MoveDB.FamilyMovepools = FS.FamilyMovepools
+
 function MoveDB:GetMove(moveId)
     return self[moveId]
 end
@@ -1459,4 +1462,5 @@ end
 function FS:GetFamilyDefaultMoves(family)
     return MoveDB:GetFamilyDefaultMoves(family)
 end
+
 
