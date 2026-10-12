@@ -271,7 +271,16 @@ def is_sentient_or_invalid(mob):
         return True
     if '(druid)' in name or 'druid)' in name:
         return True
-    if any(k in name for k in ['[ph]', '[dnt]', 'dummy', 'placeholder', 'test squirrel', 'secret agent', 'hunter\'s vision', 'primal blessing visual', 'human skull', 'polymorphed cockroach', 'mega rabbit', 'master angler form', 'riding druid', 'mechanical greench', 'mechanical yeti', 'mechanical squirrel', 'twain test prop', 'generic hunter pet', 'diseased experiment', 'collector of suffering', 'fallen moonkin', 'doomkin', 'abominable snowman', 'the abominable greench']):
+    bad_keywords = [
+        '[ph]', '[dnt]', '(dnt)', 'dummy', 'placeholder', 'test squirrel', 'secret agent', 
+        'hunter\'s vision', 'primal blessing visual', 'human skull', 'polymorphed cockroach', 
+        'mega rabbit', 'master angler form', 'riding druid', 'mechanical greench', 'mechanical yeti', 
+        'mechanical squirrel', 'twain test prop', 'generic hunter pet', 'diseased experiment', 
+        'collector of suffering', 'fallen moonkin', 'doomkin', 'abominable snowman', 
+        'the abominable greench', 'stalker', 'trigger', 'cannon', 'prop', 'visual', 
+        'controller', 'bunny', 'spawner', 'target'
+    ]
+    if any(k in name for k in bad_keywords):
         return True
         
     mount_words = ['riding horse', 'pinto', 'palomino', 'chestnut mare', 'brown horse', 
@@ -332,13 +341,37 @@ def process_mob(mob, family, subFamily, spec, element, move1, move2, default_pup
     nid = mob.get('id')
     if not nid or nid in master_creatures:
         return
+        
+    # STRICT GATE 1: Discard modern beta engine test tokens (IDs >= 100,000)
+    if nid >= 100000:
+        return
+        
+    # STRICT GATE 2: Sentient NPCs, vendors, mounts, internal triggers, DNT tokens
     if is_sentient_or_invalid(mob):
         return
         
+    # STRICT GATE 3: Must have at least one verified spawn location in WoW Forever
     locs = mob.get('location', []) or []
+    if not locs:
+        return
+        
+    # STRICT GATE 4: Must have valid combat levels (no level 0-0 camera/script anchors)
+    min_lvl = mob.get('minlevel', 0)
+    max_lvl = mob.get('maxlevel', 0)
+    if min_lvl <= 0 and max_lvl <= 0:
+        return
+    if min_lvl <= 0: min_lvl = max_lvl
+    if max_lvl <= 0: max_lvl = min_lvl
+    if min_lvl > 100: min_lvl = 60
+    if max_lvl > 100: max_lvl = 60
+    
     loc_set = set(locs)
     has_world = bool(loc_set & world_zone_ids)
     has_inst = bool(loc_set & instance_zone_ids)
+    
+    # STRICT GATE 5: Locations must map to registered world or instance zones
+    if not has_world and not has_inst:
+        return
     
     # Boss status
     boss = mob.get('boss', 0) == 1
@@ -365,25 +398,6 @@ def process_mob(mob, family, subFamily, spec, element, move1, move2, default_pup
         allow_obs = True
         is_inst_only = False
         drop_rate = 0.20 if boss else 0.03
-    else: # No known loc
-        # Check if known boss or patch 1.15/1.60
-        if boss or classif in (1, 2, 3):
-            acq = "PUP_DROP"
-            allow_battle = False
-            allow_obs = False
-            is_inst_only = True
-            drop_rate = 0.25 if boss else 0.15
-        else:
-            acq = "BATTLE"
-            allow_battle = True
-            allow_obs = True
-            is_inst_only = False
-            drop_rate = 0.0
-            
-    min_lvl = mob.get('minlevel', 1)
-    max_lvl = mob.get('maxlevel', 1)
-    if min_lvl > 100 or min_lvl <= 0: min_lvl = 60
-    if max_lvl > 100 or max_lvl <= 0: max_lvl = 60
     
     name = sanitize_name(mob.get('name'))
     stats = calculate_stats(min_lvl, max_lvl, classif, spec)
@@ -581,7 +595,7 @@ def write_lua_partition(filepath, var_name, mob_filter):
     print(f"Emitted {os.path.basename(filepath)}: {count} creatures.")
 
 # Emit Individual Beast Subfamily Files
-for subf in sorted(subf_counts.keys()):
+for subf in sorted(SUBFAMILY_SPECS.keys()):
     sanitized_sf = subf.replace(" ", "")
     fname = f"Creatures_Beasts_{sanitized_sf}.lua"
     fpath = os.path.join(BEASTS_DIR, fname)
