@@ -52,9 +52,9 @@ CP.PASSIVES = {
     },
     ["HUNTER"] = {
         id = "HUNTER",
-        name = "Aspect of the Wild & Pathfinder",
+        name = "Aspect of the Beastmaster",
         icon = "Interface\\Icons\\Ability_Hunter_BeastMastery",
-        desc = "Static Slice: +5% per Attunement Rank Nature Resistance (5% to 25%). Pathfinder's Mastery boosts baseline Attack and Defense by +5% to +25%.",
+        desc = "Master Tracker & Tamer: Companions accrue +25% Attunement from all sources, and capture chance for wild creatures is increased by +25% (multiplicative). Also grants +5% Nature Resistance per Attunement Rank.",
     },
     ["DRUID"] = {
         id = "DRUID",
@@ -265,6 +265,28 @@ function CP:ApplyHunterStatBonus(statVal, statType, playerClass, opponentClass, 
         return statVal + math.ceil(statVal * bonus)
     end
     return statVal
+end
+
+-- 🏹 Hunter: Multiplicative Capture Multiplier (+25% boost)
+function CP:GetHunterCaptureMultiplier(playerClass)
+    if not playerClass then
+        playerClass = self:GetPlayerClass()
+    end
+    if playerClass == "HUNTER" then
+        return 1.25
+    end
+    return 1.00
+end
+
+-- 🏹 Hunter: Multiplicative Attunement Accrual Multiplier (+25% boost)
+function CP:GetHunterAttunementMultiplier(playerClass)
+    if not playerClass then
+        playerClass = self:GetPlayerClass()
+    end
+    if playerClass == "HUNTER" then
+        return 1.25
+    end
+    return 1.00
 end
 
 -- =========================================================================

@@ -43,7 +43,7 @@ Every playable race receives an authentic wild companion indigenous to their hom
 | 💀 **Undead** | Tirisfal Glades | **Mangy Duskbat** | Bat | `9535` | Eerie nocturnal flier haunting the ruined belfries |
 
 > [!NOTE]
-> **Starter Partner Status (Rank III: Trusting)**: Your starting companion is a specially trained partner provided by Hemet Nesingwary and begins at **Rank III: Trusting** (600 Attunement Points) with full **1.00x True Baseline Stats (100/100 points)**, **5% Disobedience**, and **Slot 3 Unlocked for Training**. Wild beasts caught in the field with snares start at **Rank I: Wild / Unbroken** (0 Attunement, 0.85x stats, 25% disobedience) requiring bonding and feeding to domesticate.
+> **Starter Partner Status (Rank III: Trusting)**: Your starting companion is a specially trained partner provided by Hemet Nesingwary and begins at **Rank III: Trusting** (600 Attunement Points) with full **1.00x True Baseline Stats (100/100 points)**, **5% Disobedience**, and **Slot 3 Unlocked for Training**. Wild beasts caught in the field with snares start at **Rank I: Wild / Unbroken** (0 Attunement, 0.85x stats, 15% disobedience) requiring bonding and feeding to domesticate.
 
 ---
 
@@ -75,8 +75,8 @@ Companions progress through bonding, feeding, and battlefield survival rather th
 
 | Rank | Title | Combat Behavior & Checks | Move Slots | Stat Mult | Metamorphosis |
 | :---: | :--- | :--- | :--- | :--- :---: | :---: |
-| **I** | **Wild / Unbroken** | 25% Disobedience chance (slips into wild turns, loafs, or hesitates). | **1** | **0.85x** | ❌ Destabilizes |
-| **II** | **Tolerant** | 15% Disobedience chance. Basic orders execute cleanly. | **2** | **0.95x** | ❌ Destabilizes |
+| **I** | **Wild / Unbroken** | 15% Disobedience chance (slips into wild turns, loafs, or hesitates). | **1** | **0.85x** | ❌ Destabilizes |
+| **II** | **Tolerant** | 10% Disobedience chance. Basic orders execute cleanly. | **2** | **0.95x** | ❌ Destabilizes |
 | **III** | **Trusting** | 5% Disobedience chance. Reliable in combat. | **3** | **1.00x** | ❌ Destabilizes |
 | **IV** | **Devoted** | 0% Disobedience. +5% Critical Strike bonus on family moves. | **4** | **1.05x** | ❌ Destabilizes |
 | **V** | **Bestial Symbiosis** | 0% Disobedience. Maximum harmony and power. | **4 + Perk** | **1.15x** | ✅ **Catalyst Ready!** |

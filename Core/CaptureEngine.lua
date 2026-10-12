@@ -129,7 +129,7 @@ function CE:CalculateSnareRoll(unit, cageId)
     cageId = cageId or "copper_cage"
 
     local cageData = ItemDB:GetCage(cageId) or ItemDB:GetCage("copper_cage")
-    local baseCatchRate = cageData.catchPower or (cageData.rateMultiplier and (cageData.rateMultiplier * 0.35)) or 0.35
+    local baseCatchRate = cageData.catchRate or cageData.catchPower or 0.35
 
     -- Distance Modifier
     local distTier, distMod, distText, distColor = CE:GetStalkingDistance(unit)
@@ -159,8 +159,12 @@ function CE:CalculateSnareRoll(unit, cageId)
     end
     local rarityMod = isRare and 0.50 or (isElite and 0.70 or 1.0)
 
+    -- Hunter Beastmastery Bonus (+25% Multiplicative)
+    local CP = ns.ClassPassives
+    local hunterMult = (CP and CP.GetHunterCaptureMultiplier and CP:GetHunterCaptureMultiplier()) or 1.0
+
     -- Calculate final threshold (clamped 5% to 99%)
-    local finalThreshold = baseCatchRate * distMod * levelMod * rarityMod
+    local finalThreshold = baseCatchRate * distMod * levelMod * rarityMod * hunterMult
     finalThreshold = math.min(0.99, math.max(0.05, finalThreshold))
 
     local roll = math.random()

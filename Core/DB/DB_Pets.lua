@@ -114,6 +114,17 @@ end
 function DB:AddAttunement(mobId, points, reason)
     local mob = self:GetMobById(mobId)
     if not mob then return end
+    points = tonumber(points) or 0
+    if points <= 0 then return end
+
+    -- 🏹 Hunter Class Passive: Aspect of the Beastmaster (+25% Attunement Accrual)
+    local CP = ns.ClassPassives
+    if CP and CP.GetHunterAttunementMultiplier then
+        local mult = CP:GetHunterAttunementMultiplier()
+        if mult > 1.0 then
+            points = math.floor(points * mult)
+        end
+    end
 
     mob.attunementPoints = (mob.attunementPoints or 0) + points
     mob.attunement = mob.attunementPoints

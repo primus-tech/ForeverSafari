@@ -170,8 +170,8 @@ Companions in Forever Safari do not gain numerical levels through grinding. Inst
 
 | Rank | Title | Attunement | Combat Behavior | Move Slots | Stat Mult | Metamorphosis |
 | :---: | :--- | :---: | :--- | :---: | :---: | :---: |
-| **I** | **Wild / Unbroken** | 0 – 199 | **25% Disobedience** (loafs, wild attacks). | **1** | **0.85x** | ❌ Destabilizes |
-| **II** | **Tolerant** | 200 – 599 | **15% Disobedience** (occasional hesitation). | **2** | **0.95x** | ❌ Destabilizes |
+| **I** | **Wild / Unbroken** | 0 – 199 | **15% Disobedience** (loafs, wild attacks). | **1** | **0.85x** | ❌ Destabilizes |
+| **II** | **Tolerant** | 200 – 599 | **10% Disobedience** (occasional hesitation). | **2** | **0.95x** | ❌ Destabilizes |
 | **III** | **Trusting** | 600 – 1,199 | **5% Disobedience** (reliable partner). | **3** | **1.00x** | ❌ Destabilizes |
 | **IV** | **Devoted** | 1,200 – 1,999 | **0% Disobedience** (+5% Critical Strike chance). | **4** | **1.05x** | ❌ Destabilizes |
 | **V** | **Bestial Symbiosis** | 2,000+ | **0% Disobedience** (maximum harmony & perk). | **4 + Perk** | **1.15x** | ✅ **Catalyst Ready!** |
@@ -381,12 +381,24 @@ Type `/fsbag` or `/safari bag` to open your 20-slot Virtual Safari Bag.
 
 ### 🕸️ 4-Tier Capture Gear
 
-| Tier | Item Name | Icon | Token Cost | Base Catch Power |
-| :---: | :--- | :--- | :---: | :---: |
-| **1 (Common)** | **Copper Snare** | `INV_Misc_Noose_01` | **1 Token** | **35%** |
-| **2 (Uncommon)** | **Iron Safari Net** | `Hunter_PvP_TrackersNet` | **5 Tokens** | **55%** |
-| **3 (Rare)** | **Mithril Hunter Trap** | `INV_Pet_PetTrap` | **10 Tokens** | **75%** |
-| **4 (Epic)** | **Thorium Expedition Cage** | `INV_Box_Birdcage_01` | **25 Tokens** | **98%** |
+| Tier | Item Name | Icon | Token Cost | Base Catch Power | Target Level Band |
+| :---: | :--- | :--- | :---: | :---: | :---: |
+| **1 (Common)** | **Copper Snare** | `INV_Misc_Noose_01` | **1 Token** | **35%** | Levels 1–15 |
+| **2 (Uncommon)** | **Iron Safari Net** | `Hunter_PvP_TrackersNet` | **5 Tokens** | **55%** | Levels 16–30 |
+| **3 (Rare)** | **Mithril Hunter Trap** | `INV_Pet_PetTrap` | **10 Tokens** | **75%** | Levels 31–45 |
+| **4 (Epic)** | **Thorium Expedition Cage** | `INV_Box_Birdcage_01` | **25 Tokens** | **98%** | Levels 46–60 |
+
+#### 🎯 Master Capture Formula & Health Dynamics
+Capturing a wild creature requires engaging them in turn-based combat (`/fsbattle`) and throwing capture gear from `[ BAG ] ➔ [ CAPTURE ]`:
+* **50% HP Pivot Point**:
+  * **Above 50% HP (Penalty)**: $1:1$ penalty. Lose **1% catch chance per 1% HP above 50%**. A Copper Snare against a target at 100% HP has $35\% - 50\% = -15\% \le 0\%$ chance, preventing full-health cheese captures.
+  * **Below 50% HP (Bonus)**: $2:1$ bonus. Gain **+1% catch chance per 2% HP below 50%**. Lowering target to 10% HP grants a **+20% catch bonus** (Copper reaches 55%, Iron reaches 75%).
+  * **At 50% HP**: Trap operates at its exact baseline capture rate.
+* **Tier Mismatch Scaling**:
+  * **Over-geared (Higher Tier Trap on Lower Level Quarry)**: Grants **+25% flat catch bonus per tier down**.
+  * **Under-geared (Lower Tier Trap on Higher Level Quarry)**: **Halves capture chance per tier up** ($\times 0.5$ per tier difference).
+* **Wild Rare Quarry Resistance**: Wild Rare spawns possess innate capture resilience, applying a flat **-10% penalty** to capture rolls.
+* **Hunter Beastmastery Multiplier**: Hunters enjoy **+25% multiplicative catch chance** and **+25% faster Attunement accrual** across all pets!
 
 ### 📦 4-Tier Transport Crates
 
@@ -419,7 +431,7 @@ Class defenses are organized into two distinct paradigms:
 | :--- | :--- | :--- | :--- |
 | 🛡️ **Warrior** | **Marshal's Tenacity** | **Static Slice** | Reduces all incoming physical damage dealt to your companion by **+5% per Rank** (**5%** at Rank I $\to$ **25%** at Rank V). |
 | 🗡️ **Rogue** | **Shadow Evasion** | **Static Slice** | Increases companion Dodge Chance by **+5% per Rank** (**5%** at Rank I $\to$ **25%** at Rank V). Fully **synergizes with the Cunning archetype's +5% Dodge**, providing up to **30% total Dodge Chance** at Rank V. |
-| 🏹 **Hunter** | **Aspect of the Wild & Pathfinder** | **Static Slice** | Companion gains **+5% per Rank** Nature Resistance (**5%** at Rank I $\to$ **25%** at Rank V) plus +5%–+25% scaling to baseline Attack & Defense. |
+| 🏹 **Hunter** | **Aspect of the Beastmaster** | **Static Slice & Mastery** | **Master Tracker & Tamer**: Companions accrue **+25% Attunement** from all sources, and capture chance for wild creatures is increased by **+25% (multiplicative)**. Companion also gains **+5% per Rank** Nature Resistance (**5%** at Rank I $\to$ **25%** at Rank V). |
 | 🍃 **Druid** | **Gift of the Wild & Ecliptic Tides** | **Static Slice & Pendulum** | **+2% per Rank** Pure Static Omni-Resist across **all 6 magic schools** (**2%** at Rank I $\to$ **10%** at Rank V), plus the in-combat **Ecliptic Tides** celestial pendulum (see below). |
 | 🔮 **Mage** | **Arcane Ward & Chilling Tempo** | **Procced Ward (Arcane, Fire, Frost)** | **Ward**: 5% per Rank proc to absorb 10% per Rank damage (rolled per hit and per DoT tick).<br>**Chilling Tempo**: 5% off / 10% def proc to inflict **Chilled** (-50% SPD for 2 turns). Proportionally reduced by target's Frost Resistance % (e.g., at 50% frost resist, a 50% proc chance lowers to 25%). |
 | ⚡ **Shaman** | **Elemental Shielding & Primal Rebirth** | **Procced Ward (Fire, Frost, Nature)** | **Ward**: 5% per Rank proc to absorb 10% per Rank damage (rolled per hit and per DoT tick).<br>**Primal Rebirth**: `RollAnkh()` flat **50% chance** to resurrect companion at 50% HP once per battle upon defeat. |

@@ -59,8 +59,8 @@
 ## 📍 Phase 5: Attunement Loyalty & Metamorphosis (Completed ✅)
 * [x] **5-Rank Attunement Loyalty System (Replaces XP Leveling)**:
   * **Attunement Channels**: Battle resilience (surviving battles without fainting), family nourishment (feeding resources from downed animals of same family), and native zone acclimation.
-  * **Rank I (Wild / Unbroken)**: 25% Disobedience chance, 1 Active Move, 0.85x Base Stats.
-  * **Rank II (Tolerant)**: 15% Disobedience chance, 2 Active Moves, 0.95x Base Stats.
+  * **Rank I (Wild / Unbroken)**: 15% Disobedience chance, 1 Active Move, 0.85x Base Stats.
+  * **Rank II (Tolerant)**: 10% Disobedience chance, 2 Active Moves, 0.95x Base Stats.
   * **Rank III (Trusting)**: 5% Disobedience chance, 3 Active Moves, 1.00x Base Stats (True Base).
   * **Rank IV (Devoted)**: 0% Disobedience, 5% Crit Strike bonus, 4 Active Moves, 1.05x Base Stats.
   * **Rank V (Bestial Symbiosis)**: 0% Disobedience, 4 Active Moves + Innate Perk, 1.15x Base Stats, **Metamorphosis Eligible**!
@@ -157,9 +157,22 @@
 ---
 
 ## 📍 Phase 11: In-Battle Captures & 4-Tier Transport Crates (Completed ✅)
-* [x] **In-Battle Capture Flow (`Core/BattleEngine.lua`, `UI/BattleFrame.lua`)**:
+* [x] **In-Battle Capture Flow (`Core/BattleEngine.lua`, `UI/BattleFrame.lua`, `Core/BattleCapture.lua`)**:
   * Thrown during turn-based combat via `[ BAG ] ➔ [ CAPTURE ]` submenu.
-  * Capture probability factors in enemy remaining HP, tool tier bonus, and level difference.
+  * Turn ends smoothly upon throwing capture gear, advancing to opponent's turn on failure via speed-lapping turn order.
+* [x] **Master Capture Formula & 4-Tier Snare Scaling**:
+  * **4 Trap Tiers & 15-Level Brackets**: Copper Snare (Lv 1–15, 35%), Iron Safari Net (Lv 16–30, 55%), Mithril Hunter Trap (Lv 31–45, 75%), Thorium Expedition Cage (Lv 46–60, 98%).
+  * **50% HP Pivot Dynamic**:
+    * **Above 50% HP (Penalty)**: $1:1$ penalty ($-1\%$ capture chance per $1\%$ HP above 50%). Mathematically prevents full-health cheese (Copper Snare at 100% HP suffers $35\% - 50\% = -15\% \le 0\%$).
+    * **Below 50% HP (Bonus)**: $2:1$ bonus ($+1\%$ capture chance per $2\%$ HP below 50%). Lowering quarry to 10% HP grants $+20\%$ catch bonus.
+    * **At 50% HP**: Operates at exact baseline trap rate.
+  * **Tier Mismatch Scaling**:
+    * Over-geared (Higher tier trap on lower bracket quarry): **+25% flat catch bonus per tier down**.
+    * Under-geared (Lower tier trap on higher bracket quarry): **Halves catch chance per tier up** ($\times 0.5$ per tier difference).
+  * **Wild Rare Quarry Resistance**: Flat **-10% capture rate penalty** on all wild Rare spawns.
+* [x] **Hunter Beastmastery Mastery (`Aspect of the Beastmaster`)**:
+  * **+25% Multiplicative Capture Multiplier** (`1.25x`) on all wild capture attempts.
+  * **+25% Multiplicative Attunement Accrual** (`1.25x`) from all combat victories, nursery tasks, and training.
 * [x] **Active Squad (4 max) & Transport Crate Logistics**:
   * Players carry up to 4 active battle companions in their field party.
   * When active squad is full (4/4), in-battle capture requires and auto-consumes 1 matching or higher tier Transport Crate (`INV_Box_PetCarrier_01` tinted by quality) to safely crate and ship the wild specimen to the Safari Kennel.
@@ -250,7 +263,7 @@
 * [x] **Legacy Starter Auto-Promotion (`DB:ValidateAndRepairSignatures`)**:
   * Existing player profiles with starter companions at 0 attunement are automatically promoted to Rank III with signed cryptographic integrity.
 * [x] **Wild Catch Differentiation**:
-  * Wild creatures caught in snares/cages start at **Rank I: Wild / Unbroken** (0 Attunement, 0.85x stats, 25% disobedience), maintaining clear progression and domestic bonding loops.
+  * Wild creatures caught in snares/cages start at **Rank I: Wild / Unbroken** (0 Attunement, 0.85x stats, 15% disobedience), maintaining clear progression and domestic bonding loops.
 
 ---
 

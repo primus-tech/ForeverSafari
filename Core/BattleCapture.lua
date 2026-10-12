@@ -49,25 +49,58 @@ function BattleCapture:CanCapture(enemy, isTrainerBattle)
     return true, "Eligible"
 end
 
--- Calculates capture rate based on HP curve and snare tier
+-- Calculates capture rate based on HP curve, trap tier, level brackets, and Hunter beastmastery
 function BattleCapture:CalculateCaptureRate(enemy, cageId)
-    local cageData = (ItemDB and ItemDB:GetCage(cageId)) or { name = "Safari Snare", rateMultiplier = 1.0, color = "ffffff" }
-    local hpPct = (enemy.currentHP / math.max(1, enemy.maxHP)) * 100
+    local cageData = (ItemDB and ItemDB:GetCage(cageId)) or { name = "Safari Snare", tier = 1, catchRate = 0.35, color = "ffffff" }
+    local hpPct = ((enemy.currentHP or 1) / math.max(1, enemy.maxHP or 1)) * 100
+    local targetLevel = enemy.level or 1
 
-    local baseRate = 0
-    if hpPct > 50 then
-        baseRate = 0.0
-    elseif hpPct >= 25 then
-        local t = (hpPct - 25.0) / 25.0
-        baseRate = 0.50 - (t * 0.48)
+    -- 1. Target level bracket (15-level tiers: 1-15, 16-30, 31-45, 46-60)
+    local targetBracket = math.max(1, math.min(4, math.ceil(targetLevel / 15)))
+    local trapTier = cageData.tier or 1
+    local baseCatchRate = cageData.catchRate or 0.35
+
+    -- 2. Health Modifier (50% HP Pivot)
+    -- Above 50% HP: 1:1 penalty (-1% per 1% HP above 50%)
+    -- Below 50% HP: 2:1 reward (+1% per 2% HP below 50%)
+    local hpMod = 0
+    if hpPct >= 50 then
+        hpMod = -((hpPct - 50.0) / 100.0)
     else
-        local t = (25.0 - hpPct) / 25.0
-        baseRate = 0.50 + (t * 0.45)
+        hpMod = ((50.0 - hpPct) / 2.0) / 100.0
     end
 
-    local mult = cageData.rateMultiplier or 1.0
-    local finalRate = math.min(0.99, math.max(0.01, baseRate * mult))
-    return finalRate, cageData, hpPct
+    -- 3. Tier Bracket Mismatch
+    -- Higher tier trap on lower bracket: +25% bonus per tier down
+    -- Lower tier trap on higher bracket: halves (x0.5) per tier up
+    local deltaTier = trapTier - targetBracket
+    local tierMod = 0
+    local tierUpPenalty = 1.0
+
+    if deltaTier > 0 then
+        tierMod = deltaTier * 0.25
+    elseif deltaTier < 0 then
+        tierUpPenalty = 0.5 ^ math.abs(deltaTier)
+    end
+
+    -- 4. Wild Rare Quarry Resistance (-10% flat across the board)
+    local isRare = enemy.isRare or enemy.isRareSpawn or (enemy.classification == "rare" or enemy.classification == "rareelite")
+    local rareMod = isRare and 0.10 or 0.0
+
+    -- 5. Calculate Base Adjusted Rate before class perks
+    local adjustedRate = (baseCatchRate + hpMod + tierMod - rareMod) * tierUpPenalty
+
+    -- 6. Hunter Beastmastery Perk (+25% Multiplicative Multiplier)
+    local CP = ns.ClassPassives
+    local hunterMult = 1.0
+    if CP and CP.GetHunterCaptureMultiplier then
+        hunterMult = CP:GetHunterCaptureMultiplier()
+    end
+    adjustedRate = adjustedRate * hunterMult
+
+    -- Clamped between 0% and 99%
+    local finalRate = math.min(0.99, math.max(0.00, adjustedRate))
+    return finalRate, cageData, hpPct, isRare
 end
 
 -- Executes the throw action during battle
@@ -89,7 +122,7 @@ function BattleCapture:ExecuteCapture(cageId)
     -- Deduct snare from Safari Bag
     if DB then DB:RemoveItem(cageId, 1) end
 
-    local finalRate, cageData, hpPct = self:CalculateCaptureRate(enemy, cageId)
+    local finalRate, cageData, hpPct, isRare = self:CalculateCaptureRate(enemy, cageId)
     BE.State.dialogueText = string.format("Threw a %s!", cageData.name)
     BE:AddLog(string.format("Threw |cff%s[%s]|r at wild %s!", cageData.color or "ffffff", cageData.name, enemy.name))
 
@@ -98,13 +131,7 @@ function BattleCapture:ExecuteCapture(cageId)
     if ForeverSafari.BattleFrame then ForeverSafari.BattleFrame:UpdateUI() end
 
     C_Timer.After(1.0, function()
-        if hpPct > 50 then
-            BE.State.dialogueText = "The creature was too strong! Weaken it below 50% HP!"
-            BE:AddLog("|cffff4444Creature was too healthy to catch! Weaken below 50% HP!|r")
-            BE.State.turn = "enemy"
-            if ForeverSafari.BattleFrame then ForeverSafari.BattleFrame:UpdateUI() end
-            C_Timer.After(1.4, function() BE:ExecuteEnemyTurn() end)
-        elseif roll <= finalRate then
+        if finalRate > 0 and roll <= finalRate then
             PlaySound(1195)
             if DB and DB.DiscoverSpecies then
                 DB:DiscoverSpecies(enemy.name, "caught")
@@ -131,11 +158,17 @@ function BattleCapture:ExecuteCapture(cageId)
             BE.State.inBattle = false
             if ForeverSafari.BattleFrame then ForeverSafari.BattleFrame:UpdateUI() end
         else
-            BE.State.dialogueText = string.format("Oh no! %s broke free!", enemy.name)
-            BE:AddLog(string.format("|cffff4444Wild %s broke free from the net!|r", enemy.name))
-            BE.State.turn = "enemy"
+            if finalRate <= 0 then
+                BE.State.dialogueText = string.format("%s was too healthy or strong for the %s!", enemy.name, cageData.name)
+                BE:AddLog(string.format("|cffff4444Wild %s broke free! The %s could not hold it at %d%% HP!|r", enemy.name, cageData.name, math.floor(hpPct)))
+            else
+                BE.State.dialogueText = string.format("Oh no! %s broke free!", enemy.name)
+                BE:AddLog(string.format("|cffff4444Wild %s broke free from the %s! (%d%% catch chance)|r", enemy.name, cageData.name, math.floor(finalRate * 100)))
+            end
             if ForeverSafari.BattleFrame then ForeverSafari.BattleFrame:UpdateUI() end
-            C_Timer.After(1.4, function() BE:ExecuteEnemyTurn() end)
+            C_Timer.After(1.2, function()
+                BE:AdvanceToNextTurn()
+            end)
         end
     end)
 end

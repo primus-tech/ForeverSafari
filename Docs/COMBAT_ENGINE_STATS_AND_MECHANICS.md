@@ -137,7 +137,7 @@ Player class defenses scale dynamically based on the **companion's individual At
 ##### A. Static Slice Classes (Permanent, Always-Active Slices)
 * 🛡️ **Warrior (*Marshal's Tenacity*)**: **+5% per Attunement Rank** Physical Damage Reduction / Armor (**5%** at Rank 1 $\to$ **25%** at Rank V).
 * 🗡️ **Rogue (*Shadow Evasion*)**: **+5% per Attunement Rank** Dodge Chance (**5%** at Rank 1 $\to$ **25%** at Rank V). Fully **synergizes with the Cunning archetype's +5% Dodge**, scaling up to a formidable **30% total Dodge Chance** at Rank V!
-* 🏹 **Hunter (*Aspect of the Wild*)**: **+5% per Attunement Rank** Nature Resistance (**5%** at Rank 1 $\to$ **25%** at Rank V).
+* 🏹 **Hunter (*Aspect of the Beastmaster*)**: **+5% per Attunement Rank** Nature Resistance (**5%** at Rank 1 $\to$ **25%** at Rank V). In addition, Hunter mastery grants **+25% Attunement Accrual** and **+25% Capture Chance** (multiplicative).
 * 🍃 **Druid (*Gift of the Wild*)**: **+2% per Attunement Rank** Pure Static Omni-Resist across **all 6 magic schools** (**2%** at Rank 1 $\to$ **10%** at Rank V).
 
 ##### B. Procced Ward Classes (Mystic / Reactive Elemental Absorption)
@@ -236,7 +236,7 @@ Player Class passives grant unique tactical flavor and defense layers based on t
 Always-active defensive reductions applied cleanly as static percentage slices:
 * 🛡️ **Warrior (*Marshal's Tenacity*)**: **+5% per Attunement Rank** Physical Damage Reduction / Armor (**5%** at Rank I $\to$ **25%** at Rank V).
 * 🗡️ **Rogue (*Shadow Evasion*)**: **+5% per Attunement Rank** Dodge Chance (**5%** at Rank I $\to$ **25%** at Rank V). Fully **synergizes with the Cunning archetype's +5% Dodge**, providing up to **30% total Dodge Chance** at Rank V.
-* 🏹 **Hunter (*Aspect of the Wild & Pathfinder*)**: **+5% per Attunement Rank** Nature Resistance (**5%** at Rank I $\to$ **25%** at Rank V); companion base attack and defense scaled by +5% to +25%.
+* 🏹 **Hunter (*Aspect of the Beastmaster*)**: **Master Tracker & Tamer**: Companions accrue **+25% Attunement** from all sources, and capture chance for wild creatures is increased by **+25% (multiplicative)**. Companion also gains **+5% per Attunement Rank** Nature Resistance (**5%** at Rank I $\to$ **25%** at Rank V).
 * 🍃 **Druid (*Gift of the Wild & Ecliptic Tides*)**: **Static Slice**: **+2% per Attunement Rank** Pure Static Omni-Resist across **all 6 magic schools** (**2%** at Rank I $\to$ **10%** at Rank V); channels the active **Ecliptic Tides** celestial pendulum in combat (see 7.3).
 
 ### 7.2 Procced Wards (Reactive Elemental Absorption)
@@ -310,6 +310,29 @@ Mystic reactive shields that trigger on incoming strikes and periodic ticks:
    - Dungeon and raid bosses do not drop infant companion pups.
    - Slaying a boss yields a **Catalyst Shard** matching their subfamily/family (e.g., Magmadar drops **`Core Hound Catalyst`**, Gahz'rilla drops **`Hydra Catalyst`**, Huhuran drops **`Silithid Catalyst`**).
    - Catalysts are consumed to trigger Metamorphosis evolutions in the Nursery.
+3. **Master Capture Formula & Trap Tier Dynamics**:
+   - **Capture Environment**: Wild creature captures are executed exclusively inside the Battle Arena turn duel (`BattleCapture:ExecuteCapture()`) or the Field Safari Engine (`CaptureEngine:CalculateSnareRoll()`).
+   - **4 Trap Tiers & Bracket Alignment**:
+     - 🥉 **Copper Snare**: Level 1–15 creatures. Base Capture Rate: **35%**.
+     - 🥈 **Iron Safari Net**: Level 16–30 creatures. Base Capture Rate: **55%**.
+     - 💎 **Mithril Hunter Trap**: Level 31–45 creatures. Base Capture Rate: **75%**.
+     - ⚡ **Thorium Expedition Cage**: Level 46–60 creatures. Base Capture Rate: **98%**.
+   - **Health Pivot Dynamic (50% HP Pivot Point)**:
+     - **Above 50% HP (Penalty)**: $1:1$ penalty. Loses **1% catch chance per 1% HP above 50%**.
+       $$\text{Health Penalty} = -(\text{HP\%} - 50)$$
+       *(E.g. A Copper Snare against a target at 100% HP suffers a 50% penalty: $35\% - 50\% = -15\% \le 0\%$, mathematically preventing cheese captures at full health).*
+     - **Below 50% HP (Bonus)**: $2:1$ bonus. Gains **+1% catch chance per 2% HP below 50%**.
+       $$\text{Health Bonus} = +\frac{50 - \text{HP\%}}{2}$$
+       *(E.g. At 10% HP, gain $+20\%$ catch bonus, raising Copper to $55\%$).*
+     - **At 50% HP**: Trap performs at its exact baseline capture rate.
+   - **Tier Mismatch Scaling**:
+     - **Higher-Tier Trap on Lower Bracket**: **+25% flat catch bonus per tier difference** ($+0.25 \times \Delta\text{tier}$).
+     - **Lower-Tier Trap on Higher Bracket**: **Halves capture chance per tier difference** ($\times 0.5^{\Delta\text{tier}}$).
+   - **Wild Rare Quarry Resistance**:
+     - Wild Rare spawns possess innate capture resistance: flat **-10% capture rate penalty** across all wild Rares.
+   - **Hunter Beastmastery Mastery (*Aspect of the Beastmaster*)**:
+     - **Capture Multiplier**: Multiplicative **+25% (1.25x)** capture chance bonus applied to the computed rate.
+     - **Attunement Accrual**: Multiplicative **+25% (1.25x)** attunement experience from all combat victories, nursery tasks, and training.
 
 ---
 
