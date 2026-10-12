@@ -34,6 +34,8 @@ function DB:GetKennelMobs(boxId)
     return kennelMobs
 end
 
+DB.GetKennelBox = DB.GetKennelMobs
+
 function DB:MoveToSquad(mobId, targetSlot)
     local team = self:GetTeam()
     if #team >= 4 and not targetSlot then

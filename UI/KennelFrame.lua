@@ -348,7 +348,7 @@ function Kennel:UpdateUI()
     end
 
     -- Update Enclosure 20 Tiles
-    local boxMobs = DB:GetKennelBox(currentBox)
+    local boxMobs = DB:GetKennelMobs(currentBox)
     for idx = 1, 20 do
         local tile = kennelTiles[idx]
         local mobId = boxMobs[idx]

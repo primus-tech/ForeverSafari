@@ -500,8 +500,9 @@ function SG:BuildOptionsForCurrentNPC()
                                 ShowUIPanel(BankFrame)
                             end
                         end
-                        if ns.Kennel and ns.Kennel.ActivateReserve then
-                            ns.Kennel:ActivateReserve()
+                        local k = ns.KennelFrame or ns.Kennel
+                        if k and k.ActivateReserve then
+                            k:ActivateReserve()
                         end
                     end
                 end)
