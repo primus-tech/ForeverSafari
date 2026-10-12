@@ -1,6 +1,20 @@
 # Implementation Plan: Single-Window Junior Safari Reserve (`BankFrame`)
 
-## 1. Overview & Architectural Goal
+> [!NOTE]
+> ### ⚠️ Architectural Pivot Notice (Implemented in Commit `4a764e1`)
+> **Status: Superseded & Replaced by Standalone Banker Gossip Window**
+> 
+> Direct integration inside Blizzard's `BankFrame` (view-swapping, side tab mounting, and `bankPageTabPool` anchoring) has been **deprecated and removed**. 
+> 
+> **Why this pivot was made:**
+> 1. **Server Permission Constraints (`ERR_BANK_NOT_ACCESSIBLE`)**: Blizzard's `BankFrame_Open()` strictly requires a server-side banking handshake; opening the bank frame client-side while speaking to a banker with a Gossip dialogue throws *"This character does not have access to this bank"*.
+> 2. **Client Version Tab Collisions**: Side tab templates and page tab pools in modern / classic hybrid builds (`Camelot` / `16001`) create fragile frame dependencies and layout race conditions.
+> 3. **The Clean Solution**: The **Junior Safari Reserve** is now implemented as an independent, standalone top-level window (`ForeverSafariKennelFrame`, 730 * 420) parented to `UIParent`.
+>    - Opened smoothly when clicking **"Junior Safari League: Access Companion Reserve"** on any Banker's Gossip dialog.
+>    - Can also be toggled with `/fskennel` or `/safari reserve`.
+>    - 100% Zero-Taint, draggable, centered, supports Escape key (`UISpecialFrames`), with zero bank frame dependencies.
+
+## 1. Overview & Architectural Goal (Historical)
 Currently, the companion vault is opened as a secondary standalone window (720 * 520) floating to the right of `BankFrame` (738 * 460). Because WoW automatically opens all player bags on the right side of the screen upon interacting with a Banker, secondary windows and slide-out drawers create unavoidable window collisions.
 
 This plan integrates the **Junior Safari Reserve** directly **inside `BankFrame` as a single-window view swap**:
