@@ -246,6 +246,7 @@ function Theme:ShowAbilityTooltip(owner, moveKeyOrData, anchor, moveState, defen
     local typeInfo = (C and C.CREATURE_TYPES and C.CREATURE_TYPES[mType]) or { color = "ffd100" }
     local typeColor = typeInfo.color or "ffd100"
     local category = move.category or ((move.power and move.power > 0) and "Physical" or "Status")
+    local catColor = (category == "Physical") and "|cffff8844Physical|r" or ((category == "Special") and "|cff33ccffSpecial|r" or "|cffaaaaaaStatus|r")
     local role = move.role or (MoveDB and MoveDB.GetMoveRole and MoveDB:GetMoveRole(move)) or "Utility"
     local roleColor = (role == "Offensive") and "ffaa00" or ((role == "Defensive") and "66ccff" or ((role == "Healing") and "00ff99" or "d188ff"))
 
