@@ -20,6 +20,7 @@ local bestiarySearchQuery = ""
 local bestiarySelectedType = "ALL"
 local bestiarySelectedFamily = "ALL"
 local bestiarySelectedStatus = "ALL"
+local bestiaryCurrentZoneOnly = false
 local bestiarySortMode = "ID_ASC"
 local selectedBestiaryId = 1
 local bestiaryButtons = {}
@@ -197,10 +198,28 @@ function Journal:BuildBestiaryView(parent)
     familyFilterBtn.Text = familyFilterText
     leftPanel.FamilyFilterBtn = familyFilterBtn
 
+    -- Current Zone Checkbox Row
+    local zoneCheck = CreateFrame("CheckButton", "ForeverSafariBestiaryZoneCheck", leftPanel, "UICheckButtonTemplate")
+    zoneCheck:SetSize(20, 20)
+    zoneCheck:SetPoint("TOPLEFT", familyFilterBtn, "BOTTOMLEFT", 0, -3)
+    zoneCheck:SetHitRectInsets(0, -210, 0, 0)
+
+    local zoneLabel = zoneCheck:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    zoneLabel:SetPoint("LEFT", zoneCheck, "RIGHT", 4, 1)
+    zoneLabel:SetText("📍 Current Zone Only")
+    zoneCheck.Label = zoneLabel
+    leftPanel.ZoneCheck = zoneCheck
+
+    zoneCheck:SetScript("OnClick", function(self)
+        bestiaryCurrentZoneOnly = self:GetChecked() and true or false
+        Journal:UpdateBestiaryView()
+        PlaySound(856)
+    end)
+
     -- Status Quick-Filter Row ([All] [🐾] [🔭] [❓])
     local statusRow = CreateFrame("Frame", nil, leftPanel)
     statusRow:SetSize(232, 18)
-    statusRow:SetPoint("TOPLEFT", familyFilterBtn, "BOTTOMLEFT", 0, -4)
+    statusRow:SetPoint("TOPLEFT", zoneCheck, "BOTTOMLEFT", 0, -3)
 
     local statusBtns = {}
     local statusDefs = {
@@ -421,6 +440,16 @@ function Journal:BuildBestiaryView(parent)
     parent.Content = content
     parent.ScrollFrame = scroll
 
+    -- Zone Change Event Listeners
+    leftPanel:RegisterEvent("ZONE_CHANGED_NEW_AREA")
+    leftPanel:RegisterEvent("ZONE_CHANGED")
+    leftPanel:RegisterEvent("ZONE_CHANGED_INDOORS")
+    leftPanel:SetScript("OnEvent", function(self, event)
+        if self:IsShown() then
+            Journal:UpdateBestiaryView()
+        end
+    end)
+
     -- Virtual Scrolling Handlers
     scroll:SetScript("OnVerticalScroll", function(self, offset)
         self:SetVerticalScroll(offset)
@@ -631,8 +660,21 @@ function Journal:UpdateBestiaryView()
         end
     end
 
-    -- 1. Filter species by Search Query, Element Type, Beast Family, and Status
+    -- 1. Filter species by Search Query, Element Type, Beast Family, Current Zone, and Status
     wipe(filteredSpeciesList)
+
+    local currentZone = (GetRealZoneText and GetRealZoneText()) or (GetZoneText and GetZoneText()) or ""
+    if currentZone == "" or currentZone == "Azeroth" then
+        currentZone = (GetZoneText and GetZoneText()) or ""
+    end
+
+    if leftPanel and leftPanel.ZoneCheck and leftPanel.ZoneCheck.Label then
+        if currentZone ~= "" then
+            leftPanel.ZoneCheck.Label:SetText(string.format("📍 Current Zone: |cff00ff99%s|r", currentZone))
+        else
+            leftPanel.ZoneCheck.Label:SetText("📍 Current Zone Only")
+        end
+    end
 
     for _, spec in ipairs(allSpecies) do
         local entry = DB:GetBestiaryEntry(spec.id)
@@ -650,7 +692,23 @@ function Journal:UpdateBestiaryView()
             familyMatch = (spec.subFamily == bestiarySelectedFamily) or (spec.family == bestiarySelectedFamily)
         end
 
-        if statusMatch and typeMatch and familyMatch then
+        -- Current Zone Filter
+        local zoneMatch = true
+        if bestiaryCurrentZoneOnly and currentZone ~= "" then
+            zoneMatch = false
+            if spec.habitats then
+                local lowerCur = string.lower(currentZone)
+                for _, h in ipairs(spec.habitats) do
+                    local lowerH = string.lower(h)
+                    if lowerH == lowerCur or string.find(lowerCur, lowerH, 1, true) or string.find(lowerH, lowerCur, 1, true) then
+                        zoneMatch = true
+                        break
+                    end
+                end
+            end
+        end
+
+        if statusMatch and typeMatch and familyMatch and zoneMatch then
             if bestiarySearchQuery == "" then
                 table.insert(filteredSpeciesList, spec)
             else
@@ -732,12 +790,33 @@ function Journal:UpdateBestiaryView()
     -- 3. Update Pokédex Completion Stats
     local stats = DB:GetBestiaryStats()
     if leftPanel and leftPanel.StatsText then
-        leftPanel.StatsText:SetText(string.format("Discovered: |cff00ff99%d/%d|r  |  Captured: |cffffd100%d/%d|r",
-            stats.seen, stats.total, stats.caught, stats.total))
-    end
-    if leftPanel and leftPanel.ProgressBar then
-        local pct = stats.total > 0 and ((stats.caught / stats.total) * 100) or 0
-        leftPanel.ProgressBar:SetValue(pct)
+        if bestiaryCurrentZoneOnly and currentZone ~= "" then
+            local zSeen, zCaught = 0, 0
+            for _, sp in ipairs(filteredSpeciesList) do
+                local e = DB:GetBestiaryEntry(sp.id)
+                if e then
+                    if e.status == "caught" then
+                        zCaught = zCaught + 1
+                        zSeen = zSeen + 1
+                    elseif e.status == "seen" then
+                        zSeen = zSeen + 1
+                    end
+                end
+            end
+            leftPanel.StatsText:SetText(string.format("Zone Quarry: |cff00ff99%d Seen|r  |  |cffffd100%d/%d Caught|r",
+                zSeen, zCaught, totalFiltered))
+            if leftPanel.ProgressBar then
+                local pct = totalFiltered > 0 and ((zCaught / totalFiltered) * 100) or 0
+                leftPanel.ProgressBar:SetValue(pct)
+            end
+        else
+            leftPanel.StatsText:SetText(string.format("Discovered: |cff00ff99%d/%d|r  |  Captured: |cffffd100%d/%d|r",
+                stats.seen, stats.total, stats.caught, stats.total))
+            if leftPanel.ProgressBar then
+                local pct = stats.total > 0 and ((stats.caught / stats.total) * 100) or 0
+                leftPanel.ProgressBar:SetValue(pct)
+            end
+        end
     end
 
     -- 4. Update Scroll Child Height and render visible rows
