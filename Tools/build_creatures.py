@@ -377,12 +377,13 @@ for family, (step_num, spec, element, m1, m2, pup_name) in beast_subcats.items()
     for mob in data:
         process_mob(mob, "Beast", family, spec, element, m1, m2, pup_name)
 
-# B. General Beasts
-print("--> Processing General Beasts...")
-beasts_html = load_step_file(2558)
-for mob in parse_listview_data(beasts_html):
-    subf, spec, element, m1, m2, pup_name = detect_beast_subfamily(mob.get('name', ''))
-    process_mob(mob, "Beast", subf, spec, element, m1, m2, pup_name)
+# B. Comprehensive Beast Level Bands (1-30, 31-50, 51-60, 61+, 0)
+print("--> Processing Comprehensive Beast Level Bands (1-30, 31-50, 51-60, 61+, 0)...")
+for step_num in [2859, 2863, 2867, 2869, 2871, 2558]:
+    b_html = load_step_file(step_num)
+    for mob in parse_listview_data(b_html):
+        subf, spec, element, m1, m2, pup_name = detect_beast_subfamily(mob.get('name', ''))
+        process_mob(mob, "Beast", subf, spec, element, m1, m2, pup_name)
 
 # C. Dragonkin
 print("--> Processing Dragonkin...")
