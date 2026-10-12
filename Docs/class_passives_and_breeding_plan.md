@@ -48,8 +48,9 @@ This specification details the architecture and combat engine hooks for **Player
        * 🛡️ **Paladin (Aura of Light)**: Damage-to-healing conversion (+5% to +25%).
        * ⚡ **Shaman (Primal Rebirth)**: `RollAnkh()` 50% chance to revive companion at 50% HP once per battle.
        * 🔮 **Mage (Arcane Celerity & Ward)**:
-         * Attacker speed halved for `rank` turns.
-         * Non-physical / spell damage mitigation (+10% to +25%).
+         * **Chilling Tempo Proc**: 5% per Attunement Rank (5%–25%) on offense; 10% per Attunement Rank (10%–50%) on defense. Inflicts **Chilled** for 2 turns (-50% SPD).
+         * **Direct Roll Subtraction**: Target's Frost Resistance % directly subtracts from proc chance: $\text{Effective Proc \%} = \max(0\%, \text{Base Proc \%} - \text{Frost Resist \%})$. (Countered by Polar Bears, Winter Wolves, Frostsabers, Snow Owls, Blue Dragonkin, Frost Elementals).
+         * **Arcane Spell Ward**: 5% per Attunement Rank (+5% to +25%) non-physical / magical damage resistance.
        * 🗡️ **Rogue (Shadow Evasion)**: Enemy miss chance increase `+25%` (e.g. miss threshold +25).
        * 🌿 **Priest (Divine Grace)**: Active heal charges = `rank` uses per battle, each healing `math.ceil(maxHP * 0.25)`.
        * 🏹 **Hunter (Pathfinder's Mastery)**: Companion basic attack and defense boosted by `+5%` to `+25%`.

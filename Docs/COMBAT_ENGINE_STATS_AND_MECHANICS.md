@@ -2,10 +2,12 @@
 
 ## 1. Executive Summary & Design Philosophy
 *Forever Safari* replaces traditional player character stat bloat with a standardized, Warcraft-native companion combat engine:
-1. **Normalized Level-Agnostic Base Budgets**: Creatures do not bake level 60 stats into their database entries. Every creature has a normalized **100-point (Normal)** or **110-point (Rare/Elite/Boss)** base stat budget.
-2. **Lean Database, Dynamic Engine Derivation**: The creature database stores only fundamental identity markers (`family`, `subFamily`, `spec`, `element`, `classification`, `baseStats`). All secondary combat attributes (resists, armor, crit, dodge) are computed dynamically at runtime.
-3. **Static Additive Bonus Layering**: Resistances and defensive bonuses stack additively without compounding mathematical bloat.
-4. **Action-Gauge Speed Lapping**: Speed is an active tactical stat that drives an Action Meter ($0$ to $100$), allowing agile companions to lap slower foes and strike multiple times.
+1. **Normalized Level-Agnostic Base Budgets**: Creatures do not bake arbitrary level 60 stat multipliers into their database entries. Every creature has a normalized **100-point (Normal / Standard Elite / Boss)** or **110-point (Rare / Rare Elite)** base stat budget.
+   * **The Boss vs. Rare Distinction**: A boss is **not** a rare unless it is explicitly flagged as a Rare spawn in the game engine. Standard dungeon and raid bosses (e.g., Magmadar, Princess Theradras, Viscous Fallout) receive the standard **100-point budget**. Only true Rare spawns (`classification == 2`) and Rare Elites (`classification == 4`, e.g., Barnabus, Broken Tooth) receive the **110-point budget**.
+2. **Percentile Proportional Reduction & Zero-Drift Rounding**: When reducing raw species stats, the relative proportions of HP, ATK, DEF, and SPD are preserved and scaled to $T = 100$ (or $110$) using the **Largest Remainder Method** to guarantee the sum equals $T$ with zero rounding drift.
+3. **Lean Database, Dynamic Engine Derivation**: The creature database stores only fundamental identity markers (`family`, `subFamily`, `spec`, `element`, `classification`, `baseStats`). All secondary combat attributes (resists, armor, crit, dodge) are computed dynamically at runtime.
+4. **Static Additive Bonus Layering**: Resistances and defensive bonuses stack additively without compounding mathematical bloat.
+5. **Action-Gauge Speed Lapping & Attack Speed Scarcity**: Speed is an active tactical stat driving an Action Meter ($0$ to $100$). Speed is kept scarce and grounded to prevent frictionless combat loops and arms races.
 
 ---
 
@@ -17,14 +19,27 @@ Every companion distributes points across **4 Core Stats**:
 * **`DEF`** (Defense / Armor Foundation)
 * **`SPD`** (Speed / Action Gauge Velocity)
 
-### Budget Allocations by Hunter Archetype
-Budgets are distributed across the 4 stats based on the companion's **Spec Archetype**:
+### A. Budget Allocations by Hunter Archetype
 
-| Archetype | Primary Role | Weighting | Standard Budget (100 Pts) | Rare / Elite / Boss (110 Pts) |
+| Archetype | Primary Role | Weighting | Standard / Boss Budget (100 Pts) | Rare & Rare Elite (110 Pts) |
 | :--- | :--- | :---: | :---: | :---: |
 | **`Tenacity`** | Tank / Mitigation | HP 40% • ATK 16% • DEF 32% • SPD 12% | `HP: 40, ATK: 16, DEF: 32, SPD: 12` | `HP: 44, ATK: 18, DEF: 35, SPD: 13` |
 | **`Ferocity`** | Striker / DPS | HP 30% • ATK 36% • DEF 14% • SPD 20% | `HP: 30, ATK: 36, DEF: 14, SPD: 20` | `HP: 33, ATK: 40, DEF: 15, SPD: 22` |
 | **`Cunning`** | Agility / Disruptor | HP 26% • ATK 24% • DEF 20% • SPD 30% | `HP: 26, ATK: 24, DEF: 20, SPD: 30` | `HP: 28, ATK: 26, DEF: 22, SPD: 34` |
+
+### B. Proportional Reduction Formula & Zero-Drift Algorithm
+
+For any creature with raw database stats $\text{hp}_{\text{raw}}, \text{atk}_{\text{raw}}, \text{def}_{\text{raw}}, \text{spd}_{\text{raw}}$:
+1. **Calculate Raw Total**:
+   $$S = \text{hp}_{\text{raw}} + \text{atk}_{\text{raw}} + \text{def}_{\text{raw}} + \text{spd}_{\text{raw}}$$
+2. **Compute Percentile Weights**:
+   $$P_{\text{stat}} = \frac{\text{stat}_{\text{raw}}}{S}$$
+3. **Integer Floor & Remainders** ($T = 100$ or $110$):
+   $$\text{base}_{\text{stat}} = \lfloor P_{\text{stat}} \times T \rfloor, \quad \text{rem}_{\text{stat}} = (P_{\text{stat}} \times T) - \text{base}_{\text{stat}}$$
+4. **Distribute Leftover Points**:
+   $$\text{leftover} = T - \sum \text{base}_{\text{stat}}$$
+   Allocate $+1$ point to the stat(s) with the highest remainder $\text{rem}_{\text{stat}}$ (tie-breaker: $\text{HP} \to \text{ATK} \to \text{DEF} \to \text{SPD}$).
+   *Guarantees $\text{HP} + \text{ATK} + \text{DEF} + \text{SPD} \equiv T$ with zero rounding drift.*
 
 ---
 
@@ -154,14 +169,28 @@ sequenceDiagram
 ```
 
 ### Combat Engine Rules for Lapping
-1. **Dynamic Speed Modifiers**:
-   - Slow effects (e.g. Mage *Arcane Celerity* -50% SPD) actively delay meter accumulation, creating opportunities for double turns.
-   - Speed boosts (e.g. Flying passive +50% SPD above 50% HP) accelerate meter gains.
-2. **Action Delays & Refunds**:
+
+1. **Attack Speed Scarcity & Anti-Friction Philosophy**:
+   - High speed is an organic, earned physical trait of specific species rather than a normalized, easily buffed commodity.
+   - Generic, spammable speed buffs (e.g. blanket +50% haste buffs across movepools) are deliberately pruned to prevent frictionless combat loops and repetitive arms races.
+   - Speed manipulation is restricted to rare signature abilities, priority refunds, and specialized class procs.
+
+2. **Mage Chilling Tempo & Frost Resistance Counterplay**:
+   - The Mage class passive channels glass-cannon tempo control via **Chilling Tempo Procs**:
+     * **Offensive Proc**: **5% per Attunement Rank** (5% at Rank 1 to **25% at Rank V**) on companion's attack.
+     * **Defensive Proc**: **10% per Attunement Rank** (10% at Rank 1 to **50% at Rank V**) when companion is struck.
+     * **Debuff**: Inflicts **Chilled** for **2 turns** (halves enemy Speed by **-50%**), opening an active lapping window on the action gauge.
+   - **Direct Roll Subtraction**:
+     $$\text{Effective Proc \%} = \max\Big(0\%,\ \text{Base Proc \%} - \text{Target Frost Resistance \%}\Big)$$
+     * Authentic cold-hardy wild companions (Polar Bears, Winter Wolves, Frostsabers, Snow Owls, Blue Dragonspawn, and Frost Elementals) directly subtract their Frost Resist % from the Mage's proc chance. A companion with 50% Frost Resistance completely nullifies the chill proc.
+
+3. **Action Delays & Priority Refunds**:
    - Heavy signature abilities (e.g. *Magma Blast*) inflict an Action Delay (+20 meter penalty).
-   - Light priority strikes (e.g. *Quick Attack*, *Nip*) refund meter (+15 meter bonus), speeding up the next action.
-3. **Turn Order Banner**:
-   - The battle frame will display upcoming actions sequentially: `[Fast] -> [Fast] -> [Slow] -> [Fast]`.
+   - Light priority strikes (e.g. *Quick Attack*, *Nip*) refund meter (+15 meter bonus), accelerating the next action.
+   - Unique high-priority signatures (e.g. Broken Tooth's *Hyper Velocity*) provide a +2 priority lightning opener.
+
+4. **Turn Order Banner**:
+   - The battle frame will display upcoming actions sequentially based on real-time gauge velocity: `[Fast] -> [Fast] -> [Slow] -> [Fast]`.
 
 ---
 
