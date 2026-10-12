@@ -30,7 +30,8 @@ local partitions = {
     FS.Creatures_Beasts_Crab,
     FS.Creatures_Beasts_Crocolisk,
     FS.Creatures_Beasts_Devilsaur,
-    FS.Creatures_Beasts_Exotic,
+    FS.Creatures_Beasts_Dinosaur,
+    FS.Creatures_Beasts_Fox,
     FS.Creatures_Beasts_Gorilla,
     FS.Creatures_Beasts_Hydra,
     FS.Creatures_Beasts_Hyena,
@@ -45,6 +46,7 @@ local partitions = {
     FS.Creatures_Beasts_Turtle,
     FS.Creatures_Beasts_WindSerpent,
     FS.Creatures_Beasts_Wolf,
+    FS.Creatures_Beasts_Worm,
 
     -- Other Families
     FS.Creatures_Dragonkin,

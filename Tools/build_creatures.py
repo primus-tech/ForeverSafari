@@ -130,61 +130,69 @@ beast_subcats = {
 
 def detect_beast_subfamily(name):
     nl = name.lower()
-    if any(k in nl for k in ['core hound', 'corehound', 'magma hound', 'the beast', 'kurken', 'magmadar']):
+    if any(k in nl for k in ['core rager', 'core hound', 'corehound', 'magma hound', 'the beast', 'kurken', 'magmadar', 'calefactus']):
         return 'Core Hound', 'Ferocity', 'Fire', 101, 118, 'Core Hound Pup'
-    if any(k in nl for k in ['devilsaur', 'tyrantus', 'mosh']):
+    if any(k in nl for k in ['devilsaur', 'tyrantus', 'mosh', 'titanzilla']):
         return 'Devilsaur', 'Ferocity', 'Beast', 101, 118, 'Devilsaur Hatchling'
-    if any(k in nl for k in ['chimaera', 'chimaerok']):
+    if any(k in nl for k in ['stegodon', 'diemetradon', 'incendosaur']):
+        return 'Dinosaur', 'Tenacity', 'Beast', 114, 112, 'Dino Hatchling'
+    if any(k in nl for k in ['chimaera', 'chimaerok', 'lakmaeran', 'chillwind ravager']):
         return 'Chimaera', 'Ferocity', 'Nature', 101, 118, 'Chimaera Hatchling'
-    if any(k in nl for k in ['silithid', 'grub', 'borer', 'swarmer', 'centipa', 'wasp']):
-        return 'Silithid', 'Cunning', 'Nature', 101, 118, 'Silithid Grub'
-    if any(k in nl for k in ['kodo', 'clefthoof', 'thunder lizard', 'lightning hide', 'stormhide', 'thunderhead', 'brontus', 'lakota', 'arra']):
-        return 'Kodo', 'Tenacity', 'Earth', 114, 112, 'Kodo Calf'
-    if any(k in nl for k in ['basilisk', 'lizard', 'salamander', 'saltspine', 'skum', 'crystal spine', 'gritjaw']):
-        return 'Basilisk', 'Tenacity', 'Earth', 101, 112, 'Baby Basilisk'
-    if any(k in nl for k in ['hydra']):
-        return 'Hydra', 'Ferocity', 'Aquatic', 101, 118, 'Hydra Hatchling'
-    if any(k in nl for k in ['stag', 'gazelle', 'deer', 'elk', 'reindeer', 'courser']):
-        return 'Stag', 'Cunning', 'Beast', 101, 118, 'Fawn'
-    if any(k in nl for k in ['shark', 'threshadon', 'frenzy', 'fish', 'serra\'kis', 'isha', 'muck frenzy', 'thresher', 'threshfin']):
-        return 'Aquatic', 'Ferocity', 'Aquatic', 101, 406, 'Minnow'
-    if any(k in nl for k in ['viper', 'python', 'adder', 'serpent', 'snake', 'hissperak']):
-        return 'Serpent', 'Cunning', 'Nature', 101, 118, 'Serpent Whelp'
-    if any(k in nl for k in ['bear', 'urs', 'grizzly', 'polar', 'black bear', 'ironfur', 'rabid thistle bear']):
-        return 'Bear', 'Tenacity', 'Beast', 110, 112, 'Bear Cub'
-    if any(k in nl for k in ['cat', 'lion', 'tiger', 'panther', 'cougar', 'lynx', 'sabercat', 'saber', 'stalker', 'leopard', 'shadumbra', 'saeyleenan']):
-        return 'Cat', 'Ferocity', 'Beast', 103, 118, 'Kitten'
-    if any(k in nl for k in ['wolf', 'worg', 'howl', 'prowler', 'bloodhound', 'lupine', 'fenrus', 'blighthound']):
-        return 'Wolf', 'Ferocity', 'Beast', 101, 118, 'Wolf Pup'
-    if any(k in nl for k in ['boar', 'swine', 'pig', 'tusk', 'snout', 'agathelos']):
-        return 'Boar', 'Tenacity', 'Beast', 111, 112, 'Boar Piglet'
-    if any(k in nl for k in ['raptor', 'scytheclaw', 'razormaw', 'prideclaw', 'ravasaur']):
-        return 'Raptor', 'Ferocity', 'Beast', 115, 118, 'Raptor Hatchling'
-    if any(k in nl for k in ['spider', 'tarantula', 'web', 'spinner', 'creeper', 'widow', 'brood', 'smolderweb', 'hedrum', 'fang', 'shadra']):
+    if any(k in nl for k in ['scarab', 'skitterer', 'maexxna', 'spider', 'tarantula', 'widow', 'spinner', 'creeper', 'smolderweb', 'shadra', 'mar\'li', 'nandieb', 'harvester swarm', 'hedrum', 'fang', 'web', 'lurker', 'recluse', 'valraxx', 'sathrah', 'besseleth', 'sri\'skulk', 'broodguard', 'broodmother', 'chatter', 'naraxis', 'creepthess', 'krek the noxious', 'ta\'shkal', 'shadow', 'nightshade']):
         return 'Spider', 'Cunning', 'Shadow', 101, 118, 'Spiderling'
-    if any(k in nl for k in ['turtle', 'snapjaw', 'tortoise', 'gammerita', 'torta']):
-        return 'Turtle', 'Tenacity', 'Aquatic', 101, 404, 'Turtle Hatchling'
-    if any(k in nl for k in ['crocolisk', 'croc', 'alligator', 'gator', 'rotgrip']):
+    if any(k in nl for k in ['silithid', 'wasp', 'cirrusfly', 'fly', 'grub', 'borer', 'centipa', 'parasite', 'larva', 'maggot', 'corpsefeeder', 'swarmer', 'sul\'lithuz', 'needler', 'githyiss', 'blood flies', 'sandfury guardian']):
+        return 'Silithid', 'Cunning', 'Nature', 101, 118, 'Silithid Grub'
+    if any(k in nl for k in ['kodo', 'clefthoof', 'thunder lizard', 'lightning hide', 'stormhide', 'thunderhead', 'brontus', 'lakota', 'arra', 'dadanga', 'owatanka', 'thunderstomp']):
+        return 'Kodo', 'Tenacity', 'Earth', 114, 112, 'Kodo Calf'
+    if any(k in nl for k in ['basilisk', 'lizard', 'salamander', 'saltspine', 'skum', 'crystal spine', 'gritjaw', 'gazer', 'crystalhide', 'petrifier', 'mirrorscale', 'deatheye', 'ambereye reaver']):
+        return 'Basilisk', 'Tenacity', 'Earth', 101, 112, 'Baby Basilisk'
+    if any(k in nl for k in ['hydra', 'gesharahan']):
+        return 'Hydra', 'Ferocity', 'Aquatic', 101, 118, 'Hydra Hatchling'
+    if any(k in nl for k in ['crocolisk', 'croc', 'alligator', 'gator', 'rotgrip', 'scale belly', 'chomper', 'needletooth', 'deviate lurker', 'deviate horror', 'daggermaw', 'vicejaw', 'sewer beast', 'deadmire', 'ripscale', 'gnashjaw']):
         return 'Crocolisk', 'Tenacity', 'Aquatic', 101, 112, 'Baby Crocolisk'
-    if any(k in nl for k in ['crab', 'crawler', 'pincer', 'crawfish']):
+    if any(k in nl for k in ['turtle', 'snapjaw', 'tortoise', 'gammerita', 'torta', 'ghamoo-ra', 'gamma-ra', 'ghamoo-raja', 'tooga', 'speedy', 'kresh', 'ironback', 'tortolla', 'sawtooth', 'steeljaw']):
+        return 'Turtle', 'Tenacity', 'Aquatic', 101, 404, 'Turtle Hatchling'
+    if any(k in nl for k in ['crab', 'crawler', 'pincer', 'crawfish', 'crustacean', 'makrura', 'deathclasp', 'surf glider', 'spikeshell', 'burrower', 'clack the reaver']):
         return 'Crab', 'Tenacity', 'Aquatic', 101, 404, 'Crab Pinchling'
-    if any(k in nl for k in ['gorilla', 'ape', 'groddok', 'mukla']):
+    if any(k in nl for k in ['gorilla', 'ape', 'groddok', 'mukla', 'knuckles', 'mokk the savage', 'silverback', 'kurmokk', 'u\'cha', 'uhk\'loc', 'stomper', 'thunderer']):
         return 'Gorilla', 'Tenacity', 'Beast', 101, 904, 'Baby Gorilla'
-    if any(k in nl for k in ['scorpid', 'scorpion', 'spire scorpid']):
-        return 'Scorpid', 'Tenacity', 'Beast', 101, 904, 'Scorpid Scuttler'
+    if any(k in nl for k in ['raptor', 'scytheclaw', 'razormaw', 'prideclaw', 'ravasaur', 'riptooth', 'lar\'korwi', 'lashtail', 'taillasher', 'scythemaw', 'sarltooth', 'dart', 'tethis']):
+        return 'Raptor', 'Ferocity', 'Beast', 115, 118, 'Raptor Hatchling'
+    if any(k in nl for k in ['wyvern', 'manticore', 'wind serpent', 'couatl', 'pridewing', 'highperch', 'hakkar', 'arikara', 'venomwing', 'coiler', 'stinglash']):
+        return 'Wind Serpent', 'Ferocity', 'Nature', 101, 118, 'Spiteful Whelpling'
     if any(k in nl for k in ['bat', 'duskbat', 'vampiric']):
         return 'Bat', 'Cunning', 'Beast', 101, 118, 'Bat Pup'
-    if any(k in nl for k in ['hyena']):
+    if any(k in nl for k in ['bear', 'urs', 'grizzly', 'polar', 'black bear', 'ironfur', 'rabid thistle bear', 'ursol\'lok', 'grimclaw', 'stonepaw', 'bruuz', 'thornpaw', 'protector', 'ironclaw', 'bjarn', 'ol\' sooty', 'den mother', 'mangeclaw', 'samras', 'thistle cub', 'shardtooth', 'angerclaw', 'grizzlegut', 'barnabus', 'elmpaw', 'bristlefur', 'sootfur']):
+        return 'Bear', 'Tenacity', 'Beast', 110, 112, 'Bear Cub'
+    if any(k in nl for k in ['cat', 'lion', 'tiger', 'panther', 'cougar', 'lynx', 'sabercat', 'saber', 'stalker', 'leopard', 'shadumbra', 'saeyleenan', 'eskhandar', 'bigglesworth', 'kitten', 'zulian guardian', 'roary', 'defias companion', 'antilos', 'shadetooth', 'savannah', 'the rake', 'humar', 'sin\'dall', 'bhag\'thera', 'king bangalash', 'broken tooth', 'shadowclaw', 'dishu', 'shy-rotam', 'sian-rotam', 'stranglethorn tigress', 'rak\'shiri', 'swamp jaguar', 'ridge huntress', 'zulian cub', 'mystmane', 'highmane', 'dakotah', 'katrixa', 'luna', 'selene', 'aedamas', 'dendarro', 'shok\'tara']):
+        return 'Cat', 'Ferocity', 'Beast', 103, 118, 'Kitten'
+    if any(k in nl for k in ['fox', 'remi', 'inariel']):
+        return 'Fox', 'Cunning', 'Beast', 101, 118, 'Fox Kit'
+    if any(k in nl for k in ['wolf', 'worg', 'howl', 'prowler', 'bloodhound', 'lupine', 'fenrus', 'blighthound', 'hound', 'mastiff', 'darkhound', 'doomhound', 'deathhound', 'halycon', 'gizrul', 'borelgore', 'woof', 'pupper', 'goldrinn', 'kyle', 'snort', 'shadowhound', 'glenrunner', 'mistrunner', 'coyote', 'lupos', 'steelsnap', 'bonepaw', 'timber', 'snarler', 'deathmaw', 'longtooth', 'spot', 'winterax tracker', 'nahr\'ek', 'kamuro', 'kuroma', 'rippa', 'halikor', 'stormheart', 'ryff']):
+        return 'Wolf', 'Ferocity', 'Beast', 101, 118, 'Wolf Pup'
+    if any(k in nl for k in ['boar', 'swine', 'pig', 'tusk', 'snout', 'agathelos', 'agamaggan', 'margol', 'princess', 'agam\'ar', 'porcine', 'grunter']):
+        return 'Boar', 'Tenacity', 'Beast', 111, 112, 'Boar Piglet'
+    if any(k in nl for k in ['hyena', 'scavenger', 'blisterpaw', 'giggler', 'grinning dog']):
         return 'Hyena', 'Ferocity', 'Beast', 101, 118, 'Hyena Pup'
-    if any(k in nl for k in ['bird', 'owl', 'hawk', 'eagle', 'falcon', 'sharptalon', 'fledgling', 'hippogryph', 'gryphon', 'pterrordax', 'skylord', 'cloudrunner', 'freewind']):
+    if any(k in nl for k in ['bird', 'owl', 'hawk', 'eagle', 'falcon', 'sharptalon', 'fledgling', 'hippogryph', 'gryphon', 'pterrordax', 'skylord', 'cloudrunner', 'freewind', 'razorbeak', 'mistwing', 'sharpbeak', 'razza', 'duskwing', 'dawnchaser', 'buzzbeak', 'snapbeak', 'swiftwind', 'keenclaw', 'antilus', 'soarer', 'heartrazor', 'ironeye', 'sorrow wing', 'evalcharr', 'whisperwing', 'parrot', 'crow', 'frayfeather', 'polly', 'pollo', 'plymouth rock', 'swoop', 'screecher', 'screamer', 'strigid', 'ironbeak', 'roc', 'azzere', 'zaricotl', 'spiteflayer', 'olm the wise', 'shrieker', 'shriekling', 'fernfeather', 'vulgara', 'pterodan', 'sky shadow', 'bassbeak', 'arcterris']):
         return 'Bird of Prey', 'Cunning', 'Beast', 101, 118, 'Fledgling'
-    if any(k in nl for k in ['vulture', 'buzzard', 'condor', 'carrion']):
+    if any(k in nl for k in ['vulture', 'buzzard', 'condor', 'carrion', 'ripper', 'fleshripper', 'bonepicker', 'vultros', 'zopilote', 'soulflayer', 'corpsefeeder']):
         return 'Carrion Bird', 'Ferocity', 'Beast', 103, 118, 'Hatchling'
-    if any(k in nl for k in ['tallstrider', 'strider']):
+    if any(k in nl for k in ['tallstrider', 'strider', 'mazzranache', 'washte pawne']):
         return 'Tallstrider', 'Ferocity', 'Beast', 101, 118, 'Tallstrider Chick'
-    if any(k in nl for k in ['wind serpent', 'couatl']):
-        return 'Wind Serpent', 'Ferocity', 'Nature', 101, 118, 'Spiteful Whelpling'
-    return 'Exotic', 'Ferocity', 'Beast', 101, 118, 'Pup'
+    if any(k in nl for k in ['scorpid', 'scorpion', 'spire scorpid', 'sarkoth', 'scorpok', 'vile sting', 'flayer', 'shredder', 'scorpashi']):
+        return 'Scorpid', 'Tenacity', 'Beast', 101, 904, 'Scorpid Scuttler'
+    if any(k in nl for k in ['viper', 'python', 'adder', 'serpent', 'snake', 'hissperak', 'moccasin', 'cobra', 'slitherer', 'spitter', 'nessy']):
+        return 'Serpent', 'Cunning', 'Nature', 101, 118, 'Serpent Whelp'
+    if any(k in nl for k in ['stag', 'gazelle', 'deer', 'elk', 'reindeer', 'courser', 'zhevra', 'giraffe', 'ram', 'buck', 'branch-horn', 'mosshoof', 'cliff stormer', 'swiftmane', 'alterac ram', 'khaz modan ram', 'bock', 'squallclimber', 'glacier', 'brumeran']):
+        return 'Stag', 'Cunning', 'Beast', 101, 118, 'Fawn'
+    if any(k in nl for k in ['shark', 'threshadon', 'frenzy', 'fish', 'serra\'kis', 'isha', 'muck frenzy', 'thresher', 'threshfin', 'minnow', 'orca', 'piranha', 'blightsculler']):
+        return 'Aquatic', 'Ferocity', 'Aquatic', 101, 406, 'Minnow'
+    if any(k in nl for k in ['worm', 'oozeworm', 'sandworm', 'dredge', 'silt devourer']):
+        return 'Worm', 'Tenacity', 'Nature', 101, 404, 'Worm Larva'
+    
+    # Absolute fallback (mapped to closest family instead of Exotic)
+    return 'Wolf', 'Ferocity', 'Beast', 101, 118, 'Wolf Pup'
 
 # -------------------------------------------------------------
 # 3. EXTRACTION HELPER
@@ -206,14 +214,25 @@ def is_sentient_or_invalid(mob):
     if any(bt in tag_l for bt in bad_tags):
         return True
         
-    # Exclude player mounts, druid forms, invis trigger bunnies
+    # Exclude player mounts, druid forms, invis trigger bunnies, internal test items
     if name == 'credit' or 'credit' in name:
         return True
     if '(druid)' in name or 'druid)' in name:
         return True
-    if bool(re.search(r'\bmount\b', name)) or 'riding horse' in name:
+    if any(k in name for k in ['[ph]', '[dnt]', 'dummy', 'placeholder', 'test squirrel', 'secret agent', 'hunter\'s vision', 'primal blessing visual', 'human skull', 'polymorphed cockroach', 'mega rabbit', 'master angler form', 'riding druid', 'mechanical greench', 'mechanical yeti', 'mechanical squirrel', 'twain test prop', 'generic hunter pet', 'diseased experiment', 'collector of suffering', 'fallen moonkin', 'doomkin', 'abominable snowman', 'the abominable greench']):
         return True
-    if '(warhorse)' in name or '(charger)' in name:
+        
+    mount_words = ['riding horse', 'pinto', 'palomino', 'chestnut mare', 'brown horse', 
+                   'swift palomino', 'swift white steed', 'swift brown steed', 'swift gray ram', 
+                   'swift brown ram', 'swift white ram', 'argent warhorse', 'argent horse', 
+                   'argent charger', 'farholde steed', 'scarlet steed', 'pack mule', 
+                   'caravan mule', 'caravan packhorse', 'black war ram', 'stormpike riding ram', 
+                   'white riding ram', 'risen warhorse', 'risen charger', 'silver hand charger', 
+                   'darkreaver\'s fallen charger', 'black war steed', 'stabled alterac ram', 
+                   'swift scarlet warhorse', 'ancient equine spirit', 'lost horse', 'fel steed',
+                   'shadow charger', 'black devilsaur mount', 'warden saber mount', 'druid moose mount',
+                   'horse', 'wind rider', 'war rider', 'prairie dog', 'gopher']
+    if any(mw in name for mw in mount_words) or bool(re.search(r'\bmount\b', name)):
         return True
         
     # Exclude obvious humanoid guard/civilian roles in uncategorized/undead
@@ -502,11 +521,16 @@ for subf in sorted(subf_counts.keys()):
     var_name = f"Creatures_Beasts_{sanitized_sf}"
     write_lua_partition(fpath, var_name, lambda c, s=subf: c['family'] == 'Beast' and c['subFamily'] == s)
 
-# Remove old monolithic Creatures_Beasts.lua if it exists
+# Remove old monolithic Creatures_Beasts.lua and Creatures_Beasts_Exotic.lua if they exist
 old_beasts = os.path.join(OUTPUT_DIR, "Creatures_Beasts.lua")
 if os.path.exists(old_beasts):
     os.remove(old_beasts)
     print(f"Removed old monolithic {old_beasts}")
+
+old_exotic = os.path.join(BEASTS_DIR, "Creatures_Beasts_Exotic.lua")
+if os.path.exists(old_exotic):
+    os.remove(old_exotic)
+    print(f"Removed old {old_exotic}")
 
 # Emit Non-Beast Partition Files
 write_lua_partition(os.path.join(OUTPUT_DIR, "Creatures_Dragonkin.lua"), "Creatures_Dragonkin", lambda c: c['family'] == "Dragonkin")

@@ -36,7 +36,8 @@ Data\Creatures\Beasts\Creatures_Beasts_CoreHound.lua
 Data\Creatures\Beasts\Creatures_Beasts_Crab.lua
 Data\Creatures\Beasts\Creatures_Beasts_Crocolisk.lua
 Data\Creatures\Beasts\Creatures_Beasts_Devilsaur.lua
-Data\Creatures\Beasts\Creatures_Beasts_Exotic.lua
+Data\Creatures\Beasts\Creatures_Beasts_Dinosaur.lua
+Data\Creatures\Beasts\Creatures_Beasts_Fox.lua
 Data\Creatures\Beasts\Creatures_Beasts_Gorilla.lua
 Data\Creatures\Beasts\Creatures_Beasts_Hydra.lua
 Data\Creatures\Beasts\Creatures_Beasts_Hyena.lua
@@ -51,6 +52,7 @@ Data\Creatures\Beasts\Creatures_Beasts_Tallstrider.lua
 Data\Creatures\Beasts\Creatures_Beasts_Turtle.lua
 Data\Creatures\Beasts\Creatures_Beasts_WindSerpent.lua
 Data\Creatures\Beasts\Creatures_Beasts_Wolf.lua
+Data\Creatures\Beasts\Creatures_Beasts_Worm.lua
 Data\Creatures\Creatures_Dragonkin.lua
 Data\Creatures\Creatures_Elementals.lua
 Data\Creatures\Creatures_Mechanicals.lua
