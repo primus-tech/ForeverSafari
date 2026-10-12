@@ -1,6 +1,6 @@
-# Forever Safari: Co-Op Breeding System, Genetics & Catalyst Spec
+# Forever Safari: Co-Op Breeding System, Genetics & Catalyst Architecture
 
-## 1. Executive Summary & Core Game Loop
+## 1. Executive Summary & Progression Game Loop
 The breeding system in *Forever Safari* is designed around **forced social cooperation**, **progression investment**, and the pursuit of **Rare** companion variants:
 
 ```mermaid
@@ -37,6 +37,12 @@ To prevent solitary alt-farming and guarantee social collaboration:
 * Because a player can only access one sex per species, **a player can never breed with themselves**.
 * Solo alt-breeding is strictly blocked. Breeding always requires another player.
 
+### C. Cryptographic HMAC Signing
+* In [Core/Crypto.lua](file:///home/primustech/.steam/debian-installation/steamapps/compatdata/4226358677/pfx/drive_c/Program%20Files%20%28x86%29/World%20of%20Warcraft/_classic_beta_/Interface/AddOns/ForeverSafari/Core/Crypto.lua), the companion's biological sex (`anatomy = "Sire"` / `"Dam"`) is incorporated into the signed serialization payload (`Crypto:SignMob(mob)`), preventing local client tampering.
+* Renders distinct visual badges in the Safari Journal and Inspector:
+  - `|cff66ccff♂ Male (Sire)|r` (Cyan / Blue)
+  - `|cffff99cc♀ Female (Dam)|r` (Pink / Magenta)
+
 ---
 
 ## 3. The Highlander Rule (Unique Ownership)
@@ -47,9 +53,9 @@ To prevent solitary alt-farming and guarantee social collaboration:
 
 ---
 
-## 4. Forced Co-Op Social Handshake
+## 4. Forced Co-Op Social Handshake Protocol
 
-Breeding is executed exclusively through peer-to-peer player interaction:
+Breeding is executed exclusively through peer-to-peer player interaction anchored at an NPC breeder:
 
 ```
 [Player A: Sire Owner]                      [Player B: Dam Owner]
@@ -63,22 +69,35 @@ Breeding is executed exclusively through peer-to-peer player interaction:
           │                           │               │
           │               ┌─── Place Female Companion ┤
           │               │                           │
+          ├── Slot Catalyst (Optional)                │
+          │                                           │
           ├───────── Dual-Accept Confirmation ────────┤
           │                                           │
           ▼                                           ▼
-     [ Both Players Lock In & Breeding Process Executes ]
+     [ Both Players Lock In & Breeding Ritual Executes ]
 ```
+
+### P2P Handshake Messages in `Core/Comms.lua`
+1. `NURSERY_INVITE`: Initiates co-op breeding session with targeted player.
+2. `NURSERY_OFFER`: Transmits signed pet payload and slotted Catalyst to partner.
+3. `NURSERY_LOCK`: Confirms companion placement and displays partner's companion.
+4. `NURSERY_EXECUTE`: Triggered when both players press "Perform Ritual".
+5. `NURSERY_CANCEL`: Cleans up state and closes interface if either player disconnects or cancels.
 
 ---
 
 ## 5. Tiered Breeding Grounds & Attunement Outcomes
 
-Breeding is available early in the player journey, with location determining the newborn's baseline Attunement:
+Breeding is accessible early in the game journey, with location determining the newborn's baseline Attunement:
 
-| Breeding Sanctuary | Location & NPCs | Availability | Offspring Starting Rank | Progression Advantage |
+| Breeding Sanctuary | Location & NPC Anchors | Availability | Offspring Starting Rank | Progression Advantage |
 | :--- | :--- | :---: | :---: | :--- |
 | **Capital City Pet Trainers** | Stormwind, Orgrimmar, Ironforge, Thunder Bluff, Darnassus, Undercity | **Early Game** (Accessible immediately) | **Attunement Rank I** *(Untamed)* | Standard baseline. Offspring must be trained and leveled from scratch. |
 | **Moonglade Sacred Grove** | Nighthaven, Moonglade *(Cenarion Master Breeders)* | **Sacred Sanctuary** (Unlocked earlier, requires journey) | **Attunement Rank III** *(Attuned)* | **The Premium Outcome**: Skips early grind! Offspring is instantly battle-tested with higher stat multipliers and 0% disobedience. |
+
+### NPC Gossip Hook
+* On `GOSSIP_SHOW`, detect whether the targeted NPC is a Capital City Pet Trainer or a Moonglade Cenarion Breeder.
+* Injects gossip option: `|cffffd100[Forever Safari] Open Breeding Chamber|r` to launch `UI/NurseryFrame.lua`.
 
 ---
 
@@ -130,9 +149,14 @@ $$\mathbf{\text{Rare Chance \%} = (\text{Male Attunement Rank} + \text{Female At
 ## 8. Egg Distribution & Fair Split
 
 When the breeding process concludes:
-1. **Guaranteed 2-Egg Split**:
+1. **Parent Consumption / Ritual**:
+   * Parents are permanently retired into the wild/sanctuary as part of the lineage continuation ceremony.
+2. **Guaranteed 2-Egg Split**:
    * **Egg 1** is deposited into Player A's Virtual Safari Bag (`/fsbag`).
    * **Egg 2** is deposited into Player B's Virtual Safari Bag (`/fsbag`).
-2. **Bonus 3rd Egg (20% Chance)**:
+3. **Bonus 3rd Egg (20% Chance)**:
    * A 20% roll awards a bonus 3rd egg.
    * If triggered, an automated $d100$ tie-breaker roll determines which player receives the extra egg.
+4. **Egg Incubation & Hatching**:
+   * Item `safari_egg_<family>` stored in `/fsbag`.
+   * Incubation progresses through field activity (battles and quests), with right-click "Hatch" when fully gestated.
