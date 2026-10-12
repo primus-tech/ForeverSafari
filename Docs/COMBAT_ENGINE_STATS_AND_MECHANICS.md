@@ -235,7 +235,7 @@ Always-active defensive reductions applied cleanly as static percentage slices:
 * 🛡️ **Warrior (*Marshal's Tenacity*)**: **+5% per Attunement Rank** Physical Damage Reduction / Armor (**5%** at Rank I $\to$ **25%** at Rank V).
 * 🗡️ **Rogue (*Shadow Evasion*)**: **+5% per Attunement Rank** Enemy Miss Chance / Evasion (**5%** at Rank I $\to$ **25%** at Rank V).
 * 🏹 **Hunter (*Aspect of the Wild & Pathfinder*)**: **+5% per Attunement Rank** Nature Resistance (**5%** at Rank I $\to$ **25%** at Rank V); companion base attack and defense scaled by +5% to +25%.
-* 🍃 **Druid (*Gift of the Wild & Symbiosis*)**: **+2% per Attunement Rank** Pure Static Omni-Resist across **all 6 magic schools** (**2%** at Rank I $\to$ **10%** at Rank V); Attunement point gains accelerated (+25%) and rank thresholds reduced by 25%.
+* 🍃 **Druid (*Gift of the Wild & Ecliptic Tides*)**: **Static Slice**: **+2% per Attunement Rank** Pure Static Omni-Resist across **all 6 magic schools** (**2%** at Rank I $\to$ **10%** at Rank V); channels the active **Ecliptic Tides** celestial pendulum in combat (see 7.3).
 
 ### 7.2 Procced Wards (Reactive Elemental Absorption)
 Mystic reactive shields that trigger on incoming strikes and periodic ticks:
@@ -266,6 +266,23 @@ Mystic reactive shields that trigger on incoming strikes and periodic ticks:
   * 50% chance to resurrect companion at 50% HP once per battle.
 * 💀 **Warlock Curse of Suppression**:
   * When facing an enemy AI trainer or PvP opponent, halves all opposed class passives by 50%.
+* 🍃 **Druid Ecliptic Tides (The Celestial Pendulum)**:
+  * **Dynamic Meter Cap**: Equal to active companion's **Attunement Rank** (1 at Rank I $\to$ 5 at Rank V). Begins at neutral (0 Solar, 0 Lunar).
+  * **Point Accrual & Tug-of-War**:
+    * Casting an **Offensive** move adds **+1 Solar Point**.
+    * Casting a **Non-Offensive** move (Defensive, Healing, Utility) adds **+1 Lunar Point**.
+    * If total points reach the meter cap, subsequent opposing actions siphon points from the other side (tug-of-war).
+  * **Dual Trigger System**:
+    1. **Early Proc Roll (Every Cast)**: Proc chance on every ability cast equals $\text{Points on that side} \times 5\%$ (5% at 1 point $\to$ 25% at 5 points). Early procs discharge immediately at current point value.
+    2. **Automatic 100% Discharge**: Reaching maximum capacity on either side ($\text{Solar} == \text{Rank}$ or $\text{Lunar} == \text{Rank}$) triggers a guaranteed maximum Rank discharge automatically!
+  * **Surge Effects**:
+    * ☀️ **Solar Surge (Offensive Proc / 100% Solar Cap)**:
+      * Cleanses 1 active negative debuff (Poison, Bleed, Burn, Sleep, Stun).
+      * Applies **Rejuvenating Bloom (HoT)** healing $(\text{Solar Points} \times 5)\%$ Max HP per round for $(\text{Solar Points})$ rounds.
+      * Discharges and resets both sides to 0.
+    * 🌙 **Lunar Surge (Non-Offensive Proc / 100% Lunar Cap)**:
+      * Applies **Bramble Damage Shield** reflecting $(\text{Lunar Points} \times 5)\%$ of incoming damage back to attackers as Nature damage for $(\text{Lunar Points})$ rounds.
+      * Discharges and resets both sides to 0.
 
 ### 7.4 Engine Execution & UI Hooks
 1. **Turn Execution Hooks (`Core/BattleEngine.lua`)**:
@@ -274,9 +291,11 @@ Mystic reactive shields that trigger on incoming strikes and periodic ticks:
    * Apply Rogue miss penalty to incoming enemy accuracy checks.
    * Apply Shaman Primal Rebirth check inside `BE:CheckDefeatPassives()`.
    * Evaluate independent Ward proc rolls during each periodic DoT tick.
+   * Evaluate Druid move role, update Solar/Lunar points, roll early surge chance ($5\% \times \text{pts}$) or automatic 100% discharge, and tick active HoT / Brambles damage reflection.
 2. **Interface Hooks (`UI/BattleFrame.lua`)**:
    * Display active player class aura icon on companion unit frame.
    * Render `[ 💖 Divine Grace (X) ]` button on battle command tray for Priests.
+   * Render compact `[ ☀️ Solar: X / Cap | 🌙 Lunar: Y / Cap ]` celestial pendulum tray for Druids.
 
 ---
 
