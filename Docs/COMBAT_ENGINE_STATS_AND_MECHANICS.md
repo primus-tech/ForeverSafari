@@ -108,16 +108,18 @@ flowchart LR
 #### Layer 1: Universal Baseline
 * Every creature has a **5% Base Resistance** to Physical, Fire, Frost, Nature, Arcane, Shadow, and Holy damage.
 
-#### Layer 2: Native Element Affinity (+10% to +15%)
-* **Fire / Core Hound**: **+15% Fire Resist**
-* **Aquatic / Water**: **+15% Frost Resist**
-* **Nature / Forest Beasts**: **+10% Nature Resist**
-* **Shadow / Undead**: **+15% Shadow Resist**, -5% Holy Resist
-* **Arcane / Dragonkin**: **+10% Arcane Resist**, **+5% All Elemental**
-* **Mechanical**: **+15% Physical Armor**, -5% Nature Resist
+#### Layer 2: Native Element Affinity (+10% clean or +15% / -5% with Weakness)
+* **Rule**: If a creature has no elemental weakness, it gains a clean **+10% Native Element Resistance**. If it possesses an elemental weakness, it gains **+15% Native Resistance** and **-5% Weakness School Resistance**. Dragonkin and Magical species gain **+5% to All Elemental Resistances**.
+  * **Fire / Core Hound**: **+15% Fire Resist**, **-5% Frost Resist**
+  * **Aquatic / Water**: **+10% Frost Resist** (or **+15% Frost**, **-5% Nature** for swamp dwellers)
+  * **Nature / Forest Beasts**: **+10% Nature Resist** (No weakness)
+  * **Shadow / Undead**: **+15% Shadow Resist**, **-5% Holy Resist**
+  * **Mechanical**: **+15% Physical Armor**, **-5% Nature Resist**
+  * **Dragonkin & Magical**: **+5% All Elemental Resistances** (Arcane, Fire, Frost, Nature, Shadow, Holy)
 
-#### Layer 3: Archetype Category Bonuses
-* **Tenacity**: **+10% Physical Armor**, **+5% All Magic Resistances**
+#### Layer 3: Archetype Category Bonuses (+5% / +5% Symmetrical)
+Every combat archetype grants clean, balanced `+5%, +5%` traits:
+* **Tenacity**: **+5% Physical Armor**, **+5% All Magic Resistances**
 * **Ferocity**: **+5% Critical Strike Chance**, **+5% Direct Damage Output**
 * **Cunning**: **+5% Dodge Chance**, **+5% Spell Deflection**
 
@@ -134,7 +136,7 @@ Player class defenses scale dynamically based on the **companion's individual At
 
 ##### A. Static Slice Classes (Permanent, Always-Active Slices)
 * 🛡️ **Warrior (*Marshal's Tenacity*)**: **+5% per Attunement Rank** Physical Damage Reduction / Armor (**5%** at Rank 1 $\to$ **25%** at Rank V).
-* 🗡️ **Rogue (*Shadow Evasion*)**: **+5% per Attunement Rank** Enemy Miss Chance / Evasion (**5%** at Rank 1 $\to$ **25%** at Rank V).
+* 🗡️ **Rogue (*Shadow Evasion*)**: **+5% per Attunement Rank** Dodge Chance (**5%** at Rank 1 $\to$ **25%** at Rank V). Fully **synergizes with the Cunning archetype's +5% Dodge**, scaling up to a formidable **30% total Dodge Chance** at Rank V!
 * 🏹 **Hunter (*Aspect of the Wild*)**: **+5% per Attunement Rank** Nature Resistance (**5%** at Rank 1 $\to$ **25%** at Rank V).
 * 🍃 **Druid (*Gift of the Wild*)**: **+2% per Attunement Rank** Pure Static Omni-Resist across **all 6 magic schools** (**2%** at Rank 1 $\to$ **10%** at Rank V).
 
@@ -233,7 +235,7 @@ Player Class passives grant unique tactical flavor and defense layers based on t
 ### 7.1 Static Slices (Permanent Innate Defenses)
 Always-active defensive reductions applied cleanly as static percentage slices:
 * 🛡️ **Warrior (*Marshal's Tenacity*)**: **+5% per Attunement Rank** Physical Damage Reduction / Armor (**5%** at Rank I $\to$ **25%** at Rank V).
-* 🗡️ **Rogue (*Shadow Evasion*)**: **+5% per Attunement Rank** Enemy Miss Chance / Evasion (**5%** at Rank I $\to$ **25%** at Rank V).
+* 🗡️ **Rogue (*Shadow Evasion*)**: **+5% per Attunement Rank** Dodge Chance (**5%** at Rank I $\to$ **25%** at Rank V). Fully **synergizes with the Cunning archetype's +5% Dodge**, providing up to **30% total Dodge Chance** at Rank V.
 * 🏹 **Hunter (*Aspect of the Wild & Pathfinder*)**: **+5% per Attunement Rank** Nature Resistance (**5%** at Rank I $\to$ **25%** at Rank V); companion base attack and defense scaled by +5% to +25%.
 * 🍃 **Druid (*Gift of the Wild & Ecliptic Tides*)**: **Static Slice**: **+2% per Attunement Rank** Pure Static Omni-Resist across **all 6 magic schools** (**2%** at Rank I $\to$ **10%** at Rank V); channels the active **Ecliptic Tides** celestial pendulum in combat (see 7.3).
 

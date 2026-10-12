@@ -277,8 +277,8 @@ Combat abandons rigid turn ping-pong in favor of an **Active Action Meter** ($0$
 ### 🛡️ 5-Layer Elemental Resistance Architecture
 All companions possess innate elemental resistance ratings across all **6 Schools of Magic** (and Physical Armor):
 1. **Layer 1: Universal Baseline**: Every creature starts with a flat **5% Base Resistance** across all damage schools.
-2. **Layer 2: Native Element Affinity (+10% to +15%)**: Species-inherent protection (Fire/Core Hounds +15% Fire; Aquatic +15% Frost; Forest Beasts +10% Nature; Undead +15% Shadow, -5% Holy; Mechanical +15% Physical, -5% Nature; Arcane/Dragonkin +10% Arcane, +5% All).
-3. **Layer 3: Archetype Category**: Tenacity (+10% Physical, +5% All Magic); Ferocity (+5% Crit, +5% Damage); Cunning (+5% Dodge, +5% Deflection).
+2. **Layer 2: Native Element Affinity (+10% clean or +15% / -5% with Weakness)**: Creatures without an elemental weakness gain **+10% Native Resistance**. Creatures with an elemental weakness gain **+15% Native Resistance** and **-5% Weakness School Resistance** (e.g. Undead +15% Shadow / -5% Holy; Mechanical +15% Physical / -5% Nature; Fire +15% Fire / -5% Frost). Dragonkin and Magical species gain **+5% to All Elemental Resistances**.
+3. **Layer 3: Archetype Category (+5%, +5% Symmetrical)**: Tenacity (+5% Physical, +5% All Magic); Ferocity (+5% Crit, +5% Direct Damage); Cunning (+5% Dodge, +5% Spell Deflection).
 4. **Layer 4: Attunement Rank Growth**: Scales with companion loyalty (+0% at Rank I, +2% at Rank II, +4% at Rank III, +6% at Rank IV, **+10% at Rank V**).
 5. **Layer 5: Player Class Defenses**: Distinct player aura providing either permanent **Static Slices** or reactive **Procced Wards** (detailed in Section 12).
 
@@ -418,7 +418,7 @@ Class defenses are organized into two distinct paradigms:
 | Class | Passive & Ward | Defense Paradigm | Effect Details (Rank 1 ➔ Rank 5) |
 | :--- | :--- | :--- | :--- |
 | 🛡️ **Warrior** | **Marshal's Tenacity** | **Static Slice** | Reduces all incoming physical damage dealt to your companion by **+5% per Rank** (**5%** at Rank I $\to$ **25%** at Rank V). |
-| 🗡️ **Rogue** | **Shadow Evasion** | **Static Slice** | Increases enemy miss chance against your companion by **+5% per Rank** (**5%** at Rank I $\to$ **25%** at Rank V). |
+| 🗡️ **Rogue** | **Shadow Evasion** | **Static Slice** | Increases companion Dodge Chance by **+5% per Rank** (**5%** at Rank I $\to$ **25%** at Rank V). Fully **synergizes with the Cunning archetype's +5% Dodge**, providing up to **30% total Dodge Chance** at Rank V. |
 | 🏹 **Hunter** | **Aspect of the Wild & Pathfinder** | **Static Slice** | Companion gains **+5% per Rank** Nature Resistance (**5%** at Rank I $\to$ **25%** at Rank V) plus +5%–+25% scaling to baseline Attack & Defense. |
 | 🍃 **Druid** | **Gift of the Wild & Ecliptic Tides** | **Static Slice & Pendulum** | **+2% per Rank** Pure Static Omni-Resist across **all 6 magic schools** (**2%** at Rank I $\to$ **10%** at Rank V), plus the in-combat **Ecliptic Tides** celestial pendulum (see below). |
 | 🔮 **Mage** | **Arcane Ward & Chilling Tempo** | **Procced Ward (Arcane, Fire, Frost)** | **Ward**: 5% per Rank proc to absorb 10% per Rank damage (rolled per hit and per DoT tick).<br>**Chilling Tempo**: 5% off / 10% def proc to inflict **Chilled** (-50% SPD for 2 turns). Countered via **Direct Roll Subtraction** by target's Frost Resistance %. |

@@ -211,7 +211,7 @@ Companions progress through bonding, feeding, and battlefield survival rather th
 * **Authentic Class Synergy**: Every player class grants an authentic tactical identity and defense layer scaled dynamically to active companion Attunement Rank (I–V) using strict `math.ceil()` arithmetic.
 * **Static Slices (Permanent Innate Defenses)**:
   * 🛡️ **Warrior (Marshal's Tenacity)**: **+5% per Rank** Physical Damage Reduction (**5%** at Rank I $\to$ **25%** at Rank V).
-  * 🗡️ **Rogue (Shadow Evasion)**: **+5% per Rank** Enemy Miss Chance (**5%** at Rank I $\to$ **25%** at Rank V).
+  * 🗡️ **Rogue (Shadow Evasion)**: **+5% per Rank** Dodge Chance (**5%** at Rank I $\to$ **25%** at Rank V), synergizing with Cunning's +5% Dodge for up to **30% total Dodge Chance**.
   * 🏹 **Hunter (Aspect of the Wild & Pathfinder)**: **+5% per Rank** Nature Resistance (**5%** at Rank I $\to$ **25%** at Rank V) plus +5%–25% base stat scaling.
   * 🍃 **Druid (Gift of the Wild & Ecliptic Tides)**: **+2% per Rank** Pure Static Omni-Resist across all 6 magic schools (**2%** at Rank I $\to$ **10%** at Rank V) plus the active **Ecliptic Tides** celestial pendulum (Solar cleanse/HoT and Lunar Brambles damage reflection).
 * **Procced Wards (Mystic Reactive Elemental Absorption)**:
