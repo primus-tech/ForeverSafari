@@ -59,8 +59,8 @@
 ## 📍 Phase 5: Attunement Loyalty & Metamorphosis (Completed ✅)
 * [x] **5-Rank Attunement Loyalty System (Replaces XP Leveling)**:
   * **Attunement Channels**: Battle resilience (surviving battles without fainting), family nourishment (feeding resources from downed animals of same family), and native zone acclimation.
-  * **Rank I (Wild / Unbroken)**: 25% Disobedience chance, 1 Active Move, 0.85x Base Stats.
-  * **Rank II (Tolerant)**: 15% Disobedience chance, 2 Active Moves, 0.95x Base Stats.
+  * **Rank I (Wild / Unbroken)**: 15% Disobedience chance, 1 Active Move, 0.85x Base Stats.
+  * **Rank II (Tolerant)**: 10% Disobedience chance, 2 Active Moves, 0.95x Base Stats.
   * **Rank III (Trusting)**: 5% Disobedience chance, 3 Active Moves, 1.00x Base Stats (True Base).
   * **Rank IV (Devoted)**: 0% Disobedience, 5% Crit Strike bonus, 4 Active Moves, 1.05x Base Stats.
   * **Rank V (Bestial Symbiosis)**: 0% Disobedience, 4 Active Moves + Innate Perk, 1.15x Base Stats, **Metamorphosis Eligible**!
@@ -157,9 +157,22 @@
 ---
 
 ## 📍 Phase 11: In-Battle Captures & 4-Tier Transport Crates (Completed ✅)
-* [x] **In-Battle Capture Flow (`Core/BattleEngine.lua`, `UI/BattleFrame.lua`)**:
+* [x] **In-Battle Capture Flow (`Core/BattleEngine.lua`, `UI/BattleFrame.lua`, `Core/BattleCapture.lua`)**:
   * Thrown during turn-based combat via `[ BAG ] ➔ [ CAPTURE ]` submenu.
-  * Capture probability factors in enemy remaining HP, tool tier bonus, and level difference.
+  * Turn ends smoothly upon throwing capture gear, advancing to opponent's turn on failure via speed-lapping turn order.
+* [x] **Master Capture Formula & 4-Tier Snare Scaling**:
+  * **4 Trap Tiers & 15-Level Brackets**: Copper Snare (Lv 1–15, 35%), Iron Safari Net (Lv 16–30, 55%), Mithril Hunter Trap (Lv 31–45, 75%), Thorium Expedition Cage (Lv 46–60, 98%).
+  * **50% HP Pivot Dynamic**:
+    * **Above 50% HP (Penalty)**: $1:1$ penalty ($-1\%$ capture chance per $1\%$ HP above 50%). Mathematically prevents full-health cheese (Copper Snare at 100% HP suffers $35\% - 50\% = -15\% \le 0\%$).
+    * **Below 50% HP (Bonus)**: $2:1$ bonus ($+1\%$ capture chance per $2\%$ HP below 50%). Lowering quarry to 10% HP grants $+20\%$ catch bonus.
+    * **At 50% HP**: Operates at exact baseline trap rate.
+  * **Tier Mismatch Scaling**:
+    * Over-geared (Higher tier trap on lower bracket quarry): **+25% flat catch bonus per tier down**.
+    * Under-geared (Lower tier trap on higher bracket quarry): **Halves catch chance per tier up** ($\times 0.5$ per tier difference).
+  * **Wild Rare Quarry Resistance**: Flat **-10% capture rate penalty** on all wild Rare spawns.
+* [x] **Hunter Beastmastery Mastery (`Aspect of the Beastmaster`)**:
+  * **+25% Multiplicative Capture Multiplier** (`1.25x`) on all wild capture attempts.
+  * **+25% Multiplicative Attunement Accrual** (`1.25x`) from all combat victories, nursery tasks, and training.
 * [x] **Active Squad (4 max) & Transport Crate Logistics**:
   * Players carry up to 4 active battle companions in their field party.
   * When active squad is full (4/4), in-battle capture requires and auto-consumes 1 matching or higher tier Transport Crate (`INV_Box_PetCarrier_01` tinted by quality) to safely crate and ship the wild specimen to the Safari Kennel.
@@ -250,7 +263,7 @@
 * [x] **Legacy Starter Auto-Promotion (`DB:ValidateAndRepairSignatures`)**:
   * Existing player profiles with starter companions at 0 attunement are automatically promoted to Rank III with signed cryptographic integrity.
 * [x] **Wild Catch Differentiation**:
-  * Wild creatures caught in snares/cages start at **Rank I: Wild / Unbroken** (0 Attunement, 0.85x stats, 25% disobedience), maintaining clear progression and domestic bonding loops.
+  * Wild creatures caught in snares/cages start at **Rank I: Wild / Unbroken** (0 Attunement, 0.85x stats, 15% disobedience), maintaining clear progression and domestic bonding loops.
 
 ---
 
@@ -299,7 +312,30 @@
 
 ---
 
-## 📍 Phase 21: Beast Taxonomy Refinement & Elemental Saurians (Pending ⏳)
+## 📍 Phase 21: Combat Engine Architecture, Zero-Drift Stats & Taint Fortification (Completed ✅)
+* [x] **Combat Engine Canon & Mechanics SSOT (`Docs/COMBAT_ENGINE_STATS_AND_MECHANICS.md`)**:
+  * Unified all combat rules, stat algorithms, action-gauge speed lapping, 5-layer elemental resistances, and player class passives into a single authoritative canon.
+* [x] **Zero-Drift Proportional Base Stat Algorithm**:
+  * Formulated the Largest Remainder Method (Hamilton-Hare) guaranteeing exact, drift-free distribution to target budgets ($T = 100$ for Normal/Elite/Boss; $T = 110$ for Rare/Rare Elite).
+  * Strict classification gating: Dungeon and raid bosses (`classification == 3`) strictly adhere to $T = 100$; wild rare spawns (`classification in (2, 4)`) receive $T = 110$.
+* [x] **Layer 5 Defense Architecture (Static Slices vs. Procced Wards)**:
+  * **Static Slices**: Warrior (Physical Armor, +5%/rank), Rogue (Dodge Evasion, +5%/rank synergizing with Cunning), Hunter (Nature Resist, +5%/rank), and Druid (Omni-Resist across all 6 magic schools, +2%/rank).
+  * **Procced Wards**: Mage, Shaman, Warlock, Priest, and Paladin (Proc chance $5\% \times \text{Rank}$, Mitigation $5\% \times \text{Rank}$). Evaluated independently per direct strike and **independently rolled on every single DoT tick**.
+  * **Mage Chilling Tempo & Frost Counterplay**: 5% off / 10% def chill proc (-50% SPD) proportionally reduced by target Frost Resistance % ($\text{Base} \times (1 - \text{Resist}/100)$).
+  * **Druid Ecliptic Tides**: Role-driven Solar/Lunar pendulum with early proc rolls ($5\% \times \text{pts}$) and automatic 100% discharge at cap.
+* [x] **Taint Purge & Diagnostic Watcher (`Core/TaintWatcher.lua`)**:
+  * Purged obsolete `Core/InstancePupDrops.lua` CLEU event registration, resolving all Blizzard UI tainted action errors.
+  * Added `Core/TaintWatcher.lua` (loaded first in TOC) and `/fstaint` diagnostics; verified 100% clean startup and interaction.
+* [x] **Pipeline Tooling & Creature Regeneration (`Tools/build_creatures.py`)**:
+  * Updated `calculate_stats()` to execute the Largest Remainder (Hamilton-Hare) zero-drift algorithm and regenerated all creature partitions in `Data/Creatures/` (2,008 creatures verified with zero drift).
+* [x] **Combat Engine Execution (`Core/BattleEngine.lua` & `Core/StatEngine.lua`)**:
+  * Implemented Action-Gauge 0–100 speed velocity and lapping queue (authentic 2:1 speed scarcity).
+  * Implemented dynamic Layer 1–5 resistance derivation, dodge/deflection avoidance, Ferocity damage bonus, and procced ward evaluation (with independent per-tick DoT rolls).
+  * Implemented Druid Ecliptic Tides pendulum and Priest Divine Grace battle frame tray integration.
+
+---
+
+## 📍 Phase 22: Beast Taxonomy Refinement & Elemental Saurians (Pending ⏳)
 * [ ] **Discrete Beast Family Stratification**:
   * Formalize **Kodos** and **Tallstriders** as strictly decoupled, distinct families within the Beast genus across all database tables, dietary rules, and family movepools.
   * Establish **Thunder Lizards** as their own dedicated saurian family (`Thunder Lizard` / `Lizard`) within Beasts.
@@ -315,12 +351,13 @@
 
 ---
 
-## 📍 Phase 22: Future Expansions & Social Leagues (Pending ⏳)
+## 📍 Phase 23: Future Expansions & Social Leagues (Pending ⏳)
 * [ ] **Safari Outpost & Regional League System**: Implementation of the 5-Tier Faction-Parallel circuit, gym leaders, and 3D Field Guide Badge Case (`Docs/SAFARI_OUTPOST_SYSTEM.md`).
   * **Outpost Defeat Lockout (Anti-Farm Protection)**: Once an Outpost Leader / Gym is bested and awards its regional badge/crest, the outpost is locked against battle farming; subsequent interactions provide congratulatory dialogue and route the player to the next regional tier.
 * [ ] **PvP Safari Tournaments & Guild Ladders**: Cross-faction companion duel tournaments and leaderboards.
 * [ ] **Safari Attunement Quests**: Epic class and race-specific questlines to earn Master attunement and legendary nets.
 * [ ] **World Boss Safari Raids**: Instanced raid encounter mechanics for legendary apex creatures.
+
 
 
 

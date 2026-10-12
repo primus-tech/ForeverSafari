@@ -170,8 +170,8 @@ Companions in Forever Safari do not gain numerical levels through grinding. Inst
 
 | Rank | Title | Attunement | Combat Behavior | Move Slots | Stat Mult | Metamorphosis |
 | :---: | :--- | :---: | :--- | :---: | :---: | :---: |
-| **I** | **Wild / Unbroken** | 0 – 199 | **25% Disobedience** (loafs, wild attacks). | **1** | **0.85x** | ❌ Destabilizes |
-| **II** | **Tolerant** | 200 – 599 | **15% Disobedience** (occasional hesitation). | **2** | **0.95x** | ❌ Destabilizes |
+| **I** | **Wild / Unbroken** | 0 – 199 | **15% Disobedience** (loafs, wild attacks). | **1** | **0.85x** | ❌ Destabilizes |
+| **II** | **Tolerant** | 200 – 599 | **10% Disobedience** (occasional hesitation). | **2** | **0.95x** | ❌ Destabilizes |
 | **III** | **Trusting** | 600 – 1,199 | **5% Disobedience** (reliable partner). | **3** | **1.00x** | ❌ Destabilizes |
 | **IV** | **Devoted** | 1,200 – 1,999 | **0% Disobedience** (+5% Critical Strike chance). | **4** | **1.05x** | ❌ Destabilizes |
 | **V** | **Bestial Symbiosis** | 2,000+ | **0% Disobedience** (maximum harmony & perk). | **4 + Perk** | **1.15x** | ✅ **Catalyst Ready!** |
@@ -266,6 +266,21 @@ Targeting any roaming Humanoid NPC across Azeroth (e.g. *Defias Cutthroats, Kobo
 * **Smart AI Switching**: When a trainer's active pet faints, they dynamically summon their bench companions with contextual battle cries.
 * **Hunter Protection**: Snares and cages cannot be thrown at trainer-owned pets (`"You cannot capture another hunter's companion!"`).
 * **Token Bounties**: Defeating AI Trainers is the primary open-world source of **Safari Tokens** (**6 to 18+ Tokens** per victory).
+
+### ⏱️ Action-Gauge Speed Lapping System (0 to 100 Meters)
+Combat abandons rigid turn ping-pong in favor of an **Active Action Meter** ($0$ to $100$):
+* Each tick, both active companions gain meter equal to their **Effective Speed**.
+* When a companion reaches **100 Meter**, it immediately executes an action and deducts 100 from its meter.
+* **2:1 Speed Lapping**: A swift companion with 20 Speed facing a 10 Speed opponent will take **two turns** before the slower foe can act once.
+* **Speed Scarcity & Anti-Friction Philosophy**: High speed is an organic, earned physical trait of specific wild species (e.g. Broken Tooth, Cheetahs, Dragonhawks) rather than a cheap, spammable stat. Spammable blanket haste buffs are pruned to ensure tactical counterplay and distinct combat tempo.
+
+### 🛡️ 5-Layer Elemental Resistance Architecture
+All companions possess innate elemental resistance ratings across all **6 Schools of Magic** (and Physical Armor):
+1. **Layer 1: Universal Baseline**: Every creature starts with a flat **5% Base Resistance** across all damage schools.
+2. **Layer 2: Native Element Affinity (+10% clean or +15% / -5% with Weakness)**: Creatures without an elemental weakness gain **+10% Native Resistance**. Creatures with an elemental weakness gain **+15% Native Resistance** and **-5% Weakness School Resistance** (e.g. Undead +15% Shadow / -5% Holy; Mechanical +15% Physical / -5% Nature; Fire +15% Fire / -5% Frost). Dragonkin and Magical species gain **+5% to All Elemental Resistances**.
+3. **Layer 3: Archetype Category (+5%, +5% Symmetrical)**: Tenacity (+5% Physical, +5% All Magic); Ferocity (+5% Crit, +5% Direct Damage); Cunning (+5% Dodge, +5% Spell Deflection).
+4. **Layer 4: Attunement Rank Growth**: Scales with companion loyalty (+0% at Rank I, +2% at Rank II, +4% at Rank III, +6% at Rank IV, **+10% at Rank V**).
+5. **Layer 5: Player Class Defenses**: Distinct player aura providing either permanent **Static Slices** or reactive **Procced Wards** (detailed in Section 12).
 
 ---
 
@@ -366,12 +381,24 @@ Type `/fsbag` or `/safari bag` to open your 20-slot Virtual Safari Bag.
 
 ### 🕸️ 4-Tier Capture Gear
 
-| Tier | Item Name | Icon | Token Cost | Base Catch Power |
-| :---: | :--- | :--- | :---: | :---: |
-| **1 (Common)** | **Copper Snare** | `INV_Misc_Noose_01` | **1 Token** | **35%** |
-| **2 (Uncommon)** | **Iron Safari Net** | `Hunter_PvP_TrackersNet` | **5 Tokens** | **55%** |
-| **3 (Rare)** | **Mithril Hunter Trap** | `INV_Pet_PetTrap` | **10 Tokens** | **75%** |
-| **4 (Epic)** | **Thorium Expedition Cage** | `INV_Box_Birdcage_01` | **25 Tokens** | **98%** |
+| Tier | Item Name | Icon | Token Cost | Base Catch Power | Target Level Band |
+| :---: | :--- | :--- | :---: | :---: | :---: |
+| **1 (Common)** | **Copper Snare** | `INV_Misc_Noose_01` | **1 Token** | **35%** | Levels 1–15 |
+| **2 (Uncommon)** | **Iron Safari Net** | `Hunter_PvP_TrackersNet` | **5 Tokens** | **55%** | Levels 16–30 |
+| **3 (Rare)** | **Mithril Hunter Trap** | `INV_Pet_PetTrap` | **10 Tokens** | **75%** | Levels 31–45 |
+| **4 (Epic)** | **Thorium Expedition Cage** | `INV_Box_Birdcage_01` | **25 Tokens** | **98%** | Levels 46–60 |
+
+#### 🎯 Master Capture Formula & Health Dynamics
+Capturing a wild creature requires engaging them in turn-based combat (`/fsbattle`) and throwing capture gear from `[ BAG ] ➔ [ CAPTURE ]`:
+* **50% HP Pivot Point**:
+  * **Above 50% HP (Penalty)**: $1:1$ penalty. Lose **1% catch chance per 1% HP above 50%**. A Copper Snare against a target at 100% HP has $35\% - 50\% = -15\% \le 0\%$ chance, preventing full-health cheese captures.
+  * **Below 50% HP (Bonus)**: $2:1$ bonus. Gain **+1% catch chance per 2% HP below 50%**. Lowering target to 10% HP grants a **+20% catch bonus** (Copper reaches 55%, Iron reaches 75%).
+  * **At 50% HP**: Trap operates at its exact baseline capture rate.
+* **Tier Mismatch Scaling**:
+  * **Over-geared (Higher Tier Trap on Lower Level Quarry)**: Grants **+25% flat catch bonus per tier down**.
+  * **Under-geared (Lower Tier Trap on Higher Level Quarry)**: **Halves capture chance per tier up** ($\times 0.5$ per tier difference).
+* **Wild Rare Quarry Resistance**: Wild Rare spawns possess innate capture resilience, applying a flat **-10% penalty** to capture rolls.
+* **Hunter Beastmastery Multiplier**: Hunters enjoy **+25% multiplicative catch chance** and **+25% faster Attunement accrual** across all pets!
 
 ### 📦 4-Tier Transport Crates
 
@@ -394,19 +421,37 @@ Type `/fsbag` or `/safari bag` to open your 20-slot Virtual Safari Bag.
 
 ## 12. Player Class Passives & Combat Mechanics
 
-Every character class in World of Warcraft grants an authentic, persistent tactical bonus to all active companions owned by that character. **Bonus percentages scale dynamically with companion Attunement Rank**: at Rank 1 bonuses start at **1/5** of the maximum, scaling linearly up to the full **5/5** values at Rank V (Bestial Symbiosis). All percentage calculations and thresholds are strictly rounded up via `math.ceil()`.
+Every character class in World of Warcraft grants an authentic tactical identity and defense layer to all active companions owned by that character. **Bonuses scale dynamically based on the active companion's Attunement Rank (I–V)** using strict `math.ceil()` arithmetic.
 
-| Class | Passive Name | Core Mechanic | Effect Details (Rank 1 ➔ Rank 5) |
+Class defenses are organized into two distinct paradigms:
+* **Static Slices**: Permanent, always-active percentage mitigation slices (Warrior, Rogue, Hunter, Druid).
+* **Procced Wards**: Mystic reactive elemental absorption that rolls a **5% per Rank proc chance** (5%–25%) to absorb **10% per Rank incoming damage** (10%–50%) on direct hits and **independently rolls on every single DoT tick** (Mage, Shaman, Warlock, Priest, Paladin).
+
+| Class | Passive & Ward | Defense Paradigm | Effect Details (Rank 1 ➔ Rank 5) |
 | :--- | :--- | :--- | :--- |
-| 🛡️ **Warrior** | **Marshal's Tenacity** | Physical Damage Mitigation | Reduces all incoming physical damage dealt to your companion by **5% per Rank** (5% at Rank 1, up to **25%** at Rank V, rounded up). |
-| 🛡️ **Paladin** | **Aura of Light** | Damage-to-Healing Conversion | Converts **5% per Rank** of all incoming damage taken back into healing HP (5% at Rank 1, up to **25%** at Rank V, rounded up). |
-| ⚡ **Shaman** | **Primal Rebirth** | Ancestral Revive | Flat **10% per Rank chance** (10% at Rank 1, up to **50%** at Rank V) to revive at **50% health** the first time your companion is knocked out in battle. |
-| 🔮 **Mage** | **Arcane Celerity & Ward** | Celerity Slow & Spell Ward | Halves attacker speed for `Attunement Rank` turns (1–5 turns) when hit; companion gains **5% per Rank** (up to **25%** at Rank V) non-physical damage resistance. |
-| 🗡️ **Rogue** | **Shadow Evasion** | Opportunistic Evasion | Increases opponent base miss chance against your companion by **+5% per Rank** (+5% at Rank 1, up to **+25%** at Rank V). |
-| ✝️ **Priest** | **Divine Grace** | Tactical Emergency Heal | Grants active **`[Divine Grace]`** console button in `/fsbattle`. Usable up to `Rank` times (1–5) per battle; restores **5% Max HP per Rank** (up to **25%** at Rank V, rounded up). |
-| 🏹 **Hunter** | **Pathfinder's Mastery** | Baseline Conditioning | Companions gain **+5% per Rank** (+5% at Rank 1, up to **+25%** at Rank V, rounded up) to baseline Attack and Defense stats. |
-| 🍃 **Druid** | **Ecliptic Tides** | Celestial Tug-of-War & Surges | Offensive moves build Solar power; Defensive/Healing/Utility moves build Lunar power (pool capped at companion Rank, 1-5). Points siphon from the opposite side when full. Each cast rolls a 5% per point chance to trigger a Surge (cleansing 1 debuff and applying a HoT for Solar, or a Bramble damage shield reflecting Nature damage for Lunar). Reaching full capacity on either side automatically discharges a 100% maximum surge! Both sides reset to 0 upon triggering. |
-| 🔮 **Warlock** | **Curse of Suppression** | Passive Nullification | Reduces opposed player class bonuses by **10% per Rank** (10% at Rank 1, up to **50%** at Rank V) in trainer battles and multiplayer duels. |
+| 🛡️ **Warrior** | **Marshal's Tenacity** | **Static Slice** | Reduces all incoming physical damage dealt to your companion by **+5% per Rank** (**5%** at Rank I $\to$ **25%** at Rank V). |
+| 🗡️ **Rogue** | **Shadow Evasion** | **Static Slice** | Increases companion Dodge Chance by **+5% per Rank** (**5%** at Rank I $\to$ **25%** at Rank V). Fully **synergizes with the Cunning archetype's +5% Dodge**, providing up to **30% total Dodge Chance** at Rank V. |
+| 🏹 **Hunter** | **Aspect of the Beastmaster** | **Static Slice & Mastery** | **Master Tracker & Tamer**: Companions accrue **+25% Attunement** from all sources, and capture chance for wild creatures is increased by **+25% (multiplicative)**. Companion also gains **+5% per Rank** Nature Resistance (**5%** at Rank I $\to$ **25%** at Rank V). |
+| 🍃 **Druid** | **Gift of the Wild & Ecliptic Tides** | **Static Slice & Pendulum** | **+2% per Rank** Pure Static Omni-Resist across **all 6 magic schools** (**2%** at Rank I $\to$ **10%** at Rank V), plus the in-combat **Ecliptic Tides** celestial pendulum (see below). |
+| 🔮 **Mage** | **Arcane Ward & Chilling Tempo** | **Procced Ward (Arcane, Fire, Frost)** | **Ward**: 5% per Rank proc to absorb 10% per Rank damage (rolled per hit and per DoT tick).<br>**Chilling Tempo**: 5% off / 10% def proc to inflict **Chilled** (-50% SPD for 2 turns). Proportionally reduced by target's Frost Resistance % (e.g., at 50% frost resist, a 50% proc chance lowers to 25%). |
+| ⚡ **Shaman** | **Elemental Shielding & Primal Rebirth** | **Procced Ward (Fire, Frost, Nature)** | **Ward**: 5% per Rank proc to absorb 10% per Rank damage (rolled per hit and per DoT tick).<br>**Primal Rebirth**: `RollAnkh()` flat **50% chance** to resurrect companion at 50% HP once per battle upon defeat. |
+| 💀 **Warlock** | **Fel Infusion & Suppression** | **Procced Ward (Shadow, Fire)** | **Ward**: 5% per Rank proc to absorb 10% per Rank damage (rolled per hit and per DoT tick).<br>**Curse of Suppression**: Halves all opposed player/trainer class passives by **50%** in duels and AI battles. |
+| 🕊️ **Priest** | **Ward of the Heavens & Divine Grace** | **Procced Ward (Shadow, Holy)** | **Ward**: 5% per Rank proc to absorb 10% per Rank damage (rolled per hit and per DoT tick).<br>**Divine Grace**: Active battle tray button usable `Rank` times (1–5) per battle; heals companion for `math.ceil(maxHP * 0.25)`. |
+| ⚔️ **Paladin** | **Aegis of Light & Aura of Light** | **Procced Ward (Physical, Holy)** | **Ward**: 5% per Rank proc to absorb 10% per Rank damage (rolled per hit and per DoT tick).<br>**Aura of Light**: Converts **5% to 25%** of absorbed/mitigated damage back into healing. |
+
+### 🍃 Druid: Ecliptic Tides (The Celestial Pendulum)
+For Druid characters, turn-based combat features an active celestial pendulum above the companion tray:
+* **Meter Capacity**: Capped at the active companion's **Attunement Rank** (1 at Rank I $\to$ 5 at Rank V), starting at neutral ($0/0$).
+* **Role Accrual & Tug-of-War**:
+  * **Offensive moves** add **+1 Solar Point**.
+  * **Non-Offensive moves** (Defensive, Healing, Utility) add **+1 Lunar Point**.
+  * Siphons points from the opposite side if the pool is full.
+* **Dual Trigger Resolution**:
+  * **Early Proc Roll**: Every cast rolls a $\text{Points on that side} \times 5\%$ chance (5% at 1 pt $\to$ 25% at 5 pts) to trigger immediately.
+  * **Automatic 100% Discharge**: Reaching full capacity on either side guarantees a maximum Rank discharge automatically!
+* **Surges**:
+  * ☀️ **Solar Surge**: Cleanses 1 negative debuff + applies **Rejuvenating Bloom (HoT)** healing $(\text{Solar Points} \times 5)\%$ Max HP/round for $(\text{Solar Points})$ rounds. Resets to $0/0$.
+  * 🌙 **Lunar Surge**: Applies **Bramble Damage Shield** reflecting $(\text{Lunar Points} \times 5)\%$ incoming damage back as Nature damage for $(\text{Lunar Points})$ rounds. Resets to $0/0$.
 
 ---
 
@@ -468,6 +513,7 @@ The **Moonglade Cenarion Nursery** (`/fsnursery`) provides an endgame co-op bree
 | `/safari tokens` | — | Displays current Safari Token balance in chat. |
 | `/safari abandon` | `/safari release` | Releases active companion back to the wild (with confirmation). |
 | `/safari reset` | — | Resets all addon data back to a fresh recruit state. |
+| `/fstaint` | — | Runs live Blizzard UI taint diagnostics on gossip, bags, and secure frames. |
 
 ---
 
