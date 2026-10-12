@@ -4,24 +4,4 @@
 local _, FS = ...
 FS = FS or {}
 FS.Creatures_Other = {
-    [5228] = {
-        name = "Saturated Ooze",
-        family = "Critter",
-        subFamily = "Critter",
-        spec = "Cunning",
-        element = "Beast",
-        minLevel = 47,
-        maxLevel = 48,
-        classification = 1,
-        isBoss = false,
-        zones = {1477 },
-        acquisition = "PUP_DROP",
-        allowBattle = false,
-        allowObservation = false,
-        isInstanceOnly = true,
-        pupDropRate = 0.15,
-        pupName = "Saturated Ooze Pup",
-        moves = {101, 118},
-        baseStats = { hp = 316, atk = 130, def = 115, spd = 205 },
-    },
 }

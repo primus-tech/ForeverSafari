@@ -527,9 +527,11 @@ if os.path.exists(uncat_json_path):
                 process_mob(mob, "Beast", subf, spec, elem, m1, m2, pup)
                 uncat_matched += 1
         else:
-            name = mob.get('name', '')
-            if any(crit in name.lower() for crit in ['toad', 'frog', 'rat', 'mouse', 'hare', 'rabbit', 'snake', 'beetle', 'roach', 'moth', 'squirrel', 'fawn', 'deer']):
-                process_mob(mob, "Critter", "Critter", "Cunning", "Beast", 101, 118, "Baby " + name)
+            nl = mob.get('name', '').lower()
+            if 'ooze' in nl or 'slime' in nl or 'mucus' in nl:
+                process_mob(mob, "Elemental", "Water", "Elemental", "Elemental", 301, 307, "Elemental Spark")
+            elif bool(re.search(r'\b(toad|frog|rat|mouse|hare|rabbit|snake|beetle|roach|moth|squirrel|fawn|deer)\b', nl)):
+                process_mob(mob, "Critter", "Critter", "Cunning", "Beast", 101, 118, "Baby " + mob.get('name', ''))
     print(f"Matched {uncat_matched} Forever Uncategorized mobs into authentic Beast Subfamilies via Retail Mask.")
 else:
     print("Warning: forever_uncategorized.json not found, skipping uncategorized mask pass.")
