@@ -1,8 +1,9 @@
 --[[
     Forever Safari: View 3 - Azeroth Bestiary (JournalBestiaryView.lua)
-    Authentic Pokédex & Field Catalog with 215 curated Classic Azeroth species,
-    9-element filter menu, search box, live 3D species stage with animations,
-    Nesingwary field notes, native habitats, base stats, and natural family movepool.
+    Comprehensive Azeroth Master Pokédex & Field Catalog with 2,000+ species,
+    multi-mode sorting, element & capture filters, virtual scrolling (60 FPS),
+    live 3D species stage with animations, Nesingwary field notes, native habitats,
+    base stats radar, and natural family movepool tactics.
 ]]
 
 local addonName, ns = ...
@@ -17,8 +18,14 @@ local C = ns.Constants
 
 local bestiarySearchQuery = ""
 local bestiarySelectedType = "ALL"
+local bestiarySelectedStatus = "ALL"
+local bestiarySortMode = "ID_ASC"
 local selectedBestiaryId = 1
 local bestiaryButtons = {}
+local filteredSpeciesList = {}
+
+local ROW_HEIGHT = 44
+local NUM_VISIBLE_ROWS = 8
 
 local BESTIARY_TYPE_FILTERS = {
     { id = "ALL", text = "All Types", icon = "Interface\\Icons\\INV_Misc_Book_09" },
@@ -32,28 +39,54 @@ local BESTIARY_TYPE_FILTERS = {
     { id = "Magic", text = "✨ Magic", icon = "Interface\\Icons\\Spell_Holy_MagicalSentry" },
 }
 
+local BESTIARY_SORT_OPTIONS = {
+    { id = "ID_ASC", text = "🔢 Number (#0001 →)" },
+    { id = "ID_DESC", text = "🔢 Number (High → Low)" },
+    { id = "NAME_ASC", text = "🔤 Name (A → Z)" },
+    { id = "NAME_DESC", text = "🔤 Name (Z → A)" },
+    { id = "LVL_ASC", text = "⚡ Level (Lowest First)" },
+    { id = "LVL_DESC", text = "⚡ Level (Highest First)" },
+    { id = "CAUGHT_FIRST", text = "🐾 Status (Caught First)" },
+    { id = "SEEN_FIRST", text = "🔭 Status (Seen First)" },
+    { id = "UNSEEN_FIRST", text = "❓ Status (Unseen First)" },
+    { id = "FAMILY_ASC", text = "🏷 Family (A → Z)" },
+    { id = "STATS_DESC", text = "💪 Base Stats Total" },
+}
+
+local function GetStatusWeight(status)
+    if status == "caught" then return 1 end
+    if status == "seen" then return 2 end
+    return 3
+end
+
+local function GetTotalStats(spec)
+    local bs = spec and spec.baseStats
+    if not bs then return 0 end
+    return (bs.hp or 0) + (bs.atk or 0) + (bs.def or 0) + (bs.spd or 0)
+end
+
 function Journal:BuildBestiaryView(parent)
     -- =========================================================================
-    -- LEFT COLUMN: SPECIES INDEX & POKÉDEX PROGRESS
+    -- LEFT COLUMN: SPECIES INDEX & POKÉDEX CONTROLS
     -- =========================================================================
     local leftPanel = Theme:CreateCard(parent, 256, 480)
     leftPanel:SetPoint("TOPLEFT", parent, "TOPLEFT", 0, 0)
     parent.LeftPanel = leftPanel
 
     local listTitle = leftPanel:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
-    listTitle:SetPoint("TOPLEFT", 12, -10)
+    listTitle:SetPoint("TOPLEFT", 12, -8)
     listTitle:SetText("|cffffd100📖 Safari Field Pokédex|r")
 
     -- Pokédex Completion Badge & Counter
     local statsText = leftPanel:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
-    statsText:SetPoint("TOPLEFT", listTitle, "BOTTOMLEFT", 0, -3)
+    statsText:SetPoint("TOPLEFT", listTitle, "BOTTOMLEFT", 0, -2)
     statsText:SetText("Discovered: 0/0 | Captured: 0/0")
     leftPanel.StatsText = statsText
 
     -- Progress Bar
     local pBar = CreateFrame("StatusBar", nil, leftPanel)
-    pBar:SetSize(232, 8)
-    pBar:SetPoint("TOPLEFT", statsText, "BOTTOMLEFT", 0, -4)
+    pBar:SetSize(232, 6)
+    pBar:SetPoint("TOPLEFT", statsText, "BOTTOMLEFT", 0, -3)
     pBar:SetStatusBarTexture("Interface\\TargetingFrame\\UI-StatusBar")
     pBar:SetStatusBarColor(1.0, 0.82, 0.0)
     pBar:SetMinMaxValues(0, 100)
@@ -62,8 +95,8 @@ function Journal:BuildBestiaryView(parent)
 
     -- Search EditBox
     local searchBg = CreateFrame("Frame", nil, leftPanel, "BackdropTemplate")
-    searchBg:SetSize(232, 22)
-    searchBg:SetPoint("TOPLEFT", pBar, "BOTTOMLEFT", 0, -6)
+    searchBg:SetSize(232, 20)
+    searchBg:SetPoint("TOPLEFT", pBar, "BOTTOMLEFT", 0, -5)
     Theme:ApplyCardBackdrop(searchBg)
 
     local searchBox = CreateFrame("EditBox", "ForeverSafariBestiarySearchBox", searchBg)
@@ -75,7 +108,7 @@ function Journal:BuildBestiaryView(parent)
 
     local searchPlaceholder = searchBox:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
     searchPlaceholder:SetPoint("LEFT", searchBox, "LEFT", 0, 0)
-    searchPlaceholder:SetText("🔍 Search species or habitat...")
+    searchPlaceholder:SetText("🔍 Search species, habitat, #ID...")
     searchBox.Placeholder = searchPlaceholder
 
     searchBox:SetScript("OnTextChanged", function(self)
@@ -94,21 +127,82 @@ function Journal:BuildBestiaryView(parent)
     end)
     leftPanel.SearchBox = searchBox
 
-    -- Type Filter Dropdown Button
+    -- Filter & Sort Row (Side by Side)
     local typeFilterBtn = CreateFrame("Button", "ForeverSafariBestiaryTypeFilterBtn", leftPanel, "BackdropTemplate")
-    typeFilterBtn:SetSize(232, 22)
+    typeFilterBtn:SetSize(114, 20)
     typeFilterBtn:SetPoint("TOPLEFT", searchBg, "BOTTOMLEFT", 0, -4)
     Theme:ApplyCardBackdrop(typeFilterBtn)
 
     local typeFilterText = typeFilterBtn:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
-    typeFilterText:SetPoint("LEFT", 8, 0)
-    typeFilterText:SetText("Type: |cffffd100All Types|r ▼")
+    typeFilterText:SetPoint("LEFT", 6, 0)
+    typeFilterText:SetText("Type: |cffffd100All|r ▼")
     typeFilterBtn.Text = typeFilterText
     leftPanel.TypeFilterBtn = typeFilterBtn
 
-    -- Type Filter Floating Popup Menu
+    local sortBtn = CreateFrame("Button", "ForeverSafariBestiarySortBtn", leftPanel, "BackdropTemplate")
+    sortBtn:SetSize(114, 20)
+    sortBtn:SetPoint("LEFT", typeFilterBtn, "RIGHT", 4, 0)
+    Theme:ApplyCardBackdrop(sortBtn)
+
+    local sortText = sortBtn:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    sortText:SetPoint("LEFT", 6, 0)
+    sortText:SetText("Sort: |cffffd100# Asc|r ▼")
+    sortBtn.Text = sortText
+    leftPanel.SortBtn = sortBtn
+
+    -- Status Quick-Filter Row ([All] [🐾] [🔭] [❓])
+    local statusRow = CreateFrame("Frame", nil, leftPanel)
+    statusRow:SetSize(232, 18)
+    statusRow:SetPoint("TOPLEFT", typeFilterBtn, "BOTTOMLEFT", 0, -3)
+
+    local statusBtns = {}
+    local statusDefs = {
+        { id = "ALL", text = "All", width = 52 },
+        { id = "caught", text = "🐾 Caught", width = 60 },
+        { id = "seen", text = "🔭 Seen", width = 58 },
+        { id = "unseen", text = "❓ Unseen", width = 56 },
+    }
+
+    local prevBtn = nil
+    for _, sDef in ipairs(statusDefs) do
+        local sBtn = CreateFrame("Button", nil, statusRow, "BackdropTemplate")
+        sBtn:SetSize(sDef.width, 18)
+        if not prevBtn then
+            sBtn:SetPoint("LEFT", statusRow, "LEFT", 0, 0)
+        else
+            sBtn:SetPoint("LEFT", prevBtn, "RIGHT", 2, 0)
+        end
+        Theme:ApplyCardBackdrop(sBtn)
+
+        local sLabel = sBtn:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+        sLabel:SetPoint("CENTER", 0, 0)
+        sLabel:SetText(sDef.text)
+        sBtn.Label = sLabel
+
+        sBtn:SetScript("OnClick", function()
+            bestiarySelectedStatus = sDef.id
+            for _, b in ipairs(statusBtns) do
+                if b.statusId == bestiarySelectedStatus then
+                    b:SetBackdropBorderColor(1.0, 0.82, 0.0, 1.0)
+                    b:SetBackdropColor(0.25, 0.2, 0.05, 0.95)
+                else
+                    b:SetBackdropBorderColor(0.2, 0.28, 0.38, 0.7)
+                    b:SetBackdropColor(Theme.Colors.CardBg.r, Theme.Colors.CardBg.g, Theme.Colors.CardBg.b, Theme.Colors.CardBg.a)
+                end
+            end
+            Journal:UpdateBestiaryView()
+            PlaySound(856)
+        end)
+
+        sBtn.statusId = sDef.id
+        table.insert(statusBtns, sBtn)
+        prevBtn = sBtn
+    end
+    leftPanel.StatusBtns = statusBtns
+
+    -- Type Filter Popup Menu
     local typeMenu = CreateFrame("Frame", "ForeverSafariBestiaryTypeMenu", leftPanel, "BackdropTemplate")
-    typeMenu:SetSize(232, #BESTIARY_TYPE_FILTERS * 22 + 8)
+    typeMenu:SetSize(160, #BESTIARY_TYPE_FILTERS * 20 + 8)
     typeMenu:SetPoint("TOPLEFT", typeFilterBtn, "BOTTOMLEFT", 0, -2)
     typeMenu:SetFrameStrata("DIALOG")
     Theme:ApplyCardBackdrop(typeMenu)
@@ -119,22 +213,17 @@ function Journal:BuildBestiaryView(parent)
 
     for idx, opt in ipairs(BESTIARY_TYPE_FILTERS) do
         local itemBtn = CreateFrame("Button", nil, typeMenu, "BackdropTemplate")
-        itemBtn:SetSize(224, 20)
-        itemBtn:SetPoint("TOPLEFT", typeMenu, "TOPLEFT", 4, -4 - ((idx - 1) * 22))
-
-        local itemIcon = itemBtn:CreateTexture(nil, "ARTWORK")
-        itemIcon:SetSize(16, 16)
-        itemIcon:SetPoint("LEFT", 4, 0)
-        itemIcon:SetTexture(opt.icon)
-        itemIcon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+        itemBtn:SetSize(152, 18)
+        itemBtn:SetPoint("TOPLEFT", typeMenu, "TOPLEFT", 4, -4 - ((idx - 1) * 20))
 
         local itemText = itemBtn:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
-        itemText:SetPoint("LEFT", itemIcon, "RIGHT", 6, 0)
+        itemText:SetPoint("LEFT", 6, 0)
         itemText:SetText(opt.text)
 
         itemBtn:SetScript("OnClick", function()
             bestiarySelectedType = opt.id
-            typeFilterText:SetText(string.format("Type: |cffffd100%s|r ▼", opt.text))
+            local shortText = string.sub(opt.text, 1, 10)
+            typeFilterText:SetText(string.format("Type: |cffffd100%s|r ▼", opt.id == "ALL" and "All" or opt.id))
             typeMenu:Hide()
             Journal:UpdateBestiaryView()
             PlaySound(856)
@@ -149,6 +238,7 @@ function Journal:BuildBestiaryView(parent)
     end
 
     typeFilterBtn:SetScript("OnClick", function()
+        if leftPanel.SortMenu:IsShown() then leftPanel.SortMenu:Hide() end
         if typeMenu:IsShown() then
             typeMenu:Hide()
         else
@@ -157,15 +247,114 @@ function Journal:BuildBestiaryView(parent)
         PlaySound(856)
     end)
 
-    -- Scroll Area
+    -- Sort Popup Menu
+    local sortMenu = CreateFrame("Frame", "ForeverSafariBestiarySortMenu", leftPanel, "BackdropTemplate")
+    sortMenu:SetSize(180, #BESTIARY_SORT_OPTIONS * 20 + 8)
+    sortMenu:SetPoint("TOPLEFT", sortBtn, "BOTTOMLEFT", -40, -2)
+    sortMenu:SetFrameStrata("DIALOG")
+    Theme:ApplyCardBackdrop(sortMenu)
+    sortMenu:SetBackdropColor(0.08, 0.11, 0.16, 0.98)
+    sortMenu:SetBackdropBorderColor(1.0, 0.82, 0.0, 0.9)
+    sortMenu:Hide()
+    leftPanel.SortMenu = sortMenu
+
+    for idx, sOpt in ipairs(BESTIARY_SORT_OPTIONS) do
+        local sItemBtn = CreateFrame("Button", nil, sortMenu, "BackdropTemplate")
+        sItemBtn:SetSize(172, 18)
+        sItemBtn:SetPoint("TOPLEFT", sortMenu, "TOPLEFT", 4, -4 - ((idx - 1) * 20))
+
+        local sItemText = sItemBtn:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+        sItemText:SetPoint("LEFT", 6, 0)
+        sItemText:SetText(sOpt.text)
+
+        sItemBtn:SetScript("OnClick", function()
+            bestiarySortMode = sOpt.id
+            sortText:SetText(string.format("Sort: |cffffd100%s|r ▼", string.sub(sOpt.text, 1, 9)))
+            sortMenu:Hide()
+            Journal:UpdateBestiaryView()
+            PlaySound(856)
+        end)
+        sItemBtn:SetScript("OnEnter", function(self)
+            self:SetBackdrop({ bgFile = "Interface\\Buttons\\WHITE8X8" })
+            self:SetBackdropColor(1.0, 0.82, 0.0, 0.25)
+        end)
+        sItemBtn:SetScript("OnLeave", function(self)
+            self:SetBackdrop(nil)
+        end)
+    end
+
+    sortBtn:SetScript("OnClick", function()
+        if leftPanel.TypeMenu:IsShown() then leftPanel.TypeMenu:Hide() end
+        if sortMenu:IsShown() then
+            sortMenu:Hide()
+        else
+            sortMenu:Show()
+        end
+        PlaySound(856)
+    end)
+
+    -- Virtual Scroll Container
     local scroll = CreateFrame("ScrollFrame", "ForeverSafariBestiaryScroll", leftPanel, "UIPanelScrollFrameTemplate")
-    scroll:SetPoint("TOPLEFT", typeFilterBtn, "BOTTOMLEFT", 0, -6)
+    scroll:SetPoint("TOPLEFT", statusRow, "BOTTOMLEFT", 0, -6)
     scroll:SetPoint("BOTTOMRIGHT", -26, 8)
 
     local content = CreateFrame("Frame", "ForeverSafariBestiaryContent", scroll)
     content:SetSize(210, 500)
     scroll:SetScrollChild(content)
     parent.Content = content
+    parent.ScrollFrame = scroll
+
+    -- Virtual Scrolling Handlers
+    scroll:SetScript("OnVerticalScroll", function(self, offset)
+        self:SetVerticalScroll(offset)
+        Journal:RenderVisibleBestiaryRows(offset)
+    end)
+
+    scroll:EnableMouseWheel(true)
+    scroll:SetScript("OnMouseWheel", function(self, delta)
+        local current = self:GetVerticalScroll() or 0
+        local maxScroll = math.max(0, (#filteredSpeciesList - NUM_VISIBLE_ROWS) * ROW_HEIGHT)
+        local newScroll = math.max(0, math.min(maxScroll, current - (delta * ROW_HEIGHT * 2)))
+        self:SetVerticalScroll(newScroll)
+        Journal:RenderVisibleBestiaryRows(newScroll)
+    end)
+
+    -- Create Fixed Visible Button Pool
+    for i = 1, NUM_VISIBLE_ROWS + 1 do
+        local btn = CreateFrame("Button", nil, content, "BackdropTemplate")
+        btn:SetSize(210, 42)
+        Theme:ApplyCardBackdrop(btn)
+
+        local icon = btn:CreateTexture(nil, "ARTWORK")
+        icon:SetSize(28, 28)
+        icon:SetPoint("LEFT", 6, 0)
+        icon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+        btn.Icon = icon
+
+        local title = btn:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+        title:SetPoint("TOPLEFT", icon, "TOPRIGHT", 6, -2)
+        title:SetPoint("TOPRIGHT", -4, -2)
+        title:SetJustifyH("LEFT")
+        btn.Title = title
+
+        local sub = btn:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+        sub:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -2)
+        sub:SetPoint("TOPRIGHT", -4, -2)
+        sub:SetJustifyH("LEFT")
+        btn.Sub = sub
+
+        btn:SetScript("OnClick", function(self)
+            if self.specId then
+                selectedBestiaryId = self.specId
+                Journal:RenderVisibleBestiaryRows(scroll:GetVerticalScroll() or 0)
+                Journal:UpdateBestiaryDossier()
+                PlaySound(856)
+            end
+        end)
+
+        btn:Hide()
+        bestiaryButtons[i] = btn
+    end
 
     -- =========================================================================
     -- RIGHT COLUMN: 3D SPECIES DOSSIER
@@ -304,18 +493,28 @@ function Journal:UpdateBestiaryView()
 
     local BestiaryDB = ForeverSafari.BestiaryDB
     local allSpecies = BestiaryDB and BestiaryDB:GetAllSpecies() or {}
-    local content = parent.Content
 
-    -- Filter list based on selected type and search query
-    local filtered = {}
+    -- 1. Filter species by Search Query, Element Type, and Status
+    wipe(filteredSpeciesList)
+
     for _, spec in ipairs(allSpecies) do
-        local matchType = (bestiarySelectedType == "ALL") or (spec.element == bestiarySelectedType) or (spec.family == bestiarySelectedType)
-        if matchType then
+        local entry = DB:GetBestiaryEntry(spec.id)
+        local status = entry and entry.status or "unseen"
+
+        -- Status Filter
+        local statusMatch = (bestiarySelectedStatus == "ALL") or (status == bestiarySelectedStatus)
+
+        -- Type Filter
+        local typeMatch = (bestiarySelectedType == "ALL") or (spec.element == bestiarySelectedType) or (spec.family == bestiarySelectedType)
+
+        if statusMatch and typeMatch then
             if bestiarySearchQuery == "" then
-                table.insert(filtered, spec)
+                table.insert(filteredSpeciesList, spec)
             else
                 local matchName = string.find(string.lower(spec.name), bestiarySearchQuery, 1, true)
-                local matchFamily = string.find(string.lower(spec.family), bestiarySearchQuery, 1, true)
+                local matchFamily = string.find(string.lower(spec.family or ""), bestiarySearchQuery, 1, true)
+                local matchSubFamily = string.find(string.lower(spec.subFamily or ""), bestiarySearchQuery, 1, true)
+                local matchId = string.find(string.format("#%04d", spec.id), bestiarySearchQuery, 1, true) or (tostring(spec.id) == bestiarySearchQuery)
                 local matchHabitat = false
                 if spec.habitats then
                     for _, h in ipairs(spec.habitats) do
@@ -325,14 +524,69 @@ function Journal:UpdateBestiaryView()
                         end
                     end
                 end
-                if matchName or matchFamily or matchHabitat then
-                    table.insert(filtered, spec)
+
+                if matchName or matchFamily or matchSubFamily or matchId or matchHabitat then
+                    table.insert(filteredSpeciesList, spec)
                 end
             end
         end
     end
 
-    -- Update Pokédex Completion Counter
+    -- 2. Sort filtered list based on selected sort mode
+    table.sort(filteredSpeciesList, function(a, b)
+        if bestiarySortMode == "ID_ASC" then
+            return a.id < b.id
+        elseif bestiarySortMode == "ID_DESC" then
+            return a.id > b.id
+        elseif bestiarySortMode == "NAME_ASC" then
+            return a.name < b.name
+        elseif bestiarySortMode == "NAME_DESC" then
+            return a.name > b.name
+        elseif bestiarySortMode == "LVL_ASC" then
+            local lvlA = a.minLevel or 1
+            local lvlB = b.minLevel or 1
+            if lvlA ~= lvlB then return lvlA < lvlB end
+            return a.name < b.name
+        elseif bestiarySortMode == "LVL_DESC" then
+            local lvlA = a.maxLevel or a.minLevel or 1
+            local lvlB = b.maxLevel or b.minLevel or 1
+            if lvlA ~= lvlB then return lvlA > lvlB end
+            return a.name < b.name
+        elseif bestiarySortMode == "CAUGHT_FIRST" then
+            local stA = GetStatusWeight(DB:GetBestiaryEntry(a.id) and DB:GetBestiaryEntry(a.id).status or "unseen")
+            local stB = GetStatusWeight(DB:GetBestiaryEntry(b.id) and DB:GetBestiaryEntry(b.id).status or "unseen")
+            if stA ~= stB then return stA < stB end
+            return a.id < b.id
+        elseif bestiarySortMode == "SEEN_FIRST" then
+            local entryA = DB:GetBestiaryEntry(a.id)
+            local entryB = DB:GetBestiaryEntry(b.id)
+            local stA = (entryA and entryA.status == "seen") and 1 or ((entryA and entryA.status == "caught") and 2 or 3)
+            local stB = (entryB and entryB.status == "seen") and 1 or ((entryB and entryB.status == "caught") and 2 or 3)
+            if stA ~= stB then return stA < stB end
+            return a.id < b.id
+        elseif bestiarySortMode == "UNSEEN_FIRST" then
+            local stA = GetStatusWeight(DB:GetBestiaryEntry(a.id) and DB:GetBestiaryEntry(a.id).status or "unseen")
+            local stB = GetStatusWeight(DB:GetBestiaryEntry(b.id) and DB:GetBestiaryEntry(b.id).status or "unseen")
+            if stA ~= stB then return stA > stB end
+            return a.id < b.id
+        elseif bestiarySortMode == "FAMILY_ASC" then
+            local famA = a.family or ""
+            local famB = b.family or ""
+            if famA ~= famB then return famA < famB end
+            local subA = a.subFamily or ""
+            local subB = b.subFamily or ""
+            if subA ~= subB then return subA < subB end
+            return a.name < b.name
+        elseif bestiarySortMode == "STATS_DESC" then
+            local totA = GetTotalStats(a)
+            local totB = GetTotalStats(b)
+            if totA ~= totB then return totA > totB end
+            return a.name < b.name
+        end
+        return a.id < b.id
+    end)
+
+    -- 3. Update Pokédex Completion Stats
     local stats = DB:GetBestiaryStats()
     local leftPanel = parent.LeftPanel
     if leftPanel and leftPanel.StatsText then
@@ -344,103 +598,98 @@ function Journal:UpdateBestiaryView()
         leftPanel.ProgressBar:SetValue(pct)
     end
 
-    -- Hide all existing buttons
-    for _, btn in ipairs(bestiaryButtons) do
-        btn:Hide()
+    -- 4. Update Scroll Child Height and render visible rows
+    local totalFiltered = #filteredSpeciesList
+    parent.Content:SetHeight(math.max(340, totalFiltered * ROW_HEIGHT))
+
+    local scroll = parent.ScrollFrame
+    local currentScroll = scroll and scroll:GetVerticalScroll() or 0
+    local maxScroll = math.max(0, (totalFiltered - NUM_VISIBLE_ROWS) * ROW_HEIGHT)
+    if currentScroll > maxScroll then
+        currentScroll = maxScroll
+        if scroll then scroll:SetVerticalScroll(currentScroll) end
     end
 
-    local yOffset = 0
-    for i, spec in ipairs(filtered) do
-        local btn = bestiaryButtons[i]
-        if not btn then
-            btn = CreateFrame("Button", nil, content, "BackdropTemplate")
-            btn:SetSize(210, 42)
-            Theme:ApplyCardBackdrop(btn)
-
-            local icon = btn:CreateTexture(nil, "ARTWORK")
-            icon:SetSize(28, 28)
-            icon:SetPoint("LEFT", 6, 0)
-            icon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
-            btn.Icon = icon
-
-            local title = btn:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
-            title:SetPoint("TOPLEFT", icon, "TOPRIGHT", 6, -2)
-            title:SetPoint("TOPRIGHT", -4, -2)
-            title:SetJustifyH("LEFT")
-            btn.Title = title
-
-            local sub = btn:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
-            sub:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -2)
-            sub:SetPoint("TOPRIGHT", -4, -2)
-            sub:SetJustifyH("LEFT")
-            btn.Sub = sub
-
-            btn:SetScript("OnClick", function(self)
-                selectedBestiaryId = self.specId
-                Journal:UpdateBestiaryView()
-                Journal:UpdateBestiaryDossier()
-                PlaySound(856)
-            end)
-
-            bestiaryButtons[i] = btn
-        end
-
-        btn:SetPoint("TOPLEFT", content, "TOPLEFT", 2, yOffset)
-        btn.specId = spec.id
-
-        local entry = DB:GetBestiaryEntry(spec.id)
-        local status = entry and entry.status or "unseen"
-
-        if status == "caught" then
-            local iconPath = "Interface\\Icons\\Ability_Hunter_BeastTaming"
-            if spec.family == "Mechanical" or spec.element == "Mechanical" then iconPath = "Interface\\Icons\\INV_Misc_EngGizmos_17"
-            elseif spec.family == "Undead" or spec.element == "Undead" then iconPath = "Interface\\Icons\\Spell_Shadow_DeadofNight"
-            elseif spec.family == "Elemental" or spec.element == "Elemental" then iconPath = "Interface\\Icons\\Spell_Fire_Elemental_Totem"
-            elseif spec.element == "Magic" then iconPath = "Interface\\Icons\\Spell_Holy_MagicalSentry"
-            elseif spec.family == "Feline" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Cat"
-            elseif spec.family == "Canine" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Wolf"
-            elseif spec.family == "Bear" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Bear"
-            elseif spec.family == "Boar" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Boar"
-            elseif spec.family == "Raptor" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Raptor"
-            elseif spec.family == "Avian" or spec.family == "Bat" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Bat"
-            elseif spec.family == "Spider" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Spider"
-            elseif spec.family == "Scorpid" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Scorpid"
-            elseif spec.family == "Crocolisk" or spec.family == "Crab" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Crocolisk"
-            elseif spec.family == "Dragonkin" or spec.family == "Wind Serpent" then iconPath = "Interface\\Icons\\INV_Misc_Head_Dragon_01"
-            end
-            btn.Icon:SetTexture(iconPath)
-            btn.Icon:SetVertexColor(1, 1, 1)
-            btn.Title:SetText(string.format("#%03d %s", spec.id, spec.name))
-            local caughtCount = entry.caughtCount or 1
-            btn.Sub:SetText(string.format("|cffffd100🐾 Caught (%dx)|r", caughtCount))
-
-        elseif status == "seen" then
-            btn.Icon:SetTexture("Interface\\Icons\\INV_Misc_Eye_02")
-            btn.Icon:SetVertexColor(0.2, 0.8, 1.0)
-            btn.Title:SetText(string.format("#%03d %s", spec.id, spec.name))
-            btn.Sub:SetText("|cff33ccff🔭 Sighted in Field|r")
-
-        else
-            btn.Icon:SetTexture("Interface\\Icons\\INV_Misc_QuestionMark")
-            btn.Icon:SetVertexColor(0.5, 0.5, 0.5)
-            btn.Title:SetText(string.format("#%03d ???", spec.id))
-            btn.Sub:SetText("|cff666666[Undiscovered]|r")
-        end
-
-        if spec.id == selectedBestiaryId then
-            btn:SetBackdropBorderColor(1.0, 0.82, 0.0, 1.0)
-            btn:SetBackdropColor(0.18, 0.15, 0.08, 0.95)
-        else
-            btn:SetBackdropBorderColor(0.2, 0.28, 0.38, 0.7)
-            btn:SetBackdropColor(Theme.Colors.CardBg.r, Theme.Colors.CardBg.g, Theme.Colors.CardBg.b, Theme.Colors.CardBg.a)
-        end
-
-        btn:Show()
-        yOffset = yOffset - 46
-    end
-
-    content:SetHeight(math.max(450, math.abs(yOffset) + 10))
+    self:RenderVisibleBestiaryRows(currentScroll)
     self:UpdateBestiaryDossier()
+end
+
+function Journal:RenderVisibleBestiaryRows(scrollOffset)
+    local parent = self.BestiaryContainer
+    if not parent or not parent:IsShown() then return end
+    local content = parent.Content
+    if not content then return end
+
+    local total = #filteredSpeciesList
+    local startIndex = math.floor(scrollOffset / ROW_HEIGHT)
+    if startIndex < 0 then startIndex = 0 end
+
+    for i = 1, NUM_VISIBLE_ROWS + 1 do
+        local btn = bestiaryButtons[i]
+        local dataIndex = startIndex + i
+
+        if dataIndex <= total then
+            local spec = filteredSpeciesList[dataIndex]
+            btn.specId = spec.id
+
+            local yPos = -(dataIndex - 1) * ROW_HEIGHT
+            btn:ClearAllPoints()
+            btn:SetPoint("TOPLEFT", content, "TOPLEFT", 2, yPos)
+
+            local entry = DB:GetBestiaryEntry(spec.id)
+            local status = entry and entry.status or "unseen"
+
+            if status == "caught" then
+                local iconPath = "Interface\\Icons\\Ability_Hunter_BeastTaming"
+                if spec.family == "Mechanical" or spec.element == "Mechanical" then iconPath = "Interface\\Icons\\INV_Misc_EngGizmos_17"
+                elseif spec.family == "Undead" or spec.element == "Undead" then iconPath = "Interface\\Icons\\Spell_Shadow_DeadofNight"
+                elseif spec.family == "Elemental" or spec.element == "Elemental" then iconPath = "Interface\\Icons\\Spell_Fire_Elemental_Totem"
+                elseif spec.element == "Magic" then iconPath = "Interface\\Icons\\Spell_Holy_MagicalSentry"
+                elseif spec.subFamily == "Feline" or spec.subFamily == "Cat" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Cat"
+                elseif spec.subFamily == "Canine" or spec.subFamily == "Wolf" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Wolf"
+                elseif spec.subFamily == "Bear" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Bear"
+                elseif spec.subFamily == "Boar" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Boar"
+                elseif spec.subFamily == "Raptor" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Raptor"
+                elseif spec.subFamily == "Bat" or spec.subFamily == "BirdofPrey" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Bat"
+                elseif spec.subFamily == "Spider" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Spider"
+                elseif spec.subFamily == "Scorpid" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Scorpid"
+                elseif spec.subFamily == "Crocolisk" or spec.subFamily == "Crab" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Crocolisk"
+                elseif spec.family == "Dragonkin" or spec.subFamily == "Wind Serpent" then iconPath = "Interface\\Icons\\INV_Misc_Head_Dragon_01"
+                elseif spec.subFamily == "Thunder Lizard" then iconPath = "Interface\\Icons\\Spell_Nature_Lightning"
+                end
+
+                btn.Icon:SetTexture(iconPath)
+                btn.Icon:SetVertexColor(1, 1, 1)
+                btn.Title:SetText(string.format("#%04d %s", spec.id, spec.name))
+                local caughtCount = entry.caughtCount or 1
+                btn.Sub:SetText(string.format("|cffffd100🐾 Caught (%dx)|r  |cff888888Lv%d-%d|r", caughtCount, spec.minLevel or 1, spec.maxLevel or 1))
+
+            elseif status == "seen" then
+                btn.Icon:SetTexture("Interface\\Icons\\INV_Misc_Eye_02")
+                btn.Icon:SetVertexColor(0.2, 0.8, 1.0)
+                btn.Title:SetText(string.format("#%04d %s", spec.id, spec.name))
+                btn.Sub:SetText(string.format("|cff33ccff🔭 Sighted|r  |cff888888Lv%d-%d|r", spec.minLevel or 1, spec.maxLevel or 1))
+
+            else
+                btn.Icon:SetTexture("Interface\\Icons\\INV_Misc_QuestionMark")
+                btn.Icon:SetVertexColor(0.5, 0.5, 0.5)
+                btn.Title:SetText(string.format("#%04d ???", spec.id))
+                btn.Sub:SetText("|cff666666[Undiscovered Quarry]|r")
+            end
+
+            if spec.id == selectedBestiaryId then
+                btn:SetBackdropBorderColor(1.0, 0.82, 0.0, 1.0)
+                btn:SetBackdropColor(0.18, 0.15, 0.08, 0.95)
+            else
+                btn:SetBackdropBorderColor(0.2, 0.28, 0.38, 0.7)
+                btn:SetBackdropColor(Theme.Colors.CardBg.r, Theme.Colors.CardBg.g, Theme.Colors.CardBg.b, Theme.Colors.CardBg.a)
+            end
+
+            btn:Show()
+        else
+            btn:Hide()
+        end
+    end
 end
 
 function Journal:UpdateBestiaryDossier()
@@ -456,7 +705,7 @@ function Journal:UpdateBestiaryDossier()
     local status = entry and entry.status or "unseen"
 
     if status == "unseen" then
-        rPanel.NameText:SetText(string.format("|cff888888#%03d ??? (Undiscovered Quarry)|r", spec.id))
+        rPanel.NameText:SetText(string.format("|cff888888#%04d ??? (Undiscovered Quarry)|r", spec.id))
         rPanel.TypeText:SetText("|cff666666Family: Unknown | Element: Unknown|r")
         rPanel.StatusText:SetText("|cffff5555[Unobserved Wild Beast]|r")
 
@@ -473,23 +722,23 @@ function Journal:UpdateBestiaryDossier()
 
     else
         -- SEEN or CAUGHT
-        local apexTag = spec.isApexRare and " |cffff3333[👑 Apex World Rare]|r" or ""
+        local apexTag = spec.isApexRare and " |cffff3333[👑 Apex World Rare]|r" or (spec.isBoss and " |cffff1111[💀 World Boss]|r" or "")
         if status == "caught" then
-            rPanel.NameText:SetText(string.format("|cffffd100#%03d %s|r%s", spec.id, spec.name, apexTag))
+            rPanel.NameText:SetText(string.format("|cffffd100#%04d %s|r%s", spec.id, spec.name, apexTag))
             local cCount = entry.caughtCount or 1
             rPanel.StatusText:SetText(string.format("|cffffd100🐾 Captured (%dx)|r", cCount))
         else
-            rPanel.NameText:SetText(string.format("|cff00ff99#%03d %s|r%s", spec.id, spec.name, apexTag))
+            rPanel.NameText:SetText(string.format("|cff00ff99#%04d %s|r%s", spec.id, spec.name, apexTag))
             rPanel.StatusText:SetText("|cff33ccff🔭 Sighted & Logged|r")
         end
 
-        rPanel.TypeText:SetText(string.format("Family: |cffffffff%s|r  |  Element: |cffffd100%s|r  |  Rarity: |cff00ff99%s|r",
-            spec.family, spec.element, spec.rarity or "Common"))
+        rPanel.TypeText:SetText(string.format("Family: |cffffffff%s (%s)|r  |  Element: |cffffd100%s|r  |  Rarity: |cff00ff99%s|r  |  Lv: |cffffd100%d-%d|r",
+            spec.family, spec.subFamily or spec.family, spec.element, spec.rarity or "Common", spec.minLevel or 1, spec.maxLevel or 1))
 
         if rPanel.Model3D then
             rPanel.Model3D:Show()
             if self.SetModelCreature then
-                self:SetModelCreature(rPanel.Model3D, spec.displayId)
+                self:SetModelCreature(rPanel.Model3D, spec.displayId, spec.primaryNpcId)
             else
                 rPanel.Model3D:SetDisplayInfo(spec.displayId)
             end
@@ -498,14 +747,14 @@ function Journal:UpdateBestiaryDossier()
             end
         end
 
-        local habitatsStr = spec.habitats and table.concat(spec.habitats, ", ") or "Azeroth"
+        local habitatsStr = spec.habitats and table.concat(spec.habitats, ", ") or "Wilds of Azeroth"
         rPanel.HabitatText:SetText(habitatsStr)
         rPanel.DescText:SetText(spec.description or "")
         rPanel.DietText:SetText(string.format("|cffffd100Favorite Sustenance:|r %s", spec.diet or "Fresh Meat (+25 Attunement)"))
 
         local bs = spec.baseStats or { hp = 60, atk = 15, def = 12, spd = 14 }
-        rPanel.BaseStatsText:SetText(string.format("Base Stats: HP [ |cff33ff33%d|r ] | ATK [ |cffffaa00%d|r ] | DEF [ |cff3399ff%d|r ] | SPD [ |cff00ff99%d|r ]",
-            bs.hp, bs.atk, bs.def, bs.spd))
+        rPanel.BaseStatsText:SetText(string.format("Base Stats: HP [ |cff33ff33%d|r ] | ATK [ |cffffaa00%d|r ] | DEF [ |cff3399ff%d|r ] | SPD [ |cff00ff99%d|r ]  |  Total: |cffffd100%d|r",
+            bs.hp or 0, bs.atk or 0, bs.def or 0, bs.spd or 0, (bs.hp or 0) + (bs.atk or 0) + (bs.def or 0) + (bs.spd or 0)))
 
         local movesStr = ""
         if spec.movepool then

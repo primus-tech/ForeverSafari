@@ -26,14 +26,24 @@ local currentTab = "ROSTER" -- "ROSTER", "GRID", "BESTIARY", "BOUNTIES"
 -- =========================================================================
 -- SHARED 3D MODEL UTILITIES
 -- =========================================================================
-function Journal:SetModelCreature(modelFrame, displayId)
-    if not modelFrame or not displayId or displayId <= 0 then return end
+function Journal:SetModelCreature(modelFrame, displayId, npcId)
+    if not modelFrame then return end
     if modelFrame.ClearModel then modelFrame:ClearModel() end
-    if modelFrame.SetDisplayInfo then
-        modelFrame:SetDisplayInfo(displayId)
-    elseif modelFrame.SetCreatureByDisplayID then
-        modelFrame:SetCreatureByDisplayID(displayId)
+    local loaded = false
+    if displayId and displayId > 0 then
+        if modelFrame.SetDisplayInfo then
+            modelFrame:SetDisplayInfo(displayId)
+            loaded = true
+        elseif modelFrame.SetCreatureByDisplayID then
+            modelFrame:SetCreatureByDisplayID(displayId)
+            loaded = true
+        end
     end
+    if not loaded and npcId and npcId > 0 and modelFrame.SetCreature then
+        modelFrame:SetCreature(npcId)
+        loaded = true
+    end
+    if not loaded and not displayId and not npcId then return end
     if modelFrame.SetPortraitZoom then
         modelFrame:SetPortraitZoom(0)
     end

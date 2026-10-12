@@ -22,9 +22,32 @@ function DB:GetBestiary()
     return ForeverSafariDB.bestiary
 end
 
-function DB:GetBestiaryEntry(speciesId)
+function DB:GetBestiaryEntry(nameOrId)
+    if not nameOrId then return nil end
     local bestiary = self:GetBestiary()
-    return bestiary[speciesId]
+    if not bestiary then return nil end
+
+    if bestiary[nameOrId] then
+        return bestiary[nameOrId]
+    end
+
+    local BestiaryDB = ns.BestiaryDB
+    if not BestiaryDB then return nil end
+
+    local spec = nil
+    if type(nameOrId) == "number" then
+        spec = BestiaryDB:GetSpecies(nameOrId)
+        if spec and bestiary[string.lower(spec.name)] then
+            return bestiary[string.lower(spec.name)]
+        end
+    elseif type(nameOrId) == "string" then
+        spec = BestiaryDB:FindSpeciesByName(nameOrId)
+        if spec and bestiary[spec.id] then
+            return bestiary[spec.id]
+        end
+    end
+
+    return nil
 end
 
 function DB:DiscoverSpecies(nameOrId, status)
@@ -32,21 +55,19 @@ function DB:DiscoverSpecies(nameOrId, status)
     local BestiaryDB = ns.BestiaryDB
     if not BestiaryDB then return nil end
 
-    local spec = nil
-    if type(nameOrId) == "number" then
-        spec = BestiaryDB:GetSpecies(nameOrId)
-    else
+    local spec = BestiaryDB:GetSpecies(nameOrId)
+    if not spec and type(nameOrId) == "string" then
         spec = BestiaryDB:FindSpeciesByName(nameOrId)
     end
 
     if not spec then return nil end
 
     local bestiary = self:GetBestiary()
-    local existing = bestiary[spec.id]
+    local existing = bestiary[spec.id] or bestiary[string.lower(spec.name)]
     local now = time and time() or 0
 
     if not existing then
-        bestiary[spec.id] = {
+        local entry = {
             id = spec.id,
             name = spec.name,
             status = status or "seen",
@@ -54,10 +75,12 @@ function DB:DiscoverSpecies(nameOrId, status)
             firstCaught = (status == "caught") and now or nil,
             caughtCount = (status == "caught") and 1 or 0,
         }
+        bestiary[spec.id] = entry
+        bestiary[string.lower(spec.name)] = entry
         if ns.Toast and ns.Toast.ShowBestiaryDiscovery then
             ns.Toast:ShowBestiaryDiscovery(spec, status or "seen")
         end
-        return bestiary[spec.id], true, spec
+        return entry, true, spec
     else
         local wasNew = false
         if status == "caught" then
@@ -71,6 +94,9 @@ function DB:DiscoverSpecies(nameOrId, status)
             end
             existing.caughtCount = (existing.caughtCount or 0) + 1
         end
+        -- Keep both pointers in sync
+        bestiary[spec.id] = existing
+        bestiary[string.lower(spec.name)] = existing
         return existing, wasNew, spec
     end
 end
@@ -87,12 +113,15 @@ function DB:GetBestiaryStats()
     local caught = 0
 
     local bestiary = self:GetBestiary()
-    for _, entry in pairs(bestiary) do
-        if entry.status == "caught" then
-            caught = caught + 1
-            seen = seen + 1
-        elseif entry.status == "seen" then
-            seen = seen + 1
+    for _, spec in ipairs(all) do
+        local entry = bestiary[spec.id] or bestiary[string.lower(spec.name)]
+        if entry then
+            if entry.status == "caught" then
+                caught = caught + 1
+                seen = seen + 1
+            elseif entry.status == "seen" then
+                seen = seen + 1
+            end
         end
     end
 
