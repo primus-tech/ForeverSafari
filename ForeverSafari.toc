@@ -18,6 +18,9 @@
 ## Category-zhCN: 迷你游戏
 ## Category-zhTW: 迷你遊戲
 
+# Diagnostic Taint Watcher (Load First)
+Core\TaintWatcher.lua
+
 # Canonical Data Registries
 Data\ItemDB.lua
 Data\MoveDB.lua
@@ -76,7 +79,6 @@ Core\TrainerEngine.lua
 Core\CaptureEngine.lua
 Core\BattleCapture.lua
 Core\BattleEngine.lua
-Core\InstancePupDrops.lua
 Core\SafariGossip.lua
 Core\QuestHooks.lua
 Core\Comms.lua
