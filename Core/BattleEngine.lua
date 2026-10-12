@@ -32,6 +32,9 @@ BE.State = {
     playerMob = nil,
     enemyMob = nil,
     isPvP = false,
+    isTrainerBattle = false,
+    isOutpostBattle = false,
+    outpostData = nil,
     turn = "player", -- "player" or "enemy"
     forcedSwitch = false,
     round = 1,
@@ -542,6 +545,11 @@ function BE:StartWildBattle(unit)
         isElite = true
     end
 
+    local outpost = ns.OutpostDB and ns.OutpostDB:GetOutpostByUnit(unit)
+    if outpost then
+        return BE:StartOutpostBattle(unit, outpost)
+    end
+
     local isTrainer = ns.TrainerEngine and ns.TrainerEngine:IsHumanoidTrainer(unit)
     if isTrainer then
         -- 🔒 Roaming AI Trainer GUID Anti-Farm Lockout (24-hour defeat cooldown)
@@ -663,6 +671,104 @@ function BE:StartWildBattle(unit)
     if DB and DB.DiscoverSpecies then
         DB:DiscoverSpecies(enemyMob.name, "seen")
     end
+
+    if ForeverSafari.BattleFrame then
+        ForeverSafari.BattleFrame:ShowBattle()
+    end
+
+    C_Timer.After(1.0, function()
+        BE:AdvanceToNextTurn()
+    end)
+
+    return true
+end
+
+-- Start a sanctioned Outpost Battle against a certified Stable Master Outpost Leader
+function BE:StartOutpostBattle(unit, outpost)
+    unit = unit or "target"
+    outpost = outpost or (ns.OutpostDB and ns.OutpostDB:GetOutpostByUnit(unit))
+    if not outpost then return false end
+
+    local inInstance, instanceType = IsInInstance()
+    if inInstance and instanceType and instanceType ~= "none" and outpost.zone ~= "Naxxramas" and outpost.zone ~= "Alterac Valley" then
+        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Safari outpost battles cannot be initiated inside standard instances!|r")
+        return false
+    end
+
+    local activeMob = DB:GetActiveMob()
+    if not activeMob then
+        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444You have no active companion ready for battle! Open your Field Guide to set one.|r")
+        return false
+    end
+
+    if (activeMob.currentHP or 0) <= 0 then
+        local team = DB:GetTeam()
+        local foundConscious = nil
+        for slotIdx, mobId in ipairs(team) do
+            local mob = type(mobId) == "table" and mobId or DB:GetMobById(mobId)
+            if mob and (mob.currentHP or 0) > 0 then
+                foundConscious = mob
+                DB:SetActiveSlot(slotIdx)
+                activeMob = mob
+                break
+            end
+        end
+        if not foundConscious then
+            DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444All companions in your party have fainted! Visit an Innkeeper to revive and heal your squad, or use a Revival Crystal.|r")
+            return false
+        end
+    end
+
+    local match = ns.OutpostDB:GenerateOutpostMatch(outpost)
+    if not match or not match.team or #match.team == 0 then return false end
+
+    local enemyMob = match.team[1]
+
+    BE.State.inBattle = true
+    BE.State.isTrainerBattle = true
+    BE.State.isOutpostBattle = true
+    BE.State.outpostData = outpost
+    BE.State.enemyTrainer = match
+    BE.State.enemyTrainerGUID = UnitGUID(unit)
+    BE.State.enemyTeam = match.team
+    BE.State.enemyActiveSlot = 1
+    BE.State.playerMob = activeMob
+    BE.State.enemyMob = enemyMob
+    BE.State.isPvP = false
+    BE.State.round = 1
+    BE.State.buffs.player = {}
+    BE.State.buffs.enemy = {}
+    BE.State.passives.dragonkinEnraged = { player = false, enemy = false }
+    BE.State.passives.mechanicalRevived = { player = false, enemy = false }
+    BE.State.passives.undeadImmortal = { player = 0, enemy = 0 }
+    BE.State.passives.undeadTriggered = { player = false, enemy = false }
+    BE.State.shamanRevived = false
+    BE.State.priestHealUses = 0
+    BE.State.opponentClass = nil
+    BE.State.druidEclipse = {
+        solar = 0,
+        lunar = 0,
+        hotTurns = 0,
+        hotAmount = 0,
+        brambleTurns = 0,
+        bramblePercent = 0,
+        bramblePoints = 0,
+    }
+
+    -- Initialize Move Cooldowns & Limits
+    BE:InitMoveStates(activeMob, "player")
+    BE:InitMoveStates(enemyMob, "enemy")
+
+    BE.State.logs = {}
+    BE.State.dialogueText = string.format("%s: \"%s\"", outpost.name, match.introQuote or "Let's battle!")
+    BE.State.actionMeters = { player = 0, enemy = 0 }
+    BE.State.turnCount = 0
+
+    local badgeName = outpost.badge and outpost.badge.name or "Outpost Badge"
+    BE:AddLog(string.format("|cffffcc00[Outpost League]|r Challenged Outpost Leader |cffffffff%s|r (%s)!", outpost.name, outpost.location or outpost.zone))
+    BE:AddLog(string.format("|cffffd100%s: \"%s\"|r", outpost.name, match.introQuote or "Let's battle!"))
+    BE:AddLog(string.format("|cff00ff99Regional Badge on the line: [%s]|r", badgeName))
+    BE:AddLog(string.format("|cffff6666%s sent out %s (Lv %d %s)!|r", outpost.name, enemyMob.name, enemyMob.level, enemyMob.creatureType))
 
     if ForeverSafari.BattleFrame then
         ForeverSafari.BattleFrame:ShowBattle()
@@ -1388,6 +1494,65 @@ end
 function BE:HandleVictory()
     local player = BE.State.playerMob
     local enemy = BE.State.enemyMob
+
+    -- 0. Outpost Leader Battle Victory
+    if BE.State.isOutpostBattle and BE.State.outpostData then
+        local outpost = BE.State.outpostData
+        local badge = outpost.badge
+        local tokenReward = outpost.tokenReward or (15 + (outpost.tier or 1) * 5)
+        local defeatQuote = outpost.defeatQuote or "Remarkable! You have earned our outpost badge!"
+        local badgeName = badge and badge.name or "Outpost Badge"
+
+        BE.State.dialogueText = string.format("%s: \"%s\" Outpost Cleared!", outpost.name, defeatQuote)
+        BE:AddLog(string.format("|cffffd100%s: \"%s\"|r", outpost.name, defeatQuote))
+        BE:AddLog(string.format("|cff00ff00Outpost Defeated! Earned [%s] and +%d Safari Tokens!|r", badgeName, tokenReward))
+        PlaySound(1195)
+
+        if player and (player.currentHP or 0) > 0 then
+            DB:AddAttunement(player.id, 75, "Outpost Leader Defeat")
+        end
+
+        DB:AddTokens(tokenReward, "Outpost Leader Victory")
+
+        player.battlesWon = (player.battlesWon or 0) + 1
+        player.battlesTotal = (player.battlesTotal or 0) + 1
+        ForeverSafariDB.stats.totalBattlesWon = (ForeverSafariDB.stats.totalBattlesWon or 0) + 1
+
+        -- 🏆 Record Outpost Clear & Award Regional Badge
+        ForeverSafariDB.defeatedOutposts = ForeverSafariDB.defeatedOutposts or {}
+        ForeverSafariDB.defeatedOutposts[outpost.id] = time()
+
+        if badge and badge.id then
+            ForeverSafariDB.badges = ForeverSafariDB.badges or {}
+            ForeverSafariDB.badges[badge.id] = {
+                id = badge.id,
+                name = badge.name,
+                icon = badge.icon,
+                desc = badge.desc,
+                outpostId = outpost.id,
+                outpostName = outpost.name,
+                zone = outpost.zone,
+                tier = outpost.tier,
+                earnedAt = time(),
+            }
+        end
+
+        DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00★ OUTPOST CONQUERED!|r Defeated |cffffd100%s|r in %s! Earned |cffffcc00[%s]|r & +%d Tokens!",
+            C.PREFIX or "[Safari] ", outpost.name, outpost.location or outpost.zone, badgeName, tokenReward))
+
+        if ForeverSafari.Toast then
+            ForeverSafari.Toast:ShowReward(string.format("Outpost Defeated: %s!", outpost.name), string.format("Badge: [%s] (+%d Tokens)", badgeName, tokenReward))
+        end
+
+        BE.State.inBattle = false
+        if ForeverSafari.BattleFrame then
+            ForeverSafari.BattleFrame:UpdateUI()
+        end
+        if ForeverSafari.CaptureHUD and ForeverSafari.CaptureHUD.UpdateUI then
+            ForeverSafari.CaptureHUD:UpdateUI()
+        end
+        return
+    end
 
     -- 1. AI Trainer Battle Victory
     if BE.State.isTrainerBattle and BE.State.enemyTrainer then

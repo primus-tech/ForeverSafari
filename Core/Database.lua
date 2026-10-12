@@ -40,6 +40,8 @@ local DEFAULT_DB = {
     rewardedQuests = {}, -- Map of questID -> timestamp (prevents double-dipping across sessions)
     scannedGuids = {},      -- Map of unitGUID -> epoch_timestamp (24h field observation anti-farm lockout)
     defeatedTrainers = {},  -- Map of unitGUID -> epoch_timestamp (24h AI trainer battle anti-farm lockout)
+    defeatedOutposts = {},  -- Map of outpost.id -> epoch_timestamp (outpost victory record)
+    badges = {},            -- Map of badgeId -> badge record (trophies earned from outpost leaders)
     unlockedAbilities = {
         ["101"] = true, -- Bite
         ["102"] = true, -- Growl
@@ -160,6 +162,8 @@ function DB:Initialize()
     -- Ensure GUID tracking tables exist
     ForeverSafariDB.scannedGuids = ForeverSafariDB.scannedGuids or {}
     ForeverSafariDB.defeatedTrainers = ForeverSafariDB.defeatedTrainers or {}
+    ForeverSafariDB.defeatedOutposts = ForeverSafariDB.defeatedOutposts or {}
+    ForeverSafariDB.badges = ForeverSafariDB.badges or {}
 end
 
 -- =========================================================================

@@ -65,6 +65,7 @@ Data\CreatureDB.lua
 Data\BestiaryDB.lua
 Data\EvolutionDB.lua
 Data\TrainerDB.lua
+Data\OutpostDB.lua
 
 # Core Engine & Database
 Core\Constants.lua

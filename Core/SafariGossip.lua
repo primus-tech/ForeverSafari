@@ -430,7 +430,42 @@ function SG:BuildOptionsForCurrentNPC()
     local unit = GetGossipUnit()
     local options = {}
 
-    if self:IsPetTrainer(unit) then
+    local outpost = ns.OutpostDB and ns.OutpostDB:GetOutpostByUnit(unit)
+    if outpost then
+        local isDefeated = ns.OutpostDB:IsOutpostDefeated(outpost.id)
+        local badge = outpost.badge or {}
+        local badgeName = badge.name or "Outpost Badge"
+        local challengeText = isDefeated
+            and string.format("Junior Safari League: Rematch %s [Cleared: %s]", outpost.name, badgeName)
+            or string.format("Junior Safari League: Challenge Outpost Leader %s [%s]", outpost.name, badgeName)
+
+        table.insert(options, {
+            text = challengeText,
+            icon = badge.icon or SG.ICON_LEAGUE,
+            onClick = function()
+                CloseGossipWindow()
+                C_Timer.After(0.05, function()
+                    local trainerUnit = UnitExists("npc") and "npc" or (UnitExists("target") and "target" or "npc")
+                    if ns.BattleEngine and ns.BattleEngine.StartOutpostBattle then
+                        ns.BattleEngine:StartOutpostBattle(trainerUnit, outpost)
+                    end
+                end)
+            end,
+        })
+
+        table.insert(options, {
+            text = "Junior Safari League: Visit Outfitter",
+            icon = SG.ICON_SHOP,
+            onClick = function()
+                CloseGossipWindow()
+                C_Timer.After(0.05, function()
+                    if ns.Shop and ns.Shop.ShowShop then
+                        ns.Shop:ShowShop(true)
+                    end
+                end)
+            end,
+        })
+    elseif self:IsPetTrainer(unit) then
         -- 1. Challenge Outpost Leader
         table.insert(options, {
             text = "Junior Safari League: Challenge Outpost Leader",

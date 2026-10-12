@@ -154,7 +154,22 @@ function HUD:Initialize()
     actionBtn:SetPoint("BOTTOMRIGHT", -10, 8)
     actionBtn:SetText("🔭 OBSERVE")
     actionBtn:SetScript("OnClick", function()
-        if frame.ActionBtn.isTrainerMode then
+        if frame.ActionBtn.isOutpostMode then
+            local outpost = frame.ActionBtn.outpostData
+            if outpost then
+                local badge = outpost.badge or {}
+                local isDefeated = ns.OutpostDB and ns.OutpostDB:IsOutpostDefeated(outpost.id)
+                local msg = string.format("|cffffd100[Outpost League]|r |cffffffff%s|r (%s, Tier %d): \"%s\" |cff00ff99[Badge: %s, Squad: %d Pets]|r%s",
+                    outpost.name, outpost.location or outpost.zone, outpost.tier or 1,
+                    outpost.introQuote or "Challenge me!", badge.name or "Outpost Badge",
+                    #(outpost.team or {}), isDefeated and " |cff00ff00[CLEARED]|r" or "")
+                DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. msg)
+                if ForeverSafari.Toast and ForeverSafari.Toast.ShowReward then
+                    ForeverSafari.Toast:ShowReward(string.format("Outpost: %s", outpost.name), string.format("Badge: [%s] (%s)", badge.name or "Badge", isDefeated and "Cleared" or "Undefeated"))
+                end
+                PlaySound(856)
+            end
+        elseif frame.ActionBtn.isTrainerMode then
             local data = frame.ActionBtn.trainerData
             if data then
                 local arch = data.archetype or {}
@@ -176,6 +191,36 @@ function HUD:Initialize()
         end
     end)
     actionBtn:SetScript("OnEnter", function(self)
+        if frame.ActionBtn.isOutpostMode then
+            local outpost = frame.ActionBtn.outpostData
+            if outpost then
+                local badge = outpost.badge or {}
+                local isDefeated = ns.OutpostDB and ns.OutpostDB:IsOutpostDefeated(outpost.id)
+                GameTooltip:SetOwner(self, "ANCHOR_TOP")
+                GameTooltip:AddLine(string.format("📜 Outpost Intelligence: %s", outpost.name), 1, 0.82, 0)
+                GameTooltip:AddLine(string.format("Title: |cffffffff%s|r", outpost.title or "<Stable Master>"), 0.8, 0.9, 1)
+                GameTooltip:AddLine(string.format("Location: |cffffcc00%s (%s)|r", outpost.location or outpost.zone, outpost.zone), 0.8, 0.9, 1)
+                GameTooltip:AddLine(string.format("League Rank: |cff00ccffTier %d • Lv %s|r", outpost.tier or 1, tostring(outpost.level)), 0.8, 0.9, 1)
+                GameTooltip:AddLine(" ")
+                GameTooltip:AddLine(string.format("Regional Trophy: |cffffd100[%s]|r", badge.name or "Outpost Badge"), 1, 0.82, 0)
+                if badge.desc then
+                    GameTooltip:AddLine(string.format("  \"%s\"", badge.desc), 0.7, 0.7, 0.7, true)
+                end
+                GameTooltip:AddLine(" ")
+                GameTooltip:AddLine(string.format("Status: %s", isDefeated and "|cff00ff00✅ CLEARED (Badge Earned)|r" or "|cffffaa00⚔️ UNDEFEATED (Challenge Ready)|r"))
+                GameTooltip:AddLine(string.format("Bounty: |cff00ff99+%d Safari Tokens & +75 Pet Attunement|r", outpost.tokenReward or 20))
+                if outpost.team and #outpost.team > 0 then
+                    GameTooltip:AddLine(" ")
+                    GameTooltip:AddLine("Leader Squad Roster:", 1, 0.82, 0)
+                    for _, pet in ipairs(outpost.team) do
+                        GameTooltip:AddLine(string.format("  • %s (Lv %d %s)", pet.name, pet.level or outpost.level, pet.family or pet.element or "Beast"), 0.9, 0.9, 0.9)
+                    end
+                end
+                GameTooltip:Show()
+                return
+            end
+        end
+
         if frame.ActionBtn.isTrainerMode then
             local data = frame.ActionBtn.trainerData
             GameTooltip:SetOwner(self, "ANCHOR_TOP")
@@ -214,11 +259,37 @@ function HUD:Initialize()
         if CE:IsChanneling() then
             CE:CancelSnareChannel("Engaged in battle.")
         end
+        if frame.BattleBtn.isOutpostMode then
+            local outpost = frame.BattleBtn.outpostData
+            if ForeverSafari.BattleEngine and outpost then
+                ForeverSafari.BattleEngine:StartOutpostBattle("target", outpost)
+            end
+            return
+        end
         if ForeverSafari.BattleEngine then
             ForeverSafari.BattleEngine:StartWildBattle("target")
         end
     end)
     battleBtn:SetScript("OnEnter", function(self)
+        if frame.BattleBtn.isOutpostMode then
+            local outpost = frame.BattleBtn.outpostData
+            local isDefeated = outpost and ns.OutpostDB and ns.OutpostDB:IsOutpostDefeated(outpost.id)
+            local badge = outpost and outpost.badge or {}
+            GameTooltip:SetOwner(self, "ANCHOR_TOP")
+            GameTooltip:AddLine(isDefeated and "⚔️ Rematch Outpost Leader" or "⚔️ Challenge Outpost Leader", 1, 0.82, 0)
+            GameTooltip:AddLine(string.format("Challenge %s to a sanctioned 3D turn-based Safari Outpost match.", outpost and outpost.name or "Leader"), 1, 1, 1, true)
+            GameTooltip:AddLine(" ")
+            GameTooltip:AddLine("Outpost Battle Rules:", 0, 1, 0.6)
+            GameTooltip:AddLine(string.format("• Defeat their entire %d-companion squad", outpost and outpost.team and #outpost.team or 2), 0.8, 0.9, 1)
+            GameTooltip:AddLine(string.format("• First victory claims the |cffffd100[%s]|r!", badge.name or "Outpost Badge"), 1, 0.82, 0)
+            GameTooltip:AddLine(string.format("• Awards +%d Safari Tokens & +75 Attunement", outpost and outpost.tokenReward or 20), 0.8, 0.9, 1)
+            if isDefeated then
+                GameTooltip:AddLine("• |cff00ff00[Already Cleared - Friendly Practice Rematch]|r", 0, 1, 0)
+            end
+            GameTooltip:Show()
+            return
+        end
+
         local isTrainer = ns.TrainerEngine and ns.TrainerEngine:IsHumanoidTrainer("target")
         if isTrainer then
             GameTooltip:SetOwner(self, "ANCHOR_TOP")
@@ -308,6 +379,14 @@ function HUD:OnTargetChanged()
         return
     end
 
+    -- 🌟 1. Check for Outpost League Leader (54 Authentic Stable Masters)
+    local outpost = ns.OutpostDB and ns.OutpostDB:GetOutpostByUnit("target")
+    if outpost then
+        frame:Show()
+        HUD:UpdateUI()
+        return
+    end
+
     local classification = UnitClassification("target")
     if not isSecret(classification) and classification == "worldboss" then
         frame:Hide()
@@ -353,14 +432,100 @@ function HUD:OnTargetChanged()
     HUD:UpdateUI()
 end
 
+function HUD:RenderOutpostMode(outpost)
+    frame.Title:SetText("|cffffd100Forever Safari|r Outpost League")
+
+    local isDefeated = ns.OutpostDB and ns.OutpostDB:IsOutpostDefeated(outpost.id)
+    local badge = outpost.badge or {}
+    local badgeName = badge.name or "Outpost Badge"
+    local badgeIcon = badge.icon or "Interface\\Icons\\INV_Misc_MonsterClaw_04"
+    local tokenReward = outpost.tokenReward or (15 + (outpost.tier or 1) * 5)
+    local teamSize = (outpost.team and #outpost.team) or 2
+
+    frame.TargetText:SetText(string.format("|cffffffff%s|r  |cffffcc00<%s>|r  |cff00ccff[Tier %d • %s]|r",
+        outpost.name, outpost.title or "Stable Master", outpost.tier or 1, outpost.location or outpost.zone))
+
+    if isDefeated then
+        frame.RadarBar:SetStatusBarColor(0.1, 0.8, 0.4)
+        frame.RadarBar:SetMinMaxValues(0, 100)
+        frame.RadarBar:SetValue(100)
+        frame.RadarBar.Text:SetText(string.format("|cff00ff99✅ Cleared • [%s] Earned!|r", badgeName))
+
+        frame.InfoText:SetText(string.format("Outpost Conquered • |cffffd100[%s]|r Registered in League Records", badgeName))
+    else
+        frame.RadarBar:SetStatusBarColor(1.0, 0.75, 0.0)
+        frame.RadarBar:SetMinMaxValues(0, 100)
+        frame.RadarBar:SetValue(100)
+        frame.RadarBar.Text:SetText(string.format("|cffffd100⚔️ Outpost Battle • Prize: [%s]|r", badgeName))
+
+        frame.InfoText:SetText(string.format("Squad: |cffffd100%d Companions (Lv %s)|r  •  Prize: |cff00ff99+%d Tokens & [%s]|r",
+            teamSize, tostring(outpost.level), tokenReward, badgeName))
+    end
+
+    -- Mode Badge (bottom left)
+    if frame.ModeBadge then
+        frame.ModeBadge.Icon:SetTexture(badgeIcon)
+        frame.ModeBadge.Text:SetText(isDefeated and "|cff00ff00Cleared|r" or string.format("|cffffd100Tier %d|r", outpost.tier or 1))
+    end
+
+    -- Action Button -> Inspect / Scout Leader
+    frame.ActionBtn:Enable()
+    frame.ActionBtn:SetText("🔍 LEADER")
+    frame.ActionBtn.isTrainerMode = false
+    frame.ActionBtn.isOutpostMode = true
+    frame.ActionBtn.outpostData = outpost
+
+    -- Battle Button -> Challenge Outpost Leader
+    if frame.BattleBtn then
+        frame.BattleBtn.isOutpostMode = true
+        frame.BattleBtn.outpostData = outpost
+
+        local activeMob = DB:GetActiveMob()
+        if not activeMob then
+            frame.BattleBtn:Disable()
+            frame.BattleBtn:SetText("NO SQUAD")
+        elseif (activeMob.currentHP or 0) <= 0 then
+            frame.BattleBtn:Disable()
+            frame.BattleBtn:SetText("FAINTED")
+        else
+            frame.BattleBtn:Enable()
+            if isDefeated then
+                frame.BattleBtn:SetText("⚔️ REMATCH")
+            else
+                frame.BattleBtn:SetText("⚔️ BATTLE")
+            end
+        end
+    end
+end
+
 function HUD:UpdateUI()
     if InCombatLockdown and InCombatLockdown() then return end
     local inInstance, instanceType = IsInInstance()
     if inInstance and (instanceType == "party" or instanceType == "raid" or instanceType == "pvp" or instanceType == "arena") then
-        if frame and frame:IsShown() then frame:Hide() end
-        return
+        local outpost = ns.OutpostDB and ns.OutpostDB:GetOutpostByUnit("target")
+        if not outpost or (outpost.zone ~= "Naxxramas" and outpost.zone ~= "Alterac Valley") then
+            if frame and frame:IsShown() then frame:Hide() end
+            return
+        end
     end
     if not frame:IsShown() or not UnitExists("target") then return end
+
+    -- 🌟 1. Check for Outpost League Leader
+    local outpost = ns.OutpostDB and ns.OutpostDB:GetOutpostByUnit("target")
+    if outpost then
+        HUD:RenderOutpostMode(outpost)
+        return
+    end
+
+    -- Clear Outpost Mode Flags
+    if frame.ActionBtn then
+        frame.ActionBtn.isOutpostMode = false
+        frame.ActionBtn.outpostData = nil
+    end
+    if frame.BattleBtn then
+        frame.BattleBtn.isOutpostMode = false
+        frame.BattleBtn.outpostData = nil
+    end
 
     local name = UnitName("target")
     if isSecret(name) or not name or name == "" then name = "Wild Creature" end
