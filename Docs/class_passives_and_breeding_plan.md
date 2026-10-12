@@ -44,18 +44,25 @@ This specification details the architecture and combat engine hooks for **Player
   1. **Define `Core/ClassPassives.lua`**:
      * Export `ns.ClassPassives` with active player class detection: `local _, class = UnitClass("player")`.
      * Define metadata, display names, tooltips, and mathematical helper functions:
-       * 🛡️ **Warrior (Marshal's Tenacity)**: Physical damage reduction (+10% to +25%).
-       * 🛡️ **Paladin (Aura of Light)**: Damage-to-healing conversion (+5% to +25%).
-       * ⚡ **Shaman (Primal Rebirth)**: `RollAnkh()` 50% chance to revive companion at 50% HP once per battle.
-       * 🔮 **Mage (Arcane Celerity & Ward)**:
-         * **Chilling Tempo Proc**: 5% per Attunement Rank (5%–25%) on offense; 10% per Attunement Rank (10%–50%) on defense. Inflicts **Chilled** for 2 turns (-50% SPD).
-         * **Direct Roll Subtraction**: Target's Frost Resistance % directly subtracts from proc chance: $\text{Effective Proc \%} = \max(0\%, \text{Base Proc \%} - \text{Frost Resist \%})$. (Countered by Polar Bears, Winter Wolves, Frostsabers, Snow Owls, Blue Dragonkin, Frost Elementals).
-         * **Arcane Spell Ward**: 5% per Attunement Rank (+5% to +25%) non-physical / magical damage resistance.
-       * 🗡️ **Rogue (Shadow Evasion)**: Enemy miss chance increase `+25%` (e.g. miss threshold +25).
-       * 🌿 **Priest (Divine Grace)**: Active heal charges = `rank` uses per battle, each healing `math.ceil(maxHP * 0.25)`.
-       * 🏹 **Hunter (Pathfinder's Mastery)**: Companion basic attack and defense boosted by `+5%` to `+25%`.
-       * 🍃 **Druid (Wild Symbiosis)**: Attunement points boosted by `+25%`, Rank thresholds reduced by `25%`.
-       * 💀 **Warlock (Curse of Suppression)**: When facing enemy AI trainer or PvP opponent, halves all opposed passives by `50%`.
+        * 🛡️ **Warrior (Marshal's Tenacity)**: **Static Slice**: **+5% per Attunement Rank** Physical Damage Reduction / Armor (**5%** at Rank 1 $\to$ **25%** at Rank V).
+        * 🗡️ **Rogue (Shadow Evasion)**: **Static Slice**: **+5% per Attunement Rank** Enemy Miss Chance / Evasion (**5%** at Rank 1 $\to$ **25%** at Rank V).
+        * 🏹 **Hunter (Aspect of the Wild & Pathfinder)**: **Static Slice**: **+5% per Attunement Rank** Nature Resistance (**5%** at Rank 1 $\to$ **25%** at Rank V); companion basic attack/defense scaling +5% to +25%.
+        * 🍃 **Druid (Gift of the Wild & Symbiosis)**: **Static Slice**: **+2% per Attunement Rank** Pure Static Omni-Resist across all 6 magic schools (**2%** at Rank 1 $\to$ **10%** at Rank V); Attunement point acceleration.
+        * 🔮 **Mage (Arcane Celerity & Ward)**:
+          * **Chilling Tempo**: Procs on hit. Offense: 5% per Rank (5%–25%); Defense: 10% per Rank (10%–50%). Inflicts **Chilled** (-50% SPD for 2 turns). Countered via **Direct Roll Subtraction** by target's Frost Resistance %.
+          * **Procced Ward (Arcane, Fire, & Frost)**: 5% per Rank proc chance; absorbs 10% per Rank (10%–50%) incoming damage on proc. Rolled per direct hit and **independently per DoT tick**.
+        * ⚡ **Shaman (Elemental Shielding & Primal Rebirth)**:
+          * **Procced Ward (Fire, Frost, & Nature)**: 5% per Rank proc chance; absorbs 10% per Rank (10%–50%) incoming damage. Rolled per direct hit and **independently per DoT tick**.
+          * **Primal Rebirth**: `RollAnkh()` 50% chance to revive companion at 50% HP once per battle.
+        * 💀 **Warlock (Fel Infusion & Curse of Suppression)**:
+          * **Procced Ward (Shadow & Fire)**: 5% per Rank proc chance; absorbs 10% per Rank (10%–50%) incoming damage. Rolled per direct hit and **independently per DoT tick**.
+          * **Curse of Suppression**: When facing enemy AI trainer or PvP opponent, halves all opposed passives by 50%.
+        * 🕊️ **Priest (Ward of the Heavens & Divine Grace)**:
+          * **Procced Ward (Shadow & Holy)**: 5% per Rank proc chance; absorbs 10% per Rank (10%–50%) incoming damage. Rolled per direct hit and **independently per DoT tick**.
+          * **Divine Grace**: Active heal charges = `rank` uses per battle, each healing `math.ceil(maxHP * 0.25)`.
+        * ⚔️ **Paladin (Aegis of Light)**:
+          * **Procced Ward (Physical Armor & Holy)**: 5% per Rank proc chance; absorbs 10% per Rank (10%–50%) incoming damage. Rolled per direct hit and **independently per DoT tick**.
+          * **Aura of Light**: Converts 5% to 25% of absorbed/mitigated damage into healing.
 
 ### Phase 2: Combat Engine Integration (`Core/BattleEngine.lua`)
 * **Tasks**:
