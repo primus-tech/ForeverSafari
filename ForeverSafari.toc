@@ -57,7 +57,6 @@ Data\Creatures\Creatures_Dragonkin.lua
 Data\Creatures\Creatures_Elementals.lua
 Data\Creatures\Creatures_Mechanicals.lua
 Data\Creatures\Creatures_Undead.lua
-Data\Creatures\Creatures_Other.lua
 Data\CreatureDB.lua
 Data\BestiaryDB.lua
 Data\EvolutionDB.lua

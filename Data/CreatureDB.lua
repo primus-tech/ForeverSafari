@@ -53,7 +53,6 @@ local partitions = {
     FS.Creatures_Elementals,
     FS.Creatures_Mechanicals,
     FS.Creatures_Undead,
-    FS.Creatures_Other,
 }
 
 for _, partition in ipairs(partitions) do

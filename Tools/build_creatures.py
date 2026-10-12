@@ -615,12 +615,16 @@ if os.path.exists(old_exotic):
     os.remove(old_exotic)
     print(f"Removed old {old_exotic}")
 
+old_other = os.path.join(OUTPUT_DIR, "Creatures_Other.lua")
+if os.path.exists(old_other):
+    os.remove(old_other)
+    print(f"Removed old {old_other}")
+
 # Emit Non-Beast Partition Files
 write_lua_partition(os.path.join(OUTPUT_DIR, "Creatures_Dragonkin.lua"), "Creatures_Dragonkin", lambda c: c['family'] == "Dragonkin")
 write_lua_partition(os.path.join(OUTPUT_DIR, "Creatures_Elementals.lua"), "Creatures_Elementals", lambda c: c['family'] == "Elemental")
 write_lua_partition(os.path.join(OUTPUT_DIR, "Creatures_Mechanicals.lua"), "Creatures_Mechanicals", lambda c: c['family'] == "Mechanical")
 write_lua_partition(os.path.join(OUTPUT_DIR, "Creatures_Undead.lua"), "Creatures_Undead", lambda c: c['family'] == "Undead")
-write_lua_partition(os.path.join(OUTPUT_DIR, "Creatures_Other.lua"), "Creatures_Other", lambda c: c['family'] not in ("Beast", "Dragonkin", "Elemental", "Mechanical", "Undead"))
 
 # Emit Zones Lua file
 zones_path = os.path.join(OUTPUT_DIR, "Creatures_Zones.lua")
