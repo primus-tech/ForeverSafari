@@ -14,3 +14,4 @@ Thumbs.db
 dist/
 release/
 scratch/
+__pycache__/

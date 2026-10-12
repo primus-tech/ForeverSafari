@@ -1,6 +1,6 @@
 -- Forever Safari — Master Creature Database
 -- Target: World of Warcraft Forever Beta (1.60.1)
--- Integrates partitioned registries (Beasts, Dragonkin, Elementals, Mechanicals, Undead, Other)
+-- Integrates partitioned registries (Beast Subfamilies, Dragonkin, Elementals, Mechanicals, Undead, Other)
 -- with Master Zone classification and Encounter / Pup Drop taxonomy.
 
 local _, FS = ...
@@ -10,12 +10,43 @@ ForeverSafari = FS
 FS.CreatureDB = FS.CreatureDB or {}
 FS.ZoneIndex = FS.ZoneIndex or {}
 FS.FamilyIndex = FS.FamilyIndex or {}
+FS.SubFamilyIndex = FS.SubFamilyIndex or {}
 FS.ElementIndex = FS.ElementIndex or {}
 FS.AcquisitionIndex = FS.AcquisitionIndex or { BATTLE = {}, PUP_DROP = {}, HYBRID = {} }
 
 -- 1. Merge Partition Registries into Master CreatureDB
 local partitions = {
-    FS.Creatures_Beasts,
+    -- Beast Subfamilies
+    FS.Creatures_Beasts_Aquatic,
+    FS.Creatures_Beasts_Basilisk,
+    FS.Creatures_Beasts_Bat,
+    FS.Creatures_Beasts_Bear,
+    FS.Creatures_Beasts_BirdofPrey,
+    FS.Creatures_Beasts_Boar,
+    FS.Creatures_Beasts_CarrionBird,
+    FS.Creatures_Beasts_Cat,
+    FS.Creatures_Beasts_Chimaera,
+    FS.Creatures_Beasts_CoreHound,
+    FS.Creatures_Beasts_Crab,
+    FS.Creatures_Beasts_Crocolisk,
+    FS.Creatures_Beasts_Devilsaur,
+    FS.Creatures_Beasts_Exotic,
+    FS.Creatures_Beasts_Gorilla,
+    FS.Creatures_Beasts_Hydra,
+    FS.Creatures_Beasts_Hyena,
+    FS.Creatures_Beasts_Kodo,
+    FS.Creatures_Beasts_Raptor,
+    FS.Creatures_Beasts_Scorpid,
+    FS.Creatures_Beasts_Serpent,
+    FS.Creatures_Beasts_Silithid,
+    FS.Creatures_Beasts_Spider,
+    FS.Creatures_Beasts_Stag,
+    FS.Creatures_Beasts_Tallstrider,
+    FS.Creatures_Beasts_Turtle,
+    FS.Creatures_Beasts_WindSerpent,
+    FS.Creatures_Beasts_Wolf,
+
+    -- Other Families
     FS.Creatures_Dragonkin,
     FS.Creatures_Elementals,
     FS.Creatures_Mechanicals,
@@ -35,13 +66,22 @@ end
 function FS:BuildDatabaseIndexes()
     wipe(self.ZoneIndex)
     wipe(self.FamilyIndex)
+    wipe(self.SubFamilyIndex)
     wipe(self.ElementIndex)
     self.AcquisitionIndex = { BATTLE = {}, PUP_DROP = {}, HYBRID = {} }
 
     for npcId, entry in pairs(self.CreatureDB) do
+        -- Backwards compatibility for abilities / moves
+        if entry.moves and not entry.abilities then
+            entry.abilities = entry.moves
+        end
         if entry.family then
             self.FamilyIndex[entry.family] = self.FamilyIndex[entry.family] or {}
             table.insert(self.FamilyIndex[entry.family], npcId)
+        end
+        if entry.subFamily then
+            self.SubFamilyIndex[entry.subFamily] = self.SubFamilyIndex[entry.subFamily] or {}
+            table.insert(self.SubFamilyIndex[entry.subFamily], npcId)
         end
         if entry.element then
             self.ElementIndex[entry.element] = self.ElementIndex[entry.element] or {}
@@ -75,6 +115,10 @@ function FS:GetCreaturesByFamily(family)
     return (self.FamilyIndex and self.FamilyIndex[family]) or {}
 end
 
+function FS:GetCreaturesBySubFamily(subFamily)
+    return (self.SubFamilyIndex and self.SubFamilyIndex[subFamily]) or {}
+end
+
 function FS:GetCreaturesByElement(element)
     return (self.ElementIndex and self.ElementIndex[element]) or {}
 end
@@ -104,6 +148,7 @@ function FS:GetPupDropInfo(npcId)
         pupName = creature.pupName or (creature.name .. " Pup"),
         isBoss = creature.isBoss or (creature.classification == 3),
         family = creature.family,
+        subFamily = creature.subFamily,
         spec = creature.spec,
         moves = creature.moves,
     }
