@@ -128,6 +128,58 @@ beast_subcats = {
     'Wolf': (2622, 'Ferocity', 'Beast', 101, 118, 'Wolf Pup'),
 }
 
+# -------------------------------------------------------------
+# 2B. RETAIL WOWHEAD CLASSIFICATION MASK & SUBFAMILY SPECS
+# -------------------------------------------------------------
+SUBFAMILY_SPECS = {
+    'Aquatic': ('Ferocity', 'Aquatic', 101, 406, 'Minnow'),
+    'Basilisk': ('Tenacity', 'Earth', 101, 112, 'Baby Basilisk'),
+    'Bat': ('Cunning', 'Beast', 101, 118, 'Bat Pup'),
+    'Bear': ('Tenacity', 'Beast', 110, 112, 'Bear Cub'),
+    'Bird of Prey': ('Cunning', 'Beast', 101, 118, 'Fledgling'),
+    'Boar': ('Tenacity', 'Beast', 111, 112, 'Boar Piglet'),
+    'Carrion Bird': ('Ferocity', 'Beast', 103, 118, 'Hatchling'),
+    'Cat': ('Ferocity', 'Beast', 103, 118, 'Kitten'),
+    'Chimaera': ('Ferocity', 'Nature', 101, 118, 'Chimaera Hatchling'),
+    'Core Hound': ('Ferocity', 'Fire', 101, 118, 'Core Hound Pup'),
+    'Crab': ('Tenacity', 'Aquatic', 101, 404, 'Crab Pinchling'),
+    'Crocolisk': ('Tenacity', 'Aquatic', 101, 112, 'Baby Crocolisk'),
+    'Devilsaur': ('Ferocity', 'Beast', 101, 118, 'Devilsaur Hatchling'),
+    'Dinosaur': ('Tenacity', 'Beast', 114, 112, 'Dino Hatchling'),
+    'Fox': ('Cunning', 'Beast', 101, 118, 'Fox Kit'),
+    'Gorilla': ('Tenacity', 'Beast', 101, 904, 'Baby Gorilla'),
+    'Hydra': ('Ferocity', 'Aquatic', 101, 118, 'Hydra Hatchling'),
+    'Hyena': ('Ferocity', 'Beast', 101, 118, 'Hyena Pup'),
+    'Kodo': ('Tenacity', 'Earth', 114, 112, 'Kodo Calf'),
+    'Raptor': ('Ferocity', 'Beast', 115, 118, 'Raptor Hatchling'),
+    'Scorpid': ('Tenacity', 'Beast', 101, 904, 'Scorpid Scuttler'),
+    'Serpent': ('Cunning', 'Nature', 101, 118, 'Serpent Whelp'),
+    'Silithid': ('Cunning', 'Nature', 101, 118, 'Silithid Grub'),
+    'Spider': ('Cunning', 'Shadow', 101, 118, 'Spiderling'),
+    'Stag': ('Cunning', 'Beast', 101, 118, 'Fawn'),
+    'Tallstrider': ('Ferocity', 'Beast', 101, 118, 'Tallstrider Chick'),
+    'Turtle': ('Tenacity', 'Aquatic', 101, 404, 'Turtle Hatchling'),
+    'Wind Serpent': ('Ferocity', 'Nature', 101, 118, 'Spiteful Whelpling'),
+    'Wolf': ('Ferocity', 'Beast', 101, 118, 'Wolf Pup'),
+    'Worm': ('Tenacity', 'Nature', 101, 404, 'Worm Larva'),
+}
+
+retail_mask_file = os.path.join(os.path.dirname(__file__), 'retail_pet_mask.json')
+retail_mask = {}
+if os.path.exists(retail_mask_file):
+    with open(retail_mask_file, 'r', encoding='utf-8') as f:
+        retail_mask = json.load(f)
+print(f'Loaded Retail Classification Mask: {len(retail_mask)} authoritative entries.')
+
+def get_beast_classification(mob):
+    mid_str = str(mob.get('id'))
+    if mid_str in retail_mask:
+        subf = retail_mask[mid_str]['subFamily']
+        if subf in SUBFAMILY_SPECS:
+            spec, elem, m1, m2, pup = SUBFAMILY_SPECS[subf]
+            return subf, spec, elem, m1, m2, pup
+    return detect_beast_subfamily(mob.get('name', ''))
+
 def detect_beast_subfamily(name):
     nl = name.lower()
     if any(k in nl for k in ['core rager', 'core hound', 'corehound', 'magma hound', 'the beast', 'kurken', 'magmadar', 'calefactus']):
@@ -401,7 +453,7 @@ print("--> Processing Comprehensive Beast Level Bands (1-30, 31-50, 51-60, 61+, 
 for step_num in [2859, 2863, 2867, 2869, 2871, 2558]:
     b_html = load_step_file(step_num)
     for mob in parse_listview_data(b_html):
-        subf, spec, element, m1, m2, pup_name = detect_beast_subfamily(mob.get('name', ''))
+        subf, spec, element, m1, m2, pup_name = get_beast_classification(mob)
         process_mob(mob, "Beast", subf, spec, element, m1, m2, pup_name)
 
 # C. Dragonkin
@@ -444,14 +496,29 @@ for mob in parse_listview_data(undead_html):
            "Ghost" if any(k in uname for k in ['ghost', 'spect', 'spirit', 'wisp', 'wraith']) else "Undead")))
     process_mob(mob, "Undead", subf, "Undead", "Shadow", 201, 204, "Bone Pup")
 
-# G. Uncategorized (Critters & Wildlife)
-print("--> Processing Uncategorized...")
-uncat_html = load_step_file(2564)
-for mob in parse_listview_data(uncat_html):
-    # Only keep wildlife/critters
-    name = mob.get('name', '')
-    if any(crit in name.lower() for crit in ['toad', 'frog', 'rat', 'mouse', 'hare', 'rabbit', 'snake', 'beetle', 'roach', 'moth', 'squirrel', 'fawn', 'deer', 'prairie dog']):
-        process_mob(mob, "Critter", "Critter", "Cunning", "Beast", 101, 118, "Baby " + name)
+# G. Forever Beta Uncategorized Candidates (Applying Retail Mask)
+print("--> Processing Forever Beta Uncategorized with Retail Mask...")
+uncat_json_path = os.path.join(os.path.dirname(__file__), "forever_uncategorized.json")
+if os.path.exists(uncat_json_path):
+    with open(uncat_json_path, "r", encoding="utf-8") as f:
+        uncat_mobs = json.load(f)
+    uncat_matched = 0
+    for mob in uncat_mobs:
+        mid_str = str(mob.get('id'))
+        if mid_str in retail_mask:
+            r_info = retail_mask[mid_str]
+            subf = r_info['subFamily']
+            if subf in SUBFAMILY_SPECS:
+                spec, elem, m1, m2, pup = SUBFAMILY_SPECS[subf]
+                process_mob(mob, "Beast", subf, spec, elem, m1, m2, pup)
+                uncat_matched += 1
+        else:
+            name = mob.get('name', '')
+            if any(crit in name.lower() for crit in ['toad', 'frog', 'rat', 'mouse', 'hare', 'rabbit', 'snake', 'beetle', 'roach', 'moth', 'squirrel', 'fawn', 'deer']):
+                process_mob(mob, "Critter", "Critter", "Cunning", "Beast", 101, 118, "Baby " + name)
+    print(f"Matched {uncat_matched} Forever Uncategorized mobs into authentic Beast Subfamilies via Retail Mask.")
+else:
+    print("Warning: forever_uncategorized.json not found, skipping uncategorized mask pass.")
 
 print(f"\n==========================================")
 print(f"Total Unique Creatures Compiled: {len(master_creatures)}")
