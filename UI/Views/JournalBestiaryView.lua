@@ -1,9 +1,9 @@
 --[[
     Forever Safari: View 3 - Azeroth Bestiary (JournalBestiaryView.lua)
     Comprehensive Azeroth Master Pokédex & Field Catalog with 2,000+ species,
-    multi-mode sorting, element & capture filters, virtual scrolling (60 FPS),
-    live 3D species stage with animations, Nesingwary field notes, native habitats,
-    base stats radar, and natural family movepool tactics.
+    multi-mode sorting, element type filters, 30 Beast subfamily filters,
+    virtual scrolling (60 FPS), live 3D species stage with animations,
+    Nesingwary field notes, native habitats, base stats radar, and natural moves.
 ]]
 
 local addonName, ns = ...
@@ -18,6 +18,7 @@ local C = ns.Constants
 
 local bestiarySearchQuery = ""
 local bestiarySelectedType = "ALL"
+local bestiarySelectedFamily = "ALL"
 local bestiarySelectedStatus = "ALL"
 local bestiarySortMode = "ID_ASC"
 local selectedBestiaryId = 1
@@ -25,7 +26,7 @@ local bestiaryButtons = {}
 local filteredSpeciesList = {}
 
 local ROW_HEIGHT = 44
-local NUM_VISIBLE_ROWS = 8
+local NUM_VISIBLE_ROWS = 7
 
 local BESTIARY_TYPE_FILTERS = {
     { id = "ALL", text = "All Types", icon = "Interface\\Icons\\INV_Misc_Book_09" },
@@ -37,6 +38,40 @@ local BESTIARY_TYPE_FILTERS = {
     { id = "Aquatic", text = "🌊 Aquatic", icon = "Interface\\Icons\\Spell_Frost_SummonWaterElemental" },
     { id = "Flying", text = "🦅 Flying", icon = "Interface\\Icons\\Ability_Hunter_Pet_Bat" },
     { id = "Magic", text = "✨ Magic", icon = "Interface\\Icons\\Spell_Holy_MagicalSentry" },
+}
+
+local BEAST_FAMILIES = {
+    { id = "ALL", name = "All Beast Families", icon = "Interface\\Icons\\Ability_Hunter_Pet_Cat" },
+    { id = "Aquatic", name = "Aquatic", icon = "Interface\\Icons\\Spell_Frost_SummonWaterElemental" },
+    { id = "Basilisk", name = "Basilisk", icon = "Interface\\Icons\\Ability_Hunter_Pet_Crocolisk" },
+    { id = "Bat", name = "Bat", icon = "Interface\\Icons\\Ability_Hunter_Pet_Bat" },
+    { id = "Bear", name = "Bear", icon = "Interface\\Icons\\Ability_Hunter_Pet_Bear" },
+    { id = "Bird of Prey", name = "Bird of Prey", icon = "Interface\\Icons\\Ability_Hunter_Pet_Owl" },
+    { id = "Boar", name = "Boar", icon = "Interface\\Icons\\Ability_Hunter_Pet_Boar" },
+    { id = "Carrion Bird", name = "Carrion Bird", icon = "Interface\\Icons\\Ability_Hunter_Pet_Vulture" },
+    { id = "Cat", name = "Cat", icon = "Interface\\Icons\\Ability_Hunter_Pet_Cat" },
+    { id = "Chimaera", name = "Chimaera", icon = "Interface\\Icons\\Ability_Hunter_Pet_Chimera" },
+    { id = "Core Hound", name = "Core Hound", icon = "Interface\\Icons\\Ability_Hunter_Pet_CoreHound" },
+    { id = "Crab", name = "Crab", icon = "Interface\\Icons\\Ability_Hunter_Pet_Crab" },
+    { id = "Crocolisk", name = "Crocolisk", icon = "Interface\\Icons\\Ability_Hunter_Pet_Crocolisk" },
+    { id = "Devilsaur", name = "Devilsaur", icon = "Interface\\Icons\\Ability_Hunter_Pet_Devilsaur" },
+    { id = "Dinosaur", name = "Dinosaur", icon = "Interface\\Icons\\Ability_Hunter_Pet_Raptor" },
+    { id = "Gorilla", name = "Gorilla", icon = "Interface\\Icons\\Ability_Hunter_Pet_Gorilla" },
+    { id = "Hydra", name = "Hydra", icon = "Interface\\Icons\\Ability_Hunter_Pet_Hydra" },
+    { id = "Hyena", name = "Hyena", icon = "Interface\\Icons\\Ability_Hunter_Pet_Hyena" },
+    { id = "Kodo", name = "Kodo", icon = "Interface\\Icons\\Ability_Mount_Kodo_01" },
+    { id = "Raptor", name = "Raptor", icon = "Interface\\Icons\\Ability_Hunter_Pet_Raptor" },
+    { id = "Scorpid", name = "Scorpid", icon = "Interface\\Icons\\Ability_Hunter_Pet_Scorpid" },
+    { id = "Serpent", name = "Serpent", icon = "Interface\\Icons\\Spell_Nature_GuardianWard" },
+    { id = "Silithid", name = "Silithid", icon = "Interface\\Icons\\Ability_Hunter_Pet_Silithid" },
+    { id = "Spider", name = "Spider", icon = "Interface\\Icons\\Ability_Hunter_Pet_Spider" },
+    { id = "Stag", name = "Stag", icon = "Interface\\Icons\\Ability_Hunter_Pet_Stag" },
+    { id = "Tallstrider", name = "Tallstrider", icon = "Interface\\Icons\\Ability_Hunter_Pet_Tallstrider" },
+    { id = "Thunder Lizard", name = "Thunder Lizard", icon = "Interface\\Icons\\Spell_Nature_Lightning" },
+    { id = "Turtle", name = "Turtle", icon = "Interface\\Icons\\Ability_Hunter_Pet_Turtle" },
+    { id = "Wind Serpent", name = "Wind Serpent", icon = "Interface\\Icons\\Ability_Hunter_Pet_WindSerpent" },
+    { id = "Wolf", name = "Wolf", icon = "Interface\\Icons\\Ability_Hunter_Pet_Wolf" },
+    { id = "Worm", name = "Worm", icon = "Interface\\Icons\\Ability_Hunter_Pet_Worm" },
 }
 
 local BESTIARY_SORT_OPTIONS = {
@@ -150,10 +185,22 @@ function Journal:BuildBestiaryView(parent)
     sortBtn.Text = sortText
     leftPanel.SortBtn = sortBtn
 
+    -- Beast Family Sub-Filter Row
+    local familyFilterBtn = CreateFrame("Button", "ForeverSafariBestiaryFamilyFilterBtn", leftPanel, "BackdropTemplate")
+    familyFilterBtn:SetSize(232, 20)
+    familyFilterBtn:SetPoint("TOPLEFT", typeFilterBtn, "BOTTOMLEFT", 0, -4)
+    Theme:ApplyCardBackdrop(familyFilterBtn)
+
+    local familyFilterText = familyFilterBtn:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    familyFilterText:SetPoint("LEFT", 6, 0)
+    familyFilterText:SetText("🐾 Beast Family: |cffffd100All Families|r ▼")
+    familyFilterBtn.Text = familyFilterText
+    leftPanel.FamilyFilterBtn = familyFilterBtn
+
     -- Status Quick-Filter Row ([All] [🐾] [🔭] [❓])
     local statusRow = CreateFrame("Frame", nil, leftPanel)
     statusRow:SetSize(232, 18)
-    statusRow:SetPoint("TOPLEFT", typeFilterBtn, "BOTTOMLEFT", 0, -3)
+    statusRow:SetPoint("TOPLEFT", familyFilterBtn, "BOTTOMLEFT", 0, -4)
 
     local statusBtns = {}
     local statusDefs = {
@@ -222,9 +269,13 @@ function Journal:BuildBestiaryView(parent)
 
         itemBtn:SetScript("OnClick", function()
             bestiarySelectedType = opt.id
-            local shortText = string.sub(opt.text, 1, 10)
             typeFilterText:SetText(string.format("Type: |cffffd100%s|r ▼", opt.id == "ALL" and "All" or opt.id))
             typeMenu:Hide()
+
+            if opt.id ~= "ALL" and opt.id ~= "Beast" then
+                bestiarySelectedFamily = "ALL"
+            end
+
             Journal:UpdateBestiaryView()
             PlaySound(856)
         end)
@@ -239,10 +290,75 @@ function Journal:BuildBestiaryView(parent)
 
     typeFilterBtn:SetScript("OnClick", function()
         if leftPanel.SortMenu:IsShown() then leftPanel.SortMenu:Hide() end
+        if leftPanel.FamilyMenu:IsShown() then leftPanel.FamilyMenu:Hide() end
         if typeMenu:IsShown() then
             typeMenu:Hide()
         else
             typeMenu:Show()
+        end
+        PlaySound(856)
+    end)
+
+    -- Beast Family Sub-Filter Scrollable Popup Menu
+    local familyMenu = CreateFrame("Frame", "ForeverSafariBestiaryFamilyMenu", leftPanel, "BackdropTemplate")
+    familyMenu:SetSize(210, 240)
+    familyMenu:SetPoint("TOPLEFT", familyFilterBtn, "BOTTOMLEFT", 0, -2)
+    familyMenu:SetFrameStrata("DIALOG")
+    Theme:ApplyCardBackdrop(familyMenu)
+    familyMenu:SetBackdropColor(0.08, 0.11, 0.16, 0.98)
+    familyMenu:SetBackdropBorderColor(1.0, 0.82, 0.0, 0.9)
+    familyMenu:Hide()
+    leftPanel.FamilyMenu = familyMenu
+
+    local fScroll = CreateFrame("ScrollFrame", "ForeverSafariFamilyMenuScroll", familyMenu, "UIPanelScrollFrameTemplate")
+    fScroll:SetPoint("TOPLEFT", familyMenu, "TOPLEFT", 4, -4)
+    fScroll:SetPoint("BOTTOMRIGHT", familyMenu, "BOTTOMRIGHT", -22, 4)
+
+    local fContent = CreateFrame("Frame", nil, fScroll)
+    fContent:SetSize(180, (#BEAST_FAMILIES * 20) + 8)
+    fScroll:SetScrollChild(fContent)
+
+    for idx, fOpt in ipairs(BEAST_FAMILIES) do
+        local fItemBtn = CreateFrame("Button", nil, fContent, "BackdropTemplate")
+        fItemBtn:SetSize(176, 18)
+        fItemBtn:SetPoint("TOPLEFT", fContent, "TOPLEFT", 2, -2 - ((idx - 1) * 20))
+
+        local fIcon = fItemBtn:CreateTexture(nil, "ARTWORK")
+        fIcon:SetSize(14, 14)
+        fIcon:SetPoint("LEFT", 4, 0)
+        fIcon:SetTexture(fOpt.icon)
+        fIcon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+
+        local fItemText = fItemBtn:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+        fItemText:SetPoint("LEFT", fIcon, "RIGHT", 6, 0)
+        fItemText:SetText(fOpt.name)
+
+        fItemBtn:SetScript("OnClick", function()
+            bestiarySelectedFamily = fOpt.id
+            if bestiarySelectedFamily ~= "ALL" and bestiarySelectedType ~= "Beast" and bestiarySelectedType ~= "ALL" then
+                bestiarySelectedType = "Beast"
+                typeFilterText:SetText("Type: |cffffd100Beast|r ▼")
+            end
+            familyMenu:Hide()
+            Journal:UpdateBestiaryView()
+            PlaySound(856)
+        end)
+        fItemBtn:SetScript("OnEnter", function(self)
+            self:SetBackdrop({ bgFile = "Interface\\Buttons\\WHITE8X8" })
+            self:SetBackdropColor(1.0, 0.82, 0.0, 0.25)
+        end)
+        fItemBtn:SetScript("OnLeave", function(self)
+            self:SetBackdrop(nil)
+        end)
+    end
+
+    familyFilterBtn:SetScript("OnClick", function()
+        if leftPanel.TypeMenu:IsShown() then leftPanel.TypeMenu:Hide() end
+        if leftPanel.SortMenu:IsShown() then leftPanel.SortMenu:Hide() end
+        if familyMenu:IsShown() then
+            familyMenu:Hide()
+        else
+            familyMenu:Show()
         end
         PlaySound(856)
     end)
@@ -285,6 +401,7 @@ function Journal:BuildBestiaryView(parent)
 
     sortBtn:SetScript("OnClick", function()
         if leftPanel.TypeMenu:IsShown() then leftPanel.TypeMenu:Hide() end
+        if leftPanel.FamilyMenu:IsShown() then leftPanel.FamilyMenu:Hide() end
         if sortMenu:IsShown() then
             sortMenu:Hide()
         else
@@ -494,7 +611,27 @@ function Journal:UpdateBestiaryView()
     local BestiaryDB = ForeverSafari.BestiaryDB
     local allSpecies = BestiaryDB and BestiaryDB:GetAllSpecies() or {}
 
-    -- 1. Filter species by Search Query, Element Type, and Status
+    -- Update Beast Family button state and text
+    local leftPanel = parent.LeftPanel
+    if leftPanel and leftPanel.FamilyFilterBtn then
+        local fBtn = leftPanel.FamilyFilterBtn
+        local fText = fBtn.Text
+        if bestiarySelectedType ~= "ALL" and bestiarySelectedType ~= "Beast" then
+            fBtn:Disable()
+            fBtn:SetAlpha(0.4)
+            fText:SetText("🐾 Family: |cff777777N/A (Beast Only)|r")
+        else
+            fBtn:Enable()
+            fBtn:SetAlpha(1.0)
+            if bestiarySelectedFamily == "ALL" then
+                fText:SetText("🐾 Beast Family: |cffffd100All Families|r ▼")
+            else
+                fText:SetText(string.format("🐾 Family: |cffffd100%s|r ▼", bestiarySelectedFamily))
+            end
+        end
+    end
+
+    -- 1. Filter species by Search Query, Element Type, Beast Family, and Status
     wipe(filteredSpeciesList)
 
     for _, spec in ipairs(allSpecies) do
@@ -507,7 +644,13 @@ function Journal:UpdateBestiaryView()
         -- Type Filter
         local typeMatch = (bestiarySelectedType == "ALL") or (spec.element == bestiarySelectedType) or (spec.family == bestiarySelectedType)
 
-        if statusMatch and typeMatch then
+        -- Beast Family Sub-Filter
+        local familyMatch = true
+        if bestiarySelectedFamily ~= "ALL" then
+            familyMatch = (spec.subFamily == bestiarySelectedFamily) or (spec.family == bestiarySelectedFamily)
+        end
+
+        if statusMatch and typeMatch and familyMatch then
             if bestiarySearchQuery == "" then
                 table.insert(filteredSpeciesList, spec)
             else
@@ -588,7 +731,6 @@ function Journal:UpdateBestiaryView()
 
     -- 3. Update Pokédex Completion Stats
     local stats = DB:GetBestiaryStats()
-    local leftPanel = parent.LeftPanel
     if leftPanel and leftPanel.StatsText then
         leftPanel.StatsText:SetText(string.format("Discovered: |cff00ff99%d/%d|r  |  Captured: |cffffd100%d/%d|r",
             stats.seen, stats.total, stats.caught, stats.total))
@@ -600,7 +742,7 @@ function Journal:UpdateBestiaryView()
 
     -- 4. Update Scroll Child Height and render visible rows
     local totalFiltered = #filteredSpeciesList
-    parent.Content:SetHeight(math.max(340, totalFiltered * ROW_HEIGHT))
+    parent.Content:SetHeight(math.max(308, totalFiltered * ROW_HEIGHT))
 
     local scroll = parent.ScrollFrame
     local currentScroll = scroll and scroll:GetVerticalScroll() or 0
@@ -645,12 +787,13 @@ function Journal:RenderVisibleBestiaryRows(scrollOffset)
                 elseif spec.family == "Undead" or spec.element == "Undead" then iconPath = "Interface\\Icons\\Spell_Shadow_DeadofNight"
                 elseif spec.family == "Elemental" or spec.element == "Elemental" then iconPath = "Interface\\Icons\\Spell_Fire_Elemental_Totem"
                 elseif spec.element == "Magic" then iconPath = "Interface\\Icons\\Spell_Holy_MagicalSentry"
-                elseif spec.subFamily == "Feline" or spec.subFamily == "Cat" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Cat"
-                elseif spec.subFamily == "Canine" or spec.subFamily == "Wolf" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Wolf"
+                elseif spec.subFamily == "Cat" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Cat"
+                elseif spec.subFamily == "Wolf" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Wolf"
                 elseif spec.subFamily == "Bear" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Bear"
                 elseif spec.subFamily == "Boar" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Boar"
                 elseif spec.subFamily == "Raptor" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Raptor"
-                elseif spec.subFamily == "Bat" or spec.subFamily == "BirdofPrey" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Bat"
+                elseif spec.subFamily == "Bat" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Bat"
+                elseif spec.subFamily == "Bird of Prey" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Owl"
                 elseif spec.subFamily == "Spider" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Spider"
                 elseif spec.subFamily == "Scorpid" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Scorpid"
                 elseif spec.subFamily == "Crocolisk" or spec.subFamily == "Crab" then iconPath = "Interface\\Icons\\Ability_Hunter_Pet_Crocolisk"
