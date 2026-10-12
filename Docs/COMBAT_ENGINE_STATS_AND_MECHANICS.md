@@ -128,16 +128,27 @@ flowchart LR
 * **Rank IV (Loyal)**: +6% All Resists
 * **Rank V (Soulbound)**: **+10% All Resists**
 
-#### Layer 5: Player Class Synergy Auras (Static Additive)
-* **Mage** (*Arcane Ward*): **+10% Arcane, Fire, & Frost Resist**
-* **Warrior** (*Marshal's Tenacity*): **+10% Physical Armor**
-* **Priest** (*Ward of the Heavens*): **+10% Shadow & Holy Resist**
-* **Druid** (*Gift of the Wild*): **+5% All Resistances**
-* **Shaman** (*Elemental Shielding*): **+10% Fire, Frost, & Nature Resist**
-* **Warlock** (*Fel Infusion*): **+10% Shadow & Fire Resist**
-* **Paladin** (*Devotion Aura*): **+5% Armor**, **+5% Holy Resist**
-* **Rogue** (*Shadow Evasion*): **+5% Dodge Chance**
-* **Hunter** (*Aspect of the Wild*): **+10% Nature Resist**, **+5% Beast Damage**
+#### Layer 5: Player Class Defenses (Static Slices vs. Procced Wards)
+
+Player class defenses scale dynamically based on the **companion's individual Attunement Rank**, creating a split between physical/wild static mitigation and mystic reactive warded shields:
+
+##### A. Static Slice Classes (Permanent, Always-Active Slices)
+* 🛡️ **Warrior (*Marshal's Tenacity*)**: **+5% per Attunement Rank** Physical Damage Reduction / Armor (**5%** at Rank 1 $\to$ **25%** at Rank V).
+* 🗡️ **Rogue (*Shadow Evasion*)**: **+5% per Attunement Rank** Enemy Miss Chance / Evasion (**5%** at Rank 1 $\to$ **25%** at Rank V).
+* 🏹 **Hunter (*Aspect of the Wild*)**: **+5% per Attunement Rank** Nature Resistance (**5%** at Rank 1 $\to$ **25%** at Rank V).
+* 🍃 **Druid (*Gift of the Wild*)**: **+2% per Attunement Rank** Pure Static Omni-Resist across **all 6 magic schools** (**2%** at Rank 1 $\to$ **10%** at Rank V).
+
+##### B. Procced Ward Classes (Mystic / Reactive Elemental Absorption)
+* **Proc Rate**: **5% per Attunement Rank** (**5%** at Rank 1 $\to$ **25%** at Rank V).
+* **Mitigation Effect (On Proc)**: **10% per Attunement Rank** damage reduction against that strike (**10%** at Rank 1 $\to$ **50%** half-damage reduction at Rank V).
+* **DoT (Damage-over-Time) Dynamic Evaluation**:
+  * Against periodic damage (e.g. *Corruption*, *Rend*, *Immolate*, *Moonfire*), the proc is **evaluated independently on every single tick**. A companion may resist one tick and take full damage on the next.
+* **School Affinities**:
+  * 🔮 **Mage (*Arcane Ward*)**: **Arcane, Fire, & Frost**
+  * ⚡ **Shaman (*Elemental Shielding*)**: **Fire, Frost, & Nature**
+  * 💀 **Warlock (*Fel Infusion*)**: **Shadow & Fire**
+  * 🕊️ **Priest (*Ward of the Heavens*)**: **Shadow & Holy**
+  * ⚔️ **Paladin (*Devotion / Aegis*)**: **Physical Armor & Holy**
 
 ---
 
@@ -194,7 +205,82 @@ sequenceDiagram
 
 ---
 
-## 7. Progression & Item Integration
+## 7. Player Class Tactical Identity & Combat Passives
+
+Player Class passives grant unique tactical flavor and defense layers based on the player's active class (`UnitClass("player")`), scaling cleanly with the active companion's **Attunement Rank (I–V)** using strict `math.ceil()` arithmetic.
+
+```
+                      ┌────────────────────────────────────────┐
+                      │          UnitClass("player")           │
+                      └───────────────────┬────────────────────┘
+                                          │
+                 ┌────────────────────────┴────────────────────────┐
+                 ▼                                                 ▼
+   ┌───────────────────────────┐                     ┌───────────────────────────┐
+   │    Core/ClassPassives.lua  │                     │   Core/BattleEngine.lua   │
+   │  Passive lookup & math    │ ◄───────────────────┤ Damage mitigation, heals, │
+   │  ceil modifiers           │                     │ turns, miss chance, ankh  │
+   └─────────────┬─────────────┘                     └─────────────┬─────────────┘
+                 │                                                 │
+                 ▼                                                 ▼
+   ┌───────────────────────────┐                     ┌───────────────────────────┐
+   │    Core/StatEngine.lua    │                     │    UI/BattleFrame.lua     │
+   │  Hunter stat scaling &    │                     │  Priest Divine Grace      │
+   │  Druid loyalty bonus      │                     │  tactical command button  │
+   └───────────────────────────┘                     └───────────────────────────┘
+```
+
+### 7.1 Static Slices (Permanent Innate Defenses)
+Always-active defensive reductions applied cleanly as static percentage slices:
+* 🛡️ **Warrior (*Marshal's Tenacity*)**: **+5% per Attunement Rank** Physical Damage Reduction / Armor (**5%** at Rank I $\to$ **25%** at Rank V).
+* 🗡️ **Rogue (*Shadow Evasion*)**: **+5% per Attunement Rank** Enemy Miss Chance / Evasion (**5%** at Rank I $\to$ **25%** at Rank V).
+* 🏹 **Hunter (*Aspect of the Wild & Pathfinder*)**: **+5% per Attunement Rank** Nature Resistance (**5%** at Rank I $\to$ **25%** at Rank V); companion base attack and defense scaled by +5% to +25%.
+* 🍃 **Druid (*Gift of the Wild & Symbiosis*)**: **+2% per Attunement Rank** Pure Static Omni-Resist across **all 6 magic schools** (**2%** at Rank I $\to$ **10%** at Rank V); Attunement point gains accelerated (+25%) and rank thresholds reduced by 25%.
+
+### 7.2 Procced Wards (Reactive Elemental Absorption)
+Mystic reactive shields that trigger on incoming strikes and periodic ticks:
+* **Proc Rate**: **5% per Attunement Rank** (**5%** at Rank I $\to$ **25%** at Rank V).
+* **Mitigation on Proc**: **10% per Attunement Rank** damage reduction (**10%** at Rank I $\to$ **50%** half-damage at Rank V).
+* **Per-Tick DoT Resolution**: Against damage-over-time effects (*Corruption*, *Rend*, *Immolate*, *Moonfire*), the ward rolls **independently on every single tick**. A companion may resist one tick and take unmitigated damage on the next.
+* **School Affinities**:
+  * 🔮 **Mage (*Arcane Ward*)**: Arcane, Fire, & Frost.
+  * ⚡ **Shaman (*Elemental Shielding*)**: Fire, Frost, & Nature.
+  * 💀 **Warlock (*Fel Infusion*)**: Shadow & Fire.
+  * 🕊️ **Priest (*Ward of the Heavens*)**: Shadow & Holy.
+  * ⚔️ **Paladin (*Aegis of Light*)**: Physical Armor & Holy (plus 5%–25% damage-to-healing conversion via *Aura of Light*).
+
+### 7.3 Special Tactical Combat Mechanics
+* 🔮 **Mage Chilling Tempo & Frost Counterplay**:
+  * **Offensive Proc**: 5% per Rank (5%–25%) on companion attack.
+  * **Defensive Proc**: 10% per Rank (10%–50%) when companion is struck.
+  * **Effect**: Inflicts **Chilled** for 2 turns (-50% Speed), opening a speed-lapping window on the action gauge.
+  * **Direct Roll Subtraction**: Target's Frost Resistance % directly subtracts from proc chance:
+    $$\text{Effective Proc \%} = \max\Big(0\%,\ \text{Base Proc \%} - \text{Frost Resist \%}\Big)$$
+    (Hard-countered by cold-hardy beasts: Polar Bears, Winter Wolves, Frostsabers, Snow Owls, Blue Dragonkin, Frost Elementals).
+* 🕊️ **Priest Divine Grace**:
+  * Provides an active tactical heal command in the battle tray (`UI/BattleFrame.lua`).
+  * Charges = Attunement Rank uses per battle.
+  * Effect: Instantly heals companion for `math.ceil(maxHP * 0.25)`.
+* ⚡ **Shaman Primal Rebirth**:
+  * `RollAnkh()` executes on companion fatal damage inside `BE:CheckDefeatPassives()`.
+  * 50% chance to resurrect companion at 50% HP once per battle.
+* 💀 **Warlock Curse of Suppression**:
+  * When facing an enemy AI trainer or PvP opponent, halves all opposed class passives by 50%.
+
+### 7.4 Engine Execution & UI Hooks
+1. **Turn Execution Hooks (`Core/BattleEngine.lua`)**:
+   * Apply Warrior Physical mitigation and Ward absorptions inside `BE:ApplyMoveEffects()`.
+   * Apply Paladin damage-to-healing conversion.
+   * Apply Rogue miss penalty to incoming enemy accuracy checks.
+   * Apply Shaman Primal Rebirth check inside `BE:CheckDefeatPassives()`.
+   * Evaluate independent Ward proc rolls during each periodic DoT tick.
+2. **Interface Hooks (`UI/BattleFrame.lua`)**:
+   * Display active player class aura icon on companion unit frame.
+   * Render `[ 💖 Divine Grace (X) ]` button on battle command tray for Priests.
+
+---
+
+## 8. Progression & Item Integration
 
 1. **Two-Move Starter Rule**:
    - Companions are created with exactly **2 moves**: Slot 1 (Offensive) and Slot 2 (Defensive).
@@ -203,3 +289,12 @@ sequenceDiagram
    - Dungeon and raid bosses do not drop infant companion pups.
    - Slaying a boss yields a **Catalyst Shard** matching their subfamily/family (e.g., Magmadar drops **`Core Hound Catalyst`**, Gahz'rilla drops **`Hydra Catalyst`**, Huhuran drops **`Silithid Catalyst`**).
    - Catalysts are consumed to trigger Metamorphosis evolutions in the Nursery.
+
+---
+
+## 9. Verification & Acceptance Criteria
+* [x] **Zero Taint**: All class passive evaluations avoid Blizzard UI namespace pollution and use local closures.
+* [x] **Strict Integer Math**: All stat scaling, heals, and mitigation amounts rounded via `math.ceil()`.
+* [x] **Deterministic Stat Totals**: Species base stats adhere strictly to 100/110 budgets via Largest Remainder Zero-Drift rounding.
+* [x] **Per-Tick DoT Independence**: Periodic effects evaluate reactive ward procs independently per damage tick.
+* [x] **Single Source of Truth**: All combat mechanics, formulas, resistance layers, and class passives consolidated in this specification.
