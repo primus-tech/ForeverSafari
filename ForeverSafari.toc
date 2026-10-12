@@ -52,6 +52,7 @@ Data\Creatures\Beasts\Creatures_Beasts_Silithid.lua
 Data\Creatures\Beasts\Creatures_Beasts_Spider.lua
 Data\Creatures\Beasts\Creatures_Beasts_Stag.lua
 Data\Creatures\Beasts\Creatures_Beasts_Tallstrider.lua
+Data\Creatures\Beasts\Creatures_Beasts_ThunderLizard.lua
 Data\Creatures\Beasts\Creatures_Beasts_Turtle.lua
 Data\Creatures\Beasts\Creatures_Beasts_WindSerpent.lua
 Data\Creatures\Beasts\Creatures_Beasts_Wolf.lua

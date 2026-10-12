@@ -195,6 +195,7 @@ ItemDB.FAMILY_DIETS = {
     ["Gorilla"]      = { favorite = "food_fruit",    accepted = { "food_fruit", "food_bread", "food_fungus" } },
     ["Kodo"]         = { favorite = "food_bread",    accepted = { "food_bread", "food_fruit", "food_cheese" } },
     ["Tallstrider"]  = { favorite = "food_bread",    accepted = { "food_bread", "food_fruit", "food_meat" } },
+    ["Thunder Lizard"] = { favorite = "food_crystals", accepted = { "food_crystals", "food_fruit", "food_meat" } },
     ["Hydra"]        = { favorite = "food_meat",     accepted = { "food_meat", "food_fish" } },
 
     -- Special Types

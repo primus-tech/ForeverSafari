@@ -37,6 +37,14 @@ function BattleCapture:CanCapture(enemy, isTrainerBattle)
         return false, string.format("Cannot capture %s! Requires research permit [%s]!", enemy.creatureType, permitName)
     end
 
+    -- ⚡ Saurian Elemental Permit Gate: Thunder Lizards require Elemental Research Permit
+    local isThunderLizard = (enemy.family == "Thunder Lizard" or enemy.subFamily == "Thunder Lizard")
+    if isThunderLizard and DB and not DB:IsTypeUnlocked("Elemental") then
+        local permit = C.TYPE_RESEARCH_PERMITS and C.TYPE_RESEARCH_PERMITS["Elemental"]
+        local permitName = permit and permit.name or "Primal Attunement Permit"
+        return false, string.format("Cannot capture Thunder Lizards! Requires research permit [%s]!", permitName)
+    end
+
     local isSquadFull = (DB and DB:GetSquadCount() >= 4)
     local enemyQuality = enemy.quality or (enemy.isBoss and 4) or (enemy.isRareSpawn and 3) or (enemy.isElite and 2) or 1
     if isSquadFull and DB and not DB:HasTransportCrate(enemyQuality) then

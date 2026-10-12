@@ -544,12 +544,27 @@ function BE:StartWildBattle(unit)
 
     local isTrainer = ns.TrainerEngine and ns.TrainerEngine:IsHumanoidTrainer(unit)
     if isTrainer then
+        -- 🔒 Roaming AI Trainer GUID Anti-Farm Lockout (24-hour defeat cooldown)
+        local guid = UnitGUID(unit)
+        if guid and ForeverSafariDB and ForeverSafariDB.defeatedTrainers and ForeverSafariDB.defeatedTrainers[guid] then
+            local lastDefeated = ForeverSafariDB.defeatedTrainers[guid]
+            if (time() - lastDefeated) < 86400 then
+                if ForeverSafari.Toast then
+                    ForeverSafari.Toast:ShowAlert("Trainer Resting", "This trainer was recently bested and is resting their team. Return tomorrow!")
+                else
+                    DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cffffaa00This trainer was recently bested and is resting their team. Return tomorrow!|r", C.PREFIX or "[Safari] "))
+                end
+                return
+            end
+        end
+
         local match = ns.TrainerEngine:GenerateTrainerMatch(unit)
         local enemyMob = match.team[1]
 
         BE.State.inBattle = true
         BE.State.isTrainerBattle = true
         BE.State.enemyTrainer = match
+        BE.State.enemyTrainerGUID = guid
         BE.State.enemyTeam = match.team
         BE.State.enemyActiveSlot = 1
         BE.State.playerMob = activeMob
@@ -1396,6 +1411,12 @@ function BE:HandleVictory()
         player.battlesWon = (player.battlesWon or 0) + 1
         player.battlesTotal = (player.battlesTotal or 0) + 1
         ForeverSafariDB.stats.totalBattlesWon = (ForeverSafariDB.stats.totalBattlesWon or 0) + 1
+
+        -- 🔒 Record defeat timestamp for trainer GUID (24h anti-farm lockout)
+        if BE.State.enemyTrainerGUID and ForeverSafariDB then
+            ForeverSafariDB.defeatedTrainers = ForeverSafariDB.defeatedTrainers or {}
+            ForeverSafariDB.defeatedTrainers[BE.State.enemyTrainerGUID] = time()
+        end
 
         if ForeverSafari.Toast then
             ForeverSafari.Toast:ShowReward(string.format("%s Defeated!", trainerTitle), string.format("+%d Safari Tokens", tokenReward))

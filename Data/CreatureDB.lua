@@ -43,6 +43,7 @@ local partitions = {
     FS.Creatures_Beasts_Spider,
     FS.Creatures_Beasts_Stag,
     FS.Creatures_Beasts_Tallstrider,
+    FS.Creatures_Beasts_ThunderLizard,
     FS.Creatures_Beasts_Turtle,
     FS.Creatures_Beasts_WindSerpent,
     FS.Creatures_Beasts_Wolf,

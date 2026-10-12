@@ -119,6 +119,24 @@ function CE:CanInitiateSnare(unit)
         return false, string.format("%s research locked! Complete quest to earn [%s].", creatureType, permitName)
     end
 
+    -- ⚡ Saurian Elemental Permit Gate: Thunder Lizards require Elemental Research Permit
+    local rawFamily = UnitCreatureFamily and UnitCreatureFamily(unit)
+    local isThunderLizard = (rawFamily == "Thunder Lizard" or (name and (string.find(string.lower(name), "thunder lizard") or string.find(string.lower(name), "lightning hide") or string.find(string.lower(name), "stormsnout") or string.find(string.lower(name), "stormhide") or string.find(string.lower(name), "thunderhead"))))
+    if isThunderLizard and not DB:IsTypeUnlocked("Elemental") then
+        local permit = C.TYPE_RESEARCH_PERMITS and C.TYPE_RESEARCH_PERMITS["Elemental"]
+        local permitName = permit and permit.name or "Primal Attunement Permit"
+        return false, string.format("Thunder Lizard research locked! Complete quest to earn [%s].", permitName)
+    end
+
+    -- 🔒 Spawn-Instance GUID Anti-Farm Lockout (24-hour observation cooldown per entity)
+    local guid = UnitGUID(unit)
+    if guid and ForeverSafariDB and ForeverSafariDB.scannedGuids and ForeverSafariDB.scannedGuids[guid] then
+        local lastScanned = ForeverSafariDB.scannedGuids[guid]
+        if (time() - lastScanned) < 86400 then
+            return false, "This wild specimen has already been cataloged recently! Seek another quarry."
+        end
+    end
+
     return true, "Eligible"
 end
 
@@ -349,6 +367,13 @@ function CE:CompleteSnareChannel()
         if ForeverSafari.CaptureHUD and ForeverSafari.CaptureHUD.ShowCaptureResult then
             ForeverSafari.CaptureHUD:ShowCaptureResult(true, "Observation Complete (+15 Attunement)", 1.0)
         end
+    end
+
+    -- 🔒 Record observation timestamp for entity GUID (24h anti-farm lockout)
+    local guid = UnitGUID("target")
+    if guid and ForeverSafariDB then
+        ForeverSafariDB.scannedGuids = ForeverSafariDB.scannedGuids or {}
+        ForeverSafariDB.scannedGuids[guid] = time()
     end
 end
 

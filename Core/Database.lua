@@ -38,6 +38,8 @@ local DEFAULT_DB = {
     discovered = {}, -- Legacy discovered table
     bestiary = {},   -- Modern 3-tier Pokédex discovery table
     rewardedQuests = {}, -- Map of questID -> timestamp (prevents double-dipping across sessions)
+    scannedGuids = {},      -- Map of unitGUID -> epoch_timestamp (24h field observation anti-farm lockout)
+    defeatedTrainers = {},  -- Map of unitGUID -> epoch_timestamp (24h AI trainer battle anti-farm lockout)
     unlockedAbilities = {
         ["101"] = true, -- Bite
         ["102"] = true, -- Growl
@@ -133,6 +135,9 @@ function DB:Initialize()
         if self.BackfillBestiaryFromCollection then
             self:BackfillBestiaryFromCollection()
         end
+
+        -- Automated 24h GUID Anti-Farm Lockout Pruning Pass
+        self:PruneExpiredGuids()
     end
 
     if not ForeverSafariSettings then
@@ -151,6 +156,32 @@ function DB:Initialize()
 
     if ns.Crypto then ns.Crypto:ValidateAndRepairSignatures(ForeverSafariDB.collection) end
     self:ValidateTeam()
+
+    -- Ensure GUID tracking tables exist
+    ForeverSafariDB.scannedGuids = ForeverSafariDB.scannedGuids or {}
+    ForeverSafariDB.defeatedTrainers = ForeverSafariDB.defeatedTrainers or {}
+end
+
+-- =========================================================================
+-- 🧹 GUID ANTI-FARM LOCKOUT PRUNING
+-- =========================================================================
+function DB:PruneExpiredGuids()
+    local now = time()
+    local ttl = 86400 -- 24 hours
+    if ForeverSafariDB and ForeverSafariDB.scannedGuids then
+        for guid, timestamp in pairs(ForeverSafariDB.scannedGuids) do
+            if (now - timestamp) > ttl then
+                ForeverSafariDB.scannedGuids[guid] = nil
+            end
+        end
+    end
+    if ForeverSafariDB and ForeverSafariDB.defeatedTrainers then
+        for guid, timestamp in pairs(ForeverSafariDB.defeatedTrainers) do
+            if (now - timestamp) > ttl then
+                ForeverSafariDB.defeatedTrainers[guid] = nil
+            end
+        end
+    end
 end
 
 -- =========================================================================

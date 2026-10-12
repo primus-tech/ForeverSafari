@@ -335,19 +335,19 @@
 
 ---
 
-## 📍 Phase 22: Beast Taxonomy Refinement & Elemental Saurians (Pending ⏳)
-* [ ] **Discrete Beast Family Stratification**:
-  * Formalize **Kodos** and **Tallstriders** as strictly decoupled, distinct families within the Beast genus across all database tables, dietary rules, and family movepools.
-  * Establish **Thunder Lizards** as their own dedicated saurian family (`Thunder Lizard` / `Lizard`) within Beasts.
-* [ ] **Elemental License Gating for Thunder Lizards**:
+## 📍 Phase 22: Beast Taxonomy Refinement & Elemental Saurians (Completed ✅)
+* [x] **Discrete Beast Family Stratification (Zero Shims & Zero Aliases)**:
+  * Formalized **Kodos** and **Tallstriders** as strictly decoupled, distinct families within the Beast genus across all database tables, dietary rules, and family movepools.
+  * Established **Thunder Lizards** (`Thunder Lizard`) as their own dedicated saurian partition (`Data/Creatures/Beasts/Creatures_Beasts_ThunderLizard.lua`) with favorite `food_crystals` lodestone diet and canonical grimoire.
+* [x] **Elemental License Gating for Thunder Lizards**:
   * Thunder Lizards harness primal nature and lightning fury. While taxonomically classified under the Beast genus, **capturing Thunder Lizards in the wild is strictly gated behind the Elemental Research Permit / License** (earned by defeating *Viscous Fallout* in Gnomeregan or *Baron Aquanis* in BFD).
-* [ ] **Kalimdor Saurian Species Roster**:
-  * Add canonical Barrens and Desolace species (*Thunder Lizard*, *Lightning Hide*, *Stormsnout*, and rare apex *Thunderhead*) to both `Data/CreatureDB.lua` and `Data/BestiaryDB.lua` with verified 3D display IDs, 100/110 base stat distributions, and thematic lightning movepools.
-* [ ] **Spawn-Instance GUID Anti-Farm Lockouts (`UnitGUID`)**:
+* [x] **Kalimdor Saurian Species Roster**:
+  * Added canonical Barrens and Desolace species (*Thunder Lizard*, *Lightning Hide*, *Stormsnout*, *Stormhide*, and rare apex *Thunderhead*) to both `Data/CreatureDB.lua` and `Data/BestiaryDB.lua` with verified 3D display IDs, 100/110 base stat distributions, and thematic lightning movepools (*Shock Blast*, *Static Charge*, *Tail Sweep*, *Storm Surge*).
+* [x] **Spawn-Instance GUID Anti-Farm Lockouts (`UnitGUID`)**:
   * Track individual world spawn instances via `UnitGUID("target")` to eliminate duplicate engagements on the same living NPC.
-  * **Observation / Scanning Lockout**: Successfully completing a field observation channel (`/safari observe`) marks the entity's GUID in `ForeverSafariDB.scannedGuids`, preventing redundant channels against that same wild specimen.
+  * **Observation / Scanning Lockout**: Successfully completing a field observation channel (`/safari observe`) marks the entity's GUID in `ForeverSafariDB.scannedGuids`, preventing redundant channels against that same wild specimen for 24 hours.
   * **Roaming AI Trainer Lockout**: Defeating a humanoid NPC in turn-based combat records their spawn GUID in `ForeverSafariDB.defeatedTrainers`, preventing players from repeatedly battling the same living humanoid for infinite Safari Tokens.
-  * **Automated Expiration & Pruning**: Daily reset / 24-hour timestamp pruning to prevent SavedVariables bloat while allowing respawned world encounters.
+  * **Automated Expiration & Pruning (`DB:PruneExpiredGuids`)**: Automatic daily / 24-hour timestamp pruning on login to prevent SavedVariables bloat while allowing respawned world encounters.
 
 ---
 
