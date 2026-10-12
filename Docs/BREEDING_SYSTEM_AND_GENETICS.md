@@ -146,17 +146,38 @@ $$\mathbf{\text{Rare Chance \%} = (\text{Male Attunement Rank} + \text{Female At
 
 ---
 
-## 8. Egg Distribution & Fair Split
+---
 
-When the breeding process concludes:
-1. **Parent Consumption / Ritual**:
-   * Parents are permanently retired into the wild/sanctuary as part of the lineage continuation ceremony.
-2. **Guaranteed 2-Egg Split**:
-   * **Egg 1** is deposited into Player A's Virtual Safari Bag (`/fsbag`).
-   * **Egg 2** is deposited into Player B's Virtual Safari Bag (`/fsbag`).
-3. **Bonus 3rd Egg (20% Chance)**:
-   * A 20% roll awards a bonus 3rd egg.
-   * If triggered, an automated $d100$ tie-breaker roll determines which player receives the extra egg.
-4. **Egg Incubation & Hatching**:
-   * Item `safari_egg_<family>` stored in `/fsbag`.
-   * Incubation progresses through field activity (battles and quests), with right-click "Hatch" when fully gestated.
+## 8. Egg Tiers, Yields & Highlander Dynamics
+
+Under the **Highlander Unique Ownership Rule** (maximum 1 active instance per species per player), multiple eggs create high-stakes rarity decisions and an active social economy.
+
+### A. The Two Egg Tiers
+
+| Feature | 🥚 Normal Safari Egg (`safari_egg_<family>`) | 🔮 Catalyzed Safari Egg (`safari_egg_<family>_catalyzed`) |
+| :--- | :--- | :--- |
+| **Creation** | Bred without a catalyst | Infused with a Boss Catalyst (*Core Hound, Hydra, etc.*) |
+| **Rare Probability** | $(\text{Male Rank} + \text{Female Rank})\%$ (**2% – 10%**) | **Doubled Odds**: $(\text{Male Rank} + \text{Female Rank}) \times 2\%$ (**4% – 20%**) |
+| **Item Quality** | Rare (Blue, `|cff0070dd|r`) | Epic (Purple, `|cffa335ee|r`) |
+| **Visual Icon** | `Interface\Icons\INV_Egg_02` | `Interface\Icons\INV_Egg_03` (Prismatic / Glowing) |
+| **Tooltip** | *"A warm, pulsing egg produced from companion breeding."* | *"Infused with raw metamorphic catalyst energy! Has a doubled chance to hatch into a Rare champion."* |
+
+---
+
+### B. Egg Yield Mechanics
+
+The presence of a Catalyst directly increases egg litter volume:
+
+1. **Standard Uncatalyzed Breeding**:
+   * **1 Normal Egg per Player** guaranteed (2 eggs total).
+   * **Bonus 3rd Egg (20% Chance)**: A 20% roll awards a bonus 3rd Normal Egg, resolved via automated $d100$ tie-breaker between the two players.
+2. **Catalyzed Breeding (Catalyst Consumed)**:
+   * **2 Catalyzed Eggs per Player Guaranteed** (4 eggs total across the pair)!
+   * Both players receive **two independent shots** at hatching a Rare champion with the doubled $4\% - 20\%$ probability.
+
+---
+
+### C. Highlander Rarity Decisions & Trading Value
+* If an egg hatches into a **Normal** (100 base budget) and the second egg hatches into a **Rare** (110 base budget), the player upgrades their squad to the Rare.
+* Duplicate eggs or unhatched species can be traded or gifted to friends, guildmates, or collection partners, driving an active player-to-player trade economy.
+* Eggs are stored and gestated within the player's Virtual Safari Bag (`/fsbag`). Incubation progresses through field battles and quests, unlocking right-click "Hatch" when fully gestated.

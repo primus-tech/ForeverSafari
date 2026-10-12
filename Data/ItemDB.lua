@@ -294,20 +294,38 @@ function ItemDB:GetItem(id)
     if self.TRANSPORT_CRATES[id] then return self.TRANSPORT_CRATES[id] end
 
     if id == "safari_egg" or string.find(id, "^safari_egg_") then
-        local rawFam = id:match("^safari_egg_(.+)$") or "Beast"
+        local isCatalyzed = string.find(id, "_catalyzed$")
+        local rawFam = id:match("^safari_egg_([^_]+)") or "Beast"
         local famTitle = rawFam:gsub("^%l", string.upper)
-        return {
-            id = id,
-            name = famTitle .. " Safari Egg",
-            category = "Safari Nursery Egg",
-            icon = "Interface\\Icons\\INV_Egg_02",
-            quality = 3,
-            color = "0070dd",
-            tokenCost = 0,
-            desc = string.format("A warm, pulsating egg produced from the Moonglade Cenarion Breeding ritual of two Rank V %s champions. Right-Click to hatch into a purebred newborn companion!", famTitle),
-            useText = "Right-Click to incubate and hatch newborn companion into your squad.",
-            family = famTitle,
-        }
+        if isCatalyzed then
+            return {
+                id = id,
+                name = "Catalyzed " .. famTitle .. " Egg",
+                category = "Catalyzed Nursery Egg",
+                icon = "Interface\\Icons\\INV_Egg_03",
+                quality = 4,
+                color = "a335ee",
+                tokenCost = 0,
+                desc = string.format("A radiant egg infused with primal boss metamorphic energy! Has a doubled chance (up to 20%%) to hatch into a Rare %s champion.", famTitle),
+                useText = "Right-Click to incubate and hatch newborn champion into your squad.",
+                family = famTitle,
+                isCatalyzed = true,
+            }
+        else
+            return {
+                id = id,
+                name = famTitle .. " Safari Egg",
+                category = "Safari Nursery Egg",
+                icon = "Interface\\Icons\\INV_Egg_02",
+                quality = 3,
+                color = "0070dd",
+                tokenCost = 0,
+                desc = string.format("A warm, pulsing egg produced from companion breeding. Has a chance to hatch into a Rare %s champion.", famTitle),
+                useText = "Right-Click to incubate and hatch newborn companion into your squad.",
+                family = famTitle,
+                isCatalyzed = false,
+            }
+        end
     end
     return nil
 end
