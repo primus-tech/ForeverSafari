@@ -788,6 +788,7 @@ function Journal:UpdateBestiaryView()
     end)
 
     -- 3. Update Pokédex Completion Stats
+    local totalFiltered = #filteredSpeciesList
     local stats = DB:GetBestiaryStats()
     if leftPanel and leftPanel.StatsText then
         if bestiaryCurrentZoneOnly and currentZone ~= "" then
@@ -820,7 +821,6 @@ function Journal:UpdateBestiaryView()
     end
 
     -- 4. Update Scroll Child Height and render visible rows
-    local totalFiltered = #filteredSpeciesList
     parent.Content:SetHeight(math.max(308, totalFiltered * ROW_HEIGHT))
 
     local scroll = parent.ScrollFrame
