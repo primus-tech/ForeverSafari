@@ -128,7 +128,7 @@ FS.Creatures_Beasts_Basilisk = {
         allowObservation = false,
         isInstanceOnly = true,
         pupDropRate = 0.25,
-        pupName = "Skum Pup",
+        pupName = "Basilisk Catalyst",
         moves = {101, 112},
         baseStats = { hp = 241, atk = 59, def = 94, spd = 36 },
     },

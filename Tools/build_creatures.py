@@ -402,31 +402,35 @@ def process_mob(mob, family, subFamily, spec, element, move1, move2, default_pup
     name = sanitize_name(mob.get('name'))
     stats = calculate_stats(min_lvl, max_lvl, classif, spec)
     
-    pup_name = f"{name} Pup"
-    if "Hatchling" in default_pup_name:
-        pup_name = f"{name} Hatchling"
-    elif "Cub" in default_pup_name:
-        pup_name = f"{name} Cub"
-    elif "Kitten" in default_pup_name:
-        pup_name = f"{name} Kitten"
-    elif "Piglet" in default_pup_name:
-        pup_name = f"{name} Piglet"
-    elif "Fledgling" in default_pup_name:
-        pup_name = f"{name} Fledgling"
-    elif "Spiderling" in default_pup_name:
-        pup_name = f"{name} Spiderling"
-    elif "Whelp" in default_pup_name:
-        pup_name = f"{name} Whelp"
-    elif "Spark" in default_pup_name:
-        pup_name = f"{name} Spark"
-    elif "Scrap" in default_pup_name or "Micro-Bot" in default_pup_name:
-        pup_name = f"{name} Micro-Bot"
-    elif "Calf" in default_pup_name:
-        pup_name = f"{name} Calf"
-    elif "Fawn" in default_pup_name:
-        pup_name = f"{name} Fawn"
-    elif "Minnow" in default_pup_name:
-        pup_name = f"{name} Minnow"
+    if boss:
+        cat_name = subFamily if (family == "Beast" and subFamily) else family
+        pup_name = f"{cat_name} Catalyst"
+    else:
+        pup_name = f"{name} Pup"
+        if "Hatchling" in default_pup_name:
+            pup_name = f"{name} Hatchling"
+        elif "Cub" in default_pup_name:
+            pup_name = f"{name} Cub"
+        elif "Kitten" in default_pup_name:
+            pup_name = f"{name} Kitten"
+        elif "Piglet" in default_pup_name:
+            pup_name = f"{name} Piglet"
+        elif "Fledgling" in default_pup_name:
+            pup_name = f"{name} Fledgling"
+        elif "Spiderling" in default_pup_name:
+            pup_name = f"{name} Spiderling"
+        elif "Whelp" in default_pup_name:
+            pup_name = f"{name} Whelp"
+        elif "Spark" in default_pup_name:
+            pup_name = f"{name} Spark"
+        elif "Scrap" in default_pup_name or "Micro-Bot" in default_pup_name:
+            pup_name = f"{name} Micro-Bot"
+        elif "Calf" in default_pup_name:
+            pup_name = f"{name} Calf"
+        elif "Fawn" in default_pup_name:
+            pup_name = f"{name} Fawn"
+        elif "Minnow" in default_pup_name:
+            pup_name = f"{name} Minnow"
     
     master_creatures[nid] = {
         'id': nid,

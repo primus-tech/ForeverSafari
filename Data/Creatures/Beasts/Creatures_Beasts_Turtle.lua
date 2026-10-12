@@ -74,7 +74,7 @@ FS.Creatures_Beasts_Turtle = {
         allowObservation = false,
         isInstanceOnly = true,
         pupDropRate = 0.25,
-        pupName = "Kresh Hatchling",
+        pupName = "Turtle Catalyst",
         moves = {101, 404},
         baseStats = { hp = 234, atk = 57, def = 91, spd = 35 },
     },

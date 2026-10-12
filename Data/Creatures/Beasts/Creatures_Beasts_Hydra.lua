@@ -110,7 +110,7 @@ FS.Creatures_Beasts_Hydra = {
         allowObservation = false,
         isInstanceOnly = true,
         pupDropRate = 0.25,
-        pupName = "Gahz'rilla Hatchling",
+        pupName = "Hydra Catalyst",
         moves = {101, 118},
         baseStats = { hp = 297, atk = 193, def = 89, spd = 138 },
     },

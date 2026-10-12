@@ -418,7 +418,7 @@ FS.Creatures_Beasts_Crocolisk = {
         allowObservation = false,
         isInstanceOnly = true,
         pupDropRate = 0.25,
-        pupName = "Rotgrip Pup",
+        pupName = "Crocolisk Catalyst",
         moves = {101, 112},
         baseStats = { hp = 468, atk = 115, def = 188, spd = 70 },
     },
