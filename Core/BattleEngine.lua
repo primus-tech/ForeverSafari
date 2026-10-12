@@ -337,6 +337,13 @@ end
 -- Start a Wild Battle against targeted unit or generated mob
 function BE:StartWildBattle(unit)
     unit = unit or "target"
+
+    local inInstance, instanceType = IsInInstance()
+    if inInstance and instanceType and instanceType ~= "none" then
+        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Safari battles cannot be initiated inside instances, raids, or battlegrounds! Defeat mobs here for a chance at companion pup drops.|r")
+        return false
+    end
+
     local activeMob = DB:GetActiveMob()
     if not activeMob then
         DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444You have no active companion ready for battle! Open your Field Guide to set one.|r")

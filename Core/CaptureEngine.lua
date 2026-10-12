@@ -82,6 +82,11 @@ function CE:CanInitiateSnare(unit)
     if UnitIsDead(unit) then return false, "Quarry is dead." end
     if UnitIsPlayer(unit) then return false, "Cannot observe players!" end
 
+    local inInstance, instanceType = IsInInstance()
+    if inInstance and instanceType and instanceType ~= "none" then
+        return false, "Field observation is prohibited inside instances, raids, and battlegrounds!"
+    end
+
     local reaction = UnitReaction("player", unit)
     if not isSecret(reaction) and reaction and reaction > 4 then
         return false, "Target is a friendly NPC."

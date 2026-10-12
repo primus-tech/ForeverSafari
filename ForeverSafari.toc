@@ -22,6 +22,13 @@
 Data\ItemDB.lua
 Data\MoveDB.lua
 Data\BountyDB.lua
+Data\Creatures\Creatures_Zones.lua
+Data\Creatures\Creatures_Beasts.lua
+Data\Creatures\Creatures_Dragonkin.lua
+Data\Creatures\Creatures_Elementals.lua
+Data\Creatures\Creatures_Mechanicals.lua
+Data\Creatures\Creatures_Undead.lua
+Data\Creatures\Creatures_Other.lua
 Data\CreatureDB.lua
 Data\BestiaryDB.lua
 Data\EvolutionDB.lua
@@ -41,6 +48,7 @@ Core\TrainerEngine.lua
 Core\CaptureEngine.lua
 Core\BattleCapture.lua
 Core\BattleEngine.lua
+Core\InstancePupDrops.lua
 Core\SafariGossip.lua
 Core\QuestHooks.lua
 Core\Comms.lua
