@@ -80,6 +80,7 @@ end)
 
 -- Slash Commands (Canonical Zero-Alias Registrations)
 SLASH_SAFARI1 = "/safari"
+SLASH_SAFARI2 = "/fs"
 SLASH_FSBAG1 = "/fsbag"
 SLASH_FSMAIL1 = "/fsmail"
 SLASH_FSKENNEL1 = "/fskennel"
