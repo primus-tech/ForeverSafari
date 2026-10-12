@@ -19,6 +19,13 @@ local DB = ns.Database
 local Theme = ns.Theme
 local Crypto = ns.Crypto
 
+local function isSecret(v)
+    if v == nil then return false end
+    if issecret and issecret(v) then return true end
+    if type(v) == "userdata" then return true end
+    return false
+end
+
 local TOTAL_SLOTS = 20
 local COLUMNS = 4
 local ROWS = 5

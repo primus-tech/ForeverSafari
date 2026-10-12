@@ -10,6 +10,14 @@ ForeverSafari = ns
 ns.Database = ns.Database or {}
 
 local DB = ns.Database
+local C = ns.Constants
+
+local function isSecret(v)
+    if v == nil then return false end
+    if issecret and issecret(v) then return true end
+    if type(v) == "userdata" then return true end
+    return false
+end
 
 local DEFAULT_DB = {
     version = 2,
