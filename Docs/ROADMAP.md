@@ -308,7 +308,7 @@
 * [x] **Layer 5 Defense Architecture (Static Slices vs. Procced Wards)**:
   * **Static Slices**: Warrior (Physical Armor, +5%/rank), Rogue (Dodge Evasion, +5%/rank synergizing with Cunning), Hunter (Nature Resist, +5%/rank), and Druid (Omni-Resist across all 6 magic schools, +2%/rank).
   * **Procced Wards**: Mage, Shaman, Warlock, Priest, and Paladin (Proc chance $5\% \times \text{Rank}$, Mitigation $5\% \times \text{Rank}$). Evaluated independently per direct strike and **independently rolled on every single DoT tick**.
-  * **Mage Chilling Tempo & Frost Counterplay**: 5% off / 10% def chill proc (-50% SPD) countered by target Frost Resistance % via **Direct Roll Subtraction** ($\max(0\%, \text{Base} - \text{Resist})$).
+  * **Mage Chilling Tempo & Frost Counterplay**: 5% off / 10% def chill proc (-50% SPD) proportionally reduced by target Frost Resistance % ($\text{Base} \times (1 - \text{Resist}/100)$).
   * **Druid Ecliptic Tides**: Role-driven Solar/Lunar pendulum with early proc rolls ($5\% \times \text{pts}$) and automatic 100% discharge at cap.
 * [x] **Taint Purge & Diagnostic Watcher (`Core/TaintWatcher.lua`)**:
   * Purged obsolete `Core/InstancePupDrops.lua` CLEU event registration, resolving all Blizzard UI tainted action errors.

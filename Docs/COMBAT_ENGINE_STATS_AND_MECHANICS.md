@@ -193,9 +193,9 @@ sequenceDiagram
      * **Offensive Proc**: **5% per Attunement Rank** (5% at Rank 1 to **25% at Rank V**) on companion's attack.
      * **Defensive Proc**: **10% per Attunement Rank** (10% at Rank 1 to **50% at Rank V**) when companion is struck.
      * **Debuff**: Inflicts **Chilled** for **2 turns** (halves enemy Speed by **-50%**), opening an active lapping window on the action gauge.
-   - **Direct Roll Subtraction**:
-     $$\text{Effective Proc \%} = \max\Big(0\%,\ \text{Base Proc \%} - \text{Target Frost Resistance \%}\Big)$$
-     * Authentic cold-hardy wild companions (Polar Bears, Winter Wolves, Frostsabers, Snow Owls, Blue Dragonspawn, and Frost Elementals) directly subtract their Frost Resist % from the Mage's proc chance. A companion with 50% Frost Resistance completely nullifies the chill proc.
+   - **Frost Resist Proportional Scaling**:
+     $$\text{Effective Proc \%} = \text{Base Proc \%} \times \left(1 - \frac{\text{Target Frost Resistance \%}}{100}\right)$$
+     * Authentic cold-hardy wild companions (Polar Bears, Winter Wolves, Frostsabers, Snow Owls, Blue Dragonspawn, and Frost Elementals) proportionally dilute the Mage's proc chance. For example, against a target with 50% Frost Resistance, a 50% Defensive chill proc is reduced by half to 25% effective proc chance (or a 25% Offensive chill proc reduces to 12.5%). At 100% Frost Resistance, the chill is fully nullified.
 
 3. **Action Delays & Priority Refunds**:
    - Heavy signature abilities (e.g. *Magma Blast*) inflict an Action Delay (+20 meter penalty).
@@ -256,9 +256,9 @@ Mystic reactive shields that trigger on incoming strikes and periodic ticks:
   * **Offensive Proc**: 5% per Rank (5%–25%) on companion attack.
   * **Defensive Proc**: 10% per Rank (10%–50%) when companion is struck.
   * **Effect**: Inflicts **Chilled** for 2 turns (-50% Speed), opening a speed-lapping window on the action gauge.
-  * **Direct Roll Subtraction**: Target's Frost Resistance % directly subtracts from proc chance:
-    $$\text{Effective Proc \%} = \max\Big(0\%,\ \text{Base Proc \%} - \text{Frost Resist \%}\Big)$$
-    (Hard-countered by cold-hardy beasts: Polar Bears, Winter Wolves, Frostsabers, Snow Owls, Blue Dragonkin, Frost Elementals).
+  * **Frost Resist Proportional Scaling**: Target's Frost Resistance % proportionally scales down proc chance:
+    $$\text{Effective Proc \%} = \text{Base Proc \%} \times \left(1 - \frac{\text{Frost Resist \%}}{100}\right)$$
+    (Against 50% Frost Resist, a 50% proc lowers to 25%; cold-hardy beasts provide natural resilience: Polar Bears, Winter Wolves, Frostsabers, Snow Owls, Blue Dragonkin, Frost Elementals).
 * 🕊️ **Priest Divine Grace**:
   * Provides an active tactical heal command in the battle tray (`UI/BattleFrame.lua`).
   * Charges = Attunement Rank uses per battle.

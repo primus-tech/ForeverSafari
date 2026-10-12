@@ -36,7 +36,7 @@ CP.PASSIVES = {
         id = "MAGE",
         name = "Arcane Ward & Chilling Tempo",
         icon = "Interface\\Icons\\Spell_Arcane_Blast",
-        desc = "Procced Ward (Arcane, Fire, Frost): 5% per Rank proc to absorb 10% per Rank damage (rolled per hit and per DoT tick). Chilling Tempo procs on offense (5%/rank) or defense (10%/rank) to inflict Chilled (-50% SPD for 2 turns), countered via Direct Roll Subtraction by target Frost Resistance %.",
+        desc = "Procced Ward (Arcane, Fire, Frost): 5% per Rank proc to absorb 10% per Rank damage (rolled per hit and per DoT tick). Chilling Tempo procs on offense (5%/rank) or defense (10%/rank) to inflict Chilled (-50% SPD for 2 turns), proportionally reduced by target Frost Resistance % (e.g. 50% frost resist lowers a 50% proc chance to 25%).",
     },
     ["ROGUE"] = {
         id = "ROGUE",
@@ -137,19 +137,21 @@ function CP:RollWardProc(playerClass, rank, damageSchool, opponentClass)
     return false, 0
 end
 
---- Rolls for Mage Chilling Tempo proc on attack or defense with Frost Resist Direct Roll Subtraction.
+--- Rolls for Mage Chilling Tempo proc on attack or defense with Frost Resist Proportional Reduction.
 -- Offense: 5% * rank. Defense: 10% * rank.
--- Direct subtraction: effectiveChance = max(0, baseChance - targetFrostResist)
--- Returns: didProc (bool)
+-- Proportional scaling: at 50% frost resist, a 50% proc chance lowers to 25%.
+-- effectiveChance = baseChance * (1 - (targetFrostResist / 100))
+-- Returns: didProc (bool), slowTurns (number)
 function CP:RollChillingTempo(isDefense, rank, targetFrostResist, opponentClass)
     local r = math.max(1, math.min(5, tonumber(rank) or 1))
-    local baseChance = isDefense and (10 * r) or (5 * r)
-    local frostResist = tonumber(targetFrostResist) or 0
-    local effectiveChance = math.max(0, baseChance - frostResist) * self:GetSuppressionMultiplier(opponentClass)
+    local isDef = (isDefense == true) or (isDefense == "defensive")
+    local baseChance = isDef and (10 * r) or (5 * r)
+    local frostResist = math.max(0, math.min(100, tonumber(targetFrostResist) or 0))
+    local effectiveChance = math.max(0, baseChance * (1.0 - (frostResist / 100))) * self:GetSuppressionMultiplier(opponentClass)
 
-    if effectiveChance <= 0 then return false end
+    if effectiveChance <= 0 then return false, r end
     local roll = math.random(1, 100)
-    return roll <= effectiveChance
+    return (roll <= effectiveChance), r
 end
 
 --- Evaluates Shaman Primal Rebirth on companion defeat (flat 50% chance once per battle).

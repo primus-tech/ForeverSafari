@@ -217,7 +217,7 @@ Companions progress through bonding, feeding, and battlefield survival rather th
 * **Procced Wards (Mystic Reactive Elemental Absorption)**:
   * Trigger: **5% per Rank proc chance** (5%–25%) to absorb **10% per Rank damage** (10%–50%) on incoming strikes.
   * **Per-Tick DoT Evaluation**: Wards roll **independently on every periodic DoT tick** (resisting tick 1, taking full damage on tick 2, etc.).
-  * 🔮 **Mage (Arcane Ward & Chilling Tempo)**: Arcane/Fire/Frost Ward + Chilling Tempo (5% off / 10% def chill proc countering speed) with **Direct Roll Subtraction** against target Frost Resistance %.
+  * 🔮 **Mage (Arcane Ward & Chilling Tempo)**: Arcane/Fire/Frost Ward + Chilling Tempo (5% off / 10% def chill proc countering speed) proportionally reduced by target Frost Resistance % (e.g. 50% frost resist lowers a 50% proc chance to 25%).
   * ⚡ **Shaman (Elemental Shielding & Primal Rebirth)**: Fire/Frost/Nature Ward + `RollAnkh()` flat 50% chance to resurrect companion once per battle.
   * 💀 **Warlock (Fel Infusion & Curse of Suppression)**: Shadow/Fire Ward + 50% suppression of opposed passives in duels/battles.
   * 🕊️ **Priest (Ward of the Heavens & Divine Grace)**: Shadow/Holy Ward + active `[Divine Grace]` emergency heal console button restoring 25% Max HP.
