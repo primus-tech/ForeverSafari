@@ -114,6 +114,13 @@ function SE:CalculateStats(creatureType, points, isElite, baseStatsOverride)
         def = CP:ApplyHunterStatBonus(def, "def", pClass, nil, mobRank)
     end
 
+    -- Calculate Resistances & Avoidance (Layers 1 to 5)
+    local resists = SE:CalculateResistances({
+        family = creatureType,
+        creatureType = creatureType,
+        spec = (baseStatsOverride and baseStatsOverride.spec) or "Tenacity",
+    }, CP and CP:GetPlayerClass(), rankData and rankData.rank or 1)
+
     return {
         maxHP = maxHP,
         hp = maxHP,
@@ -123,8 +130,134 @@ function SE:CalculateStats(creatureType, points, isElite, baseStatsOverride)
         def = def,
         speed = spd,
         spd = spd,
+        dodge = resists.dodge or 0,
+        resistances = resists,
         rankData = rankData,
     }
+end
+
+-- =========================================================================
+-- 🛡️ 5-Layer Elemental Resistance & Avoidance Calculation
+-- =========================================================================
+function SE:CalculateResistances(mob, playerClass, attunementRank)
+    local resists = {
+        physical = 5,
+        fire = 5,
+        frost = 5,
+        nature = 5,
+        arcane = 5,
+        shadow = 5,
+        holy = 5,
+        dodge = 0,
+        crit = 0,
+        damageBonus = 0,
+        spellDeflection = 0,
+    }
+    if not mob then return resists end
+
+    -- Determine rank (1 to 5)
+    local rank = tonumber(attunementRank)
+    if not rank and mob.attunement then
+        local rankData = SE:GetAttunementRank(mob.attunement)
+        rank = rankData and rankData.rank or 1
+    end
+    rank = math.max(1, math.min(5, rank or 1))
+
+    -- Determine Family, Subfamily, Element, Archetype
+    local family = mob.family or mob.creatureType or "Beast"
+    local subFamily = mob.subFamily or ""
+    local element = mob.element or mob.creatureType or "Beast"
+    local archetype = mob.spec or mob.archetype or "Tenacity"
+
+    -- -------------------------------------------------------------
+    -- Layer 2: Native Element Affinity (+10% clean or +15% / -5%)
+    -- -------------------------------------------------------------
+    if family == "Dragonkin" or element == "Dragonkin" or family == "Magic" or element == "Magic" then
+        -- Dragonkin & Magical have +5% to all elemental magic schools
+        resists.arcane = resists.arcane + 5
+        resists.fire = resists.fire + 5
+        resists.frost = resists.frost + 5
+        resists.nature = resists.nature + 5
+        resists.shadow = resists.shadow + 5
+        resists.holy = resists.holy + 5
+    elseif family == "Undead" or element == "Undead" or element == "Shadow" then
+        resists.shadow = resists.shadow + 15
+        resists.holy = resists.holy - 5
+    elseif family == "Mechanical" or element == "Mechanical" then
+        resists.physical = resists.physical + 15
+        resists.nature = resists.nature - 5
+    elseif subFamily == "Core Hound" or element == "Fire" then
+        resists.fire = resists.fire + 15
+        resists.frost = resists.frost - 5
+    elseif family == "Aquatic" or element == "Aquatic" or element == "Frost" or subFamily == "Aquatic" then
+        resists.frost = resists.frost + 10
+    else
+        -- Default Beast / Nature / Other: +10% to Nature (no weakness)
+        resists.nature = resists.nature + 10
+    end
+
+    -- -------------------------------------------------------------
+    -- Layer 3: Archetype Category (+5%, +5% Symmetrical)
+    -- -------------------------------------------------------------
+    if archetype == "Tenacity" then
+        resists.physical = resists.physical + 5
+        resists.fire = resists.fire + 5
+        resists.frost = resists.frost + 5
+        resists.nature = resists.nature + 5
+        resists.arcane = resists.arcane + 5
+        resists.shadow = resists.shadow + 5
+        resists.holy = resists.holy + 5
+    elseif archetype == "Ferocity" then
+        resists.crit = resists.crit + 5
+        resists.damageBonus = resists.damageBonus + 5
+    elseif archetype == "Cunning" then
+        resists.dodge = resists.dodge + 5
+        resists.spellDeflection = resists.spellDeflection + 5
+    end
+
+    -- -------------------------------------------------------------
+    -- Layer 4: Attunement Rank Growth (+0%, +2%, +4%, +6%, +10%)
+    -- -------------------------------------------------------------
+    local rankGrowth = { [1] = 0, [2] = 2, [3] = 4, [4] = 6, [5] = 10 }
+    local growth = rankGrowth[rank] or 0
+    resists.physical = resists.physical + growth
+    resists.fire = resists.fire + growth
+    resists.frost = resists.frost + growth
+    resists.nature = resists.nature + growth
+    resists.arcane = resists.arcane + growth
+    resists.shadow = resists.shadow + growth
+    resists.holy = resists.holy + growth
+
+    -- -------------------------------------------------------------
+    -- Layer 5: Player Class Static Slices
+    -- -------------------------------------------------------------
+    local pClass = playerClass
+    if not pClass and ns.ClassPassives then
+        pClass = ns.ClassPassives:GetPlayerClass()
+    end
+    if pClass then
+        pClass = string.upper(pClass)
+        if pClass == "WARRIOR" then
+            -- +5% per Attunement Rank Physical Damage Reduction
+            resists.physical = resists.physical + (5 * rank)
+        elseif pClass == "ROGUE" then
+            -- +5% per Attunement Rank Dodge Chance (Synergizes with Cunning's +5% Dodge)
+            resists.dodge = resists.dodge + (5 * rank)
+        elseif pClass == "HUNTER" then
+            -- +5% per Attunement Rank Nature Resistance
+            resists.nature = resists.nature + (5 * rank)
+        elseif pClass == "DRUID" then
+            -- +2% per Attunement Rank Omni-Resist across all 6 magic schools
+            resists.fire = resists.fire + (2 * rank)
+            resists.frost = resists.frost + (2 * rank)
+            resists.nature = resists.nature + (2 * rank)
+            resists.arcane = resists.arcane + (2 * rank)
+            resists.shadow = resists.shadow + (2 * rank)
+            resists.holy = resists.holy + (2 * rank)
+        end
+    end
+
+    return resists
 end
 
 -- Generate starting abilities: all creatures start with only 2 abilities:

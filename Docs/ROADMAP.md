@@ -299,15 +299,15 @@
 
 ---
 
-## 📍 Phase 21: Combat Engine Architecture, Zero-Drift Stats & Taint Fortification (In Progress 🔄)
+## 📍 Phase 21: Combat Engine Architecture, Zero-Drift Stats & Taint Fortification (Completed ✅)
 * [x] **Combat Engine Canon & Mechanics SSOT (`Docs/COMBAT_ENGINE_STATS_AND_MECHANICS.md`)**:
   * Unified all combat rules, stat algorithms, action-gauge speed lapping, 5-layer elemental resistances, and player class passives into a single authoritative canon.
 * [x] **Zero-Drift Proportional Base Stat Algorithm**:
   * Formulated the Largest Remainder Method (Hamilton-Hare) guaranteeing exact, drift-free distribution to target budgets ($T = 100$ for Normal/Elite/Boss; $T = 110$ for Rare/Rare Elite).
   * Strict classification gating: Dungeon and raid bosses (`classification == 3`) strictly adhere to $T = 100$; wild rare spawns (`classification in (2, 4)`) receive $T = 110$.
 * [x] **Layer 5 Defense Architecture (Static Slices vs. Procced Wards)**:
-  * **Static Slices**: Warrior (Physical Armor, +5%/rank), Rogue (Miss/Evasion, +5%/rank), Hunter (Nature Resist, +5%/rank), and Druid (Omni-Resist across all 6 magic schools, +2%/rank).
-  * **Procced Wards**: Mage, Shaman, Warlock, Priest, and Paladin (Proc chance $5\% \times \text{Rank}$, Mitigation $10\% \times \text{Rank}$). Evaluated independently per direct strike and **independently rolled on every single DoT tick**.
+  * **Static Slices**: Warrior (Physical Armor, +5%/rank), Rogue (Dodge Evasion, +5%/rank synergizing with Cunning), Hunter (Nature Resist, +5%/rank), and Druid (Omni-Resist across all 6 magic schools, +2%/rank).
+  * **Procced Wards**: Mage, Shaman, Warlock, Priest, and Paladin (Proc chance $5\% \times \text{Rank}$, Mitigation $5\% \times \text{Rank}$). Evaluated independently per direct strike and **independently rolled on every single DoT tick**.
   * **Mage Chilling Tempo & Frost Counterplay**: 5% off / 10% def chill proc (-50% SPD) countered by target Frost Resistance % via **Direct Roll Subtraction** ($\max(0\%, \text{Base} - \text{Resist})$).
   * **Druid Ecliptic Tides**: Role-driven Solar/Lunar pendulum with early proc rolls ($5\% \times \text{pts}$) and automatic 100% discharge at cap.
 * [x] **Taint Purge & Diagnostic Watcher (`Core/TaintWatcher.lua`)**:
@@ -315,10 +315,10 @@
   * Added `Core/TaintWatcher.lua` (loaded first in TOC) and `/fstaint` diagnostics; verified 100% clean startup and interaction.
 * [x] **Pipeline Tooling & Creature Regeneration (`Tools/build_creatures.py`)**:
   * Updated `calculate_stats()` to execute the Largest Remainder (Hamilton-Hare) zero-drift algorithm and regenerated all creature partitions in `Data/Creatures/` (2,008 creatures verified with zero drift).
-* [ ] **Combat Engine Execution (`Core/BattleEngine.lua` & `Core/StatEngine.lua`)**:
-  * Implement the Action-Gauge 0–100 speed velocity and lapping queue.
-  * Implement dynamic Layer 1–5 resistance derivation and procced ward evaluation (including independent per-tick DoT rolls).
-  * Implement Druid Ecliptic Tides pendulum and Priest Divine Grace battle frame tray integration.
+* [x] **Combat Engine Execution (`Core/BattleEngine.lua` & `Core/StatEngine.lua`)**:
+  * Implemented Action-Gauge 0–100 speed velocity and lapping queue (authentic 2:1 speed scarcity).
+  * Implemented dynamic Layer 1–5 resistance derivation, dodge/deflection avoidance, Ferocity damage bonus, and procced ward evaluation (with independent per-tick DoT rolls).
+  * Implemented Druid Ecliptic Tides pendulum and Priest Divine Grace battle frame tray integration.
 
 ---
 

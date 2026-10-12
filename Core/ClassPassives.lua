@@ -18,55 +18,55 @@ CP.PASSIVES = {
         id = "WARRIOR",
         name = "Marshal's Tenacity",
         icon = "Interface\\Icons\\Ability_Warrior_DefensiveStance",
-        desc = "Physical Damage Mitigation: Reduces incoming physical damage by 5% per Attunement Rank, up to 25% at Rank V (rounded up).",
+        desc = "Static Slice: Reduces incoming physical damage by 5% per Attunement Rank (5% at Rank 1 to 25% at Rank V).",
     },
     ["PALADIN"] = {
         id = "PALADIN",
-        name = "Aura of Light",
+        name = "Aegis of Light",
         icon = "Interface\\Icons\\Spell_Holy_AuraMastery",
-        desc = "Damage-to-Healing Conversion: Converts 5% per Attunement Rank of incoming damage back into healing HP, up to 25% at Rank V (rounded up).",
+        desc = "Procced Ward (Physical & Holy): 5% per Rank proc chance to absorb 10% per Rank damage (rolled per hit and per DoT tick). Aura of Light converts 5% to 25% of absorbed damage back into healing HP.",
     },
     ["SHAMAN"] = {
         id = "SHAMAN",
-        name = "Primal Rebirth",
+        name = "Elemental Shielding & Rebirth",
         icon = "Interface\\Icons\\Spell_Nature_Reincarnation",
-        desc = "Ancestral Revive: Your companion has a 10% per Attunement Rank chance (up to 50% at Rank V) to revive at 50% health on first knockout.",
+        desc = "Procced Ward (Fire, Frost, Nature): 5% per Rank proc to absorb 10% per Rank damage (rolled per hit and per DoT tick). Primal Rebirth grants a flat 50% chance to resurrect companion once per battle.",
     },
     ["MAGE"] = {
         id = "MAGE",
-        name = "Arcane Celerity & Ward",
+        name = "Arcane Ward & Chilling Tempo",
         icon = "Interface\\Icons\\Spell_Arcane_Blast",
-        desc = "Speed Suppression & Spell Ward: Enemy attackers suffer halved speed for turns equal to Attunement Rank (1-5). Companions gain 5% per Attunement Rank (up to 25% at Rank V) resistance to non-physical damage (rounded up).",
+        desc = "Procced Ward (Arcane, Fire, Frost): 5% per Rank proc to absorb 10% per Rank damage (rolled per hit and per DoT tick). Chilling Tempo procs on offense (5%/rank) or defense (10%/rank) to inflict Chilled (-50% SPD for 2 turns), countered via Direct Roll Subtraction by target Frost Resistance %.",
     },
     ["ROGUE"] = {
         id = "ROGUE",
         name = "Shadow Evasion",
         icon = "Interface\\Icons\\Ability_Vanish",
-        desc = "Phantom Footwork: Enemy companions suffer a +5% per Attunement Rank increase to their miss chance (up to +25% at Rank V).",
+        desc = "Static Slice: +5% per Attunement Rank Dodge Chance (5% at Rank 1 to 25% at Rank V). Fully synergizes with Cunning's +5% Dodge for up to 30% total Dodge Chance.",
     },
     ["PRIEST"] = {
         id = "PRIEST",
-        name = "Divine Grace",
+        name = "Ward of the Heavens & Grace",
         icon = "Interface\\Icons\\Spell_Holy_Renew",
-        desc = "Rank-Scaled Active Emergency Healing: Your companion can be actively healed in battle up to Rank uses (1-5), restoring 5% Max HP per Rank (up to 25% at Rank V, rounded up).",
+        desc = "Procced Ward (Shadow & Holy): 5% per Rank proc to absorb 10% per Rank damage (rolled per hit and per DoT tick). Divine Grace provides an active emergency heal command usable Rank times per battle, restoring 25% Max HP.",
     },
     ["HUNTER"] = {
         id = "HUNTER",
-        name = "Pathfinder's Mastery",
+        name = "Aspect of the Wild & Pathfinder",
         icon = "Interface\\Icons\\Ability_Hunter_BeastMastery",
-        desc = "Enhanced Baseline Efficiency: Your companions' attack and defense values are boosted by 5% per Attunement Rank (up to +25% at Rank V, rounded up).",
+        desc = "Static Slice: +5% per Attunement Rank Nature Resistance (5% to 25%). Pathfinder's Mastery boosts baseline Attack and Defense by +5% to +25%.",
     },
     ["DRUID"] = {
         id = "DRUID",
-        name = "Ecliptic Tides",
+        name = "Gift of the Wild & Ecliptic Tides",
         icon = "Interface\\Icons\\Spell_Arcane_Starfall",
-        desc = "Celestial Pendulum: Offensive moves build Solar power; Defensive, Healing, and Utility moves build Lunar power (pool capped at companion Attunement Rank). Moves siphon points from the opposite side when full. Each cast rolls a 5% per point chance to trigger a Surge (cleansing and applying a HoT for Solar, or a Bramble damage shield for Lunar). Reaching full capacity on either side automatically triggers a maximum surge! Both pools reset to 0 upon triggering.",
+        desc = "Static Slice: +2% per Attunement Rank Omni-Resist across all 6 magic schools (2% to 10%). Ecliptic Tides celestial pendulum builds Solar on offensive moves and Lunar on non-offensive moves, triggering early proc surges or guaranteed 100% capacity discharges.",
     },
     ["WARLOCK"] = {
         id = "WARLOCK",
-        name = "Curse of Suppression",
+        name = "Fel Infusion & Suppression",
         icon = "Interface\\Icons\\Spell_Shadow_CurseOfTounges",
-        desc = "Opposed Bonus Sabotage: Decreases opposed class bonuses by 10% per Attunement Rank (up to 50% at Rank V, rounded up) in trainer battles and duels.",
+        desc = "Procced Ward (Shadow & Fire): 5% per Rank proc to absorb 10% per Rank damage (rolled per hit and per DoT tick). Curse of Suppression halves opposed class passives by 50% in trainer battles and duels.",
     },
 }
 
@@ -102,6 +102,84 @@ function CP:GetSuppressionMultiplier(opponentClass, opponentRank)
         return 1.0 - suppression
     end
     return 1.0
+end
+
+-- =========================================================================
+-- 🛡️ Procced Wards (Mage, Shaman, Warlock, Priest, Paladin)
+-- =========================================================================
+CP.WARD_AFFINITIES = {
+    ["MAGE"] = { ["Arcane"] = true, ["Fire"] = true, ["Frost"] = true },
+    ["SHAMAN"] = { ["Fire"] = true, ["Frost"] = true, ["Nature"] = true },
+    ["WARLOCK"] = { ["Shadow"] = true, ["Fire"] = true },
+    ["PRIEST"] = { ["Shadow"] = true, ["Holy"] = true },
+    ["PALADIN"] = { ["Physical"] = true, ["Normal"] = true, ["Holy"] = true },
+}
+
+--- Checks and rolls for a reactive Ward proc against an incoming damage strike or DoT tick.
+-- Proc chance = (5 * rank)%. Mitigation = (10 * rank)% damage absorbed.
+-- Returns: didProc (bool), mitigationPercent (number)
+function CP:RollWardProc(playerClass, rank, damageSchool, opponentClass)
+    if not playerClass then return false, 0 end
+    local classKey = string.upper(playerClass)
+    local affinities = self.WARD_AFFINITIES[classKey]
+    if not affinities or not affinities[damageSchool] then
+        return false, 0
+    end
+
+    local r = math.max(1, math.min(5, tonumber(rank) or 1))
+    local procChance = (5 * r) * self:GetSuppressionMultiplier(opponentClass)
+    local roll = math.random(1, 100)
+
+    if roll <= procChance then
+        local mitPct = 10 * r
+        return true, mitPct
+    end
+    return false, 0
+end
+
+--- Rolls for Mage Chilling Tempo proc on attack or defense with Frost Resist Direct Roll Subtraction.
+-- Offense: 5% * rank. Defense: 10% * rank.
+-- Direct subtraction: effectiveChance = max(0, baseChance - targetFrostResist)
+-- Returns: didProc (bool)
+function CP:RollChillingTempo(isDefense, rank, targetFrostResist, opponentClass)
+    local r = math.max(1, math.min(5, tonumber(rank) or 1))
+    local baseChance = isDefense and (10 * r) or (5 * r)
+    local frostResist = tonumber(targetFrostResist) or 0
+    local effectiveChance = math.max(0, baseChance - frostResist) * self:GetSuppressionMultiplier(opponentClass)
+
+    if effectiveChance <= 0 then return false end
+    local roll = math.random(1, 100)
+    return roll <= effectiveChance
+end
+
+--- Evaluates Shaman Primal Rebirth on companion defeat (flat 50% chance once per battle).
+-- Returns: didRevive (bool)
+function CP:RollAnkh(playerClass, hasUsedRevive, opponentClass)
+    if not playerClass or string.upper(playerClass) ~= "SHAMAN" or hasUsedRevive then
+        return false
+    end
+    local chance = 50 * self:GetSuppressionMultiplier(opponentClass)
+    local roll = math.random(1, 100)
+    return roll <= chance
+end
+
+--- Priest Divine Grace: Heals companion for 25% Max HP (rounded up).
+function CP:GetPriestHealAmount(maxHP, playerClass, opponentClass)
+    if not playerClass or string.upper(playerClass) ~= "PRIEST" or not maxHP or maxHP <= 0 then
+        return 0
+    end
+    local heal = math.ceil(maxHP * 0.25)
+    return heal
+end
+
+--- Priest Divine Grace: Usable rank times per battle.
+function CP:GetPriestMaxHeals(rank, playerClass, opponentClass)
+    if not playerClass or string.upper(playerClass) ~= "PRIEST" then return 0 end
+    local base = math.max(1, math.min(5, tonumber(rank) or 1))
+    if opponentClass and string.upper(opponentClass) == "WARLOCK" then
+        return math.max(1, math.ceil(base * 0.5))
+    end
+    return base
 end
 
 -- 🛡️ Warrior: Physical Damage Mitigation (5% per Rank, up to 25% at Rank V)

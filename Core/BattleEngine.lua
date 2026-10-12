@@ -35,6 +35,11 @@ BE.State = {
     turn = "player", -- "player" or "enemy"
     forcedSwitch = false,
     round = 1,
+    turnCount = 0,
+    actionMeters = {
+        player = 0,
+        enemy = 0,
+    },
     buffs = {
         player = {},
         enemy = {},
@@ -62,14 +67,37 @@ BE.State = {
     dialogueText = "What will you do?",
 }
 
--- Calculate effective speed considering Flying passive (+50% speed above 50% HP)
-function BE:GetEffectiveSpeed(mob)
+-- Calculate effective speed considering Flying passive (+50% speed above 50% HP) and temporary spd buffs/debuffs
+function BE:GetEffectiveSpeed(mob, side)
     if not mob then return 10 end
     local spd = mob.spd or 10
     if mob.creatureType == "Flying" and ((mob.currentHP or 0) / (mob.maxHP or 1)) >= 0.50 then
         spd = math.floor(spd * 1.50)
     end
-    return spd
+    if side and BE.State.buffs and BE.State.buffs[side] and BE.State.buffs[side].spd then
+        local mult = BE.State.buffs[side].spd.multiplier or 1.0
+        spd = math.floor(spd * mult)
+    end
+    return math.max(1, spd)
+end
+
+-- Helper: Get dynamic Layer 1-5 resistances for a combatant
+function BE:GetEffectiveResistances(mob, side)
+    if not mob then
+        return { physical = 0, fire = 0, frost = 0, nature = 0, arcane = 0, shadow = 0, holy = 0, dodge = 5, crit = 5, deflection = 0 }
+    end
+    local CP = ns.ClassPassives
+    local pClass = nil
+    if side == "player" then
+        pClass = CP and CP:GetPlayerClass()
+    elseif side == "enemy" then
+        pClass = BE.State.opponentClass
+    end
+    local rank = mob.attunementRank or mob.rank or 1
+    if SE and SE.CalculateResistances then
+        return SE:CalculateResistances(mob, pClass, rank)
+    end
+    return { physical = 0, fire = 0, frost = 0, nature = 0, arcane = 0, shadow = 0, holy = 0, dodge = 5, crit = 5, deflection = 0 }
 end
 
 -- Helper: Resolve ability data directly from MoveDB
@@ -115,65 +143,195 @@ function BE:TickCooldowns(side)
     end
 end
 
--- Process HoTs, DoTs, and Buff durations at end of round
-function BE:TickRoundBuffsAndHoTs()
-    for _, side in ipairs({ "player", "enemy" }) do
-        local mob = (side == "player") and BE.State.playerMob or BE.State.enemyMob
-        local buffs = BE.State.buffs[side]
-        if mob and mob.currentHP > 0 and buffs then
-            -- HoT (Heal over Time, e.g. Frenzied Regeneration)
-            if buffs.hot then
-                local healAmount = math.max(1, math.floor(mob.maxHP * (buffs.hot.healPercent or 0.15)))
+-- Process turn-start ticks for acting combatant: cooldowns, HoTs, DoTs, and Buff decay
+function BE:TickCombatantTurn(side)
+    local mob = (side == "player") and BE.State.playerMob or BE.State.enemyMob
+    local buffs = BE.State.buffs[side]
+    if not mob or (mob.currentHP or 0) <= 0 or not buffs then return end
+
+    -- Decrement move cooldowns for acting combatant
+    BE:TickCooldowns(side)
+
+    -- 1. HoT (Heal over Time, e.g. Frenzied Regeneration)
+    if buffs.hot then
+        local healAmount = math.max(1, math.floor(mob.maxHP * (buffs.hot.healPercent or 0.15)))
+        mob.currentHP = math.min(mob.maxHP, mob.currentHP + healAmount)
+        local mName = (side == "player" and mob.nickname ~= "" and mob.nickname) or mob.name
+        BE:AddLog(string.format("|cff00ff99[Regeneration]|r %s restored %d HP! (%d rounds left)", mName, healAmount, buffs.hot.duration - 1))
+        buffs.hot.duration = buffs.hot.duration - 1
+        if buffs.hot.duration <= 0 then
+            buffs.hot = nil
+        end
+    end
+
+    -- 2. 🍃 Druid Class Passive: Ecliptic Tides HoT (Rejuvenating Bloom) & Brambles Decay
+    if side == "player" then
+        local eclipse = BE.State.druidEclipse
+        if eclipse then
+            if (eclipse.hotTurns or 0) > 0 and (mob.currentHP or 0) > 0 then
+                local healAmount = eclipse.hotAmount or 0
                 mob.currentHP = math.min(mob.maxHP, mob.currentHP + healAmount)
-                local mName = (side == "player" and mob.nickname ~= "" and mob.nickname) or mob.name
-                BE:AddLog(string.format("|cff00ff99[Regeneration]|r %s restored %d HP! (Duration: %d rounds left)", mName, healAmount, buffs.hot.duration - 1))
-                buffs.hot.duration = buffs.hot.duration - 1
-                if buffs.hot.duration <= 0 then
-                    buffs.hot = nil
+                local mName = (mob.nickname ~= "" and mob.nickname) or mob.name
+                BE:AddLog(string.format("|cff00ff99[Solar Surge: Rejuvenating Bloom]|r %s restored %d HP! (%d rounds remaining)", mName, healAmount, eclipse.hotTurns - 1))
+                eclipse.hotTurns = eclipse.hotTurns - 1
+                if eclipse.hotTurns <= 0 then
+                    eclipse.hotAmount = 0
                 end
             end
-
-            -- Bleed Vulnerability decay
-            if buffs.bleedVuln then
-                buffs.bleedVuln.turns = (buffs.bleedVuln.turns or 1) - 1
-                if buffs.bleedVuln.turns <= 0 then
-                    buffs.bleedVuln = nil
-                end
-            end
-
-            -- Stat Buffs / Debuffs decay
-            for _, statKey in ipairs({ "atk", "def", "spd" }) do
-                if buffs[statKey] and buffs[statKey].turns then
-                    buffs[statKey].turns = buffs[statKey].turns - 1
-                    if buffs[statKey].turns <= 0 then
-                        buffs[statKey] = nil
-                    end
+            if (eclipse.brambleTurns or 0) > 0 then
+                eclipse.brambleTurns = eclipse.brambleTurns - 1
+                if eclipse.brambleTurns <= 0 then
+                    eclipse.bramblePercent = 0
+                    eclipse.bramblePoints = 0
                 end
             end
         end
     end
 
-    -- 🍃 Druid Class Passive: Ecliptic Tides HoT (Rejuvenating Bloom) & Brambles Decay
-    local eclipse = BE.State.druidEclipse
-    if eclipse then
-        if (eclipse.hotTurns or 0) > 0 and BE.State.playerMob and (BE.State.playerMob.currentHP or 0) > 0 then
-            local healAmount = eclipse.hotAmount or 0
-            BE.State.playerMob.currentHP = math.min(BE.State.playerMob.maxHP, BE.State.playerMob.currentHP + healAmount)
-            local pMob = BE.State.playerMob
-            local mName = (pMob.nickname ~= "" and pMob.nickname) or pMob.name
-            BE:AddLog(string.format("|cff00ff99[Solar Surge: Rejuvenating Bloom]|r %s restored %d HP! (%d rounds remaining)", mName, healAmount, eclipse.hotTurns - 1))
-            eclipse.hotTurns = eclipse.hotTurns - 1
-            if eclipse.hotTurns <= 0 then
-                eclipse.hotAmount = 0
+    -- 3. Periodic DoTs with independent per-tick resistance & ward proc evaluation
+    if buffs.dots and #buffs.dots > 0 then
+        local CP = ns.ClassPassives
+        local sideClass = (side == "player") and (CP and CP:GetPlayerClass()) or BE.State.opponentClass
+        local rank = mob.attunementRank or mob.rank or 1
+        local dStats = BE:GetEffectiveResistances(mob, side)
+        local remainingDots = {}
+
+        for _, dot in ipairs(buffs.dots) do
+            local school = dot.school or "physical"
+            local resistPct = dStats[school] or 0
+            local tickDmg = math.max(1, dot.damage - math.floor(dot.damage * (resistPct / 100)))
+
+            -- Independent Per-Tick Procced Ward Roll
+            if CP and CP.RollWardProc then
+                local wProcced, wAbsorbPct, wWardName = CP:RollWardProc(sideClass, school, rank)
+                if wProcced then
+                    local absorbed = math.max(1, math.floor(tickDmg * (wAbsorbPct / 100)))
+                    tickDmg = math.max(0, tickDmg - absorbed)
+                    BE:AddLog(string.format("|cffcc99ff[%s]|r Absorbed %d periodic damage on %s (%d%% ward)!|r", wWardName, absorbed, mob.name, wAbsorbPct))
+                end
+            end
+
+            -- Apply damage (respecting Undead immortality)
+            if BE.State.passives.undeadImmortal[side] > 0 then
+                mob.currentHP = 1
+            else
+                mob.currentHP = math.max(0, mob.currentHP - tickDmg)
+            end
+
+            local mName = (side == "player" and mob.nickname ~= "" and mob.nickname) or mob.name
+            BE:AddLog(string.format("|cffff6666[%s Tick]|r %s took %d periodic damage! (%d ticks left)|r", dot.name, mName, tickDmg, dot.duration - 1))
+
+            dot.duration = dot.duration - 1
+            if dot.duration > 0 and mob.currentHP > 0 then
+                table.insert(remainingDots, dot)
+            end
+
+            if mob.currentHP <= 0 then
+                break
             end
         end
-        if (eclipse.brambleTurns or 0) > 0 then
-            eclipse.brambleTurns = eclipse.brambleTurns - 1
-            if eclipse.brambleTurns <= 0 then
-                eclipse.bramblePercent = 0
-                eclipse.bramblePoints = 0
+        buffs.dots = remainingDots
+    end
+
+    -- 4. Bleed Vulnerability decay
+    if buffs.bleedVuln then
+        buffs.bleedVuln.turns = (buffs.bleedVuln.turns or 1) - 1
+        if buffs.bleedVuln.turns <= 0 then
+            buffs.bleedVuln = nil
+        end
+    end
+
+    -- 5. Stat Buffs / Debuffs decay
+    for _, statKey in ipairs({ "atk", "def", "spd" }) do
+        if buffs[statKey] and buffs[statKey].turns then
+            buffs[statKey].turns = buffs[statKey].turns - 1
+            if buffs[statKey].turns <= 0 then
+                buffs[statKey] = nil
             end
         end
+    end
+end
+
+-- Backward-compatible wrapper for external round ticks
+function BE:TickRoundBuffsAndHoTs()
+    BE:TickCombatantTurn("player")
+    BE:TickCombatantTurn("enemy")
+end
+
+-- Advance to next turn using the Action-Gauge 0-100 Speed Engine (with authentic 2:1 lapping)
+function BE:AdvanceToNextTurn()
+    if not BE.State.inBattle then return end
+    local player = BE.State.playerMob
+    local enemy = BE.State.enemyMob
+    if not player or not enemy or (player.currentHP or 0) <= 0 or (enemy.currentHP or 0) <= 0 then return end
+
+    local pSpd = BE:GetEffectiveSpeed(player, "player")
+    local eSpd = BE:GetEffectiveSpeed(enemy, "enemy")
+    local meters = BE.State.actionMeters
+    if not meters then
+        meters = { player = 0, enemy = 0 }
+        BE.State.actionMeters = meters
+    end
+
+    -- Accumulate speed velocity into action meters until at least one reaches 100
+    while meters.player < 100 and meters.enemy < 100 do
+        meters.player = meters.player + pSpd
+        meters.enemy = meters.enemy + eSpd
+    end
+
+    local nextTurn
+    if meters.player >= 100 and meters.enemy >= 100 then
+        -- Tie-breaker: higher effective speed acts first; secondary tie goes to player
+        if pSpd >= eSpd then
+            nextTurn = "player"
+            meters.player = meters.player - 100
+        else
+            nextTurn = "enemy"
+            meters.enemy = meters.enemy - 100
+        end
+    elseif meters.player >= 100 then
+        nextTurn = "player"
+        meters.player = meters.player - 100
+    else
+        nextTurn = "enemy"
+        meters.enemy = meters.enemy - 100
+    end
+
+    BE.State.turn = nextTurn
+    BE.State.turnCount = (BE.State.turnCount or 0) + 1
+    BE.State.round = math.floor(((BE.State.turnCount or 1) - 1) / 2) + 1
+
+    -- Process cooldowns, HoTs, DoTs, and buff decay for the acting combatant
+    BE:TickCombatantTurn(nextTurn)
+
+    -- Check if combatant fainted from turn-start effects (e.g. DoT)
+    if (player.currentHP or 0) <= 0 then
+        if not BE:CheckDefeatPassives(player, "player") then
+            BE:HandlePlayerFaint()
+            return
+        end
+    end
+    if (enemy.currentHP or 0) <= 0 then
+        if not BE:CheckDefeatPassives(enemy, "enemy") then
+            BE:HandleEnemyFaint()
+            return
+        end
+    end
+
+    if nextTurn == "player" then
+        local pName = (player.nickname ~= "" and player.nickname) or player.name
+        BE.State.dialogueText = string.format("What will %s do?", pName)
+        if ForeverSafari.BattleFrame then
+            ForeverSafari.BattleFrame:UpdateUI()
+        end
+    else
+        BE.State.dialogueText = string.format("Wild %s is preparing an attack...", enemy.name)
+        if ForeverSafari.BattleFrame then
+            ForeverSafari.BattleFrame:UpdateUI()
+        end
+        C_Timer.After(1.2, function()
+            BE:ExecuteEnemyTurn()
+        end)
     end
 end
 
@@ -425,9 +583,8 @@ function BE:StartWildBattle(unit)
         local trainerTitle = match.trainerTitle or "Rival Trainer"
         BE.State.dialogueText = string.format("%s: \"%s\"", trainerTitle, match.introQuote or "Let's battle!")
 
-        local pSpd = BE:GetEffectiveSpeed(activeMob)
-        local eSpd = BE:GetEffectiveSpeed(enemyMob)
-        BE.State.turn = (pSpd >= eSpd) and "player" or "enemy"
+        BE.State.actionMeters = { player = 0, enemy = 0 }
+        BE.State.turnCount = 0
 
         BE:AddLog(string.format("|cffffcc00[Trainer Battle]|r %s challenged you to a battle!", trainerTitle))
         BE:AddLog(string.format("|cffffd100%s: \"%s\"|r", trainerTitle, match.introQuote or "Let's battle!"))
@@ -437,16 +594,9 @@ function BE:StartWildBattle(unit)
             ForeverSafari.BattleFrame:ShowBattle()
         end
 
-        if BE.State.turn == "enemy" then
-            C_Timer.After(1.4, function()
-                BE:ExecuteEnemyTurn()
-            end)
-        else
-            C_Timer.After(1.2, function()
-                BE.State.dialogueText = string.format("What will %s do?", activeMob.nickname ~= "" and activeMob.nickname or activeMob.name)
-                if ForeverSafari.BattleFrame then ForeverSafari.BattleFrame:UpdateUI() end
-            end)
-        end
+        C_Timer.After(1.0, function()
+            BE:AdvanceToNextTurn()
+        end)
 
         return true
     end
@@ -489,15 +639,8 @@ function BE:StartWildBattle(unit)
     BE.State.logs = {}
     BE.State.dialogueText = string.format("A wild %s appeared!", enemyMob.name)
 
-    -- Flying speed comparison
-    local pSpd = BE:GetEffectiveSpeed(activeMob)
-    local eSpd = BE:GetEffectiveSpeed(enemyMob)
-
-    if pSpd >= eSpd then
-        BE.State.turn = "player"
-    else
-        BE.State.turn = "enemy"
-    end
+    BE.State.actionMeters = { player = 0, enemy = 0 }
+    BE.State.turnCount = 0
 
     BE:AddLog(string.format("|cffffff00Wild %s (Lv %d %s) appeared!|r", enemyMob.name, enemyMob.level, enemyMob.creatureType))
 
@@ -510,16 +653,9 @@ function BE:StartWildBattle(unit)
         ForeverSafari.BattleFrame:ShowBattle()
     end
 
-    if BE.State.turn == "enemy" then
-        C_Timer.After(1.2, function()
-            BE:ExecuteEnemyTurn()
-        end)
-    else
-        C_Timer.After(1.0, function()
-            BE.State.dialogueText = string.format("What will %s do?", activeMob.nickname ~= "" and activeMob.nickname or activeMob.name)
-            if ForeverSafari.BattleFrame then ForeverSafari.BattleFrame:UpdateUI() end
-        end)
-    end
+    C_Timer.After(1.0, function()
+        BE:AdvanceToNextTurn()
+    end)
 
     return true
 end
@@ -565,9 +701,8 @@ function BE:ExecutePlayerMove(moveKey)
         BE.State.dialogueText = string.format("%s flinched and couldn't move!", pName)
         BE:AddLog(string.format("|cffffaa00%s flinched and could not attack!|r", pName))
         if ForeverSafari.BattleFrame then ForeverSafari.BattleFrame:UpdateUI() end
-        BE.State.turn = "enemy"
         C_Timer.After(1.2, function()
-            BE:ExecuteEnemyTurn()
+            BE:AdvanceToNextTurn()
         end)
         return
     end
@@ -582,9 +717,8 @@ function BE:ExecutePlayerMove(moveKey)
             BE:AddLog(string.format("|cff00ff00%s woke up!|r", pName))
         end
         if ForeverSafari.BattleFrame then ForeverSafari.BattleFrame:UpdateUI() end
-        BE.State.turn = "enemy"
         C_Timer.After(1.2, function()
-            BE:ExecuteEnemyTurn()
+            BE:AdvanceToNextTurn()
         end)
         return
     end
@@ -598,9 +732,8 @@ function BE:ExecutePlayerMove(moveKey)
         PlaySound(847)
         if ForeverSafari.BattleFrame then ForeverSafari.BattleFrame:UpdateUI() end
 
-        BE.State.turn = "enemy"
-        C_Timer.After(1.4, function()
-            BE:ExecuteEnemyTurn()
+        C_Timer.After(1.2, function()
+            BE:AdvanceToNextTurn()
         end)
         return
     end
@@ -707,12 +840,11 @@ function BE:ExecutePlayerMove(moveKey)
         end
     end
 
-    -- Enemy Turn
-    BE.State.turn = "enemy"
+    -- Advance Action-Gauge to Next Turn (supports speed lapping)
     if ForeverSafari.BattleFrame then ForeverSafari.BattleFrame:UpdateUI() end
 
-    C_Timer.After(1.4, function()
-        BE:ExecuteEnemyTurn()
+    C_Timer.After(1.2, function()
+        BE:AdvanceToNextTurn()
     end)
 end
 
@@ -728,16 +860,8 @@ function BE:ExecuteEnemyTurn()
         BE.State.flinch.enemy = false
         BE.State.dialogueText = string.format("Enemy %s flinched and couldn't move!", enemy.name)
         BE:AddLog(string.format("|cffffaa00Wild %s flinched and could not attack!|r", enemy.name))
-        -- Complete round
-        BE:TickCooldowns("player")
-        BE:TickCooldowns("enemy")
-        BE:TickRoundBuffsAndHoTs()
-        BE.State.round = BE.State.round + 1
-        BE.State.turn = "player"
         C_Timer.After(1.2, function()
-            local pName = player.nickname ~= "" and player.nickname or player.name
-            BE.State.dialogueText = string.format("What will %s do?", pName)
-            if ForeverSafari.BattleFrame then ForeverSafari.BattleFrame:UpdateUI() end
+            BE:AdvanceToNextTurn()
         end)
         return
     end
@@ -751,16 +875,8 @@ function BE:ExecuteEnemyTurn()
             BE.State.buffs.enemy.sleep = nil
             BE:AddLog(string.format("|cff00ff00Wild %s woke up!|r", enemy.name))
         end
-        -- Complete round
-        BE:TickCooldowns("player")
-        BE:TickCooldowns("enemy")
-        BE:TickRoundBuffsAndHoTs()
-        BE.State.round = BE.State.round + 1
-        BE.State.turn = "player"
         C_Timer.After(1.2, function()
-            local pName = player.nickname ~= "" and player.nickname or player.name
-            BE.State.dialogueText = string.format("What will %s do?", pName)
-            if ForeverSafari.BattleFrame then ForeverSafari.BattleFrame:UpdateUI() end
+            BE:AdvanceToNextTurn()
         end)
         return
     end
@@ -849,18 +965,9 @@ function BE:ExecuteEnemyTurn()
         end
     end
 
-    -- Round Complete: Decrement Cooldowns & Buffs for both combatants
-    BE:TickCooldowns("player")
-    BE:TickCooldowns("enemy")
-    BE:TickRoundBuffsAndHoTs()
-
-    BE.State.round = BE.State.round + 1
-    BE.State.turn = "player"
-
+    -- Advance Action-Gauge to Next Turn (supports speed lapping)
     C_Timer.After(1.2, function()
-        local pName = player.nickname ~= "" and player.nickname or player.name
-        BE.State.dialogueText = string.format("What will %s do?", pName)
-        if ForeverSafari.BattleFrame then ForeverSafari.BattleFrame:UpdateUI() end
+        BE:AdvanceToNextTurn()
     end)
 end
 
@@ -898,9 +1005,12 @@ function BE:ApplyMoveEffects(move, attacker, defender, side)
     local targetSide = (side == "player") and "enemy" or "player"
     local prevDefenderHP = defender.currentHP
     local isDefenderElemental = (defender.creatureType == "Elemental")
+    local CP = ns.ClassPassives
+    local pClass = CP and CP:GetPlayerClass()
+    local oppClass = BE.State.opponentClass
 
     -- Instant Direct Heals
-    if move.heal then
+    if move.heal and (not move.power or move.power == 0) then
         local healAmount = math.floor(attacker.maxHP * move.heal)
         attacker.currentHP = math.min(attacker.maxHP, attacker.currentHP + healAmount)
         BE:AddLog(string.format("|cff00ff00%s restored %d HP!|r", attacker.name, healAmount))
@@ -945,8 +1055,35 @@ function BE:ApplyMoveEffects(move, attacker, defender, side)
         BE:AddLog(string.format("|cffffcc00[Vigilance] %s revealed %s! Stealth and flight evasion broken!|r", attacker.name, defender.name))
     end
 
-    -- Direct Damage Calculation
+    -- Direct Damage & Combat Layer Resolution
     if move.power and move.power > 0 then
+        local attackerStats = BE:GetEffectiveResistances(attacker, side)
+        local defenderStats = BE:GetEffectiveResistances(defender, targetSide)
+
+        local moveCategory = move.category or "Physical"
+        local moveSchool = string.lower(move.element or move.type or "Physical")
+        if moveSchool == "normal" or moveSchool == "beast" then
+            moveSchool = "physical"
+        end
+
+        local dRank = defender and (defender.attunementRank or defender.rank or 1) or 1
+        local aRank = attacker and (attacker.attunementRank or attacker.rank or 1) or 1
+        local defenderClass = (targetSide == "player") and pClass or oppClass
+        local attackerClass = (side == "player") and pClass or oppClass
+
+        -- 🛡️ Avoidance: Dodge Check (Physical and direct attacks)
+        if moveCategory == "Physical" or moveSchool == "physical" then
+            local dodgeChance = defenderStats.dodge or 5
+            local dodgeRoll = math.random(1, 100)
+            if dodgeRoll <= dodgeChance then
+                BE.State.dialogueText = string.format("%s dodged the attack!", defender.name)
+                local rogueNote = (defenderClass == "ROGUE") and " |cff00ff99[Shadow Evasion]|r" or ""
+                BE:AddLog(string.format("|cffffaa00%s dodged the attack!%s (%d%% dodge)|r", defender.name, rogueNote, dodgeChance))
+                return
+            end
+        end
+
+        -- Stat modifiers on attacker and defender
         local atkMod = 1.0
         if BE.State.buffs[side]["atk"] then
             atkMod = BE.State.buffs[side]["atk"].multiplier
@@ -983,7 +1120,14 @@ function BE:ApplyMoveEffects(move, attacker, defender, side)
             bleedMod = BE.State.buffs[targetSide].bleedVuln.multiplier or 1.50
         end
 
-        local atk = (attacker.atk or 10) * atkMod * beastMod * dragonkinMod * undeadMod
+        -- Archetype Bonus: Ferocity (+5% damage)
+        local ferocityMod = 1.0
+        local attackerArchetype = SE and SE.FAMILY_ARCHETYPES and (SE.FAMILY_ARCHETYPES[attacker.family] or SE.FAMILY_ARCHETYPES[attacker.creatureType])
+        if attackerArchetype == "Ferocity" then
+            ferocityMod = 1.05
+        end
+
+        local atk = (attacker.atk or 10) * atkMod * beastMod * dragonkinMod * undeadMod * ferocityMod
         local def = (defender.def or 8) * defMod
 
         -- Closed-loop 150% Type Effectiveness
@@ -992,62 +1136,81 @@ function BE:ApplyMoveEffects(move, attacker, defender, side)
             typeMult = C.TYPE_ADVANTAGES[move.type][defender.creatureType]
         end
 
-        local critChance = 0.12 + ((move.critBonus or 0) / 100)
-        local isCrit = (math.random() < critChance)
+        -- Critical Hit Roll (Base + Archetype Ferocity + Move Crit Bonus)
+        local critChance = (attackerStats.crit or 5) + (move.critBonus or 0)
+        local isCrit = (math.random(1, 100) <= critChance)
         local critMult = isCrit and 1.5 or 1.0
 
         local rawDmg = (((atk * move.power * 0.7) / (def * 0.75 + 15)) + math.random(2, 6)) * bleedMod
         local finalDmg = math.max(1, math.floor(rawDmg * typeMult * critMult))
 
-        -- 🛡️ Player Class Passives (Mitigation & Conversion)
-        local CP = ns.ClassPassives
-        local pClass = CP and CP:GetPlayerClass()
-        local oppClass = BE.State.opponentClass
-
-        if targetSide == "player" and CP then
-            local dRank = defender and defender.attunementRank or 1
-
-            -- 🛡️ Warrior: Physical Damage Mitigation (5% to 25%)
-            if move.type == "Physical" or move.type == "Normal" then
-                local red = CP:CalculatePhysicalDamageReduction(finalDmg, pClass, oppClass, dRank)
-                if red > 0 then
-                    finalDmg = math.max(1, finalDmg - red)
-                    BE:AddLog(string.format("|cff996633[Marshal's Tenacity]|r Mitigated %d physical damage!", red))
-                end
-            else
-                -- 🔮 Mage: Non-physical Damage Mitigation (5% to 25%)
-                local red = CP:CalculateMageSpellReduction(finalDmg, move.type, pClass, oppClass, dRank)
-                if red > 0 then
-                    finalDmg = math.max(1, finalDmg - red)
-                    BE:AddLog(string.format("|cff33ccff[Arcane Ward]|r Absorbed %d non-physical damage!", red))
-                end
+        -- 🛡️ Archetype Cunning Bonus: Spell Deflection (50% damage reduction on special spells)
+        if moveCategory ~= "Physical" and moveSchool ~= "physical" then
+            local deflectChance = defenderStats.deflection or 0
+            if deflectChance > 0 and math.random(1, 100) <= deflectChance then
+                local deflectAmt = math.floor(finalDmg * 0.50)
+                finalDmg = math.max(1, finalDmg - deflectAmt)
+                BE:AddLog(string.format("|cff33ccff[Spell Deflected]|r %s deflected 50%% of the spell damage! (-%d damage)|r", defender.name, deflectAmt))
             end
+        end
 
-            -- 🔮 Mage: Speed Suppression (Halves enemy speed for Attunement Rank turns)
-            if pClass == "MAGE" and attacker then
-                local slowTurns = CP:GetMageSlowDuration(dRank, oppClass)
-                BE.State.buffs[side].spd = {
-                    multiplier = 0.5,
-                    turns = slowTurns,
-                }
-                BE:AddLog(string.format("|cff33ccff[Arcane Celerity]|r %s's speed halved for %d turns!", attacker.name, slowTurns))
+        -- 🛡️ Elemental Resistance Mitigation (Layers 1-4: Family + Weakness + Archetype + Class Attunement)
+        local resistPct = defenderStats[moveSchool] or 0
+        local mitigated = math.floor(finalDmg * (resistPct / 100))
+        if mitigated > 0 then
+            finalDmg = math.max(1, finalDmg - mitigated)
+            local schoolDisplay = string.upper(string.sub(moveSchool, 1, 1)) .. string.sub(moveSchool, 2)
+            BE:AddLog(string.format("|cff66ccff[%s Resistance]|r %s mitigated %d damage (%d%% resist).|r", schoolDisplay, defender.name, mitigated, resistPct))
+        end
+
+        -- 🛡️ Layer 5: Procced Wards (Mage, Shaman, Warlock, Priest, Paladin)
+        if CP and CP.RollWardProc then
+            local wProcced, wAbsorbPct, wWardName = CP:RollWardProc(defenderClass, moveSchool, dRank)
+            if wProcced then
+                local wardAbsorb = math.max(1, math.floor(finalDmg * (wAbsorbPct / 100)))
+                finalDmg = math.max(1, finalDmg - wardAbsorb)
+                BE:AddLog(string.format("|cffcc99ff[%s]|r Absorbed %d damage (%d%% ward)!|r", wWardName, wardAbsorb, wAbsorbPct))
             end
+        end
 
-            -- 🛡️ Paladin: Damage-to-Healing Conversion (5% to 25%)
-            local healBack = CP:CalculatePaladinHealback(finalDmg, pClass, oppClass, dRank)
+        -- 🛡️ Layer 5: Paladin Aura of Light (Damage-to-Healing Conversion)
+        if defenderClass == "PALADIN" and CP and CP.CalculatePaladinHealback then
+            local healBack = CP:CalculatePaladinHealback(finalDmg, defenderClass, oppClass, dRank)
             if healBack > 0 then
                 defender.currentHP = math.min(defender.maxHP, defender.currentHP + healBack)
-                BE:AddLog(string.format("|cffffd100[Aura of Light]|r Converted %d damage into holy healing!", healBack))
+                BE:AddLog(string.format("|cffffd100[Aura of Light]|r Converted %d damage into holy healing!|r", healBack))
             end
+        end
 
-            -- 🍃 Druid: Ecliptic Tides (Bramble Damage Shield Reflection)
-            if pClass == "DRUID" and BE.State.druidEclipse and (BE.State.druidEclipse.brambleTurns or 0) > 0 and finalDmg > 0 then
-                local bramblePts = BE.State.druidEclipse.bramblePoints or dRank
-                local reflectDmg = CP:GetLunarBrambles(finalDmg, bramblePts, oppClass)
-                if reflectDmg > 0 and attacker and attacker.currentHP > 0 then
-                    attacker.currentHP = math.max(0, attacker.currentHP - reflectDmg)
-                    BE:AddLog(string.format("|cff33ff33[Lunar Surge: Brambles]|r Reflected %d Nature damage back to %s! (%d rounds remaining)", reflectDmg, attacker.name, BE.State.druidEclipse.brambleTurns))
+        -- ❄️ Layer 5: Mage Chilling Tempo (Offense & Defense with Frost Resist Direct Subtraction)
+        if CP and CP.RollChillingTempo then
+            -- Offensive hit by Mage
+            if attackerClass == "MAGE" then
+                local targetFrostResist = defenderStats.frost or 0
+                local chilled, slowTurns = CP:RollChillingTempo("offensive", aRank, targetFrostResist)
+                if chilled then
+                    BE.State.buffs[targetSide].spd = { multiplier = 0.5, turns = slowTurns }
+                    BE:AddLog(string.format("|cff33ccff[Chilling Tempo]|r %s chilled %s! Speed halved for %d turns!|r", attacker.name, defender.name, slowTurns))
                 end
+            end
+            -- Defensive impact on Mage
+            if defenderClass == "MAGE" then
+                local attackerFrostResist = attackerStats.frost or 0
+                local chilled, slowTurns = CP:RollChillingTempo("defensive", dRank, attackerFrostResist)
+                if chilled then
+                    BE.State.buffs[side].spd = { multiplier = 0.5, turns = slowTurns }
+                    BE:AddLog(string.format("|cff33ccff[Chilling Tempo]|r %s chilled %s on impact! Speed halved for %d turns!|r", defender.name, attacker.name, slowTurns))
+                end
+            end
+        end
+
+        -- 🍃 Druid Class Passive: Ecliptic Tides (Bramble Damage Shield Reflection)
+        if defenderClass == "DRUID" and targetSide == "player" and BE.State.druidEclipse and (BE.State.druidEclipse.brambleTurns or 0) > 0 and finalDmg > 0 then
+            local bramblePts = BE.State.druidEclipse.bramblePoints or dRank
+            local reflectDmg = CP:GetLunarBrambles(finalDmg, bramblePts, oppClass)
+            if reflectDmg > 0 and attacker and attacker.currentHP > 0 then
+                attacker.currentHP = math.max(0, attacker.currentHP - reflectDmg)
+                BE:AddLog(string.format("|cff33ff33[Lunar Surge: Brambles]|r Reflected %d Nature damage back to %s! (%d rounds remaining)", reflectDmg, attacker.name, BE.State.druidEclipse.brambleTurns))
             end
         end
 
@@ -1068,9 +1231,8 @@ function BE:ApplyMoveEffects(move, attacker, defender, side)
         end
 
         -- ⚡ Shaman: Primal Rebirth (10% to 50% chance to revive at 50% max HP)
-        if targetSide == "player" and defender.currentHP <= 0 and pClass == "SHAMAN" and not BE.State.shamanRevived then
-            local dRank = defender and defender.attunementRank or 1
-            local canRevive = CP:CanShamanRevive(pClass, BE.State.shamanRevived, oppClass, dRank)
+        if targetSide == "player" and defender.currentHP <= 0 and defenderClass == "SHAMAN" and not BE.State.shamanRevived then
+            local canRevive = CP and CP:CanShamanRevive(defenderClass, BE.State.shamanRevived, oppClass, dRank)
             if canRevive then
                 BE.State.shamanRevived = true
                 local reviveHP = math.ceil(defender.maxHP * 0.5)
@@ -1110,6 +1272,19 @@ function BE:ApplyMoveEffects(move, attacker, defender, side)
             attacker.currentHP = math.min(attacker.maxHP, attacker.currentHP + drained)
             BE:AddLog(string.format("|cff00ff00%s drained %d health!|r", attacker.name, drained))
         end
+
+        -- Periodic DoT Attachment
+        if move.dot and move.dot.damage and move.dot.damage > 0 then
+            BE.State.buffs[targetSide].dots = BE.State.buffs[targetSide].dots or {}
+            table.insert(BE.State.buffs[targetSide].dots, {
+                name = move.name,
+                damage = move.dot.damage,
+                duration = move.dot.duration or 3,
+                school = moveSchool,
+                source = attacker.name,
+            })
+            BE:AddLog(string.format("|cffff6666%s was afflicted with %s! (%d periodic damage for %d rounds)|r", defender.name, move.name, move.dot.damage, move.dot.duration or 3))
+        end
     end
 end
 
@@ -1142,10 +1317,9 @@ function BE:UseBagItem(itemId)
         return
     end
 
-    BE.State.turn = "enemy"
     if ForeverSafari.BattleFrame then ForeverSafari.BattleFrame:UpdateUI() end
-    C_Timer.After(1.4, function()
-        BE:ExecuteEnemyTurn()
+    C_Timer.After(1.2, function()
+        BE:AdvanceToNextTurn()
     end)
 end
 
@@ -1185,13 +1359,12 @@ function BE:SwitchPlayerMob(mobId)
             ForeverSafari.BattleFrame:SetMenuMode("MAIN")
         end
     else
-        BE.State.turn = "enemy"
         BE.State.dialogueText = string.format("Go! %s!", pName)
         if ForeverSafari.BattleFrame then
             ForeverSafari.BattleFrame:SetMenuMode("MAIN")
         end
-        C_Timer.After(1.4, function()
-            BE:ExecuteEnemyTurn()
+        C_Timer.After(1.2, function()
+            BE:AdvanceToNextTurn()
         end)
     end
 end
@@ -1331,7 +1504,7 @@ function BE:UseDivineGrace()
 
     C_Timer.After(1.2, function()
         if BE.State.inBattle then
-            BE:ExecuteEnemyTurn()
+            BE:AdvanceToNextTurn()
         end
     end)
     return true
