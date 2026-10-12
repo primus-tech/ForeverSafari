@@ -200,7 +200,7 @@ function HUD:Initialize()
                 GameTooltip:AddLine(string.format("📜 Outpost Intelligence: %s", outpost.name), 1, 0.82, 0)
                 GameTooltip:AddLine(string.format("Title: |cffffffff%s|r", outpost.title or "<Stable Master>"), 0.8, 0.9, 1)
                 GameTooltip:AddLine(string.format("Location: |cffffcc00%s (%s)|r", outpost.location or outpost.zone, outpost.zone), 0.8, 0.9, 1)
-                GameTooltip:AddLine(string.format("League Rank: |cff00ccffTier %d • Lv %s|r", outpost.tier or 1, tostring(outpost.level)), 0.8, 0.9, 1)
+                GameTooltip:AddLine(string.format("League Circuit: |cff00ccffTier %d • Attunement Rank %s (%s)|r", outpost.tier or 1, outpost.rankRoman or "I", outpost.rankTitle or "Circuit"), 0.8, 0.9, 1)
                 GameTooltip:AddLine(" ")
                 GameTooltip:AddLine(string.format("Regional Trophy: |cffffd100[%s]|r", badge.name or "Outpost Badge"), 1, 0.82, 0)
                 if badge.desc then
@@ -213,7 +213,7 @@ function HUD:Initialize()
                     GameTooltip:AddLine(" ")
                     GameTooltip:AddLine("Leader Squad Roster:", 1, 0.82, 0)
                     for _, pet in ipairs(outpost.team) do
-                        GameTooltip:AddLine(string.format("  • %s (Lv %d %s)", pet.name, pet.level or outpost.level, pet.family or pet.element or "Beast"), 0.9, 0.9, 0.9)
+                        GameTooltip:AddLine(string.format("  • %s (Rank %s %s)", pet.name, pet.rankRoman or outpost.rankRoman or "I", pet.family or pet.element or "Beast"), 0.9, 0.9, 0.9)
                     end
                 end
                 GameTooltip:Show()
@@ -280,7 +280,7 @@ function HUD:Initialize()
             GameTooltip:AddLine(string.format("Challenge %s to a sanctioned 3D turn-based Safari Outpost match.", outpost and outpost.name or "Leader"), 1, 1, 1, true)
             GameTooltip:AddLine(" ")
             GameTooltip:AddLine("Outpost Battle Rules:", 0, 1, 0.6)
-            GameTooltip:AddLine(string.format("• Defeat their entire %d-companion squad", outpost and outpost.team and #outpost.team or 2), 0.8, 0.9, 1)
+            GameTooltip:AddLine(string.format("• Defeat their entire %d-companion squad (Attunement Rank %s)", outpost and outpost.team and #outpost.team or 2, outpost and (outpost.rankRoman or "I") or "I"), 0.8, 0.9, 1)
             GameTooltip:AddLine(string.format("• First victory claims the |cffffd100[%s]|r!", badge.name or "Outpost Badge"), 1, 0.82, 0)
             GameTooltip:AddLine(string.format("• Awards +%d Safari Tokens & +75 Attunement", outpost and outpost.tokenReward or 20), 0.8, 0.9, 1)
             if isDefeated then
@@ -458,8 +458,8 @@ function HUD:RenderOutpostMode(outpost)
         frame.RadarBar:SetValue(100)
         frame.RadarBar.Text:SetText(string.format("|cffffd100⚔️ Outpost Battle • Prize: [%s]|r", badgeName))
 
-        frame.InfoText:SetText(string.format("Squad: |cffffd100%d Companions (Lv %s)|r  •  Prize: |cff00ff99+%d Tokens & [%s]|r",
-            teamSize, tostring(outpost.level), tokenReward, badgeName))
+        frame.InfoText:SetText(string.format("Squad: |cffffd100%d Companions (Rank %s)|r  •  Prize: |cff00ff99+%d Tokens & [%s]|r",
+            teamSize, outpost.rankRoman or "I", tokenReward, badgeName))
     end
 
     -- Mode Badge (bottom left)

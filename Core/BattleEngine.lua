@@ -768,7 +768,7 @@ function BE:StartOutpostBattle(unit, outpost)
     BE:AddLog(string.format("|cffffcc00[Outpost League]|r Challenged Outpost Leader |cffffffff%s|r (%s)!", outpost.name, outpost.location or outpost.zone))
     BE:AddLog(string.format("|cffffd100%s: \"%s\"|r", outpost.name, match.introQuote or "Let's battle!"))
     BE:AddLog(string.format("|cff00ff99Regional Badge on the line: [%s]|r", badgeName))
-    BE:AddLog(string.format("|cffff6666%s sent out %s (Lv %d %s)!|r", outpost.name, enemyMob.name, enemyMob.level, enemyMob.creatureType))
+    BE:AddLog(string.format("|cffff6666%s sent out %s (Rank %s %s)!|r", outpost.name, enemyMob.name, enemyMob.rankRoman or outpost.rankRoman or "I", enemyMob.creatureType))
 
     if ForeverSafari.BattleFrame then
         ForeverSafari.BattleFrame:ShowBattle()
