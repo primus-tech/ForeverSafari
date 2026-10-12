@@ -52,20 +52,32 @@ zone_steps = {
     'world_41_60': 2556,
 }
 
+# 1. First collect all known instance IDs from dungeons, raids, and Wowhead filter categories
+known_instance_ids = set()
+for step_num in [2530, 2550]: # Dungeons & Raids
+    for z in parse_listview_data(load_step_file(step_num)):
+        known_instance_ids.add(z.get('id'))
+
+for zid, (zname, group) in filter_zones.items():
+    if group in ('Battlegrounds', 'Dungeons', 'Raids') or zid == 2159: # Onyxia's Lair
+        known_instance_ids.add(zid)
+
 zone_registry = {} # zid -> { id, name, type, isInstance }
 
-# First load from step files
+# Load from step files, but respect known_instance_ids
 for ztype, step_num in zone_steps.items():
     html = load_step_file(step_num)
     data = parse_listview_data(html)
-    is_inst = ztype in ('dungeon', 'raid')
     for z in data:
         zid = z.get('id')
         name = z.get('name')
+        is_inst = zid in known_instance_ids
+        actual_type = ('raid' if ztype == 'raid' or zid in (2159, 2717, 2677, 3456, 3428, 3429, 1977)
+                       else ('dungeon' if (ztype == 'dungeon' or is_inst) else ztype))
         zone_registry[zid] = {
             'id': zid,
             'name': name,
-            'type': ztype,
+            'type': actual_type,
             'isInstance': is_inst,
             'minLevel': z.get('minlevel', 0),
             'maxLevel': z.get('maxlevel', 0)
@@ -73,8 +85,8 @@ for ztype, step_num in zone_steps.items():
 
 # Augment from Wowhead filter dropdown
 for zid, (zname, group) in filter_zones.items():
+    is_inst = zid in known_instance_ids
     if zid not in zone_registry:
-        is_inst = group in ('Battlegrounds', 'Dungeons', 'Raids') or zid == 2159 # Onyxia's Lair
         gtype = 'battleground' if group == 'Battlegrounds' else ('dungeon' if group == 'Dungeons' else ('raid' if (group == 'Raids' or zid == 2159) else 'open_world'))
         zone_registry[zid] = {
             'id': zid,
@@ -84,6 +96,8 @@ for zid, (zname, group) in filter_zones.items():
             'minLevel': 0,
             'maxLevel': 0
         }
+    elif is_inst:
+        zone_registry[zid]['isInstance'] = True
 
 instance_zone_ids = {zid for zid, z in zone_registry.items() if z['isInstance']}
 world_zone_ids = {zid for zid, z in zone_registry.items() if not z['isInstance']}
@@ -235,7 +249,7 @@ def process_mob(mob, family, spec, element, move1, move2, default_pup_name):
     name = sanitize_name(mob.get('name'))
     stats = calculate_stats(min_lvl, max_lvl, classif, spec)
     
-    pup_name = f"{name} Pup" if not default_pup_name else default_pup_name
+    pup_name = f"{name} Pup"
     if "Hatchling" in default_pup_name:
         pup_name = f"{name} Hatchling"
     elif "Cub" in default_pup_name:
