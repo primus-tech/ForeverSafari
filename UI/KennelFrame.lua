@@ -1,9 +1,10 @@
 --[[
-    Forever Safari: Junior Safari Reserve (In-Frame Bank Vault)
-    - Embedded single-window view inside Blizzard's native BankFrame (738 x 460).
-    - Dedicated vertical side tab mounted on BankFrame's right border with paw icon 🐾.
-    - Zero bag collision: Player bags on the right remain 100% visible and unobstructed.
-    - Zero-Taint: Swaps view cleanly with BankPanel without modifying secure Blizzard tables.
+    Forever Safari: Junior Safari Reserve (Custom Standalone Vault)
+    - Standalone window accessible from Banker gossip ("Junior Safari League: Access Companion Reserve")
+    - Zero Taint: Independent top-level window parented to UIParent.
+    - Zero Bag Collisions: Movable, centered, supports ESC to close via UISpecialFrames.
+    - Squad Management: 4 active slots with 3D model, rank badge, level, HP status, and quick Deposit.
+    - Enclosures: 5 Reserve Boxes (20 companions each = 100 total storage capacity) with Swap / Withdraw.
 ]]
 
 local addonName, ns = ...
@@ -18,14 +19,18 @@ local SE = ns.StatEngine
 local Theme = ns.Theme
 
 local frame = nil
-local sideTab = nil
 local activeCards = {}
 local kennelTiles = {}
 local currentBox = 1
 local selectedKennelMobId = nil
 local selectedSquadSlot = nil
-local isReserveActive = false
-local nativeHooked = false
+
+local function isSecret(v)
+    if v == nil then return false end
+    if issecret and issecret(v) then return true end
+    if type(v) == "userdata" then return true end
+    return false
+end
 
 -- Check if currently interacting with a Banker
 function Kennel:IsAtBanker()
@@ -40,7 +45,7 @@ function Kennel:IsAtBanker()
                 for _, line in ipairs(info.lines) do
                     if line.leftText then
                         local lower = string.lower(line.leftText)
-                        if string.find(lower, "banker", 1, true) then
+                        if string.find(lower, "banker", 1, true) or string.find(lower, "vault", 1, true) then
                             return true
                         end
                     end
@@ -48,7 +53,7 @@ function Kennel:IsAtBanker()
             end
         end
         local unitName = UnitName(unit)
-        if unitName and string.find(string.lower(unitName), "banker", 1, true) then
+        if unitName and (string.find(string.lower(unitName), "banker", 1, true) or string.find(string.lower(unitName), "vault", 1, true)) then
             return true
         end
     end
@@ -57,21 +62,36 @@ end
 
 function Kennel:Initialize()
     if frame then return end
-    local parent = BankFrame or UIParent
 
-    frame = CreateFrame("Frame", "ForeverSafariBankReservePanel", parent, "BackdropTemplate")
-    frame:SetPoint("TOPLEFT", parent, "TOPLEFT", 12, -42)
-    frame:SetPoint("BOTTOMRIGHT", parent, "BOTTOMRIGHT", -12, 32)
+    frame = CreateFrame("Frame", "ForeverSafariKennelFrame", UIParent, "BackdropTemplate")
+    frame:SetSize(730, 420)
+    frame:SetPoint("CENTER", UIParent, "CENTER", 0, 30)
     frame:SetFrameStrata("HIGH")
+    frame:SetToplevel(true)
+    frame:SetMovable(true)
+    frame:SetClampedToScreen(true)
     frame:EnableMouse(true)
     frame:Hide()
 
     Theme:ApplyFrameBackdrop(frame)
 
+    -- Draggable
+    frame:RegisterForDrag("LeftButton")
+    frame:SetScript("OnDragStart", function(self) self:StartMoving() end)
+    frame:SetScript("OnDragStop", function(self) self:StopMovingOrSizing() end)
+
+    -- ESC Key Support
+    tinsert(UISpecialFrames, "ForeverSafariKennelFrame")
+
+    -- Close Button
+    local closeBtn = CreateFrame("Button", nil, frame, "UIPanelCloseButton")
+    closeBtn:SetPoint("TOPRIGHT", frame, "TOPRIGHT", -6, -6)
+    closeBtn:SetScript("OnClick", function() Kennel:Hide() end)
+
     -- Subheader
     local header = CreateFrame("Frame", nil, frame)
-    header:SetSize(710, 24)
-    header:SetPoint("TOPLEFT", frame, "TOPLEFT", 10, -6)
+    header:SetSize(660, 24)
+    header:SetPoint("TOPLEFT", frame, "TOPLEFT", 12, -8)
 
     local title = header:CreateFontString(nil, "OVERLAY", "GameFontHighlightMedium")
     title:SetPoint("LEFT", 4, 0)
@@ -84,13 +104,13 @@ function Kennel:Initialize()
 
     -- Left Column: Active Squad (4 Slots)
     local squadTitle = frame:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
-    squadTitle:SetPoint("TOPLEFT", 14, -34)
+    squadTitle:SetPoint("TOPLEFT", 14, -36)
     squadTitle:SetText("|cffffd100Active Squad (4 Max)|r")
 
     for i = 1, 4 do
         local card = CreateFrame("Button", "ForeverSafariKennelSquadCard" .. i, frame, "BackdropTemplate")
         card:SetSize(218, 68)
-        card:SetPoint("TOPLEFT", 14, -54 - ((i - 1) * 72))
+        card:SetPoint("TOPLEFT", 14, -56 - ((i - 1) * 72))
         Theme:ApplyCardBackdrop(card)
         card.slotIndex = i
 
@@ -159,7 +179,7 @@ function Kennel:Initialize()
 
     -- Right Area: Enclosure Boxes (Bank)
     local boxTitle = frame:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
-    boxTitle:SetPoint("TOPLEFT", 246, -34)
+    boxTitle:SetPoint("TOPLEFT", 246, -36)
     boxTitle:SetText("|cffffd100Reserve Enclosures (Bank)|r")
 
     -- Box Tab Buttons (1 to 5)
@@ -167,7 +187,7 @@ function Kennel:Initialize()
     for b = 1, 5 do
         local tab = CreateFrame("Button", "ForeverSafariKennelTab" .. b, frame, "BackdropTemplate")
         tab:SetSize(84, 20)
-        tab:SetPoint("TOPLEFT", 246 + ((b - 1) * 88), -52)
+        tab:SetPoint("TOPLEFT", 246 + ((b - 1) * 88), -54)
         Theme:ApplyCardBackdrop(tab)
         tab.boxId = b
 
@@ -189,7 +209,7 @@ function Kennel:Initialize()
     -- Kennel 20-Slot Grid (4 rows x 5 columns)
     local gridContainer = CreateFrame("Frame", nil, frame, "BackdropTemplate")
     gridContainer:SetSize(448, 252)
-    gridContainer:SetPoint("TOPLEFT", 246, -74)
+    gridContainer:SetPoint("TOPLEFT", 246, -76)
     Theme:ApplyCardBackdrop(gridContainer)
 
     local tileSize = 42
@@ -258,7 +278,7 @@ function Kennel:Initialize()
     -- Bottom Bar Controls
     local withdrawBtn = CreateFrame("Button", "ForeverSafariKennelWithdrawBtn", frame, "UIPanelButtonTemplate")
     withdrawBtn:SetSize(150, 24)
-    withdrawBtn:SetPoint("BOTTOMLEFT", 246, 10)
+    withdrawBtn:SetPoint("BOTTOMLEFT", 246, 12)
     withdrawBtn:SetText("⬆ Move to Squad")
     withdrawBtn:SetScript("OnClick", function()
         if selectedKennelMobId then
@@ -277,7 +297,7 @@ function Kennel:Initialize()
     end)
 
     local statusText = frame:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
-    statusText:SetPoint("BOTTOMRIGHT", -16, 14)
+    statusText:SetPoint("BOTTOMRIGHT", -16, 16)
     statusText:SetText("Reserved: 0 companions")
     frame.StatusText = statusText
 end
@@ -387,383 +407,45 @@ function Kennel:UpdateUI()
     frame.StatusText:SetText(string.format("Reserved: |cffffd100%d companions|r across all Enclosures", totalBanked))
 end
 
--- =========================================================================
--- 🐾 IN-FRAME VIEW SWAPPING & SIDE TAB INTEGRATION
--- =========================================================================
-local function UpdateSideTabPosition()
-    if not sideTab or not BankFrame then return end
-
-    local lastTab = nil
-    local maxRank = -1
-
-    -- 1. Logical detection: rank active tabs by bankType and pageNumber (Frame 0 reliable)
-    if BankFrame.bankPageTabPool and BankFrame.bankPageTabPool.EnumerateActive then
-        for pageTab in BankFrame.bankPageTabPool:EnumerateActive() do
-            if pageTab:IsShown() and pageTab ~= sideTab then
-                local bType = (pageTab.bankType == (Enum.BankType and Enum.BankType.Account)) and 100 or 0
-                local pNum = pageTab.pageNumber or 1
-                local rank = bType + pNum
-                if rank > maxRank then
-                    maxRank = rank
-                    lastTab = pageTab
-                end
-            end
-        end
-    end
-
-    -- 2. Screen geometry verification: if GetBottom() is valid, verify lowest screen point
-    if BankFrame.bankPageTabPool and BankFrame.bankPageTabPool.EnumerateActive then
-        local minBottom = math.huge
-        local lowestByCoord = nil
-        for pageTab in BankFrame.bankPageTabPool:EnumerateActive() do
-            if pageTab:IsShown() and pageTab ~= sideTab then
-                local b = pageTab:GetBottom()
-                if b and b < minBottom then
-                    minBottom = b
-                    lowestByCoord = pageTab
-                end
-            end
-        end
-        if lowestByCoord then
-            lastTab = lowestByCoord
-        end
-    end
-
-    sideTab:ClearAllPoints()
-    if lastTab then
-        sideTab:SetPoint("TOPLEFT", lastTab, "BOTTOMLEFT", 0, -2)
-    else
-        -- If no page tab is detected yet, anchor 55px below Page 1 to NEVER collide with Page 1 at (3, -60)
-        sideTab:SetPoint("TOPLEFT", BankFrame, "TOPRIGHT", 3, -115)
-    end
-    sideTab:Show()
-end
-
-local function SchedulePositionUpdate()
-    UpdateSideTabPosition()
-    C_Timer.After(0.02, UpdateSideTabPosition)
-    C_Timer.After(0.08, UpdateSideTabPosition)
-end
-
-local function EnsureSideTab()
-    if sideTab then return sideTab end
-    if not BankFrame then return nil end
-
-    local tab = nil
-    local ok, res = pcall(CreateFrame, "Frame", "ForeverSafariBankReserveSideTab", BankFrame, "LargeSideTabButtonTemplate")
-    if ok and res then
-        tab = res
-        if tab.OnLoad then tab:OnLoad() end
-        tab:SetFrameStrata(BankFrame:GetFrameStrata() or "DIALOG")
-        tab:SetFrameLevel((BankFrame:GetFrameLevel() or 10) + 25)
-        tab:EnableMouse(true)
-
-        if tab.Icon then
-            tab.Icon:ClearAllPoints()
-            tab.Icon:SetPoint("CENTER", -4, 0)
-            tab.Icon:SetSize(32, 32)
-            tab.Icon:SetTexture("Interface\\Icons\\Ability_Hunter_Pet_Cat")
-            tab.Icon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
-            tab.Icon:Show()
-        end
-
-        tab.tooltipText = "|cffffd100Junior Safari Reserve|r\n|cffaaaaaaManage your active squad and banked companion enclosures.|r"
-
-        if tab.SetCustomOnMouseUpHandler then
-            tab:SetCustomOnMouseUpHandler(function(self, button, upInside)
-                if button == "LeftButton" and upInside then
-                    if Kennel:IsReserveActive() then
-                        Kennel:DeactivateReserve()
-                    else
-                        Kennel:ActivateReserve()
-                    end
-                end
-            end)
-        end
-    else
-        tab = CreateFrame("Button", "ForeverSafariBankReserveSideTab", BankFrame, "BackdropTemplate")
-        tab:SetSize(40, 40)
-        tab:SetFrameStrata(BankFrame:GetFrameStrata() or "DIALOG")
-        tab:SetFrameLevel((BankFrame:GetFrameLevel() or 10) + 25)
-        Theme:ApplyCardBackdrop(tab)
-
-        local icon = tab:CreateTexture(nil, "ARTWORK")
-        icon:SetSize(28, 28)
-        icon:SetPoint("CENTER", 0, 0)
-        icon:SetTexture("Interface\\Icons\\Ability_Hunter_Pet_Cat")
-        icon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
-        tab.Icon = icon
-
-        local glow = tab:CreateTexture(nil, "OVERLAY")
-        glow:SetAllPoints()
-        glow:SetTexture("Interface\\Buttons\\CheckButtonHilight")
-        glow:SetBlendMode("ADD")
-        glow:Hide()
-        tab.Glow = glow
-
-        tab:SetScript("OnEnter", function(self)
-            GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
-            GameTooltip:AddLine("|cffffd100Junior Safari Reserve|r", 1, 1, 1)
-            GameTooltip:AddLine("Manage your active squad and banked companion enclosures.", 0.8, 0.8, 0.8, true)
-            GameTooltip:Show()
-        end)
-        tab:SetScript("OnLeave", function() GameTooltip:Hide() end)
-
-        tab:SetScript("OnClick", function()
-            if Kennel:IsReserveActive() then
-                Kennel:DeactivateReserve()
-            else
-                Kennel:ActivateReserve()
-            end
-        end)
-    end
-
-    sideTab = tab
-    SchedulePositionUpdate()
-    return sideTab
-end
-
-function Kennel:IsReserveActive()
-    return isReserveActive
-end
-
-function Kennel:ActivateReserve()
-    if not BankFrame or not BankFrame:IsShown() then
-        if BankFrame then
-            if BankFrame_Open then
-                BankFrame_Open()
-            else
-                ShowUIPanel(BankFrame)
-            end
-        end
-    end
-    if not BankFrame or not BankFrame:IsShown() then return end
-    if not frame then Kennel:Initialize() end
-    if not frame then return end
-
-    isReserveActive = true
-
-    -- Hide native BankPanel and AutoDepositFrame
-    if BankFrame.BankPanel and BankFrame.BankPanel:IsShown() then
-        BankFrame.BankPanel:Hide()
-    end
-    if BankFrame.AutoDepositFrame and BankFrame.AutoDepositFrame:IsShown() then
-        BankFrame.AutoDepositFrame:Hide()
-    end
-
-    frame:Show()
-    Kennel:UpdateUI()
-
-    -- Highlight side tab
-    if sideTab then
-        if sideTab.SetChecked then
-            sideTab:SetChecked(true)
-        elseif sideTab.Glow then
-            sideTab.Glow:Show()
-            sideTab:SetBackdropBorderColor(1, 0.82, 0, 1)
-        end
-    end
-
-    -- Uncheck Blizzard page tabs
-    if BankFrame.bankPageTabPool and BankFrame.bankPageTabPool.EnumerateActive then
-        for pageTab in BankFrame.bankPageTabPool:EnumerateActive() do
-            if pageTab.SetChecked then pageTab:SetChecked(false) end
-        end
-    end
-
-    PlaySound(844)
-end
-
-function Kennel:DeactivateReserve()
-    isReserveActive = false
-
-    if frame and frame:IsShown() then
-        frame:Hide()
-    end
-
-    -- Unhighlight side tab
-    if sideTab then
-        if sideTab.SetChecked then
-            sideTab:SetChecked(false)
-        elseif sideTab.Glow then
-            sideTab.Glow:Hide()
-            sideTab:SetBackdropBorderColor(0.25, 0.35, 0.45, 0.8)
-        end
-    end
-
-    -- Restore native BankPanel
-    if BankFrame then
-        if BankFrame.BankPanel and not BankFrame.BankPanel:IsShown() then
-            BankFrame.BankPanel:Show()
-        end
-        if BankFrame.AutoDepositFrame and not BankFrame.AutoDepositFrame:IsShown() then
-            BankFrame.AutoDepositFrame:Show()
-        end
-    end
-end
-
 function Kennel:ShowKennel()
-    if BankFrame and BankFrame:IsShown() then
-        Kennel:ActivateReserve()
+    if not frame then Kennel:Initialize() end
+    if frame then
+        frame:Show()
+        Kennel:UpdateUI()
+        PlaySound(844)
     end
 end
 
 function Kennel:Hide()
-    Kennel:DeactivateReserve()
+    if frame and frame:IsShown() then
+        frame:Hide()
+    end
 end
 
 function Kennel:IsShown()
-    return isReserveActive
+    return frame and frame:IsShown()
 end
 
 function Kennel:Toggle()
-    if isReserveActive then
-        Kennel:DeactivateReserve()
+    if frame and frame:IsShown() then
+        Kennel:Hide()
     else
-        Kennel:ActivateReserve()
+        Kennel:ShowKennel()
     end
 end
 
--- =========================================================================
--- ⚡ EVENT LISTENERS & SECURE TAB HOOKS
--- =========================================================================
-local function HookNativeBankTabs()
-    if nativeHooked then return end
-    nativeHooked = true
-
-    -- Hook BankFrame:SetTab so clicking native tabs restores bank items
-    if BankFrame and BankFrame.SetTab then
-        hooksecurefunc(BankFrame, "SetTab", function()
-            if isReserveActive then
-                Kennel:DeactivateReserve()
-            end
-        end)
-    end
-
-    if BankFrameTab1 and not BankFrameTab1.safariHooked then
-        BankFrameTab1.safariHooked = true
-        BankFrameTab1:HookScript("OnClick", function()
-            if isReserveActive then Kennel:DeactivateReserve() end
-        end)
-    end
-    if BankFrameTab2 and not BankFrameTab2.safariHooked then
-        BankFrameTab2.safariHooked = true
-        BankFrameTab2:HookScript("OnClick", function()
-            if isReserveActive then Kennel:DeactivateReserve() end
-        end)
-    end
-
-    -- Hook BankFrame OnHide to clean up state
-    if BankFrame and not BankFrame.safariHideHooked then
-        BankFrame.safariHideHooked = true
-        BankFrame:HookScript("OnHide", function()
-            Kennel:DeactivateReserve()
-            if sideTab then sideTab:Hide() end
-        end)
-    end
-end
-
-local function SetupBankIntegration()
-    if not BankFrame then return end
-
-    EnsureSideTab()
-    HookNativeBankTabs()
-
-    if not BankFrame.safariTabsHooked then
-        BankFrame.safariTabsHooked = true
-
-        -- Secure hook RefreshPageTabs to always stack our tab below the lowest active page tab
-        if BankFrame.RefreshPageTabs then
-            hooksecurefunc(BankFrame, "RefreshPageTabs", function()
-                SchedulePositionUpdate()
-                if isReserveActive then
-                    if BankFrame.bankPageTabPool and BankFrame.bankPageTabPool.EnumerateActive then
-                        for pageTab in BankFrame.bankPageTabPool:EnumerateActive() do
-                            if pageTab.SetChecked then pageTab:SetChecked(false) end
-                        end
-                    end
-                    if sideTab and sideTab.SetChecked then sideTab:SetChecked(true) end
-                end
-            end)
-        end
-
-        -- Hook EventRegistry for page selections
-        if EventRegistry and EventRegistry.RegisterCallback then
-            EventRegistry:RegisterCallback("BankPanelMixin.PageSelected", function()
-                if isReserveActive then
-                    Kennel:DeactivateReserve()
-                end
-            end, "ForeverSafariKennel")
-        end
-    end
-
-    if not BankFrame.safariShowHooked then
-        BankFrame.safariShowHooked = true
-        BankFrame:HookScript("OnShow", function()
-            EnsureSideTab()
-            HookNativeBankTabs()
-            SchedulePositionUpdate()
-            if Kennel.openReserveOnBankShow then
-                Kennel.openReserveOnBankShow = false
-                C_Timer.After(0.05, function()
-                    Kennel:ActivateReserve()
-                end)
-            end
-        end)
-    end
-
-    if BankFrame:IsShown() then
-        SchedulePositionUpdate()
-    end
-end
-
-local bankEvents = CreateFrame("Frame", "ForeverSafariKennelBankEvents")
-bankEvents:RegisterEvent("PLAYER_LOGIN")
-bankEvents:RegisterEvent("BANKFRAME_OPENED")
-bankEvents:RegisterEvent("BANKFRAME_CLOSED")
+-- Close automatically when walking away from banker or closing interaction
+local eventFrame = CreateFrame("Frame", "ForeverSafariKennelEventFrame")
+eventFrame:RegisterEvent("GOSSIP_CLOSED")
 if Enum and Enum.PlayerInteractionType then
-    bankEvents:RegisterEvent("PLAYER_INTERACTION_MANAGER_FRAME_SHOW")
-    bankEvents:RegisterEvent("PLAYER_INTERACTION_MANAGER_FRAME_HIDE")
+    eventFrame:RegisterEvent("PLAYER_INTERACTION_MANAGER_FRAME_HIDE")
 end
-bankEvents:RegisterEvent("GOSSIP_CLOSED")
-
-bankEvents:SetScript("OnEvent", function(self, event, ...)
-    if event == "PLAYER_LOGIN" then
-        SetupBankIntegration()
-    elseif event == "BANKFRAME_OPENED" then
-        SetupBankIntegration()
-        SchedulePositionUpdate()
-    elseif event == "PLAYER_INTERACTION_MANAGER_FRAME_SHOW" then
+eventFrame:SetScript("OnEvent", function(self, event, ...)
+    if event == "PLAYER_INTERACTION_MANAGER_FRAME_HIDE" then
         local interactionType = ...
         local pit = Enum and Enum.PlayerInteractionType
-        if pit and (
-            interactionType == pit.Banker or
-            interactionType == pit.CharacterBanker or
-            interactionType == pit.AccountBanker
-        ) then
-            SetupBankIntegration()
-            SchedulePositionUpdate()
-        end
-    elseif event == "BANKFRAME_CLOSED" then
-        Kennel:DeactivateReserve()
-        if sideTab then sideTab:Hide() end
-    elseif event == "PLAYER_INTERACTION_MANAGER_FRAME_HIDE" then
-        local interactionType = ...
-        local pit = Enum and Enum.PlayerInteractionType
-        if pit and (
-            interactionType == pit.Banker or
-            interactionType == pit.CharacterBanker or
-            interactionType == pit.AccountBanker
-        ) then
-            Kennel:DeactivateReserve()
-            if sideTab then sideTab:Hide() end
-        end
-    elseif event == "GOSSIP_CLOSED" then
-        if not (BankFrame and BankFrame:IsShown()) then
-            Kennel:DeactivateReserve()
+        if pit and (interactionType == pit.Banker or interactionType == pit.CharacterBanker or interactionType == pit.AccountBanker) then
+            Kennel:Hide()
         end
     end
 end)
-
--- Run immediate setup on load
-SetupBankIntegration()

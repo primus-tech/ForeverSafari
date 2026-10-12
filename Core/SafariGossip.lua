@@ -490,53 +490,13 @@ function SG:BuildOptionsForCurrentNPC()
             text = "Junior Safari League: Access Companion Reserve",
             icon = SG.ICON_SHOP,
             onClick = function()
-                local k = ns.KennelFrame or ns.Kennel
-                if k then
-                    k.openReserveOnBankShow = true
-                end
-
-                -- Find and trigger native banker gossip option to open genuine server bank interaction
-                local selected = false
-                if C_GossipInfo and C_GossipInfo.GetOptions and C_GossipInfo.SelectOption then
-                    local ok, opts = pcall(C_GossipInfo.GetOptions)
-                    if ok and opts then
-                        for _, opt in ipairs(opts) do
-                            local name = opt.name or opt.title
-                            if (opt.type == "banker" or opt.icon == 132058 or (name and MatchesKeyword(name, { "bank", "deposit", "vault" }))) and opt.gossipOptionID then
-                                C_GossipInfo.SelectOption(opt.gossipOptionID)
-                                selected = true
-                                break
-                            end
-                        end
+                CloseGossipWindow()
+                C_Timer.After(0.05, function()
+                    local k = ns.KennelFrame or ns.Kennel
+                    if k and k.ShowKennel then
+                        k:ShowKennel()
                     end
-                end
-                if not selected and SelectGossipOption and GetGossipOptions then
-                    local ok, opts = pcall(function() return { GetGossipOptions() } end)
-                    if ok and opts then
-                        for i = 1, #opts, 2 do
-                            local title = opts[i]
-                            local gType = opts[i+1]
-                            local optIndex = math.floor((i + 1) / 2)
-                            if gType == "banker" or (title and MatchesKeyword(title, { "bank", "deposit", "vault" })) then
-                                SelectGossipOption(optIndex)
-                                selected = true
-                                break
-                            end
-                        end
-                    end
-                end
-
-                if not selected then
-                    CloseGossipWindow()
-                    C_Timer.After(0.05, function()
-                        if BankFrame and not BankFrame:IsShown() then
-                            ShowUIPanel(BankFrame)
-                        end
-                        if k and k.ActivateReserve then
-                            k:ActivateReserve()
-                        end
-                    end)
-                end
+                end)
             end,
         })
     end
