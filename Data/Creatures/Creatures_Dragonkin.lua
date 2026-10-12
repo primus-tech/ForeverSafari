@@ -20,7 +20,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 354, atk = 165, def = 134, spd = 106 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [335] = {
         name = "Singe",
@@ -38,7 +38,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 202, atk = 91, def = 74, spd = 59 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [441] = {
         name = "Black Dragon Whelp",
@@ -56,7 +56,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 124, atk = 55, def = 45, spd = 35 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [740] = {
         name = "Adolescent Whelp",
@@ -74,7 +74,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 201, atk = 92, def = 75, spd = 59 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [741] = {
         name = "Dreaming Whelp",
@@ -92,7 +92,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 205, atk = 94, def = 77, spd = 61 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [742] = {
         name = "Green Wyrmkin",
@@ -110,7 +110,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 232, atk = 107, def = 87, spd = 69 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [743] = {
         name = "Wyrmkin Dreamwalker",
@@ -128,7 +128,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 237, atk = 110, def = 89, spd = 70 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [744] = {
         name = "Green Scalebane",
@@ -146,7 +146,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 237, atk = 110, def = 89, spd = 70 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [746] = {
         name = "Elder Dragonkin",
@@ -164,7 +164,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 250, atk = 116, def = 94, spd = 75 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1042] = {
         name = "Red Whelp",
@@ -182,7 +182,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 151, atk = 68, def = 55, spd = 44 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1043] = {
         name = "Lost Whelp",
@@ -200,7 +200,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 156, atk = 70, def = 57, spd = 45 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1044] = {
         name = "Flamesnorting Whelp",
@@ -218,7 +218,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 165, atk = 74, def = 61, spd = 48 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1045] = {
         name = "Red Dragonspawn",
@@ -236,7 +236,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 395, atk = 185, def = 150, spd = 119 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1046] = {
         name = "Red Wyrmkin",
@@ -254,7 +254,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 401, atk = 188, def = 152, spd = 121 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1047] = {
         name = "Red Scalebane",
@@ -272,7 +272,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 407, atk = 191, def = 155, spd = 122 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1049] = {
         name = "Wyrmkin Firebrand",
@@ -290,7 +290,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1069] = {
         name = "Crimson Whelp",
@@ -308,7 +308,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 160, atk = 72, def = 59, spd = 47 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1749] = {
         name = "Lady Katrana Prestor",
@@ -326,7 +326,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 327, atk = 154, def = 124, spd = 98 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2447] = {
         name = "Narillasanz",
@@ -344,7 +344,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 319, atk = 148, def = 120, spd = 95 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [2725] = {
         name = "Scalding Whelp",
@@ -362,7 +362,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 237, atk = 110, def = 89, spd = 70 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2726] = {
         name = "Scorched Guardian",
@@ -380,7 +380,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 319, atk = 148, def = 120, spd = 95 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2757] = {
         name = "Blacklash",
@@ -398,7 +398,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 354, atk = 165, def = 134, spd = 106 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2759] = {
         name = "Hematus",
@@ -416,7 +416,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 354, atk = 165, def = 134, spd = 106 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [3815] = {
         name = "Blink Dragon",
@@ -434,7 +434,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 165, atk = 74, def = 61, spd = 48 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4016] = {
         name = "Fey Dragon",
@@ -452,7 +452,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 156, atk = 70, def = 57, spd = 45 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4017] = {
         name = "Wily Fey Dragon",
@@ -470,7 +470,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 165, atk = 74, def = 61, spd = 48 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4066] = {
         name = "Nal'taszar",
@@ -488,7 +488,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 237, atk = 108, def = 88, spd = 70 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [4323] = {
         name = "Searing Hatchling",
@@ -506,7 +506,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 232, atk = 107, def = 87, spd = 69 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4324] = {
         name = "Searing Whelp",
@@ -524,7 +524,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 237, atk = 110, def = 89, spd = 70 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4328] = {
         name = "Firemane Scalebane",
@@ -542,7 +542,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 241, atk = 112, def = 91, spd = 72 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4329] = {
         name = "Firemane Scout",
@@ -560,7 +560,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 232, atk = 107, def = 87, spd = 69 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4331] = {
         name = "Firemane Ash Tail",
@@ -578,7 +578,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 237, atk = 110, def = 89, spd = 70 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4334] = {
         name = "Firemane Flamecaller",
@@ -596,7 +596,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 241, atk = 112, def = 91, spd = 72 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4339] = {
         name = "Brimgore",
@@ -614,7 +614,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 325, atk = 151, def = 122, spd = 97 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [5276] = {
         name = "Sprite Dragon",
@@ -632,7 +632,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 264, atk = 123, def = 99, spd = 79 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5277] = {
         name = "Nightmare Scalebane",
@@ -652,7 +652,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.15,
         pupName = "Nightmare Scalebane Whelp",
         moves = {101, 806},
-        baseStats = { hp = 354, atk = 165, def = 134, spd = 106 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5278] = {
         name = "Sprite Darter",
@@ -670,7 +670,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 246, atk = 114, def = 92, spd = 73 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5280] = {
         name = "Nightmare Wyrmkin",
@@ -690,7 +690,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.15,
         pupName = "Nightmare Wyrmkin Whelp",
         moves = {101, 806},
-        baseStats = { hp = 354, atk = 165, def = 134, spd = 106 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5283] = {
         name = "Nightmare Wanderer",
@@ -710,7 +710,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.15,
         pupName = "Nightmare Wanderer Whelp",
         moves = {101, 806},
-        baseStats = { hp = 349, atk = 163, def = 132, spd = 104 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5312] = {
         name = "Lethlas",
@@ -730,7 +730,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.03,
         pupName = "Lethlas Whelp",
         moves = {101, 806},
-        baseStats = { hp = 425, atk = 200, def = 161, spd = 128 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5314] = {
         name = "Phantim",
@@ -750,7 +750,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.03,
         pupName = "Phantim Whelp",
         moves = {101, 806},
-        baseStats = { hp = 425, atk = 200, def = 161, spd = 128 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5317] = {
         name = "Jademir Oracle",
@@ -770,7 +770,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.03,
         pupName = "Jademir Oracle Whelp",
         moves = {101, 806},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5319] = {
         name = "Jademir Tree Warder",
@@ -790,7 +790,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.03,
         pupName = "Jademir Tree Warder Whelp",
         moves = {101, 806},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5320] = {
         name = "Jademir Boughguard",
@@ -810,7 +810,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.03,
         pupName = "Jademir Boughguard Whelp",
         moves = {101, 806},
-        baseStats = { hp = 425, atk = 200, def = 161, spd = 128 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5709] = {
         name = "Shade of Eranikus",
@@ -830,7 +830,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.25,
         pupName = "Dragonkin Catalyst",
         moves = {101, 806},
-        baseStats = { hp = 384, atk = 180, def = 145, spd = 115 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5718] = {
         name = "Rothos",
@@ -850,7 +850,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.03,
         pupName = "Rothos Whelp",
         moves = {101, 806},
-        baseStats = { hp = 425, atk = 200, def = 161, spd = 128 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5719] = {
         name = "Morphaz",
@@ -870,7 +870,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.25,
         pupName = "Dragonkin Catalyst",
         moves = {101, 806},
-        baseStats = { hp = 366, atk = 171, def = 138, spd = 110 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5720] = {
         name = "Weaver",
@@ -890,7 +890,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.25,
         pupName = "Dragonkin Catalyst",
         moves = {101, 806},
-        baseStats = { hp = 360, atk = 168, def = 136, spd = 108 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5721] = {
         name = "Dreamscythe",
@@ -910,7 +910,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.25,
         pupName = "Dragonkin Catalyst",
         moves = {101, 806},
-        baseStats = { hp = 372, atk = 174, def = 141, spd = 112 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5722] = {
         name = "Hazzas",
@@ -930,7 +930,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.25,
         pupName = "Dragonkin Catalyst",
         moves = {101, 806},
-        baseStats = { hp = 372, atk = 174, def = 141, spd = 112 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5912] = {
         name = "Deviate Faerie Dragon",
@@ -950,7 +950,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.25,
         pupName = "Dragonkin Catalyst",
         moves = {101, 806},
-        baseStats = { hp = 179, atk = 80, def = 65, spd = 52 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [6109] = {
         name = "Azuregos",
@@ -970,7 +970,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.2,
         pupName = "Dragonkin Catalyst",
         moves = {101, 806},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [6129] = {
         name = "Draconic Magelord",
@@ -988,7 +988,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 372, atk = 174, def = 141, spd = 112 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [6130] = {
         name = "Blue Scalebane",
@@ -1006,7 +1006,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 366, atk = 171, def = 138, spd = 110 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [6131] = {
         name = "Draconic Mageweaver",
@@ -1024,7 +1024,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 360, atk = 168, def = 136, spd = 108 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7040] = {
         name = "Black Dragonspawn",
@@ -1042,7 +1042,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 366, atk = 171, def = 138, spd = 110 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7041] = {
         name = "Black Wyrmkin",
@@ -1060,7 +1060,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 372, atk = 174, def = 141, spd = 112 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7042] = {
         name = "Flamescale Dragonspawn",
@@ -1078,7 +1078,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 390, atk = 183, def = 148, spd = 117 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7043] = {
         name = "Flamescale Wyrmkin",
@@ -1096,7 +1096,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 395, atk = 185, def = 150, spd = 119 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7044] = {
         name = "Black Drake",
@@ -1114,7 +1114,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 360, atk = 168, def = 136, spd = 108 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7045] = {
         name = "Scalding Drake",
@@ -1132,7 +1132,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 378, atk = 177, def = 143, spd = 113 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7046] = {
         name = "Searscale Drake",
@@ -1150,7 +1150,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 395, atk = 185, def = 150, spd = 119 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7047] = {
         name = "Black Broodling",
@@ -1168,7 +1168,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 277, atk = 129, def = 105, spd = 83 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7048] = {
         name = "Scalding Broodling",
@@ -1186,7 +1186,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 286, atk = 134, def = 108, spd = 86 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7049] = {
         name = "Flamescale Broodling",
@@ -1204,7 +1204,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 295, atk = 138, def = 112, spd = 89 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7435] = {
         name = "Cobalt Wyrmkin",
@@ -1222,7 +1222,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 384, atk = 180, def = 145, spd = 115 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7436] = {
         name = "Cobalt Scalebane",
@@ -1240,7 +1240,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 390, atk = 183, def = 148, spd = 117 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7437] = {
         name = "Cobalt Mageweaver",
@@ -1258,7 +1258,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 395, atk = 185, def = 150, spd = 119 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7846] = {
         name = "Teremus the Devourer",
@@ -1276,7 +1276,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [7997] = {
         name = "Captured Sprite Darter",
@@ -1294,7 +1294,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 237, atk = 110, def = 89, spd = 70 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8196] = {
         name = "Occulus",
@@ -1312,7 +1312,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 354, atk = 165, def = 134, spd = 106 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8197] = {
         name = "Chronalis",
@@ -1330,7 +1330,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8198] = {
         name = "Tick",
@@ -1348,7 +1348,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 366, atk = 171, def = 138, spd = 110 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8319] = {
         name = "Nightmare Whelp",
@@ -1368,7 +1368,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.025,
         pupName = "Nightmare Whelp Whelp",
         moves = {101, 806},
-        baseStats = { hp = 268, atk = 125, def = 101, spd = 80 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8479] = {
         name = "Velarok Windblade",
@@ -1386,7 +1386,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 384, atk = 180, def = 145, spd = 115 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8497] = {
         name = "Nightmare Suppressor",
@@ -1406,7 +1406,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.15,
         pupName = "Nightmare Suppressor Whelp",
         moves = {101, 806},
-        baseStats = { hp = 349, atk = 163, def = 132, spd = 104 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8976] = {
         name = "Hematos",
@@ -1424,7 +1424,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [9096] = {
         name = "Rage Talon Dragonspawn",
@@ -1444,7 +1444,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.15,
         pupName = "Rage Talon Dragonspawn Whelp",
         moves = {101, 806},
-        baseStats = { hp = 401, atk = 188, def = 152, spd = 121 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [9459] = {
         name = "Cyrus Therepentous",
@@ -1462,7 +1462,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 384, atk = 180, def = 145, spd = 115 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [9461] = {
         name = "Frenzied Black Drake",
@@ -1480,7 +1480,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 378, atk = 177, def = 143, spd = 113 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [9568] = {
         name = "Overlord Wyrmthalak",
@@ -1500,7 +1500,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.25,
         pupName = "Dragonkin Catalyst",
         moves = {101, 806},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10083] = {
         name = "Rage Talon Flamescale",
@@ -1520,7 +1520,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.15,
         pupName = "Rage Talon Flamescale Whelp",
         moves = {101, 806},
-        baseStats = { hp = 401, atk = 188, def = 152, spd = 121 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10161] = {
         name = "Rookery Whelp",
@@ -1540,7 +1540,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.025,
         pupName = "Rookery Whelp Whelp",
         moves = {101, 806},
-        baseStats = { hp = 300, atk = 140, def = 113, spd = 90 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10162] = {
         name = "Lord Victor Nefarius",
@@ -1560,7 +1560,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.25,
         pupName = "Dragonkin Catalyst",
         moves = {101, 806},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10196] = {
         name = "General Colbatann",
@@ -1578,7 +1578,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 390, atk = 183, def = 148, spd = 117 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [10202] = {
         name = "Azurous",
@@ -1596,7 +1596,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 407, atk = 191, def = 155, spd = 122 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [10258] = {
         name = "Rookery Guardian",
@@ -1616,7 +1616,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.15,
         pupName = "Rookery Guardian Whelp",
         moves = {101, 806},
-        baseStats = { hp = 401, atk = 188, def = 152, spd = 121 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10264] = {
         name = "Solakar Flamewreath",
@@ -1636,7 +1636,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.15,
         pupName = "Solakar Flamewreath Whelp",
         moves = {101, 806},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10321] = {
         name = "Emberstrife",
@@ -1654,7 +1654,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10339] = {
         name = "Gyth",
@@ -1674,7 +1674,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.15,
         pupName = "Gyth Whelp",
         moves = {101, 806},
-        baseStats = { hp = 425, atk = 200, def = 161, spd = 128 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10340] = {
         name = "Vaelastrasz the Red",
@@ -1694,7 +1694,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.15,
         pupName = "Vaelastrasz the Red Whelp",
         moves = {101, 806},
-        baseStats = { hp = 425, atk = 200, def = 161, spd = 128 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10363] = {
         name = "General Drakkisath",
@@ -1714,7 +1714,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.25,
         pupName = "Dragonkin Catalyst",
         moves = {101, 806},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10372] = {
         name = "Rage Talon Fire Tongue",
@@ -1734,7 +1734,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.15,
         pupName = "Rage Talon Fire Tongue Whelp",
         moves = {101, 806},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10442] = {
         name = "Chromatic Whelp",
@@ -1754,7 +1754,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.025,
         pupName = "Chromatic Whelp Whelp",
         moves = {101, 806},
-        baseStats = { hp = 304, atk = 143, def = 115, spd = 91 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10447] = {
         name = "Chromatic Dragonspawn",
@@ -1774,7 +1774,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.15,
         pupName = "Chromatic Dragonspawn Whelp",
         moves = {101, 806},
-        baseStats = { hp = 407, atk = 191, def = 155, spd = 122 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10659] = {
         name = "Cobalt Whelp",
@@ -1792,7 +1792,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 291, atk = 136, def = 110, spd = 87 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10660] = {
         name = "Cobalt Broodling",
@@ -1810,7 +1810,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 295, atk = 138, def = 112, spd = 89 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10661] = {
         name = "Spell Eater",
@@ -1828,7 +1828,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 295, atk = 138, def = 112, spd = 89 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10662] = {
         name = "Spellmaw",
@@ -1846,7 +1846,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 390, atk = 183, def = 148, spd = 117 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10663] = {
         name = "Manaclaw",
@@ -1864,7 +1864,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 401, atk = 188, def = 152, spd = 121 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10664] = {
         name = "Scryer",
@@ -1882,7 +1882,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10667] = {
         name = "Chromie",
@@ -1900,7 +1900,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 331, atk = 156, def = 126, spd = 100 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10678] = {
         name = "Plagued Hatchling",
@@ -1920,7 +1920,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.025,
         pupName = "Plagued Hatchling Whelp",
         moves = {101, 806},
-        baseStats = { hp = 309, atk = 145, def = 117, spd = 93 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10683] = {
         name = "Rookery Hatcher",
@@ -1940,7 +1940,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.15,
         pupName = "Rookery Hatcher Whelp",
         moves = {101, 806},
-        baseStats = { hp = 401, atk = 188, def = 152, spd = 121 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10740] = {
         name = "Awbee",
@@ -1960,7 +1960,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.15,
         pupName = "Awbee Whelp",
         moves = {101, 806},
-        baseStats = { hp = 395, atk = 185, def = 150, spd = 119 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10929] = {
         name = "Haleh",
@@ -1978,7 +1978,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 425, atk = 200, def = 161, spd = 128 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11583] = {
         name = "Nefarian",
@@ -1998,7 +1998,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.25,
         pupName = "Dragonkin Catalyst",
         moves = {101, 806},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11981] = {
         name = "Flamegor",
@@ -2018,7 +2018,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.25,
         pupName = "Dragonkin Catalyst",
         moves = {101, 806},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11983] = {
         name = "Firemaw",
@@ -2038,7 +2038,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.25,
         pupName = "Dragonkin Catalyst",
         moves = {101, 806},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12017] = {
         name = "Broodlord Lashlayer",
@@ -2058,7 +2058,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.25,
         pupName = "Dragonkin Catalyst",
         moves = {101, 806},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12422] = {
         name = "Death Talon Dragonspawn",
@@ -2078,7 +2078,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.15,
         pupName = "Death Talon Dragonspawn Whelp",
         moves = {101, 806},
-        baseStats = { hp = 407, atk = 191, def = 155, spd = 122 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12435] = {
         name = "Razorgore the Untamed",
@@ -2098,7 +2098,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.25,
         pupName = "Dragonkin Catalyst",
         moves = {101, 806},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12457] = {
         name = "Blackwing Spellbinder",
@@ -2118,7 +2118,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.15,
         pupName = "Blackwing Spellbinder Whelp",
         moves = {101, 806},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12460] = {
         name = "Death Talon Wyrmguard",
@@ -2138,7 +2138,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.15,
         pupName = "Death Talon Wyrmguard Whelp",
         moves = {101, 806},
-        baseStats = { hp = 425, atk = 200, def = 161, spd = 128 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12463] = {
         name = "Death Talon Flamescale",
@@ -2158,7 +2158,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.15,
         pupName = "Death Talon Flamescale Whelp",
         moves = {101, 806},
-        baseStats = { hp = 425, atk = 200, def = 161, spd = 128 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12464] = {
         name = "Death Talon Seether",
@@ -2178,7 +2178,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.15,
         pupName = "Death Talon Seether Whelp",
         moves = {101, 806},
-        baseStats = { hp = 425, atk = 200, def = 161, spd = 128 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12465] = {
         name = "Death Talon Wyrmkin",
@@ -2198,7 +2198,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.15,
         pupName = "Death Talon Wyrmkin Whelp",
         moves = {101, 806},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12468] = {
         name = "Death Talon Hatcher",
@@ -2218,7 +2218,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.15,
         pupName = "Death Talon Hatcher Whelp",
         moves = {101, 806},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12474] = {
         name = "Emeraldon Boughguard",
@@ -2238,7 +2238,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.03,
         pupName = "Emeraldon Boughguard Whelp",
         moves = {101, 806},
-        baseStats = { hp = 425, atk = 200, def = 161, spd = 128 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12475] = {
         name = "Emeraldon Tree Warder",
@@ -2258,7 +2258,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.03,
         pupName = "Emeraldon Tree Warder Whelp",
         moves = {101, 806},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12476] = {
         name = "Emeraldon Oracle",
@@ -2278,7 +2278,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.03,
         pupName = "Emeraldon Oracle Whelp",
         moves = {101, 806},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12477] = {
         name = "Verdantine Boughguard",
@@ -2298,7 +2298,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.03,
         pupName = "Verdantine Boughguard Whelp",
         moves = {101, 806},
-        baseStats = { hp = 425, atk = 200, def = 161, spd = 128 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12478] = {
         name = "Verdantine Oracle",
@@ -2318,7 +2318,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.03,
         pupName = "Verdantine Oracle Whelp",
         moves = {101, 806},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12479] = {
         name = "Verdantine Tree Warder",
@@ -2338,7 +2338,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.03,
         pupName = "Verdantine Tree Warder Whelp",
         moves = {101, 806},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12496] = {
         name = "Dreamtracker",
@@ -2358,7 +2358,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.03,
         pupName = "Dreamtracker Whelp",
         moves = {101, 806},
-        baseStats = { hp = 425, atk = 200, def = 161, spd = 128 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12497] = {
         name = "Dreamroarer",
@@ -2378,7 +2378,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.03,
         pupName = "Dreamroarer Whelp",
         moves = {101, 806},
-        baseStats = { hp = 425, atk = 200, def = 161, spd = 128 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12899] = {
         name = "Axtroz",
@@ -2396,7 +2396,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 425, atk = 200, def = 161, spd = 128 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12900] = {
         name = "Somnus",
@@ -2414,7 +2414,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 425, atk = 200, def = 161, spd = 128 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [13020] = {
         name = "Vaelastrasz the Corrupt",
@@ -2434,7 +2434,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.25,
         pupName = "Dragonkin Catalyst",
         moves = {101, 806},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14020] = {
         name = "Chromaggus",
@@ -2454,7 +2454,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.25,
         pupName = "Dragonkin Catalyst",
         moves = {101, 806},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14022] = {
         name = "Corrupted Red Whelp",
@@ -2474,7 +2474,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.025,
         pupName = "Corrupted Red Whelp Whelp",
         moves = {101, 806},
-        baseStats = { hp = 318, atk = 149, def = 121, spd = 96 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14023] = {
         name = "Corrupted Green Whelp",
@@ -2494,7 +2494,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.025,
         pupName = "Corrupted Green Whelp Whelp",
         moves = {101, 806},
-        baseStats = { hp = 318, atk = 149, def = 121, spd = 96 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14024] = {
         name = "Corrupted Blue Whelp",
@@ -2514,7 +2514,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.025,
         pupName = "Corrupted Blue Whelp Whelp",
         moves = {101, 806},
-        baseStats = { hp = 318, atk = 149, def = 121, spd = 96 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14025] = {
         name = "Corrupted Bronze Whelp",
@@ -2534,7 +2534,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.025,
         pupName = "Corrupted Bronze Whelp Whelp",
         moves = {101, 806},
-        baseStats = { hp = 318, atk = 149, def = 121, spd = 96 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14272] = {
         name = "Snarlflare",
@@ -2552,7 +2552,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 129, atk = 57, def = 47, spd = 37 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [14388] = {
         name = "Rogue Black Drake",
@@ -2570,7 +2570,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 360, atk = 168, def = 136, spd = 108 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14398] = {
         name = "Eldreth Darter",
@@ -2590,7 +2590,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.15,
         pupName = "Eldreth Darter Whelp",
         moves = {101, 806},
-        baseStats = { hp = 401, atk = 188, def = 152, spd = 121 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14445] = {
         name = "Lord Captain Wyrmak",
@@ -2608,7 +2608,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 325, atk = 151, def = 122, spd = 97 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [14601] = {
         name = "Ebonroc",
@@ -2628,7 +2628,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.25,
         pupName = "Dragonkin Catalyst",
         moves = {101, 806},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14887] = {
         name = "Ysondre",
@@ -2646,7 +2646,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14888] = {
         name = "Lethon",
@@ -2664,7 +2664,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14889] = {
         name = "Emeriss",
@@ -2682,7 +2682,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14890] = {
         name = "Taerar",
@@ -2700,7 +2700,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [15192] = {
         name = "Anachronos",
@@ -2718,7 +2718,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [15302] = {
         name = "Shade of Taerar",
@@ -2736,7 +2736,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [15378] = {
         name = "Merithra of the Dream",
@@ -2756,7 +2756,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.25,
         pupName = "Dragonkin Catalyst",
         moves = {101, 806},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [15379] = {
         name = "Caelestrasz",
@@ -2776,7 +2776,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.2,
         pupName = "Dragonkin Catalyst",
         moves = {101, 806},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [15380] = {
         name = "Arygos",
@@ -2796,7 +2796,7 @@ FS.Creatures_Dragonkin = {
         pupDropRate = 0.25,
         pupName = "Dragonkin Catalyst",
         moves = {101, 806},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [15381] = {
         name = "Anachronos the Ancient",
@@ -2814,7 +2814,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [15481] = {
         name = "Spirit of Azuregos",
@@ -2832,7 +2832,7 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [15491] = {
         name = "Eranikus, Tyrant of the Dream",
@@ -2850,6 +2850,6 @@ FS.Creatures_Dragonkin = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 806},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
 }

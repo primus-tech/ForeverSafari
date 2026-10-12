@@ -20,7 +20,7 @@ FS.Creatures_Beasts_WindSerpent = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 121, atk = 74, def = 34, spd = 53 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [3249] = {
         name = "Greater Thunderhawk",
@@ -38,7 +38,7 @@ FS.Creatures_Beasts_WindSerpent = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 137, atk = 85, def = 39, spd = 60 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [3424] = {
         name = "Thunderhawk Cloudscraper",
@@ -56,7 +56,7 @@ FS.Creatures_Beasts_WindSerpent = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 129, atk = 80, def = 37, spd = 56 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [3472] = {
         name = "Washte Pawne",
@@ -74,7 +74,7 @@ FS.Creatures_Beasts_WindSerpent = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 145, atk = 91, def = 42, spd = 64 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [3630] = {
         name = "Deviate Coiler",
@@ -92,7 +92,7 @@ FS.Creatures_Beasts_WindSerpent = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 136, atk = 82, def = 38, spd = 58 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [3631] = {
         name = "Deviate Stinglash",
@@ -110,7 +110,7 @@ FS.Creatures_Beasts_WindSerpent = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 141, atk = 86, def = 40, spd = 61 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4011] = {
         name = "Young Pridewing",
@@ -128,7 +128,7 @@ FS.Creatures_Beasts_WindSerpent = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 121, atk = 74, def = 34, spd = 53 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4012] = {
         name = "Pridewing Wyvern",
@@ -146,7 +146,7 @@ FS.Creatures_Beasts_WindSerpent = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 129, atk = 80, def = 37, spd = 56 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4013] = {
         name = "Pridewing Skyhunter",
@@ -164,7 +164,7 @@ FS.Creatures_Beasts_WindSerpent = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 137, atk = 85, def = 39, spd = 60 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4014] = {
         name = "Pridewing Consort",
@@ -182,7 +182,7 @@ FS.Creatures_Beasts_WindSerpent = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 133, atk = 83, def = 38, spd = 58 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4015] = {
         name = "Pridewing Patriarch",
@@ -200,7 +200,7 @@ FS.Creatures_Beasts_WindSerpent = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 145, atk = 91, def = 42, spd = 64 },
+        baseStats = { hp = 28, atk = 39, def = 16, spd = 27 },
     },
     [4107] = {
         name = "Highperch Wyvern",
@@ -218,7 +218,7 @@ FS.Creatures_Beasts_WindSerpent = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 157, atk = 99, def = 46, spd = 70 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4109] = {
         name = "Highperch Consort",
@@ -236,7 +236,7 @@ FS.Creatures_Beasts_WindSerpent = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 157, atk = 99, def = 46, spd = 70 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4110] = {
         name = "Highperch Patriarch",
@@ -254,7 +254,7 @@ FS.Creatures_Beasts_WindSerpent = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 165, atk = 105, def = 48, spd = 74 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4117] = {
         name = "Cloud Serpent",
@@ -272,7 +272,7 @@ FS.Creatures_Beasts_WindSerpent = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 145, atk = 91, def = 42, spd = 64 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4118] = {
         name = "Venomous Cloud Serpent",
@@ -290,7 +290,7 @@ FS.Creatures_Beasts_WindSerpent = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 153, atk = 96, def = 44, spd = 68 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4119] = {
         name = "Elder Cloud Serpent",
@@ -308,7 +308,7 @@ FS.Creatures_Beasts_WindSerpent = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 157, atk = 99, def = 46, spd = 70 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [5056] = {
         name = "Deviate Dreadfang",
@@ -328,7 +328,7 @@ FS.Creatures_Beasts_WindSerpent = {
         pupDropRate = 0.15,
         pupName = "Deviate Dreadfang Whelp",
         moves = {101, 118},
-        baseStats = { hp = 162, atk = 100, def = 46, spd = 71 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [5291] = {
         name = "Hakkari Frostwing",
@@ -348,7 +348,7 @@ FS.Creatures_Beasts_WindSerpent = {
         pupDropRate = 0.15,
         pupName = "Hakkari Frostwing Whelp",
         moves = {101, 118},
-        baseStats = { hp = 313, atk = 204, def = 94, spd = 146 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [5307] = {
         name = "Vale Screecher",
@@ -366,7 +366,7 @@ FS.Creatures_Beasts_WindSerpent = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 213, atk = 138, def = 63, spd = 98 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [5308] = {
         name = "Rogue Vale Screecher",
@@ -384,7 +384,7 @@ FS.Creatures_Beasts_WindSerpent = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 225, atk = 146, def = 67, spd = 104 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [5349] = {
         name = "Arash-ethis",
@@ -402,7 +402,7 @@ FS.Creatures_Beasts_WindSerpent = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 241, atk = 157, def = 72, spd = 112 },
+        baseStats = { hp = 28, atk = 39, def = 16, spd = 27 },
     },
     [5708] = {
         name = "Spawn of Hakkar",
@@ -422,7 +422,7 @@ FS.Creatures_Beasts_WindSerpent = {
         pupDropRate = 0.15,
         pupName = "Spawn of Hakkar Whelp",
         moves = {101, 118},
-        baseStats = { hp = 318, atk = 208, def = 95, spd = 148 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [5756] = {
         name = "Deviate Venomwing",
@@ -442,7 +442,7 @@ FS.Creatures_Beasts_WindSerpent = {
         pupDropRate = 0.15,
         pupName = "Deviate Venomwing Whelp",
         moves = {101, 118},
-        baseStats = { hp = 162, atk = 100, def = 46, spd = 71 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [5834] = {
         name = "Azzere the Skyblade",
@@ -460,7 +460,7 @@ FS.Creatures_Beasts_WindSerpent = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 145, atk = 91, def = 42, spd = 64 },
+        baseStats = { hp = 28, atk = 39, def = 16, spd = 27 },
     },
     [8336] = {
         name = "Hakkari Sapper",
@@ -480,7 +480,7 @@ FS.Creatures_Beasts_WindSerpent = {
         pupDropRate = 0.15,
         pupName = "Hakkari Sapper Whelp",
         moves = {101, 118},
-        baseStats = { hp = 313, atk = 204, def = 94, spd = 146 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [8438] = {
         name = "Hakkari Bloodkeeper",
@@ -500,7 +500,7 @@ FS.Creatures_Beasts_WindSerpent = {
         pupDropRate = 0.15,
         pupName = "Hakkari Bloodkeeper Whelp",
         moves = {101, 118},
-        baseStats = { hp = 313, atk = 204, def = 94, spd = 146 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [8440] = {
         name = "Shade of Hakkar",
@@ -520,7 +520,7 @@ FS.Creatures_Beasts_WindSerpent = {
         pupDropRate = 0.15,
         pupName = "Shade of Hakkar Whelp",
         moves = {101, 118},
-        baseStats = { hp = 313, atk = 204, def = 94, spd = 146 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [9297] = {
         name = "Enraged Wyvern",
@@ -538,7 +538,7 @@ FS.Creatures_Beasts_WindSerpent = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 265, atk = 173, def = 80, spd = 124 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [10581] = {
         name = "Young Arikara",
@@ -556,7 +556,7 @@ FS.Creatures_Beasts_WindSerpent = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 162, atk = 100, def = 46, spd = 71 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [10882] = {
         name = "Arikara",
@@ -574,7 +574,7 @@ FS.Creatures_Beasts_WindSerpent = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 204, atk = 129, def = 59, spd = 92 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [11357] = {
         name = "Son of Hakkar",
@@ -594,7 +594,7 @@ FS.Creatures_Beasts_WindSerpent = {
         pupDropRate = 0.15,
         pupName = "Son of Hakkar Whelp",
         moves = {101, 118},
-        baseStats = { hp = 370, atk = 243, def = 112, spd = 174 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [11359] = {
         name = "Soulflayer",
@@ -614,7 +614,7 @@ FS.Creatures_Beasts_WindSerpent = {
         pupDropRate = 0.15,
         pupName = "Soulflayer Whelp",
         moves = {101, 118},
-        baseStats = { hp = 375, atk = 247, def = 113, spd = 177 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [14234] = {
         name = "Hayoc",
@@ -632,6 +632,6 @@ FS.Creatures_Beasts_WindSerpent = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 209, atk = 135, def = 62, spd = 96 },
+        baseStats = { hp = 28, atk = 39, def = 16, spd = 27 },
     },
 }

@@ -22,7 +22,7 @@ FS.Creatures_Beasts_CoreHound = {
         pupDropRate = 0.25,
         pupName = "Core Hound Catalyst",
         moves = {101, 118},
-        baseStats = { hp = 370, atk = 243, def = 112, spd = 174 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [11671] = {
         name = "Core Hound",
@@ -42,7 +42,7 @@ FS.Creatures_Beasts_CoreHound = {
         pupDropRate = 0.15,
         pupName = "Core Hound Pup",
         moves = {101, 118},
-        baseStats = { hp = 375, atk = 247, def = 113, spd = 177 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [11672] = {
         name = "Core Rager",
@@ -62,7 +62,7 @@ FS.Creatures_Beasts_CoreHound = {
         pupDropRate = 0.15,
         pupName = "Core Rager Pup",
         moves = {101, 118},
-        baseStats = { hp = 380, atk = 250, def = 115, spd = 179 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [11673] = {
         name = "Ancient Core Hound",
@@ -82,7 +82,7 @@ FS.Creatures_Beasts_CoreHound = {
         pupDropRate = 0.15,
         pupName = "Ancient Core Hound Pup",
         moves = {101, 118},
-        baseStats = { hp = 375, atk = 247, def = 113, spd = 177 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [11982] = {
         name = "Magmadar",
@@ -102,6 +102,6 @@ FS.Creatures_Beasts_CoreHound = {
         pupDropRate = 0.25,
         pupName = "Core Hound Catalyst",
         moves = {101, 118},
-        baseStats = { hp = 370, atk = 243, def = 112, spd = 174 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
 }

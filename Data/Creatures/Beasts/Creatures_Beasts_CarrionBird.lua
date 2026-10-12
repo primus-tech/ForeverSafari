@@ -20,7 +20,7 @@ FS.Creatures_Beasts_CarrionBird = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 109, atk = 66, def = 30, spd = 47 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [199] = {
         name = "Young Fleshripper",
@@ -38,7 +38,7 @@ FS.Creatures_Beasts_CarrionBird = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 85, atk = 50, def = 23, spd = 35 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [428] = {
         name = "Dire Condor",
@@ -56,7 +56,7 @@ FS.Creatures_Beasts_CarrionBird = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 117, atk = 72, def = 33, spd = 51 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [462] = {
         name = "Vultros",
@@ -74,7 +74,7 @@ FS.Creatures_Beasts_CarrionBird = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 149, atk = 94, def = 43, spd = 66 },
+        baseStats = { hp = 28, atk = 39, def = 16, spd = 27 },
     },
     [1109] = {
         name = "Fleshripper",
@@ -92,7 +92,7 @@ FS.Creatures_Beasts_CarrionBird = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 97, atk = 58, def = 27, spd = 41 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [1194] = {
         name = "Mountain Buzzard",
@@ -110,7 +110,7 @@ FS.Creatures_Beasts_CarrionBird = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 105, atk = 63, def = 29, spd = 45 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [1809] = {
         name = "Carrion Vulture",
@@ -128,7 +128,7 @@ FS.Creatures_Beasts_CarrionBird = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 249, atk = 162, def = 75, spd = 116 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [2578] = {
         name = "Young Mesa Buzzard",
@@ -146,7 +146,7 @@ FS.Creatures_Beasts_CarrionBird = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 169, atk = 107, def = 49, spd = 76 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [2579] = {
         name = "Mesa Buzzard",
@@ -164,7 +164,7 @@ FS.Creatures_Beasts_CarrionBird = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 181, atk = 116, def = 53, spd = 82 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [2580] = {
         name = "Elder Mesa Buzzard",
@@ -182,7 +182,7 @@ FS.Creatures_Beasts_CarrionBird = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 193, atk = 124, def = 57, spd = 88 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [2829] = {
         name = "Starving Buzzard",
@@ -200,7 +200,7 @@ FS.Creatures_Beasts_CarrionBird = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 189, atk = 121, def = 56, spd = 86 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [2830] = {
         name = "Buzzard",
@@ -218,7 +218,7 @@ FS.Creatures_Beasts_CarrionBird = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 197, atk = 127, def = 58, spd = 90 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [2831] = {
         name = "Giant Buzzard",
@@ -236,7 +236,7 @@ FS.Creatures_Beasts_CarrionBird = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 205, atk = 132, def = 61, spd = 94 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [2931] = {
         name = "Zaricotl",
@@ -254,7 +254,7 @@ FS.Creatures_Beasts_CarrionBird = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 344, atk = 225, def = 104, spd = 161 },
+        baseStats = { hp = 28, atk = 39, def = 16, spd = 27 },
     },
     [2969] = {
         name = "Wiry Swoop",
@@ -272,7 +272,7 @@ FS.Creatures_Beasts_CarrionBird = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 69, atk = 39, def = 18, spd = 27 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [2970] = {
         name = "Swoop",
@@ -290,7 +290,7 @@ FS.Creatures_Beasts_CarrionBird = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 77, atk = 44, def = 20, spd = 31 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [2971] = {
         name = "Taloned Swoop",
@@ -308,7 +308,7 @@ FS.Creatures_Beasts_CarrionBird = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 81, atk = 47, def = 22, spd = 33 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4154] = {
         name = "Salt Flats Scavenger",
@@ -326,7 +326,7 @@ FS.Creatures_Beasts_CarrionBird = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 169, atk = 107, def = 49, spd = 76 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4158] = {
         name = "Salt Flats Vulture",
@@ -344,7 +344,7 @@ FS.Creatures_Beasts_CarrionBird = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 177, atk = 113, def = 52, spd = 80 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4692] = {
         name = "Dread Swoop",
@@ -362,7 +362,7 @@ FS.Creatures_Beasts_CarrionBird = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 173, atk = 110, def = 51, spd = 78 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4693] = {
         name = "Dread Flyer",
@@ -380,7 +380,7 @@ FS.Creatures_Beasts_CarrionBird = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 189, atk = 121, def = 56, spd = 86 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4694] = {
         name = "Dread Ripper",
@@ -398,7 +398,7 @@ FS.Creatures_Beasts_CarrionBird = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 201, atk = 129, def = 59, spd = 92 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4695] = {
         name = "Carrion Horror",
@@ -416,7 +416,7 @@ FS.Creatures_Beasts_CarrionBird = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 189, atk = 121, def = 56, spd = 86 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [5428] = {
         name = "Roc",
@@ -434,7 +434,7 @@ FS.Creatures_Beasts_CarrionBird = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 213, atk = 138, def = 63, spd = 98 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [5429] = {
         name = "Fire Roc",
@@ -452,7 +452,7 @@ FS.Creatures_Beasts_CarrionBird = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 221, atk = 143, def = 66, spd = 102 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [5430] = {
         name = "Searing Roc",
@@ -470,7 +470,7 @@ FS.Creatures_Beasts_CarrionBird = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 237, atk = 154, def = 71, spd = 110 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [5982] = {
         name = "Black Slayer",
@@ -488,7 +488,7 @@ FS.Creatures_Beasts_CarrionBird = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 233, atk = 151, def = 70, spd = 108 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [6013] = {
         name = "Wayward Buzzard",
@@ -506,7 +506,7 @@ FS.Creatures_Beasts_CarrionBird = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 189, atk = 121, def = 56, spd = 86 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [7376] = {
         name = "Sky Shadow",
@@ -524,7 +524,7 @@ FS.Creatures_Beasts_CarrionBird = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 265, atk = 173, def = 80, spd = 124 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [8207] = {
         name = "Greater Firebird",
@@ -542,7 +542,7 @@ FS.Creatures_Beasts_CarrionBird = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 229, atk = 149, def = 68, spd = 106 },
+        baseStats = { hp = 28, atk = 39, def = 16, spd = 27 },
     },
     [8299] = {
         name = "Spiteflayer",
@@ -560,7 +560,7 @@ FS.Creatures_Beasts_CarrionBird = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 253, atk = 165, def = 76, spd = 118 },
+        baseStats = { hp = 28, atk = 39, def = 16, spd = 27 },
     },
     [8605] = {
         name = "Carrion Devourer",
@@ -578,7 +578,7 @@ FS.Creatures_Beasts_CarrionBird = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 269, atk = 176, def = 81, spd = 126 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [14268] = {
         name = "Lord Condar",
@@ -596,6 +596,6 @@ FS.Creatures_Beasts_CarrionBird = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 105, atk = 63, def = 29, spd = 45 },
+        baseStats = { hp = 28, atk = 39, def = 16, spd = 27 },
     },
 }

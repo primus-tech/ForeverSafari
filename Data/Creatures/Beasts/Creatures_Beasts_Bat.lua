@@ -20,7 +20,7 @@ FS.Creatures_Beasts_Bat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 50, atk = 17, def = 15, spd = 26 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [1513] = {
         name = "Mangy Duskbat",
@@ -38,7 +38,7 @@ FS.Creatures_Beasts_Bat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 58, atk = 21, def = 18, spd = 31 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [1553] = {
         name = "Greater Duskbat",
@@ -56,7 +56,7 @@ FS.Creatures_Beasts_Bat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 71, atk = 26, def = 23, spd = 40 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [1554] = {
         name = "Vampiric Duskbat",
@@ -74,7 +74,7 @@ FS.Creatures_Beasts_Bat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 79, atk = 30, def = 26, spd = 46 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [3866] = {
         name = "Vile Bat",
@@ -94,7 +94,7 @@ FS.Creatures_Beasts_Bat = {
         pupDropRate = 0.15,
         pupName = "Vile Bat Pup",
         moves = {101, 118},
-        baseStats = { hp = 179, atk = 72, def = 63, spd = 112 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [3868] = {
         name = "Blood Seeker",
@@ -114,7 +114,7 @@ FS.Creatures_Beasts_Bat = {
         pupDropRate = 0.15,
         pupName = "Blood Seeker Pup",
         moves = {101, 118},
-        baseStats = { hp = 185, atk = 74, def = 66, spd = 115 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [4425] = {
         name = "Blind Hunter",
@@ -134,7 +134,7 @@ FS.Creatures_Beasts_Bat = {
         pupDropRate = 0.15,
         pupName = "Blind Hunter Pup",
         moves = {101, 118},
-        baseStats = { hp = 234, atk = 95, def = 84, spd = 149 },
+        baseStats = { hp = 22, atk = 28, def = 22, spd = 38 },
     },
     [4538] = {
         name = "Kraul Bat",
@@ -154,7 +154,7 @@ FS.Creatures_Beasts_Bat = {
         pupDropRate = 0.15,
         pupName = "Kraul Bat Pup",
         moves = {101, 118},
-        baseStats = { hp = 223, atk = 91, def = 80, spd = 141 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [4539] = {
         name = "Greater Kraul Bat",
@@ -174,7 +174,7 @@ FS.Creatures_Beasts_Bat = {
         pupDropRate = 0.15,
         pupName = "Greater Kraul Bat Pup",
         moves = {101, 118},
-        baseStats = { hp = 234, atk = 95, def = 84, spd = 149 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [4861] = {
         name = "Shrike Bat",
@@ -194,7 +194,7 @@ FS.Creatures_Beasts_Bat = {
         pupDropRate = 0.15,
         pupName = "Shrike Bat Pup",
         moves = {101, 118},
-        baseStats = { hp = 267, atk = 109, def = 97, spd = 171 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [8600] = {
         name = "Plaguebat",
@@ -212,7 +212,7 @@ FS.Creatures_Beasts_Bat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 272, atk = 113, def = 100, spd = 177 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [8601] = {
         name = "Noxious Plaguebat",
@@ -230,7 +230,7 @@ FS.Creatures_Beasts_Bat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 277, atk = 115, def = 102, spd = 180 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [8602] = {
         name = "Monstrous Plaguebat",
@@ -248,7 +248,7 @@ FS.Creatures_Beasts_Bat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 285, atk = 118, def = 105, spd = 186 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [8927] = {
         name = "Dark Screecher",
@@ -268,7 +268,7 @@ FS.Creatures_Beasts_Bat = {
         pupDropRate = 0.025,
         pupName = "Dark Screecher Pup",
         moves = {101, 118},
-        baseStats = { hp = 260, atk = 107, def = 95, spd = 169 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [9521] = {
         name = "Enraged Felbat",
@@ -286,7 +286,7 @@ FS.Creatures_Beasts_Bat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 360, atk = 149, def = 132, spd = 234 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [10357] = {
         name = "Ressan the Needler",
@@ -304,7 +304,7 @@ FS.Creatures_Beasts_Bat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 92, atk = 35, def = 31, spd = 54 },
+        baseStats = { hp = 22, atk = 28, def = 22, spd = 38 },
     },
     [11368] = {
         name = "Bloodseeker Bat",
@@ -324,7 +324,7 @@ FS.Creatures_Beasts_Bat = {
         pupDropRate = 0.025,
         pupName = "Bloodseeker Bat Pup",
         moves = {101, 118},
-        baseStats = { hp = 298, atk = 124, def = 110, spd = 195 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [11897] = {
         name = "Duskwing",
@@ -342,7 +342,7 @@ FS.Creatures_Beasts_Bat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 387, atk = 161, def = 143, spd = 253 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [14965] = {
         name = "Frenzied Bloodseeker Bat",
@@ -362,7 +362,7 @@ FS.Creatures_Beasts_Bat = {
         pupDropRate = 0.025,
         pupName = "Frenzied Bloodseeker Bat Pup",
         moves = {101, 118},
-        baseStats = { hp = 298, atk = 124, def = 110, spd = 195 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [16036] = {
         name = "Frenzied Bat",
@@ -382,7 +382,7 @@ FS.Creatures_Beasts_Bat = {
         pupDropRate = 0.15,
         pupName = "Frenzied Bat Pup",
         moves = {101, 118},
-        baseStats = { hp = 387, atk = 161, def = 143, spd = 253 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [16037] = {
         name = "Plagued Bat",
@@ -402,6 +402,6 @@ FS.Creatures_Beasts_Bat = {
         pupDropRate = 0.15,
         pupName = "Plagued Bat Pup",
         moves = {101, 118},
-        baseStats = { hp = 387, atk = 161, def = 143, spd = 253 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
 }

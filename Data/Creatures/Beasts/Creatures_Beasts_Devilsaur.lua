@@ -20,7 +20,7 @@ FS.Creatures_Beasts_Devilsaur = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 339, atk = 222, def = 102, spd = 159 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [6499] = {
         name = "Ironhide Devilsaur",
@@ -38,7 +38,7 @@ FS.Creatures_Beasts_Devilsaur = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 344, atk = 225, def = 104, spd = 161 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [6500] = {
         name = "Tyrant Devilsaur",
@@ -56,7 +56,7 @@ FS.Creatures_Beasts_Devilsaur = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 339, atk = 222, def = 102, spd = 159 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [6584] = {
         name = "King Mosh",
@@ -74,6 +74,6 @@ FS.Creatures_Beasts_Devilsaur = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 370, atk = 243, def = 112, spd = 174 },
+        baseStats = { hp = 28, atk = 39, def = 16, spd = 27 },
     },
 }

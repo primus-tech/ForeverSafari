@@ -22,7 +22,7 @@ FS.Creatures_Beasts_Serpent = {
         pupDropRate = 0.03,
         pupName = "Serpentbloom Snake Whelp",
         moves = {101, 118},
-        baseStats = { hp = 50, atk = 17, def = 15, spd = 26 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [4068] = {
         name = "Serpent Messenger",
@@ -40,7 +40,7 @@ FS.Creatures_Beasts_Serpent = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 88, atk = 34, def = 30, spd = 52 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [5048] = {
         name = "Deviate Adder",
@@ -60,7 +60,7 @@ FS.Creatures_Beasts_Serpent = {
         pupDropRate = 0.15,
         pupName = "Deviate Adder Whelp",
         moves = {101, 118},
-        baseStats = { hp = 158, atk = 62, def = 55, spd = 97 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [5224] = {
         name = "Murk Slitherer",
@@ -78,7 +78,7 @@ FS.Creatures_Beasts_Serpent = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 305, atk = 126, def = 111, spd = 197 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [5225] = {
         name = "Murk Spitter",
@@ -96,7 +96,7 @@ FS.Creatures_Beasts_Serpent = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 310, atk = 128, def = 113, spd = 201 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [5755] = {
         name = "Deviate Viper",
@@ -116,7 +116,7 @@ FS.Creatures_Beasts_Serpent = {
         pupDropRate = 0.15,
         pupName = "Deviate Viper Whelp",
         moves = {101, 118},
-        baseStats = { hp = 163, atk = 65, def = 57, spd = 101 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [5762] = {
         name = "Deviate Moccasin",
@@ -136,7 +136,7 @@ FS.Creatures_Beasts_Serpent = {
         pupDropRate = 0.15,
         pupName = "Deviate Moccasin Whelp",
         moves = {101, 118},
-        baseStats = { hp = 169, atk = 67, def = 59, spd = 104 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [8886] = {
         name = "Deviate Python",
@@ -156,7 +156,7 @@ FS.Creatures_Beasts_Serpent = {
         pupDropRate = 0.025,
         pupName = "Deviate Python Whelp",
         moves = {101, 118},
-        baseStats = { hp = 121, atk = 48, def = 42, spd = 74 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [14884] = {
         name = "Parasitic Serpent",
@@ -176,6 +176,6 @@ FS.Creatures_Beasts_Serpent = {
         pupDropRate = 0.025,
         pupName = "Parasitic Serpent Whelp",
         moves = {101, 118},
-        baseStats = { hp = 50, atk = 17, def = 15, spd = 26 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
 }

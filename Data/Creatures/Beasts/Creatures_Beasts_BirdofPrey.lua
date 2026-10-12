@@ -20,7 +20,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 256, atk = 106, def = 94, spd = 166 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [1995] = {
         name = "Strigid Owl",
@@ -38,7 +38,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 67, atk = 25, def = 22, spd = 37 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [1996] = {
         name = "Strigid Screecher",
@@ -56,7 +56,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 75, atk = 28, def = 25, spd = 43 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [1997] = {
         name = "Strigid Hunter",
@@ -74,7 +74,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 79, atk = 30, def = 26, spd = 46 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [2347] = {
         name = "Wild Gryphon",
@@ -92,7 +92,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 214, atk = 88, def = 78, spd = 137 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [2657] = {
         name = "Trained Razorbeak",
@@ -110,7 +110,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 218, atk = 89, def = 79, spd = 140 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [2658] = {
         name = "Razorbeak Gryphon",
@@ -128,7 +128,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 230, atk = 95, def = 84, spd = 149 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [2659] = {
         name = "Razorbeak Skylord",
@@ -146,7 +146,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 243, atk = 100, def = 89, spd = 157 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [5300] = {
         name = "Frayfeather Hippogryph",
@@ -164,7 +164,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 226, atk = 93, def = 82, spd = 146 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [5304] = {
         name = "Frayfeather Stagwing",
@@ -182,7 +182,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 230, atk = 95, def = 84, spd = 149 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [5305] = {
         name = "Frayfeather Skystormer",
@@ -200,7 +200,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 235, atk = 97, def = 86, spd = 152 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [5306] = {
         name = "Frayfeather Patriarch",
@@ -218,7 +218,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 239, atk = 98, def = 87, spd = 154 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [5347] = {
         name = "Antilus the Soarer",
@@ -236,7 +236,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 247, atk = 102, def = 90, spd = 160 },
+        baseStats = { hp = 22, atk = 28, def = 22, spd = 38 },
     },
     [5928] = {
         name = "Sorrow Wing",
@@ -254,7 +254,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 207, atk = 83, def = 74, spd = 130 },
+        baseStats = { hp = 22, atk = 28, def = 22, spd = 38 },
     },
     [5934] = {
         name = "Heartrazor",
@@ -272,7 +272,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 234, atk = 95, def = 84, spd = 149 },
+        baseStats = { hp = 22, atk = 28, def = 22, spd = 38 },
     },
     [7097] = {
         name = "Ironbeak Owl",
@@ -290,7 +290,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 247, atk = 102, def = 90, spd = 160 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [7098] = {
         name = "Ironbeak Screecher",
@@ -308,7 +308,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 264, atk = 109, def = 97, spd = 172 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [7099] = {
         name = "Ironbeak Hunter",
@@ -326,7 +326,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 256, atk = 106, def = 94, spd = 166 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [7167] = {
         name = "Polly",
@@ -344,7 +344,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 256, atk = 106, def = 94, spd = 166 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [7168] = {
         name = "Polly",
@@ -362,7 +362,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 121, atk = 48, def = 42, spd = 74 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [7447] = {
         name = "Fledgling Chillwind",
@@ -380,7 +380,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 272, atk = 113, def = 100, spd = 177 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [7455] = {
         name = "Winterspring Owl",
@@ -398,7 +398,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 277, atk = 115, def = 102, spd = 180 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [7456] = {
         name = "Winterspring Screecher",
@@ -416,7 +416,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 289, atk = 120, def = 106, spd = 189 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [8023] = {
         name = "Sharpbeak",
@@ -434,7 +434,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 67, atk = 25, def = 22, spd = 37 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [8024] = {
         name = "Sharpbeak's Father",
@@ -452,7 +452,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 277, atk = 115, def = 102, spd = 180 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [8025] = {
         name = "Sharpbeak's Mother",
@@ -470,7 +470,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 277, atk = 115, def = 102, spd = 180 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [8276] = {
         name = "Soaring Razorbeak",
@@ -488,7 +488,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 218, atk = 89, def = 79, spd = 140 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [8612] = {
         name = "Screecher Spirit",
@@ -506,7 +506,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 256, atk = 106, def = 94, spd = 166 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [8763] = {
         name = "Mistwing Rogue",
@@ -524,7 +524,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 251, atk = 104, def = 92, spd = 163 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [9165] = {
         name = "Fledgling Pterrordax",
@@ -542,7 +542,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 251, atk = 104, def = 92, spd = 163 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [9166] = {
         name = "Pterrordax",
@@ -560,7 +560,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 260, atk = 107, def = 95, spd = 169 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [9167] = {
         name = "Frenzied Pterrordax",
@@ -578,7 +578,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 268, atk = 111, def = 98, spd = 174 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [9526] = {
         name = "Enraged Gryphon",
@@ -596,7 +596,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 360, atk = 149, def = 132, spd = 234 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [9527] = {
         name = "Enraged Hippogryph",
@@ -614,7 +614,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 277, atk = 115, def = 102, spd = 180 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [11371] = {
         name = "Razzashi Serpent",
@@ -634,7 +634,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         pupDropRate = 0.15,
         pupName = "Razzashi Serpent Fledgling",
         moves = {101, 118},
-        baseStats = { hp = 387, atk = 161, def = 143, spd = 253 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [11372] = {
         name = "Razzashi Adder",
@@ -654,7 +654,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         pupDropRate = 0.15,
         pupName = "Razzashi Adder Fledgling",
         moves = {101, 118},
-        baseStats = { hp = 387, atk = 161, def = 143, spd = 253 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [11373] = {
         name = "Razzashi Cobra",
@@ -674,7 +674,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         pupDropRate = 0.15,
         pupName = "Razzashi Cobra Fledgling",
         moves = {101, 118},
-        baseStats = { hp = 387, atk = 161, def = 143, spd = 253 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [12676] = {
         name = "Sharptalon",
@@ -692,7 +692,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 176, atk = 71, def = 63, spd = 112 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [13161] = {
         name = "Aerie Gryphon",
@@ -712,7 +712,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         pupDropRate = 0.15,
         pupName = "Aerie Gryphon Fledgling",
         moves = {101, 118},
-        baseStats = { hp = 387, atk = 161, def = 143, spd = 253 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [14283] = {
         name = "Stormpike Owl",
@@ -732,7 +732,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         pupDropRate = 0.025,
         pupName = "Stormpike Owl Fledgling",
         moves = {101, 118},
-        baseStats = { hp = 268, atk = 111, def = 98, spd = 174 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [14343] = {
         name = "Olm the Wise",
@@ -750,7 +750,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 264, atk = 109, def = 97, spd = 172 },
+        baseStats = { hp = 22, atk = 28, def = 22, spd = 38 },
     },
     [14946] = {
         name = "Slidore's Gryphon",
@@ -770,7 +770,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         pupDropRate = 0.15,
         pupName = "Slidore's Gryphon Fledgling",
         moves = {101, 118},
-        baseStats = { hp = 387, atk = 161, def = 143, spd = 253 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [14947] = {
         name = "Ichman's Gryphon",
@@ -790,7 +790,7 @@ FS.Creatures_Beasts_BirdofPrey = {
         pupDropRate = 0.15,
         pupName = "Ichman's Gryphon Fledgling",
         moves = {101, 118},
-        baseStats = { hp = 387, atk = 161, def = 143, spd = 253 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [14948] = {
         name = "Vipore's Gryphon",
@@ -810,6 +810,6 @@ FS.Creatures_Beasts_BirdofPrey = {
         pupDropRate = 0.15,
         pupName = "Vipore's Gryphon Fledgling",
         moves = {101, 118},
-        baseStats = { hp = 387, atk = 161, def = 143, spd = 253 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
 }

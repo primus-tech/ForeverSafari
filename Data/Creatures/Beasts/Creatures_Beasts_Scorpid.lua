@@ -20,7 +20,7 @@ FS.Creatures_Beasts_Scorpid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 78, atk = 18, def = 27, spd = 11 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [3125] = {
         name = "Clattering Scorpid",
@@ -38,7 +38,7 @@ FS.Creatures_Beasts_Scorpid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 90, atk = 21, def = 32, spd = 13 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [3126] = {
         name = "Armored Scorpid",
@@ -56,7 +56,7 @@ FS.Creatures_Beasts_Scorpid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 102, atk = 24, def = 37, spd = 15 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [3127] = {
         name = "Venomtail Scorpid",
@@ -74,7 +74,7 @@ FS.Creatures_Beasts_Scorpid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 114, atk = 27, def = 42, spd = 17 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [3226] = {
         name = "Corrupted Scorpid",
@@ -92,7 +92,7 @@ FS.Creatures_Beasts_Scorpid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 120, atk = 29, def = 45, spd = 18 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [3250] = {
         name = "Silithid Creeper",
@@ -110,7 +110,7 @@ FS.Creatures_Beasts_Scorpid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 180, atk = 44, def = 70, spd = 27 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [3252] = {
         name = "Silithid Swarmer",
@@ -128,7 +128,7 @@ FS.Creatures_Beasts_Scorpid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 186, atk = 45, def = 72, spd = 27 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [3281] = {
         name = "Sarkoth",
@@ -146,7 +146,7 @@ FS.Creatures_Beasts_Scorpid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 84, atk = 20, def = 30, spd = 12 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4139] = {
         name = "Scorpid Terror",
@@ -164,7 +164,7 @@ FS.Creatures_Beasts_Scorpid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 258, atk = 63, def = 102, spd = 38 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4140] = {
         name = "Scorpid Reaver",
@@ -182,7 +182,7 @@ FS.Creatures_Beasts_Scorpid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 246, atk = 60, def = 97, spd = 36 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4696] = {
         name = "Scorpashi Snapper",
@@ -200,7 +200,7 @@ FS.Creatures_Beasts_Scorpid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 240, atk = 59, def = 95, spd = 36 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4697] = {
         name = "Scorpashi Lasher",
@@ -218,7 +218,7 @@ FS.Creatures_Beasts_Scorpid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 264, atk = 65, def = 105, spd = 39 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4699] = {
         name = "Scorpashi Venomlash",
@@ -236,7 +236,7 @@ FS.Creatures_Beasts_Scorpid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 288, atk = 71, def = 115, spd = 43 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [5422] = {
         name = "Scorpid Hunter",
@@ -254,7 +254,7 @@ FS.Creatures_Beasts_Scorpid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 300, atk = 74, def = 120, spd = 45 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [5423] = {
         name = "Scorpid Tail Lasher",
@@ -272,7 +272,7 @@ FS.Creatures_Beasts_Scorpid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 318, atk = 78, def = 127, spd = 47 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [5823] = {
         name = "Death Flayer",
@@ -290,7 +290,7 @@ FS.Creatures_Beasts_Scorpid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 126, atk = 30, def = 47, spd = 18 },
+        baseStats = { hp = 39, atk = 22, def = 33, spd = 16 },
     },
     [5937] = {
         name = "Vile Sting",
@@ -308,7 +308,7 @@ FS.Creatures_Beasts_Scorpid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 351, atk = 86, def = 139, spd = 52 },
+        baseStats = { hp = 39, atk = 22, def = 33, spd = 16 },
     },
     [5988] = {
         name = "Scorpok Stinger",
@@ -326,7 +326,7 @@ FS.Creatures_Beasts_Scorpid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 360, atk = 89, def = 145, spd = 54 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [7022] = {
         name = "Venomlash Scorpid",
@@ -346,7 +346,7 @@ FS.Creatures_Beasts_Scorpid = {
         pupDropRate = 0.15,
         pupName = "Venomlash Scorpid Pup",
         moves = {101, 904},
-        baseStats = { hp = 382, atk = 94, def = 152, spd = 57 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [7078] = {
         name = "Cleft Scorpid",
@@ -366,7 +366,7 @@ FS.Creatures_Beasts_Scorpid = {
         pupDropRate = 0.025,
         pupName = "Cleft Scorpid Pup",
         moves = {101, 904},
-        baseStats = { hp = 270, atk = 66, def = 107, spd = 40 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [7405] = {
         name = "Deadly Cleft Scorpid",
@@ -386,7 +386,7 @@ FS.Creatures_Beasts_Scorpid = {
         pupDropRate = 0.025,
         pupName = "Deadly Cleft Scorpid Pup",
         moves = {101, 904},
-        baseStats = { hp = 312, atk = 77, def = 125, spd = 46 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [7803] = {
         name = "Scorpid Duneburrower",
@@ -404,7 +404,7 @@ FS.Creatures_Beasts_Scorpid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 336, atk = 83, def = 135, spd = 50 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [8301] = {
         name = "Clack the Reaver",
@@ -422,7 +422,7 @@ FS.Creatures_Beasts_Scorpid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 378, atk = 93, def = 152, spd = 56 },
+        baseStats = { hp = 39, atk = 22, def = 33, spd = 16 },
     },
     [8926] = {
         name = "Deep Stinger",
@@ -442,7 +442,7 @@ FS.Creatures_Beasts_Scorpid = {
         pupDropRate = 0.025,
         pupName = "Deep Stinger Pup",
         moves = {101, 904},
-        baseStats = { hp = 366, atk = 90, def = 147, spd = 54 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [9691] = {
         name = "Venomtip Scorpid",
@@ -460,7 +460,7 @@ FS.Creatures_Beasts_Scorpid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 372, atk = 92, def = 150, spd = 55 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [9695] = {
         name = "Deathlash Scorpid",
@@ -478,7 +478,7 @@ FS.Creatures_Beasts_Scorpid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 384, atk = 95, def = 155, spd = 57 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [9698] = {
         name = "Firetail Scorpid",
@@ -496,7 +496,7 @@ FS.Creatures_Beasts_Scorpid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 396, atk = 98, def = 160, spd = 59 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [9701] = {
         name = "Spire Scorpid",
@@ -516,7 +516,7 @@ FS.Creatures_Beasts_Scorpid = {
         pupDropRate = 0.025,
         pupName = "Spire Scorpid Pup",
         moves = {101, 904},
-        baseStats = { hp = 408, atk = 101, def = 165, spd = 61 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [11735] = {
         name = "Stonelash Scorpid",
@@ -534,7 +534,7 @@ FS.Creatures_Beasts_Scorpid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 384, atk = 95, def = 155, spd = 57 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [11736] = {
         name = "Stonelash Pincer",
@@ -552,7 +552,7 @@ FS.Creatures_Beasts_Scorpid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 396, atk = 98, def = 160, spd = 59 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [11737] = {
         name = "Stonelash Flayer",
@@ -570,7 +570,7 @@ FS.Creatures_Beasts_Scorpid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 402, atk = 99, def = 162, spd = 60 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [14476] = {
         name = "Krellack",
@@ -588,7 +588,7 @@ FS.Creatures_Beasts_Scorpid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 396, atk = 98, def = 160, spd = 59 },
+        baseStats = { hp = 39, atk = 22, def = 33, spd = 16 },
     },
     [15196] = {
         name = "Deathclasp",
@@ -606,7 +606,7 @@ FS.Creatures_Beasts_Scorpid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 538, atk = 133, def = 217, spd = 80 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [15240] = {
         name = "Vekniss Hive Crawler",
@@ -626,7 +626,7 @@ FS.Creatures_Beasts_Scorpid = {
         pupDropRate = 0.15,
         pupName = "Vekniss Hive Crawler Pup",
         moves = {101, 904},
-        baseStats = { hp = 561, atk = 139, def = 227, spd = 84 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [15317] = {
         name = "Qiraji Scorpion",
@@ -646,7 +646,7 @@ FS.Creatures_Beasts_Scorpid = {
         pupDropRate = 0.025,
         pupName = "Qiraji Scorpion Pup",
         moves = {101, 904},
-        baseStats = { hp = 414, atk = 102, def = 167, spd = 62 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [15336] = {
         name = "Hive'Zara Tail Lasher",
@@ -666,6 +666,6 @@ FS.Creatures_Beasts_Scorpid = {
         pupDropRate = 0.15,
         pupName = "Hive'Zara Tail Lasher Pup",
         moves = {101, 904},
-        baseStats = { hp = 553, atk = 137, def = 224, spd = 83 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
 }

@@ -20,7 +20,7 @@ FS.Creatures_Beasts_Gorilla = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 252, atk = 62, def = 100, spd = 37 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [1114] = {
         name = "Jungle Thunderer",
@@ -38,7 +38,7 @@ FS.Creatures_Beasts_Gorilla = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 282, atk = 69, def = 112, spd = 42 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [1511] = {
         name = "Enraged Silverback Gorilla",
@@ -56,7 +56,7 @@ FS.Creatures_Beasts_Gorilla = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 306, atk = 75, def = 122, spd = 45 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [1514] = {
         name = "Mokk the Savage",
@@ -74,7 +74,7 @@ FS.Creatures_Beasts_Gorilla = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 324, atk = 80, def = 130, spd = 48 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [1516] = {
         name = "Konda",
@@ -92,7 +92,7 @@ FS.Creatures_Beasts_Gorilla = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 318, atk = 78, def = 127, spd = 47 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [1557] = {
         name = "Elder Mistvale Gorilla",
@@ -110,7 +110,7 @@ FS.Creatures_Beasts_Gorilla = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 300, atk = 74, def = 120, spd = 45 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [1558] = {
         name = "Silverback Patriarch",
@@ -128,7 +128,7 @@ FS.Creatures_Beasts_Gorilla = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 312, atk = 77, def = 125, spd = 46 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [1559] = {
         name = "King Mukla",
@@ -146,7 +146,7 @@ FS.Creatures_Beasts_Gorilla = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 468, atk = 115, def = 188, spd = 70 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [2521] = {
         name = "Skymane Gorilla",
@@ -164,7 +164,7 @@ FS.Creatures_Beasts_Gorilla = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 360, atk = 89, def = 145, spd = 54 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [5260] = {
         name = "Groddoc Ape",
@@ -182,7 +182,7 @@ FS.Creatures_Beasts_Gorilla = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 312, atk = 77, def = 125, spd = 46 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [5262] = {
         name = "Groddoc Thunderer",
@@ -200,7 +200,7 @@ FS.Creatures_Beasts_Gorilla = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 354, atk = 87, def = 142, spd = 53 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [6513] = {
         name = "Un'Goro Stomper",
@@ -218,7 +218,7 @@ FS.Creatures_Beasts_Gorilla = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 366, atk = 90, def = 147, spd = 54 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [6514] = {
         name = "Un'Goro Gorilla",
@@ -236,7 +236,7 @@ FS.Creatures_Beasts_Gorilla = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 360, atk = 89, def = 145, spd = 54 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [6516] = {
         name = "Un'Goro Thunderer",
@@ -254,7 +254,7 @@ FS.Creatures_Beasts_Gorilla = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 372, atk = 92, def = 150, spd = 55 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [6585] = {
         name = "Uhk'loc",
@@ -272,7 +272,7 @@ FS.Creatures_Beasts_Gorilla = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 372, atk = 92, def = 150, spd = 55 },
+        baseStats = { hp = 39, atk = 22, def = 33, spd = 16 },
     },
     [9622] = {
         name = "U'cha",
@@ -290,7 +290,7 @@ FS.Creatures_Beasts_Gorilla = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 390, atk = 96, def = 157, spd = 58 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [14491] = {
         name = "Kurmokk",
@@ -308,6 +308,6 @@ FS.Creatures_Beasts_Gorilla = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 904},
-        baseStats = { hp = 312, atk = 77, def = 125, spd = 46 },
+        baseStats = { hp = 39, atk = 22, def = 33, spd = 16 },
     },
 }

@@ -20,7 +20,7 @@ FS.Creatures_Beasts_Dinosaur = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 102, atk = 24, def = 37, spd = 15 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [2973] = {
         name = "Kodo Bull",
@@ -38,7 +38,7 @@ FS.Creatures_Beasts_Dinosaur = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 120, atk = 29, def = 45, spd = 18 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [2974] = {
         name = "Kodo Matriarch",
@@ -56,7 +56,7 @@ FS.Creatures_Beasts_Dinosaur = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 126, atk = 30, def = 47, spd = 18 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [3058] = {
         name = "Arra'chea",
@@ -74,7 +74,7 @@ FS.Creatures_Beasts_Dinosaur = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 126, atk = 30, def = 47, spd = 18 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [3234] = {
         name = "Lost Barrens Kodo",
@@ -92,7 +92,7 @@ FS.Creatures_Beasts_Dinosaur = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 144, atk = 35, def = 55, spd = 21 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [3235] = {
         name = "Greater Barrens Kodo",
@@ -110,7 +110,7 @@ FS.Creatures_Beasts_Dinosaur = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 204, atk = 50, def = 80, spd = 30 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [3236] = {
         name = "Barrens Kodo",
@@ -128,7 +128,7 @@ FS.Creatures_Beasts_Dinosaur = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 174, atk = 42, def = 67, spd = 26 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [3237] = {
         name = "Wooly Kodo",
@@ -146,7 +146,7 @@ FS.Creatures_Beasts_Dinosaur = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 210, atk = 51, def = 82, spd = 31 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [3240] = {
         name = "Stormsnout",
@@ -164,7 +164,7 @@ FS.Creatures_Beasts_Dinosaur = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 168, atk = 41, def = 65, spd = 25 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [3474] = {
         name = "Lakota'mani",
@@ -182,7 +182,7 @@ FS.Creatures_Beasts_Dinosaur = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 192, atk = 47, def = 75, spd = 28 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4008] = {
         name = "Cliff Stormer",
@@ -200,7 +200,7 @@ FS.Creatures_Beasts_Dinosaur = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 156, atk = 38, def = 60, spd = 23 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4700] = {
         name = "Aged Kodo",
@@ -218,7 +218,7 @@ FS.Creatures_Beasts_Dinosaur = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 264, atk = 65, def = 105, spd = 39 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4701] = {
         name = "Dying Kodo",
@@ -236,7 +236,7 @@ FS.Creatures_Beasts_Dinosaur = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 270, atk = 66, def = 107, spd = 40 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4702] = {
         name = "Ancient Kodo",
@@ -254,7 +254,7 @@ FS.Creatures_Beasts_Dinosaur = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 276, atk = 68, def = 110, spd = 41 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4726] = {
         name = "Raging Thunder Lizard",
@@ -272,7 +272,7 @@ FS.Creatures_Beasts_Dinosaur = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 258, atk = 63, def = 102, spd = 38 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4727] = {
         name = "Elder Thunder Lizard",
@@ -290,7 +290,7 @@ FS.Creatures_Beasts_Dinosaur = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 282, atk = 69, def = 112, spd = 42 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [5827] = {
         name = "Brontus",
@@ -308,7 +308,7 @@ FS.Creatures_Beasts_Dinosaur = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 288, atk = 70, def = 113, spd = 43 },
+        baseStats = { hp = 39, atk = 22, def = 33, spd = 16 },
     },
     [5832] = {
         name = "Thunderstomp",
@@ -326,7 +326,7 @@ FS.Creatures_Beasts_Dinosaur = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 204, atk = 50, def = 80, spd = 30 },
+        baseStats = { hp = 39, atk = 22, def = 33, spd = 16 },
     },
     [5833] = {
         name = "Margol the Rager",
@@ -344,7 +344,7 @@ FS.Creatures_Beasts_Dinosaur = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 452, atk = 111, def = 182, spd = 67 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [6501] = {
         name = "Stegodon",
@@ -362,7 +362,7 @@ FS.Creatures_Beasts_Dinosaur = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 483, atk = 119, def = 195, spd = 72 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [6502] = {
         name = "Plated Stegodon",
@@ -380,7 +380,7 @@ FS.Creatures_Beasts_Dinosaur = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 491, atk = 121, def = 198, spd = 73 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [6503] = {
         name = "Spiked Stegodon",
@@ -398,7 +398,7 @@ FS.Creatures_Beasts_Dinosaur = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 491, atk = 121, def = 198, spd = 73 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [6504] = {
         name = "Thunderstomp Stegodon",
@@ -416,7 +416,7 @@ FS.Creatures_Beasts_Dinosaur = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 499, atk = 123, def = 201, spd = 74 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [6583] = {
         name = "Gruff",
@@ -434,7 +434,7 @@ FS.Creatures_Beasts_Dinosaur = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 522, atk = 129, def = 211, spd = 78 },
+        baseStats = { hp = 39, atk = 22, def = 33, spd = 16 },
     },
     [8928] = {
         name = "Burrowing Thundersnout",
@@ -454,6 +454,6 @@ FS.Creatures_Beasts_Dinosaur = {
         pupDropRate = 0.025,
         pupName = "Burrowing Thundersnout Hatchling",
         moves = {114, 112},
-        baseStats = { hp = 366, atk = 90, def = 147, spd = 54 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
 }

@@ -20,7 +20,7 @@ FS.Creatures_Beasts_Turtle = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 240, atk = 59, def = 95, spd = 36 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [2505] = {
         name = "Saltwater Snapjaw",
@@ -38,7 +38,7 @@ FS.Creatures_Beasts_Turtle = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 354, atk = 87, def = 142, spd = 53 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [3461] = {
         name = "Oasis Snapjaw",
@@ -56,7 +56,7 @@ FS.Creatures_Beasts_Turtle = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 150, atk = 36, def = 57, spd = 22 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [3653] = {
         name = "Kresh",
@@ -76,7 +76,7 @@ FS.Creatures_Beasts_Turtle = {
         pupDropRate = 0.25,
         pupName = "Turtle Catalyst",
         moves = {101, 404},
-        baseStats = { hp = 234, atk = 57, def = 91, spd = 35 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4142] = {
         name = "Sparkleshell Tortoise",
@@ -94,7 +94,7 @@ FS.Creatures_Beasts_Turtle = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 240, atk = 59, def = 95, spd = 36 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4143] = {
         name = "Sparkleshell Snapper",
@@ -112,7 +112,7 @@ FS.Creatures_Beasts_Turtle = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 264, atk = 65, def = 105, spd = 39 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4144] = {
         name = "Sparkleshell Borer",
@@ -130,7 +130,7 @@ FS.Creatures_Beasts_Turtle = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 252, atk = 62, def = 100, spd = 37 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4396] = {
         name = "Mudrock Tortoise",
@@ -148,7 +148,7 @@ FS.Creatures_Beasts_Turtle = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 276, atk = 68, def = 110, spd = 41 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4397] = {
         name = "Mudrock Spikeshell",
@@ -166,7 +166,7 @@ FS.Creatures_Beasts_Turtle = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 282, atk = 69, def = 112, spd = 42 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4398] = {
         name = "Mudrock Burrower",
@@ -184,7 +184,7 @@ FS.Creatures_Beasts_Turtle = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 294, atk = 72, def = 117, spd = 44 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4399] = {
         name = "Mudrock Borer",
@@ -202,7 +202,7 @@ FS.Creatures_Beasts_Turtle = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 312, atk = 77, def = 125, spd = 46 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4400] = {
         name = "Mudrock Snapjaw",
@@ -220,7 +220,7 @@ FS.Creatures_Beasts_Turtle = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 306, atk = 75, def = 122, spd = 45 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4824] = {
         name = "Aku'mai Fisher",
@@ -240,7 +240,7 @@ FS.Creatures_Beasts_Turtle = {
         pupDropRate = 0.15,
         pupName = "Aku'mai Fisher Hatchling",
         moves = {101, 404},
-        baseStats = { hp = 257, atk = 63, def = 100, spd = 38 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4825] = {
         name = "Aku'mai Snapjaw",
@@ -260,7 +260,7 @@ FS.Creatures_Beasts_Turtle = {
         pupDropRate = 0.15,
         pupName = "Aku'mai Snapjaw Hatchling",
         moves = {101, 404},
-        baseStats = { hp = 280, atk = 68, def = 110, spd = 42 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4887] = {
         name = "Ghamoo-ra",
@@ -280,7 +280,7 @@ FS.Creatures_Beasts_Turtle = {
         pupDropRate = 0.15,
         pupName = "Ghamoo-ra Hatchling",
         moves = {101, 404},
-        baseStats = { hp = 273, atk = 66, def = 107, spd = 40 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [5431] = {
         name = "Surf Glider",
@@ -298,7 +298,7 @@ FS.Creatures_Beasts_Turtle = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 354, atk = 87, def = 142, spd = 53 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [5955] = {
         name = "Tooga",
@@ -316,7 +316,7 @@ FS.Creatures_Beasts_Turtle = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 330, atk = 81, def = 132, spd = 49 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [6015] = {
         name = "Torta",
@@ -334,7 +334,7 @@ FS.Creatures_Beasts_Turtle = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 330, atk = 81, def = 132, spd = 49 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [6352] = {
         name = "Coralshell Lurker",
@@ -352,7 +352,7 @@ FS.Creatures_Beasts_Turtle = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 378, atk = 93, def = 152, spd = 56 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [6369] = {
         name = "Coralshell Tortoise",
@@ -370,7 +370,7 @@ FS.Creatures_Beasts_Turtle = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 366, atk = 90, def = 147, spd = 54 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [7977] = {
         name = "Gammerita",
@@ -388,7 +388,7 @@ FS.Creatures_Beasts_Turtle = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 452, atk = 111, def = 182, spd = 67 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [8213] = {
         name = "Ironback",
@@ -406,7 +406,7 @@ FS.Creatures_Beasts_Turtle = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 366, atk = 90, def = 147, spd = 54 },
+        baseStats = { hp = 39, atk = 22, def = 33, spd = 16 },
     },
     [13599] = {
         name = "Stolid Snapjaw",
@@ -426,7 +426,7 @@ FS.Creatures_Beasts_Turtle = {
         pupDropRate = 0.025,
         pupName = "Stolid Snapjaw Hatchling",
         moves = {101, 404},
-        baseStats = { hp = 336, atk = 83, def = 135, spd = 50 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [14123] = {
         name = "Steeljaw Snapper",
@@ -444,7 +444,7 @@ FS.Creatures_Beasts_Turtle = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 312, atk = 77, def = 125, spd = 46 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [14223] = {
         name = "Cranky Benj",
@@ -462,6 +462,6 @@ FS.Creatures_Beasts_Turtle = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 252, atk = 62, def = 100, spd = 37 },
+        baseStats = { hp = 39, atk = 22, def = 33, spd = 16 },
     },
 }

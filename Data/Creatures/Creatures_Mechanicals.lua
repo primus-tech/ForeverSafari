@@ -20,7 +20,7 @@ FS.Creatures_Mechanicals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {601, 607},
-        baseStats = { hp = 97, atk = 41, def = 34, spd = 27 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [114] = {
         name = "Harvest Watcher",
@@ -38,7 +38,7 @@ FS.Creatures_Mechanicals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {601, 607},
-        baseStats = { hp = 111, atk = 48, def = 40, spd = 31 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [115] = {
         name = "Harvest Reaper",
@@ -56,7 +56,7 @@ FS.Creatures_Mechanicals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {601, 607},
-        baseStats = { hp = 124, atk = 55, def = 45, spd = 35 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [480] = {
         name = "Rusty Harvest Golem",
@@ -74,7 +74,7 @@ FS.Creatures_Mechanicals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {601, 607},
-        baseStats = { hp = 88, atk = 37, def = 31, spd = 24 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [573] = {
         name = "Foe Reaper 4000",
@@ -92,7 +92,7 @@ FS.Creatures_Mechanicals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {601, 607},
-        baseStats = { hp = 138, atk = 61, def = 50, spd = 40 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [642] = {
         name = "Sneed's Shredder",
@@ -112,7 +112,7 @@ FS.Creatures_Mechanicals = {
         pupDropRate = 0.15,
         pupName = "Sneed's Shredder Micro-Bot",
         moves = {601, 607},
-        baseStats = { hp = 179, atk = 80, def = 65, spd = 52 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2520] = {
         name = "Remote-Controlled Golem",
@@ -132,7 +132,7 @@ FS.Creatures_Mechanicals = {
         pupDropRate = 0.15,
         pupName = "Remote-Controlled Golem Micro-Bot",
         moves = {601, 607},
-        baseStats = { hp = 167, atk = 74, def = 61, spd = 48 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2667] = {
         name = "Ward of Laze",
@@ -150,7 +150,7 @@ FS.Creatures_Mechanicals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {601, 607},
-        baseStats = { hp = 210, atk = 96, def = 78, spd = 62 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2676] = {
         name = "Compact Harvest Reaper",
@@ -168,7 +168,7 @@ FS.Creatures_Mechanicals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {601, 607},
-        baseStats = { hp = 183, atk = 83, def = 68, spd = 54 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2922] = {
         name = "Servo",
@@ -186,7 +186,7 @@ FS.Creatures_Mechanicals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {601, 607},
-        baseStats = { hp = 70, atk = 28, def = 24, spd = 19 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [3538] = {
         name = "Overwatch Mark I",
@@ -204,7 +204,7 @@ FS.Creatures_Mechanicals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {601, 607},
-        baseStats = { hp = 192, atk = 88, def = 71, spd = 56 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4073] = {
         name = "XT:4",
@@ -222,7 +222,7 @@ FS.Creatures_Mechanicals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {601, 607},
-        baseStats = { hp = 151, atk = 68, def = 55, spd = 44 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4074] = {
         name = "XT:9",
@@ -240,7 +240,7 @@ FS.Creatures_Mechanicals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {601, 607},
-        baseStats = { hp = 151, atk = 68, def = 55, spd = 44 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4251] = {
         name = "Goblin Racer",
@@ -258,7 +258,7 @@ FS.Creatures_Mechanicals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {601, 607},
-        baseStats = { hp = 192, atk = 88, def = 71, spd = 56 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4252] = {
         name = "Gnome Racer",
@@ -276,7 +276,7 @@ FS.Creatures_Mechanicals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {601, 607},
-        baseStats = { hp = 192, atk = 88, def = 71, spd = 56 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4260] = {
         name = "Venture Co. Shredder",
@@ -294,7 +294,7 @@ FS.Creatures_Mechanicals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {601, 607},
-        baseStats = { hp = 214, atk = 99, def = 80, spd = 63 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4872] = {
         name = "Obsidian Golem",
@@ -312,7 +312,7 @@ FS.Creatures_Mechanicals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {601, 607},
-        baseStats = { hp = 284, atk = 131, def = 106, spd = 84 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4945] = {
         name = "Goblin Drag Car",
@@ -330,7 +330,7 @@ FS.Creatures_Mechanicals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {601, 607},
-        baseStats = { hp = 192, atk = 88, def = 71, spd = 56 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4946] = {
         name = "Gnome Drag Car",
@@ -348,7 +348,7 @@ FS.Creatures_Mechanicals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {601, 607},
-        baseStats = { hp = 192, atk = 88, def = 71, spd = 56 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [6225] = {
         name = "Mechano-Tank",
@@ -368,7 +368,7 @@ FS.Creatures_Mechanicals = {
         pupDropRate = 0.15,
         pupName = "Mechano-Tank Micro-Bot",
         moves = {601, 607},
-        baseStats = { hp = 267, atk = 122, def = 100, spd = 79 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [6226] = {
         name = "Mechano-Flamewalker",
@@ -388,7 +388,7 @@ FS.Creatures_Mechanicals = {
         pupDropRate = 0.15,
         pupName = "Mechano-Flamewalker Micro-Bot",
         moves = {601, 607},
-        baseStats = { hp = 267, atk = 122, def = 100, spd = 79 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [6227] = {
         name = "Mechano-Frostwalker",
@@ -408,7 +408,7 @@ FS.Creatures_Mechanicals = {
         pupDropRate = 0.15,
         pupName = "Mechano-Frostwalker Micro-Bot",
         moves = {601, 607},
-        baseStats = { hp = 273, atk = 125, def = 102, spd = 81 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [6229] = {
         name = "Crowd Pummeler 9-60",
@@ -428,7 +428,7 @@ FS.Creatures_Mechanicals = {
         pupDropRate = 0.25,
         pupName = "Mechanical Catalyst",
         moves = {601, 607},
-        baseStats = { hp = 249, atk = 114, def = 93, spd = 73 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [6230] = {
         name = "Peacekeeper Security Suit",
@@ -448,7 +448,7 @@ FS.Creatures_Mechanicals = {
         pupDropRate = 0.15,
         pupName = "Peacekeeper Security Suit Micro-Bot",
         moves = {601, 607},
-        baseStats = { hp = 267, atk = 122, def = 100, spd = 79 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [6231] = {
         name = "Techbot",
@@ -466,7 +466,7 @@ FS.Creatures_Mechanicals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {601, 607},
-        baseStats = { hp = 214, atk = 97, def = 79, spd = 62 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [6232] = {
         name = "Arcane Nullifier X-21",
@@ -486,7 +486,7 @@ FS.Creatures_Mechanicals = {
         pupDropRate = 0.15,
         pupName = "Arcane Nullifier X-21 Micro-Bot",
         moves = {601, 607},
-        baseStats = { hp = 273, atk = 125, def = 102, spd = 81 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [6233] = {
         name = "Mechanized Sentry",
@@ -506,7 +506,7 @@ FS.Creatures_Mechanicals = {
         pupDropRate = 0.15,
         pupName = "Mechanized Sentry Micro-Bot",
         moves = {601, 607},
-        baseStats = { hp = 261, atk = 120, def = 97, spd = 77 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [6234] = {
         name = "Mechanized Guardian",
@@ -526,7 +526,7 @@ FS.Creatures_Mechanicals = {
         pupDropRate = 0.15,
         pupName = "Mechanized Guardian Micro-Bot",
         moves = {601, 607},
-        baseStats = { hp = 273, atk = 125, def = 102, spd = 81 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [6235] = {
         name = "Electrocutioner 6000",
@@ -546,7 +546,7 @@ FS.Creatures_Mechanicals = {
         pupDropRate = 0.25,
         pupName = "Mechanical Catalyst",
         moves = {601, 607},
-        baseStats = { hp = 249, atk = 114, def = 93, spd = 73 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [6386] = {
         name = "Ward of Zanzil",
@@ -564,7 +564,7 @@ FS.Creatures_Mechanicals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {601, 607},
-        baseStats = { hp = 255, atk = 118, def = 96, spd = 76 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [6669] = {
         name = "The Threshwackonator 4100",
@@ -582,7 +582,7 @@ FS.Creatures_Mechanicals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {601, 607},
-        baseStats = { hp = 179, atk = 80, def = 65, spd = 52 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7023] = {
         name = "Obsidian Sentinel",
@@ -602,7 +602,7 @@ FS.Creatures_Mechanicals = {
         pupDropRate = 0.25,
         pupName = "Mechanical Catalyst",
         moves = {601, 607},
-        baseStats = { hp = 308, atk = 143, def = 116, spd = 92 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7166] = {
         name = "Wrenix's Gizmotronic Apparatus",
@@ -620,7 +620,7 @@ FS.Creatures_Mechanicals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {601, 607},
-        baseStats = { hp = 138, atk = 61, def = 50, spd = 40 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7209] = {
         name = "Obsidian Shard",
@@ -640,7 +640,7 @@ FS.Creatures_Mechanicals = {
         pupDropRate = 0.025,
         pupName = "Obsidian Shard Micro-Bot",
         moves = {601, 607},
-        baseStats = { hp = 205, atk = 94, def = 77, spd = 61 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7527] = {
         name = "Goblin Land Mine",
@@ -660,7 +660,7 @@ FS.Creatures_Mechanicals = {
         pupDropRate = 0.025,
         pupName = "Goblin Land Mine Micro-Bot",
         moves = {601, 607},
-        baseStats = { hp = 241, atk = 112, def = 91, spd = 72 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7784] = {
         name = "Homing Robot OOX-17/TN",
@@ -678,7 +678,7 @@ FS.Creatures_Mechanicals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {601, 607},
-        baseStats = { hp = 237, atk = 110, def = 89, spd = 70 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7800] = {
         name = "Mekgineer Thermaplugg",
@@ -698,7 +698,7 @@ FS.Creatures_Mechanicals = {
         pupDropRate = 0.25,
         pupName = "Mechanical Catalyst",
         moves = {601, 607},
-        baseStats = { hp = 261, atk = 120, def = 97, spd = 77 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7806] = {
         name = "Homing Robot OOX-09/HL",
@@ -716,7 +716,7 @@ FS.Creatures_Mechanicals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {601, 607},
-        baseStats = { hp = 237, atk = 110, def = 89, spd = 70 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7807] = {
         name = "Homing Robot OOX-22/FE",
@@ -734,7 +734,7 @@ FS.Creatures_Mechanicals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {601, 607},
-        baseStats = { hp = 237, atk = 110, def = 89, spd = 70 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7849] = {
         name = "Mobile Alert System",
@@ -754,7 +754,7 @@ FS.Creatures_Mechanicals = {
         pupDropRate = 0.025,
         pupName = "Mobile Alert System Micro-Bot",
         moves = {601, 607},
-        baseStats = { hp = 192, atk = 88, def = 71, spd = 56 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7897] = {
         name = "Alarm-a-bomb 2600",
@@ -774,7 +774,7 @@ FS.Creatures_Mechanicals = {
         pupDropRate = 0.025,
         pupName = "Alarm-a-bomb 2600 Micro-Bot",
         moves = {601, 607},
-        baseStats = { hp = 183, atk = 83, def = 68, spd = 54 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7915] = {
         name = "Walking Bomb",
@@ -794,7 +794,7 @@ FS.Creatures_Mechanicals = {
         pupDropRate = 0.025,
         pupName = "Walking Bomb Micro-Bot",
         moves = {601, 607},
-        baseStats = { hp = 183, atk = 83, def = 68, spd = 54 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8035] = {
         name = "Dark Iron Land Mine",
@@ -814,7 +814,7 @@ FS.Creatures_Mechanicals = {
         pupDropRate = 0.025,
         pupName = "Dark Iron Land Mine Micro-Bot",
         moves = {601, 607},
-        baseStats = { hp = 246, atk = 114, def = 92, spd = 73 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8447] = {
         name = "Clunk",
@@ -832,7 +832,7 @@ FS.Creatures_Mechanicals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {601, 607},
-        baseStats = { hp = 343, atk = 160, def = 129, spd = 102 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8856] = {
         name = "Tyrion's Spybot",
@@ -850,7 +850,7 @@ FS.Creatures_Mechanicals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {601, 607},
-        baseStats = { hp = 160, atk = 72, def = 59, spd = 47 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [9623] = {
         name = "A-Me 01",
@@ -868,7 +868,7 @@ FS.Creatures_Mechanicals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {601, 607},
-        baseStats = { hp = 264, atk = 123, def = 99, spd = 79 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11684] = {
         name = "Warsong Shredder",
@@ -886,7 +886,7 @@ FS.Creatures_Mechanicals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {601, 607},
-        baseStats = { hp = 169, atk = 77, def = 62, spd = 49 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12363] = {
         name = "Blue Mechanostrider",
@@ -904,7 +904,7 @@ FS.Creatures_Mechanicals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {601, 607},
-        baseStats = { hp = 52, atk = 19, def = 17, spd = 13 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12365] = {
         name = "Red Mechanostrider",
@@ -922,7 +922,7 @@ FS.Creatures_Mechanicals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {601, 607},
-        baseStats = { hp = 52, atk = 19, def = 17, spd = 13 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12366] = {
         name = "Unpainted Mechanostrider",
@@ -940,7 +940,7 @@ FS.Creatures_Mechanicals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {601, 607},
-        baseStats = { hp = 52, atk = 19, def = 17, spd = 13 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12367] = {
         name = "Green Mechanostrider",
@@ -958,7 +958,7 @@ FS.Creatures_Mechanicals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {601, 607},
-        baseStats = { hp = 52, atk = 19, def = 17, spd = 13 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12473] = {
         name = "Arcanite Dragonling",
@@ -978,7 +978,7 @@ FS.Creatures_Mechanicals = {
         pupDropRate = 0.025,
         pupName = "Arcanite Dragonling Micro-Bot",
         moves = {601, 607},
-        baseStats = { hp = 318, atk = 149, def = 121, spd = 96 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14224] = {
         name = "7:XT",
@@ -996,7 +996,7 @@ FS.Creatures_Mechanicals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {601, 607},
-        baseStats = { hp = 232, atk = 107, def = 87, spd = 69 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [14337] = {
         name = "Field Repair Bot 74A",
@@ -1016,7 +1016,7 @@ FS.Creatures_Mechanicals = {
         pupDropRate = 0.025,
         pupName = "Field Repair Bot 74A Micro-Bot",
         moves = {601, 607},
-        baseStats = { hp = 273, atk = 127, def = 103, spd = 82 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14551] = {
         name = "Swift Yellow Mechanostrider",
@@ -1034,7 +1034,7 @@ FS.Creatures_Mechanicals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {601, 607},
-        baseStats = { hp = 52, atk = 19, def = 17, spd = 13 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14552] = {
         name = "Swift White Mechanostrider",
@@ -1052,7 +1052,7 @@ FS.Creatures_Mechanicals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {601, 607},
-        baseStats = { hp = 52, atk = 19, def = 17, spd = 13 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14553] = {
         name = "Swift Green Mechanostrider",
@@ -1070,7 +1070,7 @@ FS.Creatures_Mechanicals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {601, 607},
-        baseStats = { hp = 52, atk = 19, def = 17, spd = 13 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [15079] = {
         name = "Fishbot 5000",
@@ -1088,7 +1088,7 @@ FS.Creatures_Mechanicals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {601, 607},
-        baseStats = { hp = 273, atk = 127, def = 103, spd = 82 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [15368] = {
         name = "Tonk Mine",
@@ -1106,6 +1106,6 @@ FS.Creatures_Mechanicals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {601, 607},
-        baseStats = { hp = 318, atk = 149, def = 121, spd = 96 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
 }

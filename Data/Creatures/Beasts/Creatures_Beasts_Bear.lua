@@ -20,7 +20,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 108, atk = 26, def = 40, spd = 16 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [1128] = {
         name = "Young Black Bear",
@@ -38,7 +38,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 90, atk = 21, def = 32, spd = 13 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [1129] = {
         name = "Black Bear",
@@ -56,7 +56,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 96, atk = 23, def = 35, spd = 14 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [1130] = {
         name = "Bjarn",
@@ -74,7 +74,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 132, atk = 32, def = 50, spd = 19 },
+        baseStats = { hp = 39, atk = 22, def = 33, spd = 16 },
     },
     [1186] = {
         name = "Elder Black Bear",
@@ -92,7 +92,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 126, atk = 30, def = 47, spd = 18 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [1188] = {
         name = "Grizzled Black Bear",
@@ -110,7 +110,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 138, atk = 33, def = 52, spd = 20 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [1189] = {
         name = "Black Bear Patriarch",
@@ -128,7 +128,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 156, atk = 38, def = 60, spd = 23 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [1196] = {
         name = "Ice Claw Bear",
@@ -146,7 +146,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 102, atk = 24, def = 37, spd = 15 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [1225] = {
         name = "Ol' Sooty",
@@ -164,7 +164,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 234, atk = 57, def = 91, spd = 35 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [1778] = {
         name = "Ferocious Grizzled Bear",
@@ -182,7 +182,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 126, atk = 30, def = 47, spd = 18 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [1797] = {
         name = "Giant Grizzled Bear",
@@ -200,7 +200,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 132, atk = 32, def = 50, spd = 19 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [1815] = {
         name = "Diseased Black Bear",
@@ -218,7 +218,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 366, atk = 90, def = 147, spd = 54 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [1816] = {
         name = "Diseased Grizzly",
@@ -236,7 +236,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 390, atk = 96, def = 157, spd = 58 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [1961] = {
         name = "Mangeclaw",
@@ -254,7 +254,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 126, atk = 30, def = 47, spd = 18 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [2163] = {
         name = "Thistle Bear",
@@ -272,7 +272,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 126, atk = 30, def = 47, spd = 18 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [2164] = {
         name = "Rabid Thistle Bear",
@@ -290,7 +290,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 138, atk = 33, def = 52, spd = 20 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [2165] = {
         name = "Grizzled Thistle Bear",
@@ -308,7 +308,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 156, atk = 38, def = 60, spd = 23 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [2351] = {
         name = "Gray Bear",
@@ -326,7 +326,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 186, atk = 45, def = 72, spd = 27 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [2354] = {
         name = "Vicious Gray Bear",
@@ -344,7 +344,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 192, atk = 47, def = 75, spd = 28 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [2356] = {
         name = "Elder Gray Bear",
@@ -362,7 +362,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 210, atk = 51, def = 82, spd = 31 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [3695] = {
         name = "Grimclaw",
@@ -380,7 +380,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 138, atk = 33, def = 52, spd = 20 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [3809] = {
         name = "Ashenvale Bear",
@@ -398,7 +398,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 186, atk = 45, def = 72, spd = 27 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [3810] = {
         name = "Elder Ashenvale Bear",
@@ -416,7 +416,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 210, atk = 51, def = 82, spd = 31 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [3811] = {
         name = "Giant Ashenvale Bear",
@@ -434,7 +434,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 234, atk = 57, def = 92, spd = 35 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [5268] = {
         name = "Ironfur Bear",
@@ -452,7 +452,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 306, atk = 75, def = 122, spd = 45 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [5272] = {
         name = "Grizzled Ironfur Bear",
@@ -470,7 +470,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 324, atk = 80, def = 130, spd = 48 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [5274] = {
         name = "Ironfur Patriarch",
@@ -488,7 +488,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 348, atk = 86, def = 140, spd = 52 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [5352] = {
         name = "Old Grizzlegut",
@@ -506,7 +506,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 318, atk = 78, def = 127, spd = 47 },
+        baseStats = { hp = 39, atk = 22, def = 33, spd = 16 },
     },
     [6788] = {
         name = "Den Mother",
@@ -524,7 +524,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 168, atk = 41, def = 65, spd = 25 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [6789] = {
         name = "Thistle Cub",
@@ -542,7 +542,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 114, atk = 27, def = 42, spd = 17 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [7443] = {
         name = "Shardtooth Mauler",
@@ -560,7 +560,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 390, atk = 96, def = 157, spd = 58 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [7444] = {
         name = "Shardtooth Bear",
@@ -578,7 +578,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 378, atk = 93, def = 152, spd = 56 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [7445] = {
         name = "Elder Shardtooth",
@@ -596,7 +596,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 402, atk = 99, def = 162, spd = 60 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [7446] = {
         name = "Rabid Shardtooth",
@@ -614,7 +614,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 414, atk = 102, def = 167, spd = 62 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [8956] = {
         name = "Angerclaw Bear",
@@ -632,7 +632,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 342, atk = 84, def = 137, spd = 51 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [8957] = {
         name = "Angerclaw Grizzly",
@@ -650,7 +650,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 366, atk = 90, def = 147, spd = 54 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [8958] = {
         name = "Angerclaw Mauler",
@@ -668,7 +668,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 354, atk = 87, def = 142, spd = 53 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [10806] = {
         name = "Ursius",
@@ -686,7 +686,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 514, atk = 127, def = 208, spd = 77 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [11956] = {
         name = "Great Bear Spirit",
@@ -704,7 +704,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 420, atk = 104, def = 170, spd = 63 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [12037] = {
         name = "Ursol'lok",
@@ -722,7 +722,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 246, atk = 60, def = 97, spd = 36 },
+        baseStats = { hp = 39, atk = 22, def = 33, spd = 16 },
     },
     [12432] = {
         name = "Old Vicejaw",
@@ -740,7 +740,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 144, atk = 35, def = 55, spd = 21 },
+        baseStats = { hp = 39, atk = 22, def = 33, spd = 16 },
     },
     [12678] = {
         name = "Ursangous",
@@ -758,7 +758,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 210, atk = 51, def = 82, spd = 31 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [13896] = {
         name = "Scalebeard",
@@ -776,7 +776,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 483, atk = 119, def = 195, spd = 72 },
+        baseStats = { hp = 39, atk = 22, def = 33, spd = 16 },
     },
     [14280] = {
         name = "Big Samras",
@@ -794,7 +794,7 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 222, atk = 54, def = 87, spd = 33 },
+        baseStats = { hp = 39, atk = 22, def = 33, spd = 16 },
     },
     [14344] = {
         name = "Mongress",
@@ -812,6 +812,6 @@ FS.Creatures_Beasts_Bear = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {110, 112},
-        baseStats = { hp = 360, atk = 89, def = 145, spd = 54 },
+        baseStats = { hp = 39, atk = 22, def = 33, spd = 16 },
     },
 }

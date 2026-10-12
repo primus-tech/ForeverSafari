@@ -20,7 +20,7 @@ FS.Creatures_Beasts_Crab = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 138, atk = 33, def = 52, spd = 20 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [831] = {
         name = "Sea Crawler",
@@ -38,7 +38,7 @@ FS.Creatures_Beasts_Crab = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 150, atk = 36, def = 57, spd = 22 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [922] = {
         name = "Silt Crawler",
@@ -56,7 +56,7 @@ FS.Creatures_Beasts_Crab = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 300, atk = 74, def = 120, spd = 45 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [1088] = {
         name = "Monstrous Crawler",
@@ -74,7 +74,7 @@ FS.Creatures_Beasts_Crab = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 318, atk = 78, def = 127, spd = 47 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [1216] = {
         name = "Shore Crawler",
@@ -92,7 +92,7 @@ FS.Creatures_Beasts_Crab = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 162, atk = 39, def = 62, spd = 24 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [2231] = {
         name = "Pygmy Tide Crawler",
@@ -110,7 +110,7 @@ FS.Creatures_Beasts_Crab = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 114, atk = 27, def = 42, spd = 17 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [2232] = {
         name = "Tide Crawler",
@@ -128,7 +128,7 @@ FS.Creatures_Beasts_Crab = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 138, atk = 33, def = 52, spd = 20 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [2233] = {
         name = "Encrusted Tide Crawler",
@@ -146,7 +146,7 @@ FS.Creatures_Beasts_Crab = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 174, atk = 42, def = 67, spd = 26 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [2234] = {
         name = "Young Reef Crawler",
@@ -164,7 +164,7 @@ FS.Creatures_Beasts_Crab = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 120, atk = 29, def = 45, spd = 18 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [2235] = {
         name = "Reef Crawler",
@@ -182,7 +182,7 @@ FS.Creatures_Beasts_Crab = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 156, atk = 38, def = 60, spd = 23 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [2236] = {
         name = "Raging Reef Crawler",
@@ -200,7 +200,7 @@ FS.Creatures_Beasts_Crab = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 180, atk = 44, def = 70, spd = 27 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [2544] = {
         name = "Southern Sand Crawler",
@@ -218,7 +218,7 @@ FS.Creatures_Beasts_Crab = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 300, atk = 74, def = 120, spd = 45 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [3106] = {
         name = "Pygmy Surf Crawler",
@@ -236,7 +236,7 @@ FS.Creatures_Beasts_Crab = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 90, atk = 21, def = 32, spd = 13 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [3107] = {
         name = "Surf Crawler",
@@ -254,7 +254,7 @@ FS.Creatures_Beasts_Crab = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 102, atk = 24, def = 37, spd = 15 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [3108] = {
         name = "Encrusted Surf Crawler",
@@ -272,7 +272,7 @@ FS.Creatures_Beasts_Crab = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 114, atk = 27, def = 42, spd = 17 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [3228] = {
         name = "Corrupted Surf Crawler",
@@ -290,7 +290,7 @@ FS.Creatures_Beasts_Crab = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 120, atk = 29, def = 45, spd = 18 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [3503] = {
         name = "Silithid Protector",
@@ -308,7 +308,7 @@ FS.Creatures_Beasts_Crab = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 168, atk = 41, def = 65, spd = 25 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [3812] = {
         name = "Clattering Crawler",
@@ -326,7 +326,7 @@ FS.Creatures_Beasts_Crab = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 174, atk = 42, def = 67, spd = 26 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [3814] = {
         name = "Spined Crawler",
@@ -344,7 +344,7 @@ FS.Creatures_Beasts_Crab = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 180, atk = 44, def = 70, spd = 27 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4821] = {
         name = "Skittering Crustacean",
@@ -364,7 +364,7 @@ FS.Creatures_Beasts_Crab = {
         pupDropRate = 0.15,
         pupName = "Skittering Crustacean Pup",
         moves = {101, 404},
-        baseStats = { hp = 257, atk = 63, def = 100, spd = 38 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4822] = {
         name = "Snapping Crustacean",
@@ -384,7 +384,7 @@ FS.Creatures_Beasts_Crab = {
         pupDropRate = 0.15,
         pupName = "Snapping Crustacean Pup",
         moves = {101, 404},
-        baseStats = { hp = 265, atk = 65, def = 104, spd = 39 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4823] = {
         name = "Barbed Crustacean",
@@ -404,7 +404,7 @@ FS.Creatures_Beasts_Crab = {
         pupDropRate = 0.15,
         pupName = "Barbed Crustacean Pup",
         moves = {101, 404},
-        baseStats = { hp = 273, atk = 66, def = 107, spd = 40 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [6250] = {
         name = "Crawler",
@@ -422,7 +422,7 @@ FS.Creatures_Beasts_Crab = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 126, atk = 30, def = 47, spd = 18 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [12347] = {
         name = "Enraged Reef Crawler",
@@ -440,6 +440,6 @@ FS.Creatures_Beasts_Crab = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 246, atk = 60, def = 97, spd = 36 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
 }

@@ -20,7 +20,7 @@ FS.Creatures_Beasts_Kodo = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 114, atk = 27, def = 42, spd = 17 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [3131] = {
         name = "Lightning Hide",
@@ -38,7 +38,7 @@ FS.Creatures_Beasts_Kodo = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 120, atk = 29, def = 45, spd = 18 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [3238] = {
         name = "Stormhide",
@@ -56,7 +56,7 @@ FS.Creatures_Beasts_Kodo = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 192, atk = 47, def = 75, spd = 28 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [3239] = {
         name = "Thunderhead",
@@ -74,7 +74,7 @@ FS.Creatures_Beasts_Kodo = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 180, atk = 44, def = 70, spd = 27 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [3473] = {
         name = "Owatanka",
@@ -92,7 +92,7 @@ FS.Creatures_Beasts_Kodo = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 204, atk = 50, def = 80, spd = 30 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [5523] = {
         name = "War Party Kodo",
@@ -110,7 +110,7 @@ FS.Creatures_Beasts_Kodo = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 234, atk = 57, def = 92, spd = 35 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [6375] = {
         name = "Thunderhead Hippogryph",
@@ -128,7 +128,7 @@ FS.Creatures_Beasts_Kodo = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 342, atk = 84, def = 137, spd = 51 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [6377] = {
         name = "Thunderhead Stagwing",
@@ -146,7 +146,7 @@ FS.Creatures_Beasts_Kodo = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 354, atk = 87, def = 142, spd = 53 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [6378] = {
         name = "Thunderhead Skystormer",
@@ -164,7 +164,7 @@ FS.Creatures_Beasts_Kodo = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 366, atk = 90, def = 147, spd = 54 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [6379] = {
         name = "Thunderhead Patriarch",
@@ -184,7 +184,7 @@ FS.Creatures_Beasts_Kodo = {
         pupDropRate = 0.03,
         pupName = "Thunderhead Patriarch Calf",
         moves = {114, 112},
-        baseStats = { hp = 396, atk = 98, def = 160, spd = 59 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [6380] = {
         name = "Thunderhead Consort",
@@ -204,7 +204,7 @@ FS.Creatures_Beasts_Kodo = {
         pupDropRate = 0.03,
         pupName = "Thunderhead Consort Calf",
         moves = {114, 112},
-        baseStats = { hp = 396, atk = 98, def = 160, spd = 59 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [9274] = {
         name = "Dadanga",
@@ -222,7 +222,7 @@ FS.Creatures_Beasts_Kodo = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 330, atk = 81, def = 132, spd = 49 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [10636] = {
         name = "Pack Kodo",
@@ -240,7 +240,7 @@ FS.Creatures_Beasts_Kodo = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 240, atk = 59, def = 95, spd = 36 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [10988] = {
         name = "Kodo Spirit",
@@ -258,7 +258,7 @@ FS.Creatures_Beasts_Kodo = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 420, atk = 104, def = 170, spd = 63 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [11521] = {
         name = "Kodo Apparition",
@@ -276,7 +276,7 @@ FS.Creatures_Beasts_Kodo = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 282, atk = 69, def = 112, spd = 42 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [11564] = {
         name = "Gizelton Caravan Kodo",
@@ -294,7 +294,7 @@ FS.Creatures_Beasts_Kodo = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 270, atk = 66, def = 107, spd = 40 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [12150] = {
         name = "Riding Kodo (Purple)",
@@ -312,7 +312,7 @@ FS.Creatures_Beasts_Kodo = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 66, atk = 15, def = 22, spd = 9 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [12354] = {
         name = "Brown Riding Kodo",
@@ -330,7 +330,7 @@ FS.Creatures_Beasts_Kodo = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 126, atk = 30, def = 47, spd = 18 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [12355] = {
         name = "Gray Riding Kodo",
@@ -348,7 +348,7 @@ FS.Creatures_Beasts_Kodo = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 126, atk = 30, def = 47, spd = 18 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [14542] = {
         name = "Great White Kodo",
@@ -366,7 +366,7 @@ FS.Creatures_Beasts_Kodo = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 66, atk = 15, def = 22, spd = 9 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [14549] = {
         name = "Great Brown Kodo",
@@ -384,7 +384,7 @@ FS.Creatures_Beasts_Kodo = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 66, atk = 15, def = 22, spd = 9 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [14550] = {
         name = "Great Gray Kodo",
@@ -402,6 +402,6 @@ FS.Creatures_Beasts_Kodo = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {114, 112},
-        baseStats = { hp = 66, atk = 15, def = 22, spd = 9 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
 }

@@ -20,7 +20,7 @@ FS.Creatures_Beasts_Stag = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 100, atk = 39, def = 34, spd = 60 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [3248] = {
         name = "Barrens Giraffe",
@@ -38,7 +38,7 @@ FS.Creatures_Beasts_Stag = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 109, atk = 43, def = 38, spd = 66 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [3426] = {
         name = "Zhevra Charger",
@@ -56,7 +56,7 @@ FS.Creatures_Beasts_Stag = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 117, atk = 46, def = 41, spd = 72 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [3463] = {
         name = "Wandering Barrens Giraffe",
@@ -74,7 +74,7 @@ FS.Creatures_Beasts_Stag = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 121, atk = 48, def = 42, spd = 74 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [3466] = {
         name = "Zhevra Courser",
@@ -92,7 +92,7 @@ FS.Creatures_Beasts_Stag = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 130, atk = 52, def = 46, spd = 80 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [3816] = {
         name = "Wild Buck",
@@ -110,7 +110,7 @@ FS.Creatures_Beasts_Stag = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 121, atk = 48, def = 42, spd = 74 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [3817] = {
         name = "Shadowhorn Stag",
@@ -128,7 +128,7 @@ FS.Creatures_Beasts_Stag = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 138, atk = 55, def = 49, spd = 86 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [3818] = {
         name = "Elder Shadowhorn Stag",
@@ -146,7 +146,7 @@ FS.Creatures_Beasts_Stag = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 155, atk = 62, def = 55, spd = 97 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [4009] = {
         name = "Raging Cliff Stormer",
@@ -164,7 +164,7 @@ FS.Creatures_Beasts_Stag = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 121, atk = 48, def = 42, spd = 74 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [4018] = {
         name = "Antlered Courser",
@@ -182,7 +182,7 @@ FS.Creatures_Beasts_Stag = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 138, atk = 55, def = 49, spd = 86 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [4019] = {
         name = "Great Courser",
@@ -200,7 +200,7 @@ FS.Creatures_Beasts_Stag = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 146, atk = 59, def = 52, spd = 92 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [4779] = {
         name = "Riding Ram (Brown)",
@@ -218,7 +218,7 @@ FS.Creatures_Beasts_Stag = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 50, atk = 17, def = 15, spd = 26 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [5831] = {
         name = "Swiftmane",
@@ -236,7 +236,7 @@ FS.Creatures_Beasts_Stag = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 174, atk = 69, def = 61, spd = 108 },
+        baseStats = { hp = 22, atk = 28, def = 22, spd = 38 },
     },
     [8759] = {
         name = "Mosshoof Runner",
@@ -254,7 +254,7 @@ FS.Creatures_Beasts_Stag = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 239, atk = 98, def = 87, spd = 154 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [8760] = {
         name = "Mosshoof Stag",
@@ -272,7 +272,7 @@ FS.Creatures_Beasts_Stag = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 251, atk = 104, def = 92, spd = 163 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [8761] = {
         name = "Mosshoof Courser",
@@ -292,7 +292,7 @@ FS.Creatures_Beasts_Stag = {
         pupDropRate = 0.03,
         pupName = "Mosshoof Courser Fawn",
         moves = {101, 118},
-        baseStats = { hp = 281, atk = 116, def = 103, spd = 183 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [10619] = {
         name = "Glacier",
@@ -310,7 +310,7 @@ FS.Creatures_Beasts_Stag = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 256, atk = 106, def = 94, spd = 166 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [10990] = {
         name = "Alterac Ram",
@@ -330,7 +330,7 @@ FS.Creatures_Beasts_Stag = {
         pupDropRate = 0.025,
         pupName = "Alterac Ram Fawn",
         moves = {101, 118},
-        baseStats = { hp = 256, atk = 106, def = 94, spd = 166 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [11710] = {
         name = "Mirador",
@@ -348,7 +348,7 @@ FS.Creatures_Beasts_Stag = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 256, atk = 106, def = 94, spd = 166 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [12372] = {
         name = "Brown Ram",
@@ -366,7 +366,7 @@ FS.Creatures_Beasts_Stag = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 50, atk = 17, def = 15, spd = 26 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [12373] = {
         name = "Gray Ram",
@@ -384,7 +384,7 @@ FS.Creatures_Beasts_Stag = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 50, atk = 17, def = 15, spd = 26 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [13837] = {
         name = "Captured Stallion",
@@ -402,7 +402,7 @@ FS.Creatures_Beasts_Stag = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 214, atk = 88, def = 78, spd = 137 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [14864] = {
         name = "Khaz Modan Ram",
@@ -420,7 +420,7 @@ FS.Creatures_Beasts_Stag = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 67, atk = 25, def = 22, spd = 37 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [15664] = {
         name = "Metzen the Reindeer",
@@ -438,6 +438,6 @@ FS.Creatures_Beasts_Stag = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 67, atk = 25, def = 22, spd = 37 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
 }

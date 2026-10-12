@@ -20,7 +20,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 130, atk = 52, def = 46, spd = 80 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [4132] = {
         name = "Silithid Ravager",
@@ -38,7 +38,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 197, atk = 80, def = 71, spd = 126 },
+        baseStats = { hp = 22, atk = 28, def = 22, spd = 38 },
     },
     [5244] = {
         name = "Zukk'ash Stinger",
@@ -56,7 +56,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 235, atk = 97, def = 86, spd = 152 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [5245] = {
         name = "Zukk'ash Wasp",
@@ -74,7 +74,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 230, atk = 95, def = 84, spd = 149 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [5246] = {
         name = "Zukk'ash Worker",
@@ -92,7 +92,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 230, atk = 95, def = 84, spd = 149 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [5247] = {
         name = "Zukk'ash Tunneler",
@@ -110,7 +110,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 235, atk = 97, def = 86, spd = 152 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [5350] = {
         name = "Qirot",
@@ -128,7 +128,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 243, atk = 100, def = 89, spd = 157 },
+        baseStats = { hp = 22, atk = 28, def = 22, spd = 38 },
     },
     [5441] = {
         name = "Hazzali Wasp",
@@ -146,7 +146,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 243, atk = 100, def = 89, spd = 157 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [5450] = {
         name = "Hazzali Stinger",
@@ -164,7 +164,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 251, atk = 104, def = 92, spd = 163 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [5452] = {
         name = "Hazzali Worker",
@@ -182,7 +182,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 243, atk = 100, def = 89, spd = 157 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [5454] = {
         name = "Hazzali Sandreaver",
@@ -200,7 +200,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 251, atk = 104, def = 92, spd = 163 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [5455] = {
         name = "Centipaar Wasp",
@@ -218,7 +218,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 243, atk = 100, def = 89, spd = 157 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [5458] = {
         name = "Centipaar Worker",
@@ -236,7 +236,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 247, atk = 102, def = 90, spd = 160 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [5460] = {
         name = "Centipaar Sandreaver",
@@ -254,7 +254,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 251, atk = 104, def = 92, spd = 163 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [6551] = {
         name = "Gorishi Wasp",
@@ -272,7 +272,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 260, atk = 107, def = 95, spd = 169 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [6552] = {
         name = "Gorishi Worker",
@@ -290,7 +290,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 260, atk = 107, def = 95, spd = 169 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [6553] = {
         name = "Gorishi Reaver",
@@ -308,7 +308,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 264, atk = 109, def = 97, spd = 172 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [6554] = {
         name = "Gorishi Stinger",
@@ -326,7 +326,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 264, atk = 109, def = 97, spd = 172 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [6582] = {
         name = "Clutchmother Zavas",
@@ -344,7 +344,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 272, atk = 113, def = 100, spd = 177 },
+        baseStats = { hp = 22, atk = 28, def = 22, spd = 38 },
     },
     [7268] = {
         name = "Sandfury Guardian",
@@ -364,7 +364,7 @@ FS.Creatures_Beasts_Silithid = {
         pupDropRate = 0.15,
         pupName = "Sandfury Guardian Pup",
         moves = {101, 118},
-        baseStats = { hp = 305, atk = 126, def = 111, spd = 197 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [8204] = {
         name = "Soriid the Devourer",
@@ -382,7 +382,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 256, atk = 106, def = 94, spd = 166 },
+        baseStats = { hp = 22, atk = 28, def = 22, spd = 38 },
     },
     [8205] = {
         name = "Haarka the Ravenous",
@@ -400,7 +400,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 256, atk = 106, def = 94, spd = 166 },
+        baseStats = { hp = 22, atk = 28, def = 22, spd = 38 },
     },
     [8311] = {
         name = "Slime Maggot",
@@ -420,7 +420,7 @@ FS.Creatures_Beasts_Silithid = {
         pupDropRate = 0.025,
         pupName = "Slime Maggot Pup",
         moves = {101, 118},
-        baseStats = { hp = 235, atk = 97, def = 86, spd = 152 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [8603] = {
         name = "Carrion Grub",
@@ -438,7 +438,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 272, atk = 113, def = 100, spd = 177 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [10041] = {
         name = "Gorishi Hive Queen",
@@ -456,7 +456,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 281, atk = 116, def = 103, spd = 183 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [10717] = {
         name = "Temporal Parasite",
@@ -474,7 +474,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 281, atk = 116, def = 103, spd = 183 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [11320] = {
         name = "Earthborer",
@@ -494,7 +494,7 @@ FS.Creatures_Beasts_Silithid = {
         pupDropRate = 0.15,
         pupName = "Earthborer Pup",
         moves = {101, 118},
-        baseStats = { hp = 130, atk = 51, def = 45, spd = 78 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [11698] = {
         name = "Hive'Ashi Stinger",
@@ -512,7 +512,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 371, atk = 154, def = 136, spd = 242 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [11722] = {
         name = "Hive'Ashi Defender",
@@ -530,7 +530,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 376, atk = 156, def = 138, spd = 246 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [11724] = {
         name = "Hive'Ashi Swarmer",
@@ -548,7 +548,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 371, atk = 154, def = 136, spd = 242 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [11725] = {
         name = "Hive'Zora Waywatcher",
@@ -566,7 +566,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 376, atk = 156, def = 138, spd = 246 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [11727] = {
         name = "Hive'Zora Wasp",
@@ -584,7 +584,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 289, atk = 120, def = 106, spd = 189 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [11728] = {
         name = "Hive'Zora Reaver",
@@ -602,7 +602,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 381, atk = 158, def = 140, spd = 249 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [11729] = {
         name = "Hive'Zora Hive Sister",
@@ -620,7 +620,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 381, atk = 158, def = 140, spd = 249 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [11730] = {
         name = "Hive'Regal Ambusher",
@@ -638,7 +638,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 381, atk = 158, def = 140, spd = 249 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [11732] = {
         name = "Hive'Regal Spitfire",
@@ -656,7 +656,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 381, atk = 158, def = 140, spd = 249 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [11733] = {
         name = "Hive'Regal Slavemaker",
@@ -674,7 +674,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 381, atk = 158, def = 140, spd = 249 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [11734] = {
         name = "Hive'Regal Hive Lord",
@@ -692,7 +692,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 387, atk = 161, def = 143, spd = 253 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [12218] = {
         name = "Vile Larva",
@@ -712,7 +712,7 @@ FS.Creatures_Beasts_Silithid = {
         pupDropRate = 0.025,
         pupName = "Vile Larva Pup",
         moves = {101, 118},
-        baseStats = { hp = 239, atk = 98, def = 87, spd = 154 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [13136] = {
         name = "Hive'Ashi Drone",
@@ -730,7 +730,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 285, atk = 118, def = 105, spd = 186 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [13160] = {
         name = "Carrion Swarmer",
@@ -750,7 +750,7 @@ FS.Creatures_Beasts_Silithid = {
         pupDropRate = 0.025,
         pupName = "Carrion Swarmer Pup",
         moves = {101, 118},
-        baseStats = { hp = 285, atk = 118, def = 105, spd = 186 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [13533] = {
         name = "Spewed Larva",
@@ -770,7 +770,7 @@ FS.Creatures_Beasts_Silithid = {
         pupDropRate = 0.15,
         pupName = "Spewed Larva Pup",
         moves = {101, 118},
-        baseStats = { hp = 310, atk = 128, def = 113, spd = 201 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [14473] = {
         name = "Lapress",
@@ -788,7 +788,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 387, atk = 161, def = 143, spd = 253 },
+        baseStats = { hp = 22, atk = 28, def = 22, spd = 38 },
     },
     [14474] = {
         name = "Zora",
@@ -806,7 +806,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 381, atk = 158, def = 140, spd = 249 },
+        baseStats = { hp = 22, atk = 28, def = 22, spd = 38 },
     },
     [14475] = {
         name = "Rex Ashil",
@@ -824,7 +824,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 371, atk = 154, def = 136, spd = 242 },
+        baseStats = { hp = 22, atk = 28, def = 22, spd = 38 },
     },
     [14661] = {
         name = "Stinglasher",
@@ -842,7 +842,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 243, atk = 100, def = 89, spd = 157 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [15229] = {
         name = "Vekniss Soldier",
@@ -862,7 +862,7 @@ FS.Creatures_Beasts_Silithid = {
         pupDropRate = 0.15,
         pupName = "Vekniss Soldier Pup",
         moves = {101, 118},
-        baseStats = { hp = 392, atk = 163, def = 145, spd = 257 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [15230] = {
         name = "Vekniss Warrior",
@@ -882,7 +882,7 @@ FS.Creatures_Beasts_Silithid = {
         pupDropRate = 0.15,
         pupName = "Vekniss Warrior Pup",
         moves = {101, 118},
-        baseStats = { hp = 392, atk = 163, def = 145, spd = 257 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [15233] = {
         name = "Vekniss Guardian",
@@ -902,7 +902,7 @@ FS.Creatures_Beasts_Silithid = {
         pupDropRate = 0.15,
         pupName = "Vekniss Guardian Pup",
         moves = {101, 118},
-        baseStats = { hp = 392, atk = 163, def = 145, spd = 257 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [15235] = {
         name = "Vekniss Stinger",
@@ -922,7 +922,7 @@ FS.Creatures_Beasts_Silithid = {
         pupDropRate = 0.15,
         pupName = "Vekniss Stinger Pup",
         moves = {101, 118},
-        baseStats = { hp = 398, atk = 165, def = 147, spd = 260 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [15236] = {
         name = "Vekniss Wasp",
@@ -942,7 +942,7 @@ FS.Creatures_Beasts_Silithid = {
         pupDropRate = 0.15,
         pupName = "Vekniss Wasp Pup",
         moves = {101, 118},
-        baseStats = { hp = 387, atk = 161, def = 143, spd = 253 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [15300] = {
         name = "Vekniss Drone",
@@ -962,7 +962,7 @@ FS.Creatures_Beasts_Silithid = {
         pupDropRate = 0.025,
         pupName = "Vekniss Drone Pup",
         moves = {101, 118},
-        baseStats = { hp = 298, atk = 124, def = 110, spd = 195 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [15318] = {
         name = "Hive'Zara Drone",
@@ -982,7 +982,7 @@ FS.Creatures_Beasts_Silithid = {
         pupDropRate = 0.15,
         pupName = "Hive'Zara Drone Pup",
         moves = {101, 118},
-        baseStats = { hp = 387, atk = 161, def = 143, spd = 253 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [15319] = {
         name = "Hive'Zara Collector",
@@ -1002,7 +1002,7 @@ FS.Creatures_Beasts_Silithid = {
         pupDropRate = 0.15,
         pupName = "Hive'Zara Collector Pup",
         moves = {101, 118},
-        baseStats = { hp = 387, atk = 161, def = 143, spd = 253 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [15320] = {
         name = "Hive'Zara Soldier",
@@ -1022,7 +1022,7 @@ FS.Creatures_Beasts_Silithid = {
         pupDropRate = 0.15,
         pupName = "Hive'Zara Soldier Pup",
         moves = {101, 118},
-        baseStats = { hp = 392, atk = 163, def = 145, spd = 257 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [15325] = {
         name = "Hive'Zara Wasp",
@@ -1042,7 +1042,7 @@ FS.Creatures_Beasts_Silithid = {
         pupDropRate = 0.15,
         pupName = "Hive'Zara Wasp Pup",
         moves = {101, 118},
-        baseStats = { hp = 392, atk = 163, def = 145, spd = 257 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [15327] = {
         name = "Hive'Zara Stinger",
@@ -1062,7 +1062,7 @@ FS.Creatures_Beasts_Silithid = {
         pupDropRate = 0.15,
         pupName = "Hive'Zara Stinger Pup",
         moves = {101, 118},
-        baseStats = { hp = 392, atk = 163, def = 145, spd = 257 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [15348] = {
         name = "Kurinnaxx",
@@ -1082,7 +1082,7 @@ FS.Creatures_Beasts_Silithid = {
         pupDropRate = 0.25,
         pupName = "Silithid Catalyst",
         moves = {101, 118},
-        baseStats = { hp = 387, atk = 161, def = 143, spd = 253 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [15369] = {
         name = "Ayamiss the Hunter",
@@ -1102,7 +1102,7 @@ FS.Creatures_Beasts_Silithid = {
         pupDropRate = 0.25,
         pupName = "Silithid Catalyst",
         moves = {101, 118},
-        baseStats = { hp = 387, atk = 161, def = 143, spd = 253 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [15370] = {
         name = "Buru the Gorger",
@@ -1122,7 +1122,7 @@ FS.Creatures_Beasts_Silithid = {
         pupDropRate = 0.25,
         pupName = "Silithid Catalyst",
         moves = {101, 118},
-        baseStats = { hp = 387, atk = 161, def = 143, spd = 253 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [15421] = {
         name = "Qiraji Drone",
@@ -1140,7 +1140,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 387, atk = 161, def = 143, spd = 253 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [15422] = {
         name = "Qiraji Tank",
@@ -1158,7 +1158,7 @@ FS.Creatures_Beasts_Silithid = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 387, atk = 161, def = 143, spd = 253 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [15509] = {
         name = "Princess Huhuran",
@@ -1178,7 +1178,7 @@ FS.Creatures_Beasts_Silithid = {
         pupDropRate = 0.25,
         pupName = "Silithid Catalyst",
         moves = {101, 118},
-        baseStats = { hp = 387, atk = 161, def = 143, spd = 253 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [15510] = {
         name = "Fankriss the Unyielding",
@@ -1198,7 +1198,7 @@ FS.Creatures_Beasts_Silithid = {
         pupDropRate = 0.25,
         pupName = "Silithid Catalyst",
         moves = {101, 118},
-        baseStats = { hp = 387, atk = 161, def = 143, spd = 253 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [15511] = {
         name = "Lord Kri",
@@ -1218,7 +1218,7 @@ FS.Creatures_Beasts_Silithid = {
         pupDropRate = 0.25,
         pupName = "Silithid Catalyst",
         moves = {101, 118},
-        baseStats = { hp = 387, atk = 161, def = 143, spd = 253 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [15521] = {
         name = "Hive'Zara Hatchling",
@@ -1238,7 +1238,7 @@ FS.Creatures_Beasts_Silithid = {
         pupDropRate = 0.15,
         pupName = "Hive'Zara Hatchling Pup",
         moves = {101, 118},
-        baseStats = { hp = 387, atk = 161, def = 143, spd = 253 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [15543] = {
         name = "Princess Yauj",
@@ -1258,7 +1258,7 @@ FS.Creatures_Beasts_Silithid = {
         pupDropRate = 0.25,
         pupName = "Silithid Catalyst",
         moves = {101, 118},
-        baseStats = { hp = 387, atk = 161, def = 143, spd = 253 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [15544] = {
         name = "Vem",
@@ -1278,7 +1278,7 @@ FS.Creatures_Beasts_Silithid = {
         pupDropRate = 0.25,
         pupName = "Silithid Catalyst",
         moves = {101, 118},
-        baseStats = { hp = 387, atk = 161, def = 143, spd = 253 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [15546] = {
         name = "Hive'Zara Swarmer",
@@ -1298,7 +1298,7 @@ FS.Creatures_Beasts_Silithid = {
         pupDropRate = 0.025,
         pupName = "Hive'Zara Swarmer Pup",
         moves = {101, 118},
-        baseStats = { hp = 298, atk = 124, def = 110, spd = 195 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [15622] = {
         name = "Vekniss Borer",
@@ -1318,7 +1318,7 @@ FS.Creatures_Beasts_Silithid = {
         pupDropRate = 0.15,
         pupName = "Vekniss Borer Pup",
         moves = {101, 118},
-        baseStats = { hp = 387, atk = 161, def = 143, spd = 253 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [15934] = {
         name = "Hive'Zara Hornet",
@@ -1338,7 +1338,7 @@ FS.Creatures_Beasts_Silithid = {
         pupDropRate = 0.15,
         pupName = "Hive'Zara Hornet Pup",
         moves = {101, 118},
-        baseStats = { hp = 392, atk = 163, def = 145, spd = 257 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [15962] = {
         name = "Vekniss Hatchling",
@@ -1358,7 +1358,7 @@ FS.Creatures_Beasts_Silithid = {
         pupDropRate = 0.025,
         pupName = "Vekniss Hatchling Pup",
         moves = {101, 118},
-        baseStats = { hp = 298, atk = 124, def = 110, spd = 195 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [16056] = {
         name = "Diseased Maggot",
@@ -1378,7 +1378,7 @@ FS.Creatures_Beasts_Silithid = {
         pupDropRate = 0.15,
         pupName = "Diseased Maggot Pup",
         moves = {101, 118},
-        baseStats = { hp = 387, atk = 161, def = 143, spd = 253 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [16057] = {
         name = "Rotting Maggot",
@@ -1398,6 +1398,6 @@ FS.Creatures_Beasts_Silithid = {
         pupDropRate = 0.15,
         pupName = "Rotting Maggot Pup",
         moves = {101, 118},
-        baseStats = { hp = 387, atk = 161, def = 143, spd = 253 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
 }

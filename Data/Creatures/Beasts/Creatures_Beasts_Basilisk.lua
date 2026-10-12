@@ -20,7 +20,7 @@ FS.Creatures_Beasts_Basilisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 246, atk = 60, def = 97, spd = 36 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [689] = {
         name = "Crystal Spine Basilisk",
@@ -38,7 +38,7 @@ FS.Creatures_Beasts_Basilisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 264, atk = 65, def = 105, spd = 39 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [690] = {
         name = "Cold Eye Basilisk",
@@ -56,7 +56,7 @@ FS.Creatures_Beasts_Basilisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 294, atk = 72, def = 117, spd = 44 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [1550] = {
         name = "Thrashtail Basilisk",
@@ -74,7 +74,7 @@ FS.Creatures_Beasts_Basilisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 306, atk = 75, def = 122, spd = 45 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [1551] = {
         name = "Ironjaw Basilisk",
@@ -92,7 +92,7 @@ FS.Creatures_Beasts_Basilisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 318, atk = 78, def = 127, spd = 47 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [1552] = {
         name = "Scale Belly",
@@ -110,7 +110,7 @@ FS.Creatures_Beasts_Basilisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 330, atk = 81, def = 132, spd = 49 },
+        baseStats = { hp = 39, atk = 22, def = 33, spd = 16 },
     },
     [3674] = {
         name = "Skum",
@@ -130,7 +130,7 @@ FS.Creatures_Beasts_Basilisk = {
         pupDropRate = 0.25,
         pupName = "Basilisk Catalyst",
         moves = {101, 112},
-        baseStats = { hp = 241, atk = 59, def = 94, spd = 36 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4041] = {
         name = "Scorched Basilisk",
@@ -148,7 +148,7 @@ FS.Creatures_Beasts_Basilisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 222, atk = 54, def = 87, spd = 33 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4042] = {
         name = "Singed Basilisk",
@@ -166,7 +166,7 @@ FS.Creatures_Beasts_Basilisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 210, atk = 51, def = 82, spd = 31 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4044] = {
         name = "Blackened Basilisk",
@@ -184,7 +184,7 @@ FS.Creatures_Beasts_Basilisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 198, atk = 48, def = 77, spd = 29 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4147] = {
         name = "Saltstone Basilisk",
@@ -202,7 +202,7 @@ FS.Creatures_Beasts_Basilisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 240, atk = 59, def = 95, spd = 36 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4150] = {
         name = "Saltstone Gazer",
@@ -220,7 +220,7 @@ FS.Creatures_Beasts_Basilisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 264, atk = 65, def = 105, spd = 39 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4151] = {
         name = "Saltstone Crystalhide",
@@ -238,7 +238,7 @@ FS.Creatures_Beasts_Basilisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 252, atk = 62, def = 100, spd = 37 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4728] = {
         name = "Gritjaw Basilisk",
@@ -256,7 +256,7 @@ FS.Creatures_Beasts_Basilisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 246, atk = 60, def = 97, spd = 36 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4729] = {
         name = "Hulking Gritjaw Basilisk",
@@ -274,7 +274,7 @@ FS.Creatures_Beasts_Basilisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 270, atk = 66, def = 107, spd = 40 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4863] = {
         name = "Jadespine Basilisk",
@@ -294,7 +294,7 @@ FS.Creatures_Beasts_Basilisk = {
         pupDropRate = 0.15,
         pupName = "Jadespine Basilisk Pup",
         moves = {101, 112},
-        baseStats = { hp = 382, atk = 94, def = 152, spd = 57 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [5419] = {
         name = "Glasshide Basilisk",
@@ -312,7 +312,7 @@ FS.Creatures_Beasts_Basilisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 312, atk = 77, def = 125, spd = 46 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [5420] = {
         name = "Glasshide Gazer",
@@ -330,7 +330,7 @@ FS.Creatures_Beasts_Basilisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 330, atk = 81, def = 132, spd = 49 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [5421] = {
         name = "Glasshide Petrifier",
@@ -348,7 +348,7 @@ FS.Creatures_Beasts_Basilisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 348, atk = 86, def = 140, spd = 52 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [5935] = {
         name = "Ironeye the Invincible",
@@ -366,7 +366,7 @@ FS.Creatures_Beasts_Basilisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 366, atk = 90, def = 146, spd = 54 },
+        baseStats = { hp = 39, atk = 22, def = 33, spd = 16 },
     },
     [5990] = {
         name = "Redstone Basilisk",
@@ -384,7 +384,7 @@ FS.Creatures_Beasts_Basilisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 342, atk = 84, def = 137, spd = 51 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [5991] = {
         name = "Redstone Crystalhide",
@@ -402,7 +402,7 @@ FS.Creatures_Beasts_Basilisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 366, atk = 90, def = 147, spd = 54 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [6215] = {
         name = "Chomper",
@@ -422,7 +422,7 @@ FS.Creatures_Beasts_Basilisk = {
         pupDropRate = 0.15,
         pupName = "Chomper Pup",
         moves = {101, 112},
-        baseStats = { hp = 312, atk = 76, def = 123, spd = 46 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [8095] = {
         name = "Sul'lithuz Sandcrawler",
@@ -442,7 +442,7 @@ FS.Creatures_Beasts_Basilisk = {
         pupDropRate = 0.15,
         pupName = "Sul'lithuz Sandcrawler Pup",
         moves = {101, 112},
-        baseStats = { hp = 436, atk = 107, def = 175, spd = 65 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [8120] = {
         name = "Sul'lithuz Abomination",
@@ -462,7 +462,7 @@ FS.Creatures_Beasts_Basilisk = {
         pupDropRate = 0.15,
         pupName = "Sul'lithuz Abomination Pup",
         moves = {101, 112},
-        baseStats = { hp = 444, atk = 109, def = 178, spd = 66 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [8138] = {
         name = "Sul'lithuz Broodling",
@@ -482,7 +482,7 @@ FS.Creatures_Beasts_Basilisk = {
         pupDropRate = 0.025,
         pupName = "Sul'lithuz Broodling Pup",
         moves = {101, 112},
-        baseStats = { hp = 294, atk = 72, def = 117, spd = 44 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [8302] = {
         name = "Deatheye",
@@ -500,7 +500,7 @@ FS.Creatures_Beasts_Basilisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 354, atk = 87, def = 142, spd = 53 },
+        baseStats = { hp = 39, atk = 22, def = 33, spd = 16 },
     },
     [9162] = {
         name = "Young Diemetradon",
@@ -518,7 +518,7 @@ FS.Creatures_Beasts_Basilisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 354, atk = 87, def = 142, spd = 53 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [9163] = {
         name = "Diemetradon",
@@ -536,7 +536,7 @@ FS.Creatures_Beasts_Basilisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 366, atk = 90, def = 147, spd = 54 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [9164] = {
         name = "Elder Diemetradon",
@@ -554,7 +554,7 @@ FS.Creatures_Beasts_Basilisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 384, atk = 95, def = 155, spd = 57 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [9318] = {
         name = "Incendosaur",
@@ -572,7 +572,7 @@ FS.Creatures_Beasts_Basilisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 348, atk = 86, def = 140, spd = 52 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [11785] = {
         name = "Ambereye Basilisk",
@@ -590,7 +590,7 @@ FS.Creatures_Beasts_Basilisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 390, atk = 96, def = 156, spd = 58 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [11786] = {
         name = "Ambereye Reaver",
@@ -608,7 +608,7 @@ FS.Creatures_Beasts_Basilisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 397, atk = 98, def = 159, spd = 59 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [13323] = {
         name = "Subterranean Diemetradon",
@@ -628,7 +628,7 @@ FS.Creatures_Beasts_Basilisk = {
         pupDropRate = 0.15,
         pupName = "Subterranean Diemetradon Pup",
         moves = {101, 112},
-        baseStats = { hp = 444, atk = 109, def = 178, spd = 66 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [14227] = {
         name = "Hissperak",
@@ -646,6 +646,6 @@ FS.Creatures_Beasts_Basilisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 282, atk = 69, def = 112, spd = 42 },
+        baseStats = { hp = 39, atk = 22, def = 33, spd = 16 },
     },
 }

@@ -20,7 +20,7 @@ FS.Creatures_Beasts_Tallstrider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 125, atk = 77, def = 36, spd = 55 },
+        baseStats = { hp = 28, atk = 39, def = 16, spd = 27 },
     },
     [2321] = {
         name = "Foreststrider Fledgling",
@@ -38,7 +38,7 @@ FS.Creatures_Beasts_Tallstrider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 93, atk = 55, def = 25, spd = 39 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [2322] = {
         name = "Foreststrider",
@@ -56,7 +56,7 @@ FS.Creatures_Beasts_Tallstrider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 105, atk = 63, def = 29, spd = 45 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [2323] = {
         name = "Giant Foreststrider",
@@ -74,7 +74,7 @@ FS.Creatures_Beasts_Tallstrider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 117, atk = 72, def = 33, spd = 51 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [2955] = {
         name = "Plainstrider",
@@ -92,7 +92,7 @@ FS.Creatures_Beasts_Tallstrider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 49, atk = 25, def = 12, spd = 17 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [2956] = {
         name = "Adult Plainstrider",
@@ -110,7 +110,7 @@ FS.Creatures_Beasts_Tallstrider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 69, atk = 39, def = 18, spd = 27 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [2957] = {
         name = "Elder Plainstrider",
@@ -128,7 +128,7 @@ FS.Creatures_Beasts_Tallstrider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 77, atk = 44, def = 20, spd = 31 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [3068] = {
         name = "Mazzranache",
@@ -146,7 +146,7 @@ FS.Creatures_Beasts_Tallstrider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 81, atk = 47, def = 22, spd = 33 },
+        baseStats = { hp = 28, atk = 39, def = 16, spd = 27 },
     },
     [3244] = {
         name = "Greater Plainstrider",
@@ -164,7 +164,7 @@ FS.Creatures_Beasts_Tallstrider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 89, atk = 52, def = 24, spd = 37 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [3245] = {
         name = "Ornery Plainstrider",
@@ -182,7 +182,7 @@ FS.Creatures_Beasts_Tallstrider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 109, atk = 66, def = 30, spd = 47 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [3246] = {
         name = "Fleeting Plainstrider",
@@ -200,6 +200,6 @@ FS.Creatures_Beasts_Tallstrider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 93, atk = 55, def = 25, spd = 39 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
 }

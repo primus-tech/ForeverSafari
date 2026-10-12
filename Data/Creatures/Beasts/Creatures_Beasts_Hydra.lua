@@ -20,7 +20,7 @@ FS.Creatures_Beasts_Hydra = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 162, atk = 100, def = 46, spd = 71 },
+        baseStats = { hp = 28, atk = 39, def = 16, spd = 27 },
     },
     [3652] = {
         name = "Trigore the Lasher",
@@ -38,7 +38,7 @@ FS.Creatures_Beasts_Hydra = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 157, atk = 97, def = 45, spd = 68 },
+        baseStats = { hp = 28, atk = 39, def = 16, spd = 27 },
     },
     [3721] = {
         name = "Mystlash Hydra",
@@ -56,7 +56,7 @@ FS.Creatures_Beasts_Hydra = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 121, atk = 74, def = 34, spd = 53 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [3722] = {
         name = "Mystlash Flayer",
@@ -74,7 +74,7 @@ FS.Creatures_Beasts_Hydra = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 125, atk = 77, def = 36, spd = 55 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4374] = {
         name = "Strashaz Hydra",
@@ -92,7 +92,7 @@ FS.Creatures_Beasts_Hydra = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 370, atk = 243, def = 112, spd = 174 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [7273] = {
         name = "Gahz'rilla",
@@ -112,7 +112,7 @@ FS.Creatures_Beasts_Hydra = {
         pupDropRate = 0.25,
         pupName = "Hydra Catalyst",
         moves = {101, 118},
-        baseStats = { hp = 297, atk = 193, def = 89, spd = 138 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [12207] = {
         name = "Thessala Hydra",
@@ -132,7 +132,7 @@ FS.Creatures_Beasts_Hydra = {
         pupDropRate = 0.15,
         pupName = "Thessala Hydra Hatchling",
         moves = {101, 118},
-        baseStats = { hp = 297, atk = 193, def = 89, spd = 138 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [12940] = {
         name = "Vorsha the Lasher",
@@ -150,6 +150,6 @@ FS.Creatures_Beasts_Hydra = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 133, atk = 83, def = 38, spd = 58 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
 }

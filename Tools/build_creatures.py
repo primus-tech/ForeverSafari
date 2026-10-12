@@ -304,38 +304,34 @@ def is_sentient_or_invalid(mob):
     return False
 
 def calculate_stats(min_lvl, max_lvl, classification, archetype):
-    lvl = max(1, (min_lvl + max_lvl) // 2) if (min_lvl and max_lvl) else 20
-    is_elite = classification in (1, 2, 3)
-    mult = 1.3 if is_elite else 1.0
+    # Boss != Rare rule: Rare (2) and Rare Elite (4) get 110; Boss (3), Elite (1), Normal (0) get 100
+    target_budget = 110 if classification in (2, 4) else 100
     
-    if archetype == 'Tenacity':
-        return {
-            'hp': int((50 + lvl * 5) * mult * 1.2),
-            'atk': int((14 + lvl * 1.5) * mult),
-            'def': int((16 + lvl * 2.0) * mult * 1.25),
-            'spd': int((10 + lvl * 1.0) * mult * 0.9)
-        }
-    elif archetype == 'Ferocity':
-        return {
-            'hp': int((45 + lvl * 4) * mult),
-            'atk': int((18 + lvl * 2.2) * mult * 1.25),
-            'def': int((12 + lvl * 1.4) * mult * 0.9),
-            'spd': int((14 + lvl * 1.8) * mult * 1.1)
-        }
-    elif archetype == 'Cunning':
-        return {
-            'hp': int((46 + lvl * 4.2) * mult),
-            'atk': int((16 + lvl * 1.8) * mult),
-            'def': int((14 + lvl * 1.6) * mult),
-            'spd': int((18 + lvl * 2.2) * mult * 1.3)
-        }
-    else: # Magic / Spec
-        return {
-            'hp': int((48 + lvl * 4.5) * mult),
-            'atk': int((16 + lvl * 2.0) * mult * 1.1),
-            'def': int((14 + lvl * 1.6) * mult * 1.1),
-            'spd': int((12 + lvl * 1.4) * mult)
-        }
+    weights = {
+        'Tenacity': {'hp': 0.35, 'atk': 0.20, 'def': 0.30, 'spd': 0.15},
+        'Ferocity': {'hp': 0.25, 'atk': 0.35, 'def': 0.15, 'spd': 0.25},
+        'Cunning':  {'hp': 0.20, 'atk': 0.25, 'def': 0.20, 'spd': 0.35},
+    }.get(archetype, {'hp': 0.25, 'atk': 0.25, 'def': 0.25, 'spd': 0.25})
+    
+    # 1. Integer floor bases and remainders
+    bases = {}
+    remainders = {}
+    for stat in ('hp', 'atk', 'def', 'spd'):
+        val = weights[stat] * target_budget
+        bases[stat] = int(val)
+        remainders[stat] = val - bases[stat]
+        
+    leftover = target_budget - sum(bases.values())
+    
+    # 2. Distribute leftover +1 by highest remainder with deterministic tie-break
+    priority = {'hp': 4, 'atk': 3, 'def': 2, 'spd': 1}
+    sorted_stats = sorted(bases.keys(), key=lambda s: (remainders[s], priority[s]), reverse=True)
+    
+    for i in range(leftover):
+        bases[sorted_stats[i]] += 1
+        
+    assert sum(bases.values()) == target_budget, f"Stat drift detected: {bases}"
+    return bases
 
 def process_mob(mob, family, subFamily, spec, element, move1, move2, default_pup_name):
     nid = mob.get('id')

@@ -20,7 +20,7 @@ FS.Creatures_Beasts_Worm = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 210, atk = 51, def = 82, spd = 31 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [5226] = {
         name = "Murk Worm",
@@ -40,7 +40,7 @@ FS.Creatures_Beasts_Worm = {
         pupDropRate = 0.15,
         pupName = "Murk Worm Pup",
         moves = {101, 404},
-        baseStats = { hp = 452, atk = 111, def = 182, spd = 67 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [8925] = {
         name = "Dredge Worm",
@@ -60,7 +60,7 @@ FS.Creatures_Beasts_Worm = {
         pupDropRate = 0.025,
         pupName = "Dredge Worm Pup",
         moves = {101, 404},
-        baseStats = { hp = 366, atk = 90, def = 147, spd = 54 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [9498] = {
         name = "Gorishi Grub",
@@ -78,7 +78,7 @@ FS.Creatures_Beasts_Worm = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 348, atk = 86, def = 140, spd = 52 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [10925] = {
         name = "Rotting Worm",
@@ -96,7 +96,7 @@ FS.Creatures_Beasts_Worm = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 360, atk = 89, def = 145, spd = 54 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [11740] = {
         name = "Dredge Striker",
@@ -114,7 +114,7 @@ FS.Creatures_Beasts_Worm = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 390, atk = 96, def = 157, spd = 58 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [11741] = {
         name = "Dredge Crusher",
@@ -132,7 +132,7 @@ FS.Creatures_Beasts_Worm = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 402, atk = 99, def = 162, spd = 60 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [11787] = {
         name = "Rock Borer",
@@ -150,7 +150,7 @@ FS.Creatures_Beasts_Worm = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 390, atk = 96, def = 156, spd = 58 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [11788] = {
         name = "Rock Worm",
@@ -168,7 +168,7 @@ FS.Creatures_Beasts_Worm = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 397, atk = 98, def = 159, spd = 59 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [11789] = {
         name = "Deep Borer",
@@ -188,7 +188,7 @@ FS.Creatures_Beasts_Worm = {
         pupDropRate = 0.025,
         pupName = "Deep Borer Pup",
         moves = {101, 404},
-        baseStats = { hp = 342, atk = 84, def = 137, spd = 51 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [14237] = {
         name = "Oozeworm",
@@ -206,7 +206,7 @@ FS.Creatures_Beasts_Worm = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 312, atk = 77, def = 125, spd = 46 },
+        baseStats = { hp = 39, atk = 22, def = 33, spd = 16 },
     },
     [14370] = {
         name = "Cadaverous Worm",
@@ -226,7 +226,7 @@ FS.Creatures_Beasts_Worm = {
         pupDropRate = 0.025,
         pupName = "Cadaverous Worm Pup",
         moves = {101, 404},
-        baseStats = { hp = 420, atk = 104, def = 170, spd = 63 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [14477] = {
         name = "Grubthor",
@@ -244,7 +244,7 @@ FS.Creatures_Beasts_Worm = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 404},
-        baseStats = { hp = 408, atk = 101, def = 165, spd = 61 },
+        baseStats = { hp = 39, atk = 22, def = 33, spd = 16 },
     },
     [15630] = {
         name = "Spawn of Fankriss",
@@ -264,6 +264,6 @@ FS.Creatures_Beasts_Worm = {
         pupDropRate = 0.15,
         pupName = "Spawn of Fankriss Pup",
         moves = {101, 404},
-        baseStats = { hp = 569, atk = 141, def = 230, spd = 85 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
 }

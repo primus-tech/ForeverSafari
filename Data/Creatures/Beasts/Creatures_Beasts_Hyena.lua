@@ -20,7 +20,7 @@ FS.Creatures_Beasts_Hyena = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 105, atk = 63, def = 29, spd = 45 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4129] = {
         name = "Hecklefang Snarler",
@@ -38,7 +38,7 @@ FS.Creatures_Beasts_Hyena = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 117, atk = 72, def = 33, spd = 51 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4248] = {
         name = "Pesterhide Hyena",
@@ -56,7 +56,7 @@ FS.Creatures_Beasts_Hyena = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 149, atk = 94, def = 43, spd = 66 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4249] = {
         name = "Pesterhide Snarler",
@@ -74,7 +74,7 @@ FS.Creatures_Beasts_Hyena = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 157, atk = 99, def = 46, spd = 70 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4250] = {
         name = "Galak Packhound",
@@ -92,7 +92,7 @@ FS.Creatures_Beasts_Hyena = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 141, atk = 88, def = 41, spd = 62 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4304] = {
         name = "Scarlet Tracking Hound",
@@ -112,7 +112,7 @@ FS.Creatures_Beasts_Hyena = {
         pupDropRate = 0.15,
         pupName = "Scarlet Tracking Hound Pup",
         moves = {101, 118},
-        baseStats = { hp = 230, atk = 147, def = 68, spd = 104 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4316] = {
         name = "Kolkar Packhound",
@@ -130,7 +130,7 @@ FS.Creatures_Beasts_Hyena = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 97, atk = 58, def = 27, spd = 41 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4534] = {
         name = "Tamed Hyena",
@@ -150,7 +150,7 @@ FS.Creatures_Beasts_Hyena = {
         pupDropRate = 0.15,
         pupName = "Tamed Hyena Pup",
         moves = {101, 118},
-        baseStats = { hp = 198, atk = 125, def = 58, spd = 89 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4548] = {
         name = "Steelsnap",
@@ -168,7 +168,7 @@ FS.Creatures_Beasts_Hyena = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 165, atk = 105, def = 48, spd = 74 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4660] = {
         name = "Maraudine Bonepaw",
@@ -186,7 +186,7 @@ FS.Creatures_Beasts_Hyena = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 193, atk = 124, def = 57, spd = 88 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4662] = {
         name = "Magram Bonepaw",
@@ -204,7 +204,7 @@ FS.Creatures_Beasts_Hyena = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 193, atk = 124, def = 57, spd = 88 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4688] = {
         name = "Bonepaw Hyena",
@@ -222,7 +222,7 @@ FS.Creatures_Beasts_Hyena = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 181, atk = 116, def = 53, spd = 82 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4689] = {
         name = "Starving Bonepaw",
@@ -240,7 +240,7 @@ FS.Creatures_Beasts_Hyena = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 169, atk = 107, def = 49, spd = 76 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4690] = {
         name = "Rabid Bonepaw",
@@ -258,7 +258,7 @@ FS.Creatures_Beasts_Hyena = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 193, atk = 124, def = 57, spd = 88 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [5425] = {
         name = "Starving Blisterpaw",
@@ -276,7 +276,7 @@ FS.Creatures_Beasts_Hyena = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 209, atk = 135, def = 62, spd = 96 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [5426] = {
         name = "Blisterpaw Hyena",
@@ -294,7 +294,7 @@ FS.Creatures_Beasts_Hyena = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 221, atk = 143, def = 66, spd = 102 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [5427] = {
         name = "Rabid Blisterpaw",
@@ -312,7 +312,7 @@ FS.Creatures_Beasts_Hyena = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 233, atk = 151, def = 70, spd = 108 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [5829] = {
         name = "Snort the Heckler",
@@ -330,7 +330,7 @@ FS.Creatures_Beasts_Hyena = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 113, atk = 69, def = 32, spd = 49 },
+        baseStats = { hp = 28, atk = 39, def = 16, spd = 27 },
     },
     [5984] = {
         name = "Starving Snickerfang",
@@ -348,7 +348,7 @@ FS.Creatures_Beasts_Hyena = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 225, atk = 146, def = 67, spd = 104 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [5985] = {
         name = "Snickerfang Hyena",
@@ -366,7 +366,7 @@ FS.Creatures_Beasts_Hyena = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 241, atk = 157, def = 72, spd = 112 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [8208] = {
         name = "Murderous Blisterpaw",
@@ -384,7 +384,7 @@ FS.Creatures_Beasts_Hyena = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 217, atk = 140, def = 64, spd = 100 },
+        baseStats = { hp = 28, atk = 39, def = 16, spd = 27 },
     },
     [8300] = {
         name = "Ravage",
@@ -402,7 +402,7 @@ FS.Creatures_Beasts_Hyena = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 249, atk = 162, def = 75, spd = 116 },
+        baseStats = { hp = 28, atk = 39, def = 16, spd = 27 },
     },
     [10979] = {
         name = "Scarlet Hound",
@@ -422,7 +422,7 @@ FS.Creatures_Beasts_Hyena = {
         pupDropRate = 0.03,
         pupName = "Scarlet Hound Pup",
         moves = {101, 118},
-        baseStats = { hp = 269, atk = 176, def = 81, spd = 126 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [11871] = {
         name = "Grinning Dog",
@@ -440,7 +440,7 @@ FS.Creatures_Beasts_Hyena = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 308, atk = 200, def = 92, spd = 143 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [12418] = {
         name = "Gordok Hyena",
@@ -458,7 +458,7 @@ FS.Creatures_Beasts_Hyena = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 257, atk = 168, def = 77, spd = 120 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [13036] = {
         name = "Gordok Mastiff",
@@ -478,7 +478,7 @@ FS.Creatures_Beasts_Hyena = {
         pupDropRate = 0.025,
         pupName = "Gordok Mastiff Pup",
         moves = {101, 118},
-        baseStats = { hp = 273, atk = 179, def = 82, spd = 128 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [14228] = {
         name = "Giggler",
@@ -496,6 +496,6 @@ FS.Creatures_Beasts_Hyena = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 181, atk = 116, def = 53, spd = 82 },
+        baseStats = { hp = 28, atk = 39, def = 16, spd = 27 },
     },
 }

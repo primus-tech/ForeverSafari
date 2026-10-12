@@ -20,7 +20,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 223, atk = 103, def = 84, spd = 66 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [329] = {
         name = "Earth Elemental",
@@ -38,7 +38,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 291, atk = 136, def = 110, spd = 87 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [575] = {
         name = "Fire Elemental",
@@ -58,7 +58,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.025,
         pupName = "Fire Elemental Spark",
         moves = {301, 307},
-        baseStats = { hp = 205, atk = 94, def = 77, spd = 61 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [691] = {
         name = "Lesser Water Elemental",
@@ -76,7 +76,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 210, atk = 96, def = 78, spd = 62 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [764] = {
         name = "Swampwalker",
@@ -94,7 +94,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 219, atk = 101, def = 82, spd = 65 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [765] = {
         name = "Swampwalker Elder",
@@ -112,7 +112,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 223, atk = 103, def = 84, spd = 66 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [766] = {
         name = "Tangled Horror",
@@ -130,7 +130,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 228, atk = 105, def = 85, spd = 68 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [832] = {
         name = "Dust Devil",
@@ -148,7 +148,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 129, atk = 57, def = 47, spd = 37 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1030] = {
         name = "Black Slime",
@@ -166,7 +166,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 138, atk = 61, def = 50, spd = 40 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1031] = {
         name = "Crimson Ooze",
@@ -184,7 +184,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 156, atk = 70, def = 57, spd = 45 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1032] = {
         name = "Black Ooze",
@@ -202,7 +202,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 151, atk = 68, def = 55, spd = 44 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1033] = {
         name = "Monstrous Ooze",
@@ -220,7 +220,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 160, atk = 72, def = 59, spd = 47 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1039] = {
         name = "Fen Dweller",
@@ -238,7 +238,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 151, atk = 68, def = 55, spd = 44 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1040] = {
         name = "Fen Creeper",
@@ -256,7 +256,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 156, atk = 70, def = 57, spd = 45 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1041] = {
         name = "Fen Lord",
@@ -274,7 +274,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 160, atk = 72, def = 59, spd = 47 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1081] = {
         name = "Mire Lord",
@@ -292,7 +292,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 237, atk = 110, def = 89, spd = 70 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1244] = {
         name = "Rethiel the Greenwarden",
@@ -310,7 +310,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 183, atk = 83, def = 68, spd = 54 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1806] = {
         name = "Vile Slime",
@@ -328,7 +328,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 291, atk = 136, def = 110, spd = 87 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1808] = {
         name = "Devouring Ooze",
@@ -346,7 +346,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 295, atk = 138, def = 112, spd = 89 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1812] = {
         name = "Rotting Behemoth",
@@ -364,7 +364,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 295, atk = 138, def = 112, spd = 89 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1813] = {
         name = "Decaying Horror",
@@ -382,7 +382,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 300, atk = 140, def = 113, spd = 90 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1851] = {
         name = "The Husk",
@@ -400,7 +400,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 327, atk = 154, def = 124, spd = 98 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [1953] = {
         name = "Lake Skulker",
@@ -418,7 +418,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 115, atk = 50, def = 41, spd = 33 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1954] = {
         name = "Elder Lake Skulker",
@@ -436,7 +436,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 120, atk = 52, def = 43, spd = 34 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1955] = {
         name = "Lake Creeper",
@@ -454,7 +454,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 124, atk = 55, def = 45, spd = 35 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1956] = {
         name = "Elder Lake Creeper",
@@ -472,7 +472,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 129, atk = 57, def = 47, spd = 37 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2022] = {
         name = "Timberling",
@@ -490,7 +490,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 70, atk = 28, def = 24, spd = 19 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2025] = {
         name = "Timberling Bark Ripper",
@@ -508,7 +508,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 79, atk = 33, def = 27, spd = 21 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2027] = {
         name = "Timberling Trampler",
@@ -526,7 +526,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 84, atk = 35, def = 29, spd = 23 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2029] = {
         name = "Timberling Mire Beast",
@@ -544,7 +544,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 88, atk = 37, def = 31, spd = 24 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2030] = {
         name = "Elder Timberling",
@@ -562,7 +562,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 93, atk = 39, def = 33, spd = 26 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2156] = {
         name = "Cracked Golem",
@@ -580,7 +580,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 129, atk = 57, def = 47, spd = 37 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2157] = {
         name = "Stone Behemoth",
@@ -598,7 +598,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 133, atk = 59, def = 48, spd = 38 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2166] = {
         name = "Oakenscowl",
@@ -616,7 +616,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 115, atk = 48, def = 40, spd = 31 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2258] = {
         name = "Stone Fury",
@@ -634,7 +634,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 214, atk = 99, def = 80, spd = 63 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [2359] = {
         name = "Elemental Slave",
@@ -652,7 +652,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 196, atk = 90, def = 73, spd = 58 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2551] = {
         name = "Brutus",
@@ -670,7 +670,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 241, atk = 112, def = 91, spd = 72 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2592] = {
         name = "Rumbling Exile",
@@ -688,7 +688,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 219, atk = 101, def = 82, spd = 65 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2656] = {
         name = "Jade Ooze",
@@ -706,7 +706,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 259, atk = 121, def = 98, spd = 77 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2723] = {
         name = "Stone Golem",
@@ -724,7 +724,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 219, atk = 101, def = 82, spd = 65 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2735] = {
         name = "Lesser Rock Elemental",
@@ -742,7 +742,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 219, atk = 101, def = 82, spd = 65 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2736] = {
         name = "Greater Rock Elemental",
@@ -760,7 +760,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 241, atk = 112, def = 91, spd = 72 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2745] = {
         name = "Ambassador Infernus",
@@ -778,7 +778,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 308, atk = 143, def = 116, spd = 92 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2749] = {
         name = "Siege Golem",
@@ -796,7 +796,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 296, atk = 137, def = 111, spd = 88 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [2751] = {
         name = "War Golem",
@@ -814,7 +814,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 210, atk = 96, def = 78, spd = 62 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [2752] = {
         name = "Rumbler",
@@ -832,7 +832,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 250, atk = 116, def = 94, spd = 75 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [2755] = {
         name = "Myzrael",
@@ -850,7 +850,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 319, atk = 148, def = 120, spd = 95 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2760] = {
         name = "Burning Exile",
@@ -868,7 +868,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 219, atk = 101, def = 82, spd = 65 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2761] = {
         name = "Cresting Exile",
@@ -886,7 +886,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 219, atk = 101, def = 82, spd = 65 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2762] = {
         name = "Thundering Exile",
@@ -904,7 +904,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 219, atk = 101, def = 82, spd = 65 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2776] = {
         name = "Vengeful Surge",
@@ -922,7 +922,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 228, atk = 105, def = 85, spd = 68 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2791] = {
         name = "Enraged Rock Elemental",
@@ -940,7 +940,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 237, atk = 110, def = 89, spd = 70 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2794] = {
         name = "Summoned Guardian",
@@ -958,7 +958,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 284, atk = 131, def = 106, spd = 84 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2887] = {
         name = "Prismatic Exile",
@@ -976,7 +976,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 241, atk = 112, def = 91, spd = 72 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2919] = {
         name = "Fam'retor Guardian",
@@ -994,7 +994,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 250, atk = 116, def = 94, spd = 75 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [3417] = {
         name = "Living Flame",
@@ -1012,7 +1012,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 120, atk = 52, def = 43, spd = 34 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [3535] = {
         name = "Blackmoss the Fetid",
@@ -1030,7 +1030,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 106, atk = 46, def = 38, spd = 30 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [3569] = {
         name = "Bogling",
@@ -1048,7 +1048,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 70, atk = 28, def = 24, spd = 19 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [3780] = {
         name = "Shadethicket Moss Eater",
@@ -1066,7 +1066,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 147, atk = 66, def = 54, spd = 42 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [3781] = {
         name = "Shadethicket Wood Shaper",
@@ -1084,7 +1084,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 151, atk = 68, def = 55, spd = 44 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [3782] = {
         name = "Shadethicket Stone Mover",
@@ -1102,7 +1102,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 160, atk = 72, def = 59, spd = 47 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [3783] = {
         name = "Shadethicket Raincaller",
@@ -1120,7 +1120,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 147, atk = 66, def = 54, spd = 42 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [3784] = {
         name = "Shadethicket Bark Ripper",
@@ -1138,7 +1138,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 165, atk = 74, def = 61, spd = 48 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [3834] = {
         name = "Crazed Ancient",
@@ -1156,7 +1156,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 169, atk = 77, def = 62, spd = 49 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [3917] = {
         name = "Befouled Water Elemental",
@@ -1174,7 +1174,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 156, atk = 70, def = 57, spd = 45 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [3919] = {
         name = "Withered Ancient",
@@ -1192,7 +1192,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 165, atk = 74, def = 61, spd = 48 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [3928] = {
         name = "Rotting Slime",
@@ -1210,7 +1210,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 142, atk = 63, def = 52, spd = 41 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [3931] = {
         name = "Shadethicket Oracle",
@@ -1228,7 +1228,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 183, atk = 83, def = 68, spd = 54 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [3950] = {
         name = "Minor Water Guardian",
@@ -1246,7 +1246,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 106, atk = 46, def = 38, spd = 30 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4028] = {
         name = "Charred Ancient",
@@ -1264,7 +1264,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 160, atk = 72, def = 59, spd = 47 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4029] = {
         name = "Blackened Ancient",
@@ -1282,7 +1282,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 169, atk = 77, def = 62, spd = 49 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4030] = {
         name = "Vengeful Ancient",
@@ -1300,7 +1300,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 178, atk = 81, def = 66, spd = 52 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [4034] = {
         name = "Enraged Stone Spirit",
@@ -1318,7 +1318,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 156, atk = 70, def = 57, spd = 45 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4035] = {
         name = "Furious Stone Spirit",
@@ -1336,7 +1336,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 165, atk = 74, def = 61, spd = 48 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4036] = {
         name = "Rogue Flame Spirit",
@@ -1354,7 +1354,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 151, atk = 68, def = 55, spd = 44 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4037] = {
         name = "Burning Ravager",
@@ -1372,7 +1372,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 156, atk = 70, def = 57, spd = 45 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4038] = {
         name = "Burning Destroyer",
@@ -1390,7 +1390,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 165, atk = 74, def = 61, spd = 48 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4120] = {
         name = "Thundering Boulderkin",
@@ -1408,7 +1408,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 174, atk = 79, def = 64, spd = 51 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4382] = {
         name = "Withervine Creeper",
@@ -1426,7 +1426,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 205, atk = 94, def = 77, spd = 61 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4385] = {
         name = "Withervine Rager",
@@ -1444,7 +1444,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 219, atk = 101, def = 82, spd = 65 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4386] = {
         name = "Withervine Bark Ripper",
@@ -1462,7 +1462,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 210, atk = 96, def = 78, spd = 62 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4387] = {
         name = "Withervine Mire Beast",
@@ -1480,7 +1480,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 214, atk = 99, def = 80, spd = 63 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4391] = {
         name = "Swamp Ooze",
@@ -1498,7 +1498,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 219, atk = 101, def = 82, spd = 65 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4392] = {
         name = "Corrosive Swamp Ooze",
@@ -1516,7 +1516,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 223, atk = 103, def = 84, spd = 66 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4393] = {
         name = "Acidic Swamp Ooze",
@@ -1534,7 +1534,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 228, atk = 105, def = 85, spd = 68 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4423] = {
         name = "Darnassian Protector",
@@ -1552,7 +1552,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 295, atk = 138, def = 112, spd = 89 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4469] = {
         name = "Emerald Ooze",
@@ -1570,7 +1570,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 331, atk = 154, def = 125, spd = 99 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4499] = {
         name = "Rok'Alim the Pounder",
@@ -1588,7 +1588,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 237, atk = 108, def = 88, spd = 70 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4526] = {
         name = "Wind Howler",
@@ -1608,7 +1608,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Wind Howler Spark",
         moves = {301, 307},
-        baseStats = { hp = 208, atk = 94, def = 77, spd = 61 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4528] = {
         name = "Stone Rumbler",
@@ -1628,7 +1628,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Stone Rumbler Spark",
         moves = {301, 307},
-        baseStats = { hp = 202, atk = 91, def = 74, spd = 59 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4661] = {
         name = "Gelkis Rumbler",
@@ -1646,7 +1646,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 178, atk = 81, def = 66, spd = 52 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4857] = {
         name = "Stone Keeper",
@@ -1666,7 +1666,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.25,
         pupName = "Elemental Catalyst",
         moves = {301, 307},
-        baseStats = { hp = 331, atk = 154, def = 125, spd = 99 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4860] = {
         name = "Stone Steward",
@@ -1686,7 +1686,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Stone Steward Spark",
         moves = {301, 307},
-        baseStats = { hp = 319, atk = 148, def = 120, spd = 95 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4978] = {
         name = "Aku'mai Servant",
@@ -1706,7 +1706,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Aku'mai Servant Spark",
         moves = {301, 307},
-        baseStats = { hp = 214, atk = 97, def = 79, spd = 62 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5228] = {
         name = "Saturated Ooze",
@@ -1726,7 +1726,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Saturated Ooze Spark",
         moves = {301, 307},
-        baseStats = { hp = 337, atk = 157, def = 127, spd = 101 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5235] = {
         name = "Fungal Ooze",
@@ -1744,7 +1744,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 325, atk = 151, def = 122, spd = 97 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5354] = {
         name = "Gnarl Leafbrother",
@@ -1762,7 +1762,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 246, atk = 114, def = 92, spd = 73 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [5461] = {
         name = "Sea Elemental",
@@ -1780,7 +1780,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 264, atk = 123, def = 99, spd = 79 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5462] = {
         name = "Sea Spray",
@@ -1798,7 +1798,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 259, atk = 121, def = 98, spd = 77 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5465] = {
         name = "Land Rager",
@@ -1816,7 +1816,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 255, atk = 118, def = 96, spd = 76 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5481] = {
         name = "Thistleshrub Dew Collector",
@@ -1834,7 +1834,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 259, atk = 121, def = 98, spd = 77 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5485] = {
         name = "Thistleshrub Rootshaper",
@@ -1852,7 +1852,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 268, atk = 125, def = 101, spd = 80 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5490] = {
         name = "Gnarled Thistleshrub",
@@ -1870,7 +1870,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 264, atk = 123, def = 99, spd = 79 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5761] = {
         name = "Deviate Shambler",
@@ -1890,7 +1890,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Deviate Shambler Spark",
         moves = {301, 307},
-        baseStats = { hp = 173, atk = 77, def = 63, spd = 50 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5775] = {
         name = "Verdan the Everliving",
@@ -1910,7 +1910,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.25,
         pupName = "Elemental Catalyst",
         moves = {301, 307},
-        baseStats = { hp = 185, atk = 82, def = 68, spd = 53 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5806] = {
         name = "Treant Ally",
@@ -1928,7 +1928,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 151, atk = 68, def = 55, spd = 44 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5850] = {
         name = "Blazing Elemental",
@@ -1946,7 +1946,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 255, atk = 118, def = 96, spd = 76 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5852] = {
         name = "Inferno Elemental",
@@ -1964,7 +1964,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 264, atk = 123, def = 99, spd = 79 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5853] = {
         name = "Tempered War Golem",
@@ -1982,7 +1982,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 255, atk = 118, def = 96, spd = 76 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5854] = {
         name = "Heavy War Golem",
@@ -2000,7 +2000,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 264, atk = 123, def = 99, spd = 79 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5855] = {
         name = "Magma Elemental",
@@ -2018,7 +2018,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 259, atk = 121, def = 98, spd = 77 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5881] = {
         name = "Cursed Sycamore",
@@ -2036,7 +2036,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 250, atk = 116, def = 94, spd = 75 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5891] = {
         name = "Minor Manifestation of Earth",
@@ -2054,7 +2054,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 115, atk = 50, def = 41, spd = 33 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5893] = {
         name = "Minor Manifestation of Fire",
@@ -2072,7 +2072,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 102, atk = 44, def = 36, spd = 28 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5894] = {
         name = "Corrupt Minor Manifestation of Water",
@@ -2090,7 +2090,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 147, atk = 66, def = 54, spd = 42 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5895] = {
         name = "Minor Manifestation of Water",
@@ -2108,7 +2108,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 147, atk = 66, def = 54, spd = 42 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [6047] = {
         name = "Aqua Guardian",
@@ -2128,7 +2128,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.025,
         pupName = "Aqua Guardian Spark",
         moves = {301, 307},
-        baseStats = { hp = 151, atk = 68, def = 55, spd = 44 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [6218] = {
         name = "Irradiated Slime",
@@ -2148,7 +2148,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Irradiated Slime Spark",
         moves = {301, 307},
-        baseStats = { hp = 255, atk = 117, def = 95, spd = 75 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [6220] = {
         name = "Irradiated Horror",
@@ -2168,7 +2168,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Irradiated Horror Spark",
         moves = {301, 307},
-        baseStats = { hp = 261, atk = 120, def = 97, spd = 77 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [6239] = {
         name = "Cyclonian",
@@ -2186,7 +2186,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 296, atk = 137, def = 111, spd = 88 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [6492] = {
         name = "Rift Spawn",
@@ -2204,7 +2204,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 120, atk = 52, def = 43, spd = 34 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [6517] = {
         name = "Tar Beast",
@@ -2222,7 +2222,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 273, atk = 127, def = 103, spd = 82 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [6518] = {
         name = "Tar Lurker",
@@ -2240,7 +2240,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 286, atk = 134, def = 108, spd = 86 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [6519] = {
         name = "Tar Lord",
@@ -2258,7 +2258,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 286, atk = 134, def = 108, spd = 86 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [6520] = {
         name = "Scorching Elemental",
@@ -2276,7 +2276,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 286, atk = 134, def = 108, spd = 86 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [6521] = {
         name = "Living Blaze",
@@ -2294,7 +2294,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 291, atk = 136, def = 110, spd = 87 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [6527] = {
         name = "Tar Creeper",
@@ -2312,7 +2312,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 277, atk = 129, def = 105, spd = 83 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [6550] = {
         name = "Mana Surge",
@@ -2330,7 +2330,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 228, atk = 105, def = 85, spd = 68 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [6556] = {
         name = "Muculent Ooze",
@@ -2348,7 +2348,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 268, atk = 125, def = 101, spd = 80 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [6557] = {
         name = "Primal Ooze",
@@ -2366,7 +2366,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 277, atk = 129, def = 105, spd = 83 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [6559] = {
         name = "Glutinous Ooze",
@@ -2384,7 +2384,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 286, atk = 134, def = 108, spd = 86 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [6560] = {
         name = "Stone Guardian",
@@ -2402,7 +2402,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [6932] = {
         name = "Swamp Spirit",
@@ -2420,7 +2420,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 228, atk = 105, def = 85, spd = 68 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7031] = {
         name = "Obsidian Elemental",
@@ -2438,7 +2438,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 282, atk = 132, def = 106, spd = 84 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7032] = {
         name = "Greater Obsidian Elemental",
@@ -2456,7 +2456,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 300, atk = 140, def = 113, spd = 90 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7039] = {
         name = "War Reaver",
@@ -2474,7 +2474,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 291, atk = 136, def = 110, spd = 87 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7079] = {
         name = "Viscous Fallout",
@@ -2494,7 +2494,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.25,
         pupName = "Elemental Catalyst",
         moves = {301, 307},
-        baseStats = { hp = 237, atk = 108, def = 88, spd = 70 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7086] = {
         name = "Cursed Ooze",
@@ -2512,7 +2512,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 268, atk = 125, def = 101, spd = 80 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7092] = {
         name = "Tainted Ooze",
@@ -2530,7 +2530,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 277, atk = 129, def = 105, spd = 83 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7093] = {
         name = "Vile Ooze",
@@ -2548,7 +2548,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 286, atk = 134, def = 108, spd = 86 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7100] = {
         name = "Warpwood Moss Flayer",
@@ -2566,7 +2566,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 282, atk = 132, def = 106, spd = 84 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7101] = {
         name = "Warpwood Shredder",
@@ -2584,7 +2584,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 286, atk = 134, def = 108, spd = 86 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7104] = {
         name = "Dessecus",
@@ -2602,7 +2602,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 390, atk = 183, def = 148, spd = 117 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [7132] = {
         name = "Toxic Horror",
@@ -2620,7 +2620,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 286, atk = 134, def = 108, spd = 86 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7138] = {
         name = "Irontree Wanderer",
@@ -2638,7 +2638,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 282, atk = 132, def = 106, spd = 84 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7139] = {
         name = "Irontree Stomper",
@@ -2656,7 +2656,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 282, atk = 132, def = 106, spd = 84 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7149] = {
         name = "Withered Protector",
@@ -2674,7 +2674,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 295, atk = 138, def = 112, spd = 89 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7206] = {
         name = "Ancient Stone Keeper",
@@ -2694,7 +2694,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.25,
         pupName = "Elemental Catalyst",
         moves = {301, 307},
-        baseStats = { hp = 319, atk = 148, def = 120, spd = 95 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7266] = {
         name = "Ember",
@@ -2714,7 +2714,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.025,
         pupName = "Ember Spark",
         moves = {301, 307},
-        baseStats = { hp = 205, atk = 94, def = 77, spd = 61 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7584] = {
         name = "Wandering Forest Walker",
@@ -2732,7 +2732,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 250, atk = 116, def = 94, spd = 75 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7738] = {
         name = "Burning Servant",
@@ -2752,7 +2752,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.025,
         pupName = "Burning Servant Spark",
         moves = {301, 307},
-        baseStats = { hp = 205, atk = 94, def = 77, spd = 61 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8257] = {
         name = "Oozeling",
@@ -2772,7 +2772,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.03,
         pupName = "Oozeling Spark",
         moves = {301, 307},
-        baseStats = { hp = 228, atk = 105, def = 85, spd = 68 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8278] = {
         name = "Smoldar",
@@ -2790,7 +2790,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 273, atk = 127, def = 103, spd = 82 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [8279] = {
         name = "Faulty War Golem",
@@ -2808,7 +2808,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 255, atk = 118, def = 96, spd = 76 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [8281] = {
         name = "Scald",
@@ -2826,7 +2826,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 268, atk = 125, def = 101, spd = 80 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [8384] = {
         name = "Deep Lurker",
@@ -2846,7 +2846,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Deep Lurker Spark",
         moves = {301, 307},
-        baseStats = { hp = 343, atk = 160, def = 129, spd = 102 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8400] = {
         name = "Obsidion",
@@ -2864,7 +2864,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 366, atk = 171, def = 138, spd = 110 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8441] = {
         name = "Raze",
@@ -2882,7 +2882,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 264, atk = 123, def = 99, spd = 79 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8519] = {
         name = "Blighted Surge",
@@ -2900,7 +2900,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 291, atk = 136, def = 110, spd = 87 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8520] = {
         name = "Plague Ravager",
@@ -2918,7 +2918,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 295, atk = 138, def = 112, spd = 89 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8521] = {
         name = "Blighted Horror",
@@ -2936,7 +2936,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 300, atk = 140, def = 113, spd = 90 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8522] = {
         name = "Plague Monstrosity",
@@ -2954,7 +2954,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 304, atk = 143, def = 115, spd = 91 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8667] = {
         name = "Gusting Vortex",
@@ -2972,7 +2972,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 246, atk = 114, def = 92, spd = 73 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8766] = {
         name = "Forest Ooze",
@@ -2990,7 +2990,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 282, atk = 132, def = 106, spd = 84 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8837] = {
         name = "Muck Splash",
@@ -3008,7 +3008,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 264, atk = 123, def = 99, spd = 79 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8905] = {
         name = "Warbringer Construct",
@@ -3028,7 +3028,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Warbringer Construct Spark",
         moves = {301, 307},
-        baseStats = { hp = 372, atk = 174, def = 141, spd = 112 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8906] = {
         name = "Ragereaver Golem",
@@ -3048,7 +3048,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Ragereaver Golem Spark",
         moves = {301, 307},
-        baseStats = { hp = 378, atk = 177, def = 143, spd = 113 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8907] = {
         name = "Wrath Hammer Construct",
@@ -3068,7 +3068,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Wrath Hammer Construct Spark",
         moves = {301, 307},
-        baseStats = { hp = 384, atk = 180, def = 145, spd = 115 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8908] = {
         name = "Molten War Golem",
@@ -3088,7 +3088,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Molten War Golem Spark",
         moves = {301, 307},
-        baseStats = { hp = 384, atk = 180, def = 145, spd = 115 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8909] = {
         name = "Fireguard",
@@ -3108,7 +3108,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Fireguard Spark",
         moves = {301, 307},
-        baseStats = { hp = 360, atk = 168, def = 136, spd = 108 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8910] = {
         name = "Blazing Fireguard",
@@ -3128,7 +3128,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Blazing Fireguard Spark",
         moves = {301, 307},
-        baseStats = { hp = 372, atk = 174, def = 141, spd = 112 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8911] = {
         name = "Fireguard Destroyer",
@@ -3148,7 +3148,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Fireguard Destroyer Spark",
         moves = {301, 307},
-        baseStats = { hp = 384, atk = 180, def = 145, spd = 115 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8923] = {
         name = "Panzor the Invincible",
@@ -3168,7 +3168,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.25,
         pupName = "Elemental Catalyst",
         moves = {301, 307},
-        baseStats = { hp = 395, atk = 185, def = 150, spd = 119 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [8981] = {
         name = "Malfunctioning Reaver",
@@ -3186,7 +3186,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 300, atk = 140, def = 113, spd = 90 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [9017] = {
         name = "Lord Incendius",
@@ -3206,7 +3206,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.25,
         pupName = "Elemental Catalyst",
         moves = {301, 307},
-        baseStats = { hp = 384, atk = 180, def = 145, spd = 115 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [9025] = {
         name = "Lord Roccor",
@@ -3226,7 +3226,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.25,
         pupName = "Elemental Catalyst",
         moves = {301, 307},
-        baseStats = { hp = 360, atk = 168, def = 136, spd = 108 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [9026] = {
         name = "Overmaster Pyron",
@@ -3244,7 +3244,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 366, atk = 171, def = 138, spd = 110 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [9178] = {
         name = "Burning Spirit",
@@ -3264,7 +3264,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.025,
         pupName = "Burning Spirit Spark",
         moves = {301, 307},
-        baseStats = { hp = 183, atk = 83, def = 68, spd = 54 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [9376] = {
         name = "Blazerunner",
@@ -3282,7 +3282,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 390, atk = 183, def = 148, spd = 117 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [9377] = {
         name = "Swirling Vortex",
@@ -3300,7 +3300,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 196, atk = 90, def = 73, spd = 58 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [9396] = {
         name = "Ground Pounder",
@@ -3318,7 +3318,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 237, atk = 110, def = 89, spd = 70 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [9397] = {
         name = "Living Storm",
@@ -3336,7 +3336,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 264, atk = 123, def = 99, spd = 79 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [9453] = {
         name = "Aquementas",
@@ -3354,7 +3354,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 291, atk = 136, def = 110, spd = 87 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [9477] = {
         name = "Cloned Ooze",
@@ -3372,7 +3372,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 277, atk = 129, def = 105, spd = 83 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [9502] = {
         name = "Phalanx",
@@ -3392,7 +3392,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.25,
         pupName = "Elemental Catalyst",
         moves = {301, 307},
-        baseStats = { hp = 384, atk = 180, def = 145, spd = 115 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [9598] = {
         name = "Arei",
@@ -3410,7 +3410,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 300, atk = 140, def = 113, spd = 90 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [9601] = {
         name = "Treant Spirit",
@@ -3428,7 +3428,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 282, atk = 132, def = 106, spd = 84 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [9816] = {
         name = "Pyroguard Emberseer",
@@ -3448,7 +3448,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.25,
         pupName = "Elemental Catalyst",
         moves = {301, 307},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [9878] = {
         name = "Entropic Beast",
@@ -3466,7 +3466,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 277, atk = 129, def = 105, spd = 83 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [9879] = {
         name = "Entropic Horror",
@@ -3484,7 +3484,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 286, atk = 134, def = 108, spd = 86 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10120] = {
         name = "Vault Warder",
@@ -3504,7 +3504,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Vault Warder Spark",
         moves = {301, 307},
-        baseStats = { hp = 325, atk = 151, def = 122, spd = 97 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10290] = {
         name = "Captured Felwood Ooze",
@@ -3522,7 +3522,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 183, atk = 83, def = 68, spd = 54 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10641] = {
         name = "Branch Snapper",
@@ -3540,7 +3540,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 160, atk = 72, def = 59, spd = 47 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [10642] = {
         name = "Eck'alom",
@@ -3558,7 +3558,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 169, atk = 77, def = 62, spd = 49 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [10697] = {
         name = "Bile Slime",
@@ -3578,7 +3578,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.025,
         pupName = "Bile Slime Spark",
         moves = {301, 307},
-        baseStats = { hp = 313, atk = 147, def = 119, spd = 94 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10756] = {
         name = "Scalding Elemental",
@@ -3596,7 +3596,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 174, atk = 79, def = 64, spd = 51 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10757] = {
         name = "Boiling Elemental",
@@ -3614,7 +3614,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 169, atk = 77, def = 62, spd = 49 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10955] = {
         name = "Summoned Water Elemental",
@@ -3634,7 +3634,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.025,
         pupName = "Summoned Water Elemental Spark",
         moves = {301, 307},
-        baseStats = { hp = 295, atk = 138, def = 112, spd = 89 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11256] = {
         name = "Manifestation of Water",
@@ -3652,7 +3652,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11321] = {
         name = "Molten Elemental",
@@ -3672,7 +3672,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Molten Elemental Spark",
         moves = {301, 307},
-        baseStats = { hp = 144, atk = 62, def = 52, spd = 41 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11447] = {
         name = "Mushgog",
@@ -3690,7 +3690,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [11458] = {
         name = "Petrified Treant",
@@ -3710,7 +3710,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Petrified Treant Spark",
         moves = {301, 307},
-        baseStats = { hp = 401, atk = 188, def = 152, spd = 121 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11459] = {
         name = "Ironbark Protector",
@@ -3730,7 +3730,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Ironbark Protector Spark",
         moves = {301, 307},
-        baseStats = { hp = 401, atk = 188, def = 152, spd = 121 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11461] = {
         name = "Warpwood Guardian",
@@ -3750,7 +3750,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Warpwood Guardian Spark",
         moves = {301, 307},
-        baseStats = { hp = 395, atk = 185, def = 150, spd = 119 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11462] = {
         name = "Warpwood Treant",
@@ -3770,7 +3770,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Warpwood Treant Spark",
         moves = {301, 307},
-        baseStats = { hp = 378, atk = 177, def = 143, spd = 113 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11464] = {
         name = "Warpwood Tangler",
@@ -3790,7 +3790,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Warpwood Tangler Spark",
         moves = {301, 307},
-        baseStats = { hp = 384, atk = 180, def = 145, spd = 115 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11465] = {
         name = "Warpwood Stomper",
@@ -3810,7 +3810,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Warpwood Stomper Spark",
         moves = {301, 307},
-        baseStats = { hp = 395, atk = 185, def = 150, spd = 119 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11480] = {
         name = "Arcane Aberration",
@@ -3830,7 +3830,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Arcane Aberration Spark",
         moves = {301, 307},
-        baseStats = { hp = 407, atk = 191, def = 155, spd = 122 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11483] = {
         name = "Mana Remnant",
@@ -3850,7 +3850,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Mana Remnant Spark",
         moves = {301, 307},
-        baseStats = { hp = 401, atk = 188, def = 152, spd = 121 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11484] = {
         name = "Residual Monstrosity",
@@ -3870,7 +3870,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Residual Monstrosity Spark",
         moves = {301, 307},
-        baseStats = { hp = 407, atk = 191, def = 155, spd = 122 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11489] = {
         name = "Tendris Warpwood",
@@ -3890,7 +3890,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.25,
         pupName = "Elemental Catalyst",
         moves = {301, 307},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11491] = {
         name = "Old Ironbark",
@@ -3910,7 +3910,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Old Ironbark Spark",
         moves = {301, 307},
-        baseStats = { hp = 401, atk = 188, def = 152, spd = 121 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11502] = {
         name = "Ragnaros",
@@ -3930,7 +3930,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.25,
         pupName = "Elemental Catalyst",
         moves = {301, 307},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11576] = {
         name = "Whirlwind Ripper",
@@ -3948,7 +3948,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 196, atk = 90, def = 73, spd = 58 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11577] = {
         name = "Whirlwind Stormwalker",
@@ -3966,7 +3966,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 210, atk = 96, def = 78, spd = 62 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11578] = {
         name = "Whirlwind Shredder",
@@ -3984,7 +3984,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 196, atk = 90, def = 73, spd = 58 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11665] = {
         name = "Lava Annihilator",
@@ -4004,7 +4004,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Lava Annihilator Spark",
         moves = {301, 307},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11666] = {
         name = "Firewalker",
@@ -4024,7 +4024,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Firewalker Spark",
         moves = {301, 307},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11667] = {
         name = "Flameguard",
@@ -4044,7 +4044,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Flameguard Spark",
         moves = {301, 307},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11668] = {
         name = "Firelord",
@@ -4064,7 +4064,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Firelord Spark",
         moves = {301, 307},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11669] = {
         name = "Flame Imp",
@@ -4084,7 +4084,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Flame Imp Spark",
         moves = {301, 307},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11744] = {
         name = "Dust Stormer",
@@ -4102,7 +4102,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 300, atk = 140, def = 113, spd = 90 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11745] = {
         name = "Cyclone Warrior",
@@ -4120,7 +4120,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 309, atk = 145, def = 117, spd = 93 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11746] = {
         name = "Desert Rumbler",
@@ -4138,7 +4138,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 304, atk = 143, def = 115, spd = 91 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11747] = {
         name = "Desert Rager",
@@ -4156,7 +4156,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 309, atk = 145, def = 117, spd = 93 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11777] = {
         name = "Shadowshard Rumbler",
@@ -4174,7 +4174,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 296, atk = 137, def = 111, spd = 88 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11778] = {
         name = "Shadowshard Smasher",
@@ -4192,7 +4192,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 302, atk = 140, def = 113, spd = 90 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11781] = {
         name = "Ambershard Crusher",
@@ -4210,7 +4210,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 296, atk = 137, def = 111, spd = 88 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11782] = {
         name = "Ambershard Destroyer",
@@ -4228,7 +4228,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 308, atk = 143, def = 116, spd = 92 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11783] = {
         name = "Theradrim Shardling",
@@ -4248,7 +4248,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.025,
         pupName = "Theradrim Shardling Spark",
         moves = {301, 307},
-        baseStats = { hp = 255, atk = 118, def = 96, spd = 76 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11784] = {
         name = "Theradrim Guardian",
@@ -4268,7 +4268,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Theradrim Guardian Spark",
         moves = {301, 307},
-        baseStats = { hp = 337, atk = 157, def = 127, spd = 101 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11862] = {
         name = "Tsunaman",
@@ -4286,7 +4286,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 160, atk = 72, def = 59, spd = 47 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12056] = {
         name = "Baron Geddon",
@@ -4306,7 +4306,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.25,
         pupName = "Elemental Catalyst",
         moves = {301, 307},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12057] = {
         name = "Garr",
@@ -4326,7 +4326,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.25,
         pupName = "Elemental Catalyst",
         moves = {301, 307},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12076] = {
         name = "Lava Elemental",
@@ -4346,7 +4346,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Lava Elemental Spark",
         moves = {301, 307},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12099] = {
         name = "Firesworn",
@@ -4366,7 +4366,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Firesworn Spark",
         moves = {301, 307},
-        baseStats = { hp = 407, atk = 191, def = 155, spd = 122 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12100] = {
         name = "Lava Reaver",
@@ -4386,7 +4386,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Lava Reaver Spark",
         moves = {301, 307},
-        baseStats = { hp = 425, atk = 200, def = 161, spd = 128 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12101] = {
         name = "Lava Surger",
@@ -4406,7 +4406,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Lava Surger Spark",
         moves = {301, 307},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12143] = {
         name = "Son of Flame",
@@ -4426,7 +4426,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Son of Flame Spark",
         moves = {301, 307},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12201] = {
         name = "Princess Theradras",
@@ -4446,7 +4446,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.25,
         pupName = "Elemental Catalyst",
         moves = {301, 307},
-        baseStats = { hp = 360, atk = 168, def = 136, spd = 108 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12221] = {
         name = "Noxious Slime",
@@ -4466,7 +4466,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Noxious Slime Spark",
         moves = {301, 307},
-        baseStats = { hp = 331, atk = 154, def = 125, spd = 99 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12223] = {
         name = "Cavern Lurker",
@@ -4486,7 +4486,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Cavern Lurker Spark",
         moves = {301, 307},
-        baseStats = { hp = 325, atk = 151, def = 122, spd = 97 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12224] = {
         name = "Cavern Shambler",
@@ -4506,7 +4506,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Cavern Shambler Spark",
         moves = {301, 307},
-        baseStats = { hp = 331, atk = 154, def = 125, spd = 99 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12237] = {
         name = "Meshlok the Harvester",
@@ -4526,7 +4526,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.25,
         pupName = "Elemental Catalyst",
         moves = {301, 307},
-        baseStats = { hp = 343, atk = 160, def = 129, spd = 102 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [12265] = {
         name = "Lava Spawn",
@@ -4546,7 +4546,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Lava Spawn Spark",
         moves = {301, 307},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12387] = {
         name = "Large Vile Slime",
@@ -4564,7 +4564,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 300, atk = 140, def = 113, spd = 90 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12759] = {
         name = "Tideress",
@@ -4582,7 +4582,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 169, atk = 77, def = 62, spd = 49 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12806] = {
         name = "Magmakin",
@@ -4602,7 +4602,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Magmakin Spark",
         moves = {301, 307},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12876] = {
         name = "Baron Aquanis",
@@ -4622,7 +4622,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Baron Aquanis Spark",
         moves = {301, 307},
-        baseStats = { hp = 226, atk = 102, def = 84, spd = 66 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [13021] = {
         name = "Warpwood Crusher",
@@ -4642,7 +4642,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Warpwood Crusher Spark",
         moves = {301, 307},
-        baseStats = { hp = 390, atk = 183, def = 148, spd = 117 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [13022] = {
         name = "Whip Lasher",
@@ -4662,7 +4662,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.025,
         pupName = "Whip Lasher Spark",
         moves = {301, 307},
-        baseStats = { hp = 291, atk = 136, def = 110, spd = 87 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [13141] = {
         name = "Deeprot Stomper",
@@ -4682,7 +4682,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Deeprot Stomper Spark",
         moves = {301, 307},
-        baseStats = { hp = 313, atk = 145, def = 118, spd = 93 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [13142] = {
         name = "Deeprot Tangler",
@@ -4702,7 +4702,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Deeprot Tangler Spark",
         moves = {301, 307},
-        baseStats = { hp = 319, atk = 148, def = 120, spd = 95 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [13196] = {
         name = "Phase Lasher",
@@ -4722,7 +4722,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Phase Lasher Spark",
         moves = {301, 307},
-        baseStats = { hp = 378, atk = 177, def = 143, spd = 113 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [13197] = {
         name = "Fel Lash",
@@ -4742,7 +4742,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Fel Lash Spark",
         moves = {301, 307},
-        baseStats = { hp = 390, atk = 183, def = 148, spd = 117 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [13256] = {
         name = "Lokholar the Ice Lord",
@@ -4762,7 +4762,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.25,
         pupName = "Elemental Catalyst",
         moves = {301, 307},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [13278] = {
         name = "Duke Hydraxis",
@@ -4780,7 +4780,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [13280] = {
         name = "Hydrospawn",
@@ -4800,7 +4800,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.25,
         pupName = "Elemental Catalyst",
         moves = {301, 307},
-        baseStats = { hp = 395, atk = 185, def = 150, spd = 119 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [13282] = {
         name = "Noxxion",
@@ -4820,7 +4820,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.25,
         pupName = "Elemental Catalyst",
         moves = {301, 307},
-        baseStats = { hp = 343, atk = 160, def = 129, spd = 102 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [13285] = {
         name = "Death Lash",
@@ -4840,7 +4840,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Death Lash Spark",
         moves = {301, 307},
-        baseStats = { hp = 395, atk = 185, def = 150, spd = 119 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [13456] = {
         name = "Noxxion's Spawn",
@@ -4860,7 +4860,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.025,
         pupName = "Noxxion's Spawn Spark",
         moves = {301, 307},
-        baseStats = { hp = 255, atk = 118, def = 96, spd = 76 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [13696] = {
         name = "Noxxious Scion",
@@ -4880,7 +4880,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.025,
         pupName = "Noxxious Scion Spark",
         moves = {301, 307},
-        baseStats = { hp = 255, atk = 118, def = 96, spd = 76 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [13743] = {
         name = "Corrupt Force of Nature",
@@ -4900,7 +4900,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.025,
         pupName = "Corrupt Force of Nature Spark",
         moves = {301, 307},
-        baseStats = { hp = 246, atk = 114, def = 92, spd = 73 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14231] = {
         name = "Drogoth the Roamer",
@@ -4918,7 +4918,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 214, atk = 99, def = 80, spd = 63 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [14269] = {
         name = "Seeker Aqualon",
@@ -4936,7 +4936,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 142, atk = 63, def = 52, spd = 41 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [14303] = {
         name = "Petrified Guardian",
@@ -4956,7 +4956,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Petrified Guardian Spark",
         moves = {301, 307},
-        baseStats = { hp = 401, atk = 188, def = 152, spd = 121 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14350] = {
         name = "Hydroling",
@@ -4976,7 +4976,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.025,
         pupName = "Hydroling Spark",
         moves = {301, 307},
-        baseStats = { hp = 304, atk = 143, def = 115, spd = 91 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14397] = {
         name = "Mana Burst",
@@ -4996,7 +4996,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.025,
         pupName = "Mana Burst Spark",
         moves = {301, 307},
-        baseStats = { hp = 313, atk = 147, def = 119, spd = 94 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14399] = {
         name = "Arcane Torrent",
@@ -5016,7 +5016,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Arcane Torrent Spark",
         moves = {301, 307},
-        baseStats = { hp = 407, atk = 191, def = 155, spd = 122 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14400] = {
         name = "Arcane Feedback",
@@ -5036,7 +5036,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.025,
         pupName = "Arcane Feedback Spark",
         moves = {301, 307},
-        baseStats = { hp = 313, atk = 147, def = 119, spd = 94 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14424] = {
         name = "Mirelow",
@@ -5054,7 +5054,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 160, atk = 72, def = 59, spd = 47 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [14435] = {
         name = "Prince Thunderaan",
@@ -5072,7 +5072,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14448] = {
         name = "Molt Thorn",
@@ -5090,7 +5090,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 237, atk = 110, def = 89, spd = 70 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [14454] = {
         name = "The Windreaver",
@@ -5108,7 +5108,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [14455] = {
         name = "Whirling Invader",
@@ -5126,7 +5126,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 304, atk = 143, def = 115, spd = 91 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14457] = {
         name = "Princess Tempestria",
@@ -5144,7 +5144,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [14458] = {
         name = "Watery Invader",
@@ -5162,7 +5162,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 304, atk = 143, def = 115, spd = 91 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14460] = {
         name = "Blazing Invader",
@@ -5180,7 +5180,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 295, atk = 138, def = 112, spd = 89 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14461] = {
         name = "Baron Charr",
@@ -5198,7 +5198,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 401, atk = 188, def = 152, spd = 121 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [14462] = {
         name = "Thundering Invader",
@@ -5216,7 +5216,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 300, atk = 140, def = 113, spd = 90 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14464] = {
         name = "Avalanchion",
@@ -5234,7 +5234,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 401, atk = 188, def = 152, spd = 121 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [14478] = {
         name = "Huricanian",
@@ -5252,7 +5252,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 309, atk = 145, def = 117, spd = 93 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [15209] = {
         name = "Crimson Templar",
@@ -5270,7 +5270,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [15211] = {
         name = "Azure Templar",
@@ -5288,7 +5288,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [15212] = {
         name = "Hoary Templar",
@@ -5306,7 +5306,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [15307] = {
         name = "Earthen Templar",
@@ -5324,7 +5324,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [15338] = {
         name = "Obsidian Destroyer",
@@ -5344,7 +5344,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Obsidian Destroyer Spark",
         moves = {301, 307},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [15527] = {
         name = "Mana Fiend",
@@ -5364,7 +5364,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Mana Fiend Spark",
         moves = {301, 307},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16034] = {
         name = "Plague Beast",
@@ -5384,7 +5384,7 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Plague Beast Spark",
         moves = {301, 307},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16043] = {
         name = "Magma Lord Bokk",
@@ -5402,7 +5402,7 @@ FS.Creatures_Elementals = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {301, 307},
-        baseStats = { hp = 318, atk = 149, def = 121, spd = 96 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16243] = {
         name = "Plague Slime",
@@ -5422,6 +5422,6 @@ FS.Creatures_Elementals = {
         pupDropRate = 0.15,
         pupName = "Plague Slime Spark",
         moves = {301, 307},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
 }

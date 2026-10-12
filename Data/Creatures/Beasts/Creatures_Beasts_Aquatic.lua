@@ -20,7 +20,7 @@ FS.Creatures_Beasts_Aquatic = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 406},
-        baseStats = { hp = 169, atk = 107, def = 49, spd = 76 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [1193] = {
         name = "Loch Frenzy",
@@ -38,7 +38,7 @@ FS.Creatures_Beasts_Aquatic = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 406},
-        baseStats = { hp = 93, atk = 55, def = 25, spd = 39 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [1224] = {
         name = "Young Threshadon",
@@ -56,7 +56,7 @@ FS.Creatures_Beasts_Aquatic = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 406},
-        baseStats = { hp = 121, atk = 74, def = 34, spd = 53 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [2173] = {
         name = "Reef Frenzy",
@@ -74,7 +74,7 @@ FS.Creatures_Beasts_Aquatic = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 406},
-        baseStats = { hp = 101, atk = 61, def = 28, spd = 43 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [2174] = {
         name = "Coastal Frenzy",
@@ -92,7 +92,7 @@ FS.Creatures_Beasts_Aquatic = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 406},
-        baseStats = { hp = 105, atk = 63, def = 29, spd = 45 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [2185] = {
         name = "Darkshore Thresher",
@@ -110,7 +110,7 @@ FS.Creatures_Beasts_Aquatic = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 406},
-        baseStats = { hp = 97, atk = 58, def = 27, spd = 41 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [2187] = {
         name = "Elder Darkshore Thresher",
@@ -128,7 +128,7 @@ FS.Creatures_Beasts_Aquatic = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 406},
-        baseStats = { hp = 113, atk = 69, def = 32, spd = 49 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [2188] = {
         name = "Deep Sea Threshadon",
@@ -146,7 +146,7 @@ FS.Creatures_Beasts_Aquatic = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 406},
-        baseStats = { hp = 141, atk = 88, def = 41, spd = 62 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [3476] = {
         name = "Isha Awak",
@@ -164,7 +164,7 @@ FS.Creatures_Beasts_Aquatic = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 406},
-        baseStats = { hp = 153, atk = 96, def = 44, spd = 68 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4388] = {
         name = "Young Murk Thresher",
@@ -182,7 +182,7 @@ FS.Creatures_Beasts_Aquatic = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 406},
-        baseStats = { hp = 205, atk = 132, def = 61, spd = 94 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4389] = {
         name = "Murk Thresher",
@@ -200,7 +200,7 @@ FS.Creatures_Beasts_Aquatic = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 406},
-        baseStats = { hp = 213, atk = 138, def = 63, spd = 98 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4390] = {
         name = "Elder Murk Thresher",
@@ -218,7 +218,7 @@ FS.Creatures_Beasts_Aquatic = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 406},
-        baseStats = { hp = 221, atk = 143, def = 66, spd = 102 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4827] = {
         name = "Deep Pool Threshfin",
@@ -238,7 +238,7 @@ FS.Creatures_Beasts_Aquatic = {
         pupDropRate = 0.15,
         pupName = "Deep Pool Threshfin Minnow",
         moves = {101, 406},
-        baseStats = { hp = 188, atk = 118, def = 54, spd = 84 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4830] = {
         name = "Old Serra'kis",
@@ -258,7 +258,7 @@ FS.Creatures_Beasts_Aquatic = {
         pupDropRate = 0.15,
         pupName = "Old Serra'kis Minnow",
         moves = {101, 406},
-        baseStats = { hp = 193, atk = 122, def = 56, spd = 86 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [5185] = {
         name = "Hammerhead Shark",
@@ -276,7 +276,7 @@ FS.Creatures_Beasts_Aquatic = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 406},
-        baseStats = { hp = 219, atk = 140, def = 64, spd = 99 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [5434] = {
         name = "Coral Shark",
@@ -294,7 +294,7 @@ FS.Creatures_Beasts_Aquatic = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 406},
-        baseStats = { hp = 297, atk = 193, def = 89, spd = 138 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [5435] = {
         name = "Sand Shark",
@@ -312,7 +312,7 @@ FS.Creatures_Beasts_Aquatic = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 406},
-        baseStats = { hp = 120, atk = 72, def = 33, spd = 50 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [8236] = {
         name = "Muck Frenzy",
@@ -330,7 +330,7 @@ FS.Creatures_Beasts_Aquatic = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 406},
-        baseStats = { hp = 101, atk = 61, def = 28, spd = 43 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [10204] = {
         name = "Misha",
@@ -348,7 +348,7 @@ FS.Creatures_Beasts_Aquatic = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 406},
-        baseStats = { hp = 380, atk = 250, def = 115, spd = 179 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [11374] = {
         name = "Hooktooth Frenzy",
@@ -368,7 +368,7 @@ FS.Creatures_Beasts_Aquatic = {
         pupDropRate = 0.15,
         pupName = "Hooktooth Frenzy Minnow",
         moves = {101, 406},
-        baseStats = { hp = 370, atk = 243, def = 112, spd = 174 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [12123] = {
         name = "Reef Shark",
@@ -386,7 +386,7 @@ FS.Creatures_Beasts_Aquatic = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 406},
-        baseStats = { hp = 167, atk = 104, def = 48, spd = 74 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [12124] = {
         name = "Great Shark",
@@ -404,7 +404,7 @@ FS.Creatures_Beasts_Aquatic = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 406},
-        baseStats = { hp = 323, atk = 211, def = 97, spd = 151 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [12125] = {
         name = "Mammoth Shark",
@@ -422,7 +422,7 @@ FS.Creatures_Beasts_Aquatic = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 406},
-        baseStats = { hp = 349, atk = 229, def = 105, spd = 164 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [14356] = {
         name = "Sawfin Frenzy",
@@ -440,7 +440,7 @@ FS.Creatures_Beasts_Aquatic = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 406},
-        baseStats = { hp = 201, atk = 129, def = 59, spd = 92 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [14357] = {
         name = "Lake Thresher",
@@ -458,7 +458,7 @@ FS.Creatures_Beasts_Aquatic = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 406},
-        baseStats = { hp = 188, atk = 118, def = 54, spd = 84 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [15505] = {
         name = "Canal Frenzy",
@@ -478,6 +478,6 @@ FS.Creatures_Beasts_Aquatic = {
         pupDropRate = 0.15,
         pupName = "Canal Frenzy Minnow",
         moves = {101, 406},
-        baseStats = { hp = 370, atk = 243, def = 112, spd = 174 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
 }

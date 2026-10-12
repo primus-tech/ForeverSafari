@@ -20,7 +20,7 @@ FS.Creatures_Beasts_Crocolisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 288, atk = 71, def = 115, spd = 43 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [1084] = {
         name = "Young Sawtooth Crocolisk",
@@ -38,7 +38,7 @@ FS.Creatures_Beasts_Crocolisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 270, atk = 66, def = 107, spd = 40 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [1087] = {
         name = "Sawtooth Snapper",
@@ -56,7 +56,7 @@ FS.Creatures_Beasts_Crocolisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 306, atk = 75, def = 122, spd = 45 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [1150] = {
         name = "River Crocolisk",
@@ -74,7 +74,7 @@ FS.Creatures_Beasts_Crocolisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 240, atk = 59, def = 95, spd = 36 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [1151] = {
         name = "Saltwater Crocolisk",
@@ -92,7 +92,7 @@ FS.Creatures_Beasts_Crocolisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 270, atk = 66, def = 107, spd = 40 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [1152] = {
         name = "Snapjaw Crocolisk",
@@ -110,7 +110,7 @@ FS.Creatures_Beasts_Crocolisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 270, atk = 66, def = 107, spd = 40 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [1400] = {
         name = "Wetlands Crocolisk",
@@ -128,7 +128,7 @@ FS.Creatures_Beasts_Crocolisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 198, atk = 48, def = 77, spd = 29 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [1417] = {
         name = "Young Wetlands Crocolisk",
@@ -146,7 +146,7 @@ FS.Creatures_Beasts_Crocolisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 186, atk = 45, def = 72, spd = 27 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [1693] = {
         name = "Loch Crocolisk",
@@ -164,7 +164,7 @@ FS.Creatures_Beasts_Crocolisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 144, atk = 35, def = 55, spd = 21 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [2089] = {
         name = "Giant Wetlands Crocolisk",
@@ -182,7 +182,7 @@ FS.Creatures_Beasts_Crocolisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 210, atk = 51, def = 82, spd = 31 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [2476] = {
         name = "Large Loch Crocolisk",
@@ -200,7 +200,7 @@ FS.Creatures_Beasts_Crocolisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 192, atk = 47, def = 75, spd = 28 },
+        baseStats = { hp = 39, atk = 22, def = 33, spd = 16 },
     },
     [2635] = {
         name = "Elder Saltwater Crocolisk",
@@ -218,7 +218,7 @@ FS.Creatures_Beasts_Crocolisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 374, atk = 92, def = 149, spd = 56 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [3110] = {
         name = "Dreadmaw Crocolisk",
@@ -236,7 +236,7 @@ FS.Creatures_Beasts_Crocolisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 120, atk = 29, def = 45, spd = 18 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [3231] = {
         name = "Corrupted Dreadmaw Crocolisk",
@@ -254,7 +254,7 @@ FS.Creatures_Beasts_Crocolisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 126, atk = 30, def = 47, spd = 18 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [3581] = {
         name = "Sewer Beast",
@@ -272,7 +272,7 @@ FS.Creatures_Beasts_Crocolisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 360, atk = 89, def = 145, spd = 54 },
+        baseStats = { hp = 39, atk = 22, def = 33, spd = 16 },
     },
     [4341] = {
         name = "Drywallow Crocolisk",
@@ -290,7 +290,7 @@ FS.Creatures_Beasts_Crocolisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 270, atk = 66, def = 107, spd = 40 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4342] = {
         name = "Drywallow Vicejaw",
@@ -308,7 +308,7 @@ FS.Creatures_Beasts_Crocolisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 276, atk = 68, def = 110, spd = 41 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4343] = {
         name = "Drywallow Snapper",
@@ -326,7 +326,7 @@ FS.Creatures_Beasts_Crocolisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 282, atk = 69, def = 112, spd = 42 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4344] = {
         name = "Mottled Drywallow Crocolisk",
@@ -344,7 +344,7 @@ FS.Creatures_Beasts_Crocolisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 288, atk = 71, def = 115, spd = 43 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4345] = {
         name = "Drywallow Daggermaw",
@@ -362,7 +362,7 @@ FS.Creatures_Beasts_Crocolisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 300, atk = 74, def = 120, spd = 45 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4841] = {
         name = "Deadmire",
@@ -380,7 +380,7 @@ FS.Creatures_Beasts_Crocolisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 330, atk = 81, def = 132, spd = 49 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [5053] = {
         name = "Deviate Crocolisk",
@@ -400,7 +400,7 @@ FS.Creatures_Beasts_Crocolisk = {
         pupDropRate = 0.025,
         pupName = "Deviate Crocolisk Pup",
         moves = {101, 112},
-        baseStats = { hp = 168, atk = 41, def = 65, spd = 25 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [13596] = {
         name = "Rotgrip",
@@ -420,7 +420,7 @@ FS.Creatures_Beasts_Crocolisk = {
         pupDropRate = 0.25,
         pupName = "Crocolisk Catalyst",
         moves = {101, 112},
-        baseStats = { hp = 468, atk = 115, def = 188, spd = 70 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [14233] = {
         name = "Ripscale",
@@ -438,7 +438,7 @@ FS.Creatures_Beasts_Crocolisk = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 112},
-        baseStats = { hp = 294, atk = 72, def = 117, spd = 44 },
+        baseStats = { hp = 39, atk = 22, def = 33, spd = 16 },
     },
     [15043] = {
         name = "Zulian Crocolisk",
@@ -458,7 +458,7 @@ FS.Creatures_Beasts_Crocolisk = {
         pupDropRate = 0.15,
         pupName = "Zulian Crocolisk Pup",
         moves = {101, 112},
-        baseStats = { hp = 546, atk = 135, def = 221, spd = 81 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [16095] = {
         name = "Gnashjaw",
@@ -478,6 +478,6 @@ FS.Creatures_Beasts_Crocolisk = {
         pupDropRate = 0.025,
         pupName = "Gnashjaw Pup",
         moves = {101, 112},
-        baseStats = { hp = 420, atk = 104, def = 170, spd = 63 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
 }

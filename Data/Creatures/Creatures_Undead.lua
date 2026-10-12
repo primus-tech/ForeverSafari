@@ -20,7 +20,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 156, atk = 70, def = 57, spd = 45 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [48] = {
         name = "Skeletal Warrior",
@@ -38,7 +38,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 142, atk = 63, def = 52, spd = 41 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [202] = {
         name = "Skeletal Horror",
@@ -56,7 +56,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 151, atk = 68, def = 55, spd = 44 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [203] = {
         name = "Skeletal Mage",
@@ -74,7 +74,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 147, atk = 66, def = 54, spd = 42 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [210] = {
         name = "Bone Chewer",
@@ -92,7 +92,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 165, atk = 74, def = 61, spd = 48 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [302] = {
         name = "Blind Mary",
@@ -110,7 +110,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 228, atk = 105, def = 85, spd = 68 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [314] = {
         name = "Eliza",
@@ -128,7 +128,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 243, atk = 111, def = 90, spd = 72 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [315] = {
         name = "Stalvan Mistmantle",
@@ -146,7 +146,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 192, atk = 88, def = 71, spd = 56 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [412] = {
         name = "Stitches",
@@ -164,7 +164,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 267, atk = 122, def = 100, spd = 79 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [503] = {
         name = "Lord Malathrom",
@@ -182,7 +182,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 187, atk = 85, def = 69, spd = 55 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [511] = {
         name = "Insane Ghoul",
@@ -200,7 +200,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 165, atk = 74, def = 61, spd = 48 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [522] = {
         name = "Mor'Ladim",
@@ -218,7 +218,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 267, atk = 122, def = 100, spd = 79 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [531] = {
         name = "Skeletal Fiend",
@@ -236,7 +236,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 156, atk = 70, def = 57, spd = 45 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [570] = {
         name = "Brain Eater",
@@ -254,7 +254,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 174, atk = 79, def = 64, spd = 51 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [572] = {
         name = "Leprithus",
@@ -272,7 +272,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 133, atk = 59, def = 48, spd = 38 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [604] = {
         name = "Plague Spreader",
@@ -290,7 +290,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 169, atk = 77, def = 62, spd = 49 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [623] = {
         name = "Skeletal Miner",
@@ -308,7 +308,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 161, atk = 71, def = 58, spd = 46 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [624] = {
         name = "Undead Excavator",
@@ -326,7 +326,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 161, atk = 71, def = 58, spd = 46 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [625] = {
         name = "Undead Dynamiter",
@@ -344,7 +344,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 161, atk = 71, def = 58, spd = 46 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [626] = {
         name = "Foreman Thistlenettle",
@@ -362,7 +362,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 179, atk = 80, def = 65, spd = 52 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [771] = {
         name = "Commander Felstrom",
@@ -380,7 +380,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 192, atk = 88, def = 71, spd = 56 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [785] = {
         name = "Skeletal Warder",
@@ -398,7 +398,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 174, atk = 79, def = 64, spd = 51 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [787] = {
         name = "Skeletal Healer",
@@ -416,7 +416,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 165, atk = 74, def = 61, spd = 48 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [846] = {
         name = "Ghoul",
@@ -434,7 +434,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 111, atk = 48, def = 40, spd = 31 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [948] = {
         name = "Rotted One",
@@ -452,7 +452,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 160, atk = 72, def = 59, spd = 47 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1110] = {
         name = "Skeletal Raider",
@@ -470,7 +470,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 169, atk = 77, def = 62, spd = 49 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1157] = {
         name = "Cursed Sailor",
@@ -488,7 +488,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 165, atk = 74, def = 61, spd = 48 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1158] = {
         name = "Cursed Marine",
@@ -506,7 +506,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 169, atk = 77, def = 62, spd = 49 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1159] = {
         name = "First Mate Snellig",
@@ -524,7 +524,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 178, atk = 81, def = 66, spd = 52 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1270] = {
         name = "Fetid Corpse",
@@ -542,7 +542,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 178, atk = 81, def = 66, spd = 52 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1488] = {
         name = "Zanzil Zombie",
@@ -560,7 +560,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 241, atk = 112, def = 91, spd = 72 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1489] = {
         name = "Zanzil Hunter",
@@ -578,7 +578,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 241, atk = 112, def = 91, spd = 72 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1491] = {
         name = "Zanzil Naga",
@@ -596,7 +596,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 246, atk = 114, def = 92, spd = 73 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1501] = {
         name = "Mindless Zombie",
@@ -614,7 +614,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 52, atk = 19, def = 17, spd = 13 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1502] = {
         name = "Wretched Zombie",
@@ -632,7 +632,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 52, atk = 19, def = 17, spd = 13 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1520] = {
         name = "Rattlecage Soldier",
@@ -650,7 +650,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 75, atk = 30, def = 25, spd = 20 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1522] = {
         name = "Darkeye Bonecaster",
@@ -668,7 +668,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 79, atk = 33, def = 27, spd = 21 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1523] = {
         name = "Cracked Skull Soldier",
@@ -686,7 +686,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 84, atk = 35, def = 29, spd = 23 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1525] = {
         name = "Rotting Dead",
@@ -704,7 +704,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 70, atk = 28, def = 24, spd = 19 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1526] = {
         name = "Ravaged Corpse",
@@ -722,7 +722,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 75, atk = 30, def = 25, spd = 20 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1527] = {
         name = "Hungering Dead",
@@ -740,7 +740,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 79, atk = 33, def = 27, spd = 21 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1528] = {
         name = "Shambling Horror",
@@ -758,7 +758,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 84, atk = 35, def = 29, spd = 23 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1529] = {
         name = "Bleeding Horror",
@@ -776,7 +776,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 88, atk = 37, def = 31, spd = 24 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1530] = {
         name = "Rotting Ancestor",
@@ -794,7 +794,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 93, atk = 39, def = 33, spd = 26 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1531] = {
         name = "Lost Soul",
@@ -812,7 +812,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 75, atk = 30, def = 25, spd = 20 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [1532] = {
         name = "Wandering Spirit",
@@ -830,7 +830,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 93, atk = 39, def = 33, spd = 26 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1533] = {
         name = "Tormented Spirit",
@@ -848,7 +848,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 84, atk = 35, def = 29, spd = 23 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [1534] = {
         name = "Wailing Ancestor",
@@ -866,7 +866,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 88, atk = 37, def = 31, spd = 24 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1654] = {
         name = "Gregor Agamand",
@@ -884,7 +884,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 93, atk = 39, def = 33, spd = 26 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1655] = {
         name = "Nissa Agamand",
@@ -902,7 +902,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 93, atk = 39, def = 33, spd = 26 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1656] = {
         name = "Thurman Agamand",
@@ -920,7 +920,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 93, atk = 39, def = 33, spd = 26 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1657] = {
         name = "Devlin Agamand",
@@ -938,7 +938,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 88, atk = 37, def = 31, spd = 24 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1674] = {
         name = "Rot Hide Gnoll",
@@ -956,7 +956,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 75, atk = 30, def = 25, spd = 20 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1675] = {
         name = "Rot Hide Mongrel",
@@ -974,7 +974,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 79, atk = 33, def = 27, spd = 21 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1753] = {
         name = "Maggot Eye",
@@ -992,7 +992,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 93, atk = 39, def = 33, spd = 26 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1772] = {
         name = "Rot Hide Gladerunner",
@@ -1010,7 +1010,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 97, atk = 41, def = 34, spd = 27 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1773] = {
         name = "Rot Hide Mystic",
@@ -1028,7 +1028,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 102, atk = 44, def = 36, spd = 28 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1783] = {
         name = "Skeletal Flayer",
@@ -1046,7 +1046,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 273, atk = 127, def = 103, spd = 82 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1784] = {
         name = "Skeletal Sorcerer",
@@ -1064,7 +1064,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 277, atk = 129, def = 105, spd = 83 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1785] = {
         name = "Skeletal Terror",
@@ -1082,7 +1082,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 286, atk = 134, def = 108, spd = 86 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1787] = {
         name = "Skeletal Executioner",
@@ -1100,7 +1100,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 291, atk = 136, def = 110, spd = 87 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1788] = {
         name = "Skeletal Warlord",
@@ -1118,7 +1118,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 390, atk = 183, def = 148, spd = 117 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1789] = {
         name = "Skeletal Acolyte",
@@ -1136,7 +1136,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 295, atk = 138, def = 112, spd = 89 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1791] = {
         name = "Slavering Ghoul",
@@ -1154,7 +1154,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 277, atk = 129, def = 105, spd = 83 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1793] = {
         name = "Rotting Ghoul",
@@ -1172,7 +1172,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 291, atk = 136, def = 110, spd = 87 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1794] = {
         name = "Soulless Ghoul",
@@ -1190,7 +1190,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 291, atk = 136, def = 110, spd = 87 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1795] = {
         name = "Searing Ghoul",
@@ -1208,7 +1208,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 295, atk = 138, def = 112, spd = 89 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1796] = {
         name = "Freezing Ghoul",
@@ -1226,7 +1226,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 295, atk = 138, def = 112, spd = 89 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1802] = {
         name = "Hungering Wraith",
@@ -1244,7 +1244,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 304, atk = 143, def = 115, spd = 91 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1804] = {
         name = "Wailing Death",
@@ -1262,7 +1262,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 300, atk = 140, def = 113, spd = 90 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1805] = {
         name = "Flesh Golem",
@@ -1280,7 +1280,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 390, atk = 183, def = 148, spd = 117 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1847] = {
         name = "Foulmane",
@@ -1298,7 +1298,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 282, atk = 132, def = 106, spd = 84 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [1850] = {
         name = "Putridius",
@@ -1316,7 +1316,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 401, atk = 188, def = 152, spd = 121 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [1852] = {
         name = "Araj the Summoner",
@@ -1334,7 +1334,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1865] = {
         name = "Ravenclaw Raider",
@@ -1352,7 +1352,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 102, atk = 44, def = 36, spd = 28 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1866] = {
         name = "Ravenclaw Slave",
@@ -1370,7 +1370,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 97, atk = 41, def = 34, spd = 27 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1868] = {
         name = "Ravenclaw Servant",
@@ -1388,7 +1388,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 106, atk = 46, def = 38, spd = 30 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1869] = {
         name = "Ravenclaw Champion",
@@ -1406,7 +1406,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 111, atk = 48, def = 40, spd = 31 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1870] = {
         name = "Hand of Ravenclaw",
@@ -1424,7 +1424,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 115, atk = 50, def = 41, spd = 33 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1890] = {
         name = "Rattlecage Skeleton",
@@ -1442,7 +1442,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 57, atk = 22, def = 18, spd = 14 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1916] = {
         name = "Stephen Bhartec",
@@ -1460,7 +1460,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 57, atk = 22, def = 18, spd = 14 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1917] = {
         name = "Daniel Ulfman",
@@ -1478,7 +1478,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 57, atk = 22, def = 18, spd = 14 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1918] = {
         name = "Karrel Grayves",
@@ -1496,7 +1496,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 57, atk = 22, def = 18, spd = 14 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1919] = {
         name = "Samuel Fipps",
@@ -1514,7 +1514,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 70, atk = 28, def = 24, spd = 19 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1939] = {
         name = "Rot Hide Brute",
@@ -1532,7 +1532,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 120, atk = 52, def = 43, spd = 34 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1940] = {
         name = "Rot Hide Plague Weaver",
@@ -1550,7 +1550,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 124, atk = 55, def = 45, spd = 35 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1941] = {
         name = "Rot Hide Graverobber",
@@ -1568,7 +1568,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 75, atk = 30, def = 25, spd = 20 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1942] = {
         name = "Rot Hide Savage",
@@ -1586,7 +1586,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 129, atk = 57, def = 47, spd = 37 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1943] = {
         name = "Raging Rot Hide",
@@ -1604,7 +1604,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 129, atk = 57, def = 47, spd = 37 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1944] = {
         name = "Rot Hide Bruiser",
@@ -1622,7 +1622,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 147, atk = 66, def = 54, spd = 42 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [1946] = {
         name = "Lillith Nefara",
@@ -1640,7 +1640,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 102, atk = 44, def = 36, spd = 28 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1948] = {
         name = "Snarlmane",
@@ -1658,7 +1658,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 151, atk = 68, def = 55, spd = 44 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [1971] = {
         name = "Ivar the Foul",
@@ -1676,7 +1676,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 106, atk = 46, def = 38, spd = 30 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1973] = {
         name = "Ravenclaw Guardian",
@@ -1694,7 +1694,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 138, atk = 61, def = 50, spd = 40 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1974] = {
         name = "Ravenclaw Drudger",
@@ -1712,7 +1712,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 133, atk = 59, def = 48, spd = 38 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [1983] = {
         name = "Nightlash",
@@ -1730,7 +1730,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 111, atk = 48, def = 40, spd = 31 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2044] = {
         name = "Forlorn Spirit",
@@ -1748,7 +1748,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 160, atk = 72, def = 59, spd = 47 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2056] = {
         name = "Ravenclaw Apparition",
@@ -1766,7 +1766,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 156, atk = 70, def = 57, spd = 45 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2176] = {
         name = "Cursed Highborne",
@@ -1784,7 +1784,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 93, atk = 39, def = 33, spd = 26 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2177] = {
         name = "Writhing Highborne",
@@ -1802,7 +1802,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 97, atk = 41, def = 34, spd = 27 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2178] = {
         name = "Wailing Highborne",
@@ -1820,7 +1820,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 102, atk = 44, def = 36, spd = 28 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2184] = {
         name = "Lady Moongazer",
@@ -1838,7 +1838,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 124, atk = 55, def = 45, spd = 35 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [2227] = {
         name = "Sharlindra",
@@ -1856,7 +1856,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 160, atk = 72, def = 59, spd = 47 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2278] = {
         name = "Melisara",
@@ -1874,7 +1874,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 160, atk = 72, def = 59, spd = 47 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2283] = {
         name = "Ravenclaw Regent",
@@ -1892,7 +1892,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 147, atk = 66, def = 54, spd = 42 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [2433] = {
         name = "Helcular's Remains",
@@ -1910,7 +1910,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 319, atk = 148, def = 120, spd = 95 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2475] = {
         name = "Sloth",
@@ -1928,7 +1928,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 187, atk = 85, def = 69, spd = 55 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2479] = {
         name = "Sludge",
@@ -1946,7 +1946,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 187, atk = 85, def = 69, spd = 55 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2531] = {
         name = "Minion of Morganth",
@@ -1964,7 +1964,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 174, atk = 79, def = 64, spd = 51 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2535] = {
         name = "Maury \"Club Foot\" Wilkins",
@@ -1982,7 +1982,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 241, atk = 112, def = 91, spd = 72 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2536] = {
         name = "Jon-Jon the Crow",
@@ -2000,7 +2000,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 241, atk = 112, def = 91, spd = 72 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2537] = {
         name = "Chucky \"Ten Thumbs\"",
@@ -2018,7 +2018,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 241, atk = 112, def = 91, spd = 72 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2623] = {
         name = "Spirit of Old",
@@ -2036,7 +2036,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 192, atk = 88, def = 71, spd = 56 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2638] = {
         name = "Syndicate Spectre",
@@ -2054,7 +2054,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 205, atk = 94, def = 77, spd = 61 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [2946] = {
         name = "Puppet of Helcular",
@@ -2072,7 +2072,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 241, atk = 112, def = 91, spd = 72 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [3094] = {
         name = "Unseen",
@@ -2090,7 +2090,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 273, atk = 127, def = 103, spd = 82 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [3667] = {
         name = "Anaya Dawnrunner",
@@ -2108,7 +2108,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 120, atk = 52, def = 43, spd = 34 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [3799] = {
         name = "Severed Druid",
@@ -2126,7 +2126,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 174, atk = 79, def = 64, spd = 51 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [3801] = {
         name = "Severed Sleeper",
@@ -2144,7 +2144,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 174, atk = 79, def = 64, spd = 51 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [3802] = {
         name = "Severed Dreamer",
@@ -2162,7 +2162,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 178, atk = 81, def = 66, spd = 52 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [3803] = {
         name = "Severed Keeper",
@@ -2180,7 +2180,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 178, atk = 81, def = 66, spd = 52 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [3863] = {
         name = "Lupine Horror",
@@ -2200,7 +2200,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Lupine Horror Pup",
         moves = {201, 204},
-        baseStats = { hp = 202, atk = 91, def = 74, spd = 59 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [3873] = {
         name = "Tormented Officer",
@@ -2220,7 +2220,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Tormented Officer Pup",
         moves = {201, 204},
-        baseStats = { hp = 196, atk = 88, def = 72, spd = 57 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [3875] = {
         name = "Haunted Servitor",
@@ -2240,7 +2240,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Haunted Servitor Pup",
         moves = {201, 204},
-        baseStats = { hp = 179, atk = 80, def = 65, spd = 52 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [3877] = {
         name = "Wailing Guardsman",
@@ -2260,7 +2260,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Wailing Guardsman Pup",
         moves = {201, 204},
-        baseStats = { hp = 185, atk = 82, def = 68, spd = 53 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [3887] = {
         name = "Baron Silverlaine",
@@ -2280,7 +2280,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 202, atk = 91, def = 74, spd = 59 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [3940] = {
         name = "Taneel Darkwood",
@@ -2298,7 +2298,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 192, atk = 88, def = 71, spd = 56 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [3941] = {
         name = "Uthil Mooncall",
@@ -2316,7 +2316,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 192, atk = 88, def = 71, spd = 56 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [3942] = {
         name = "Mavoris Cloudsbreak",
@@ -2334,7 +2334,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 192, atk = 88, def = 71, spd = 56 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4278] = {
         name = "Commander Springvale",
@@ -2354,7 +2354,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 202, atk = 91, def = 74, spd = 59 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4308] = {
         name = "Unfettered Spirit",
@@ -2374,7 +2374,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Unfettered Spirit Pup",
         moves = {201, 204},
-        baseStats = { hp = 187, atk = 85, def = 69, spd = 55 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4472] = {
         name = "Haunting Vision",
@@ -2392,7 +2392,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 304, atk = 143, def = 115, spd = 91 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4474] = {
         name = "Rotting Cadaver",
@@ -2410,7 +2410,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 286, atk = 134, def = 108, spd = 86 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4475] = {
         name = "Blighted Zombie",
@@ -2428,7 +2428,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 282, atk = 132, def = 106, spd = 84 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4542] = {
         name = "High Inquisitor Fairbanks",
@@ -2448,7 +2448,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "High Inquisitor Fairbanks Pup",
         moves = {201, 204},
-        baseStats = { hp = 296, atk = 137, def = 111, spd = 88 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4543] = {
         name = "Bloodmage Thalnos",
@@ -2468,7 +2468,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Bloodmage Thalnos Pup",
         moves = {201, 204},
-        baseStats = { hp = 261, atk = 120, def = 97, spd = 77 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4610] = {
         name = "Algernon",
@@ -2486,7 +2486,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 183, atk = 83, def = 68, spd = 54 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4612] = {
         name = "Boyle",
@@ -2504,7 +2504,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 183, atk = 83, def = 68, spd = 54 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [4958] = {
         name = "Haunting Spirit",
@@ -2524,7 +2524,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Haunting Spirit Pup",
         moves = {201, 204},
-        baseStats = { hp = 142, atk = 63, def = 52, spd = 41 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5097] = {
         name = "Lupine Delusion",
@@ -2544,7 +2544,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Lupine Delusion Pup",
         moves = {201, 204},
-        baseStats = { hp = 160, atk = 72, def = 59, spd = 47 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5263] = {
         name = "Mummified Atal'ai",
@@ -2562,7 +2562,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 331, atk = 154, def = 125, spd = 99 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5267] = {
         name = "Unliving Atal'ai",
@@ -2582,7 +2582,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Unliving Atal'ai Pup",
         moves = {201, 204},
-        baseStats = { hp = 343, atk = 160, def = 129, spd = 102 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5270] = {
         name = "Atal'ai Corpse Eater",
@@ -2602,7 +2602,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Atal'ai Corpse Eater Pup",
         moves = {201, 204},
-        baseStats = { hp = 349, atk = 163, def = 132, spd = 104 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5271] = {
         name = "Atal'ai Deathwalker",
@@ -2622,7 +2622,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Atal'ai Deathwalker Pup",
         moves = {201, 204},
-        baseStats = { hp = 354, atk = 165, def = 134, spd = 106 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5624] = {
         name = "Undercity Guardian",
@@ -2640,7 +2640,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 295, atk = 138, def = 112, spd = 89 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5685] = {
         name = "Captive Ghoul",
@@ -2658,7 +2658,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 93, atk = 39, def = 33, spd = 26 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5686] = {
         name = "Captive Zombie",
@@ -2676,7 +2676,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 84, atk = 35, def = 29, spd = 23 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5687] = {
         name = "Captive Abomination",
@@ -2694,7 +2694,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 138, atk = 61, def = 50, spd = 40 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5711] = {
         name = "Ogom the Wretched",
@@ -2714,7 +2714,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 372, atk = 174, def = 141, spd = 112 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5712] = {
         name = "Zolo",
@@ -2734,7 +2734,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Zolo Pup",
         moves = {201, 204},
-        baseStats = { hp = 360, atk = 168, def = 136, spd = 108 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5713] = {
         name = "Gasher",
@@ -2754,7 +2754,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Gasher Pup",
         moves = {201, 204},
-        baseStats = { hp = 360, atk = 168, def = 136, spd = 108 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5714] = {
         name = "Loro",
@@ -2774,7 +2774,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Loro Pup",
         moves = {201, 204},
-        baseStats = { hp = 360, atk = 168, def = 136, spd = 108 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5715] = {
         name = "Hukku",
@@ -2794,7 +2794,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Hukku Pup",
         moves = {201, 204},
-        baseStats = { hp = 366, atk = 171, def = 138, spd = 110 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5716] = {
         name = "Zul'Lor",
@@ -2814,7 +2814,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Zul'Lor Pup",
         moves = {201, 204},
-        baseStats = { hp = 366, atk = 171, def = 138, spd = 110 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [5717] = {
         name = "Mijan",
@@ -2834,7 +2834,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Mijan Pup",
         moves = {201, 204},
-        baseStats = { hp = 366, atk = 171, def = 138, spd = 110 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [6116] = {
         name = "Highborne Apparition",
@@ -2852,7 +2852,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 250, atk = 116, def = 94, spd = 75 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [6117] = {
         name = "Highborne Lichling",
@@ -2870,7 +2870,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 255, atk = 118, def = 96, spd = 76 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [6118] = {
         name = "Varo'then's Ghost",
@@ -2888,7 +2888,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 264, atk = 123, def = 99, spd = 79 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [6133] = {
         name = "Shade of Elura",
@@ -2906,7 +2906,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 97, atk = 41, def = 34, spd = 27 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [6388] = {
         name = "Zanzil Skeleton",
@@ -2924,7 +2924,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 250, atk = 116, def = 94, spd = 75 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [6412] = {
         name = "Skeleton",
@@ -2942,7 +2942,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 219, atk = 101, def = 82, spd = 65 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [6426] = {
         name = "Anguished Dead",
@@ -2962,7 +2962,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Anguished Dead Pup",
         moves = {201, 204},
-        baseStats = { hp = 249, atk = 114, def = 93, spd = 73 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [6427] = {
         name = "Haunting Phantasm",
@@ -2982,7 +2982,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Haunting Phantasm Pup",
         moves = {201, 204},
-        baseStats = { hp = 249, atk = 114, def = 93, spd = 73 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [6488] = {
         name = "Fallen Champion",
@@ -3002,7 +3002,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Fallen Champion Pup",
         moves = {201, 204},
-        baseStats = { hp = 255, atk = 117, def = 95, spd = 75 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [6489] = {
         name = "Ironspine",
@@ -3022,7 +3022,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Ironspine Pup",
         moves = {201, 204},
-        baseStats = { hp = 255, atk = 117, def = 95, spd = 75 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [6490] = {
         name = "Azshir the Sleepless",
@@ -3042,7 +3042,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Azshir the Sleepless Pup",
         moves = {201, 204},
-        baseStats = { hp = 255, atk = 117, def = 95, spd = 75 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [6493] = {
         name = "Illusionary Phantasm",
@@ -3062,7 +3062,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Illusionary Phantasm Pup",
         moves = {201, 204},
-        baseStats = { hp = 249, atk = 114, def = 93, spd = 73 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7050] = {
         name = "Defias Drone",
@@ -3080,7 +3080,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 147, atk = 66, def = 54, spd = 42 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7067] = {
         name = "Venture Co. Drone",
@@ -3098,7 +3098,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 147, atk = 66, def = 54, spd = 42 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7068] = {
         name = "Condemned Acolyte",
@@ -3116,7 +3116,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 395, atk = 185, def = 150, spd = 119 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7069] = {
         name = "Condemned Monk",
@@ -3134,7 +3134,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 401, atk = 188, def = 152, spd = 121 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7070] = {
         name = "Condemned Cleric",
@@ -3152,7 +3152,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 407, atk = 191, def = 155, spd = 122 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7071] = {
         name = "Cursed Paladin",
@@ -3170,7 +3170,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 395, atk = 185, def = 150, spd = 119 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7072] = {
         name = "Cursed Justicar",
@@ -3188,7 +3188,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 407, atk = 191, def = 155, spd = 122 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7075] = {
         name = "Writhing Mage",
@@ -3206,7 +3206,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 401, atk = 188, def = 152, spd = 121 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7272] = {
         name = "Theka the Martyr",
@@ -3226,7 +3226,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 325, atk = 151, def = 122, spd = 97 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7276] = {
         name = "Zul'Farrak Dead Hero",
@@ -3246,7 +3246,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Zul'Farrak Dead Hero Pup",
         moves = {201, 204},
-        baseStats = { hp = 250, atk = 116, def = 94, spd = 75 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7286] = {
         name = "Zul'Farrak Zombie",
@@ -3266,7 +3266,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Zul'Farrak Zombie Pup",
         moves = {201, 204},
-        baseStats = { hp = 313, atk = 145, def = 118, spd = 93 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7310] = {
         name = "Mutated Venture Co. Drone",
@@ -3284,7 +3284,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 160, atk = 72, def = 59, spd = 47 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7327] = {
         name = "Withered Warrior",
@@ -3304,7 +3304,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Withered Warrior Pup",
         moves = {201, 204},
-        baseStats = { hp = 261, atk = 120, def = 97, spd = 77 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7328] = {
         name = "Withered Reaver",
@@ -3324,7 +3324,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Withered Reaver Pup",
         moves = {201, 204},
-        baseStats = { hp = 267, atk = 122, def = 100, spd = 79 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7329] = {
         name = "Withered Quilguard",
@@ -3344,7 +3344,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Withered Quilguard Pup",
         moves = {201, 204},
-        baseStats = { hp = 267, atk = 122, def = 100, spd = 79 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7332] = {
         name = "Withered Spearhide",
@@ -3364,7 +3364,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Withered Spearhide Pup",
         moves = {201, 204},
-        baseStats = { hp = 261, atk = 120, def = 97, spd = 77 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7333] = {
         name = "Withered Battle Boar",
@@ -3384,7 +3384,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Withered Battle Boar Pup",
         moves = {201, 204},
-        baseStats = { hp = 201, atk = 92, def = 75, spd = 59 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7334] = {
         name = "Battle Boar Horror",
@@ -3404,7 +3404,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Battle Boar Horror Pup",
         moves = {201, 204},
-        baseStats = { hp = 214, atk = 99, def = 80, spd = 63 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7340] = {
         name = "Skeletal Shadowcaster",
@@ -3424,7 +3424,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Skeletal Shadowcaster Pup",
         moves = {201, 204},
-        baseStats = { hp = 210, atk = 96, def = 78, spd = 62 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7341] = {
         name = "Skeletal Frostweaver",
@@ -3444,7 +3444,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Skeletal Frostweaver Pup",
         moves = {201, 204},
-        baseStats = { hp = 278, atk = 128, def = 104, spd = 82 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7342] = {
         name = "Skeletal Summoner",
@@ -3464,7 +3464,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Skeletal Summoner Pup",
         moves = {201, 204},
-        baseStats = { hp = 290, atk = 134, def = 109, spd = 86 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7343] = {
         name = "Splinterbone Skeleton",
@@ -3484,7 +3484,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Splinterbone Skeleton Pup",
         moves = {201, 204},
-        baseStats = { hp = 205, atk = 94, def = 77, spd = 61 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7344] = {
         name = "Splinterbone Warrior",
@@ -3504,7 +3504,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Splinterbone Warrior Pup",
         moves = {201, 204},
-        baseStats = { hp = 214, atk = 99, def = 80, spd = 63 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7346] = {
         name = "Splinterbone Centurion",
@@ -3524,7 +3524,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Splinterbone Centurion Pup",
         moves = {201, 204},
-        baseStats = { hp = 219, atk = 101, def = 82, spd = 65 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7347] = {
         name = "Boneflayer Ghoul",
@@ -3544,7 +3544,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Boneflayer Ghoul Pup",
         moves = {201, 204},
-        baseStats = { hp = 284, atk = 131, def = 106, spd = 84 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7348] = {
         name = "Thorn Eater Ghoul",
@@ -3564,7 +3564,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Thorn Eater Ghoul Pup",
         moves = {201, 204},
-        baseStats = { hp = 278, atk = 128, def = 104, spd = 82 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7349] = {
         name = "Tomb Fiend",
@@ -3584,7 +3584,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Tomb Fiend Pup",
         moves = {201, 204},
-        baseStats = { hp = 205, atk = 94, def = 77, spd = 61 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7351] = {
         name = "Tomb Reaver",
@@ -3604,7 +3604,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Tomb Reaver Pup",
         moves = {201, 204},
-        baseStats = { hp = 278, atk = 128, def = 104, spd = 82 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7352] = {
         name = "Frozen Soul",
@@ -3624,7 +3624,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Frozen Soul Pup",
         moves = {201, 204},
-        baseStats = { hp = 278, atk = 128, def = 104, spd = 82 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7353] = {
         name = "Freezing Spirit",
@@ -3644,7 +3644,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Freezing Spirit Pup",
         moves = {201, 204},
-        baseStats = { hp = 290, atk = 134, def = 109, spd = 86 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7355] = {
         name = "Tuten'kash",
@@ -3664,7 +3664,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Tuten'kash Pup",
         moves = {201, 204},
-        baseStats = { hp = 296, atk = 137, def = 111, spd = 88 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7357] = {
         name = "Mordresh Fire Eye",
@@ -3684,7 +3684,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Mordresh Fire Eye Pup",
         moves = {201, 204},
-        baseStats = { hp = 290, atk = 134, def = 109, spd = 86 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7358] = {
         name = "Amnennar the Coldbringer",
@@ -3704,7 +3704,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Amnennar the Coldbringer Pup",
         moves = {201, 204},
-        baseStats = { hp = 302, atk = 140, def = 113, spd = 90 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7370] = {
         name = "Restless Shade",
@@ -3722,7 +3722,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 313, atk = 147, def = 119, spd = 94 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7523] = {
         name = "Suffering Highborne",
@@ -3740,7 +3740,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 291, atk = 136, def = 110, spd = 87 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7524] = {
         name = "Anguished Highborne",
@@ -3758,7 +3758,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 295, atk = 138, def = 112, spd = 89 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7786] = {
         name = "Skeleton of Zum'rah",
@@ -3778,7 +3778,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Skeleton of Zum'rah Pup",
         moves = {201, 204},
-        baseStats = { hp = 205, atk = 94, def = 77, spd = 61 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7796] = {
         name = "Nekrum Gutchewer",
@@ -3798,7 +3798,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 325, atk = 151, def = 122, spd = 97 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7864] = {
         name = "Lingering Highborne",
@@ -3816,7 +3816,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 268, atk = 125, def = 101, spd = 80 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [7895] = {
         name = "Ambassador Bloodrage",
@@ -3834,7 +3834,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 273, atk = 125, def = 102, spd = 81 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [8317] = {
         name = "Atal'ai Deathwalker's Spirit",
@@ -3854,7 +3854,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Atal'ai Deathwalker's Spirit Pup",
         moves = {201, 204},
-        baseStats = { hp = 354, atk = 165, def = 134, spd = 106 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8324] = {
         name = "Atal'ai Skeleton",
@@ -3874,7 +3874,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Atal'ai Skeleton Pup",
         moves = {201, 204},
-        baseStats = { hp = 264, atk = 123, def = 99, spd = 79 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8477] = {
         name = "Skeletal Servant",
@@ -3894,7 +3894,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Skeletal Servant Pup",
         moves = {201, 204},
-        baseStats = { hp = 255, atk = 118, def = 96, spd = 76 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8523] = {
         name = "Scourge Soldier",
@@ -3912,7 +3912,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 286, atk = 134, def = 108, spd = 86 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8524] = {
         name = "Cursed Mage",
@@ -3930,7 +3930,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 291, atk = 136, def = 110, spd = 87 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8525] = {
         name = "Scourge Warder",
@@ -3948,7 +3948,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 295, atk = 138, def = 112, spd = 89 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8526] = {
         name = "Dark Caster",
@@ -3966,7 +3966,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 300, atk = 140, def = 113, spd = 90 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8528] = {
         name = "Dread Weaver",
@@ -3984,7 +3984,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 309, atk = 145, def = 117, spd = 93 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8529] = {
         name = "Scourge Champion",
@@ -4002,7 +4002,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 313, atk = 147, def = 119, spd = 94 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8530] = {
         name = "Cannibal Ghoul",
@@ -4020,7 +4020,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 291, atk = 136, def = 110, spd = 87 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8531] = {
         name = "Gibbering Ghoul",
@@ -4038,7 +4038,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 300, atk = 140, def = 113, spd = 90 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8532] = {
         name = "Diseased Flayer",
@@ -4056,7 +4056,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 309, atk = 145, def = 117, spd = 93 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8534] = {
         name = "Putrid Gargoyle",
@@ -4074,7 +4074,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 295, atk = 138, def = 112, spd = 89 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8535] = {
         name = "Putrid Shrieker",
@@ -4092,7 +4092,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 304, atk = 143, def = 115, spd = 91 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8538] = {
         name = "Unseen Servant",
@@ -4110,7 +4110,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 295, atk = 138, def = 112, spd = 89 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8539] = {
         name = "Eyeless Watcher",
@@ -4128,7 +4128,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 304, atk = 143, def = 115, spd = 91 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8540] = {
         name = "Torn Screamer",
@@ -4146,7 +4146,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 291, atk = 136, def = 110, spd = 87 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8541] = {
         name = "Hate Shrieker",
@@ -4164,7 +4164,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 300, atk = 140, def = 113, spd = 90 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8542] = {
         name = "Death Singer",
@@ -4182,7 +4182,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 309, atk = 145, def = 117, spd = 93 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8543] = {
         name = "Stitched Horror",
@@ -4200,7 +4200,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 304, atk = 143, def = 115, spd = 91 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8544] = {
         name = "Gangled Golem",
@@ -4218,7 +4218,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 309, atk = 145, def = 117, spd = 93 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8545] = {
         name = "Abomination",
@@ -4236,7 +4236,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 313, atk = 147, def = 119, spd = 94 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8555] = {
         name = "Crypt Fiend",
@@ -4254,7 +4254,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 286, atk = 134, def = 108, spd = 86 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8556] = {
         name = "Crypt Walker",
@@ -4272,7 +4272,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 295, atk = 138, def = 112, spd = 89 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8557] = {
         name = "Crypt Horror",
@@ -4290,7 +4290,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 304, atk = 143, def = 115, spd = 91 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8558] = {
         name = "Crypt Slayer",
@@ -4308,7 +4308,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 309, atk = 145, def = 117, spd = 93 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8567] = {
         name = "Glutton",
@@ -4328,7 +4328,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Glutton Pup",
         moves = {201, 204},
-        baseStats = { hp = 296, atk = 137, def = 111, spd = 88 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [8585] = {
         name = "Frost Spectre",
@@ -4348,7 +4348,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Frost Spectre Pup",
         moves = {201, 204},
-        baseStats = { hp = 232, atk = 107, def = 87, spd = 69 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [9031] = {
         name = "Anub'shiah",
@@ -4368,7 +4368,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 378, atk = 177, def = 143, spd = 113 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [9034] = {
         name = "Hate'rel",
@@ -4388,7 +4388,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 384, atk = 180, def = 145, spd = 115 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [9035] = {
         name = "Anger'rel",
@@ -4408,7 +4408,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 384, atk = 180, def = 145, spd = 115 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [9036] = {
         name = "Vile'rel",
@@ -4428,7 +4428,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 390, atk = 183, def = 148, spd = 117 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [9037] = {
         name = "Gloom'rel",
@@ -4448,7 +4448,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 390, atk = 183, def = 148, spd = 117 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [9038] = {
         name = "Seeth'rel",
@@ -4468,7 +4468,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 390, atk = 183, def = 148, spd = 117 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [9039] = {
         name = "Doom'rel",
@@ -4488,7 +4488,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 395, atk = 185, def = 150, spd = 119 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [9040] = {
         name = "Dope'rel",
@@ -4508,7 +4508,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 390, atk = 183, def = 148, spd = 117 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10117] = {
         name = "Tortured Slave",
@@ -4528,7 +4528,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Tortured Slave Pup",
         moves = {201, 204},
-        baseStats = { hp = 52, atk = 19, def = 17, spd = 13 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10358] = {
         name = "Fellicent's Shade",
@@ -4546,7 +4546,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 102, atk = 44, def = 36, spd = 28 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [10381] = {
         name = "Ravaged Cadaver",
@@ -4566,7 +4566,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Ravaged Cadaver Pup",
         moves = {201, 204},
-        baseStats = { hp = 390, atk = 183, def = 148, spd = 117 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10382] = {
         name = "Mangled Cadaver",
@@ -4586,7 +4586,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Mangled Cadaver Pup",
         moves = {201, 204},
-        baseStats = { hp = 384, atk = 180, def = 145, spd = 115 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10383] = {
         name = "Broken Cadaver",
@@ -4606,7 +4606,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Broken Cadaver Pup",
         moves = {201, 204},
-        baseStats = { hp = 295, atk = 138, def = 112, spd = 89 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10387] = {
         name = "Vengeful Phantom",
@@ -4626,7 +4626,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Vengeful Phantom Pup",
         moves = {201, 204},
-        baseStats = { hp = 300, atk = 140, def = 113, spd = 90 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10388] = {
         name = "Spiteful Phantom",
@@ -4646,7 +4646,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Spiteful Phantom Pup",
         moves = {201, 204},
-        baseStats = { hp = 309, atk = 145, def = 117, spd = 93 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10389] = {
         name = "Wrath Phantom",
@@ -4666,7 +4666,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Wrath Phantom Pup",
         moves = {201, 204},
-        baseStats = { hp = 318, atk = 149, def = 121, spd = 96 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10390] = {
         name = "Skeletal Guardian",
@@ -4686,7 +4686,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Skeletal Guardian Pup",
         moves = {201, 204},
-        baseStats = { hp = 295, atk = 138, def = 112, spd = 89 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10391] = {
         name = "Skeletal Berserker",
@@ -4706,7 +4706,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Skeletal Berserker Pup",
         moves = {201, 204},
-        baseStats = { hp = 300, atk = 140, def = 113, spd = 90 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10393] = {
         name = "Skul",
@@ -4726,7 +4726,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 401, atk = 188, def = 152, spd = 121 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [10394] = {
         name = "Black Guard Sentry",
@@ -4746,7 +4746,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Black Guard Sentry Pup",
         moves = {201, 204},
-        baseStats = { hp = 401, atk = 188, def = 152, spd = 121 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10405] = {
         name = "Plague Ghoul",
@@ -4766,7 +4766,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Plague Ghoul Pup",
         moves = {201, 204},
-        baseStats = { hp = 395, atk = 185, def = 150, spd = 119 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10406] = {
         name = "Ghoul Ravener",
@@ -4786,7 +4786,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Ghoul Ravener Pup",
         moves = {201, 204},
-        baseStats = { hp = 401, atk = 188, def = 152, spd = 121 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10407] = {
         name = "Fleshflayer Ghoul",
@@ -4806,7 +4806,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Fleshflayer Ghoul Pup",
         moves = {201, 204},
-        baseStats = { hp = 407, atk = 191, def = 155, spd = 122 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10408] = {
         name = "Rockwing Gargoyle",
@@ -4826,7 +4826,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Rockwing Gargoyle Pup",
         moves = {201, 204},
-        baseStats = { hp = 395, atk = 185, def = 150, spd = 119 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10409] = {
         name = "Rockwing Screecher",
@@ -4846,7 +4846,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Rockwing Screecher Pup",
         moves = {201, 204},
-        baseStats = { hp = 401, atk = 188, def = 152, spd = 121 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10411] = {
         name = "Eye of Naxxramas",
@@ -4866,7 +4866,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Eye of Naxxramas Pup",
         moves = {201, 204},
-        baseStats = { hp = 300, atk = 140, def = 113, spd = 90 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10412] = {
         name = "Crypt Crawler",
@@ -4886,7 +4886,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Crypt Crawler Pup",
         moves = {201, 204},
-        baseStats = { hp = 401, atk = 188, def = 152, spd = 121 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10413] = {
         name = "Crypt Beast",
@@ -4906,7 +4906,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Crypt Beast Pup",
         moves = {201, 204},
-        baseStats = { hp = 407, atk = 191, def = 155, spd = 122 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10414] = {
         name = "Patchwork Horror",
@@ -4926,7 +4926,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Patchwork Horror Pup",
         moves = {201, 204},
-        baseStats = { hp = 395, atk = 185, def = 150, spd = 119 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10416] = {
         name = "Bile Spewer",
@@ -4946,7 +4946,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Bile Spewer Pup",
         moves = {201, 204},
-        baseStats = { hp = 407, atk = 191, def = 155, spd = 122 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10417] = {
         name = "Venom Belcher",
@@ -4966,7 +4966,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Venom Belcher Pup",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10432] = {
         name = "Vectus",
@@ -4986,7 +4986,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Vectus Pup",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10433] = {
         name = "Marduk Blackpool",
@@ -5006,7 +5006,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Marduk Blackpool Pup",
         moves = {201, 204},
-        baseStats = { hp = 401, atk = 188, def = 152, spd = 121 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10436] = {
         name = "Baroness Anastari",
@@ -5026,7 +5026,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 407, atk = 191, def = 155, spd = 122 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10437] = {
         name = "Nerub'enkan",
@@ -5046,7 +5046,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10439] = {
         name = "Ramstein the Gorger",
@@ -5066,7 +5066,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10440] = {
         name = "Baron Rivendare",
@@ -5086,7 +5086,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Baron Rivendare Pup",
         moves = {201, 204},
-        baseStats = { hp = 425, atk = 200, def = 161, spd = 128 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10463] = {
         name = "Shrieking Banshee",
@@ -5106,7 +5106,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Shrieking Banshee Pup",
         moves = {201, 204},
-        baseStats = { hp = 395, atk = 185, def = 150, spd = 119 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10464] = {
         name = "Wailing Banshee",
@@ -5126,7 +5126,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Wailing Banshee Pup",
         moves = {201, 204},
-        baseStats = { hp = 401, atk = 188, def = 152, spd = 121 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10478] = {
         name = "Splintered Skeleton",
@@ -5146,7 +5146,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Splintered Skeleton Pup",
         moves = {201, 204},
-        baseStats = { hp = 407, atk = 191, def = 155, spd = 122 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10480] = {
         name = "Unstable Corpse",
@@ -5166,7 +5166,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Unstable Corpse Pup",
         moves = {201, 204},
-        baseStats = { hp = 309, atk = 145, def = 117, spd = 93 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10481] = {
         name = "Reanimated Corpse",
@@ -5186,7 +5186,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Reanimated Corpse Pup",
         moves = {201, 204},
-        baseStats = { hp = 309, atk = 145, def = 117, spd = 93 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10482] = {
         name = "Risen Lackey",
@@ -5206,7 +5206,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Risen Lackey Pup",
         moves = {201, 204},
-        baseStats = { hp = 174, atk = 79, def = 64, spd = 51 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10485] = {
         name = "Risen Aberration",
@@ -5226,7 +5226,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Risen Aberration Pup",
         moves = {201, 204},
-        baseStats = { hp = 304, atk = 143, def = 115, spd = 91 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10486] = {
         name = "Risen Warrior",
@@ -5246,7 +5246,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Risen Warrior Pup",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10487] = {
         name = "Risen Protector",
@@ -5266,7 +5266,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Risen Protector Pup",
         moves = {201, 204},
-        baseStats = { hp = 407, atk = 191, def = 155, spd = 122 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10488] = {
         name = "Risen Construct",
@@ -5286,7 +5286,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Risen Construct Pup",
         moves = {201, 204},
-        baseStats = { hp = 407, atk = 191, def = 155, spd = 122 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10491] = {
         name = "Risen Bonewarder",
@@ -5306,7 +5306,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Risen Bonewarder Pup",
         moves = {201, 204},
-        baseStats = { hp = 401, atk = 188, def = 152, spd = 121 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10495] = {
         name = "Diseased Ghoul",
@@ -5326,7 +5326,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Diseased Ghoul Pup",
         moves = {201, 204},
-        baseStats = { hp = 401, atk = 188, def = 152, spd = 121 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10498] = {
         name = "Spectral Tutor",
@@ -5346,7 +5346,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Spectral Tutor Pup",
         moves = {201, 204},
-        baseStats = { hp = 407, atk = 191, def = 155, spd = 122 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10499] = {
         name = "Spectral Researcher",
@@ -5366,7 +5366,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Spectral Researcher Pup",
         moves = {201, 204},
-        baseStats = { hp = 407, atk = 191, def = 155, spd = 122 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10500] = {
         name = "Spectral Teacher",
@@ -5386,7 +5386,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Spectral Teacher Pup",
         moves = {201, 204},
-        baseStats = { hp = 407, atk = 191, def = 155, spd = 122 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10502] = {
         name = "Lady Illucia Barov",
@@ -5406,7 +5406,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Lady Illucia Barov Pup",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10503] = {
         name = "Jandice Barov",
@@ -5426,7 +5426,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Jandice Barov Pup",
         moves = {201, 204},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10504] = {
         name = "Lord Alexei Barov",
@@ -5446,7 +5446,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Lord Alexei Barov Pup",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10506] = {
         name = "Kirtonos the Herald",
@@ -5466,7 +5466,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Kirtonos the Herald Pup",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10507] = {
         name = "The Ravenian",
@@ -5486,7 +5486,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "The Ravenian Pup",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10508] = {
         name = "Ras Frostwhisper",
@@ -5506,7 +5506,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Ras Frostwhisper Pup",
         moves = {201, 204},
-        baseStats = { hp = 425, atk = 200, def = 161, spd = 128 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10516] = {
         name = "The Unforgiven",
@@ -5526,7 +5526,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 395, atk = 185, def = 150, spd = 119 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10558] = {
         name = "Hearthsinger Forresten",
@@ -5546,7 +5546,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 395, atk = 185, def = 150, spd = 119 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [10580] = {
         name = "Fetid Zombie",
@@ -5564,7 +5564,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 295, atk = 138, def = 112, spd = 89 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10666] = {
         name = "Gordo",
@@ -5582,7 +5582,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 183, atk = 83, def = 68, spd = 54 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10684] = {
         name = "Remorseful Highborne",
@@ -5600,7 +5600,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 300, atk = 140, def = 113, spd = 90 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10698] = {
         name = "Summoned Zombie",
@@ -5618,7 +5618,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 286, atk = 134, def = 108, spd = 86 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10699] = {
         name = "Carrion Scarab",
@@ -5636,7 +5636,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 304, atk = 143, def = 115, spd = 91 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10778] = {
         name = "Janice Felstone",
@@ -5654,7 +5654,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 70, atk = 28, def = 24, spd = 19 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10801] = {
         name = "Jabbering Ghoul",
@@ -5672,7 +5672,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 291, atk = 136, def = 110, spd = 87 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10808] = {
         name = "Timmy the Cruel",
@@ -5692,7 +5692,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 401, atk = 188, def = 152, spd = 121 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [10809] = {
         name = "Stonespine",
@@ -5712,7 +5712,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [10816] = {
         name = "Wandering Skeleton",
@@ -5730,7 +5730,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 295, atk = 138, def = 112, spd = 89 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10821] = {
         name = "Hed'mush the Rotting",
@@ -5748,7 +5748,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 304, atk = 143, def = 115, spd = 91 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [10825] = {
         name = "Gish the Unmoving",
@@ -5766,7 +5766,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 300, atk = 140, def = 113, spd = 90 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [10826] = {
         name = "Lord Darkscythe",
@@ -5784,7 +5784,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 304, atk = 143, def = 115, spd = 91 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [10836] = {
         name = "Farmer Dalson",
@@ -5802,7 +5802,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 300, atk = 140, def = 113, spd = 90 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10876] = {
         name = "Undead Scarab",
@@ -5822,7 +5822,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Undead Scarab Pup",
         moves = {201, 204},
-        baseStats = { hp = 304, atk = 143, def = 115, spd = 91 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10901] = {
         name = "Lorekeeper Polkelt",
@@ -5842,7 +5842,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Lorekeeper Polkelt Pup",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10926] = {
         name = "Pamela Redpath",
@@ -5860,7 +5860,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 52, atk = 19, def = 17, spd = 13 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10927] = {
         name = "Marlene Redpath",
@@ -5878,7 +5878,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 93, atk = 39, def = 33, spd = 26 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10936] = {
         name = "Joseph Redpath",
@@ -5896,7 +5896,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 318, atk = 149, def = 121, spd = 96 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10938] = {
         name = "Redpath the Corrupted",
@@ -5914,7 +5914,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10939] = {
         name = "Marduk the Black",
@@ -5932,7 +5932,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 401, atk = 188, def = 152, spd = 121 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10940] = {
         name = "Ghost of the Past",
@@ -5950,7 +5950,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 295, atk = 138, def = 112, spd = 89 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10943] = {
         name = "Decrepit Guardian",
@@ -5968,7 +5968,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 295, atk = 138, def = 112, spd = 89 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10944] = {
         name = "Davil Lightfire",
@@ -5986,7 +5986,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10945] = {
         name = "Davil Crokford",
@@ -6004,7 +6004,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 318, atk = 149, def = 121, spd = 96 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10946] = {
         name = "Horgus the Ravager",
@@ -6022,7 +6022,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10947] = {
         name = "Darrowshire Betrayer",
@@ -6040,7 +6040,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 304, atk = 143, def = 115, spd = 91 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10948] = {
         name = "Darrowshire Defender",
@@ -6058,7 +6058,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 304, atk = 143, def = 115, spd = 91 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10949] = {
         name = "Silver Hand Disciple",
@@ -6076,7 +6076,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 395, atk = 185, def = 150, spd = 119 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10950] = {
         name = "Redpath Militia",
@@ -6094,7 +6094,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 300, atk = 140, def = 113, spd = 90 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10951] = {
         name = "Marauding Corpse",
@@ -6112,7 +6112,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 300, atk = 140, def = 113, spd = 90 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10952] = {
         name = "Marauding Skeleton",
@@ -6130,7 +6130,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 300, atk = 140, def = 113, spd = 90 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10953] = {
         name = "Servant of Horgus",
@@ -6148,7 +6148,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 395, atk = 185, def = 150, spd = 119 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10954] = {
         name = "Bloodletter",
@@ -6166,7 +6166,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 395, atk = 185, def = 150, spd = 119 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [10996] = {
         name = "Fallen Hero",
@@ -6184,7 +6184,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 407, atk = 191, def = 155, spd = 122 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11027] = {
         name = "Illusory Wraith",
@@ -6202,7 +6202,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 277, atk = 129, def = 105, spd = 83 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11030] = {
         name = "Mindless Undead",
@@ -6222,7 +6222,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Mindless Undead Pup",
         moves = {201, 204},
-        baseStats = { hp = 300, atk = 140, def = 113, spd = 90 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11058] = {
         name = "Ezra Grimm",
@@ -6242,7 +6242,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11064] = {
         name = "Darrowshire Spirit",
@@ -6260,7 +6260,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 300, atk = 140, def = 113, spd = 90 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11075] = {
         name = "Cauldron Lord Bilemaw",
@@ -6278,7 +6278,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 286, atk = 134, def = 108, spd = 86 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11076] = {
         name = "Cauldron Lord Razarch",
@@ -6296,7 +6296,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 300, atk = 140, def = 113, spd = 90 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11077] = {
         name = "Cauldron Lord Malvinious",
@@ -6314,7 +6314,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 295, atk = 138, def = 112, spd = 89 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11078] = {
         name = "Cauldron Lord Soulwrath",
@@ -6332,7 +6332,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 309, atk = 145, def = 117, spd = 93 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11082] = {
         name = "Stratholme Courier",
@@ -6352,7 +6352,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 395, atk = 185, def = 150, spd = 119 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11121] = {
         name = "Black Guard Swordsmith",
@@ -6372,7 +6372,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11141] = {
         name = "Spirit of Trey Lightforge",
@@ -6390,7 +6390,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 372, atk = 174, def = 141, spd = 112 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11142] = {
         name = "Undead Postman",
@@ -6410,7 +6410,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Undead Postman Pup",
         moves = {201, 204},
-        baseStats = { hp = 395, atk = 185, def = 150, spd = 119 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11143] = {
         name = "Postmaster Malown",
@@ -6430,7 +6430,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11197] = {
         name = "Mindless Skeleton",
@@ -6450,7 +6450,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Mindless Skeleton Pup",
         moves = {201, 204},
-        baseStats = { hp = 318, atk = 149, def = 121, spd = 96 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11216] = {
         name = "Eva Sarkhoff",
@@ -6468,7 +6468,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 291, atk = 136, def = 110, spd = 87 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11217] = {
         name = "Lucien Sarkhoff",
@@ -6486,7 +6486,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 295, atk = 138, def = 112, spd = 89 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11258] = {
         name = "Frail Skeleton",
@@ -6506,7 +6506,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Frail Skeleton Pup",
         moves = {201, 204},
-        baseStats = { hp = 52, atk = 19, def = 17, spd = 13 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11263] = {
         name = "Spectral Projection",
@@ -6526,7 +6526,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Spectral Projection Pup",
         moves = {201, 204},
-        baseStats = { hp = 313, atk = 147, def = 119, spd = 94 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11278] = {
         name = "Magnus Frostwake",
@@ -6544,7 +6544,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 273, atk = 127, def = 103, spd = 82 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11279] = {
         name = "Caer Darrow Guardsman",
@@ -6562,7 +6562,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 286, atk = 134, def = 108, spd = 86 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11282] = {
         name = "Melia",
@@ -6580,7 +6580,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 52, atk = 19, def = 17, spd = 13 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11283] = {
         name = "Sammy",
@@ -6598,7 +6598,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 52, atk = 19, def = 17, spd = 13 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11285] = {
         name = "Rory",
@@ -6616,7 +6616,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 205, atk = 94, def = 77, spd = 61 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11287] = {
         name = "Baker Masterson",
@@ -6634,7 +6634,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 214, atk = 99, def = 80, spd = 63 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11288] = {
         name = "Spectral Betrayer",
@@ -6652,7 +6652,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 304, atk = 143, def = 115, spd = 91 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11289] = {
         name = "Spectral Defender",
@@ -6670,7 +6670,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 304, atk = 143, def = 115, spd = 91 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11290] = {
         name = "Mossflayer Zombie",
@@ -6688,7 +6688,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 286, atk = 134, def = 108, spd = 86 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11291] = {
         name = "Unliving Mossflayer",
@@ -6706,7 +6706,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 291, atk = 136, def = 110, spd = 87 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11316] = {
         name = "Joseph Dirte",
@@ -6724,7 +6724,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 187, atk = 85, def = 69, spd = 55 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11439] = {
         name = "Illusion of Jandice Barov",
@@ -6744,7 +6744,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Illusion of Jandice Barov Pup",
         moves = {201, 204},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11446] = {
         name = "Gordok Spirit",
@@ -6764,7 +6764,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Gordok Spirit Pup",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11466] = {
         name = "Highborne Summoner",
@@ -6784,7 +6784,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Highborne Summoner Pup",
         moves = {201, 204},
-        baseStats = { hp = 384, atk = 180, def = 145, spd = 115 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11467] = {
         name = "Tsu'zee",
@@ -6804,7 +6804,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 407, atk = 191, def = 155, spd = 122 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11469] = {
         name = "Eldreth Seether",
@@ -6824,7 +6824,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Eldreth Seether Pup",
         moves = {201, 204},
-        baseStats = { hp = 401, atk = 188, def = 152, spd = 121 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11470] = {
         name = "Eldreth Sorcerer",
@@ -6844,7 +6844,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Eldreth Sorcerer Pup",
         moves = {201, 204},
-        baseStats = { hp = 401, atk = 188, def = 152, spd = 121 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11471] = {
         name = "Eldreth Apparition",
@@ -6864,7 +6864,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Eldreth Apparition Pup",
         moves = {201, 204},
-        baseStats = { hp = 395, atk = 185, def = 150, spd = 119 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11472] = {
         name = "Eldreth Spirit",
@@ -6884,7 +6884,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Eldreth Spirit Pup",
         moves = {201, 204},
-        baseStats = { hp = 395, atk = 185, def = 150, spd = 119 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11473] = {
         name = "Eldreth Spectre",
@@ -6904,7 +6904,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Eldreth Spectre Pup",
         moves = {201, 204},
-        baseStats = { hp = 401, atk = 188, def = 152, spd = 121 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11475] = {
         name = "Eldreth Phantasm",
@@ -6924,7 +6924,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Eldreth Phantasm Pup",
         moves = {201, 204},
-        baseStats = { hp = 401, atk = 188, def = 152, spd = 121 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11476] = {
         name = "Skeletal Highborne",
@@ -6944,7 +6944,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Skeletal Highborne Pup",
         moves = {201, 204},
-        baseStats = { hp = 304, atk = 143, def = 115, spd = 91 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11477] = {
         name = "Rotting Highborne",
@@ -6964,7 +6964,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Rotting Highborne Pup",
         moves = {201, 204},
-        baseStats = { hp = 309, atk = 145, def = 117, spd = 93 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11487] = {
         name = "Magister Kalendris",
@@ -6984,7 +6984,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11488] = {
         name = "Illyanna Ravenoak",
@@ -7004,7 +7004,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11551] = {
         name = "Necrofiend",
@@ -7024,7 +7024,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Necrofiend Pup",
         moves = {201, 204},
-        baseStats = { hp = 407, atk = 191, def = 155, spd = 122 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11560] = {
         name = "Centaur Spectre",
@@ -7042,7 +7042,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 219, atk = 101, def = 82, spd = 65 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11561] = {
         name = "Undead Ravager",
@@ -7060,7 +7060,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 214, atk = 99, def = 80, spd = 63 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11598] = {
         name = "Risen Guardian",
@@ -7080,7 +7080,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Risen Guardian Pup",
         moves = {201, 204},
-        baseStats = { hp = 318, atk = 149, def = 121, spd = 96 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11620] = {
         name = "Spectral Marauder",
@@ -7098,7 +7098,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 304, atk = 143, def = 115, spd = 91 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11621] = {
         name = "Spectral Corpse",
@@ -7116,7 +7116,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 304, atk = 143, def = 115, spd = 91 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11622] = {
         name = "Rattlegore",
@@ -7136,7 +7136,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Rattlegore Pup",
         moves = {201, 204},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11686] = {
         name = "Ghostly Raider",
@@ -7154,7 +7154,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 228, atk = 105, def = 85, spd = 68 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11687] = {
         name = "Ghostly Marauder",
@@ -7172,7 +7172,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 232, atk = 107, def = 87, spd = 69 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11873] = {
         name = "Spectral Attendant",
@@ -7190,7 +7190,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 318, atk = 149, def = 121, spd = 96 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [11936] = {
         name = "Artist Renfray",
@@ -7208,7 +7208,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 102, atk = 44, def = 36, spd = 28 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12178] = {
         name = "Tortured Druid",
@@ -7226,7 +7226,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 295, atk = 138, def = 112, spd = 89 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12179] = {
         name = "Tortured Sentinel",
@@ -7244,7 +7244,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 300, atk = 140, def = 113, spd = 90 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12199] = {
         name = "Shade of Ambermoon",
@@ -7262,7 +7262,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 309, atk = 145, def = 117, spd = 93 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12208] = {
         name = "Conquered Soul of the Blightcaller",
@@ -7280,7 +7280,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 309, atk = 145, def = 117, spd = 93 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12238] = {
         name = "Zaetar's Spirit",
@@ -7300,7 +7300,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Zaetar's Spirit Pup",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12239] = {
         name = "Spirit of Gelk",
@@ -7318,7 +7318,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 308, atk = 143, def = 116, spd = 92 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12240] = {
         name = "Spirit of Kolk",
@@ -7336,7 +7336,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 313, atk = 145, def = 118, spd = 93 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12241] = {
         name = "Spirit of Magra",
@@ -7354,7 +7354,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 313, atk = 145, def = 118, spd = 93 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12242] = {
         name = "Spirit of Maraudos",
@@ -7374,7 +7374,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Spirit of Maraudos Pup",
         moves = {201, 204},
-        baseStats = { hp = 331, atk = 154, def = 125, spd = 99 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12243] = {
         name = "Spirit of Veng",
@@ -7394,7 +7394,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Spirit of Veng Pup",
         moves = {201, 204},
-        baseStats = { hp = 337, atk = 157, def = 127, spd = 101 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12248] = {
         name = "Infiltrator Hameya",
@@ -7412,7 +7412,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 318, atk = 149, def = 121, spd = 96 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12250] = {
         name = "Zaeldarr the Outcast",
@@ -7430,7 +7430,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 295, atk = 138, def = 112, spd = 89 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12261] = {
         name = "Infected Mossflayer",
@@ -7448,7 +7448,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 304, atk = 143, def = 115, spd = 91 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12262] = {
         name = "Ziggurat Protector",
@@ -7466,7 +7466,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 401, atk = 188, def = 152, spd = 121 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12263] = {
         name = "Slaughterhouse Protector",
@@ -7484,7 +7484,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 401, atk = 188, def = 152, spd = 121 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12377] = {
         name = "Wailing Spectre",
@@ -7502,7 +7502,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 313, atk = 147, def = 119, spd = 94 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12378] = {
         name = "Damned Soul",
@@ -7520,7 +7520,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 313, atk = 147, def = 119, spd = 94 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12379] = {
         name = "Unliving Caretaker",
@@ -7538,7 +7538,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 313, atk = 147, def = 119, spd = 94 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12380] = {
         name = "Unliving Resident",
@@ -7556,7 +7556,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 313, atk = 147, def = 119, spd = 94 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [12865] = {
         name = "Ambassador Malcin",
@@ -7574,7 +7574,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 273, atk = 125, def = 102, spd = 81 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14358] = {
         name = "Shen'dralar Ancient",
@@ -7594,7 +7594,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Shen'dralar Ancient Pup",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14364] = {
         name = "Shen'dralar Spirit",
@@ -7614,7 +7614,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Shen'dralar Spirit Pup",
         moves = {201, 204},
-        baseStats = { hp = 395, atk = 185, def = 150, spd = 119 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14486] = {
         name = "Scourge Footsoldier",
@@ -7632,7 +7632,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 309, atk = 145, def = 117, spd = 93 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14489] = {
         name = "Scourge Archer",
@@ -7650,7 +7650,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 318, atk = 149, def = 121, spd = 96 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14494] = {
         name = "Eris Havenfire",
@@ -7668,7 +7668,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14511] = {
         name = "Shadowed Spirit",
@@ -7688,7 +7688,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Shadowed Spirit Pup",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14512] = {
         name = "Corrupted Spirit",
@@ -7708,7 +7708,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Corrupted Spirit Pup",
         moves = {201, 204},
-        baseStats = { hp = 407, atk = 191, def = 155, spd = 122 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14513] = {
         name = "Malicious Spirit",
@@ -7728,7 +7728,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Malicious Spirit Pup",
         moves = {201, 204},
-        baseStats = { hp = 407, atk = 191, def = 155, spd = 122 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14514] = {
         name = "Banal Spirit",
@@ -7748,7 +7748,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Banal Spirit Pup",
         moves = {201, 204},
-        baseStats = { hp = 318, atk = 149, def = 121, spd = 96 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14516] = {
         name = "Death Knight Darkreaver",
@@ -7768,7 +7768,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Death Knight Darkreaver Pup",
         moves = {201, 204},
-        baseStats = { hp = 425, atk = 200, def = 161, spd = 128 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14518] = {
         name = "Aspect of Banality",
@@ -7788,7 +7788,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Aspect of Banality Pup",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14519] = {
         name = "Aspect of Corruption",
@@ -7808,7 +7808,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Aspect of Corruption Pup",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14520] = {
         name = "Aspect of Malice",
@@ -7828,7 +7828,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Aspect of Malice Pup",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14521] = {
         name = "Aspect of Shadow",
@@ -7848,7 +7848,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Aspect of Shadow Pup",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14564] = {
         name = "Terrordale Spirit",
@@ -7866,7 +7866,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 313, atk = 147, def = 119, spd = 94 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14605] = {
         name = "Bone Construct",
@@ -7886,7 +7886,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Bone Construct Pup",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14682] = {
         name = "Sever",
@@ -7906,7 +7906,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Sever Pup",
         moves = {201, 204},
-        baseStats = { hp = 208, atk = 94, def = 77, spd = 61 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14684] = {
         name = "Balzaphon",
@@ -7926,7 +7926,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Balzaphon Pup",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14686] = {
         name = "Lady Falther'ess",
@@ -7946,7 +7946,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Lady Falther'ess Pup",
         moves = {201, 204},
-        baseStats = { hp = 296, atk = 137, def = 111, spd = 88 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14690] = {
         name = "Revanchion",
@@ -7966,7 +7966,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Revanchion Pup",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14693] = {
         name = "Scorn",
@@ -7986,7 +7986,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Scorn Pup",
         moves = {201, 204},
-        baseStats = { hp = 261, atk = 120, def = 97, spd = 77 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14695] = {
         name = "Lord Blackwood",
@@ -8006,7 +8006,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Lord Blackwood Pup",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14697] = {
         name = "Lumbering Horror",
@@ -8024,7 +8024,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 322, atk = 151, def = 122, spd = 97 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [14825] = {
         name = "Withered Mistress",
@@ -8044,7 +8044,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Withered Mistress Pup",
         moves = {201, 204},
-        baseStats = { hp = 401, atk = 188, def = 152, spd = 121 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14826] = {
         name = "Sacrificed Troll",
@@ -8064,7 +8064,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Sacrificed Troll Pup",
         moves = {201, 204},
-        baseStats = { hp = 318, atk = 149, def = 121, spd = 96 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [14986] = {
         name = "Shade of Jin'do",
@@ -8084,7 +8084,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Shade of Jin'do Pup",
         moves = {201, 204},
-        baseStats = { hp = 318, atk = 149, def = 121, spd = 96 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [15082] = {
         name = "Gri'lek",
@@ -8104,7 +8104,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [15083] = {
         name = "Hazza'rah",
@@ -8124,7 +8124,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [15084] = {
         name = "Renataki",
@@ -8144,7 +8144,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [15085] = {
         name = "Wushoolay",
@@ -8164,7 +8164,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [15117] = {
         name = "Chained Spirit",
@@ -8184,7 +8184,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Chained Spirit Pup",
         moves = {201, 204},
-        baseStats = { hp = 318, atk = 149, def = 121, spd = 96 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [15163] = {
         name = "Nightmare Illusion",
@@ -8204,7 +8204,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Nightmare Illusion Pup",
         moves = {201, 204},
-        baseStats = { hp = 318, atk = 149, def = 121, spd = 96 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [15195] = {
         name = "Wickerman Guardian",
@@ -8222,7 +8222,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [15928] = {
         name = "Thaddius",
@@ -8242,7 +8242,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [15929] = {
         name = "Stalagg",
@@ -8262,7 +8262,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [15930] = {
         name = "Feugen",
@@ -8282,7 +8282,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [15931] = {
         name = "Grobbulus",
@@ -8302,7 +8302,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [15932] = {
         name = "Gluth",
@@ -8322,7 +8322,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [15936] = {
         name = "Heigan the Unclean",
@@ -8342,7 +8342,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [15954] = {
         name = "Noth the Plaguebringer",
@@ -8362,7 +8362,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [15956] = {
         name = "Anub'Rekhan",
@@ -8382,7 +8382,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [15978] = {
         name = "Crypt Reaver",
@@ -8402,7 +8402,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Crypt Reaver Pup",
         moves = {201, 204},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [15979] = {
         name = "Tomb Horror",
@@ -8422,7 +8422,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Tomb Horror Pup",
         moves = {201, 204},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [15989] = {
         name = "Sapphiron",
@@ -8442,7 +8442,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [15990] = {
         name = "Kel'Thuzad",
@@ -8462,7 +8462,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16011] = {
         name = "Loatheb",
@@ -8482,7 +8482,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16017] = {
         name = "Patchwork Golem",
@@ -8502,7 +8502,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Patchwork Golem Pup",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16018] = {
         name = "Bile Retcher",
@@ -8522,7 +8522,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Bile Retcher Pup",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16020] = {
         name = "Mad Scientist",
@@ -8542,7 +8542,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Mad Scientist Pup",
         moves = {201, 204},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16021] = {
         name = "Living Monstrosity",
@@ -8562,7 +8562,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Living Monstrosity Pup",
         moves = {201, 204},
-        baseStats = { hp = 425, atk = 200, def = 161, spd = 128 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16022] = {
         name = "Surgical Assistant",
@@ -8582,7 +8582,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Surgical Assistant Pup",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16024] = {
         name = "Embalming Slime",
@@ -8602,7 +8602,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Embalming Slime Pup",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16025] = {
         name = "Stitched Spewer",
@@ -8622,7 +8622,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Stitched Spewer Pup",
         moves = {201, 204},
-        baseStats = { hp = 430, atk = 203, def = 164, spd = 130 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16028] = {
         name = "Patchwerk",
@@ -8642,7 +8642,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16029] = {
         name = "Sludge Belcher",
@@ -8662,7 +8662,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Sludge Belcher Pup",
         moves = {201, 204},
-        baseStats = { hp = 425, atk = 200, def = 161, spd = 128 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16060] = {
         name = "Gothik the Harvester",
@@ -8682,7 +8682,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16061] = {
         name = "Instructor Razuvious",
@@ -8702,7 +8702,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16062] = {
         name = "Highlord Mograine",
@@ -8722,7 +8722,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16063] = {
         name = "Sir Zeliek",
@@ -8742,7 +8742,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16064] = {
         name = "Thane Korth'azz",
@@ -8762,7 +8762,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16065] = {
         name = "Lady Blaumeux",
@@ -8782,7 +8782,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16066] = {
         name = "Spectral Assassin",
@@ -8802,7 +8802,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Spectral Assassin Pup",
         moves = {201, 204},
-        baseStats = { hp = 318, atk = 149, def = 121, spd = 96 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16067] = {
         name = "Skeletal Steed",
@@ -8822,7 +8822,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Skeletal Steed Pup",
         moves = {201, 204},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16101] = {
         name = "Jarien",
@@ -8842,7 +8842,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16102] = {
         name = "Sothos",
@@ -8862,7 +8862,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.25,
         pupName = "Undead Catalyst",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16103] = {
         name = "Spirit of Jarien",
@@ -8882,7 +8882,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Spirit of Jarien Pup",
         moves = {201, 204},
-        baseStats = { hp = 318, atk = 149, def = 121, spd = 96 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16104] = {
         name = "Spirit of Sothos",
@@ -8902,7 +8902,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Spirit of Sothos Pup",
         moves = {201, 204},
-        baseStats = { hp = 318, atk = 149, def = 121, spd = 96 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16119] = {
         name = "Bone Minion",
@@ -8922,7 +8922,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Bone Minion Pup",
         moves = {201, 204},
-        baseStats = { hp = 318, atk = 149, def = 121, spd = 96 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16120] = {
         name = "Bone Mage",
@@ -8942,7 +8942,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Bone Mage Pup",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16125] = {
         name = "Unrelenting Deathknight",
@@ -8962,7 +8962,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Unrelenting Deathknight Pup",
         moves = {201, 204},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16126] = {
         name = "Unrelenting Rider",
@@ -8982,7 +8982,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Unrelenting Rider Pup",
         moves = {201, 204},
-        baseStats = { hp = 425, atk = 200, def = 161, spd = 128 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16127] = {
         name = "Spectral Trainee",
@@ -9002,7 +9002,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Spectral Trainee Pup",
         moves = {201, 204},
-        baseStats = { hp = 425, atk = 200, def = 161, spd = 128 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16141] = {
         name = "Ghoul Berserker",
@@ -9020,7 +9020,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 313, atk = 147, def = 119, spd = 94 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16143] = {
         name = "Shadow of Doom",
@@ -9038,7 +9038,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16146] = {
         name = "Deathknight",
@@ -9058,7 +9058,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Deathknight Pup",
         moves = {201, 204},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16148] = {
         name = "Spectral Deathknight",
@@ -9078,7 +9078,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Spectral Deathknight Pup",
         moves = {201, 204},
-        baseStats = { hp = 425, atk = 200, def = 161, spd = 128 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16150] = {
         name = "Spectral Rider",
@@ -9098,7 +9098,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Spectral Rider Pup",
         moves = {201, 204},
-        baseStats = { hp = 430, atk = 203, def = 164, spd = 130 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16154] = {
         name = "Risen Deathknight",
@@ -9118,7 +9118,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Risen Deathknight Pup",
         moves = {201, 204},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16163] = {
         name = "Deathknight Cavalier",
@@ -9138,7 +9138,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Deathknight Cavalier Pup",
         moves = {201, 204},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16164] = {
         name = "Shade of Naxxramas",
@@ -9158,7 +9158,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Shade of Naxxramas Pup",
         moves = {201, 204},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16165] = {
         name = "Necro Knight",
@@ -9178,7 +9178,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Necro Knight Pup",
         moves = {201, 204},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16167] = {
         name = "Bony Construct",
@@ -9198,7 +9198,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Bony Construct Pup",
         moves = {201, 204},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16168] = {
         name = "Stoneskin Gargoyle",
@@ -9218,7 +9218,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Stoneskin Gargoyle Pup",
         moves = {201, 204},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16184] = {
         name = "Nerubian Overseer",
@@ -9236,7 +9236,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16194] = {
         name = "Unholy Axe",
@@ -9256,7 +9256,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Unholy Axe Pup",
         moves = {201, 204},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16215] = {
         name = "Unholy Staff",
@@ -9276,7 +9276,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Unholy Staff Pup",
         moves = {201, 204},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16216] = {
         name = "Unholy Swords",
@@ -9296,7 +9296,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Unholy Swords Pup",
         moves = {201, 204},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16244] = {
         name = "Infectious Ghoul",
@@ -9316,7 +9316,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Infectious Ghoul Pup",
         moves = {201, 204},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16290] = {
         name = "Fallout Slime",
@@ -9336,7 +9336,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Fallout Slime Pup",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16298] = {
         name = "Spectral Soldier",
@@ -9354,7 +9354,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 313, atk = 147, def = 119, spd = 94 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16299] = {
         name = "Skeletal Shocktrooper",
@@ -9372,7 +9372,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 313, atk = 147, def = 119, spd = 94 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16360] = {
         name = "Zombie Chow",
@@ -9392,7 +9392,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Zombie Chow Pup",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16375] = {
         name = "Sewage Slime",
@@ -9412,7 +9412,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Sewage Slime Pup",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16379] = {
         name = "Spirit of the Damned",
@@ -9430,7 +9430,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 322, atk = 151, def = 122, spd = 97 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [16380] = {
         name = "Bone Witch",
@@ -9448,7 +9448,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 322, atk = 151, def = 122, spd = 97 },
+        baseStats = { hp = 28, atk = 28, def = 27, spd = 27 },
     },
     [16383] = {
         name = "Flameshocker",
@@ -9466,7 +9466,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 378, atk = 177, def = 143, spd = 113 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16390] = {
         name = "Deathchill Servant",
@@ -9486,7 +9486,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.025,
         pupName = "Deathchill Servant Pup",
         moves = {201, 204},
-        baseStats = { hp = 322, atk = 151, def = 122, spd = 97 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16394] = {
         name = "Pallid Horror",
@@ -9504,7 +9504,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16422] = {
         name = "Skeletal Soldier",
@@ -9522,7 +9522,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 75, atk = 30, def = 25, spd = 20 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16423] = {
         name = "Spectral Apparition",
@@ -9540,7 +9540,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 75, atk = 30, def = 25, spd = 20 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16427] = {
         name = "Soldier of the Frozen Wastes",
@@ -9560,7 +9560,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Soldier of the Frozen Wastes Pup",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16428] = {
         name = "Unstoppable Abomination",
@@ -9580,7 +9580,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Unstoppable Abomination Pup",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16429] = {
         name = "Soul Weaver",
@@ -9600,7 +9600,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Soul Weaver Pup",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16432] = {
         name = "Undercity Elite Guardian",
@@ -9618,7 +9618,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16437] = {
         name = "Spectral Spirit",
@@ -9636,7 +9636,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 88, atk = 37, def = 31, spd = 24 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16438] = {
         name = "Skeletal Trooper",
@@ -9654,7 +9654,7 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 88, atk = 37, def = 31, spd = 24 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16441] = {
         name = "Guardian of Icecrown",
@@ -9674,7 +9674,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Guardian of Icecrown Pup",
         moves = {201, 204},
-        baseStats = { hp = 413, atk = 194, def = 157, spd = 124 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16446] = {
         name = "Plagued Gargoyle",
@@ -9694,7 +9694,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Plagued Gargoyle Pup",
         moves = {201, 204},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16447] = {
         name = "Plagued Ghoul",
@@ -9714,7 +9714,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Plagued Ghoul Pup",
         moves = {201, 204},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16449] = {
         name = "Spirit of Naxxramas",
@@ -9734,7 +9734,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Spirit of Naxxramas Pup",
         moves = {201, 204},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16451] = {
         name = "Deathknight Vindicator",
@@ -9754,7 +9754,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Deathknight Vindicator Pup",
         moves = {201, 204},
-        baseStats = { hp = 425, atk = 200, def = 161, spd = 128 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16452] = {
         name = "Necro Knight Guardian",
@@ -9774,7 +9774,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Necro Knight Guardian Pup",
         moves = {201, 204},
-        baseStats = { hp = 425, atk = 200, def = 161, spd = 128 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16861] = {
         name = "Death Lord",
@@ -9794,7 +9794,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Death Lord Pup",
         moves = {201, 204},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16981] = {
         name = "Plagued Guardian",
@@ -9814,7 +9814,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Plagued Guardian Pup",
         moves = {201, 204},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16983] = {
         name = "Plagued Champion",
@@ -9834,7 +9834,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Plagued Champion Pup",
         moves = {201, 204},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [16984] = {
         name = "Plagued Warrior",
@@ -9854,7 +9854,7 @@ FS.Creatures_Undead = {
         pupDropRate = 0.15,
         pupName = "Plagued Warrior Pup",
         moves = {201, 204},
-        baseStats = { hp = 419, atk = 197, def = 159, spd = 126 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
     [35826] = {
         name = "Kaye Toogie",
@@ -9872,6 +9872,6 @@ FS.Creatures_Undead = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {201, 204},
-        baseStats = { hp = 205, atk = 94, def = 77, spd = 61 },
+        baseStats = { hp = 25, atk = 25, def = 25, spd = 25 },
     },
 }

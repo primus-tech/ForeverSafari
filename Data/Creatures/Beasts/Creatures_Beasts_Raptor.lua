@@ -20,7 +20,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 177, atk = 113, def = 52, spd = 80 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [686] = {
         name = "Lashtail Raptor",
@@ -38,7 +38,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 185, atk = 118, def = 54, spd = 84 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [730] = {
         name = "Tethis",
@@ -56,7 +56,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 282, atk = 182, def = 84, spd = 130 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [855] = {
         name = "Young Stranglethorn Raptor",
@@ -74,7 +74,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 165, atk = 105, def = 48, spd = 74 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [856] = {
         name = "Young Lashtail Raptor",
@@ -92,7 +92,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 177, atk = 113, def = 52, spd = 80 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [1015] = {
         name = "Highland Raptor",
@@ -110,7 +110,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 137, atk = 85, def = 39, spd = 60 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [1016] = {
         name = "Highland Lashtail",
@@ -128,7 +128,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 141, atk = 88, def = 41, spd = 62 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [1017] = {
         name = "Highland Scytheclaw",
@@ -146,7 +146,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 145, atk = 91, def = 42, spd = 64 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [1018] = {
         name = "Highland Razormaw",
@@ -164,7 +164,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 153, atk = 96, def = 44, spd = 68 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [1019] = {
         name = "Elder Razormaw",
@@ -182,7 +182,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 161, atk = 102, def = 47, spd = 72 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [1020] = {
         name = "Mottled Raptor",
@@ -200,7 +200,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 133, atk = 83, def = 38, spd = 58 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [1021] = {
         name = "Mottled Screecher",
@@ -218,7 +218,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 141, atk = 88, def = 41, spd = 62 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [1022] = {
         name = "Mottled Scytheclaw",
@@ -236,7 +236,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 145, atk = 91, def = 42, spd = 64 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [1023] = {
         name = "Mottled Razormaw",
@@ -254,7 +254,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 149, atk = 94, def = 43, spd = 66 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [1140] = {
         name = "Razormaw Matriarch",
@@ -272,7 +272,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 169, atk = 107, def = 49, spd = 76 },
+        baseStats = { hp = 28, atk = 39, def = 16, spd = 27 },
     },
     [1353] = {
         name = "Sarltooth",
@@ -290,7 +290,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 161, atk = 102, def = 47, spd = 72 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [2559] = {
         name = "Highland Strider",
@@ -308,7 +308,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 165, atk = 105, def = 48, spd = 74 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [2560] = {
         name = "Highland Thrasher",
@@ -326,7 +326,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 177, atk = 113, def = 52, spd = 80 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [3122] = {
         name = "Bloodtalon Taillasher",
@@ -344,7 +344,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 73, atk = 41, def = 19, spd = 29 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [3123] = {
         name = "Bloodtalon Scythemaw",
@@ -362,7 +362,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 81, atk = 47, def = 22, spd = 33 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [3227] = {
         name = "Corrupted Bloodtalon Scythemaw",
@@ -380,7 +380,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 85, atk = 50, def = 23, spd = 35 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [3254] = {
         name = "Sunscale Lashtail",
@@ -398,7 +398,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 93, atk = 55, def = 25, spd = 39 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [3255] = {
         name = "Sunscale Screecher",
@@ -416,7 +416,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 101, atk = 61, def = 28, spd = 43 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [3256] = {
         name = "Sunscale Scytheclaw",
@@ -434,7 +434,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 113, atk = 69, def = 32, spd = 49 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [3257] = {
         name = "Ishamuhale",
@@ -452,7 +452,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 121, atk = 74, def = 34, spd = 53 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [3632] = {
         name = "Deviate Creeper",
@@ -470,7 +470,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 136, atk = 82, def = 38, spd = 58 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [3633] = {
         name = "Deviate Slayer",
@@ -488,7 +488,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 141, atk = 86, def = 40, spd = 61 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [3636] = {
         name = "Deviate Ravager",
@@ -508,7 +508,7 @@ FS.Creatures_Beasts_Raptor = {
         pupDropRate = 0.15,
         pupName = "Deviate Ravager Hatchling",
         moves = {115, 118},
-        baseStats = { hp = 152, atk = 93, def = 43, spd = 66 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [3637] = {
         name = "Deviate Guardian",
@@ -528,7 +528,7 @@ FS.Creatures_Beasts_Raptor = {
         pupDropRate = 0.15,
         pupName = "Deviate Guardian Hatchling",
         moves = {115, 118},
-        baseStats = { hp = 152, atk = 93, def = 43, spd = 66 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4351] = {
         name = "Bloodfen Raptor",
@@ -546,7 +546,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 185, atk = 118, def = 54, spd = 84 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4352] = {
         name = "Bloodfen Screecher",
@@ -564,7 +564,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 189, atk = 121, def = 56, spd = 86 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4355] = {
         name = "Bloodfen Scytheclaw",
@@ -582,7 +582,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 193, atk = 124, def = 57, spd = 88 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4356] = {
         name = "Bloodfen Razormaw",
@@ -600,7 +600,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 201, atk = 129, def = 59, spd = 92 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4357] = {
         name = "Bloodfen Lashtail",
@@ -618,7 +618,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 205, atk = 132, def = 61, spd = 94 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [5842] = {
         name = "Takk the Leaper",
@@ -636,7 +636,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 157, atk = 97, def = 45, spd = 68 },
+        baseStats = { hp = 28, atk = 39, def = 16, spd = 27 },
     },
     [6505] = {
         name = "Ravasaur",
@@ -654,7 +654,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 237, atk = 154, def = 71, spd = 110 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [6506] = {
         name = "Ravasaur Runner",
@@ -672,7 +672,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 241, atk = 157, def = 72, spd = 112 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [6507] = {
         name = "Ravasaur Hunter",
@@ -690,7 +690,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 241, atk = 157, def = 72, spd = 112 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [6508] = {
         name = "Venomhide Ravasaur",
@@ -708,7 +708,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 245, atk = 160, def = 73, spd = 114 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [6581] = {
         name = "Ravasaur Matriarch",
@@ -726,7 +726,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 245, atk = 160, def = 73, spd = 114 },
+        baseStats = { hp = 28, atk = 39, def = 16, spd = 27 },
     },
     [8885] = {
         name = "Riding Raptor",
@@ -744,7 +744,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 49, atk = 25, def = 12, spd = 17 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [9683] = {
         name = "Lar'korwi Mate",
@@ -762,7 +762,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 241, atk = 157, def = 72, spd = 112 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [9684] = {
         name = "Lar'korwi",
@@ -780,7 +780,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 269, atk = 176, def = 81, spd = 126 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [12346] = {
         name = "Emerald Raptor",
@@ -798,7 +798,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 49, atk = 25, def = 12, spd = 17 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [12349] = {
         name = "Turquoise Raptor",
@@ -816,7 +816,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 49, atk = 25, def = 12, spd = 17 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [12350] = {
         name = "Violet Raptor",
@@ -834,7 +834,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 49, atk = 25, def = 12, spd = 17 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [14232] = {
         name = "Dart",
@@ -852,7 +852,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 197, atk = 127, def = 58, spd = 90 },
+        baseStats = { hp = 28, atk = 39, def = 16, spd = 27 },
     },
     [14543] = {
         name = "Swift Olive Raptor",
@@ -870,7 +870,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 49, atk = 25, def = 12, spd = 17 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [14544] = {
         name = "Swift Orange Raptor",
@@ -888,7 +888,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 49, atk = 25, def = 12, spd = 17 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [14545] = {
         name = "Swift Blue Raptor",
@@ -906,7 +906,7 @@ FS.Creatures_Beasts_Raptor = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {115, 118},
-        baseStats = { hp = 49, atk = 25, def = 12, spd = 17 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [14821] = {
         name = "Razzashi Raptor",
@@ -926,6 +926,6 @@ FS.Creatures_Beasts_Raptor = {
         pupDropRate = 0.15,
         pupName = "Razzashi Raptor Hatchling",
         moves = {115, 118},
-        baseStats = { hp = 370, atk = 243, def = 112, spd = 174 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
 }

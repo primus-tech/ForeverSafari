@@ -313,8 +313,8 @@
 * [x] **Taint Purge & Diagnostic Watcher (`Core/TaintWatcher.lua`)**:
   * Purged obsolete `Core/InstancePupDrops.lua` CLEU event registration, resolving all Blizzard UI tainted action errors.
   * Added `Core/TaintWatcher.lua` (loaded first in TOC) and `/fstaint` diagnostics; verified 100% clean startup and interaction.
-* [ ] **Pipeline Tooling & Creature Regeneration (`Tools/build_creatures.py`)**:
-  * Update `calculate_stats()` to execute the Largest Remainder algorithm and regenerate all 35 creature files in `Data/Creatures/`.
+* [x] **Pipeline Tooling & Creature Regeneration (`Tools/build_creatures.py`)**:
+  * Updated `calculate_stats()` to execute the Largest Remainder (Hamilton-Hare) zero-drift algorithm and regenerated all creature partitions in `Data/Creatures/` (2,008 creatures verified with zero drift).
 * [ ] **Combat Engine Execution (`Core/BattleEngine.lua` & `Core/StatEngine.lua`)**:
   * Implement the Action-Gauge 0–100 speed velocity and lapping queue.
   * Implement dynamic Layer 1–5 resistance derivation and procced ward evaluation (including independent per-tick DoT rolls).

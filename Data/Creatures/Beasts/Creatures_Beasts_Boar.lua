@@ -20,7 +20,7 @@ FS.Creatures_Beasts_Boar = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {111, 112},
-        baseStats = { hp = 90, atk = 21, def = 32, spd = 13 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [119] = {
         name = "Longsnout",
@@ -38,7 +38,7 @@ FS.Creatures_Beasts_Boar = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {111, 112},
-        baseStats = { hp = 120, atk = 29, def = 45, spd = 18 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [157] = {
         name = "Goretusk",
@@ -56,7 +56,7 @@ FS.Creatures_Beasts_Boar = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {111, 112},
-        baseStats = { hp = 144, atk = 35, def = 55, spd = 21 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [330] = {
         name = "Princess",
@@ -74,7 +74,7 @@ FS.Creatures_Beasts_Boar = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {111, 112},
-        baseStats = { hp = 114, atk = 27, def = 42, spd = 17 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [345] = {
         name = "Bellygrub",
@@ -92,7 +92,7 @@ FS.Creatures_Beasts_Boar = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {111, 112},
-        baseStats = { hp = 204, atk = 50, def = 80, spd = 30 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [390] = {
         name = "Porcine Entourage",
@@ -110,7 +110,7 @@ FS.Creatures_Beasts_Boar = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {111, 112},
-        baseStats = { hp = 102, atk = 24, def = 37, spd = 15 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [454] = {
         name = "Young Goretusk",
@@ -128,7 +128,7 @@ FS.Creatures_Beasts_Boar = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {111, 112},
-        baseStats = { hp = 132, atk = 32, def = 50, spd = 19 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [524] = {
         name = "Rockhide Boar",
@@ -146,7 +146,7 @@ FS.Creatures_Beasts_Boar = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {111, 112},
-        baseStats = { hp = 102, atk = 24, def = 37, spd = 15 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [547] = {
         name = "Great Goretusk",
@@ -164,7 +164,7 @@ FS.Creatures_Beasts_Boar = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {111, 112},
-        baseStats = { hp = 156, atk = 38, def = 60, spd = 23 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [708] = {
         name = "Small Crag Boar",
@@ -182,7 +182,7 @@ FS.Creatures_Beasts_Boar = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {111, 112},
-        baseStats = { hp = 78, atk = 18, def = 27, spd = 11 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [1125] = {
         name = "Crag Boar",
@@ -200,7 +200,7 @@ FS.Creatures_Beasts_Boar = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {111, 112},
-        baseStats = { hp = 90, atk = 21, def = 32, spd = 13 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [1126] = {
         name = "Large Crag Boar",
@@ -218,7 +218,7 @@ FS.Creatures_Beasts_Boar = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {111, 112},
-        baseStats = { hp = 96, atk = 23, def = 35, spd = 14 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [1127] = {
         name = "Elder Crag Boar",
@@ -236,7 +236,7 @@ FS.Creatures_Beasts_Boar = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {111, 112},
-        baseStats = { hp = 102, atk = 24, def = 37, spd = 15 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [1190] = {
         name = "Mountain Boar",
@@ -254,7 +254,7 @@ FS.Creatures_Beasts_Boar = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {111, 112},
-        baseStats = { hp = 120, atk = 29, def = 45, spd = 18 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [1191] = {
         name = "Mangy Mountain Boar",
@@ -272,7 +272,7 @@ FS.Creatures_Beasts_Boar = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {111, 112},
-        baseStats = { hp = 144, atk = 35, def = 55, spd = 21 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [1192] = {
         name = "Elder Mountain Boar",
@@ -290,7 +290,7 @@ FS.Creatures_Beasts_Boar = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {111, 112},
-        baseStats = { hp = 156, atk = 38, def = 60, spd = 23 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [1689] = {
         name = "Scarred Crag Boar",
@@ -308,7 +308,7 @@ FS.Creatures_Beasts_Boar = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {111, 112},
-        baseStats = { hp = 114, atk = 27, def = 42, spd = 17 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [1984] = {
         name = "Young Thistle Boar",
@@ -326,7 +326,7 @@ FS.Creatures_Beasts_Boar = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {111, 112},
-        baseStats = { hp = 66, atk = 15, def = 22, spd = 9 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [1985] = {
         name = "Thistle Boar",
@@ -344,7 +344,7 @@ FS.Creatures_Beasts_Boar = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {111, 112},
-        baseStats = { hp = 72, atk = 17, def = 25, spd = 10 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [2954] = {
         name = "Bristleback Battleboar",
@@ -362,7 +362,7 @@ FS.Creatures_Beasts_Boar = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {111, 112},
-        baseStats = { hp = 84, atk = 20, def = 30, spd = 12 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [2966] = {
         name = "Battleboar",
@@ -380,7 +380,7 @@ FS.Creatures_Beasts_Boar = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {111, 112},
-        baseStats = { hp = 78, atk = 18, def = 27, spd = 11 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [3098] = {
         name = "Mottled Boar",
@@ -398,7 +398,7 @@ FS.Creatures_Beasts_Boar = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {111, 112},
-        baseStats = { hp = 66, atk = 15, def = 22, spd = 9 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [3099] = {
         name = "Dire Mottled Boar",
@@ -416,7 +416,7 @@ FS.Creatures_Beasts_Boar = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {111, 112},
-        baseStats = { hp = 96, atk = 23, def = 35, spd = 14 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [3100] = {
         name = "Elder Mottled Boar",
@@ -434,7 +434,7 @@ FS.Creatures_Beasts_Boar = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {111, 112},
-        baseStats = { hp = 108, atk = 26, def = 40, spd = 16 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [3225] = {
         name = "Corrupted Mottled Boar",
@@ -452,7 +452,7 @@ FS.Creatures_Beasts_Boar = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {111, 112},
-        baseStats = { hp = 120, atk = 29, def = 45, spd = 18 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4422] = {
         name = "Agathelos the Raging",
@@ -472,7 +472,7 @@ FS.Creatures_Beasts_Boar = {
         pupDropRate = 0.15,
         pupName = "Agathelos the Raging Piglet",
         moves = {111, 112},
-        baseStats = { hp = 335, atk = 82, def = 133, spd = 50 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4511] = {
         name = "Agam'ar",
@@ -492,7 +492,7 @@ FS.Creatures_Beasts_Boar = {
         pupDropRate = 0.15,
         pupName = "Agam'ar Piglet",
         moves = {111, 112},
-        baseStats = { hp = 265, atk = 65, def = 104, spd = 39 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4512] = {
         name = "Rotting Agam'ar",
@@ -512,7 +512,7 @@ FS.Creatures_Beasts_Boar = {
         pupDropRate = 0.15,
         pupName = "Rotting Agam'ar Piglet",
         moves = {111, 112},
-        baseStats = { hp = 296, atk = 72, def = 117, spd = 44 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4514] = {
         name = "Raging Agam'ar",
@@ -532,7 +532,7 @@ FS.Creatures_Beasts_Boar = {
         pupDropRate = 0.15,
         pupName = "Raging Agam'ar Piglet",
         moves = {111, 112},
-        baseStats = { hp = 273, atk = 66, def = 107, spd = 40 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [4535] = {
         name = "Tamed Battleboar",
@@ -552,7 +552,7 @@ FS.Creatures_Beasts_Boar = {
         pupDropRate = 0.15,
         pupName = "Tamed Battleboar Piglet",
         moves = {111, 112},
-        baseStats = { hp = 265, atk = 65, def = 104, spd = 39 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [5992] = {
         name = "Ashmane Boar",
@@ -570,7 +570,7 @@ FS.Creatures_Beasts_Boar = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {111, 112},
-        baseStats = { hp = 348, atk = 86, def = 140, spd = 52 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [6021] = {
         name = "Boar Spirit",
@@ -590,7 +590,7 @@ FS.Creatures_Beasts_Boar = {
         pupDropRate = 0.15,
         pupName = "Boar Spirit Piglet",
         moves = {111, 112},
-        baseStats = { hp = 218, atk = 53, def = 84, spd = 32 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
     [8303] = {
         name = "Grunter",
@@ -608,7 +608,7 @@ FS.Creatures_Beasts_Boar = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {111, 112},
-        baseStats = { hp = 360, atk = 89, def = 145, spd = 54 },
+        baseStats = { hp = 39, atk = 22, def = 33, spd = 16 },
     },
     [16117] = {
         name = "Plagued Swine",
@@ -626,6 +626,6 @@ FS.Creatures_Beasts_Boar = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {111, 112},
-        baseStats = { hp = 420, atk = 104, def = 170, spd = 63 },
+        baseStats = { hp = 35, atk = 20, def = 30, spd = 15 },
     },
 }

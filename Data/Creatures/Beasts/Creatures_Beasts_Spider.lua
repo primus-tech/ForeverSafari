@@ -20,7 +20,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 67, atk = 25, def = 22, spd = 37 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [43] = {
         name = "Mine Spider",
@@ -38,7 +38,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 103, atk = 39, def = 34, spd = 60 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [217] = {
         name = "Venom Web Spider",
@@ -56,7 +56,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 125, atk = 50, def = 44, spd = 77 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [442] = {
         name = "Tarantula",
@@ -74,7 +74,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 109, atk = 43, def = 38, spd = 66 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [471] = {
         name = "Mother Fang",
@@ -92,7 +92,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 103, atk = 39, def = 34, spd = 60 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [505] = {
         name = "Greater Tarantula",
@@ -110,7 +110,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 125, atk = 50, def = 44, spd = 77 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [539] = {
         name = "Pygmy Venom Web Spider",
@@ -128,7 +128,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 121, atk = 48, def = 42, spd = 74 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [569] = {
         name = "Green Recluse",
@@ -146,7 +146,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 134, atk = 53, def = 47, spd = 83 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [574] = {
         name = "Naraxis",
@@ -164,7 +164,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 159, atk = 64, def = 57, spd = 100 },
+        baseStats = { hp = 22, atk = 28, def = 22, spd = 38 },
     },
     [616] = {
         name = "Chatter",
@@ -182,7 +182,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 142, atk = 57, def = 50, spd = 89 },
+        baseStats = { hp = 22, atk = 28, def = 22, spd = 38 },
     },
     [769] = {
         name = "Deathstrike Tarantula",
@@ -200,7 +200,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 214, atk = 88, def = 78, spd = 137 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [858] = {
         name = "Sorrow Spinner",
@@ -218,7 +218,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 197, atk = 80, def = 71, spd = 126 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [930] = {
         name = "Black Widow Hatchling",
@@ -236,7 +236,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 138, atk = 55, def = 49, spd = 86 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [949] = {
         name = "Carrion Recluse",
@@ -254,7 +254,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 151, atk = 61, def = 54, spd = 94 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [1112] = {
         name = "Leech Widow",
@@ -272,7 +272,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 146, atk = 59, def = 52, spd = 92 },
+        baseStats = { hp = 22, atk = 28, def = 22, spd = 38 },
     },
     [1184] = {
         name = "Cliff Lurker",
@@ -290,7 +290,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 100, atk = 39, def = 34, spd = 60 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [1185] = {
         name = "Wood Lurker",
@@ -308,7 +308,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 117, atk = 46, def = 41, spd = 72 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [1195] = {
         name = "Forest Lurker",
@@ -326,7 +326,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 88, atk = 34, def = 30, spd = 52 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [1504] = {
         name = "Young Night Web Spider",
@@ -344,7 +344,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 54, atk = 19, def = 17, spd = 29 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [1505] = {
         name = "Night Web Spider",
@@ -362,7 +362,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 58, atk = 21, def = 18, spd = 31 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [1555] = {
         name = "Vicious Night Web Spider",
@@ -380,7 +380,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 83, atk = 32, def = 28, spd = 49 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [1688] = {
         name = "Night Web Matriarch",
@@ -398,7 +398,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 67, atk = 25, def = 22, spd = 37 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [1781] = {
         name = "Mist Creeper",
@@ -416,7 +416,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 100, atk = 39, def = 34, spd = 60 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [1821] = {
         name = "Carrion Lurker",
@@ -434,7 +434,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 264, atk = 109, def = 97, spd = 172 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [1822] = {
         name = "Venom Mist Lurker",
@@ -452,7 +452,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 256, atk = 106, def = 94, spd = 166 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [1824] = {
         name = "Plague Lurker",
@@ -470,7 +470,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 272, atk = 113, def = 100, spd = 177 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [1986] = {
         name = "Webwood Spider",
@@ -488,7 +488,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 58, atk = 21, def = 18, spd = 31 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [1994] = {
         name = "Githyiss the Vile",
@@ -506,7 +506,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 67, atk = 25, def = 22, spd = 37 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [1998] = {
         name = "Webwood Lurker",
@@ -524,7 +524,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 67, atk = 25, def = 22, spd = 37 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [1999] = {
         name = "Webwood Venomfang",
@@ -542,7 +542,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 75, atk = 28, def = 25, spd = 43 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [2000] = {
         name = "Webwood Silkspinner",
@@ -560,7 +560,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 79, atk = 30, def = 26, spd = 46 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [2001] = {
         name = "Giant Webwood Spider",
@@ -578,7 +578,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 88, atk = 34, def = 30, spd = 52 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [2348] = {
         name = "Elder Moss Creeper",
@@ -596,7 +596,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 155, atk = 62, def = 55, spd = 97 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [2349] = {
         name = "Giant Moss Creeper",
@@ -614,7 +614,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 146, atk = 59, def = 52, spd = 92 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [2350] = {
         name = "Forest Moss Creeper",
@@ -632,7 +632,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 130, atk = 52, def = 46, spd = 80 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [2563] = {
         name = "Plains Creeper",
@@ -650,7 +650,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 180, atk = 73, def = 65, spd = 114 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [2565] = {
         name = "Giant Plains Creeper",
@@ -668,7 +668,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 193, atk = 79, def = 70, spd = 123 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [2686] = {
         name = "Witherbark Broodguard",
@@ -686,7 +686,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 230, atk = 95, def = 84, spd = 149 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [2707] = {
         name = "Shadra",
@@ -704,7 +704,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 360, atk = 149, def = 132, spd = 234 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [3253] = {
         name = "Silithid Harvester",
@@ -722,7 +722,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 146, atk = 59, def = 52, spd = 92 },
+        baseStats = { hp = 22, atk = 28, def = 22, spd = 38 },
     },
     [3641] = {
         name = "Deviate Lurker",
@@ -740,7 +740,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 147, atk = 58, def = 51, spd = 89 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [3820] = {
         name = "Wildthorn Venomspitter",
@@ -758,7 +758,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 146, atk = 59, def = 52, spd = 92 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [3821] = {
         name = "Wildthorn Lurker",
@@ -776,7 +776,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 163, atk = 66, def = 58, spd = 103 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [4005] = {
         name = "Deepmoss Creeper",
@@ -794,7 +794,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 113, atk = 44, def = 39, spd = 69 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [4006] = {
         name = "Deepmoss Webspinner",
@@ -812,7 +812,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 125, atk = 50, def = 44, spd = 77 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [4007] = {
         name = "Deepmoss Venomspitter",
@@ -830,7 +830,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 117, atk = 46, def = 41, spd = 72 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [4243] = {
         name = "Nightshade",
@@ -848,7 +848,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 256, atk = 106, def = 94, spd = 166 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [4244] = {
         name = "Shadow",
@@ -866,7 +866,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 172, atk = 70, def = 62, spd = 109 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [4263] = {
         name = "Deepmoss Hatchling",
@@ -884,7 +884,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 104, atk = 41, def = 36, spd = 63 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [4264] = {
         name = "Deepmoss Matriarch",
@@ -902,7 +902,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 138, atk = 55, def = 49, spd = 86 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [4376] = {
         name = "Darkmist Spider",
@@ -920,7 +920,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 193, atk = 79, def = 70, spd = 123 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [4377] = {
         name = "Darkmist Lurker",
@@ -938,7 +938,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 201, atk = 82, def = 73, spd = 129 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [4378] = {
         name = "Darkmist Recluse",
@@ -956,7 +956,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 197, atk = 80, def = 71, spd = 126 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [4379] = {
         name = "Darkmist Silkspinner",
@@ -974,7 +974,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 205, atk = 84, def = 74, spd = 132 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [4380] = {
         name = "Darkmist Widow",
@@ -992,7 +992,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 214, atk = 88, def = 78, spd = 137 },
+        baseStats = { hp = 22, atk = 28, def = 22, spd = 38 },
     },
     [4411] = {
         name = "Darkfang Lurker",
@@ -1010,7 +1010,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 197, atk = 80, def = 71, spd = 126 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [4412] = {
         name = "Darkfang Creeper",
@@ -1028,7 +1028,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 205, atk = 84, def = 74, spd = 132 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [4413] = {
         name = "Darkfang Spider",
@@ -1046,7 +1046,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 193, atk = 79, def = 70, spd = 123 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [4414] = {
         name = "Darkfang Venomspitter",
@@ -1064,7 +1064,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 201, atk = 82, def = 73, spd = 129 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [4415] = {
         name = "Giant Darkfang Spider",
@@ -1082,7 +1082,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 214, atk = 88, def = 78, spd = 137 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [5409] = {
         name = "Harvester Swarm",
@@ -1100,7 +1100,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 146, atk = 59, def = 52, spd = 92 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [5451] = {
         name = "Hazzali Swarmer",
@@ -1118,7 +1118,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 251, atk = 104, def = 92, spd = 163 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [5453] = {
         name = "Hazzali Tunneler",
@@ -1136,7 +1136,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 247, atk = 102, def = 90, spd = 160 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [5457] = {
         name = "Centipaar Swarmer",
@@ -1154,7 +1154,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 251, atk = 104, def = 92, spd = 163 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [5459] = {
         name = "Centipaar Tunneler",
@@ -1172,7 +1172,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 243, atk = 100, def = 89, spd = 157 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [5856] = {
         name = "Glassweb Spider",
@@ -1190,7 +1190,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 230, atk = 95, def = 84, spd = 149 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [5857] = {
         name = "Searing Lava Spider",
@@ -1208,7 +1208,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 239, atk = 98, def = 87, spd = 154 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [5858] = {
         name = "Searing Lava Spider",
@@ -1226,7 +1226,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 247, atk = 102, def = 90, spd = 160 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [6555] = {
         name = "Gorishi Tunneler",
@@ -1244,7 +1244,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 264, atk = 109, def = 97, spd = 172 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [7269] = {
         name = "Scarab",
@@ -1264,7 +1264,7 @@ FS.Creatures_Beasts_Spider = {
         pupDropRate = 0.025,
         pupName = "Scarab Spiderling",
         moves = {101, 118},
-        baseStats = { hp = 235, atk = 97, def = 86, spd = 152 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [7319] = {
         name = "Lady Sathrah",
@@ -1282,7 +1282,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 96, atk = 37, def = 33, spd = 57 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [7411] = {
         name = "Spirit of Sathrah",
@@ -1300,7 +1300,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 96, atk = 37, def = 33, spd = 57 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [8277] = {
         name = "Rekk'tilac",
@@ -1318,7 +1318,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 247, atk = 102, def = 90, spd = 160 },
+        baseStats = { hp = 22, atk = 28, def = 22, spd = 38 },
     },
     [8762] = {
         name = "Timberweb Recluse",
@@ -1336,7 +1336,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 243, atk = 100, def = 89, spd = 157 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [8932] = {
         name = "Borer Beetle",
@@ -1356,7 +1356,7 @@ FS.Creatures_Beasts_Spider = {
         pupDropRate = 0.025,
         pupName = "Borer Beetle Spiderling",
         moves = {101, 118},
-        baseStats = { hp = 260, atk = 107, def = 95, spd = 169 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [8933] = {
         name = "Cave Creeper",
@@ -1376,7 +1376,7 @@ FS.Creatures_Beasts_Spider = {
         pupDropRate = 0.025,
         pupName = "Cave Creeper Spiderling",
         moves = {101, 118},
-        baseStats = { hp = 260, atk = 107, def = 95, spd = 169 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [9032] = {
         name = "Hedrum the Creeper",
@@ -1396,7 +1396,7 @@ FS.Creatures_Beasts_Spider = {
         pupDropRate = 0.25,
         pupName = "Spider Catalyst",
         moves = {101, 118},
-        baseStats = { hp = 349, atk = 144, def = 128, spd = 227 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [10177] = {
         name = "Spire Scarab",
@@ -1416,7 +1416,7 @@ FS.Creatures_Beasts_Spider = {
         pupDropRate = 0.025,
         pupName = "Spire Scarab Spiderling",
         moves = {101, 118},
-        baseStats = { hp = 289, atk = 120, def = 106, spd = 189 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [10359] = {
         name = "Sri'skulk",
@@ -1434,7 +1434,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 100, atk = 39, def = 34, spd = 60 },
+        baseStats = { hp = 22, atk = 28, def = 22, spd = 38 },
     },
     [10374] = {
         name = "Spire Spider",
@@ -1454,7 +1454,7 @@ FS.Creatures_Beasts_Spider = {
         pupDropRate = 0.15,
         pupName = "Spire Spider Spiderling",
         moves = {101, 118},
-        baseStats = { hp = 371, atk = 154, def = 136, spd = 242 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [10375] = {
         name = "Spire Spiderling",
@@ -1474,7 +1474,7 @@ FS.Creatures_Beasts_Spider = {
         pupDropRate = 0.025,
         pupName = "Spire Spiderling Spiderling",
         moves = {101, 118},
-        baseStats = { hp = 277, atk = 115, def = 102, spd = 180 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [10376] = {
         name = "Crystal Fang",
@@ -1494,7 +1494,7 @@ FS.Creatures_Beasts_Spider = {
         pupDropRate = 0.25,
         pupName = "Spider Catalyst",
         moves = {101, 118},
-        baseStats = { hp = 387, atk = 161, def = 143, spd = 253 },
+        baseStats = { hp = 22, atk = 28, def = 22, spd = 38 },
     },
     [10596] = {
         name = "Mother Smolderweb",
@@ -1514,7 +1514,7 @@ FS.Creatures_Beasts_Spider = {
         pupDropRate = 0.25,
         pupName = "Spider Catalyst",
         moves = {101, 118},
-        baseStats = { hp = 381, atk = 158, def = 140, spd = 249 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [11370] = {
         name = "Razzashi Broodwidow",
@@ -1534,7 +1534,7 @@ FS.Creatures_Beasts_Spider = {
         pupDropRate = 0.15,
         pupName = "Razzashi Broodwidow Spiderling",
         moves = {101, 118},
-        baseStats = { hp = 376, atk = 156, def = 138, spd = 246 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [11721] = {
         name = "Hive'Ashi Worker",
@@ -1552,7 +1552,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 371, atk = 154, def = 136, spd = 242 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [11726] = {
         name = "Hive'Zora Tunneler",
@@ -1570,7 +1570,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 376, atk = 156, def = 138, spd = 246 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [11731] = {
         name = "Hive'Regal Burrower",
@@ -1588,7 +1588,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 381, atk = 158, def = 140, spd = 249 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [11738] = {
         name = "Sand Skitterer",
@@ -1606,7 +1606,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 277, atk = 115, def = 102, spd = 180 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [11921] = {
         name = "Besseleth",
@@ -1624,7 +1624,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 174, atk = 69, def = 61, spd = 108 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [12433] = {
         name = "Krethis Shadowspinner",
@@ -1642,7 +1642,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 109, atk = 43, def = 38, spd = 66 },
+        baseStats = { hp = 22, atk = 28, def = 22, spd = 38 },
     },
     [14266] = {
         name = "Shanda the Spinner",
@@ -1660,7 +1660,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 125, atk = 50, def = 44, spd = 77 },
+        baseStats = { hp = 22, atk = 28, def = 22, spd = 38 },
     },
     [14279] = {
         name = "Creepthess",
@@ -1678,7 +1678,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 146, atk = 59, def = 52, spd = 92 },
+        baseStats = { hp = 22, atk = 28, def = 22, spd = 38 },
     },
     [14472] = {
         name = "Gretheer",
@@ -1696,7 +1696,7 @@ FS.Creatures_Beasts_Spider = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 285, atk = 118, def = 105, spd = 186 },
+        baseStats = { hp = 22, atk = 28, def = 22, spd = 38 },
     },
     [14532] = {
         name = "Razzashi Venombrood",
@@ -1716,7 +1716,7 @@ FS.Creatures_Beasts_Spider = {
         pupDropRate = 0.15,
         pupName = "Razzashi Venombrood Spiderling",
         moves = {101, 118},
-        baseStats = { hp = 371, atk = 154, def = 136, spd = 242 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [14880] = {
         name = "Razzashi Skitterer",
@@ -1736,7 +1736,7 @@ FS.Creatures_Beasts_Spider = {
         pupDropRate = 0.15,
         pupName = "Razzashi Skitterer Spiderling",
         moves = {101, 118},
-        baseStats = { hp = 354, atk = 147, def = 130, spd = 231 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [15041] = {
         name = "Spawn of Mar'li",
@@ -1756,7 +1756,7 @@ FS.Creatures_Beasts_Spider = {
         pupDropRate = 0.025,
         pupName = "Spawn of Mar'li Spiderling",
         moves = {101, 118},
-        baseStats = { hp = 285, atk = 118, def = 105, spd = 186 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [15168] = {
         name = "Vile Scarab",
@@ -1776,7 +1776,7 @@ FS.Creatures_Beasts_Spider = {
         pupDropRate = 0.025,
         pupName = "Vile Scarab Spiderling",
         moves = {101, 118},
-        baseStats = { hp = 277, atk = 115, def = 102, spd = 180 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [15316] = {
         name = "Qiraji Scarab",
@@ -1796,7 +1796,7 @@ FS.Creatures_Beasts_Spider = {
         pupDropRate = 0.025,
         pupName = "Qiraji Scarab Spiderling",
         moves = {101, 118},
-        baseStats = { hp = 293, atk = 122, def = 108, spd = 192 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [15461] = {
         name = "Shrieker Scarab",
@@ -1816,7 +1816,7 @@ FS.Creatures_Beasts_Spider = {
         pupDropRate = 0.15,
         pupName = "Shrieker Scarab Spiderling",
         moves = {101, 118},
-        baseStats = { hp = 387, atk = 161, def = 143, spd = 253 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [15462] = {
         name = "Spitting Scarab",
@@ -1836,7 +1836,7 @@ FS.Creatures_Beasts_Spider = {
         pupDropRate = 0.15,
         pupName = "Spitting Scarab Spiderling",
         moves = {101, 118},
-        baseStats = { hp = 387, atk = 161, def = 143, spd = 253 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [15621] = {
         name = "Yauj Brood",
@@ -1856,7 +1856,7 @@ FS.Creatures_Beasts_Spider = {
         pupDropRate = 0.15,
         pupName = "Yauj Brood Spiderling",
         moves = {101, 118},
-        baseStats = { hp = 387, atk = 161, def = 143, spd = 253 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [15718] = {
         name = "Ouro Scarab",
@@ -1876,7 +1876,7 @@ FS.Creatures_Beasts_Spider = {
         pupDropRate = 0.15,
         pupName = "Ouro Scarab Spiderling",
         moves = {101, 118},
-        baseStats = { hp = 387, atk = 161, def = 143, spd = 253 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [15952] = {
         name = "Maexxna",
@@ -1896,7 +1896,7 @@ FS.Creatures_Beasts_Spider = {
         pupDropRate = 0.25,
         pupName = "Spider Catalyst",
         moves = {101, 118},
-        baseStats = { hp = 387, atk = 161, def = 143, spd = 253 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [15974] = {
         name = "Dread Creeper",
@@ -1916,7 +1916,7 @@ FS.Creatures_Beasts_Spider = {
         pupDropRate = 0.15,
         pupName = "Dread Creeper Spiderling",
         moves = {101, 118},
-        baseStats = { hp = 392, atk = 163, def = 145, spd = 257 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [15975] = {
         name = "Carrion Spinner",
@@ -1936,7 +1936,7 @@ FS.Creatures_Beasts_Spider = {
         pupDropRate = 0.15,
         pupName = "Carrion Spinner Spiderling",
         moves = {101, 118},
-        baseStats = { hp = 387, atk = 161, def = 143, spd = 253 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [15977] = {
         name = "Infectious Skitterer",
@@ -1956,7 +1956,7 @@ FS.Creatures_Beasts_Spider = {
         pupDropRate = 0.15,
         pupName = "Infectious Skitterer Spiderling",
         moves = {101, 118},
-        baseStats = { hp = 387, atk = 161, def = 143, spd = 253 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [16698] = {
         name = "Corpse Scarab",
@@ -1976,7 +1976,7 @@ FS.Creatures_Beasts_Spider = {
         pupDropRate = 0.025,
         pupName = "Corpse Scarab Spiderling",
         moves = {101, 118},
-        baseStats = { hp = 298, atk = 124, def = 110, spd = 195 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
     [17055] = {
         name = "Maexxna Spiderling",
@@ -1996,6 +1996,6 @@ FS.Creatures_Beasts_Spider = {
         pupDropRate = 0.025,
         pupName = "Maexxna Spiderling Spiderling",
         moves = {101, 118},
-        baseStats = { hp = 298, atk = 124, def = 110, spd = 195 },
+        baseStats = { hp = 20, atk = 25, def = 20, spd = 35 },
     },
 }

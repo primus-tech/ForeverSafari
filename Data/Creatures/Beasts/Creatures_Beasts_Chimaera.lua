@@ -20,7 +20,7 @@ FS.Creatures_Beasts_Chimaera = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 149, atk = 94, def = 43, spd = 66 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4032] = {
         name = "Young Chimaera",
@@ -38,7 +38,7 @@ FS.Creatures_Beasts_Chimaera = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 141, atk = 88, def = 41, spd = 62 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [6167] = {
         name = "Chimaera Matriarch",
@@ -56,7 +56,7 @@ FS.Creatures_Beasts_Chimaera = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 157, atk = 99, def = 46, spd = 70 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [7448] = {
         name = "Chillwind Chimaera",
@@ -74,7 +74,7 @@ FS.Creatures_Beasts_Chimaera = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 269, atk = 176, def = 81, spd = 126 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [7449] = {
         name = "Chillwind Ravager",
@@ -92,7 +92,7 @@ FS.Creatures_Beasts_Chimaera = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 277, atk = 182, def = 83, spd = 130 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [8660] = {
         name = "The Evalcharr",
@@ -110,7 +110,7 @@ FS.Creatures_Beasts_Chimaera = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 237, atk = 154, def = 71, spd = 110 },
+        baseStats = { hp = 28, atk = 39, def = 16, spd = 27 },
     },
     [8764] = {
         name = "Mistwing Ravager",
@@ -128,7 +128,7 @@ FS.Creatures_Beasts_Chimaera = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 253, atk = 165, def = 76, spd = 118 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [10807] = {
         name = "Brumeran",
@@ -146,7 +146,7 @@ FS.Creatures_Beasts_Chimaera = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 360, atk = 236, def = 109, spd = 169 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [11497] = {
         name = "The Razza",
@@ -164,7 +164,7 @@ FS.Creatures_Beasts_Chimaera = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 370, atk = 243, def = 112, spd = 174 },
+        baseStats = { hp = 28, atk = 39, def = 16, spd = 27 },
     },
     [12800] = {
         name = "Chimaerok",
@@ -182,7 +182,7 @@ FS.Creatures_Beasts_Chimaera = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 370, atk = 243, def = 112, spd = 174 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [12801] = {
         name = "Arcane Chimaerok",
@@ -200,7 +200,7 @@ FS.Creatures_Beasts_Chimaera = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 375, atk = 247, def = 113, spd = 177 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [12802] = {
         name = "Chimaerok Devourer",
@@ -218,7 +218,7 @@ FS.Creatures_Beasts_Chimaera = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 375, atk = 247, def = 113, spd = 177 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [12803] = {
         name = "Lord Lakmaeran",
@@ -236,6 +236,6 @@ FS.Creatures_Beasts_Chimaera = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {101, 118},
-        baseStats = { hp = 380, atk = 250, def = 115, spd = 179 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
 }

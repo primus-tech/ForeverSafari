@@ -20,7 +20,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 165, atk = 105, def = 48, spd = 74 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [682] = {
         name = "Stranglethorn Tiger",
@@ -38,7 +38,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 173, atk = 110, def = 51, spd = 78 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [683] = {
         name = "Young Panther",
@@ -56,7 +56,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 165, atk = 105, def = 48, spd = 74 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [684] = {
         name = "Shadowmaw Panther",
@@ -74,7 +74,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 193, atk = 124, def = 57, spd = 88 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [698] = {
         name = "Bloodscalp Tiger",
@@ -92,7 +92,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 181, atk = 116, def = 53, spd = 82 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [728] = {
         name = "Bhag'thera",
@@ -110,7 +110,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 266, atk = 172, def = 79, spd = 122 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [729] = {
         name = "Sin'Dall",
@@ -128,7 +128,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 193, atk = 124, def = 57, spd = 88 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [731] = {
         name = "King Bangalash",
@@ -146,7 +146,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 282, atk = 182, def = 84, spd = 130 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [736] = {
         name = "Panther",
@@ -164,7 +164,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 173, atk = 110, def = 51, spd = 78 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [756] = {
         name = "Skullsplitter Panther",
@@ -182,7 +182,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 209, atk = 135, def = 62, spd = 96 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [767] = {
         name = "Swamp Jaguar",
@@ -200,7 +200,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 189, atk = 121, def = 56, spd = 86 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [768] = {
         name = "Shadow Panther",
@@ -218,7 +218,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 201, atk = 129, def = 59, spd = 92 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [772] = {
         name = "Stranglethorn Tigress",
@@ -236,7 +236,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 193, atk = 124, def = 57, spd = 88 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [976] = {
         name = "Kurzen War Tiger",
@@ -254,7 +254,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 173, atk = 110, def = 51, spd = 78 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [977] = {
         name = "Kurzen War Panther",
@@ -272,7 +272,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 173, atk = 110, def = 51, spd = 78 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [1085] = {
         name = "Elder Stranglethorn Tiger",
@@ -290,7 +290,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 181, atk = 116, def = 53, spd = 82 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [1199] = {
         name = "Juvenile Snow Leopard",
@@ -308,7 +308,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 65, atk = 36, def = 17, spd = 25 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [1201] = {
         name = "Snow Leopard",
@@ -326,7 +326,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 73, atk = 41, def = 19, spd = 29 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [1713] = {
         name = "Elder Shadowmaw Panther",
@@ -344,7 +344,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 213, atk = 138, def = 63, spd = 98 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [2031] = {
         name = "Young Nightsaber",
@@ -362,7 +362,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 49, atk = 25, def = 12, spd = 17 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [2032] = {
         name = "Mangy Nightsaber",
@@ -380,7 +380,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 53, atk = 28, def = 13, spd = 19 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [2033] = {
         name = "Elder Nightsaber",
@@ -398,7 +398,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 77, atk = 44, def = 20, spd = 31 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [2034] = {
         name = "Feral Nightsaber",
@@ -416,7 +416,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 85, atk = 50, def = 23, spd = 35 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [2042] = {
         name = "Nightsaber",
@@ -434,7 +434,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 65, atk = 36, def = 17, spd = 25 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [2175] = {
         name = "Shadowclaw",
@@ -452,7 +452,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 97, atk = 58, def = 27, spd = 41 },
+        baseStats = { hp = 28, atk = 39, def = 16, spd = 27 },
     },
     [2384] = {
         name = "Starving Mountain Lion",
@@ -470,7 +470,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 137, atk = 85, def = 39, spd = 60 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [2385] = {
         name = "Feral Mountain Lion",
@@ -488,7 +488,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 153, atk = 96, def = 44, spd = 68 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [2406] = {
         name = "Mountain Lion",
@@ -506,7 +506,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 173, atk = 110, def = 51, spd = 78 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [2407] = {
         name = "Hulking Mountain Lion",
@@ -524,7 +524,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 177, atk = 113, def = 52, spd = 80 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [2732] = {
         name = "Ridge Huntress",
@@ -542,7 +542,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 197, atk = 127, def = 58, spd = 90 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [2850] = {
         name = "Broken Tooth",
@@ -560,7 +560,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 193, atk = 124, def = 57, spd = 88 },
+        baseStats = { hp = 28, atk = 39, def = 16, spd = 27 },
     },
     [2961] = {
         name = "Mountain Cougar",
@@ -578,7 +578,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 57, atk = 30, def = 14, spd = 21 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [3035] = {
         name = "Flatland Cougar",
@@ -596,7 +596,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 73, atk = 41, def = 19, spd = 29 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [3121] = {
         name = "Durotar Tiger",
@@ -614,7 +614,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 73, atk = 41, def = 19, spd = 29 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [3241] = {
         name = "Savannah Patriarch",
@@ -632,7 +632,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 105, atk = 63, def = 29, spd = 45 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [3243] = {
         name = "Savannah Highmane",
@@ -650,7 +650,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 93, atk = 55, def = 25, spd = 39 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [3415] = {
         name = "Savannah Huntress",
@@ -668,7 +668,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 89, atk = 52, def = 24, spd = 37 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [3416] = {
         name = "Savannah Matriarch",
@@ -686,7 +686,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 113, atk = 69, def = 32, spd = 49 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [3425] = {
         name = "Savannah Prowler",
@@ -704,7 +704,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 101, atk = 61, def = 28, spd = 43 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [3450] = {
         name = "Defias Companion",
@@ -724,7 +724,7 @@ FS.Creatures_Beasts_Cat = {
         pupDropRate = 0.025,
         pupName = "Defias Companion Kitten",
         moves = {103, 118},
-        baseStats = { hp = 101, atk = 61, def = 28, spd = 43 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [3475] = {
         name = "Echeyakee",
@@ -742,7 +742,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 109, atk = 66, def = 30, spd = 47 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [3566] = {
         name = "Flatland Prowler",
@@ -760,7 +760,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 81, atk = 47, def = 22, spd = 33 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [3619] = {
         name = "Ghost Saber",
@@ -778,7 +778,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 121, atk = 74, def = 34, spd = 53 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4067] = {
         name = "Twilight Runner",
@@ -796,7 +796,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 137, atk = 85, def = 39, spd = 60 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4124] = {
         name = "Needles Cougar",
@@ -814,7 +814,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 153, atk = 96, def = 44, spd = 68 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [4242] = {
         name = "Frostsaber Companion",
@@ -832,7 +832,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 245, atk = 160, def = 73, spd = 114 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [5403] = {
         name = "White Stallion",
@@ -850,7 +850,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 49, atk = 25, def = 12, spd = 17 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [5404] = {
         name = "Black Stallion",
@@ -868,7 +868,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 49, atk = 25, def = 12, spd = 17 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [5766] = {
         name = "Savannah Cub",
@@ -886,7 +886,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 77, atk = 44, def = 20, spd = 31 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [5807] = {
         name = "The Rake",
@@ -904,7 +904,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 85, atk = 50, def = 23, spd = 35 },
+        baseStats = { hp = 28, atk = 39, def = 16, spd = 27 },
     },
     [5828] = {
         name = "Humar the Pridelord",
@@ -922,7 +922,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 178, atk = 111, def = 51, spd = 79 },
+        baseStats = { hp = 28, atk = 39, def = 16, spd = 27 },
     },
     [5865] = {
         name = "Dishu",
@@ -940,7 +940,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 97, atk = 58, def = 27, spd = 41 },
+        baseStats = { hp = 28, atk = 39, def = 16, spd = 27 },
     },
     [6648] = {
         name = "Antilos",
@@ -958,7 +958,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 245, atk = 160, def = 73, spd = 114 },
+        baseStats = { hp = 28, atk = 39, def = 16, spd = 27 },
     },
     [7430] = {
         name = "Frostsaber Cub",
@@ -976,7 +976,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 265, atk = 173, def = 80, spd = 124 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [7431] = {
         name = "Frostsaber",
@@ -994,7 +994,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 269, atk = 176, def = 81, spd = 126 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [7433] = {
         name = "Frostsaber Huntress",
@@ -1012,7 +1012,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 277, atk = 182, def = 83, spd = 130 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [7434] = {
         name = "Frostsaber Pride Watcher",
@@ -1030,7 +1030,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 281, atk = 184, def = 85, spd = 132 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [8882] = {
         name = "Riding Tiger",
@@ -1048,7 +1048,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 49, atk = 25, def = 12, spd = 17 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [10200] = {
         name = "Rak'shiri",
@@ -1066,7 +1066,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 273, atk = 179, def = 82, spd = 128 },
+        baseStats = { hp = 28, atk = 39, def = 16, spd = 27 },
     },
     [10658] = {
         name = "Winna's Kitten",
@@ -1084,7 +1084,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 49, atk = 25, def = 12, spd = 17 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [10737] = {
         name = "Shy-Rotam",
@@ -1102,7 +1102,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 370, atk = 243, def = 112, spd = 174 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [10741] = {
         name = "Sian-Rotam",
@@ -1120,7 +1120,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 370, atk = 243, def = 112, spd = 174 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [10992] = {
         name = "Enraged Panther",
@@ -1138,7 +1138,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 214, atk = 136, def = 63, spd = 97 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [11360] = {
         name = "Zulian Cub",
@@ -1158,7 +1158,7 @@ FS.Creatures_Beasts_Cat = {
         pupDropRate = 0.025,
         pupName = "Zulian Cub Kitten",
         moves = {103, 118},
-        baseStats = { hp = 285, atk = 187, def = 86, spd = 134 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [11361] = {
         name = "Zulian Tiger",
@@ -1178,7 +1178,7 @@ FS.Creatures_Beasts_Cat = {
         pupDropRate = 0.15,
         pupName = "Zulian Tiger Kitten",
         moves = {103, 118},
-        baseStats = { hp = 370, atk = 243, def = 112, spd = 174 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [11365] = {
         name = "Zulian Panther",
@@ -1198,7 +1198,7 @@ FS.Creatures_Beasts_Cat = {
         pupDropRate = 0.15,
         pupName = "Zulian Panther Kitten",
         moves = {103, 118},
-        baseStats = { hp = 370, atk = 243, def = 112, spd = 174 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [11957] = {
         name = "Great Cat Spirit",
@@ -1216,7 +1216,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 285, atk = 187, def = 86, spd = 134 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [12358] = {
         name = "Riding Striped Frostsaber",
@@ -1234,7 +1234,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 49, atk = 25, def = 12, spd = 17 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [12359] = {
         name = "Riding Spotted Frostsaber",
@@ -1252,7 +1252,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 49, atk = 25, def = 12, spd = 17 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [12360] = {
         name = "Riding Striped Nightsaber",
@@ -1270,7 +1270,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 49, atk = 25, def = 12, spd = 17 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [12677] = {
         name = "Shadumbra",
@@ -1288,7 +1288,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 157, atk = 99, def = 46, spd = 70 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [14222] = {
         name = "Araga",
@@ -1306,7 +1306,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 185, atk = 118, def = 54, spd = 84 },
+        baseStats = { hp = 28, atk = 39, def = 16, spd = 27 },
     },
     [14555] = {
         name = "Swift Mistsaber",
@@ -1324,7 +1324,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 49, atk = 25, def = 12, spd = 17 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [14556] = {
         name = "Swift Frostsaber",
@@ -1342,7 +1342,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 49, atk = 25, def = 12, spd = 17 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [14602] = {
         name = "Swift Stormsaber",
@@ -1360,7 +1360,7 @@ FS.Creatures_Beasts_Cat = {
         allowObservation = true,
         isInstanceOnly = false,
         moves = {103, 118},
-        baseStats = { hp = 49, atk = 25, def = 12, spd = 17 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [15068] = {
         name = "Zulian Guardian",
@@ -1380,7 +1380,7 @@ FS.Creatures_Beasts_Cat = {
         pupDropRate = 0.15,
         pupName = "Zulian Guardian Kitten",
         moves = {103, 118},
-        baseStats = { hp = 370, atk = 243, def = 112, spd = 174 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [15101] = {
         name = "Zulian Prowler",
@@ -1400,7 +1400,7 @@ FS.Creatures_Beasts_Cat = {
         pupDropRate = 0.025,
         pupName = "Zulian Prowler Kitten",
         moves = {103, 118},
-        baseStats = { hp = 285, atk = 187, def = 86, spd = 134 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
     [15333] = {
         name = "Silicate Feeder",
@@ -1420,6 +1420,6 @@ FS.Creatures_Beasts_Cat = {
         pupDropRate = 0.025,
         pupName = "Silicate Feeder Kitten",
         moves = {103, 118},
-        baseStats = { hp = 265, atk = 173, def = 80, spd = 124 },
+        baseStats = { hp = 25, atk = 35, def = 15, spd = 25 },
     },
 }
