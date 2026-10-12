@@ -299,7 +299,30 @@
 
 ---
 
-## 📍 Phase 21: Beast Taxonomy Refinement & Elemental Saurians (Pending ⏳)
+## 📍 Phase 21: Combat Engine Architecture, Zero-Drift Stats & Taint Fortification (In Progress 🔄)
+* [x] **Combat Engine Canon & Mechanics SSOT (`Docs/COMBAT_ENGINE_STATS_AND_MECHANICS.md`)**:
+  * Unified all combat rules, stat algorithms, action-gauge speed lapping, 5-layer elemental resistances, and player class passives into a single authoritative canon.
+* [x] **Zero-Drift Proportional Base Stat Algorithm**:
+  * Formulated the Largest Remainder Method (Hamilton-Hare) guaranteeing exact, drift-free distribution to target budgets ($T = 100$ for Normal/Elite/Boss; $T = 110$ for Rare/Rare Elite).
+  * Strict classification gating: Dungeon and raid bosses (`classification == 3`) strictly adhere to $T = 100$; wild rare spawns (`classification in (2, 4)`) receive $T = 110$.
+* [x] **Layer 5 Defense Architecture (Static Slices vs. Procced Wards)**:
+  * **Static Slices**: Warrior (Physical Armor, +5%/rank), Rogue (Miss/Evasion, +5%/rank), Hunter (Nature Resist, +5%/rank), and Druid (Omni-Resist across all 6 magic schools, +2%/rank).
+  * **Procced Wards**: Mage, Shaman, Warlock, Priest, and Paladin (Proc chance $5\% \times \text{Rank}$, Mitigation $10\% \times \text{Rank}$). Evaluated independently per direct strike and **independently rolled on every single DoT tick**.
+  * **Mage Chilling Tempo & Frost Counterplay**: 5% off / 10% def chill proc (-50% SPD) countered by target Frost Resistance % via **Direct Roll Subtraction** ($\max(0\%, \text{Base} - \text{Resist})$).
+  * **Druid Ecliptic Tides**: Role-driven Solar/Lunar pendulum with early proc rolls ($5\% \times \text{pts}$) and automatic 100% discharge at cap.
+* [x] **Taint Purge & Diagnostic Watcher (`Core/TaintWatcher.lua`)**:
+  * Purged obsolete `Core/InstancePupDrops.lua` CLEU event registration, resolving all Blizzard UI tainted action errors.
+  * Added `Core/TaintWatcher.lua` (loaded first in TOC) and `/fstaint` diagnostics; verified 100% clean startup and interaction.
+* [ ] **Pipeline Tooling & Creature Regeneration (`Tools/build_creatures.py`)**:
+  * Update `calculate_stats()` to execute the Largest Remainder algorithm and regenerate all 35 creature files in `Data/Creatures/`.
+* [ ] **Combat Engine Execution (`Core/BattleEngine.lua` & `Core/StatEngine.lua`)**:
+  * Implement the Action-Gauge 0–100 speed velocity and lapping queue.
+  * Implement dynamic Layer 1–5 resistance derivation and procced ward evaluation (including independent per-tick DoT rolls).
+  * Implement Druid Ecliptic Tides pendulum and Priest Divine Grace battle frame tray integration.
+
+---
+
+## 📍 Phase 22: Beast Taxonomy Refinement & Elemental Saurians (Pending ⏳)
 * [ ] **Discrete Beast Family Stratification**:
   * Formalize **Kodos** and **Tallstriders** as strictly decoupled, distinct families within the Beast genus across all database tables, dietary rules, and family movepools.
   * Establish **Thunder Lizards** as their own dedicated saurian family (`Thunder Lizard` / `Lizard`) within Beasts.
@@ -315,12 +338,13 @@
 
 ---
 
-## 📍 Phase 22: Future Expansions & Social Leagues (Pending ⏳)
+## 📍 Phase 23: Future Expansions & Social Leagues (Pending ⏳)
 * [ ] **Safari Outpost & Regional League System**: Implementation of the 5-Tier Faction-Parallel circuit, gym leaders, and 3D Field Guide Badge Case (`Docs/SAFARI_OUTPOST_SYSTEM.md`).
   * **Outpost Defeat Lockout (Anti-Farm Protection)**: Once an Outpost Leader / Gym is bested and awards its regional badge/crest, the outpost is locked against battle farming; subsequent interactions provide congratulatory dialogue and route the player to the next regional tier.
 * [ ] **PvP Safari Tournaments & Guild Ladders**: Cross-faction companion duel tournaments and leaderboards.
 * [ ] **Safari Attunement Quests**: Epic class and race-specific questlines to earn Master attunement and legendary nets.
 * [ ] **World Boss Safari Raids**: Instanced raid encounter mechanics for legendary apex creatures.
+
 
 
 

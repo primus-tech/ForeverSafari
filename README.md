@@ -121,12 +121,13 @@ Companions progress through bonding, feeding, and battlefield survival rather th
 * **Trainer Companion Protection**: Cages and snares cannot be thrown at trainer-owned pets (`"You cannot capture another hunter's companion!"`).
 * **Safari Token Economy**: Roaming Humanoid AI Trainers are the primary open-world source of **Safari Tokens** (6–18+ tokens per victory, scaling with level and faction). Wild creature battles yield family nourishment diet items, attunement bonding, and quest progress, but do not drop tokens.
 
-### 6. 100/110 Stat Budget Formula & 2-Move Starter Loadout
-* **Normalized Base Stat Budgets**:
-  * **Non-Rare Species**: Exactly **100 base stat points** distributed across HP, Attack, Defense, and Speed.
-  * **Rare & Apex Species**: Exactly **110 base stat points** distributed across HP, Attack, Defense, and Speed.
-* **Elemental Type Multipliers**: Multiplied by creature type passive modifiers (e.g. Beast 1.1x Attack, Mechanical 1.15x Defense, Flying 1.15x Speed).
-* **2 Starting Abilities**: Every wild companion begins with exactly **2 starting moves** (Slot 1: Basic Attack, Slot 2: Family Signature/Utility Move). Slots 3 & 4 remain empty until unlocked and trained via the Beast Training Grimoire at higher Attunement Ranks.
+### 6. Normalized Base Stat Budgets (Largest Remainder Method) & Action-Gauge Combat
+* **Zero-Drift Base Stat Budgets**:
+  * **Standard Species & Bosses**: Exactly **100 base stat points** distributed across HP, Attack, Defense, and Speed using the Largest Remainder (Hamilton-Hare) algorithm.
+  * **Rare & Apex Wild Species**: Exactly **110 base stat points** strictly reserved for authentic wild rare spawns (`classification in (2, 4)`). Dungeon and raid bosses remain at 100 to prevent boss stat creep.
+* **Action-Gauge Speed Lapping (0–100 Meter)**: Replaces turn ping-pong with dynamic speed velocity. Reaching 100 meter triggers an action, allowing agile beasts to achieve 2:1 speed lapping over slower foes while enforcing speed scarcity.
+* **5-Layer Elemental Resistances**: Universal 5% baseline + Native Element Affinities (+10%–15%) + Archetype traits + Attunement growth (+2%–10%) + Player Class Defenses.
+* **2 Starting Abilities**: Every wild companion begins with exactly **2 starting moves** (Slot 1: Basic Attack, Slot 2: Defensive/Utility). Slots 3 & 4 unlock through higher Attunement Ranks.
 
 ### 7. Evolution Catalysts & Greed-Only Boss Loot
 * Dungeon bosses drop rare **Evolution Catalysts** (such as *[Shadowfang Essence]* from SFK or *[Hydra Bile]* from BFD).
@@ -207,18 +208,20 @@ Companions progress through bonding, feeding, and battlefield survival rather th
 * **Secondary OpenMail Window**: Dedicated `OpenMail` window attached to the side, styled with Nesingwary gold/dark theme, antique parchment letter body, and a parcel attachment tray with tooltips and one-click unbox/claim actions.
 
 ### 15. Player Class Passives & Combat Mechanics
-* **Authentic Class Synergy**: Every player class grants an authentic, persistent tactical bonus to all active companions owned by that character.
-* **Attunement Rank Scaling**: All bonus percentages scale linearly with companion Attunement Rank: **1/5 at Rank 1, 2/5 at Rank 2 ... up to full 5/5 values at Rank 5**.
-* **Strict Rounding**: All percentage calculations and thresholds strictly round up via `math.ceil()`.
-  * 🛡️ **Warrior (Marshal's Tenacity)**: Physical damage taken reduced by **5% per Rank** (up to 25% at Rank V).
-  * 🛡️ **Paladin (Aura of Light)**: **5% per Rank** of incoming damage converted back into healing HP (up to 25% at Rank V).
-  * ⚡ **Shaman (Primal Rebirth)**: **10% per Rank chance** (up to 50% at Rank V) to revive at 50% HP on companion knockout.
-  * 🔮 **Mage (Arcane Celerity & Ward)**: Halves attacker speed for `Rank` turns; **5% per Rank** (up to 25% at Rank V) non-physical damage resistance.
-  * 🗡️ **Rogue (Shadow Evasion)**: **+5% per Rank** (up to +25% at Rank V) opponent miss chance.
-  * ✝️ **Priest (Divine Grace)**: Active `[Divine Grace]` emergency heal console button (1–5 uses per battle, heals **5% per Rank**, up to 25% Max HP).
-  * 🏹 **Hunter (Pathfinder's Mastery)**: **+5% per Rank** (up to +25% at Rank V) baseline Attack and Defense stats.
-  * 🍃 **Druid (Ecliptic Tides)**: Celestial Tug-of-War pendulum. Offensive moves build Solar; Defensive/Healing/Utility build Lunar (cap equal to companion Rank, 1-5). Siphons points from the opposing side when full. 5% per point chance on cast to trigger a Surge (Solar: Cleanses debuff + HoT; Lunar: Bramble damage shield reflecting Nature damage). Auto-discharges with 100% chance upon reaching full capacity on either side. Resets both sides to 0 on trigger.
-  * 🔮 **Warlock (Curse of Suppression)**: Reduces opposed player class bonuses by **10% per Rank** (up to 50% at Rank V) in trainer battles and duels.
+* **Authentic Class Synergy**: Every player class grants an authentic tactical identity and defense layer scaled dynamically to active companion Attunement Rank (I–V) using strict `math.ceil()` arithmetic.
+* **Static Slices (Permanent Innate Defenses)**:
+  * 🛡️ **Warrior (Marshal's Tenacity)**: **+5% per Rank** Physical Damage Reduction (**5%** at Rank I $\to$ **25%** at Rank V).
+  * 🗡️ **Rogue (Shadow Evasion)**: **+5% per Rank** Enemy Miss Chance (**5%** at Rank I $\to$ **25%** at Rank V).
+  * 🏹 **Hunter (Aspect of the Wild & Pathfinder)**: **+5% per Rank** Nature Resistance (**5%** at Rank I $\to$ **25%** at Rank V) plus +5%–25% base stat scaling.
+  * 🍃 **Druid (Gift of the Wild & Ecliptic Tides)**: **+2% per Rank** Pure Static Omni-Resist across all 6 magic schools (**2%** at Rank I $\to$ **10%** at Rank V) plus the active **Ecliptic Tides** celestial pendulum (Solar cleanse/HoT and Lunar Brambles damage reflection).
+* **Procced Wards (Mystic Reactive Elemental Absorption)**:
+  * Trigger: **5% per Rank proc chance** (5%–25%) to absorb **10% per Rank damage** (10%–50%) on incoming strikes.
+  * **Per-Tick DoT Evaluation**: Wards roll **independently on every periodic DoT tick** (resisting tick 1, taking full damage on tick 2, etc.).
+  * 🔮 **Mage (Arcane Ward & Chilling Tempo)**: Arcane/Fire/Frost Ward + Chilling Tempo (5% off / 10% def chill proc countering speed) with **Direct Roll Subtraction** against target Frost Resistance %.
+  * ⚡ **Shaman (Elemental Shielding & Primal Rebirth)**: Fire/Frost/Nature Ward + `RollAnkh()` flat 50% chance to resurrect companion once per battle.
+  * 💀 **Warlock (Fel Infusion & Curse of Suppression)**: Shadow/Fire Ward + 50% suppression of opposed passives in duels/battles.
+  * 🕊️ **Priest (Ward of the Heavens & Divine Grace)**: Shadow/Holy Ward + active `[Divine Grace]` emergency heal console button restoring 25% Max HP.
+  * ⚔️ **Paladin (Aegis of Light & Aura of Light)**: Physical/Holy Ward + 5%–25% damage-to-healing conversion.
 
 ### 16. Moonglade Cenarion Nursery & Co-op Breeding Program
 * **Moonglade Sacred Sanctuary**: Gated at the Cenarion Circle in Moonglade (Nighthaven) via NPC gossip or `/fsnursery`.
@@ -249,6 +252,7 @@ Companions progress through bonding, feeding, and battlefield survival rather th
 * `/fsbattle` — Engage targeted creature in turn-based combat
 * `/fsduel` — Challenge targeted player to a companion duel
 * `/safari tokens` — Check your current Safari Token balance
+* `/fstaint` — Run live Blizzard UI taint diagnostics on gossip, bags, and secure frames
 * `/safari reset` — Reset all progress back to a fresh new recruit
 
 ---
