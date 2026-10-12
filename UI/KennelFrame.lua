@@ -703,6 +703,12 @@ local function SetupBankIntegration()
             EnsureSideTab()
             HookNativeBankTabs()
             SchedulePositionUpdate()
+            if Kennel.openReserveOnBankShow then
+                Kennel.openReserveOnBankShow = false
+                C_Timer.After(0.05, function()
+                    Kennel:ActivateReserve()
+                end)
+            end
         end)
     end
 
