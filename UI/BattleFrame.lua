@@ -516,7 +516,7 @@ function BF:UpdateModels()
         if frame.PlayerModel.SetDisplayInfo then
             pcall(frame.PlayerModel.SetDisplayInfo, frame.PlayerModel, playerDisplay)
         elseif frame.PlayerModel.SetCreatureByDisplayID then
-            pcall(frame.PlayerModel:SetCreatureByDisplayID, frame.PlayerModel, playerDisplay)
+            pcall(frame.PlayerModel.SetCreatureByDisplayID, frame.PlayerModel, playerDisplay)
         end
         pcall(function()
             if frame.PlayerModel.SetCustomCamera then frame.PlayerModel:SetCustomCamera(0) end
