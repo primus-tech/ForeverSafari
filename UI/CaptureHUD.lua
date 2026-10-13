@@ -159,13 +159,13 @@ function HUD:Initialize()
             if outpost then
                 local badge = outpost.badge or {}
                 local isDefeated = ns.OutpostDB and ns.OutpostDB:IsOutpostDefeated(outpost.id)
-                local msg = string.format("|cffffd100[Outpost League]|r |cffffffff%s|r (%s, Tier %d): \"%s\" |cff00ff99[Badge: %s, Squad: %d Pets]|r%s",
+                local msg = string.format("|cffffd100[Safari Guide]|r |cffffffff%s|r (%s, Tier %d): \"%s\" |cff00ff99[Badge: %s, Squad: %d Pets]|r%s",
                     outpost.name, outpost.location or outpost.zone, outpost.tier or 1,
-                    outpost.introQuote or "Challenge me!", badge.name or "Outpost Badge",
+                    outpost.introQuote or "Challenge me!", badge.name or "Regional Badge",
                     #(outpost.team or {}), isDefeated and " |cff00ff00[CLEARED]|r" or "")
                 DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. msg)
                 if ForeverSafari.Toast and ForeverSafari.Toast.ShowReward then
-                    ForeverSafari.Toast:ShowReward(string.format("Outpost: %s", outpost.name), string.format("Badge: [%s] (%s)", badge.name or "Badge", isDefeated and "Cleared" or "Undefeated"))
+                    ForeverSafari.Toast:ShowReward(string.format("Guide: %s", outpost.name), string.format("Badge: [%s] (%s)", badge.name or "Badge", isDefeated and "Cleared" or "Undefeated"))
                 end
                 PlaySound(856)
             end
@@ -197,12 +197,12 @@ function HUD:Initialize()
                 local badge = outpost.badge or {}
                 local isDefeated = ns.OutpostDB and ns.OutpostDB:IsOutpostDefeated(outpost.id)
                 GameTooltip:SetOwner(self, "ANCHOR_TOP")
-                GameTooltip:AddLine(string.format("📜 Outpost Intelligence: %s", outpost.name), 1, 0.82, 0)
-                GameTooltip:AddLine(string.format("Title: |cffffffff%s|r", outpost.title or "<Stable Master>"), 0.8, 0.9, 1)
+                GameTooltip:AddLine(string.format("📜 Guide Intelligence: %s", outpost.name), 1, 0.82, 0)
+                GameTooltip:AddLine(string.format("Title: |cffffffff%s|r", outpost.title or "<Safari Guide>"), 0.8, 0.9, 1)
                 GameTooltip:AddLine(string.format("Location: |cffffcc00%s (%s)|r", outpost.location or outpost.zone, outpost.zone), 0.8, 0.9, 1)
-                GameTooltip:AddLine(string.format("League Circuit: |cff00ccffTier %d • Attunement Rank %s (%s)|r", outpost.tier or 1, outpost.rankRoman or "I", outpost.rankTitle or "Circuit"), 0.8, 0.9, 1)
+                GameTooltip:AddLine(string.format("Guide Circuit: |cff00ccffTier %d • Attunement Rank %s (%s)|r", outpost.tier or 1, outpost.rankRoman or "I", outpost.rankTitle or "Circuit"), 0.8, 0.9, 1)
                 GameTooltip:AddLine(" ")
-                GameTooltip:AddLine(string.format("Regional Trophy: |cffffd100[%s]|r", badge.name or "Outpost Badge"), 1, 0.82, 0)
+                GameTooltip:AddLine(string.format("Regional Trophy: |cffffd100[%s]|r", badge.name or "Regional Badge"), 1, 0.82, 0)
                 if badge.desc then
                     GameTooltip:AddLine(string.format("  \"%s\"", badge.desc), 0.7, 0.7, 0.7, true)
                 end
@@ -211,7 +211,7 @@ function HUD:Initialize()
                 GameTooltip:AddLine(string.format("Bounty: |cff00ff99+%d Safari Tokens & +75 Pet Attunement|r", outpost.tokenReward or 20))
                 if outpost.team and #outpost.team > 0 then
                     GameTooltip:AddLine(" ")
-                    GameTooltip:AddLine("Leader Squad Roster:", 1, 0.82, 0)
+                    GameTooltip:AddLine("Guide Squad Roster:", 1, 0.82, 0)
                     for _, pet in ipairs(outpost.team) do
                         GameTooltip:AddLine(string.format("  • %s (Rank %s %s)", pet.name, pet.rankRoman or outpost.rankRoman or "I", pet.family or pet.element or "Beast"), 0.9, 0.9, 0.9)
                     end
@@ -261,6 +261,14 @@ function HUD:Initialize()
         end
         if frame.BattleBtn.isOutpostMode then
             local outpost = frame.BattleBtn.outpostData
+            if outpost and ns.OutpostDB then
+                local canChallenge, reason = ns.OutpostDB:CanChallengeGuide(outpost, "target")
+                if not canChallenge then
+                    UIErrorsFrame:AddMessage(reason or "Challenge Locked", 1.0, 0.2, 0.2, 1.0)
+                    DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444" .. (reason or "Challenge Locked") .. "|r")
+                    return
+                end
+            end
             if ForeverSafari.BattleEngine and outpost then
                 ForeverSafari.BattleEngine:StartOutpostBattle("target", outpost)
             end
@@ -274,16 +282,20 @@ function HUD:Initialize()
         if frame.BattleBtn.isOutpostMode then
             local outpost = frame.BattleBtn.outpostData
             local isDefeated = outpost and ns.OutpostDB and ns.OutpostDB:IsOutpostDefeated(outpost.id)
+            local canChallenge, lockReason = outpost and ns.OutpostDB and ns.OutpostDB:CanChallengeGuide(outpost, "target")
             local badge = outpost and outpost.badge or {}
             GameTooltip:SetOwner(self, "ANCHOR_TOP")
-            GameTooltip:AddLine(isDefeated and "⚔️ Rematch Outpost Leader" or "⚔️ Challenge Outpost Leader", 1, 0.82, 0)
-            GameTooltip:AddLine(string.format("Challenge %s to a sanctioned 3D turn-based Safari Outpost match.", outpost and outpost.name or "Leader"), 1, 1, 1, true)
+            GameTooltip:AddLine(isDefeated and "⚔️ Rematch Guide" or "⚔️ Challenge Guide", 1, 0.82, 0)
+            GameTooltip:AddLine(string.format("Challenge %s to a sanctioned 3D turn-based Safari Guide match.", outpost and outpost.name or "Guide"), 1, 1, 1, true)
             GameTooltip:AddLine(" ")
-            GameTooltip:AddLine("Outpost Battle Rules:", 0, 1, 0.6)
+            GameTooltip:AddLine("Guide Battle Rules:", 0, 1, 0.6)
             GameTooltip:AddLine(string.format("• Defeat their entire %d-companion squad (Attunement Rank %s)", outpost and outpost.team and #outpost.team or 2, outpost and (outpost.rankRoman or "I") or "I"), 0.8, 0.9, 1)
-            GameTooltip:AddLine(string.format("• First victory claims the |cffffd100[%s]|r!", badge.name or "Outpost Badge"), 1, 0.82, 0)
+            GameTooltip:AddLine(string.format("• First victory claims the |cffffd100[%s]|r!", badge.name or "Regional Badge"), 1, 0.82, 0)
             GameTooltip:AddLine(string.format("• Awards +%d Safari Tokens & +75 Attunement", outpost and outpost.tokenReward or 20), 0.8, 0.9, 1)
-            if isDefeated then
+            if not canChallenge and not isDefeated then
+                GameTooltip:AddLine(" ")
+                GameTooltip:AddLine(string.format("🔒 Requirement: %s", lockReason or "Locked"), 1, 0.2, 0.2, true)
+            elseif isDefeated then
                 GameTooltip:AddLine("• |cff00ff00[Already Cleared - Friendly Practice Rematch]|r", 0, 1, 0)
             end
             GameTooltip:Show()
@@ -433,31 +445,36 @@ function HUD:OnTargetChanged()
 end
 
 function HUD:RenderOutpostMode(outpost)
-    frame.Title:SetText("|cffffd100Forever Safari|r Outpost League")
+    frame.Title:SetText("|cffffd100Forever Safari|r Guide Circuit")
 
     local isDefeated = ns.OutpostDB and ns.OutpostDB:IsOutpostDefeated(outpost.id)
+    local canChallenge, lockReason = ns.OutpostDB and ns.OutpostDB:CanChallengeGuide(outpost, "target")
     local badge = outpost.badge or {}
-    local badgeName = badge.name or "Outpost Badge"
+    local badgeName = badge.name or "Regional Badge"
     local badgeIcon = badge.icon or "Interface\\Icons\\INV_Misc_MonsterClaw_04"
     local tokenReward = outpost.tokenReward or (15 + (outpost.tier or 1) * 5)
     local teamSize = (outpost.team and #outpost.team) or 2
 
     frame.TargetText:SetText(string.format("|cffffffff%s|r  |cffffcc00<%s>|r  |cff00ccff[Tier %d • %s]|r",
-        outpost.name, outpost.title or "Stable Master", outpost.tier or 1, outpost.location or outpost.zone))
+        outpost.name, outpost.title or "Safari Guide", outpost.tier or 1, outpost.location or outpost.zone))
 
     if isDefeated then
         frame.RadarBar:SetStatusBarColor(0.1, 0.8, 0.4)
         frame.RadarBar:SetMinMaxValues(0, 100)
         frame.RadarBar:SetValue(100)
         frame.RadarBar.Text:SetText(string.format("|cff00ff99✅ Cleared • [%s] Earned!|r", badgeName))
-
-        frame.InfoText:SetText(string.format("Outpost Conquered • |cffffd100[%s]|r Registered in League Records", badgeName))
+        frame.InfoText:SetText(string.format("Guide Conquered • |cffffd100[%s]|r Registered in League Records", badgeName))
+    elseif not canChallenge then
+        frame.RadarBar:SetStatusBarColor(0.8, 0.2, 0.2)
+        frame.RadarBar:SetMinMaxValues(0, 100)
+        frame.RadarBar:SetValue(100)
+        frame.RadarBar.Text:SetText("|cffff4444🔒 Challenge Locked|r")
+        frame.InfoText:SetText(string.format("|cffff4444%s|r", lockReason or "Challenge Locked"))
     else
         frame.RadarBar:SetStatusBarColor(1.0, 0.75, 0.0)
         frame.RadarBar:SetMinMaxValues(0, 100)
         frame.RadarBar:SetValue(100)
-        frame.RadarBar.Text:SetText(string.format("|cffffd100⚔️ Outpost Battle • Prize: [%s]|r", badgeName))
-
+        frame.RadarBar.Text:SetText(string.format("|cffffd100⚔️ Guide Battle • Prize: [%s]|r", badgeName))
         frame.InfoText:SetText(string.format("Squad: |cffffd100%d Companions (Rank %s)|r  •  Prize: |cff00ff99+%d Tokens & [%s]|r",
             teamSize, outpost.rankRoman or "I", tokenReward, badgeName))
     end
@@ -468,14 +485,14 @@ function HUD:RenderOutpostMode(outpost)
         frame.ModeBadge.Text:SetText(isDefeated and "|cff00ff00Cleared|r" or string.format("|cffffd100Tier %d|r", outpost.tier or 1))
     end
 
-    -- Action Button -> Inspect / Scout Leader
+    -- Action Button -> Inspect / Scout Guide
     frame.ActionBtn:Enable()
-    frame.ActionBtn:SetText("🔍 LEADER")
+    frame.ActionBtn:SetText("🔍 GUIDE")
     frame.ActionBtn.isTrainerMode = false
     frame.ActionBtn.isOutpostMode = true
     frame.ActionBtn.outpostData = outpost
 
-    -- Battle Button -> Challenge Outpost Leader
+    -- Battle Button -> Challenge Guide
     if frame.BattleBtn then
         frame.BattleBtn.isOutpostMode = true
         frame.BattleBtn.outpostData = outpost
@@ -487,6 +504,9 @@ function HUD:RenderOutpostMode(outpost)
         elseif (activeMob.currentHP or 0) <= 0 then
             frame.BattleBtn:Disable()
             frame.BattleBtn:SetText("FAINTED")
+        elseif not canChallenge and not isDefeated then
+            frame.BattleBtn:Disable()
+            frame.BattleBtn:SetText("🔒 LOCKED")
         else
             frame.BattleBtn:Enable()
             if isDefeated then

@@ -53,6 +53,15 @@ function TE:IsHumanoidTrainer(unit)
     return false
 end
 
+function TE:GetTierForLevel(level)
+    level = tonumber(level) or 10
+    if level >= 56 then return 5
+    elseif level >= 46 then return 4
+    elseif level >= 36 then return 3
+    elseif level >= 16 then return 2
+    else return 1 end
+end
+
 function TE:GenerateTrainerMatch(unit)
     unit = unit or "target"
     local unitName = UnitName(unit)
@@ -63,6 +72,8 @@ function TE:GenerateTrainerMatch(unit)
 
     local level = UnitLevel(unit)
     if isSecret(level) or not level or level <= 0 or type(level) ~= "number" then level = 10 end
+
+    local tier = TE:GetTierForLevel(level)
 
     local zoneName = GetZoneText and GetZoneText()
     if isSecret(zoneName) or not zoneName then zoneName = "Azeroth" end
@@ -80,12 +91,14 @@ function TE:GenerateTrainerMatch(unit)
     local pool = archetype.pool or {}
     local team = {}
 
+    local rankPoints = (tier - 1) * 300
+
     for i = 1, teamSize do
         local templateIdx = ((i - 1) % #pool) + 1
         local petTpl = pool[templateIdx] or pool[1]
 
         local baseStats = petTpl.baseStats or { hp = 40, atk = 22, def = 18, spd = 20 }
-        local stats = SE:CalculateStats(petTpl.element or "Beast", 0, false, baseStats)
+        local stats = SE:CalculateStats(petTpl.element or "Beast", rankPoints, false, baseStats)
 
         local companion = {
             id = string.format("npc_trainer_pet_%d_%d", time(), i),
@@ -96,7 +109,6 @@ function TE:GenerateTrainerMatch(unit)
             element = petTpl.element or "Beast",
             creatureType = petTpl.element or "Beast",
             displayId = petTpl.displayId or 903,
-            level = level,
             maxHP = stats.maxHP,
             currentHP = stats.maxHP,
             hp = stats.maxHP,
@@ -107,7 +119,9 @@ function TE:GenerateTrainerMatch(unit)
             speed = stats.spd,
             spd = stats.spd,
             moves = { petTpl.moves[1] or 101, petTpl.moves[2] or 102 },
-            attunementRank = 1,
+            attunementRank = tier,
+            rank = tier,
+            rankRoman = C.ATTUNEMENT_RANKS[tier] and C.ATTUNEMENT_RANKS[tier].roman or "I",
             isTrainerPet = true,
         }
 
@@ -118,6 +132,7 @@ function TE:GenerateTrainerMatch(unit)
         isTrainer = true,
         trainerName = unitName,
         trainerTitle = archetype.title or "Safari Rival",
+        tier = tier,
         introQuote = archetype.intro or "Let's battle!",
         defeatQuote = archetype.defeat or "Well played...",
         tokenReward = (archetype.tokenReward or 8) + math.floor(level / 5),

@@ -1,10 +1,13 @@
 --[[
-    Forever Safari: Data - Outpost League & Stable Masters (OutpostDB.lua)
-    Canonical registry of all 54 authentic World of Warcraft Stable Masters
-    stationed across Azeroth, structured into a 5-tier regional Safari Outpost League.
-    Each Outpost Leader features authentic Wowhead NPC IDs, regional badges,
-    Attunement Ranks (Rank I to Rank V - Level Free!), thematic companion squads,
-    and interactive turn-based challenge mechanics.
+    Forever Safari: Data - Outpost League & Guides (OutpostDB.lua)
+    Canonical registry of all 55 authentic World of Warcraft Stable Masters
+    and Safari Outpost Guides stationed across Azeroth.
+    Structured into a 5-tier regional Safari Outpost Guide League.
+    - Tier 1 Guides: 1 pet @ Rank I attunement
+    - Tier 2 Guides: 2 pets @ Rank II attunement
+    - Tier 3 Guides: 3 pets @ Rank III attunement
+    - Tier 4 Guides: 4 pets @ Rank IV attunement
+    - Tier 5 Guides: 4 pets @ Rank V attunement
 --]]
 
 local addonName, ns = ...
@@ -41,7 +44,7 @@ end
 
 OutpostDB.OUTPOSTS = {
     [9980] = {
-        id = "outpost_9980_shelby_stoneflint",
+        id = "guide_9980_shelby_stoneflint",
         npcId = 9980,
         name = "Shelby Stoneflint",
         title = "Stable Master",
@@ -73,20 +76,10 @@ OutpostDB.OUTPOSTS = {
                 baseStats = { hp = 44, atk = 18, def = 24, spd = 14 },
                 moves = { 108, 102 },
             },
-            {
-                name = "Snow Leopard",
-                family = "Cat",
-                element = "Beast",
-                displayId = 11454,
-                rank = 1,
-                rankRoman = "I",
-                baseStats = { hp = 36, atk = 24, def = 16, spd = 24 },
-                moves = { 103, 107 },
-            },
         },
     },
     [9987] = {
-        id = "outpost_9987_shoja_my",
+        id = "guide_9987_shoja_my",
         npcId = 9987,
         name = "Shoja'my",
         title = "Stable Master",
@@ -118,26 +111,16 @@ OutpostDB.OUTPOSTS = {
                 baseStats = { hp = 40, atk = 22, def = 22, spd = 16 },
                 moves = { 101, 501 },
             },
-            {
-                name = "Dreadmaw Crocolisk",
-                family = "Crocolisk",
-                element = "Aquatic",
-                displayId = 1386,
-                rank = 1,
-                rankRoman = "I",
-                baseStats = { hp = 44, atk = 20, def = 22, spd = 14 },
-                moves = { 401, 1005 },
-            },
         },
     },
     [6749] = {
-        id = "outpost_6749_erma",
+        id = "guide_6749_erma",
         npcId = 6749,
         name = "Erma",
         title = "Stable Master",
         zone = "Elwynn Forest",
         location = "Goldshire",
-        faction = "Neutral",
+        faction = "Alliance",
         tier = 1,
         rank = 1,
         rankRoman = "I",
@@ -163,20 +146,10 @@ OutpostDB.OUTPOSTS = {
                 baseStats = { hp = 38, atk = 22, def = 18, spd = 20 },
                 moves = { 101, 104 },
             },
-            {
-                name = "Forest Boar",
-                family = "Boar",
-                element = "Beast",
-                displayId = 138623,
-                rank = 1,
-                rankRoman = "I",
-                baseStats = { hp = 42, atk = 20, def = 22, spd = 16 },
-                moves = { 108, 107 },
-            },
         },
     },
     [10050] = {
-        id = "outpost_10050_seikwa",
+        id = "guide_10050_seikwa",
         npcId = 10050,
         name = "Seikwa",
         title = "Stable Master",
@@ -208,20 +181,10 @@ OutpostDB.OUTPOSTS = {
                 baseStats = { hp = 38, atk = 22, def = 16, spd = 24 },
                 moves = { 101, 202 },
             },
-            {
-                name = "Mulgore Plainstalker",
-                family = "Wolf",
-                element = "Beast",
-                displayId = 903,
-                rank = 1,
-                rankRoman = "I",
-                baseStats = { hp = 40, atk = 22, def = 18, spd = 20 },
-                moves = { 101, 104 },
-            },
         },
     },
     [10051] = {
-        id = "outpost_10051_seriadne",
+        id = "guide_10051_seriadne",
         npcId = 10051,
         name = "Seriadne",
         title = "Stable Master",
@@ -253,20 +216,10 @@ OutpostDB.OUTPOSTS = {
                 baseStats = { hp = 36, atk = 25, def = 16, spd = 23 },
                 moves = { 103, 107 },
             },
-            {
-                name = "Webwood Lurker",
-                family = "Spider",
-                element = "Beast",
-                displayId = 382,
-                rank = 1,
-                rankRoman = "I",
-                baseStats = { hp = 38, atk = 20, def = 18, spd = 24 },
-                moves = { 501, 502 },
-            },
         },
     },
     [10055] = {
-        id = "outpost_10055_morganus",
+        id = "guide_10055_morganus",
         npcId = 10055,
         name = "Morganus",
         title = "Stable Master",
@@ -298,20 +251,10 @@ OutpostDB.OUTPOSTS = {
                 baseStats = { hp = 35, atk = 24, def = 14, spd = 27 },
                 moves = { 202, 301 },
             },
-            {
-                name = "Plagued Scavenger",
-                family = "Undead",
-                element = "Undead",
-                displayId = 2402,
-                rank = 1,
-                rankRoman = "I",
-                baseStats = { hp = 42, atk = 22, def = 18, spd = 18 },
-                moves = { 301, 101 },
-            },
         },
     },
     [251953] = {
-        id = "outpost_251953_talia_softglen",
+        id = "guide_251953_talia_softglen",
         npcId = 251953,
         name = "Talia Softglen",
         title = "Stable Master",
@@ -356,13 +299,13 @@ OutpostDB.OUTPOSTS = {
         },
     },
     [9976] = {
-        id = "outpost_9976_tharlidun",
+        id = "guide_9976_tharlidun",
         npcId = 9976,
         name = "Tharlidun",
         title = "Stable Master",
         zone = "Arathi Highlands",
         location = "Refuge Pointe",
-        faction = "Neutral",
+        faction = "Alliance",
         tier = 2,
         rank = 2,
         rankRoman = "II",
@@ -401,7 +344,7 @@ OutpostDB.OUTPOSTS = {
         },
     },
     [10052] = {
-        id = "outpost_10052_maluressian",
+        id = "guide_10052_maluressian",
         npcId = 10052,
         name = "Maluressian",
         title = "Stable Master",
@@ -446,13 +389,13 @@ OutpostDB.OUTPOSTS = {
         },
     },
     [15131] = {
-        id = "outpost_15131_qeeju",
+        id = "guide_15131_qeeju",
         npcId = 15131,
         name = "Qeeju",
         title = "Stable Master",
         zone = "Ashenvale",
         location = "Splintertree Post",
-        faction = "Neutral",
+        faction = "Horde",
         tier = 2,
         rank = 2,
         rankRoman = "II",
@@ -491,13 +434,13 @@ OutpostDB.OUTPOSTS = {
         },
     },
     [10058] = {
-        id = "outpost_10058_greth",
+        id = "guide_10058_greth",
         npcId = 10058,
         name = "Greth",
         title = "Stable Master",
         zone = "Badlands",
         location = "Kargath",
-        faction = "Neutral",
+        faction = "Horde",
         tier = 2,
         rank = 2,
         rankRoman = "II",
@@ -536,13 +479,13 @@ OutpostDB.OUTPOSTS = {
         },
     },
     [10085] = {
-        id = "outpost_10085_jaelysia",
+        id = "guide_10085_jaelysia",
         npcId = 10085,
         name = "Jaelysia",
         title = "Stable Master",
         zone = "Darkshore",
         location = "Auberdine",
-        faction = "Neutral",
+        faction = "Alliance",
         tier = 2,
         rank = 2,
         rankRoman = "II",
@@ -581,7 +524,7 @@ OutpostDB.OUTPOSTS = {
         },
     },
     [11105] = {
-        id = "outpost_11105_aboda",
+        id = "guide_11105_aboda",
         npcId = 11105,
         name = "Aboda",
         title = "Stable Master",
@@ -626,7 +569,7 @@ OutpostDB.OUTPOSTS = {
         },
     },
     [11104] = {
-        id = "outpost_11104_shelgrayn",
+        id = "guide_11104_shelgrayn",
         npcId = 11104,
         name = "Shelgrayn",
         title = "Stable Master",
@@ -671,13 +614,13 @@ OutpostDB.OUTPOSTS = {
         },
     },
     [10062] = {
-        id = "outpost_10062_steven_black",
+        id = "guide_10062_steven_black",
         npcId = 10062,
         name = "Steven Black",
         title = "Stable Master",
         zone = "Duskwood",
         location = "Darkshire",
-        faction = "Neutral",
+        faction = "Alliance",
         tier = 2,
         rank = 2,
         rankRoman = "II",
@@ -716,7 +659,7 @@ OutpostDB.OUTPOSTS = {
         },
     },
     [10047] = {
-        id = "outpost_10047_michael",
+        id = "guide_10047_michael",
         npcId = 10047,
         name = "Michael",
         title = "Stable Master",
@@ -761,13 +704,13 @@ OutpostDB.OUTPOSTS = {
         },
     },
     [2382] = {
-        id = "outpost_2382_darren_malvew",
+        id = "guide_2382_darren_malvew",
         npcId = 2382,
         name = "Darren Malvew",
         title = "Stablehand",
         zone = "Hillsbrad Foothills",
         location = "Southshore",
-        faction = "Neutral",
+        faction = "Alliance",
         tier = 2,
         rank = 2,
         rankRoman = "II",
@@ -806,13 +749,13 @@ OutpostDB.OUTPOSTS = {
         },
     },
     [10057] = {
-        id = "outpost_10057_theodore_mont_claire",
+        id = "guide_10057_theodore_mont_claire",
         npcId = 10057,
         name = "Theodore Mont Claire",
         title = "Stable Master",
         zone = "Hillsbrad Foothills",
         location = "Tarren Mill",
-        faction = "Neutral",
+        faction = "Horde",
         tier = 2,
         rank = 2,
         rankRoman = "II",
@@ -851,13 +794,13 @@ OutpostDB.OUTPOSTS = {
         },
     },
     [9978] = {
-        id = "outpost_9978_wesley",
+        id = "guide_9978_wesley",
         npcId = 9978,
         name = "Wesley",
         title = "Stable Master",
         zone = "Hillsbrad Foothills",
         location = "Hillsbrad Foothills",
-        faction = "Neutral",
+        faction = "Alliance",
         tier = 2,
         rank = 2,
         rankRoman = "II",
@@ -896,7 +839,7 @@ OutpostDB.OUTPOSTS = {
         },
     },
     [9989] = {
-        id = "outpost_9989_lina_hearthstove",
+        id = "guide_9989_lina_hearthstove",
         npcId = 9989,
         name = "Lina Hearthstove",
         title = "Stable Master",
@@ -941,13 +884,13 @@ OutpostDB.OUTPOSTS = {
         },
     },
     [9982] = {
-        id = "outpost_9982_penny",
+        id = "guide_9982_penny",
         npcId = 9982,
         name = "Penny",
         title = "Stable Master",
         zone = "Redridge Mountains",
         location = "Lakeshire",
-        faction = "Neutral",
+        faction = "Alliance",
         tier = 2,
         rank = 2,
         rankRoman = "II",
@@ -986,7 +929,7 @@ OutpostDB.OUTPOSTS = {
         },
     },
     [259859] = {
-        id = "outpost_259859_wheatley",
+        id = "guide_259859_wheatley",
         npcId = 259859,
         name = "Wheatley",
         title = "Stable Master",
@@ -1031,7 +974,7 @@ OutpostDB.OUTPOSTS = {
         },
     },
     [9979] = {
-        id = "outpost_9979_sarah_goode",
+        id = "guide_9979_sarah_goode",
         npcId = 9979,
         name = "Sarah Goode",
         title = "Stable Master",
@@ -1076,7 +1019,7 @@ OutpostDB.OUTPOSTS = {
         },
     },
     [10048] = {
-        id = "outpost_10048_gereck",
+        id = "guide_10048_gereck",
         npcId = 10048,
         name = "Gereck",
         title = "Stable Master",
@@ -1121,7 +1064,7 @@ OutpostDB.OUTPOSTS = {
         },
     },
     [10049] = {
-        id = "outpost_10049_hekkru",
+        id = "guide_10049_hekkru",
         npcId = 10049,
         name = "Hekkru",
         title = "Stable Master",
@@ -1166,7 +1109,7 @@ OutpostDB.OUTPOSTS = {
         },
     },
     [9983] = {
-        id = "outpost_9983_kelsuwa",
+        id = "guide_9983_kelsuwa",
         npcId = 9983,
         name = "Kelsuwa",
         title = "Stable Master",
@@ -1211,13 +1154,13 @@ OutpostDB.OUTPOSTS = {
         },
     },
     [9981] = {
-        id = "outpost_9981_sikwa",
+        id = "guide_9981_sikwa",
         npcId = 9981,
         name = "Sikwa",
         title = "Stable Master",
         zone = "The Barrens",
         location = "The Crossroads",
-        faction = "Neutral",
+        faction = "Horde",
         tier = 2,
         rank = 2,
         rankRoman = "II",
@@ -1256,7 +1199,7 @@ OutpostDB.OUTPOSTS = {
         },
     },
     [11117] = {
-        id = "outpost_11117_awenasa",
+        id = "guide_11117_awenasa",
         npcId = 11117,
         name = "Awenasa",
         title = "Stable Master",
@@ -1301,13 +1244,13 @@ OutpostDB.OUTPOSTS = {
         },
     },
     [10045] = {
-        id = "outpost_10045_kirk_maxwell",
+        id = "guide_10045_kirk_maxwell",
         npcId = 10045,
         name = "Kirk Maxwell",
         title = "Stable Master",
         zone = "Westfall",
         location = "Sentinel Hill",
-        faction = "Neutral",
+        faction = "Alliance",
         tier = 2,
         rank = 2,
         rankRoman = "II",
@@ -1346,13 +1289,13 @@ OutpostDB.OUTPOSTS = {
         },
     },
     [10046] = {
-        id = "outpost_10046_bethaine_flinthammer",
+        id = "guide_10046_bethaine_flinthammer",
         npcId = 10046,
         name = "Bethaine Flinthammer",
         title = "Stable Master",
         zone = "Wetlands",
         location = "Menethil Harbor",
-        faction = "Neutral",
+        faction = "Alliance",
         tier = 2,
         rank = 2,
         rankRoman = "II",
@@ -1391,7 +1334,7 @@ OutpostDB.OUTPOSTS = {
         },
     },
     [265756] = {
-        id = "outpost_265756_genn_fairweather",
+        id = "guide_265756_genn_fairweather",
         npcId = 265756,
         name = "Genn Fairweather",
         title = "Stablemaster and Riding Trainer",
@@ -1436,7 +1379,7 @@ OutpostDB.OUTPOSTS = {
         },
     },
     [10056] = {
-        id = "outpost_10056_alassin",
+        id = "guide_10056_alassin",
         npcId = 10056,
         name = "Alassin",
         title = "Stable Master",
@@ -1491,13 +1434,13 @@ OutpostDB.OUTPOSTS = {
         },
     },
     [10059] = {
-        id = "outpost_10059_antarius",
+        id = "guide_10059_antarius",
         npcId = 10059,
         name = "Antarius",
         title = "Stable Master",
         zone = "Feralas",
         location = "Feathermoon Stronghold",
-        faction = "Neutral",
+        faction = "Alliance",
         tier = 3,
         rank = 3,
         rankRoman = "III",
@@ -1533,10 +1476,20 @@ OutpostDB.OUTPOSTS = {
                 baseStats = { hp = 54, atk = 26, def = 26, spd = 16 },
                 moves = { 101, 108 },
             },
+            {
+                name = "Trained Feathermoon Hippogryph",
+                family = "Bird of Prey",
+                element = "Flying",
+                displayId = 1453,
+                rank = 3,
+                rankRoman = "III",
+                baseStats = { hp = 46, atk = 30, def = 22, spd = 28 },
+                moves = { 202, 709 },
+            },
         },
     },
     [9986] = {
-        id = "outpost_9986_shyrka_wolfrunner",
+        id = "guide_9986_shyrka_wolfrunner",
         npcId = 9986,
         name = "Shyrka Wolfrunner",
         title = "Stable Master",
@@ -1578,10 +1531,20 @@ OutpostDB.OUTPOSTS = {
                 baseStats = { hp = 46, atk = 32, def = 20, spd = 26 },
                 moves = { 101, 104 },
             },
+            {
+                name = "Trained Feralas Longrunner",
+                family = "Wolf",
+                element = "Beast",
+                displayId = 903,
+                rank = 3,
+                rankRoman = "III",
+                baseStats = { hp = 48, atk = 30, def = 22, spd = 24 },
+                moves = { 101, 104 },
+            },
         },
     },
     [9984] = {
-        id = "outpost_9984_ulbrek_firehand",
+        id = "guide_9984_ulbrek_firehand",
         npcId = 9984,
         name = "Ulbrek Firehand",
         title = "Stable Master",
@@ -1636,7 +1599,7 @@ OutpostDB.OUTPOSTS = {
         },
     },
     [9988] = {
-        id = "outpost_9988_xon_cha",
+        id = "guide_9988_xon_cha",
         npcId = 9988,
         name = "Xon'cha",
         title = "Stable Master",
@@ -1691,7 +1654,7 @@ OutpostDB.OUTPOSTS = {
         },
     },
     [260525] = {
-        id = "outpost_260525_tallow_sparksocket",
+        id = "guide_260525_tallow_sparksocket",
         npcId = 260525,
         name = "Tallow Sparksocket",
         title = "Stable Master",
@@ -1733,16 +1696,26 @@ OutpostDB.OUTPOSTS = {
                 baseStats = { hp = 50, atk = 28, def = 28, spd = 18 },
                 moves = { 601, 602 },
             },
+            {
+                name = "Trained Voltaic Spark Core",
+                family = "Mechanical",
+                element = "Mechanical",
+                displayId = 1147,
+                rank = 3,
+                rankRoman = "III",
+                baseStats = { hp = 48, atk = 30, def = 24, spd = 22 },
+                moves = { 601, 602 },
+            },
         },
     },
     [11069] = {
-        id = "outpost_11069_jenova_stoneshield",
+        id = "guide_11069_jenova_stoneshield",
         npcId = 11069,
         name = "Jenova Stoneshield",
         title = "Stable Master",
         zone = "Stormwind City",
         location = "Stormwind City",
-        faction = "Neutral",
+        faction = "Alliance",
         tier = 3,
         rank = 3,
         rankRoman = "III",
@@ -1791,7 +1764,7 @@ OutpostDB.OUTPOSTS = {
         },
     },
     [9977] = {
-        id = "outpost_9977_sylista",
+        id = "guide_9977_sylista",
         npcId = 9977,
         name = "Sylista",
         title = "Stable Master",
@@ -1846,7 +1819,7 @@ OutpostDB.OUTPOSTS = {
         },
     },
     [16094] = {
-        id = "outpost_16094_durik",
+        id = "guide_16094_durik",
         npcId = 16094,
         name = "Durik",
         title = "Stable Master",
@@ -1888,10 +1861,20 @@ OutpostDB.OUTPOSTS = {
                 baseStats = { hp = 42, atk = 34, def = 18, spd = 28 },
                 moves = { 103, 104 },
             },
+            {
+                name = "Trained Grom'gol Tiger",
+                family = "Cat",
+                element = "Beast",
+                displayId = 11454,
+                rank = 3,
+                rankRoman = "III",
+                baseStats = { hp = 44, atk = 32, def = 20, spd = 26 },
+                moves = { 103, 107 },
+            },
         },
     },
     [14741] = {
-        id = "outpost_14741_huntsman_markhor",
+        id = "guide_14741_huntsman_markhor",
         npcId = 14741,
         name = "Huntsman Markhor",
         title = "Stable Master",
@@ -1933,16 +1916,26 @@ OutpostDB.OUTPOSTS = {
                 baseStats = { hp = 44, atk = 30, def = 22, spd = 28 },
                 moves = { 501, 502 },
             },
+            {
+                name = "Trained Bloodtalon Ravager",
+                family = "Raptor",
+                element = "Beast",
+                displayId = 1960,
+                rank = 3,
+                rankRoman = "III",
+                baseStats = { hp = 46, atk = 34, def = 20, spd = 26 },
+                moves = { 103, 121 },
+            },
         },
     },
     [10061] = {
-        id = "outpost_10061_killium_bouldertoe",
+        id = "guide_10061_killium_bouldertoe",
         npcId = 10061,
         name = "Killium Bouldertoe",
         title = "Stable Master",
         zone = "The Hinterlands",
         location = "Aerie Peak",
-        faction = "Neutral",
+        faction = "Alliance",
         tier = 3,
         rank = 3,
         rankRoman = "III",
@@ -1978,10 +1971,20 @@ OutpostDB.OUTPOSTS = {
                 baseStats = { hp = 48, atk = 30, def = 22, spd = 24 },
                 moves = { 101, 104 },
             },
+            {
+                name = "Trained Wildhammer High Gryphon",
+                family = "Bird of Prey",
+                element = "Flying",
+                displayId = 1147,
+                rank = 3,
+                rankRoman = "III",
+                baseStats = { hp = 48, atk = 32, def = 22, spd = 28 },
+                moves = { 202, 709 },
+            },
         },
     },
     [10054] = {
-        id = "outpost_10054_bulrug",
+        id = "guide_10054_bulrug",
         npcId = 10054,
         name = "Bulrug",
         title = "Stable Master",
@@ -2036,7 +2039,7 @@ OutpostDB.OUTPOSTS = {
         },
     },
     [10053] = {
-        id = "outpost_10053_anya_maulray",
+        id = "guide_10053_anya_maulray",
         npcId = 10053,
         name = "Anya Maulray",
         title = "Stable Master",
@@ -2091,7 +2094,7 @@ OutpostDB.OUTPOSTS = {
         },
     },
     [10060] = {
-        id = "outpost_10060_grimestack",
+        id = "guide_10060_grimestack",
         npcId = 10060,
         name = "Grimestack",
         title = "Stable Master",
@@ -2143,10 +2146,20 @@ OutpostDB.OUTPOSTS = {
                 baseStats = { hp = 50, atk = 30, def = 26, spd = 18 },
                 moves = { 101, 501 },
             },
+            {
+                name = "Trained Bloodsail Macaw",
+                family = "Bird of Prey",
+                element = "Flying",
+                displayId = 1629,
+                rank = 4,
+                rankRoman = "IV",
+                baseStats = { hp = 46, atk = 34, def = 20, spd = 30 },
+                moves = { 202, 709 },
+            },
         },
     },
     [9985] = {
-        id = "outpost_9985_laziphus",
+        id = "guide_9985_laziphus",
         npcId = 9985,
         name = "Laziphus",
         title = "Stable Master",
@@ -2198,10 +2211,20 @@ OutpostDB.OUTPOSTS = {
                 baseStats = { hp = 50, atk = 32, def = 26, spd = 22 },
                 moves = { 101, 502 },
             },
+            {
+                name = "Trained Sandfury Scorpid",
+                family = "Scorpid",
+                element = "Beast",
+                displayId = 2402,
+                rank = 4,
+                rankRoman = "IV",
+                baseStats = { hp = 52, atk = 32, def = 28, spd = 18 },
+                moves = { 101, 501 },
+            },
         },
     },
     [10063] = {
-        id = "outpost_10063_reggifuz",
+        id = "guide_10063_reggifuz",
         npcId = 10063,
         name = "Reggifuz",
         title = "Stable Master",
@@ -2253,10 +2276,20 @@ OutpostDB.OUTPOSTS = {
                 baseStats = { hp = 44, atk = 32, def = 20, spd = 26 },
                 moves = { 401, 509 },
             },
+            {
+                name = "Trained Ratchet Shore Crab",
+                family = "Crab",
+                element = "Aquatic",
+                displayId = 724,
+                rank = 4,
+                rankRoman = "IV",
+                baseStats = { hp = 52, atk = 24, def = 30, spd = 16 },
+                moves = { 401, 402 },
+            },
         },
     },
     [259190] = {
-        id = "outpost_259190_ephram_barbaro",
+        id = "guide_259190_ephram_barbaro",
         npcId = 259190,
         name = "Ephram Barbaro",
         title = "Stable Master",
@@ -2308,10 +2341,20 @@ OutpostDB.OUTPOSTS = {
                 baseStats = { hp = 58, atk = 32, def = 28, spd = 20 },
                 moves = { 301, 501 },
             },
+            {
+                name = "Trained Dread Crypt Hound",
+                family = "Wolf",
+                element = "Undead",
+                displayId = 1531,
+                rank = 4,
+                rankRoman = "IV",
+                baseStats = { hp = 56, atk = 36, def = 24, spd = 24 },
+                moves = { 301, 104 },
+            },
         },
     },
     [11119] = {
-        id = "outpost_11119_azzleby",
+        id = "guide_11119_azzleby",
         npcId = 11119,
         name = "Azzleby",
         title = "Stable Master",
@@ -2363,16 +2406,26 @@ OutpostDB.OUTPOSTS = {
                 baseStats = { hp = 54, atk = 32, def = 26, spd = 24 },
                 moves = { 901, 902 },
             },
+            {
+                name = "Trained Frostsaber Prideleader",
+                family = "Cat",
+                element = "Beast",
+                displayId = 11454,
+                rank = 4,
+                rankRoman = "IV",
+                baseStats = { hp = 52, atk = 36, def = 22, spd = 30 },
+                moves = { 103, 107 },
+            },
         },
     },
     [13616] = {
-        id = "outpost_13616_frostwolf_stable_master",
+        id = "guide_13616_frostwolf_stable_master",
         npcId = 13616,
         name = "Frostwolf Stable Master",
         title = "Stable Master",
         zone = "Alterac Valley",
         location = "Alterac Valley (Frostwolf Keep)",
-        faction = "Neutral",
+        faction = "Horde",
         tier = 5,
         rank = 5,
         rankRoman = "V",
@@ -2418,16 +2471,26 @@ OutpostDB.OUTPOSTS = {
                 baseStats = { hp = 62, atk = 42, def = 26, spd = 28 },
                 moves = { 103, 107 },
             },
+            {
+                name = "Trained Frostwolf Howler Prime",
+                family = "Wolf",
+                element = "Beast",
+                displayId = 903,
+                rank = 5,
+                rankRoman = "V",
+                baseStats = { hp = 64, atk = 44, def = 28, spd = 28 },
+                moves = { 101, 104 },
+            },
         },
     },
     [13617] = {
-        id = "outpost_13617_stormpike_stable_master",
+        id = "guide_13617_stormpike_stable_master",
         npcId = 13617,
         name = "Stormpike Stable Master",
         title = "Stable Master",
         zone = "Alterac Valley",
         location = "Alterac Valley (Stormpike Base)",
-        faction = "Neutral",
+        faction = "Alliance",
         tier = 5,
         rank = 5,
         rankRoman = "V",
@@ -2473,10 +2536,20 @@ OutpostDB.OUTPOSTS = {
                 baseStats = { hp = 68, atk = 38, def = 30, spd = 20 },
                 moves = { 101, 108 },
             },
+            {
+                name = "Trained Stormpike War Ram",
+                family = "Goat",
+                element = "Beast",
+                displayId = 8843,
+                rank = 5,
+                rankRoman = "V",
+                baseStats = { hp = 66, atk = 40, def = 32, spd = 22 },
+                moves = { 101, 102 },
+            },
         },
     },
     [43408] = {
-        id = "outpost_43408_aili_greenwillow",
+        id = "guide_43408_aili_greenwillow",
         npcId = 43408,
         name = "Aili Greenwillow",
         title = "Stable Master",
@@ -2528,10 +2601,20 @@ OutpostDB.OUTPOSTS = {
                 baseStats = { hp = 66, atk = 34, def = 34, spd = 18 },
                 moves = { 801, 802 },
             },
+            {
+                name = "Trained Hyjal Great Stag",
+                family = "Stag",
+                element = "Beast",
+                displayId = 1451,
+                rank = 5,
+                rankRoman = "V",
+                baseStats = { hp = 62, atk = 38, def = 30, spd = 26 },
+                moves = { 101, 102 },
+            },
         },
     },
     [16156] = {
-        id = "outpost_16156_dark_touched_warrior",
+        id = "guide_16156_dark_touched_warrior",
         npcId = 16156,
         name = "Dark Touched Warrior",
         title = "Stable Master",
@@ -2596,7 +2679,7 @@ OutpostDB.OUTPOSTS = {
         },
     },
     [15722] = {
-        id = "outpost_15722_squire_leoren_mal_derath",
+        id = "guide_15722_squire_leoren_mal_derath",
         npcId = 15722,
         name = "Squire Leoren Mal'derath",
         title = "Stable Master",
@@ -2648,19 +2731,99 @@ OutpostDB.OUTPOSTS = {
                 baseStats = { hp = 58, atk = 42, def = 26, spd = 24 },
                 moves = { 801, 802 },
             },
+            {
+                name = "Trained Hive-Zora Reaver",
+                family = "Silithid",
+                element = "Beast",
+                displayId = 2402,
+                rank = 5,
+                rankRoman = "V",
+                baseStats = { hp = 60, atk = 40, def = 28, spd = 26 },
+                moves = { 101, 502 },
+            },
+        },
+    },
+    [16786] = {
+        id = "guide_16786_argent_quartermaster",
+        npcId = 16786,
+        name = "Argent Quartermaster",
+        title = "Argent Dawn Guide",
+        zone = "Eastern Plaguelands",
+        location = "Light's Hope Chapel",
+        requiredZone = "Eastern Plaguelands",
+        faction = "Neutral",
+        tier = 5,
+        rank = 5,
+        rankRoman = "V",
+        rankTitle = "Champion",
+        trainerClass = "PALADIN",
+        isElite = true,
+        tokenReward = 50,
+        introQuote = "The Light heals even the most blighted souls. Face my redeemed companions, traveler!",
+        defeatQuote = "Your bond with your companions shines brighter than the darkness of these lands. Well fought.",
+        badge = {
+            id = "badge_argent_dawn",
+            name = "Dawn Crest Badge",
+            icon = "Interface\\Icons\\INV_Jewelry_Talisman_08",
+            desc = "Proof of victory over the Argent Quartermaster at Light's Hope Chapel.",
+        },
+        team = {
+            {
+                name = "Diseased Wolf",
+                family = "Canine",
+                element = "Beast",
+                displayId = 11139,
+                rank = 5,
+                rankRoman = "V",
+                baseStats = { hp = 90, atk = 68, def = 55, spd = 62 },
+                moves = { 101, 104, 126, 105 },
+            },
+            {
+                name = "Diseased Grizzly",
+                family = "Bear",
+                element = "Beast",
+                displayId = 1092,
+                rank = 5,
+                rankRoman = "V",
+                baseStats = { hp = 115, atk = 65, def = 68, spd = 45 },
+                moves = { 101, 110, 112, 119 },
+            },
+            {
+                name = "Scarlet Hound",
+                family = "Canine",
+                element = "Beast",
+                displayId = 2352,
+                rank = 5,
+                rankRoman = "V",
+                baseStats = { hp = 88, atk = 72, def = 52, spd = 68 },
+                moves = { 101, 103, 104, 113 },
+            },
+            {
+                name = "Spirit Healer",
+                family = "Celestial",
+                element = "Holy",
+                displayId = 5233,
+                isSpiritHealer = true,
+                rank = 5,
+                rankRoman = "V",
+                baseStats = { hp = 140, atk = 75, def = 75, spd = 70 },
+                moves = { 1010, 1011, 1012, 1013 },
+            },
         },
     },
 }
 
--- Fast indexing caches
+-- Runtime Lookup Caches
 OutpostDB.BY_NPC_ID = {}
+OutpostDB.BY_ID = {}
 OutpostDB.BY_NAME = {}
 OutpostDB.BY_ZONE = {}
-OutpostDB.BY_TIER = { [1] = {}, [2] = {}, [3] = {}, [4] = {}, [5] = {} }
+OutpostDB.BY_TIER = {}
 OutpostDB.LIST = {}
 
 function OutpostDB:InitializeIndexes()
     self.BY_NPC_ID = {}
+    self.BY_ID = {}
     self.BY_NAME = {}
     self.BY_ZONE = {}
     self.BY_TIER = { [1] = {}, [2] = {}, [3] = {}, [4] = {}, [5] = {} }
@@ -2668,35 +2831,33 @@ function OutpostDB:InitializeIndexes()
 
     for npcId, outpost in pairs(self.OUTPOSTS) do
         self.BY_NPC_ID[npcId] = outpost
-        if outpost.name then
-            self.BY_NAME[outpost.name] = outpost
-        end
+        self.BY_ID[outpost.id] = outpost
+        self.BY_NAME[outpost.name] = outpost
+
         if outpost.zone then
             self.BY_ZONE[outpost.zone] = self.BY_ZONE[outpost.zone] or {}
             table.insert(self.BY_ZONE[outpost.zone], outpost)
         end
-        if outpost.tier and self.BY_TIER[outpost.tier] then
-            table.insert(self.BY_TIER[outpost.tier], outpost)
-        end
+
+        local tier = outpost.tier or 1
+        self.BY_TIER[tier] = self.BY_TIER[tier] or {}
+        table.insert(self.BY_TIER[tier], outpost)
         table.insert(self.LIST, outpost)
     end
+end
 
-    -- Sort master list by tier, then name
-    table.sort(self.LIST, function(a, b)
-        if (a.tier or 0) ~= (b.tier or 0) then
-            return (a.tier or 0) < (b.tier or 0)
-        end
-        return (a.name or "") < (b.name or "")
-    end)
+function OutpostDB:GetOutpostById(id)
+    if not id then return nil end
+    return self.BY_ID[id]
 end
 
 function OutpostDB:GetOutpostByNpcId(npcId)
-    if not npcId or type(npcId) ~= "number" then return nil end
+    if not npcId then return nil end
     return self.BY_NPC_ID[npcId]
 end
 
 function OutpostDB:GetOutpostByName(name)
-    if not name or isSecret(name) or type(name) ~= "string" then return nil end
+    if not name or isSecret(name) then return nil end
     return self.BY_NAME[name]
 end
 
@@ -2741,6 +2902,53 @@ function OutpostDB:GetPlayerBadges()
     return ForeverSafariDB.badges
 end
 
+--- Evaluates if the player is eligible to challenge a Safari Outpost Guide
+function OutpostDB:CanChallengeGuide(outpost, unit)
+    if not outpost then return false, "Invalid Guide." end
+
+    -- 1. Faction check: Alliance vs Horde (Neutral open to both)
+    local playerFaction = UnitFactionGroup("player") or "Alliance"
+    local guideFaction = outpost.faction or "Neutral"
+    if guideFaction ~= "Neutral" and guideFaction ~= playerFaction then
+        return false, string.format("This Guide will only test members of the %s.", guideFaction)
+    end
+
+    -- 2. Zone check (e.g. Argent Quartermaster in EPL / Light's Hope Chapel)
+    if outpost.requiredZone then
+        local currentZone = GetZoneText and GetZoneText() or ""
+        if currentZone ~= outpost.requiredZone then
+            return false, string.format("%s only accepts challenges at Light's Hope Chapel in %s!", outpost.name, outpost.requiredZone)
+        end
+    end
+
+    local tier = outpost.tier or 1
+    local stats = ForeverSafariDB and ForeverSafariDB.stats
+    local tierWins = (stats and stats.battlersDefeatedByTier and stats.battlersDefeatedByTier[tier]) or 0
+    local quota = 10
+
+    -- 3. Roaming Battler Quota Check: Defeat 10 non-guide roaming battlers of the SAME TIER
+    if tierWins < quota then
+        return false, string.format("You must defeat at least %d Tier %d roaming battlers first! (%d/%d defeated)", quota, tier, tierWins, quota)
+    end
+
+    -- 4. Tier Progression Gating: Must defeat all lower-tier Guides for your faction
+    if tier > 1 then
+        for t = 1, tier - 1 do
+            local tierGuides = self:GetOutpostsByTier(t)
+            for _, g in ipairs(tierGuides) do
+                local gFaction = g.faction or "Neutral"
+                if gFaction == "Neutral" or gFaction == playerFaction then
+                    if not self:IsOutpostDefeated(g.id) then
+                        return false, string.format("You must defeat all Tier %d Guides for the %s first! (Missing: %s)", t, playerFaction, g.name)
+                    end
+                end
+            end
+        end
+    end
+
+    return true, nil
+end
+
 local TIER_MIN_POINTS = { [1] = 0, [2] = 250, [3] = 600, [4] = 1050, [5] = 1600 }
 
 function OutpostDB:GenerateOutpostMatch(outpost)
@@ -2755,7 +2963,7 @@ function OutpostDB:GenerateOutpostMatch(outpost)
         local baseStats = petTpl.baseStats or { hp = 40, atk = 22, def = 18, spd = 20 }
         local stats = SE and SE.CalculateStats and SE:CalculateStats(petTpl.element or "Beast", rankPoints, outpost.isElite, baseStats) or { maxHP = 120, atk = 30, def = 25, spd = 25 }
         local companion = {
-            id = string.format("outpost_pet_%s_%d", tostring(outpost.npcId), i),
+            id = string.format("guide_pet_%s_%d", tostring(outpost.npcId), i),
             name = petTpl.name,
             nickname = petTpl.name,
             customNickname = petTpl.name,
@@ -2779,6 +2987,7 @@ function OutpostDB:GenerateOutpostMatch(outpost)
             moves = petTpl.moves or { 101, 102 },
             isTrainerPet = true,
             isOutpostPet = true,
+            isSpiritHealer = petTpl.isSpiritHealer or false,
         }
         table.insert(team, companion)
     end
@@ -2789,10 +2998,11 @@ function OutpostDB:GenerateOutpostMatch(outpost)
         outpostId = outpost.id,
         outpostData = outpost,
         trainerName = outpost.name,
-        trainerTitle = outpost.title or "<Stable Master>",
+        trainerTitle = outpost.title or "<Safari Guide>",
+        trainerClass = outpost.trainerClass or outpost.class,
         badge = outpost.badge,
         introQuote = outpost.introQuote or "Show me what your companions can do!",
-        defeatQuote = outpost.defeatQuote or "Remarkable match! You have earned our outpost badge!",
+        defeatQuote = outpost.defeatQuote or "Remarkable match! You have earned our regional badge!",
         tokenReward = outpost.tokenReward or (15 + tier * 5),
         team = team,
         activeSlot = 1,

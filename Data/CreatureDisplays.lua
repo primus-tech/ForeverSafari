@@ -2473,4 +2473,10 @@ FS.CreatureDisplays = {
     [276111] = 9949,
     [276189] = 806,
     [276198] = 6805,
+    -- WPL Purified Beasts, Spirit Healer, and Argent Quartermaster
+    [1808] = 11139,
+    [1809] = 1092,
+    [4274] = 2352,
+    [6491] = 5233,
+    [16786] = 16345,
 }

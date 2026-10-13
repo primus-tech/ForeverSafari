@@ -77,6 +77,9 @@ function BE:GetEffectiveSpeed(mob, side)
     if mob.creatureType == "Flying" and ((mob.currentHP or 0) / (mob.maxHP or 1)) >= 0.50 then
         spd = math.floor(spd * 1.50)
     end
+    if mob.resurrectionSickness then
+        spd = math.max(1, math.floor(spd * 0.75))
+    end
     if side and BE.State.buffs and BE.State.buffs[side] and BE.State.buffs[side].spd then
         local mult = BE.State.buffs[side].spd.multiplier or 1.0
         spd = math.floor(spd * mult)
@@ -155,6 +158,31 @@ function BE:TickCombatantTurn(side)
     -- Decrement move cooldowns for acting combatant
     BE:TickCooldowns(side)
 
+    -- 🌟 Spirit Healer Boss Encounter Mechanics (Argent Dawn Guide at Light's Hope Chapel)
+    if BE.State.isOutpostBattle then
+        -- 1. Mass Resurrection Check (ticks when Spirit Healer is the active enemy)
+        if side == "enemy" and mob and mob.isSpiritHealer and not BE.State.spiritHealerMassRezUsed then
+            BE.State.spiritHealerActiveTurns = (BE.State.spiritHealerActiveTurns or 0) + 1
+            if BE.State.spiritHealerActiveTurns == 3 then
+                BE:AddLog("|cffffd100[Divine Warning]|r The Spirit Healer begins channeling the souls of the fallen!|r")
+            elseif BE.State.spiritHealerActiveTurns >= 5 then
+                BE:TriggerSpiritHealerMassResurrection()
+            end
+        end
+
+        -- 2. Backline Regeneration: Heals 5% Max HP per turn on the bench while player grinds through rezzed mobs
+        if BE.State.spiritHealerBenchHealing and BE.State.enemyTeam then
+            for slotIdx, member in ipairs(BE.State.enemyTeam) do
+                if member.isSpiritHealer and slotIdx ~= BE.State.enemyActiveSlot and (member.currentHP or 0) > 0 then
+                    local heal = math.max(1, math.floor(member.maxHP * 0.05))
+                    member.currentHP = math.min(member.maxHP, member.currentHP + heal)
+                    BE:AddLog(string.format("|cff00ff99[Spirit Communion]|r The Spirit Healer restores %d HP on the bench! (%d/%d HP)|r", heal, member.currentHP, member.maxHP))
+                    break
+                end
+            end
+        end
+    end
+
     -- 1. HoT (Heal over Time, e.g. Frenzied Regeneration)
     if buffs.hot then
         local healAmount = math.max(1, math.floor(mob.maxHP * (buffs.hot.healPercent or 0.15)))
@@ -206,11 +234,12 @@ function BE:TickCombatantTurn(side)
 
             -- Independent Per-Tick Procced Ward Roll
             if CP and CP.RollWardProc then
-                local wProcced, wAbsorbPct, wWardName = CP:RollWardProc(sideClass, school, rank)
+                local wProcced, wAbsorbPct = CP:RollWardProc(sideClass, rank, school, oppClass)
                 if wProcced then
                     local absorbed = math.max(1, math.floor(tickDmg * (wAbsorbPct / 100)))
                     tickDmg = math.max(0, tickDmg - absorbed)
-                    BE:AddLog(string.format("|cffcc99ff[%s]|r Absorbed %d periodic damage on %s (%d%% ward)!|r", wWardName, absorbed, mob.name, wAbsorbPct))
+                    local wardName = (sideClass == "PALADIN" and "Aegis of Light") or (sideClass == "PRIEST" and "Divine Ward") or (sideClass == "WARLOCK" and "Shadow Ward") or (sideClass == "SHAMAN" and "Elemental Shielding") or "Arcane Ward"
+                    BE:AddLog(string.format("|cffcc99ff[%s]|r Absorbed %d periodic damage on %s (%d%% ward)!|r", wardName, absorbed, mob.name, wAbsorbPct))
                 end
             end
 
@@ -422,6 +451,11 @@ function BE:HandleEnemyFaint()
             BE.State.enemyMob = nextMob
             BE:InitMoveStates(nextMob, "enemy")
 
+            if nextMob.isSpiritHealer and BE.State.spiritHealerBenchHealing then
+                BE.State.spiritHealerBenchHealing = false
+                BE:AddLog("|cffffd100[Final Judgment]|r The Spirit Healer returns to the battlefield with recovered power!|r")
+            end
+
             local trainerTitle = BE.State.enemyTrainer and BE.State.enemyTrainer.trainerTitle or "Rival Trainer"
             BE.State.dialogueText = string.format("%s sent out %s!", trainerTitle, nextMob.name)
             local nRank = nextMob.attunementRank or nextMob.rank or 1
@@ -474,6 +508,44 @@ function BE:HandleEnemyFaint()
 
     if ForeverSafari.BattleFrame then
         ForeverSafari.BattleFrame:UpdateUI()
+    end
+end
+
+-- 🌟 Spirit Healer Mass Resurrection Event
+function BE:TriggerSpiritHealerMassResurrection()
+    BE.State.spiritHealerMassRezUsed = true
+    BE.State.spiritHealerBenchHealing = true
+
+    BE:AddLog("|cffffd100[Mass Resurrection]|r The Spirit Healer channels divine Light, reviving the fallen pack with 50% HP!|r")
+    BE:AddLog("|cffff4444[Resurrection Sickness]|r All revived beasts suffer -25% to all attributes and damage dealt!|r")
+    PlaySound(8959)
+
+    local firstRevived = nil
+    local firstSlot = nil
+
+    if BE.State.enemyTeam then
+        for slotIdx, pet in ipairs(BE.State.enemyTeam) do
+            if not pet.isSpiritHealer then
+                pet.currentHP = math.max(1, math.floor(pet.maxHP * 0.5))
+                pet.resurrectionSickness = true
+                if not firstRevived then
+                    firstRevived = pet
+                    firstSlot = slotIdx
+                end
+            end
+        end
+    end
+
+    if firstRevived and firstSlot then
+        BE.State.enemyActiveSlot = firstSlot
+        BE.State.enemyMob = firstRevived
+        BE:InitMoveStates(firstRevived, "enemy")
+        BE.State.dialogueText = string.format("The Spirit Healer retreats to the backline! %s enters the arena!", firstRevived.name)
+        BE:AddLog(string.format("|cff00e5ffThe Spirit Healer retreats to the backline to commune with the spirits! %s takes the field!|r", firstRevived.name))
+        if ForeverSafari.BattleFrame then
+            ForeverSafari.BattleFrame:UpdateModels()
+            ForeverSafari.BattleFrame:UpdateUI()
+        end
     end
 end
 
@@ -752,7 +824,10 @@ function BE:StartOutpostBattle(unit, outpost)
     BE.State.passives.undeadTriggered = { player = false, enemy = false }
     BE.State.shamanRevived = false
     BE.State.priestHealUses = 0
-    BE.State.opponentClass = nil
+    BE.State.opponentClass = match.trainerClass or outpost.trainerClass or outpost.class
+    BE.State.spiritHealerActiveTurns = 0
+    BE.State.spiritHealerMassRezUsed = false
+    BE.State.spiritHealerBenchHealing = false
     BE.State.druidEclipse = {
         solar = 0,
         lunar = 0,
@@ -1256,8 +1331,8 @@ function BE:ApplyMoveEffects(move, attacker, defender, side)
             ferocityMod = 1.05
         end
 
-        local atk = (attacker.atk or 10) * atkMod * beastMod * dragonkinMod * undeadMod * ferocityMod
-        local def = (defender.def or 8) * defMod
+        local atk = (attacker.atk or 10) * atkMod * beastMod * dragonkinMod * undeadMod * ferocityMod * (attacker.resurrectionSickness and 0.75 or 1.0)
+        local def = (defender.def or 8) * defMod * (defender.resurrectionSickness and 0.75 or 1.0)
 
         -- Closed-loop 150% Type Effectiveness
         local typeMult = 1.0
@@ -1272,6 +1347,10 @@ function BE:ApplyMoveEffects(move, attacker, defender, side)
 
         local rawDmg = (((atk * move.power * 0.7) / (def * 0.75 + 15)) + math.random(2, 6)) * bleedMod
         local finalDmg = math.max(1, math.floor(rawDmg * typeMult * critMult))
+
+        if attacker.resurrectionSickness then
+            finalDmg = math.max(1, math.floor(finalDmg * 0.75))
+        end
 
         -- 🛡️ Archetype Cunning Bonus: Spell Deflection (50% damage reduction on special spells)
         if moveCategory ~= "Physical" and moveSchool ~= "physical" then
@@ -1294,11 +1373,12 @@ function BE:ApplyMoveEffects(move, attacker, defender, side)
 
         -- 🛡️ Layer 5: Procced Wards (Mage, Shaman, Warlock, Priest, Paladin)
         if CP and CP.RollWardProc then
-            local wProcced, wAbsorbPct, wWardName = CP:RollWardProc(defenderClass, moveSchool, dRank)
+            local wProcced, wAbsorbPct = CP:RollWardProc(defenderClass, dRank, moveSchool, attackerClass)
             if wProcced then
                 local wardAbsorb = math.max(1, math.floor(finalDmg * (wAbsorbPct / 100)))
                 finalDmg = math.max(1, finalDmg - wardAbsorb)
-                BE:AddLog(string.format("|cffcc99ff[%s]|r Absorbed %d damage (%d%% ward)!|r", wWardName, wardAbsorb, wAbsorbPct))
+                local wardName = (defenderClass == "PALADIN" and "Aegis of Light") or (defenderClass == "PRIEST" and "Divine Ward") or (defenderClass == "WARLOCK" and "Shadow Ward") or (defenderClass == "SHAMAN" and "Elemental Shielding") or "Arcane Ward"
+                BE:AddLog(string.format("|cffcc99ff[%s]|r Absorbed %d damage (%d%% ward)!|r", wardName, wardAbsorb, wAbsorbPct))
             end
         end
 
@@ -1513,16 +1593,16 @@ function BE:HandleVictory()
         local defeatQuote = outpost.defeatQuote or "Remarkable! You have earned our outpost badge!"
         local badgeName = badge and badge.name or "Outpost Badge"
 
-        BE.State.dialogueText = string.format("%s: \"%s\" Outpost Cleared!", outpost.name, defeatQuote)
+        BE.State.dialogueText = string.format("%s: \"%s\" Guide Cleared!", outpost.name, defeatQuote)
         BE:AddLog(string.format("|cffffd100%s: \"%s\"|r", outpost.name, defeatQuote))
-        BE:AddLog(string.format("|cff00ff00Outpost Defeated! Earned [%s] and +%d Safari Tokens!|r", badgeName, tokenReward))
+        BE:AddLog(string.format("|cff00ff00Guide Defeated! Earned [%s] and +%d Safari Tokens!|r", badgeName, tokenReward))
         PlaySound(1195)
 
         if player and (player.currentHP or 0) > 0 then
-            DB:AddAttunement(player.id, 75, "Outpost Leader Defeat")
+            DB:AddAttunement(player.id, 75, "Guide Defeat")
         end
 
-        DB:AddTokens(tokenReward, "Outpost Leader Victory")
+        DB:AddTokens(tokenReward, "Guide Victory")
 
         player.battlesWon = (player.battlesWon or 0) + 1
         player.battlesTotal = (player.battlesTotal or 0) + 1
@@ -1547,11 +1627,11 @@ function BE:HandleVictory()
             }
         end
 
-        DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00★ OUTPOST CONQUERED!|r Defeated |cffffd100%s|r in %s! Earned |cffffcc00[%s]|r & +%d Tokens!",
+        DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00★ GUIDE CONQUERED!|r Defeated |cffffd100%s|r in %s! Earned |cffffcc00[%s]|r & +%d Tokens!",
             C.PREFIX or "[Safari] ", outpost.name, outpost.location or outpost.zone, badgeName, tokenReward))
 
         if ForeverSafari.Toast then
-            ForeverSafari.Toast:ShowReward(string.format("Outpost Defeated: %s!", outpost.name), string.format("Badge: [%s] (+%d Tokens)", badgeName, tokenReward))
+            ForeverSafari.Toast:ShowReward(string.format("Guide Defeated: %s!", outpost.name), string.format("Badge: [%s] (+%d Tokens)", badgeName, tokenReward))
         end
 
         BE.State.inBattle = false
@@ -1586,6 +1666,12 @@ function BE:HandleVictory()
         player.battlesWon = (player.battlesWon or 0) + 1
         player.battlesTotal = (player.battlesTotal or 0) + 1
         ForeverSafariDB.stats.totalBattlesWon = (ForeverSafariDB.stats.totalBattlesWon or 0) + 1
+
+        -- 🌟 Track Roaming Battler defeat by Tier for Guide unlock quota
+        local trainerTier = trainer.tier or 1
+        ForeverSafariDB.stats = ForeverSafariDB.stats or {}
+        ForeverSafariDB.stats.battlersDefeatedByTier = ForeverSafariDB.stats.battlersDefeatedByTier or {}
+        ForeverSafariDB.stats.battlersDefeatedByTier[trainerTier] = (ForeverSafariDB.stats.battlersDefeatedByTier[trainerTier] or 0) + 1
 
         -- 🔒 Record defeat timestamp for trainer GUID (24h anti-farm lockout)
         if BE.State.enemyTrainerGUID and ForeverSafariDB then
