@@ -99,6 +99,10 @@ function CP:GetSuppressionMultiplier(opponentClass, opponentRank)
         local oppRank = tonumber(opponentRank) or 5
         local rankMult = self:GetRankScale(oppRank)
         local suppression = 0.50 * rankMult
+        -- 🌟 Holy Strobe Passive: Halves suppression effects every other turn
+        if ns and ns.BattleEngine and ns.BattleEngine.IsHolyStrobeActive and ns.BattleEngine:IsHolyStrobeActive("enemy") then
+            suppression = suppression * 0.50
+        end
         return 1.0 - suppression
     end
     return 1.0

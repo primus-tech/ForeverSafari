@@ -2804,6 +2804,8 @@ OutpostDB.OUTPOSTS = {
                 element = "Holy",
                 displayId = 5233,
                 isSpiritHealer = true,
+                hasHolyStrobe = true,
+                passive = "Holy Strobe",
                 rank = 5,
                 rankRoman = "V",
                 baseStats = { hp = 140, atk = 75, def = 75, spd = 70 },
@@ -2988,6 +2990,8 @@ function OutpostDB:GenerateOutpostMatch(outpost)
             isTrainerPet = true,
             isOutpostPet = true,
             isSpiritHealer = petTpl.isSpiritHealer or false,
+            hasHolyStrobe = petTpl.hasHolyStrobe or petTpl.isSpiritHealer or false,
+            passive = petTpl.passive or (petTpl.isSpiritHealer and "Holy Strobe" or nil),
         }
         table.insert(team, companion)
     end

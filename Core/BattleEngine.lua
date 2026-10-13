@@ -181,6 +181,11 @@ function BE:TickCombatantTurn(side)
                 end
             end
         end
+
+        -- 3. Holy Strobe Passive Pulse: Every other turn, Shadow and suppression effects are halved
+        if side == "enemy" and mob and (mob.hasHolyStrobe or mob.isSpiritHealer) and BE:IsHolyStrobeActive("enemy") then
+            BE:AddLog("|cffffd100[Holy Strobe]|r The Spirit Healer pulses with blinding divine light! Shadow and suppression effects are halved this turn!|r")
+        end
     end
 
     -- 1. HoT (Heal over Time, e.g. Frenzied Regeneration)
@@ -241,6 +246,13 @@ function BE:TickCombatantTurn(side)
                     local wardName = (sideClass == "PALADIN" and "Aegis of Light") or (sideClass == "PRIEST" and "Divine Ward") or (sideClass == "WARLOCK" and "Shadow Ward") or (sideClass == "SHAMAN" and "Elemental Shielding") or "Arcane Ward"
                     BE:AddLog(string.format("|cffcc99ff[%s]|r Absorbed %d periodic damage on %s (%d%% ward)!|r", wardName, absorbed, mob.name, wAbsorbPct))
                 end
+            end
+
+            -- 🌟 Holy Strobe Passive: Halves Shadow DoT ticks every other turn
+            if school == "shadow" and BE:IsHolyStrobeActive(side) then
+                local reduced = math.floor(tickDmg * 0.50)
+                tickDmg = math.max(1, tickDmg - reduced)
+                BE:AddLog(string.format("|cffffd100[Holy Strobe]|r Halved incoming Shadow periodic damage on %s (-%d damage)!|r", mob.name, reduced))
             end
 
             -- Apply damage (respecting Undead immortality)
@@ -509,6 +521,18 @@ function BE:HandleEnemyFaint()
     if ForeverSafari.BattleFrame then
         ForeverSafari.BattleFrame:UpdateUI()
     end
+end
+
+-- 🌟 Spirit Healer Innate Passive: Holy Strobe
+-- Every other turn, Shadow damage and suppression effects against the Spirit Healer are halved.
+function BE:IsHolyStrobeActive(side)
+    side = side or "enemy"
+    local mob = (side == "enemy") and BE.State.enemyMob or BE.State.playerMob
+    if not mob or (not mob.hasHolyStrobe and not mob.isSpiritHealer) then
+        return false
+    end
+    local turnIndex = (side == "enemy") and (BE.State.spiritHealerActiveTurns or BE.State.turnCount or 1) or (BE.State.turnCount or 1)
+    return (turnIndex > 0 and (turnIndex % 2 == 1))
 end
 
 -- 🌟 Spirit Healer Mass Resurrection Event
@@ -1369,6 +1393,13 @@ function BE:ApplyMoveEffects(move, attacker, defender, side)
             finalDmg = math.max(1, finalDmg - mitigated)
             local schoolDisplay = string.upper(string.sub(moveSchool, 1, 1)) .. string.sub(moveSchool, 2)
             BE:AddLog(string.format("|cff66ccff[%s Resistance]|r %s mitigated %d damage (%d%% resist).|r", schoolDisplay, defender.name, mitigated, resistPct))
+        end
+
+        -- 🌟 Holy Strobe Passive: Halves direct Shadow damage every other turn
+        if moveSchool == "shadow" and BE:IsHolyStrobeActive(targetSide) then
+            local reduced = math.floor(finalDmg * 0.50)
+            finalDmg = math.max(1, finalDmg - reduced)
+            BE:AddLog(string.format("|cffffd100[Holy Strobe]|r Pulsing divine brilliance halved incoming Shadow damage on %s (-%d damage)!|r", defender.name, reduced))
         end
 
         -- 🛡️ Layer 5: Procced Wards (Mage, Shaman, Warlock, Priest, Paladin)
