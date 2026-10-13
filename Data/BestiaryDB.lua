@@ -383,6 +383,11 @@ function Bestiary:BuildFromCreatureDB()
                 primaryZone, sp.rarity, sp.subFamily, sp.spec, sp.element)
         end
 
+        -- Ensure valid 3D displayId for model viewer
+        if (not sp.displayId or sp.displayId == 0) and FS.Constants and FS.Constants.GetDefaultDisplayId then
+            sp.displayId = FS.Constants.GetDefaultDisplayId(sp.subFamily or sp.family, sp.name)
+        end
+
         -- Register in master collections and fast lookups
         self.SPECIES[idx] = sp
         self.LookupById[idx] = sp

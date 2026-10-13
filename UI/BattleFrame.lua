@@ -493,32 +493,38 @@ function BF:UpdateModels()
     local enemy = BE.State.enemyMob
     if enemy and frame.EnemyModel then
         local enemyDisplay = (enemy.displayId and enemy.displayId > 0) and enemy.displayId or C.GetDefaultDisplayId(enemy.creatureType, enemy.name)
-        if frame.EnemyModel.ClearModel then frame.EnemyModel:ClearModel() end
+        if frame.EnemyModel.ClearModel then pcall(frame.EnemyModel.ClearModel, frame.EnemyModel) end
         if frame.EnemyModel.SetDisplayInfo then
-            frame.EnemyModel:SetDisplayInfo(enemyDisplay)
+            pcall(frame.EnemyModel.SetDisplayInfo, frame.EnemyModel, enemyDisplay)
         elseif frame.EnemyModel.SetCreatureByDisplayID then
-            frame.EnemyModel:SetCreatureByDisplayID(enemyDisplay)
+            pcall(frame.EnemyModel.SetCreatureByDisplayID, frame.EnemyModel, enemyDisplay)
         end
-        if frame.EnemyModel.SetPortraitZoom then frame.EnemyModel:SetPortraitZoom(0) end
-        if frame.EnemyModel.SetCamDistanceScale then frame.EnemyModel:SetCamDistanceScale(1.0) end
-        frame.EnemyModel:SetRotation(math.rad(-35))
-        frame.EnemyModel:SetAnimation(0)
+        pcall(function()
+            if frame.EnemyModel.SetCustomCamera then frame.EnemyModel:SetCustomCamera(0) end
+            if frame.EnemyModel.SetPortraitZoom then frame.EnemyModel:SetPortraitZoom(0) end
+            if frame.EnemyModel.SetCamDistanceScale then frame.EnemyModel:SetCamDistanceScale(1.0) end
+            frame.EnemyModel:SetRotation(math.rad(-35))
+            frame.EnemyModel:SetAnimation(0)
+        end)
         frame.EnemyModel:Show()
     end
 
     local player = BE.State.playerMob
     if player and frame.PlayerModel then
         local playerDisplay = (player.displayId and player.displayId > 0) and player.displayId or C.GetDefaultDisplayId(player.creatureType, player.name)
-        if frame.PlayerModel.ClearModel then frame.PlayerModel:ClearModel() end
+        if frame.PlayerModel.ClearModel then pcall(frame.PlayerModel.ClearModel, frame.PlayerModel) end
         if frame.PlayerModel.SetDisplayInfo then
-            frame.PlayerModel:SetDisplayInfo(playerDisplay)
+            pcall(frame.PlayerModel.SetDisplayInfo, frame.PlayerModel, playerDisplay)
         elseif frame.PlayerModel.SetCreatureByDisplayID then
-            frame.PlayerModel:SetCreatureByDisplayID(playerDisplay)
+            pcall(frame.PlayerModel:SetCreatureByDisplayID, frame.PlayerModel, playerDisplay)
         end
-        if frame.PlayerModel.SetPortraitZoom then frame.PlayerModel:SetPortraitZoom(0) end
-        if frame.PlayerModel.SetCamDistanceScale then frame.PlayerModel:SetCamDistanceScale(1.0) end
-        frame.PlayerModel:SetRotation(math.rad(145))
-        frame.PlayerModel:SetAnimation(0)
+        pcall(function()
+            if frame.PlayerModel.SetCustomCamera then frame.PlayerModel:SetCustomCamera(0) end
+            if frame.PlayerModel.SetPortraitZoom then frame.PlayerModel:SetPortraitZoom(0) end
+            if frame.PlayerModel.SetCamDistanceScale then frame.PlayerModel:SetCamDistanceScale(1.0) end
+            frame.PlayerModel:SetRotation(math.rad(145))
+            frame.PlayerModel:SetAnimation(0)
+        end)
         frame.PlayerModel:Show()
     end
 end

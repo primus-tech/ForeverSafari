@@ -64,6 +64,17 @@ for _, partition in ipairs(partitions) do
     end
 end
 
+-- Inject pre-baked CreatureDisplayInfo IDs from FS.CreatureDisplays
+local displays = FS.CreatureDisplays or {}
+for npcId, entry in pairs(FS.CreatureDB) do
+    if not entry.displayId or entry.displayId == 0 then
+        local disp = displays[npcId]
+        if disp and disp > 0 then
+            entry.displayId = disp
+        end
+    end
+end
+
 -- 2. Build In-Memory Search & Location Indexes
 function FS:BuildDatabaseIndexes()
     wipe(self.ZoneIndex)
@@ -72,7 +83,12 @@ function FS:BuildDatabaseIndexes()
     wipe(self.ElementIndex)
     self.AcquisitionIndex = { BATTLE = {}, PUP_DROP = {}, HYBRID = {} }
 
+    local C = self.Constants
     for npcId, entry in pairs(self.CreatureDB) do
+        -- Ensure displayId fallback is resolved if not already set
+        if (not entry.displayId or entry.displayId == 0) and C and C.GetDefaultDisplayId then
+            entry.displayId = C.GetDefaultDisplayId(entry.family or entry.subFamily, entry.name)
+        end
         -- Backwards compatibility for abilities / moves
         if entry.moves and not entry.abilities then
             entry.abilities = entry.moves

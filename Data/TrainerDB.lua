@@ -56,7 +56,7 @@ TrainerDB.ARCHETYPES = {
         pool = {
             { name = "Spotted Hyena", family = "Canine", element = "Beast", displayId = 2221, baseStats = { hp = 40, atk = 24, def = 16, spd = 20 }, moves = { 101, 104 } },
             { name = "Forest Wolf", family = "Canine", element = "Beast", displayId = 903, baseStats = { hp = 40, atk = 22, def = 18, spd = 20 }, moves = { 101, 107 } },
-            { name = "Redridge Vulture", family = "Flying", element = "Flying", displayId = 2004, baseStats = { hp = 35, atk = 22, def = 15, spd = 28 }, moves = { 202, 709 } },
+            { name = "Redridge Vulture", family = "Flying", element = "Flying", displayId = 490, baseStats = { hp = 35, atk = 22, def = 15, spd = 28 }, moves = { 202, 709 } },
         }
     },
     ["Centaur"] = {
@@ -121,7 +121,7 @@ TrainerDB.ARCHETYPES = {
         defeat = "Shiver me timbers... my crew is down!",
         tokenReward = 10,
         pool = {
-            { name = "Tropical Parrot", family = "Flying", element = "Flying", displayId = 2004, baseStats = { hp = 35, atk = 24, def = 14, spd = 27 }, moves = { 202, 709 } },
+            { name = "Tropical Parrot", family = "Flying", element = "Flying", displayId = 1629, baseStats = { hp = 35, atk = 24, def = 14, spd = 27 }, moves = { 202, 709 } },
             { name = "Shore Crab", family = "Crab", element = "Aquatic", displayId = 724, baseStats = { hp = 42, atk = 18, def = 26, spd = 14 }, moves = { 401, 402 } },
             { name = "Saltwater Crocolisk", family = "Crocolisk", element = "Aquatic", displayId = 1386, baseStats = { hp = 46, atk = 20, def = 22, spd = 12 }, moves = { 401, 1005 } },
         }

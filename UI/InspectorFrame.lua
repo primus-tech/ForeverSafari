@@ -238,14 +238,19 @@ function Inspector:InspectCompanion(companionData)
 
     -- 3D Model Display
     local dispId = companionData.displayId or 903
+    if frame.model.ClearModel then pcall(frame.model.ClearModel, frame.model) end
     if frame.model.SetDisplayInfo then
-        frame.model:SetDisplayInfo(dispId)
+        pcall(frame.model.SetDisplayInfo, frame.model, dispId)
     elseif frame.model.SetCreatureByDisplayID then
-        frame.model:SetCreatureByDisplayID(dispId)
+        pcall(frame.model.SetCreatureByDisplayID, frame.model, dispId)
     end
-    if frame.model.SetPortraitZoom then frame.model:SetPortraitZoom(0) end
-    if frame.model.SetCamDistanceScale then frame.model:SetCamDistanceScale(1.0) end
-    frame.model:SetRotation(0.3)
+    pcall(function()
+        if frame.model.SetCustomCamera then frame.model:SetCustomCamera(0) end
+        if frame.model.SetPortraitZoom then frame.model:SetPortraitZoom(0) end
+        if frame.model.SetCamDistanceScale then frame.model:SetCamDistanceScale(1.0) end
+        if frame.model.SetRotation then frame.model:SetRotation(0.3) end
+        if frame.model.SetAnimation then frame.model:SetAnimation(0) end
+    end)
 
     -- Stats
     frame.hpStat:SetText(string.format("|cffff5555HP:|r %d", companionData.hp or companionData.maxHp or 10))

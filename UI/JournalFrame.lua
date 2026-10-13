@@ -28,37 +28,41 @@ local currentTab = "ROSTER" -- "ROSTER", "GRID", "BESTIARY", "BOUNTIES"
 -- =========================================================================
 function Journal:SetModelCreature(modelFrame, displayId, npcId)
     if not modelFrame then return end
-    if modelFrame.ClearModel then modelFrame:ClearModel() end
+    if modelFrame.ClearModel then pcall(modelFrame.ClearModel, modelFrame) end
     local loaded = false
     if displayId and displayId > 0 then
         if modelFrame.SetDisplayInfo then
-            modelFrame:SetDisplayInfo(displayId)
-            loaded = true
+            local ok = pcall(modelFrame.SetDisplayInfo, modelFrame, displayId)
+            if ok then loaded = true end
         elseif modelFrame.SetCreatureByDisplayID then
-            modelFrame:SetCreatureByDisplayID(displayId)
-            loaded = true
+            local ok = pcall(modelFrame.SetCreatureByDisplayID, modelFrame, displayId)
+            if ok then loaded = true end
         end
     end
     if not loaded and npcId and npcId > 0 and modelFrame.SetCreature then
-        modelFrame:SetCreature(npcId)
-        loaded = true
+        local ok = pcall(modelFrame.SetCreature, modelFrame, npcId)
+        if ok then loaded = true end
     end
     if not loaded and not displayId and not npcId then return end
-    if modelFrame.SetPortraitZoom then
-        modelFrame:SetPortraitZoom(0)
+
+    local function applyModelTransforms(mf)
+        pcall(function()
+            if mf.SetCustomCamera then mf:SetCustomCamera(0) end
+            if mf.SetPortraitZoom then mf:SetPortraitZoom(0) end
+            if mf.SetCamDistanceScale then mf:SetCamDistanceScale(1.0) end
+            if mf.SetModelScale then mf:SetModelScale(mf.zoom or 1.0) end
+            if mf.SetRotation then mf:SetRotation(mf.rotation or math.rad(25)) end
+            if mf.SetAnimation then mf:SetAnimation(0) end
+        end)
     end
-    if modelFrame.SetCamDistanceScale then
-        modelFrame:SetCamDistanceScale(1.0)
+
+    if modelFrame.SetScript and not modelFrame._hasModelLoadedHook then
+        modelFrame._hasModelLoadedHook = true
+        modelFrame:HookScript("OnModelLoaded", function(self)
+            applyModelTransforms(self)
+        end)
     end
-    if modelFrame.SetModelScale then
-        modelFrame:SetModelScale(modelFrame.zoom or 1.0)
-    end
-    if modelFrame.SetRotation then
-        modelFrame:SetRotation(modelFrame.rotation or math.rad(25))
-    end
-    if modelFrame.SetAnimation then
-        modelFrame:SetAnimation(0)
-    end
+    applyModelTransforms(modelFrame)
 end
 
 function Journal:Setup3DModelInteractions(modelFrame)
