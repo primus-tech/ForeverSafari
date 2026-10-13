@@ -183,7 +183,7 @@ function BE:TickCombatantTurn(side)
         end
 
         -- 3. Divine Pendulum Passive Pulse: Every other turn, Shadow and suppression effects are halved
-        if side == "enemy" and mob and (mob.hasDivinePendulum or mob.hasHolyStrobe or mob.isSpiritHealer) and BE:IsDivinePendulumActive("enemy") then
+        if side == "enemy" and mob and (mob.hasDivinePendulum or mob.isSpiritHealer) and BE:IsDivinePendulumActive("enemy") then
             BE:AddLog("|cffffd100[Divine Pendulum]|r The Spirit Healer's divine pendulum swings! Shadow and suppression effects are halved this turn!|r")
         end
     end
@@ -528,13 +528,12 @@ end
 function BE:IsDivinePendulumActive(side)
     side = side or "enemy"
     local mob = (side == "enemy") and BE.State.enemyMob or BE.State.playerMob
-    if not mob or (not mob.hasDivinePendulum and not mob.hasHolyStrobe and not mob.isSpiritHealer) then
+    if not mob or (not mob.hasDivinePendulum and not mob.isSpiritHealer) then
         return false
     end
     local turnIndex = (side == "enemy") and (BE.State.spiritHealerActiveTurns or BE.State.turnCount or 1) or (BE.State.turnCount or 1)
     return (turnIndex > 0 and (turnIndex % 2 == 1))
 end
-BE.IsHolyStrobeActive = BE.IsDivinePendulumActive
 
 -- 🌟 Spirit Healer Mass Resurrection Event
 function BE:TriggerSpiritHealerMassResurrection()
