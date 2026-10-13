@@ -182,9 +182,9 @@ function BE:TickCombatantTurn(side)
             end
         end
 
-        -- 3. Holy Strobe Passive Pulse: Every other turn, Shadow and suppression effects are halved
-        if side == "enemy" and mob and (mob.hasHolyStrobe or mob.isSpiritHealer) and BE:IsHolyStrobeActive("enemy") then
-            BE:AddLog("|cffffd100[Holy Strobe]|r The Spirit Healer pulses with blinding divine light! Shadow and suppression effects are halved this turn!|r")
+        -- 3. Divine Pendulum Passive Pulse: Every other turn, Shadow and suppression effects are halved
+        if side == "enemy" and mob and (mob.hasDivinePendulum or mob.hasHolyStrobe or mob.isSpiritHealer) and BE:IsDivinePendulumActive("enemy") then
+            BE:AddLog("|cffffd100[Divine Pendulum]|r The Spirit Healer's divine pendulum swings! Shadow and suppression effects are halved this turn!|r")
         end
     end
 
@@ -248,11 +248,11 @@ function BE:TickCombatantTurn(side)
                 end
             end
 
-            -- 🌟 Holy Strobe Passive: Halves Shadow DoT ticks every other turn
-            if school == "shadow" and BE:IsHolyStrobeActive(side) then
+            -- 🌟 Divine Pendulum Passive: Halves Shadow DoT ticks every other turn
+            if school == "shadow" and BE:IsDivinePendulumActive(side) then
                 local reduced = math.floor(tickDmg * 0.50)
                 tickDmg = math.max(1, tickDmg - reduced)
-                BE:AddLog(string.format("|cffffd100[Holy Strobe]|r Halved incoming Shadow periodic damage on %s (-%d damage)!|r", mob.name, reduced))
+                BE:AddLog(string.format("|cffffd100[Divine Pendulum]|r Halved incoming Shadow periodic damage on %s (-%d damage)!|r", mob.name, reduced))
             end
 
             -- Apply damage (respecting Undead immortality)
@@ -523,17 +523,18 @@ function BE:HandleEnemyFaint()
     end
 end
 
--- 🌟 Spirit Healer Innate Passive: Holy Strobe
+-- 🌟 Spirit Healer Innate Passive: Divine Pendulum
 -- Every other turn, Shadow damage and suppression effects against the Spirit Healer are halved.
-function BE:IsHolyStrobeActive(side)
+function BE:IsDivinePendulumActive(side)
     side = side or "enemy"
     local mob = (side == "enemy") and BE.State.enemyMob or BE.State.playerMob
-    if not mob or (not mob.hasHolyStrobe and not mob.isSpiritHealer) then
+    if not mob or (not mob.hasDivinePendulum and not mob.hasHolyStrobe and not mob.isSpiritHealer) then
         return false
     end
     local turnIndex = (side == "enemy") and (BE.State.spiritHealerActiveTurns or BE.State.turnCount or 1) or (BE.State.turnCount or 1)
     return (turnIndex > 0 and (turnIndex % 2 == 1))
 end
+BE.IsHolyStrobeActive = BE.IsDivinePendulumActive
 
 -- 🌟 Spirit Healer Mass Resurrection Event
 function BE:TriggerSpiritHealerMassResurrection()
@@ -1395,11 +1396,11 @@ function BE:ApplyMoveEffects(move, attacker, defender, side)
             BE:AddLog(string.format("|cff66ccff[%s Resistance]|r %s mitigated %d damage (%d%% resist).|r", schoolDisplay, defender.name, mitigated, resistPct))
         end
 
-        -- 🌟 Holy Strobe Passive: Halves direct Shadow damage every other turn
-        if moveSchool == "shadow" and BE:IsHolyStrobeActive(targetSide) then
+        -- 🌟 Divine Pendulum Passive: Halves direct Shadow damage every other turn
+        if moveSchool == "shadow" and BE:IsDivinePendulumActive(targetSide) then
             local reduced = math.floor(finalDmg * 0.50)
             finalDmg = math.max(1, finalDmg - reduced)
-            BE:AddLog(string.format("|cffffd100[Holy Strobe]|r Pulsing divine brilliance halved incoming Shadow damage on %s (-%d damage)!|r", defender.name, reduced))
+            BE:AddLog(string.format("|cffffd100[Divine Pendulum]|r Divine pendulum resonance halved incoming Shadow damage on %s (-%d damage)!|r", defender.name, reduced))
         end
 
         -- 🛡️ Layer 5: Procced Wards (Mage, Shaman, Warlock, Priest, Paladin)
