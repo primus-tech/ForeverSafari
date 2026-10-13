@@ -1,6 +1,6 @@
 --[[
     Forever Safari: Toast Notification System
-    Renders elegant animated pop-ups for captures, quest token rewards, and level-ups.
+    Renders elegant animated pop-ups for captures, quest token rewards, and attunement rank advancements.
 ]]
 
 local addonName, ns = ...
@@ -127,12 +127,13 @@ end
 function Toast:ShowCapture(mob)
     local cType = mob and (mob.creatureType or mob.family or mob.element or "Beast") or "Beast"
     local typeInfo = C.CREATURE_TYPES[cType] or C.CREATURE_TYPES["Beast"] or {}
-    local mLevel = mob and (mob.level or mob.attunementRank or 1) or 1
+    local mRank = mob and (mob.attunementRank or 1) or 1
+    local mRoman = (C.ATTUNEMENT_RANKS[mRank] and C.ATTUNEMENT_RANKS[mRank].roman) or "I"
     local mName = mob and (mob.customNickname or mob.nickname or mob.name or "Companion") or "Companion"
 
     Toast:Enqueue({
         title = "Creature Captured!",
-        sub = string.format("%s (Level %d %s)", mName, mLevel, cType),
+        sub = string.format("%s (Rank %s %s)", mName, mRoman, cType),
         icon = typeInfo.icon or "Interface\\Icons\\Ability_Hunter_BeastTaming",
         titleColor = { r = 1.0, g = 0.82, b = 0.0 },
         borderColor = { r = 1.0, g = 0.82, b = 0.0 },

@@ -3,7 +3,7 @@
     - Standalone window accessible from Banker gossip ("Junior Safari League: Access Companion Reserve")
     - Zero Taint: Independent top-level window parented to UIParent.
     - Zero Bag Collisions: Movable, centered, supports ESC to close via UISpecialFrames.
-    - Squad Management: 4 active slots with 3D model, rank badge, level, HP status, and quick Deposit.
+    - Squad Management: 4 active slots with 3D model, attunement rank badge, HP status, and quick Deposit.
     - Enclosures: 5 Reserve Boxes (20 companions each = 100 total storage capacity) with Swap / Withdraw.
 ]]
 
@@ -259,9 +259,9 @@ function Kennel:Initialize()
                     local mob = DB:GetMobById(self.mobId)
                     if mob then
                         GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
-                        local rankData = SE:GetAttunementRank(mob.attunement or 0)
+                        local rankData = SE:GetAttunementRank(mob.attunement or mob.attunementPoints or 0)
                         GameTooltip:AddLine(string.format("|cff%s%s|r", rankData.color or "ffffff", mob.nickname ~= "" and mob.nickname or mob.name), 1, 1, 1)
-                        GameTooltip:AddLine(string.format("Level %d %s — Rank %s (%s)", mob.level or 1, mob.creatureType or "Beast", rankData.roman, rankData.title), 0.8, 0.8, 0.8)
+                        GameTooltip:AddLine(string.format("%s — Rank %s (%s)", mob.creatureType or "Beast", rankData.roman, rankData.title), 0.8, 0.8, 0.8)
                         GameTooltip:AddLine(string.format("HP: %d / %d", mob.currentHP or mob.hp or 10, mob.maxHP or mob.hp or 10), 0.2, 1, 0.4)
                         GameTooltip:AddLine(" ")
                         GameTooltip:AddLine("|cff00ff00<Click to select, then click an Active Squad card to swap>|r", 0, 1, 0)
@@ -331,8 +331,8 @@ function Kennel:UpdateUI()
             local name = mob.nickname ~= "" and mob.nickname or mob.name
             card.NameText:SetText(string.format("|cffffffff%s|r", name))
 
-            local rankData = SE:GetAttunementRank(mob.attunement or 0)
-            card.InfoText:SetText(string.format("Lv.%d %s — |cff%s%s|r", mob.level or 1, mob.creatureType or "Beast", rankData.color or "ffffff", rankData.roman))
+            local rankData = SE:GetAttunementRank(mob.attunement or mob.attunementPoints or 0)
+            card.InfoText:SetText(string.format("%s — |cff%sRank %s (%s)|r", mob.creatureType or "Beast", rankData.color or "ffffff", rankData.roman, rankData.title))
 
             local curHP = mob.currentHP or mob.hp or 10
             local maxHP = mob.maxHP or mob.hp or 10
@@ -384,8 +384,8 @@ function Kennel:UpdateUI()
             if string.len(name) > 10 then
                 name = string.sub(name, 1, 9) .. "…"
             end
-            local rankData = SE:GetAttunementRank(mob.attunement or 0)
-            tile.Label:SetText(string.format("|cff%s%s|r\n|cffaaaaaaLv.%d|r", rankData.color or "ffffff", name, mob.level or 1))
+            local rankData = SE:GetAttunementRank(mob.attunement or mob.attunementPoints or 0)
+            tile.Label:SetText(string.format("|cff%s%s|r\n|cffaaaaaaRank %s|r", rankData.color or "ffffff", name, rankData.roman))
 
             if selectedKennelMobId == mob.id then
                 tile.SelGlow:Show()

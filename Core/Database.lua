@@ -259,6 +259,7 @@ function DB:ClaimStarterKit()
         moves = data.moves,
         attunementRank = 3,
         attunementPoints = starterAttunement,
+        attunement = starterAttunement,
         rank = "Trusting",
         isStarter = true,
     }

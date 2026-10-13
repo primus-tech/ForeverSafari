@@ -181,10 +181,10 @@ function BF:CreateRetroStatusBox(parent, width, height, isPlayer)
     nameText:SetText(isPlayer and "COMPANION" or "ENEMY")
     box.NameText = nameText
 
-    -- Level (:L xx)
+    -- Attunement Rank badge
     local levelText = box:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
     levelText:SetPoint("TOPRIGHT", -8, -6)
-    levelText:SetText(":L 5")
+    levelText:SetText("")
     box.LevelText = levelText
 
     -- HP Bar Label
@@ -583,10 +583,11 @@ function BF:UpdateUI()
     -- Update Dialogue Text
     frame.DialogueText:SetText(BE.State.dialogueText or "What will you do?")
 
-    -- Update Enemy Status Box (Top-Left)
     if enemy then
         frame.EnemyHUD.NameText:SetText(string.upper(enemy.name))
-        frame.EnemyHUD.LevelText:SetText(string.format(":L%d", enemy.level))
+        local eRank = enemy.attunementRank or enemy.rank or 1
+        local eRoman = type(eRank) == "number" and (C.ATTUNEMENT_RANKS[eRank] and C.ATTUNEMENT_RANKS[eRank].roman or "I") or tostring(eRank)
+        frame.EnemyHUD.LevelText:SetText(string.format("Rank %s", eRoman))
 
         frame.EnemyHUD.HPBar:SetMinMaxValues(0, enemy.maxHP)
         frame.EnemyHUD.HPBar:SetValue(enemy.currentHP)
@@ -601,11 +602,12 @@ function BF:UpdateUI()
         end
     end
 
-    -- Update Player Status Box (Bottom-Right)
     if player then
         local pName = string.upper(player.nickname ~= "" and player.nickname or player.name)
         frame.PlayerHUD.NameText:SetText(pName)
-        frame.PlayerHUD.LevelText:SetText(string.format(":L%d", player.level))
+        local pRank = player.attunementRank or 1
+        local pRoman = (C.ATTUNEMENT_RANKS[pRank] and C.ATTUNEMENT_RANKS[pRank].roman) or "I"
+        frame.PlayerHUD.LevelText:SetText(string.format("Rank %s", pRoman))
 
         frame.PlayerHUD.HPBar:SetMinMaxValues(0, player.maxHP)
         frame.PlayerHUD.HPBar:SetValue(player.currentHP)
@@ -741,7 +743,9 @@ function BF:UpdateUI()
                 btn.Title:SetText(string.format("|cffff4444%s (KO'd)|r", pName))
             else
                 btn:Enable()
-                btn.Title:SetText(string.format("|cffffffff%s|r |cff00ff99Lv%d (%d/%d)|r", pName, mob.level or 1, mob.currentHP or mob.hp or 10, mob.maxHP or mob.hp or 10))
+                local mRank = mob.attunementRank or 1
+                local mRoman = (C.ATTUNEMENT_RANKS[mRank] and C.ATTUNEMENT_RANKS[mRank].roman) or "I"
+                btn.Title:SetText(string.format("|cffffffff%s|r |cff00ff99Rank %s (%d/%d)|r", pName, mRoman, mob.currentHP or mob.hp or 10, mob.maxHP or mob.hp or 10))
             end
             btn:Show()
         else

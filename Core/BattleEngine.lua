@@ -424,7 +424,9 @@ function BE:HandleEnemyFaint()
 
             local trainerTitle = BE.State.enemyTrainer and BE.State.enemyTrainer.trainerTitle or "Rival Trainer"
             BE.State.dialogueText = string.format("%s sent out %s!", trainerTitle, nextMob.name)
-            BE:AddLog(string.format("|cffff6666%s sent out %s (Lv %d %s)!|r", trainerTitle, nextMob.name, nextMob.level, nextMob.creatureType))
+            local nRank = nextMob.attunementRank or nextMob.rank or 1
+            local nRoman = type(nRank) == "number" and (C.ATTUNEMENT_RANKS[nRank] and C.ATTUNEMENT_RANKS[nRank].roman or "I") or tostring(nRank)
+            BE:AddLog(string.format("|cffff6666%s sent out %s (Rank %s %s)!|r", trainerTitle, nextMob.name, nRoman, nextMob.creatureType))
 
             if ForeverSafari.BattleFrame then
                 ForeverSafari.BattleFrame:UpdateModels()
@@ -485,7 +487,9 @@ function BE:SwitchEnemyMob(newMob)
 
     local eName = newMob.nickname ~= "" and newMob.nickname or newMob.name
     BE.State.dialogueText = string.format("Opponent sent out %s!", eName)
-    BE:AddLog(string.format("Opponent sent out |cffff6666%s|r (Level %d %s)!", eName, newMob.level, newMob.creatureType))
+    local eRank = newMob.attunementRank or newMob.rank or 1
+    local eRoman = type(eRank) == "number" and (C.ATTUNEMENT_RANKS[eRank] and C.ATTUNEMENT_RANKS[eRank].roman or "I") or tostring(eRank)
+    BE:AddLog(string.format("Opponent sent out |cffff6666%s|r (Rank %s %s)!", eName, eRoman, newMob.creatureType))
 
     if ForeverSafari.BattleFrame then
         ForeverSafari.BattleFrame:UpdateModels()
@@ -611,7 +615,9 @@ function BE:StartWildBattle(unit)
 
         BE:AddLog(string.format("|cffffcc00[Trainer Battle]|r %s challenged you to a battle!", trainerTitle))
         BE:AddLog(string.format("|cffffd100%s: \"%s\"|r", trainerTitle, match.introQuote or "Let's battle!"))
-        BE:AddLog(string.format("|cffff6666%s sent out %s (Lv %d %s)!|r", trainerTitle, enemyMob.name, enemyMob.level, enemyMob.creatureType))
+        local emRank = enemyMob.attunementRank or enemyMob.rank or 1
+        local emRoman = type(emRank) == "number" and (C.ATTUNEMENT_RANKS[emRank] and C.ATTUNEMENT_RANKS[emRank].roman or "I") or tostring(emRank)
+        BE:AddLog(string.format("|cffff6666%s sent out %s (Rank %s %s)!|r", trainerTitle, enemyMob.name, emRoman, enemyMob.creatureType))
 
         if ForeverSafari.BattleFrame then
             ForeverSafari.BattleFrame:ShowBattle()
@@ -665,7 +671,9 @@ function BE:StartWildBattle(unit)
     BE.State.actionMeters = { player = 0, enemy = 0 }
     BE.State.turnCount = 0
 
-    BE:AddLog(string.format("|cffffff00Wild %s (Lv %d %s) appeared!|r", enemyMob.name, enemyMob.level, enemyMob.creatureType))
+    local emRank = enemyMob.attunementRank or enemyMob.rank or 1
+    local emRoman = type(emRank) == "number" and (C.ATTUNEMENT_RANKS[emRank] and C.ATTUNEMENT_RANKS[emRank].roman or "I") or tostring(emRank)
+    BE:AddLog(string.format("|cffffff00Wild %s (Rank %s %s) appeared!|r", enemyMob.name, emRoman, enemyMob.creatureType))
 
     -- Bestiary / Pokédex Encounter Discovery
     if DB and DB.DiscoverSpecies then
@@ -1466,7 +1474,9 @@ function BE:SwitchPlayerMob(mobId)
     BE:InitMoveStates(newMob, "player")
 
     local pName = newMob.nickname ~= "" and newMob.nickname or newMob.name
-    BE:AddLog(string.format("Switched to |cff00ff99%s|r (Level %d %s)!", pName, newMob.level, newMob.creatureType))
+    local pRank = newMob.attunementRank or 1
+    local pRoman = (C.ATTUNEMENT_RANKS[pRank] and C.ATTUNEMENT_RANKS[pRank].roman) or "I"
+    BE:AddLog(string.format("Switched to |cff00ff99%s|r (Rank %s %s)!", pName, pRoman, newMob.creatureType))
 
     if ForeverSafari.BattleFrame then
         ForeverSafari.BattleFrame:UpdateModels()

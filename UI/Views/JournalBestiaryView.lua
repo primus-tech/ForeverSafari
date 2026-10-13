@@ -80,8 +80,6 @@ local BESTIARY_SORT_OPTIONS = {
     { id = "ID_DESC", text = "🔢 Number (High → Low)" },
     { id = "NAME_ASC", text = "🔤 Name (A → Z)" },
     { id = "NAME_DESC", text = "🔤 Name (Z → A)" },
-    { id = "LVL_ASC", text = "⚡ Level (Lowest First)" },
-    { id = "LVL_DESC", text = "⚡ Level (Highest First)" },
     { id = "CAUGHT_FIRST", text = "🐾 Status (Caught First)" },
     { id = "SEEN_FIRST", text = "🔭 Status (Seen First)" },
     { id = "UNSEEN_FIRST", text = "❓ Status (Unseen First)" },
@@ -743,16 +741,6 @@ function Journal:UpdateBestiaryView()
             return a.name < b.name
         elseif bestiarySortMode == "NAME_DESC" then
             return a.name > b.name
-        elseif bestiarySortMode == "LVL_ASC" then
-            local lvlA = a.minLevel or 1
-            local lvlB = b.minLevel or 1
-            if lvlA ~= lvlB then return lvlA < lvlB end
-            return a.name < b.name
-        elseif bestiarySortMode == "LVL_DESC" then
-            local lvlA = a.maxLevel or a.minLevel or 1
-            local lvlB = b.maxLevel or b.minLevel or 1
-            if lvlA ~= lvlB then return lvlA > lvlB end
-            return a.name < b.name
         elseif bestiarySortMode == "CAUGHT_FIRST" then
             local stA = GetStatusWeight(DB:GetBestiaryEntry(a.id) and DB:GetBestiaryEntry(a.id).status or "unseen")
             local stB = GetStatusWeight(DB:GetBestiaryEntry(b.id) and DB:GetBestiaryEntry(b.id).status or "unseen")
@@ -884,13 +872,13 @@ function Journal:RenderVisibleBestiaryRows(scrollOffset)
                 btn.Icon:SetVertexColor(1, 1, 1)
                 btn.Title:SetText(string.format("#%04d %s", spec.id, spec.name))
                 local caughtCount = entry.caughtCount or 1
-                btn.Sub:SetText(string.format("|cffffd100🐾 Caught (%dx)|r  |cff888888Lv%d-%d|r", caughtCount, spec.minLevel or 1, spec.maxLevel or 1))
+                btn.Sub:SetText(string.format("|cffffd100🐾 Caught (%dx)|r", caughtCount))
 
             elseif status == "seen" then
                 btn.Icon:SetTexture("Interface\\Icons\\INV_Misc_Eye_02")
                 btn.Icon:SetVertexColor(0.2, 0.8, 1.0)
                 btn.Title:SetText(string.format("#%04d %s", spec.id, spec.name))
-                btn.Sub:SetText(string.format("|cff33ccff🔭 Sighted|r  |cff888888Lv%d-%d|r", spec.minLevel or 1, spec.maxLevel or 1))
+                btn.Sub:SetText("|cff33ccff🔭 Sighted|r")
 
             else
                 btn.Icon:SetTexture("Interface\\Icons\\INV_Misc_QuestionMark")
@@ -954,8 +942,8 @@ function Journal:UpdateBestiaryDossier()
             rPanel.StatusText:SetText("|cff33ccff🔭 Sighted & Logged|r")
         end
 
-        rPanel.TypeText:SetText(string.format("Family: |cffffffff%s (%s)|r  |  Element: |cffffd100%s|r  |  Rarity: |cff00ff99%s|r  |  Lv: |cffffd100%d-%d|r",
-            spec.family, spec.subFamily or spec.family, spec.element, spec.rarity or "Common", spec.minLevel or 1, spec.maxLevel or 1))
+        rPanel.TypeText:SetText(string.format("Family: |cffffffff%s (%s)|r  |  Element: |cffffd100%s|r  |  Rarity: |cff00ff99%s|r",
+            spec.family, spec.subFamily or spec.family, spec.element, spec.rarity or "Common"))
 
         if rPanel.Model3D then
             rPanel.Model3D:Show()

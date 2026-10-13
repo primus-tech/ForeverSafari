@@ -468,7 +468,7 @@ function Mail:UpdateUI()
             if currentDispatch.isStarter then
                 GameTooltip:AddLine("Safari League Starter Kit", 1, 0.82, 0)
                 GameTooltip:AddLine("Enclosed Items:", 1, 1, 1)
-                GameTooltip:AddLine("• Racial Level 1 Companion Crate", 0, 1, 0.6)
+                GameTooltip:AddLine("• Racial Starter Companion Crate (Rank III)", 0, 1, 0.6)
                 GameTooltip:AddLine("• 10x Copper Snares", 0, 1, 0.6)
                 GameTooltip:AddLine("• 5x Safari Healing Salves (Full Restore)", 0, 1, 0.6)
                 GameTooltip:AddLine("• 1x Revival Crystal (Full Revive)", 0, 1, 0.6)

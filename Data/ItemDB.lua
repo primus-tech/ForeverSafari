@@ -28,7 +28,7 @@ ItemDB.CAGES = {
         catchRate = 0.35,
         tokenCost = 1,
         icon = "Interface\\Icons\\INV_Misc_Noose_01",
-        desc = "Standard rope slip-noose engineered for Lv 1–15 wild critters and cubs in battle (35% Base Catch).",
+        desc = "Standard rope slip-noose engineered for Tier 1 wild critters and companions in battle (35% Base Catch).",
         category = "Capture Gear",
     },
     ["iron_cage"] = {
@@ -44,7 +44,7 @@ ItemDB.CAGES = {
         catchRate = 0.55,
         tokenCost = 5,
         icon = "Interface\\Icons\\Hunter_PvP_TrackersNet",
-        desc = "Reinforced iron-weighted woven mesh engineered for Lv 16–30 wild beasts in battle (55% Base Catch).",
+        desc = "Reinforced iron-weighted woven mesh engineered for Tier 2 wild beasts and companions in battle (55% Base Catch).",
         category = "Capture Gear",
     },
     ["mithril_cage"] = {
@@ -60,7 +60,7 @@ ItemDB.CAGES = {
         catchRate = 0.75,
         tokenCost = 10,
         icon = "Interface\\Icons\\INV_Pet_PetTrap",
-        desc = "High-tensile spring-loaded steel jaws engineered for Lv 31–45 predators in battle (75% Base Catch).",
+        desc = "High-tensile spring-loaded steel jaws engineered for Tier 3 predators in battle (75% Base Catch).",
         category = "Capture Gear",
     },
     ["thorium_trap"] = {
@@ -76,7 +76,7 @@ ItemDB.CAGES = {
         catchRate = 0.98,
         tokenCost = 25,
         icon = "Interface\\Icons\\INV_Box_Birdcage_01",
-        desc = "Heavy reinforced Thorium-alloy expedition cage engineered for Lv 46–60 apex behemoths in battle (98% Base Catch).",
+        desc = "Heavy reinforced Thorium-alloy expedition cage engineered for Tier 4 apex behemoths in battle (98% Base Catch).",
         category = "Capture Gear",
     },
     ["arcanite_capsule"] = {
@@ -92,7 +92,7 @@ ItemDB.CAGES = {
         catchRate = 0.98,
         tokenCost = 25,
         icon = "Interface\\Icons\\INV_Box_Birdcage_01",
-        desc = "Heavy reinforced Thorium-alloy expedition cage engineered for Lv 46–60 apex behemoths in battle (98% Base Catch).",
+        desc = "Heavy reinforced Thorium-alloy expedition cage engineered for Tier 4 apex behemoths in battle (98% Base Catch).",
         category = "Capture Gear",
     },
 }

@@ -93,7 +93,7 @@ function Dispatch:Initialize()
 
     local rewardsList = crateBox:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
     rewardsList:SetPoint("TOPLEFT", rewardsLabel, "BOTTOMLEFT", 0, -4)
-    rewardsList:SetText("🐾 Level 1 Companion  •  🕸️ 10x Nets  •  🧪 5x Salves  •  💎 1x Revive")
+    rewardsList:SetText("🐾 Starter Companion (Rank III)  •  🕸️ 10x Nets  •  🧪 5x Salves  •  💎 1x Revive")
     frame.RewardsList = rewardsList
 
     -- Claim & Unbox Button
@@ -132,7 +132,7 @@ function Dispatch:ShowDispatch()
         letterText = letterText .. string.format("I see by your expedition records that you've already completed |cff006600%d quests|r across Azeroth! As an experienced veteran, the Safari League has authorized a Veteran Research Grant of |cff884400+%d Safari Tokens|r enclosed within this parcel!\n\n", grantCount, grantTokens)
         frame.RewardsList:SetText(string.format("🐾 Companion • 🕸️ 10x Nets • 📦 3x Crates • 🧪 5x Salves • |cffffd100💰 +%d Tokens|r", grantTokens))
     else
-        frame.RewardsList:SetText("🐾 Level 1 Companion  •  🕸️ 10x Nets  •  📦 3x Crates  •  🧪 5x Salves  •  💎 1x Revive")
+        frame.RewardsList:SetText("🐾 Starter Companion (Rank III)  •  🕸️ 10x Nets  •  📦 3x Crates  •  🧪 5x Salves  •  💎 1x Revive")
     end
 
     letterText = letterText .. "Raise it well, discover wild moves in the field, and make the Safari League proud!\n\n— Hemet Nesingwary Sr."

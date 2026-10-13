@@ -124,7 +124,7 @@ function Inspector:Initialize()
 
     local levelText = frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     levelText:SetPoint("TOPRIGHT", stageBg, "BOTTOMRIGHT", -10, -12)
-    levelText:SetText("|cff00ff00Level 1|r")
+    levelText:SetText("")
     frame.levelText = levelText
 
     -- Stats Grid (HP, ATK, DEF, SPD)

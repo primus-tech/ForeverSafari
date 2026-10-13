@@ -138,14 +138,15 @@ function MB:Initialize()
                 or (activeMob.nickname and activeMob.nickname ~= "" and activeMob.nickname)
                 or activeMob.name
                 or "Companion"
-            local petLevel = activeMob.level or activeMob.attunementRank or 1
+            local rankData = (ForeverSafari.StatEngine and ForeverSafari.StatEngine.GetAttunementRank and ForeverSafari.StatEngine:GetAttunementRank(activeMob.attunement or activeMob.attunementPoints or 0)) or C.ATTUNEMENT_RANKS[activeMob.attunementRank or 1] or C.ATTUNEMENT_RANKS[1]
+            local rankRoman = (rankData and rankData.roman) or "I"
             local curHP = activeMob.currentHP or activeMob.hp or 60
             local maxHP = activeMob.maxHP or activeMob.hp or 60
             local atk = activeMob.atk or activeMob.attack or 10
             local def = activeMob.def or activeMob.defense or 8
             local spd = activeMob.spd or activeMob.speed or 12
 
-            GameTooltip:AddDoubleLine("Active Companion:", string.format("|cff%s%s|r (Lv %d %s)", typeColor, petName, petLevel, cType))
+            GameTooltip:AddDoubleLine("Active Companion:", string.format("|cff%s%s|r (Rank %s %s)", typeColor, petName, rankRoman, cType))
             GameTooltip:AddDoubleLine("Health:", string.format("%d / %d", curHP, maxHP), 0.2, 0.8, 0.4, 1, 1, 1)
             GameTooltip:AddDoubleLine("Stats:", string.format("ATK: %d | DEF: %d | SPD: %d", atk, def, spd), 1, 0.85, 0.2, 1, 1, 1)
         else

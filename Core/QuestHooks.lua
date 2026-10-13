@@ -253,10 +253,10 @@ function QH:OnQuestTurnedIn(questID, xpReward, moneyReward)
         DB:AddAttunement(activeMob.id, 20, "Quest Completed with Companion")
     end
 
-    DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00[Quest Complete: %s]|r Awarded |cffffd100+%d Safari Tokens|r (Lv.%d field quest)!", C.PREFIX, questTitle, tokenReward, questLevel))
+    DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00[Quest Complete: %s]|r Awarded |cffffd100+%d Safari Tokens|r!", C.PREFIX, questTitle, tokenReward))
 
     if ForeverSafari.Toast and ForeverSafari.Toast.ShowReward then
-        ForeverSafari.Toast:ShowReward("Safari Research Grant", string.format("+%d Safari Tokens (Lv.%d: %s)", tokenReward, questLevel, questTitle))
+        ForeverSafari.Toast:ShowReward("Safari Research Grant", string.format("+%d Safari Tokens (%s)", tokenReward, questTitle))
     end
 
     PlaySound(1195)

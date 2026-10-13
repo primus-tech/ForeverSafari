@@ -175,7 +175,7 @@ function Loot:StartRoll(catalystId, bossName)
 
     frame.itemIcon:SetTexture("Interface\\Icons\\" .. evo.itemIcon)
     frame.itemName:SetText(string.format("|cffa335ee[%s]|r", evo.name))
-    frame.itemSub:SetText(string.format("|cffffd100Catalyst Drop:|r %s (%s Lv %d+)", evo.source, evo.requiredFamily, evo.minLevel))
+    frame.itemSub:SetText(string.format("|cffffd100Catalyst Drop:|r %s (%s Rank V)", evo.source, evo.requiredFamily))
 
     frame.statusBar:SetMinMaxValues(0, 60)
     frame.statusBar:SetValue(60)

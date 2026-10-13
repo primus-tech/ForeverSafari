@@ -72,10 +72,15 @@ function Crypto:ValidateAndRepairSignatures(collection)
             mob.moves = { 101, 107, 102, 118 }
         end
 
+        -- Ensure attunement and attunementPoints consistency
+        mob.attunementPoints = mob.attunementPoints or mob.attunement or 0
+        mob.attunement = mob.attunementPoints
+
         -- Promote starter companion to Rank 3 (Trusting) baseline if below threshold
         if (mob.isStarter or (mob.customNickname and string.find(mob.customNickname, "^Starter"))) and (mob.attunementRank or 1) < 3 then
             mob.attunementRank = 3
             mob.attunementPoints = math.max(mob.attunementPoints or 0, 600)
+            mob.attunement = mob.attunementPoints
             mob.rank = "Trusting"
             mob.isStarter = true
             local SE = ns.StatEngine

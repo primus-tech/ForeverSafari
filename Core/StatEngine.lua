@@ -15,6 +15,10 @@ local C = ns.Constants
 
 -- Get Attunement Rank data from total points
 function SE:GetAttunementRank(points)
+    if type(points) == "table" then
+        local mob = points
+        points = mob.attunement or mob.attunementPoints or (mob.attunementRank and C.ATTUNEMENT_RANKS[mob.attunementRank] and C.ATTUNEMENT_RANKS[mob.attunementRank].minPoints) or 0
+    end
     points = math.max(0, tonumber(points) or 0)
     local ranks = C.ATTUNEMENT_RANKS
 
@@ -28,6 +32,10 @@ end
 
 -- Get Next Rank Points Target
 function SE:GetRankProgress(points)
+    if type(points) == "table" then
+        local mob = points
+        points = mob.attunement or mob.attunementPoints or (mob.attunementRank and C.ATTUNEMENT_RANKS[mob.attunementRank] and C.ATTUNEMENT_RANKS[mob.attunementRank].minPoints) or 0
+    end
     points = math.max(0, tonumber(points) or 0)
     local currentRank = SE:GetAttunementRank(points)
     local nextRank = C.ATTUNEMENT_RANKS[currentRank.rank + 1]

@@ -531,10 +531,6 @@ function HUD:UpdateUI()
     if isSecret(name) or not name or name == "" then name = "Wild Creature" end
 
     local level = UnitLevel("target")
-    local levelStr = "Lv ??"
-    if not isSecret(level) and level and level > 0 then
-        levelStr = string.format("Lv %d", level)
-    end
 
     local rawType = UnitCreatureType("target") or "Beast"
     if isSecret(rawType) then rawType = "Beast" end
@@ -562,7 +558,7 @@ function HUD:UpdateUI()
             end
         end
 
-        frame.TargetText:SetText(string.format("|cffffffff%s|r  |cffaaaaaa%s|r  |cffffcc00[%s]|r", name, levelStr, archetypeTitle))
+        frame.TargetText:SetText(string.format("|cffffffff%s|r  |cffffcc00[%s]|r", name, archetypeTitle))
 
         frame.RadarBar:SetStatusBarColor(1.0, 0.75, 0.0)
         frame.RadarBar:SetMinMaxValues(0, 100)
@@ -627,7 +623,7 @@ function HUD:UpdateUI()
     local typeInfo = C.CREATURE_TYPES[creatureType] or C.CREATURE_TYPES["Beast"]
     local typeColor = typeInfo.color or "ffffff"
 
-    frame.TargetText:SetText(string.format("|cffffffff%s|r  |cffaaaaaa%s|r  |cff%s[%s]|r", name, levelStr, typeColor, creatureType))
+    frame.TargetText:SetText(string.format("|cffffffff%s|r  |cff%s[%s]|r", name, typeColor, creatureType))
 
     -- Distance & Radar Gauge
     if not CE:IsChanneling() then

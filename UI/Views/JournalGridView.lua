@@ -64,7 +64,7 @@ function Journal:BuildGridView(parent)
         card:SetPoint("TOPLEFT", filterBar, "BOTTOMLEFT", col * 275, -10 - (row * 218))
         card.cardIndex = i
 
-        -- Card Header: Level & Type Badge
+        -- Card Header: Attunement Rank & Type Badge
         local lvlText = card:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
         lvlText:SetPoint("TOPLEFT", 8, -8)
         card.LvlText = lvlText
@@ -116,9 +116,9 @@ function Journal:BuildGridView(parent)
                 if IsShiftKeyDown() then
                     local mob = DB:GetMobById(card.mobId)
                     if mob and ChatEdit_InsertLink then
-                        local dna = Crypto and Crypto:ExportCompanionDNA(mob) or ""
-                        local link = string.format("|cffffd100|Hsafari:%s|h[Safari: %s Lv.%d (3D)]|h|r",
-                            dna, mob.nickname ~= "" and mob.nickname or mob.name, mob.level)
+                        local rankRoman = (mob.attunementRank and C.ATTUNEMENT_RANKS[mob.attunementRank] and C.ATTUNEMENT_RANKS[mob.attunementRank].roman) or "I"
+                        local link = string.format("|cffffd100|Hsafari:%s|h[Safari: %s Rank %s (3D)]|h|r",
+                            dna, mob.nickname ~= "" and mob.nickname or mob.name, rankRoman)
                         if not ChatEdit_InsertLink(link) then
                             DEFAULT_CHAT_FRAME:AddMessage(string.format("%sShift-Click link: %s", C.PREFIX, link))
                         end
@@ -242,7 +242,9 @@ function Journal:UpdateGridView()
         if mob then
             card.mobId = mob.id
             local typeInfo = C.CREATURE_TYPES[mob.creatureType] or C.CREATURE_TYPES["Beast"]
-            card.LvlText:SetText(string.format("|cffffd100Lv %d|r", mob.level))
+            local rankRoman = (mob.attunementRank and C.ATTUNEMENT_RANKS[mob.attunementRank] and C.ATTUNEMENT_RANKS[mob.attunementRank].roman) or "I"
+            local rankColor = (mob.attunementRank and C.ATTUNEMENT_RANKS[mob.attunementRank] and C.ATTUNEMENT_RANKS[mob.attunementRank].color) or "ffd100"
+            card.LvlText:SetText(string.format("|cff%sRank %s|r", rankColor, rankRoman))
             card.NameText:SetText(string.format("|cff00ff99%s|r", mob.nickname ~= "" and mob.nickname or mob.name))
             card.TypeText:SetText(string.format("|cff%s[%s]|r", typeInfo.color or "ffffff", mob.creatureType))
 

@@ -350,11 +350,13 @@ function Nursery:UpdateUI()
         elseif frame.Pedestal1.Model.SetCreatureByDisplayID then
             frame.Pedestal1.Model:SetCreatureByDisplayID(dispId)
         end
+        local r1 = cand1.attunementRank or 1
+        local r1Roman = (C.ATTUNEMENT_RANKS[r1] and C.ATTUNEMENT_RANKS[r1].roman) or "I"
         local anatBadge = cand1.anatomy == "Dam" and "|cffff99cc♀ Dam|r" or "|cff66ccff♂ Sire|r"
-        frame.Pedestal1.Info:SetText(string.format("|cffffd100%s|r (%s)\nRank %d | %s | %s",
+        frame.Pedestal1.Info:SetText(string.format("|cffffd100%s|r (%s)\nRank %s | %s | %s",
             cand1.nickname or cand1.name or "Companion",
             cand1.family or "Beast",
-            cand1.attunementRank or 1,
+            r1Roman,
             anatBadge,
             cand1.isRare and "|cffffd100★ Rare|r" or "|cffaaaaaaStandard|r"
         ))
@@ -373,11 +375,13 @@ function Nursery:UpdateUI()
         elseif frame.Pedestal2.Model.SetCreatureByDisplayID then
             frame.Pedestal2.Model:SetCreatureByDisplayID(dispId)
         end
+        local r2 = cand2.attunementRank or 1
+        local r2Roman = (C.ATTUNEMENT_RANKS[r2] and C.ATTUNEMENT_RANKS[r2].roman) or "I"
         local anatBadge = cand2.anatomy == "Dam" and "|cffff99cc♀ Dam|r" or "|cff66ccff♂ Sire|r"
-        frame.Pedestal2.Info:SetText(string.format("|cffffd100%s|r (%s)\nRank %d | %s | %s",
+        frame.Pedestal2.Info:SetText(string.format("|cffffd100%s|r (%s)\nRank %s | %s | %s",
             cand2.nickname or cand2.name or "Partner Mate",
             cand2.family or "Beast",
-            cand2.attunementRank or 1,
+            r2Roman,
             anatBadge,
             cand2.isRare and "|cffffd100★ Rare|r" or "|cffaaaaaaStandard|r"
         ))
@@ -407,7 +411,9 @@ function Nursery:UpdateUI()
     elseif rankOk == false then
         local r1 = cand1 and (cand1.attunementRank or 1) or 0
         local r2 = cand2 and (cand2.attunementRank or 1) or 0
-        frame.CheckCard.Line2:SetText(string.format("2. Apex Attunement: |cffff4444✘ Requires Rank V (Current: R%d / R%d)|r", r1, r2))
+        local rom1 = (C.ATTUNEMENT_RANKS[r1] and C.ATTUNEMENT_RANKS[r1].roman) or tostring(r1)
+        local rom2 = (C.ATTUNEMENT_RANKS[r2] and C.ATTUNEMENT_RANKS[r2].roman) or tostring(r2)
+        frame.CheckCard.Line2:SetText(string.format("2. Apex Attunement: |cffff4444✘ Requires Rank V (Current: Rank %s / Rank %s)|r", rom1, rom2))
     else
         frame.CheckCard.Line2:SetText("2. Apex Attunement: |cffffaa00⏳ Both Must Be Rank V (1000 Loyalty)|r")
     end
@@ -467,12 +473,14 @@ function Nursery:OpenPickerDrawer()
 
             local anatBadge = mob.anatomy == "Dam" and "|cffff99cc♀ Dam|r" or "|cff66ccff♂ Sire|r"
             local rankColor = (mob.attunementRank or 1) >= 5 and "00ff00" or "ff8888"
+            local mRank = mob.attunementRank or 1
+            local mRoman = (C.ATTUNEMENT_RANKS[mRank] and C.ATTUNEMENT_RANKS[mRank].roman) or "I"
 
             btn.Title:SetText(string.format("|cffffd100%s|r (%s)  %s", mob.customNickname or mob.name, mob.family or "Beast", anatBadge))
-            btn.Sub:SetText(string.format("Loyalty: |cff%sRank %d%s|r | %s",
+            btn.Sub:SetText(string.format("Loyalty: |cff%sRank %s%s|r | %s",
                 rankColor,
-                mob.attunementRank or 1,
-                (mob.attunementRank or 1) >= 5 and " (Eligible!)" or " (Need Rank V)",
+                mRoman,
+                mRank >= 5 and " (Eligible!)" or " (Need Rank V)",
                 mob.isRare and "|cffffd100Rare|r" or "Common"
             ))
 
