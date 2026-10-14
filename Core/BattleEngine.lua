@@ -66,9 +66,76 @@ BE.State = {
         bramblePercent = 0,
         bramblePoints = 0,
     },
+    -- Virtual Duo & Party Scaling
+    isVirtualDuo = false,
+    duoActive = nil,
+    duoTurnCounter = 0,
+    twinsEclipse = nil,
+    squadQuota = 5,
+    designatedSquad = nil,
+    combatStarted = false,
+    turnTimerRemaining = 15,
+    turnTimerActive = false,
     logs = {},
     dialogueText = "What will you do?",
 }
+
+-- Calculate group squad quota based on challenger party size (4-5 players = 2 pets; 3 players = 3 pets; 1-2 players = 4 pets)
+function BE:GetSquadQuota()
+    if BE.State and BE.State.squadQuota then
+        return BE.State.squadQuota
+    end
+    local pCount = (GetNumGroupMembers and GetNumGroupMembers() > 0 and GetNumGroupMembers()) or 1
+    if pCount >= 4 then
+        return 2
+    elseif pCount == 3 then
+        return 3
+    else
+        return 4
+    end
+end
+
+-- 15-Second Turn Timeout System: Auto-casts Move 1 if no action taken
+function BE:StartTurnTimer()
+    BE:CancelTurnTimer()
+    if not BE.State.inBattle or BE.State.turn ~= "player" then return end
+
+    BE.State.turnTimerRemaining = 15
+    BE.State.turnTimerActive = true
+
+    if ForeverSafari.BattleFrame and ForeverSafari.BattleFrame.StartTurnCountdown then
+        ForeverSafari.BattleFrame:StartTurnCountdown(15)
+    end
+
+    BE.turnTimerTicker = C_Timer.NewTicker(1.0, function()
+        if not BE.State.inBattle or BE.State.turn ~= "player" then
+            BE:CancelTurnTimer()
+            return
+        end
+
+        BE.State.turnTimerRemaining = (BE.State.turnTimerRemaining or 15) - 1
+        if ForeverSafari.BattleFrame and ForeverSafari.BattleFrame.UpdateTurnTimer then
+            ForeverSafari.BattleFrame:UpdateTurnTimer(BE.State.turnTimerRemaining, 15)
+        end
+
+        if BE.State.turnTimerRemaining <= 0 then
+            BE:CancelTurnTimer()
+            BE:AddLog("|cffff9900[Turn Timeout]|r 15 seconds elapsed! Auto-executing primary move!|r")
+            BE:ExecutePlayerMove(1)
+        end
+    end, 15)
+end
+
+function BE:CancelTurnTimer()
+    if BE.turnTimerTicker then
+        BE.turnTimerTicker:Cancel()
+        BE.turnTimerTicker = nil
+    end
+    BE.State.turnTimerActive = false
+    if ForeverSafari.BattleFrame and ForeverSafari.BattleFrame.HideTurnTimer then
+        ForeverSafari.BattleFrame:HideTurnTimer()
+    end
+end
 
 -- Calculate effective speed considering Flying passive (+50% speed above 50% HP) and temporary spd buffs/debuffs
 function BE:GetEffectiveSpeed(mob, side)
@@ -100,10 +167,11 @@ function BE:GetEffectiveResistances(mob, side)
         pClass = BE.State.opponentClass
     end
     local rank = mob.attunementRank or mob.rank or 1
-    if SE and SE.CalculateResistances then
-        return SE:CalculateResistances(mob, pClass, rank)
+    local res = (SE and SE.CalculateResistances and SE:CalculateResistances(mob, pClass, rank)) or { physical = 0, fire = 0, frost = 0, nature = 0, arcane = 0, shadow = 0, holy = 0, dodge = 5, crit = 5, deflection = 0 }
+    if side and BE.State.buffs and BE.State.buffs[side] and BE.State.buffs[side].dodgeBonus then
+        res.dodge = (res.dodge or 5) + (BE.State.buffs[side].dodgeBonus.dodgeAdd or 25)
     end
-    return { physical = 0, fire = 0, frost = 0, nature = 0, arcane = 0, shadow = 0, holy = 0, dodge = 5, crit = 5, deflection = 0 }
+    return res
 end
 
 -- Helper: Resolve ability data directly from MoveDB
@@ -194,6 +262,15 @@ function BE:TickCombatantTurn(side)
         mob.currentHP = math.min(mob.maxHP, mob.currentHP + healAmount)
         local mName = (side == "player" and mob.nickname ~= "" and mob.nickname) or mob.name
         BE:AddLog(string.format("|cff00ff99[Regeneration]|r %s restored %d HP! (%d rounds left)", mName, healAmount, buffs.hot.duration - 1))
+        if side == "enemy" and BE.State.isVirtualDuo and healAmount > 0 then
+            local otherPet = BE:GetOtherDuoActivePet(mob)
+            if otherPet and (otherPet.currentHP or 0) > 0 and otherPet.currentHP < otherPet.maxHP then
+                local sharedHeal = math.max(1, math.floor(healAmount * 0.50))
+                otherPet.currentHP = math.min(otherPet.maxHP, otherPet.currentHP + sharedHeal)
+                local oName = otherPet.nickname ~= "" and otherPet.nickname or otherPet.name
+                BE:AddLog(string.format("|cff00ff99[Sympathetic Healing]|r %s resonated with %s's regeneration and recovered %d HP (50%%)!|r", oName, mName, sharedHeal))
+            end
+        end
         buffs.hot.duration = buffs.hot.duration - 1
         if buffs.hot.duration <= 0 then
             buffs.hot = nil
@@ -294,6 +371,58 @@ function BE:TickCombatantTurn(side)
             end
         end
     end
+
+    -- 6. Damage Reduction (Barkskin Aegis) decay
+    if buffs.damageReduction then
+        buffs.damageReduction.turns = (buffs.damageReduction.turns or 1) - 1
+        if buffs.damageReduction.turns <= 0 then
+            buffs.damageReduction = nil
+        end
+    end
+
+    -- 7. Evasive Agility (Dodge Bonus) decay
+    if buffs.dodgeBonus then
+        buffs.dodgeBonus.turns = (buffs.dodgeBonus.turns or 1) - 1
+        if buffs.dodgeBonus.turns <= 0 then
+            buffs.dodgeBonus = nil
+        end
+    end
+
+    -- 8. Magic / Spell Vulnerability (Faerie Fire) decay
+    if buffs.magicVuln then
+        buffs.magicVuln.turns = (buffs.magicVuln.turns or 1) - 1
+        if buffs.magicVuln.turns <= 0 then
+            buffs.magicVuln = nil
+        end
+    end
+
+    -- 9. ☀️ Cenarion Twins Dual-Line Ecliptic HoT (Solar Bloom) & Cycle-Based Ticking
+    if side == "enemy" and BE.State.isVirtualDuo and BE.State.twinsEclipse then
+        local te = BE.State.twinsEclipse
+        if (te.hotTurns or 0) > 0 and (te.hotAmount or 0) > 0 then
+            if BE.State.enemyTeam then
+                for _, ally in ipairs(BE.State.enemyTeam) do
+                    if (ally.currentHP or 0) > 0 then
+                        ally.currentHP = math.min(ally.maxHP, ally.currentHP + te.hotAmount)
+                    end
+                end
+            end
+            BE:AddLog(string.format("|cff00ff99[Solar Surge: Rejuvenating Bloom]|r The Cenarion Twins restored %d HP across their squad! (%d rounds remaining)|r", te.hotAmount, te.hotTurns))
+        end
+
+        -- Cycle-Based Buff Duration Ticking: Decays shared buffs only when a full timeline cycle elapses (every 2 enemy turns)
+        BE.State.duoTurnCounter = (BE.State.duoTurnCounter or 0) + 1
+        if BE.State.duoTurnCounter % 2 == 0 then
+            if te.hotTurns and te.hotTurns > 0 then
+                te.hotTurns = te.hotTurns - 1
+                if te.hotTurns <= 0 then te.hotAmount = 0 end
+            end
+            if te.brambleTurns and te.brambleTurns > 0 then
+                te.brambleTurns = te.brambleTurns - 1
+                if te.brambleTurns <= 0 then te.bramblePoints = 0 end
+            end
+        end
+    end
 end
 
 -- Backward-compatible wrapper for external round ticks
@@ -368,8 +497,12 @@ function BE:AdvanceToNextTurn()
         if ForeverSafari.BattleFrame then
             ForeverSafari.BattleFrame:UpdateUI()
         end
+        BE:StartTurnTimer()
     else
-        BE.State.dialogueText = string.format("Wild %s is preparing an attack...", enemy.name)
+        BE:CancelTurnTimer()
+        local eTitle = (BE.State.isTrainerBattle or BE.State.isOutpostBattle) and "" or "Wild "
+        local eName = enemy.nickname ~= "" and enemy.nickname or enemy.name
+        BE.State.dialogueText = string.format("%s%s is preparing an attack...", eTitle, eName)
         if ForeverSafari.BattleFrame then
             ForeverSafari.BattleFrame:UpdateUI()
         end
@@ -418,6 +551,7 @@ end
 
 -- Handle Player Companion Faint
 function BE:HandlePlayerFaint()
+    BE:CancelTurnTimer()
     local player = BE.State.playerMob
     local pName = (player and player.nickname ~= "" and player.nickname) or (player and player.name) or "Your companion"
     if player then
@@ -437,14 +571,16 @@ function BE:HandlePlayerFaint()
 
     if ForeverSafari.BattleFrame then
         ForeverSafari.BattleFrame:SetMenuMode("PARTY")
+        ForeverSafari.BattleFrame:UpdatePartyFrames()
         ForeverSafari.BattleFrame:UpdateUI()
     end
 end
 
 -- Handle Enemy Companion Faint (PvE ends immediately; Trainer switches; PvP prompts for next mob)
 function BE:HandleEnemyFaint()
+    BE:CancelTurnTimer()
     local enemy = BE.State.enemyMob
-    local eName = enemy and enemy.name or "Enemy target"
+    local eName = enemy and (enemy.nickname ~= "" and enemy.nickname or enemy.name) or "Enemy target"
     if enemy then enemy.currentHP = 0 end
 
     -- 1. AI Trainer Battle: Check if trainer has remaining bench companions
@@ -469,13 +605,21 @@ function BE:HandleEnemyFaint()
             end
 
             local trainerTitle = BE.State.enemyTrainer and BE.State.enemyTrainer.trainerTitle or "Rival Trainer"
-            BE.State.dialogueText = string.format("%s sent out %s!", trainerTitle, nextMob.name)
+            local bossOwner = nextMob.ownerName or trainerTitle
+            local nName = nextMob.nickname ~= "" and nextMob.nickname or nextMob.name
+            BE.State.dialogueText = string.format("%s sent out %s!", bossOwner, nName)
             local nRank = nextMob.attunementRank or nextMob.rank or 1
             local nRoman = type(nRank) == "number" and (C.ATTUNEMENT_RANKS[nRank] and C.ATTUNEMENT_RANKS[nRank].roman or "I") or tostring(nRank)
-            BE:AddLog(string.format("|cffff6666%s sent out %s (Rank %s %s)!|r", trainerTitle, nextMob.name, nRoman, nextMob.creatureType))
+            BE:AddLog(string.format("|cffff6666%s sent out %s (Rank %s %s)!|r", bossOwner, nName, nRoman, nextMob.creatureType))
+
+            if BE.State.isVirtualDuo then
+                BE.State.selectedTargetIndex = nextSlot
+            end
 
             if ForeverSafari.BattleFrame then
                 ForeverSafari.BattleFrame:UpdateModels()
+                ForeverSafari.BattleFrame:UpdatePartyFrames()
+                ForeverSafari.BattleFrame:UpdateTargetSelection()
                 ForeverSafari.BattleFrame:UpdateUI()
             end
             return
@@ -730,8 +874,18 @@ function BE:StartWildBattle(unit)
 
     local enemyMob = SE:CreateMobInstance(name, rawType, level, isElite, displayId)
 
+    BE:CancelTurnTimer()
+
     BE.State.inBattle = true
     BE.State.isTrainerBattle = false
+    BE.State.isOutpostBattle = false
+    BE.State.isVirtualDuo = false
+    BE.State.duoActive = nil
+    BE.State.duoTurnCounter = 0
+    BE.State.twinsEclipse = nil
+    BE.State.squadQuota = 5
+    BE.State.designatedSquad = nil
+    BE.State.combatStarted = false
     BE.State.enemyTrainer = nil
     BE.State.enemyTeam = nil
     BE.State.playerMob = activeMob
@@ -823,10 +977,13 @@ function BE:StartOutpostBattle(unit, outpost)
         end
     end
 
-    local match = ns.OutpostDB:GenerateOutpostMatch(outpost)
+    local pCount = (GetNumGroupMembers and GetNumGroupMembers() > 0 and GetNumGroupMembers()) or 1
+    local match = ns.OutpostDB:GenerateOutpostMatch(outpost, pCount)
     if not match or not match.team or #match.team == 0 then return false end
 
     local enemyMob = match.team[1]
+
+    BE:CancelTurnTimer()
 
     BE.State.inBattle = true
     BE.State.isTrainerBattle = true
@@ -862,6 +1019,46 @@ function BE:StartOutpostBattle(unit, outpost)
         bramblePoints = 0,
     }
 
+    -- Virtual Duo & Party Scaling Setup
+    BE.State.isVirtualDuo = match.isVirtualDuo or outpost.isVirtualDuo or false
+    if BE.State.isVirtualDuo then
+        BE.State.isPartyBattle = true
+        BE.State.disparity = match.disparity or 0
+        BE.State.partyMultiplier = match.partyMultiplier or 1.0
+        BE.State.duoActive = { jarund = 1, layo = 2 }
+        BE.State.duoTurnCounter = 0
+        BE.State.twinsEclipse = {
+            solar = 0,
+            lunar = 0,
+            hotTurns = 0,
+            hotAmount = 0,
+            brambleTurns = 0,
+            bramblePoints = 0,
+        }
+    else
+        BE.State.isPartyBattle = false
+        BE.State.disparity = 0
+        BE.State.partyMultiplier = 1.0
+        BE.State.duoActive = nil
+        BE.State.duoTurnCounter = 0
+        BE.State.twinsEclipse = nil
+    end
+
+    -- Squad Quota & Pre-Battle Pet Designation
+    local quota = BE:GetSquadQuota()
+    BE.State.squadQuota = quota
+    BE.State.combatStarted = false
+    BE.State.designatedSquad = {}
+    local dCount = 0
+    local team = DB:GetTeam() or {}
+    for _, mobId in ipairs(team) do
+        local m = type(mobId) == "table" and mobId or DB:GetMobById(mobId)
+        if m and (m.currentHP or 0) > 0 and dCount < quota then
+            BE.State.designatedSquad[m.id] = true
+            dCount = dCount + 1
+        end
+    end
+
     -- Initialize Move Cooldowns & Limits
     BE:InitMoveStates(activeMob, "player")
     BE:InitMoveStates(enemyMob, "enemy")
@@ -875,7 +1072,16 @@ function BE:StartOutpostBattle(unit, outpost)
     BE:AddLog(string.format("|cffffcc00[Outpost League]|r Challenged Outpost Leader |cffffffff%s|r (%s)!", outpost.name, outpost.location or outpost.zone))
     BE:AddLog(string.format("|cffffd100%s: \"%s\"|r", outpost.name, match.introQuote or "Let's battle!"))
     BE:AddLog(string.format("|cff00ff99Regional Badge on the line: [%s]|r", badgeName))
-    BE:AddLog(string.format("|cffff6666%s sent out %s (Rank %s %s)!|r", outpost.name, enemyMob.name, enemyMob.rankRoman or outpost.rankRoman or "I", enemyMob.creatureType))
+
+    if BE.State.isVirtualDuo then
+        if (BE.State.disparity or 0) > 0 then
+            BE:AddLog(string.format("|cffffaa00[Party Scaling]|r Disparity +%d! Opponents scaled by |cffff4444%.4fx|r base stats!|r", BE.State.disparity, BE.State.partyMultiplier or 1.0))
+        end
+        BE:AddLog(string.format("|cff00ccff[Squad Capacity]|r Group size quota: %d companions deployed.|r", BE.State.squadQuota))
+    end
+
+    local eName = enemyMob.nickname ~= "" and enemyMob.nickname or enemyMob.name
+    BE:AddLog(string.format("|cffff6666%s sent out %s (Rank %s %s)!|r", outpost.name, eName, enemyMob.rankRoman or outpost.rankRoman or "I", enemyMob.creatureType))
 
     if ForeverSafari.BattleFrame then
         ForeverSafari.BattleFrame:ShowBattle()
@@ -888,16 +1094,73 @@ function BE:StartOutpostBattle(unit, outpost)
     return true
 end
 
+-- Directly challenge the Cenarion Twins Virtual Duo
+function BE:StartVirtualDuoBattle(duoKey, playerCount)
+    duoKey = duoKey or "cenarion_silithus_duo"
+    local duoData = ns.OutpostDB and ns.OutpostDB.VIRTUAL_PARTIES and ns.OutpostDB.VIRTUAL_PARTIES[duoKey]
+    if not duoData then
+        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Virtual Duo encounter not found: " .. tostring(duoKey) .. "|r")
+        return false
+    end
+    return BE:StartOutpostBattle("target", duoData)
+end
+
+-- Find the other active companion for the Cenarion Twins Virtual Duo
+function BE:GetOtherDuoActivePet(sourcePet)
+    if not (BE.State.isVirtualDuo and BE.State.enemyTeam and sourcePet) then return nil end
+    local isJarund = (sourcePet.ownerName == "Jarund Stoutstrider" or sourcePet.ownerNpcId == 11805 or sourcePet.duoGuide == "jarund")
+    local targetOwner = isJarund and "Layo Starstrike" or "Jarund Stoutstrider"
+
+    for _, ally in ipairs(BE.State.enemyTeam) do
+        if ally.ownerName == targetOwner and (ally.currentHP or 0) > 0 then
+            return ally
+        end
+    end
+
+    -- Fallback: any other conscious ally in the duo squad
+    for _, ally in ipairs(BE.State.enemyTeam) do
+        if ally ~= sourcePet and (ally.currentHP or 0) > 0 then
+            return ally
+        end
+    end
+    return nil
+end
+
 function BE:AddLog(msg)
     table.insert(BE.State.logs, msg)
-    if ForeverSafari.BattleFrame and ForeverSafari.BattleFrame:IsShown() then
-        ForeverSafari.BattleFrame:UpdateLog()
+    if ForeverSafari and ForeverSafari.BattleFrame then
+        if ForeverSafari.BattleFrame.AddLogMessage then
+            ForeverSafari.BattleFrame:AddLogMessage(msg)
+        end
+        if ForeverSafari.BattleFrame:IsShown() then
+            ForeverSafari.BattleFrame:UpdateLog()
+        end
+    end
+end
+
+-- Select Target Opponent in Multi-Combatant / Party Battles
+function BE:SelectTarget(index)
+    if not BE.State.inBattle then return end
+    local team = BE.State.enemyTeam
+    if team and team[index] and (team[index].currentHP or 0) > 0 then
+        BE.State.selectedTargetIndex = index
+        BE.State.enemyMob = team[index]
+        if ForeverSafari and ForeverSafari.BattleFrame then
+            ForeverSafari.BattleFrame:UpdateTargetSelection()
+            ForeverSafari.BattleFrame:UpdateModels()
+            ForeverSafari.BattleFrame:UpdateUI()
+        end
+        local tName = team[index].nickname ~= "" and team[index].nickname or team[index].name
+        BE:AddLog(string.format("|cffffcc00[Target Selected]|r Focused on |cffff6666%s|r!", tName))
     end
 end
 
 -- Execute Player Selected Move
 function BE:ExecutePlayerMove(moveKey)
     if not BE.State.inBattle or BE.State.turn ~= "player" then return end
+
+    BE:CancelTurnTimer()
+    BE.State.combatStarted = true
 
     local move = BE:GetMoveData(moveKey)
     if not move then return end
@@ -970,9 +1233,10 @@ function BE:ExecutePlayerMove(moveKey)
     moveData.usesLeft = moveData.usesLeft - 1
     moveData.currentCD = move.cooldown or 0
 
+    local eName = enemy.nickname ~= "" and enemy.nickname or enemy.name
     local priorityText = (move.priority and move.priority > 0) and " |cffffcc00[Priority Strike!]|r" or ""
-    BE.State.dialogueText = string.format("%s used %s!", pName, move.name)
-    BE:AddLog(string.format("|cff00ff99%s|r used |cffffd100%s|r!%s (Uses: %d/%d)", pName, move.name, priorityText, moveData.usesLeft, moveData.maxUses))
+    BE.State.dialogueText = string.format("%s used %s on %s!", pName, move.name, eName)
+    BE:AddLog(string.format("|cff00ff99%s|r unleashes |cffffd100%s|r on |cffff6666%s|r!%s (Uses: %d/%d)", pName, move.name, eName, priorityText, moveData.usesLeft, moveData.maxUses))
 
     -- 🍃 Druid Class Passive: Ecliptic Tides (Solar / Lunar Tug-of-War & Surges)
     local CP = ns.ClassPassives
@@ -1042,8 +1306,11 @@ function BE:ExecutePlayerMove(moveKey)
     -- Accuracy check
     local hitRoll = math.random(1, 100)
     if hitRoll > move.accuracy then
-        BE.State.dialogueText = string.format("%s's attack missed!", pName)
-        BE:AddLog("|cffff8800The attack missed!|r")
+        BE.State.dialogueText = string.format("%s's %s missed %s!", pName, move.name, eName)
+        BE:AddLog(string.format("|cffffcc00💨 %s's %s swung wide and missed %s!|r", pName, move.name, eName))
+        if ForeverSafari.BattleFrame and ForeverSafari.BattleFrame.TriggerMissAnimation then
+            ForeverSafari.BattleFrame:TriggerMissAnimation(false)
+        end
     else
         BE:ApplyMoveEffects(move, player, enemy, "player")
         if ForeverSafari.BattleFrame and ForeverSafari.BattleFrame.TriggerHitAnimation then
@@ -1138,9 +1405,41 @@ function BE:ExecuteEnemyTurn()
         BE:AddLog(string.format("|cff00ff00[Ability Learned!]|r You observed %s and learned |cffffd100[%s]|r!", enemy.name, chosen.move.name))
     end
 
+    local eTitle = (BE.State.isTrainerBattle or BE.State.isOutpostBattle) and "" or "Wild "
+    local eName = enemy.nickname ~= "" and enemy.nickname or enemy.name
+    local pName = player.nickname ~= "" and player.nickname or player.name
     local priorityText = (chosen.move.priority and chosen.move.priority > 0) and " |cffffcc00[Priority Strike!]|r" or ""
-    BE.State.dialogueText = string.format("Enemy %s used %s!", enemy.name, chosen.move.name)
-    BE:AddLog(string.format("|cffff6666Wild %s|r used |cffffd100%s|r!%s", enemy.name, chosen.move.name, priorityText))
+    BE.State.dialogueText = string.format("%s%s used %s!", eTitle, eName, chosen.move.name)
+    BE:AddLog(string.format("|cffff6666%s%s|r used |cffffd100%s|r against |cff00ff99%s|r!%s", eTitle, eName, chosen.move.name, pName, priorityText))
+
+    -- Dual-Line Druid Ecliptic Meter: Advance Solar or Lunar track for the Cenarion Twins
+    if BE.State.isVirtualDuo and BE.State.twinsEclipse then
+        local isJarund = (enemy.duoGuide == "jarund" or enemy.ownerNpcId == 11805)
+        local isLayo = (enemy.duoGuide == "layo" or enemy.ownerNpcId == 13220)
+        local te = BE.State.twinsEclipse
+
+        if isJarund then
+            te.solar = (te.solar or 0) + 1
+            if te.solar >= 5 then
+                te.solar = 0
+                te.hotTurns = 3
+                te.hotAmount = math.max(1, math.floor((enemy.maxHP or 160) * 0.15))
+                BE:AddLog("|cffffaa00[Solar Surge - 100% Discharge!]|r Rejuvenating Bloom envelops the Cenarion Twins! (+15% HP/round for 3 rounds)|r")
+            else
+                BE:AddLog(string.format("|cffffaa00[Solar Balance]|r Jarund's %s charged Solar Energy: [☀️ %d/5]|r", eName, te.solar))
+            end
+        elseif isLayo then
+            te.lunar = (te.lunar or 0) + 1
+            if te.lunar >= 5 then
+                te.lunar = 0
+                te.brambleTurns = 3
+                te.bramblePoints = math.max(1, math.floor((enemy.attack or 35) * 0.40))
+                BE:AddLog("|cff66ccff[Lunar Surge - 100% Discharge!]|r Bramble Damage Shield crowns the Cenarion Twins! (Reflecting 40% damage for 3 rounds)|r")
+            else
+                BE:AddLog(string.format("|cff66ccff[Lunar Balance]|r Layo's %s charged Lunar Energy: [🌙 %d/5]|r", eName, te.lunar))
+            end
+        end
+    end
 
     -- Trigger Enemy Attack Animation in UI
     if ForeverSafari.BattleFrame and ForeverSafari.BattleFrame.TriggerAttackAnimation then
@@ -1158,9 +1457,12 @@ function BE:ExecuteEnemyTurn()
     end
 
     if hitRoll > effectiveAccuracy then
-        BE.State.dialogueText = string.format("Enemy %s's attack missed!", enemy.name)
+        BE.State.dialogueText = string.format("%s%s's %s missed %s!", eTitle, eName, chosen.move.name, pName)
         local shadowMsg = (CP and CP:GetPlayerClass() == "ROGUE") and " |cff00ff99[Shadow Evasion]|r" or ""
-        BE:AddLog(string.format("|cffff8800The attack missed!%s|r", shadowMsg))
+        BE:AddLog(string.format("|cffffcc00💨 %s%s's %s swung wide and missed %s!%s|r", eTitle, eName, chosen.move.name, pName, shadowMsg))
+        if ForeverSafari.BattleFrame and ForeverSafari.BattleFrame.TriggerMissAnimation then
+            ForeverSafari.BattleFrame:TriggerMissAnimation(true)
+        end
     else
         BE:ApplyMoveEffects(chosen.move, enemy, player, "enemy")
         if ForeverSafari.BattleFrame and ForeverSafari.BattleFrame.TriggerHitAnimation then
@@ -1237,11 +1539,39 @@ function BE:ApplyMoveEffects(move, attacker, defender, side)
     local pClass = CP and CP:GetPlayerClass()
     local oppClass = BE.State.opponentClass
 
-    -- Instant Direct Heals
-    if move.heal and (not move.power or move.power == 0) then
-        local healAmount = math.floor(attacker.maxHP * move.heal)
-        attacker.currentHP = math.min(attacker.maxHP, attacker.currentHP + healAmount)
-        BE:AddLog(string.format("|cff00ff00%s restored %d HP!|r", attacker.name, healAmount))
+    -- Instant Direct Heals & Spectral Mend
+    if move.healLowestAlly or (move.heal and (not move.power or move.power == 0)) then
+        local healTarget = attacker
+        local healAmount = math.floor(attacker.maxHP * (move.healLowestAlly or move.heal or 0.25))
+        if move.healLowestAlly and BE.State.enemyTeam then
+            local lowestAlly = attacker
+            local lowestPct = (attacker.currentHP / attacker.maxHP)
+            for _, ally in ipairs(BE.State.enemyTeam) do
+                if (ally.currentHP or 0) > 0 then
+                    local pct = ally.currentHP / ally.maxHP
+                    if pct < lowestPct then
+                        lowestPct = pct
+                        lowestAlly = ally
+                    end
+                end
+            end
+            healTarget = lowestAlly
+            healAmount = math.floor(healTarget.maxHP * move.healLowestAlly)
+        end
+        healTarget.currentHP = math.min(healTarget.maxHP, healTarget.currentHP + healAmount)
+        local hName = healTarget.nickname ~= "" and healTarget.nickname or healTarget.name
+        BE:AddLog(string.format("|cff00ff00%s restored %d HP!|r", hName, healAmount))
+
+        -- Sympathetic Healing for Virtual Duo:
+        if side == "enemy" and BE.State.isVirtualDuo and healAmount > 0 then
+            local otherPet = BE:GetOtherDuoActivePet(healTarget)
+            if otherPet and (otherPet.currentHP or 0) > 0 and otherPet.currentHP < otherPet.maxHP then
+                local sharedHeal = math.max(1, math.floor(healAmount * 0.50))
+                otherPet.currentHP = math.min(otherPet.maxHP, otherPet.currentHP + sharedHeal)
+                local oName = otherPet.nickname ~= "" and otherPet.nickname or otherPet.name
+                BE:AddLog(string.format("|cff00ff99[Sympathetic Healing]|r %s resonated with %s's heal and recovered %d HP (50%%)!|r", oName, hName, sharedHeal))
+            end
+        end
     end
 
     -- Heal Over Time (HoT)
@@ -1251,36 +1581,111 @@ function BE:ApplyMoveEffects(move, attacker, defender, side)
             duration = move.hot.duration or 3,
             name = move.name,
         }
-        BE:AddLog(string.format("|cff00ff99[Regeneration] %s began regenerating health over time!|r", attacker.name))
+        local aName = attacker.nickname ~= "" and attacker.nickname or attacker.name
+        BE:AddLog(string.format("|cff00ff99[Regeneration] %s began regenerating health over time!|r", aName))
+        if side == "enemy" and BE.State.isVirtualDuo then
+            BE:AddLog("|cffffcc00[Sympathetic Buffing]|r The Cenarion Twins share all party buffs! [REGENERATION] mirrored across the Twins!|r")
+        end
     end
 
     -- Stat Buffs / Debuffs
     if move.buff then
         if move.buff.multiplier < 1.0 and isDefenderElemental then
-            BE:AddLog(string.format("|cff00e5ff[Primal Purity] %s ignored the debuff!|r", defender.name))
+            BE:AddLog(string.format("|cff00e5ff[Primal Purity] %s ignored the debuff!|r", defender.nickname ~= "" and defender.nickname or defender.name))
         else
             BE.State.buffs[side][move.buff.stat] = {
                 multiplier = move.buff.multiplier,
                 turns = move.buff.duration or 3
             }
-            BE:AddLog(string.format("|cff33ccff%s's %s was modified!|r", attacker.name, string.upper(move.buff.stat)))
+            local aName = attacker.nickname ~= "" and attacker.nickname or attacker.name
+            BE:AddLog(string.format("|cff33ccff%s's %s was modified!|r", aName, string.upper(move.buff.stat)))
+            if side == "enemy" and BE.State.isVirtualDuo then
+                local pctChange = math.floor((move.buff.multiplier - 1.0) * 100)
+                local sign = pctChange >= 0 and "+" or ""
+                BE:AddLog(string.format("|cffffcc00[Sympathetic Buffing]|r The Cenarion Twins share all party buffs! [%s%d%% %s] mirrored across the Twins!|r", sign, pctChange, string.upper(move.buff.stat)))
+            end
         end
     end
 
-    -- Specific Debuffs (e.g. Bleed Vulnerability from Mangle)
+    -- Damage Reduction Buff (Barkskin Aegis)
+    if move.damageReduction then
+        BE.State.buffs[side].damageReduction = {
+            multiplier = move.damageReduction,
+            turns = move.duration or 2,
+        }
+        local aName = attacker.nickname ~= "" and attacker.nickname or attacker.name
+        BE:AddLog(string.format("|cff33ccff%s gained Barkskin Aegis (-30%% damage taken)!|r", aName))
+        if side == "enemy" and BE.State.isVirtualDuo then
+            BE:AddLog("|cffffcc00[Sympathetic Buffing]|r The Cenarion Twins share all party buffs! [-30% DAMAGE TAKEN] mirrored across the Twins!|r")
+        end
+    end
+
+    -- Evasive Agility Buff (Tranquil Breeze Dodge Bonus)
+    if move.dodgeBonus then
+        BE.State.buffs[side].dodgeBonus = {
+            multiplier = 1.0 + (move.dodgeBonus or 0.25),
+            dodgeAdd = math.floor((move.dodgeBonus or 0.25) * 100),
+            turns = move.duration or 2,
+        }
+        local aName = attacker.nickname ~= "" and attacker.nickname or attacker.name
+        BE:AddLog(string.format("|cff33ccff%s gained evasive agility (+%d%% Dodge)!|r", aName, math.floor((move.dodgeBonus or 0.25) * 100)))
+        if side == "enemy" and BE.State.isVirtualDuo then
+            BE:AddLog("|cffffcc00[Sympathetic Buffing]|r The Cenarion Twins share all party buffs! [+25% DODGE] mirrored across the Twins!|r")
+        end
+    end
+
+    -- Cleanse Debuffs (Tranquil Breeze)
+    if move.cleanseDebuffs then
+        local b = BE.State.buffs[side]
+        if b then
+            for statKey, statData in pairs(b) do
+                if type(statData) == "table" and statData.multiplier and statData.multiplier < 1.0 then
+                    b[statKey] = nil
+                end
+            end
+            b.dots = nil
+            b.sleep = nil
+        end
+        local aName = attacker.nickname ~= "" and attacker.nickname or attacker.name
+        BE:AddLog(string.format("|cff00ff99[Tranquil Breeze]|r Cleansed all negative afflictions from %s!|r", aName))
+    end
+
+    -- AoE Debuffs against Player Squad (Static Jolt / Disorienting Screech / Faerie Fire)
+    if move.aoeDebuff and side == "enemy" then
+        local debuff = move.aoeDebuff
+        if debuff.stat == "spd" then
+            BE.State.buffs.player.spd = { multiplier = debuff.multiplier or 0.75, turns = debuff.duration or 3 }
+            BE:AddLog("|cffff4444[Static Jolt]|r AoE static shock slowed your entire squad! (-25% Speed for 3 rounds)|r")
+        elseif debuff.stat == "atk" then
+            BE.State.buffs.player.atk = { multiplier = debuff.multiplier or 0.75, turns = debuff.duration or 3 }
+            BE:AddLog("|cffff4444[Disorienting Screech]|r Piercing screech disoriented your squad! (-25% Attack for 3 rounds)|r")
+        elseif debuff.magicVuln then
+            BE.State.buffs.player.magicVuln = { multiplier = debuff.magicVuln or 1.30, turns = debuff.duration or 3 }
+            BE:AddLog("|cffff4444[Faerie Fire]|r Luminescent dust exposed your squad! (+30% Magic damage taken for 3 rounds)|r")
+        end
+    end
+
+    -- Specific Debuffs (e.g. Bleed Vulnerability from Mangle or Def debuff from Faerie Rend)
     if move.debuff and move.debuff.bleedVuln then
         BE.State.buffs[targetSide].bleedVuln = {
             multiplier = move.debuff.bleedVuln,
             turns = move.debuff.duration or 3,
         }
-        BE:AddLog(string.format("|cffff4444%s was mangled! Bleed damage taken increased by +50%%!|r", defender.name))
+        BE:AddLog(string.format("|cffff4444%s was mangled! Bleed damage taken increased by +50%%!|r", defender.nickname ~= "" and defender.nickname or defender.name))
+    end
+    if move.debuff and move.debuff.stat then
+        BE.State.buffs[targetSide][move.debuff.stat] = {
+            multiplier = move.debuff.multiplier,
+            turns = move.debuff.duration or 3,
+        }
+        BE:AddLog(string.format("|cffff4444%s's %s was reduced by %d%%!|r", defender.nickname ~= "" and defender.nickname or defender.name, string.upper(move.debuff.stat), math.floor((1.0 - move.debuff.multiplier) * 100)))
     end
 
-    -- Stealth / Flight Reveal (Alarm Bark / Faerie Fire)
+    -- Stealth / Flight Reveal (Alarm Bark / Faerie Fire / Faerie Rend)
     if move.revealStealth then
         BE.State.buffs[targetSide].prowl = nil
         BE.State.buffs[targetSide].liftOff = nil
-        BE:AddLog(string.format("|cffffcc00[Vigilance] %s revealed %s! Stealth and flight evasion broken!|r", attacker.name, defender.name))
+        BE:AddLog(string.format("|cffffcc00[Vigilance] %s revealed %s! Stealth and flight evasion broken!|r", attacker.nickname ~= "" and attacker.nickname or attacker.name, defender.nickname ~= "" and defender.nickname or defender.name))
     end
 
     -- Direct Damage & Combat Layer Resolution
@@ -1304,9 +1709,12 @@ function BE:ApplyMoveEffects(move, attacker, defender, side)
             local dodgeChance = defenderStats.dodge or 5
             local dodgeRoll = math.random(1, 100)
             if dodgeRoll <= dodgeChance then
-                BE.State.dialogueText = string.format("%s dodged the attack!", defender.name)
+                BE.State.dialogueText = string.format("%s dodged %s's attack!", defender.name, attacker.name)
                 local rogueNote = (defenderClass == "ROGUE") and " |cff00ff99[Shadow Evasion]|r" or ""
-                BE:AddLog(string.format("|cffffaa00%s dodged the attack!%s (%d%% dodge)|r", defender.name, rogueNote, dodgeChance))
+                BE:AddLog(string.format("|cffffaa00⚡ %s anticipates the blow and swiftly dodges %s's attack!%s (%d%% dodge)|r", defender.name, attacker.name, rogueNote, dodgeChance))
+                if ForeverSafari.BattleFrame and ForeverSafari.BattleFrame.TriggerMissAnimation then
+                    ForeverSafari.BattleFrame:TriggerMissAnimation(targetSide == "player")
+                end
                 return
             end
         end
@@ -1422,6 +1830,21 @@ function BE:ApplyMoveEffects(move, attacker, defender, side)
             end
         end
 
+        -- Damage Reduction Buff (Barkskin Aegis)
+        if BE.State.buffs and BE.State.buffs[targetSide] and BE.State.buffs[targetSide].damageReduction then
+            local redMult = BE.State.buffs[targetSide].damageReduction.multiplier or 0.30
+            local reduced = math.floor(finalDmg * redMult)
+            finalDmg = math.max(1, finalDmg - reduced)
+            BE:AddLog(string.format("|cff33ccff[Barkskin Aegis]|r Absorbed %d incoming damage on %s (-30%%)!|r", reduced, defender.nickname ~= "" and defender.nickname or defender.name))
+        end
+
+        -- Magic / Spell Vulnerability (Faerie Fire)
+        if BE.State.buffs and BE.State.buffs[targetSide] and BE.State.buffs[targetSide].magicVuln and moveCategory ~= "Physical" then
+            local bonus = math.floor(finalDmg * ((BE.State.buffs[targetSide].magicVuln.multiplier or 1.30) - 1.0))
+            finalDmg = finalDmg + bonus
+            BE:AddLog(string.format("|cffff4444[Faerie Fire Vulnerability]|r %s took +%d amplified magic damage!|r", defender.nickname ~= "" and defender.nickname or defender.name, bonus))
+        end
+
         -- ❄️ Layer 5: Mage Chilling Tempo (Offense & Defense with Frost Resist Direct Subtraction)
         if CP and CP.RollChillingTempo then
             -- Offensive hit by Mage
@@ -1451,6 +1874,16 @@ function BE:ApplyMoveEffects(move, attacker, defender, side)
             if reflectDmg > 0 and attacker and attacker.currentHP > 0 then
                 attacker.currentHP = math.max(0, attacker.currentHP - reflectDmg)
                 BE:AddLog(string.format("|cff33ff33[Lunar Surge: Brambles]|r Reflected %d Nature damage back to %s! (%d rounds remaining)", reflectDmg, attacker.name, BE.State.druidEclipse.brambleTurns))
+            end
+        end
+
+        -- 🍃 Cenarion Twins Dual-Line Ecliptic: Brambles Reflection
+        if targetSide == "enemy" and BE.State.isVirtualDuo and BE.State.twinsEclipse and (BE.State.twinsEclipse.brambleTurns or 0) > 0 and finalDmg > 0 then
+            local reflectDmg = math.max(1, math.floor(finalDmg * 0.40))
+            if attacker and attacker.currentHP > 0 then
+                attacker.currentHP = math.max(0, attacker.currentHP - reflectDmg)
+                local aName = attacker.nickname ~= "" and attacker.nickname or attacker.name
+                BE:AddLog(string.format("|cff33ff33[Twins Brambles]|r Thorny brambles reflected %d Nature damage back to %s! (%d rounds remaining)", reflectDmg, aName, BE.State.twinsEclipse.brambleTurns))
             end
         end
 
@@ -1485,13 +1918,46 @@ function BE:ApplyMoveEffects(move, attacker, defender, side)
 
         local effText = ""
         if typeMult >= 1.5 then
-            effText = " |cff00ff00(Super Effective! 150%)|r"
+            effText = " |cff00ff00(Super Effective! +50%)|r"
         elseif typeMult <= 0.70 then
-            effText = " |cffff8800(Resisted! 67%)|r"
+            effText = " |cffff8800(Resisted! -33%)|r"
         end
 
-        local critText = isCrit and " |cffff0000[CRITICAL HIT!]|r" or ""
-        BE:AddLog(string.format("Dealt |cffff3333%d|r damage!%s%s", finalDmg, effText, critText))
+        local moveCat = moveCategory or "Physical"
+        local dName = defender.nickname ~= "" and defender.nickname or defender.name
+        if isCrit then
+            BE:AddLog(string.format("|cffff0000💥 CRITICAL HIT!|r %s strikes %s for |cffff2222%d %s damage|r!%s", move.name, dName, finalDmg, moveCat, effText))
+        else
+            BE:AddLog(string.format("|cffffffff%s|r strikes %s for |cffff3333%d %s damage|r!%s", move.name, dName, finalDmg, moveCat, effText))
+        end
+
+        -- 🌪️ Boss AoE Cleave Resolution (Cenarion Twins collateral shockwave)
+        if side == "enemy" and BE.State.isVirtualDuo and move.power and move.power > 0 then
+            local squad = DB:GetTeam() or {}
+            local cleavePower = math.max(10, math.floor(move.power * 0.50))
+            for _, sMobId in ipairs(squad) do
+                local sMob = type(sMobId) == "table" and sMobId or DB:GetMobById(sMobId)
+                if sMob and sMob.id ~= defender.id and (sMob.currentHP or 0) > 0 then
+                    if not BE.State.designatedSquad or BE.State.designatedSquad[sMob.id] then
+                        local sStats = BE:GetEffectiveResistances(sMob, "player")
+                        local sResistPct = sStats[moveSchool] or 0
+                        local sDef = sStats.def or sMob.defense or 20
+                        local aAtk = attackerStats.atk or attacker.attack or 30
+                        local cleaveDmg = math.max(1, math.floor((cleavePower * aAtk / (sDef * 2)) * (1 - sResistPct / 100)))
+                        sMob.currentHP = math.max(0, sMob.currentHP - cleaveDmg)
+                        local sName = sMob.nickname ~= "" and sMob.nickname or sMob.name
+                        BE:AddLog(string.format("|cffff6666[Boss Cleave]|r Collateral shockwave swept through your squad, dealing %d %s damage to %s! (%d/%d HP)|r", cleaveDmg, moveCat, sName, sMob.currentHP, sMob.maxHP))
+                        if sMob.currentHP <= 0 then
+                            sMob.isFainted = true
+                            BE:AddLog(string.format("|cffff2222%s fainted on the bench from the collateral blast!|r", sName))
+                        end
+                    end
+                end
+            end
+            if ForeverSafari.BattleFrame and ForeverSafari.BattleFrame.UpdatePartyFrames then
+                ForeverSafari.BattleFrame:UpdatePartyFrames()
+            end
+        end
 
         -- Flinch Effect
         if move.flinchChance and math.random(1, 100) <= move.flinchChance then
@@ -1511,6 +1977,15 @@ function BE:ApplyMoveEffects(move, attacker, defender, side)
             local drained = math.floor(finalDmg * move.heal)
             attacker.currentHP = math.min(attacker.maxHP, attacker.currentHP + drained)
             BE:AddLog(string.format("|cff00ff00%s drained %d health!|r", attacker.name, drained))
+            if side == "enemy" and BE.State.isVirtualDuo and drained > 0 then
+                local otherPet = BE:GetOtherDuoActivePet(attacker)
+                if otherPet and (otherPet.currentHP or 0) > 0 and otherPet.currentHP < otherPet.maxHP then
+                    local sharedHeal = math.max(1, math.floor(drained * 0.50))
+                    otherPet.currentHP = math.min(otherPet.maxHP, otherPet.currentHP + sharedHeal)
+                    local oName = otherPet.nickname ~= "" and otherPet.nickname or otherPet.name
+                    BE:AddLog(string.format("|cff00ff99[Sympathetic Healing]|r %s resonated with %s's drain and recovered %d HP (50%%)!|r", oName, attacker.name, sharedHeal))
+                end
+            end
         end
 
         -- Periodic DoT Attachment
@@ -1531,6 +2006,7 @@ end
 -- Use item from Bag in Battle
 function BE:UseBagItem(itemId)
     if not BE.State.inBattle or BE.State.turn ~= "player" then return end
+    BE:CancelTurnTimer()
     local player = BE.State.playerMob
     if not player then return end
 
@@ -1568,9 +2044,19 @@ function BE:SwitchPlayerMob(mobId)
     if not BE.State.inBattle then return end
     if BE.State.turn ~= "player" and not BE.State.forcedSwitch then return end
 
+    BE:CancelTurnTimer()
+
     local newMob = DB:GetMobById(mobId)
     if not newMob or (newMob.currentHP or 0) <= 0 then
         BE.State.dialogueText = "That companion has fainted!"
+        if ForeverSafari.BattleFrame then ForeverSafari.BattleFrame:UpdateUI() end
+        return
+    end
+
+    if BE.State.designatedSquad and not BE.State.designatedSquad[newMob.id] then
+        BE.State.dialogueText = "That companion was benched for this battle!"
+        local bName = newMob.nickname ~= "" and newMob.nickname or newMob.name
+        BE:AddLog(string.format("|cffff4444[Safari Battle]|r %s was benched for this battle and cannot enter combat!|r", bName))
         if ForeverSafari.BattleFrame then ForeverSafari.BattleFrame:UpdateUI() end
         return
     end
@@ -1591,6 +2077,7 @@ function BE:SwitchPlayerMob(mobId)
 
     if ForeverSafari.BattleFrame then
         ForeverSafari.BattleFrame:UpdateModels()
+        ForeverSafari.BattleFrame:UpdatePartyFrames()
     end
 
     if BE.State.forcedSwitch then
@@ -1600,6 +2087,7 @@ function BE:SwitchPlayerMob(mobId)
         if ForeverSafari.BattleFrame then
             ForeverSafari.BattleFrame:SetMenuMode("MAIN")
         end
+        BE:StartTurnTimer()
     else
         BE.State.dialogueText = string.format("Go! %s!", pName)
         if ForeverSafari.BattleFrame then
@@ -1613,6 +2101,7 @@ end
 
 -- Handle Battle Victory
 function BE:HandleVictory()
+    BE:CancelTurnTimer()
     local player = BE.State.playerMob
     local enemy = BE.State.enemyMob
 
@@ -1760,6 +2249,7 @@ end
 
 -- Handle Battle Defeat
 function BE:HandleDefeat()
+    BE:CancelTurnTimer()
     local player = BE.State.playerMob
     local pName = player.nickname ~= "" and player.nickname or player.name
     BE.State.dialogueText = string.format("%s fainted! You lost the battle!", pName)
@@ -1779,6 +2269,7 @@ end
 -- Forfeit / Run away
 function BE:RunAway()
     if not BE.State.inBattle then return end
+    BE:CancelTurnTimer()
     BE.State.dialogueText = "Got away safely!"
     BE:AddLog("|cffffaa00Escaped safely from battle!|r")
     BE.State.inBattle = false
@@ -1790,6 +2281,7 @@ end
 -- 🌿 Priest Class Passive: Divine Grace Active Emergency Heal
 function BE:UseDivineGrace()
     if not BE.State.inBattle or BE.State.turn ~= "player" then return false end
+    BE:CancelTurnTimer()
     local player = BE.State.playerMob
     if not player or player.currentHP <= 0 then return false end
 

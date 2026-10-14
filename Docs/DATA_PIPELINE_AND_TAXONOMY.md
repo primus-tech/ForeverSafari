@@ -1,7 +1,11 @@
-# Implementation Plan: Wowhead Creature Scrape, Zone Classification & Acquisition Taxonomy Pipeline
+# 📊 Forever Safari — Data Pipeline, Zone Classification & Acquisition Taxonomy
+**The Canonical Architecture for Open-World Encounters, Instance Pup Drops & Hunter Pet Taxonomy**  
+*World of Warcraft: Forever (`_classic_beta_` / `dataEnv: 16`)*
 
-## 1. Executive Summary & Goals
-This plan details the updated automated data pipeline to extract, classify, and compile creatures across World of Warcraft into *Forever Safari*'s canonical database (`Data/CreatureDB.lua`).
+---
+
+## 1. Executive Summary & Architecture
+This specification details the data architecture to classify, compile, and provision creatures across Azeroth into *Forever Safari*'s canonical database (`Data/CreatureDB.lua`).
 
 ### Core Architectural Pillars:
 1. **Master Zone Classification**:

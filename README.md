@@ -160,26 +160,49 @@ Companions progress through bonding, feeding, and battlefield survival rather th
   * 🍖 **Consumables**: Safari Treats (+50 Attunement), Grand Safari Feasts (+100 Attunement to full team), Safari Healing Salves (100% HP heal), and Revival Crystals.
 * **Context-Sensitive Actions**: Right-Clicking items in the bag automatically uses or feeds your active companion, or opens the 3D Metamorphosis pedestal. Shift-Clicking any item links it directly into chat.
 
-### 10. Town Logistics: Junior Safari League Gossip & Vault Integration
-* **Zero Out-of-World Access & Zero Popup Intrusions**: Town interactions are unified directly under Blizzard's native dialogue and banking frames. No popups or sidecars appear automatically; all services are accessed on demand.
+### 10. Town Logistics: Junior Safari League Gossip & Interaction Matrix
+* **Zero Out-of-World Access & Zero Popup Intrusions**: Town interactions are unified directly under Blizzard's native dialogue, specialized world interaction, and banking frames. No popups or sidecars appear automatically; all services are accessed on demand.
 * **Non-Service NPCs Remain Silent**: Interacting with generic NPCs across Azeroth (guards, vendors, flight masters, mayors) will never trigger addon popups or HUD elements.
-* **🏨 Innkeepers (Junior Safari League: Rest & Revive Squad)**:
+* **🏨 Innkeepers (Healers & Recuperation Sanctuary)**:
   * **Opt-In Dialogue Option**: Speaking with an Innkeeper appends `Junior Safari League: Rest and Revive Squad` to Blizzard's native `GossipFrame`.
   * **Restoration**: Fully revives fainted companions, heals all squad and reserve companions to 100% HP, and plays the rest toast.
   * **Exclusive Sanctuary**: Innkeepers strictly handle squad recuperation and resting; they do not sell supplies or manage bank vaults.
-* **🎯 Pet Trainers (Junior Safari League: Outpost Battles & Outfitter)**:
+* **🎯 Pet Trainers (Outfitters, Healers & Capital City Breeders)**:
   * **Accessible to ALL Classes**: Non-Hunter classes and Hunters alike can interact with town Pet Trainers.
-  * **Junior Safari League: Challenge Outpost Leader**: Issue a formal battle challenge against the Outpost Leader right from the dialogue window.
   * **Junior Safari League: Visit Outfitter**: Opens the Nesingwary Safari Supplies shop (`/fsshop`) with Capture Gear, Transport Crates, Diets, and Medicine.
-* **🌿 Cenarion Keepers in Moonglade (Junior Safari League: Breed My Pet)**:
-  * **Cenarion Nursery Access**: Speaking with Keepers in Moonglade (Nighthaven) appends `Junior Safari League: Breed My Pet` to the gossip window, opening the co-op companion breeding nursery.
-* **🏦 Bankers (Junior Safari Reserve Tab on BankFrame)**:
-  * **Seamless Tab Integration**: Interacting with any town **Banker** adds a dedicated **Junior Safari Reserve** tab directly to Blizzard's `BankFrame`.
-  * **On-Demand Companion Vault**: Clicking the tab opens the companion vault docked alongside `BankFrame`, managing your 4-member active squad and 5 Enclosure Bank Boxes (100 banked companions).
-  * **Zero Taint**: Closes cleanly when the bank window closes (`BANKFRAME_CLOSED`).
+  * **Capital City Breeding**: Pet Trainers in capital cities host early-game companion breeding (offspring hatches at Rank I: Untamed).
+  * **Squad Healing**: Also revives and restores wounded companions.
+* **🏇 Stable Masters (Outpost Leaders & Regional Circuit)**:
+  * **Specialized Interaction HUD**: Because Stable Masters on *WoW: Forever* terminate gossip sessions for non-Hunters via server-side class validation, Forever Safari uses a dedicated on-target specialized interaction HUD to challenge Outpost Leaders across regional circuits.
+* **🌿 Cenarion Keepers in Moonglade (Sacred Sanctuary Breeders)**:
+  * **Sacred Grove Nursery**: Custodians of the Sacred Grove in Moonglade (Nighthaven) accessed via gossip or `/fsnursery`, facilitating advanced endgame co-op breeding (offspring hatches at Rank III: Attuned).
+* **🏦 Bankers (Kennelers & Companion Reserve)**:
+  * **On-Demand Companion Vault**: Interacting with any town Banker provides access to the Junior Safari Reserve vault (`/fskennel`), managing active squad slots and reserve enclosures (up to 1,000 banked companions).
 * **Universal Gossip Row-Stacking Guarantee**:
   * On any NPC with gossip integration, Forever Safari dynamically evaluates all third-party addon rows on `GossipFrame.GreetingPanel` (e.g. Olympus's `Bones!: Teach me Bones`, Questie, etc.) and anchors directly beneath the lowest external row.
   * Forever Safari options are guaranteed to always be the bottom-most choices on screen with zero hardcoded strings or addon flags.
+
+### 11. Party Battles, Virtual Duos & Pre-Battle Squad Designation
+* **Disparity Compounding Party Scaling**:
+  * Team and Virtual Duo encounters scale dynamically according to player party disparity: $\Delta = \max(0, \text{Players} - \text{NPCs})$.
+  * For 2-NPC Virtual Duos: $\Delta = 0$ (1–2 players) = $1.0000\times$; $\Delta = 1$ (3 players) = $\mathbf{1.2500\times}$; $\Delta = 2$ (4 players) = $\mathbf{1.3750\times}$; $\Delta = 3$ (5 players, Duo Cap) = $\mathbf{1.4438\times}$ Max HP and damage.
+* **The Cenarion Twins Virtual Duo (Jarund Stoutstrider & Layo Starstrike)**:
+  * Stationed at Cenarion Hold in Silithus, fielding a coordinated 8-companion joint roster (Spirit Wolf, War Kodo, Thunder Lizard, Ancients, Nightsaber, Lunar Owl, Sprite Darter).
+  * Every companion strictly conforms to the **100-Point Base Stat Budget Law** with verified DBC display IDs.
+* **Dual-Line Druid Ecliptic Meter**:
+  * Single HUD displaying Jarund's Solar energy (☀️) and Layo's Lunar energy (🌙). At 5 charges, unleashes *Solar Bloom* (+12% Max HP squad HoT) or *Lunar Brambles* (40% thorns reflection). Both can be active simultaneously.
+* **Sympathetic Buffing & 50% Sympathetic Healing**:
+  * Beneficial buffs and defensive shields (*Barkskin Aegis*, *Static Jolt*, *Thick Hide*) cast by either Twin immediately mirror across both active companions of the Twins.
+  * When either pet heals through a primary or secondary effect (direct heal, leech/drain, regeneration HoT), 50% of that healing is sympathetically shared to the other active companion.
+  * Shared defensive buffs decrement only once every 2 enemy turns (`duoTurnCounter % 2 == 0`).
+* **15-Second Action Timeout**:
+  * Animated countdown bar above dialogue console. If 15 seconds expire without player input, Move 1 is automatically fired to maintain battle velocity.
+* **Pre-Battle Squad Designation**:
+  * Interactive checkboxes on `ForeverSafariPlayerParty` allow players to designate which companions enter combat before the battle starts.
+  * **Squad Quotas**: 4–5 players = 2 pets; 3 players = 3 pets; 1–2 players = 4 pets.
+  * Locks permanently on turn 1 (`combatStarted = true`); benched pets cannot enter combat.
+* **Boss AoE Cleave**:
+  * Primary target takes full damage; collateral cleave strikes all conscious reserve companions for 50% base power, mitigated through each companion's own defense and resistance ratings.
 
 ### 12. Real Quest Token Grants, Retroactive Compensation & Companion Bonding
 * **Real Quest Completion Rewards**: Turning in quests across Azeroth (`QUEST_TURNED_IN`) directly rewards the player with **Safari Tokens** calculated as **1/10 of the quest level, rounded up** (`math.ceil(QuestLevel / 10)`), minimum 1 Token.
@@ -224,8 +247,10 @@ Companions progress through bonding, feeding, and battlefield survival rather th
   * 🕊️ **Priest (Ward of the Heavens & Divine Grace)**: Shadow/Holy Ward + active `[Divine Grace]` emergency heal console button restoring 25% Max HP.
   * ⚔️ **Paladin (Aegis of Light & Aura of Light)**: Physical/Holy Ward + 5%–25% damage-to-healing conversion.
 
-### 16. Moonglade Cenarion Nursery & Co-op Breeding Program
-* **Moonglade Sacred Sanctuary**: Gated at the Cenarion Circle in Moonglade (Nighthaven) via NPC gossip or `/fsnursery`.
+### 16. Tiered Companion Breeding & Co-op Genetics Program
+* **Tiered Breeding Sanctuaries**:
+  * **Capital City Nurseries (Pet Trainers)**: Available immediately across Stormwind, Orgrimmar, Ironforge, Thunder Bluff, Darnassus, and Undercity. Offspring hatches at **Rank I: Untamed** (0 Attunement points).
+  * **Sacred Grove Sanctuary (Cenarion Keepers)**: Gated at the Sacred Grove in Moonglade (Nighthaven) via NPC gossip or `/fsnursery`. Offspring hatches at **Rank III: Attuned** (100 base stat points, 0% disobedience, immediate battle readiness).
 * **Biological Designation**: Every companion possesses a signed biological designation: **Sire (♂)** or **Dam (♀)** (50/50 distribution).
 * **Breeding Rules**:
   * 1. Exact Same Family (purebred lineage).
@@ -267,8 +292,14 @@ ForeverSafari/
 ├── README.md                          # Comprehensive Documentation & Architecture Manual
 ├── MANUAL.md                          # Official Player Field Guide
 ├── ROADMAP.md                         # Master Milestone & Feature Tracker
+├── Truth.md                           # Canonical Constraints, Platform Truths & NPC Roles
 ├── Docs/                              # Deep-Dive System Design Documentation
-│   └── SAFARI_OUTPOST_SYSTEM.md       # Regional Outposts, Gym Leaders & Neutral Orders
+│   ├── COMBAT_ENGINE_STATS_AND_MECHANICS.md # Core Combat Engine, Budgets & Mechanics
+│   ├── SAFARI_OUTPOST_SYSTEM.md       # Regional Outposts, Virtual Duos & Neutral Orders
+│   ├── HUNTER_TAXONOMY_AND_OBSERVATION.md   # Spec Archetypes, Move Siloing & Observation
+│   ├── MOVE_CATEGORIZATION.md         # 18-Node Ability Taxonomy & Delivery Mechanics
+│   ├── BREEDING_SYSTEM_AND_GENETICS.md# Co-op Breeding, Genetic Seeds & Sanctuaries
+│   └── DATA_PIPELINE_AND_TAXONOMY.md  # Open-World vs Instance Pup Drops & Taxonomy
 │
 ├── Data/                              # Canonical Data Registries
 │   ├── ItemDB.lua                     # Snares, Traps, Cages, Crates, 11 Diets, Eggs & Consumables

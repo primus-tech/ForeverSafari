@@ -342,3 +342,54 @@ Mystic reactive shields that trigger on incoming strikes and periodic ticks:
 * [x] **Deterministic Stat Totals**: Species base stats adhere strictly to 100/110 budgets via Largest Remainder Zero-Drift rounding.
 * [x] **Per-Tick DoT Independence**: Periodic effects evaluate reactive ward procs independently per damage tick.
 * [x] **Single Source of Truth**: All combat mechanics, formulas, resistance layers, and class passives consolidated in this specification.
+
+---
+
+## 10. Party Scaling, Virtual Duos & Pre-Battle Squad Designation
+
+### 10.1 Disparity Compounding Formula
+When engaging in multi-player cooperative team or Virtual Duo battles, encounter scaling adjusts dynamically based on the disparity between player party size and active enemy combatants:
+
+$$\Delta = \max(0, \text{Players} - \text{NPCs})$$
+
+For Duo encounters ($\text{NPCs} = 2$):
+* **$\Delta = 0$ (1–2 Players)**: Multiplier = $\mathbf{1.0000\times}$ (Baseline stats, no scaling bonus).
+* **$\Delta = 1$ (3 Players)**: $+25\% \implies \mathbf{1.2500\times}$ Max HP and direct damage output.
+* **$\Delta = 2$ (4 Players)**: $+10\% \text{ compounding} \implies 1.25 \times 1.10 = \mathbf{1.3750\times}$ Max HP and damage.
+* **$\Delta = 3$ (5 Players, Duo Cap)**: $+5\% \text{ compounding} \implies 1.375 \times 1.05 = \mathbf{1.4438\times}$ Max HP and damage.
+
+### 10.2 Virtual Duo Encounter Architecture (The Cenarion Twins)
+Exemplified by **Jarund Stoutstrider & Layo Starstrike** in Silithus:
+* **Joint 8-Companion Roster**: 4 authentic Blizzard companions per Twin, each strictly built to the 100-Point Budget Law with verified DBC display IDs.
+* **Dual Active Combatants**: The Twins field coordinated combatants managed by autonomous combat AI.
+* **Turn Counter Tracking**: Tracks individual and full-round actions (`duoTurnCounter`).
+
+### 10.3 Sympathetic Buffing, 50% Sympathetic Healing & Cycle-Based Ticking
+* **Sympathetic Buffing**: Any beneficial buff, shield (*Barkskin Aegis*, *Thick Hide*, *Static Jolt*), or HoT cast by either Twin's active pet instantly replicates across both active companions of the Twins.
+* **50% Sympathetic Healing**: If either of the Twins' active pets heals through a primary effect (direct heal, Spectral Mend) or secondary effect (drain/leech, periodic HoT regeneration), exactly 50% of that healing is sympathetically shared to the other active companion.
+* **Cycle-Based Duration Decays**: Shared defensive buffs decrement only upon completion of a full timeline cycle (every 2 enemy turns, `duoTurnCounter % 2 == 0`). Agile companions cannot prematurely burn through shared defensive shields.
+
+### 10.4 Dual-Line Druid Ecliptic Meter
+Virtual Duos utilize an expanded dual-line celestial accumulator:
+* **Jarund** accumulates **Solar Energy (☀️)** through direct attacks. At 5 charges, unleashes **Solar Surge (Solar Bloom)** (+12% Max HP party HoT).
+* **Layo** accumulates **Lunar Energy (🌙)** through utility and defensive abilities. At 5 charges, unleashes **Lunar Surge (Lunar Brambles)** (40% thorns damage reflection).
+* Both Solar Bloom and Lunar Brambles can be concurrently active.
+* Visual display expands the enemy status HUD dynamically to 76px to show dual tracking lines with round countdowns.
+
+### 10.5 15-Second Action Timeout
+* Player turns are governed by a real-time 15-second countdown ticker (`C_Timer.NewTicker`).
+* The Battle UI renders an animated color-lerping progress bar (`GREEN` $\to$ `YELLOW` $\to$ `RED`).
+* If 15 seconds elapse without player input, the engine automatically commits **Move 1** to maintain combat velocity.
+* Timer cancels immediately on any valid action (Move, Item, Pet Swap, Run, Defeat, Victory).
+
+### 10.6 Pre-Battle Pet Designation & Squad Quota Lockout
+* Prior to battle, players select which companions from their 5-member party will enter combat using interactive slot checkboxes on `ForeverSafariPlayerParty`.
+* **Squad Capacity Quota**:
+  * **4–5 Players in Group**: **2 Pets Maximum**
+  * **3 Players in Group**: **3 Pets Maximum**
+  * **1–2 Players in Group**: **4 Pets Maximum**
+* **Combat Lockout**: The designated squad permanently locks upon executing the first turn action (`combatStarted = true`). Benched pets are flagged as `[BENCH]` and blocked from swapping into combat.
+
+### 10.7 Boss AoE Cleave Mechanics
+Heavy boss abilities strike the active primary target for 100% full damage and trigger a 50% base power collateral cleave across all conscious reserve companions in the player's party. Each companion mitigates cleave damage individually through its own Defense and elemental resistance layers.
+

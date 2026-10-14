@@ -185,11 +185,33 @@
 
 ---
 
+## 📍 Phase 12: Moonglade Cenarion Nursery & Sacred Genetic Breeding (Completed ✅)
+* [x] **Social Co-Op Breeding Sanctuary (`UI/NurseryFrame.lua`)**:
+  * Ritual breeding program stationed at Cenarion Keepers in Moonglade (and Capital City pet trainers).
+  * Requires two Rank V (Bestial Symbiosis) companions of the exact same family: one Sire (♂) and one Dam (♀).
+  * Peer-to-peer comms synchronization (`Core/Comms.lua`) for cross-player breeding handshakes and readiness verification.
+* [x] **The Asymmetry Rule (50/50 Biological Sex Seed)**:
+  * Persistent character-bound 50/50 seed per species permanently designates either Male (♂) or Female (♀) across all encounters, preventing solitary alt-farming and guaranteeing social collaboration.
+  * Cryptographic HMAC signing of biological sex (`Core/Crypto.lua`) with colored gender badges (`|cff66ccff♂ Male (Sire)|r` / `|cffff99cc♀ Female (Dam)|r`).
+* [x] **The Highlander Rule & The Ultimate Sacrifice**:
+  * Unique ownership law: max 1 active instance per creature species.
+  * Parents are permanently sacrificed to the sacred grove upon completing the ritual, producing guaranteed purebred Safari Eggs (with a 20% bonus 3rd egg roll).
+* [x] **Attunement Rank Inheritance & Rare Genetic Mutation**:
+  * Moonglade Sacred Grove hatches offspring at **Rank III: Trusting** (capital cities hatch at Rank I).
+  * Roll for Rare offspring with 110 base stat budget and elite status.
+
+---
+
 ## 📍 Phase 13: Authentic Azeroth Bestiary & Field Pokédex (Completed ✅)
-* [x] **215 Curated Azeroth Species Roster (`Data/BestiaryDB.lua`)**:
+* [x] **Dynamic 1,960+ Species Pokédex (`Data/BestiaryDB.lua`, `UI/Views/JournalBestiaryView.lua`)**:
   * Complete coverage across all 9 pet types: Beasts, Canines, Felines, Bears, Boars, Raptors, Avians, Bats, Crocolisks, Crabs, Turtles, Spiders, Scorpids, Hydras, Wind Serpents, Gorillas, Kodos, Tallstriders, Dragon Whelps, **Mechanicals (Harvest Reapers, Mech-Chickens, War Golems, Alarm-o-Bots)**, **Undead (Skeletal Raptors, Plaguebats, Ghostly Crabs, Bone Golems)**, and **Elementals (Blazing Elementals, Tide Walkers, Rock Rumblers, Tar Beasts, Dust Devils)**.
-  * Verified 3D display IDs for 100% accurate paperdoll rendering.
+  * 1,960+ species database with verified 3D display IDs for 100% accurate paperdoll rendering.
+  * High-performance 60 FPS virtual scrolling list with multi-mode sorting (Name, ID, Rank, Family).
   * Native regional habitats, favorite sustenance diets, base stats, and natural 4-move thematic movepools.
+* [x] **Dedicated 30-Family Beast Subfamily Filtering**:
+  * Secondary dropdown filter for distinct beast subfamilies (Kodos, Tallstriders, Thunder Lizards, Saurians, etc.).
+* [x] **"Current Zone Only" Localized Tracking**:
+  * Real-time zone detection checkbox filtering the Pokédex to the player's current map with localized completion progress counters.
 * [x] **3-Tier Pokédex Discovery Lifecycle (`Core/Database.lua`)**:
   * `[ ??? Undiscovered ]` ➔ `[ 🔭 Seen / Sighted ]` (stalked via `/safari observe` or encountered in combat) ➔ `[ 🐾 Captured ]` (caged into active squad or kennel).
   * Pokédex completion progress bar with live seen/caught percentage counters.
@@ -351,13 +373,56 @@
 
 ---
 
-## 📍 Phase 23: Future Expansions & Social Leagues (Pending ⏳)
-* [ ] **Safari Outpost & Regional League System**: Implementation of the 5-Tier Faction-Parallel circuit, gym leaders, and 3D Field Guide Badge Case (`Docs/SAFARI_OUTPOST_SYSTEM.md`).
-  * **Outpost Defeat Lockout (Anti-Farm Protection)**: Once an Outpost Leader / Gym is bested and awards its regional badge/crest, the outpost is locked against battle farming; subsequent interactions provide congratulatory dialogue and route the player to the next regional tier.
-* [ ] **PvP Safari Tournaments & Guild Ladders**: Cross-faction companion duel tournaments and leaderboards.
-* [ ] **Safari Attunement Quests**: Epic class and race-specific questlines to earn Master attunement and legendary nets.
+## 📍 Phase 23: Virtual Duo Outposts, Party Scaling & Pre-Battle Squad Designation (Completed ✅)
+* [x] **Virtual Duo Encounter Architecture (The Cenarion Twins)**:
+  * Implemented flagship Virtual Duo encounter at Cenarion Hold in Silithus (**Jarund Stoutstrider & Layo Starstrike**) commanding an 8-companion joint roster.
+  * Every companion strictly conforms to the **100-Point Budget Law** with verified Blizzard creature templates and DBC display IDs.
+* [x] **Disparity Compounding Party Scaling**:
+  * Scaling multiplier calculated from group disparity: $\Delta = \max(0, \text{Players} - \text{NPCs})$.
+  * For 2-NPC Virtual Duos: $\Delta = 0$ (1–2 players) = $1.0000\times$; $\Delta = 1$ (3 players) = $\mathbf{1.2500\times}$; $\Delta = 2$ (4 players) = $\mathbf{1.3750\times}$; $\Delta = 3$ (5 players, Duo Cap) = $\mathbf{1.4438\times}$ Max HP and direct damage.
+* [x] **Sympathetic Buffing, 50% Sympathetic Healing & Cycle-Based Ticking**:
+  * **Sympathetic Buffing**: Beneficial buffs, shields (*Barkskin Aegis*, *Static Jolt*, *Thick Hide*), and HoTs (*Solar Bloom*) cast by either Twin replicate across both active companions of the Twins.
+  * **50% Sympathetic Healing**: When either companion heals through primary or secondary effects (direct heals, Leech/Drain Life, regeneration HoTs), 50% of the healed amount is sympathetically restored to the other active Twin companion.
+  * Shared defensive buffs decrement only once every 2 enemy turns (`duoTurnCounter % 2 == 0`) so fast companions do not prematurely burn through defensive barriers.
+* [x] **Dual-Line Druid Ecliptic Meter**:
+  * Single HUD displaying Jarund's Solar energy (☀️) and Layo's Lunar energy (🌙). At 5 charges, unleashes *Solar Bloom* (+12% Max HP squad HoT) or *Lunar Brambles* (40% thorns reflection). Both can be active concurrently.
+  * Enemy status HUD dynamically resizes to 76px to display dual tracking lines with round countdowns.
+* [x] **Pre-Battle Pet Designation & Squad Quota Lockout**:
+  * Interactive checkboxes on `ForeverSafariPlayerParty` allow players to designate which companions enter combat before the battle starts.
+  * Squad capacity quotas: 4–5 players = 2 pets; 3 players = 3 pets; 1–2 players = 4 pets.
+  * Checkboxes permanently lock on turn 1 (`combatStarted = true`); benched companions cannot enter combat or be swapped in.
+* [x] **15-Second Action Timeout**:
+  * Real-time 15-second countdown ticker with animated color-lerping progress bar (`GREEN` $\to$ `YELLOW` $\to$ `RED`) above the dialogue console.
+  * Automatically fires Move 1 if the timer expires without player input to keep combat fluid.
+* [x] **Boss AoE Cleave Mechanics**:
+  * Primary target takes full damage; collateral cleave strikes all conscious reserve party companions for 50% base power, mitigated through each pet's individual Defense and resistance layers.
+
+---
+
+## 📍 Phase 24: Safari Outpost Guide League, Argent Quartermaster & Spirit Healer Raid Boss (Completed ✅)
+* [x] **55-Guide Regional Safari Circuit (`Data/OutpostDB.lua`)**:
+  * Mapped 55 authentic World of Warcraft Stable Masters into a 5-Tier regional circuit across Azeroth:
+    * Tier 1 (Racial Homelands): 1 pet @ Rank I attunement
+    * Tier 2 (Provincial Outposts): 2 pets @ Rank II attunement
+    * Tier 3 (Capital Grandmasters): 3 pets @ Rank III attunement
+    * Tier 4 (Goblin Cartels): 4 pets @ Rank IV attunement
+    * Tier 5 (Neutral Orders): 4 pets @ Rank V attunement
+  * Strict tier progression gating (`OutpostDB:CanChallengeGuide`): Requires 10 same-tier roaming trainer victories and full lower-tier clears before challenging a Guide.
+* [x] **Stable Master Target HUD & Dialogue Integration (`UI/CaptureHUD.lua`, `Core/SafariGossip.lua`)**:
+  * Targeting any registered Stable Master renders a live badge/challenge HUD with direct combat initiation.
+  * Contextual intro and defeat quotes tailored to each regional outpost location.
+* [x] **Tier 5 Raid Encounter — Argent Quartermaster (Light's Hope Chapel)**:
+  * Flagship Tier 5 Paladin Guide stationed at Light's Hope Chapel in Eastern Plaguelands (NPC 16786).
+  * Commands a purified Western Plaguelands roster (Purified Wolf, Purified Grizzly, Purified Hound) anchored by the Spirit Healer (NPC 6491).
+* [x] **Spirit Healer Boss Mechanics & Divine Pendulum**:
+  * Holy Sephiroth ability kit: *Penance of the Dawn*, *Hammer of Wrath*, *Power Word: Sanctuary*, and *Final Judgment*.
+  * *Divine Pendulum* innate passive providing dynamic offensive/defensive state switching.
+  * Phase 3 Boss Enrage: Turn 5 *Mass Resurrection* (restoring all fallen companions at 50% HP with -25% Resurrection Sickness), tactical pet swapping, and +5% HP/turn bench healing.
+
+---
+
+## 📍 Phase 25: Future Expansions & Social Leagues (Pending ⏳)
+* [ ] **3D Field Guide Badge Case**: 3D interactive showcase tab in the Safari Journal displaying earned regional outpost badges and pins (`Docs/SAFARI_OUTPOST_SYSTEM.md`).
+* [ ] **PvP Safari Tournaments & Guild Ladders**: Cross-faction companion duel tournaments, bracket scheduling, and guild ladders.
+* [ ] **Safari Attunement Master Quests**: Epic class- and race-specific questlines to earn Master attunement and legendary expedition traps.
 * [ ] **World Boss Safari Raids**: Instanced raid encounter mechanics for legendary apex creatures.
-
-
-
-

@@ -102,9 +102,18 @@ The premier endgame circuit stationed at iconic lore strongholds across high-lev
 | **Thorium Brotherhood** | Searing Gorge *(Thorium Point)* | *Master Blacksmith Burnside* | 🌋 Volcanic Magma & ⚙️ Dark Iron Mechs | 🔨 **The Smoldering Anvil** |
 | **Timbermaw Hold** | Felwood / Winterspring Tunnel | *Timbermaw Shaman High-Elder* | 🐾 Ancient Bears, Wolves & Moonkin | 🐻 **The Timbermaw Totem** |
 | **Ravenholdt Manor** | Hillsbrad / Alterac Mountain Pass | *Master Assassin Jorach* | 🐾 Stealth Sabers, Spiders & Shadow Bats | 🗡️ **The Syndicate Dagger** |
-| **Cenarion Circle** | Moonglade *(Nighthaven)* & Silithus | *Keeper of the Sacred Grove* | 🐉 Fey Dragons, Emerald Whelps & Striders | 🌿 **The Cenarion Branch** |
+| **Cenarion Circle (Virtual Duo)** | Silithus *(Cenarion Hold)* & Moonglade | **Cenarion Twins: Jarund Stoutstrider & Layo Starstrike** | 🐾 Spirit Wolf, War Kodo, Thunder Lizard, Ancients | 🌿 **The Cenarion Branch** |
 | **Hydraxian Waterlords** | Azshara Coast *(Duke Hydraxis)* | *Abyssal Tide-Shifter* | 🌊 Deep Sea Horrors & Torrent Elementals | 🌊 **The Abyssal Pearl** |
 | **Zandalar Tribe** | Stranglethorn Coast *(Yojamba Isle)* | *Zul'Gurub Loa Speaker* | 🐾 Primal Raptors, Zul Bats & Snakes | 🎭 **The Loa Mask** |
+
+---
+
+### 🌿 Feature Spotlight: The Cenarion Twins Virtual Duo Encounter
+Stationed at Cenarion Hold in Silithus, **Jarund Stoutstrider & Layo Starstrike** introduce the league's flagship **Virtual Duo** team battle:
+* **Joint 8-Companion Roster**: Jarund (Spirit Wolf, War Kodo, Thunder Lizard, Ancient of War) and Layo (Nightsaber, Lunar Owl, Sprite Darter, Ancient of Wind), each built to exact 100-Point base stat budgets.
+* **Dual-Line Druid Ecliptic Meter**: Jarund generates Solar energy (☀️) and Layo generates Lunar energy (🌙). Both *Solar Bloom* (+12% Max HP team HoT) and *Lunar Brambles* (40% thorns reflection) can be active simultaneously.
+* **Sympathetic Buffing & 50% Sympathetic Healing**: Buffs and shields cast by either Twin replicate across both active companions. Furthermore, when either pet heals through a primary or secondary effect (direct heal, drain, regeneration HoT), 50% of that healing is sympathetically shared to the other active companion. Shared buffs decrement only once every 2 enemy turns.
+* **Pre-Battle Squad Designation & 15s Timer**: Enforces tactical squad limits (2 pets for 4-5 players; 3 pets for 3 players; 4 pets for 1-2 players) and fluid 15-second action turns.
 
 ---
 
@@ -127,9 +136,10 @@ Stationed at **Hemet Nesingwary's Safari Camp** in central Stranglethorn Vale. O
 
 ## ⚙️ Addon Technical Architecture
 
-1. **Zero-Taint Dialogue Integration**:
-   * Outpost leaders are challenged directly via native `GossipFrame` integration (`Junior Safari League: Challenge Outpost Leader`).
-   * Never injects into server gossip tables or replaces Blizzard templates; uses client-side extent borrowing and universal stacking beneath any third-party addon rows.
+1. **Specialized HUD & Stable Master Integration**:
+   * In *WoW: Forever*, Stable Masters do not offer native gossip options to non-Hunter classes due to server-side class validation.
+   * To guarantee universal access across all player classes, Outpost Leaders are challenged via Forever Safari's **Specialized Interaction HUD** upon targeting the Stable Master or Outpost Leader.
+   * Native gossip injection is never relied upon for Outpost challenges at Stable Masters.
 2. **Faction Isolation Guarantee**:
    * Uses standard same-faction Addon Comm channels (`ForeverSafariComm`).
    * Alliance and Horde retain completely distinct ladder tracks until meeting in neutral territory.

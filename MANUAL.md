@@ -282,6 +282,25 @@ All companions possess innate elemental resistance ratings across all **6 School
 4. **Layer 4: Attunement Rank Growth**: Scales with companion loyalty (+0% at Rank I, +2% at Rank II, +4% at Rank III, +6% at Rank IV, **+10% at Rank V**).
 5. **Layer 5: Player Class Defenses**: Distinct player aura providing either permanent **Static Slices** or reactive **Procced Wards** (detailed in Section 12).
 
+### 👥 Cooperative Party Battles & Virtual Duos
+* **Disparity Compounding Scaling**: Multi-player team battles scale automatically against party disparity: $\Delta = \max(0, \text{Players} - \text{NPCs})$. In 2-NPC Virtual Duo encounters:
+  * **1–2 Players**: $1.0000\times$ (Baseline).
+  * **3 Players**: $\mathbf{1.2500\times}$ (+25% Max HP & damage).
+  * **4 Players**: $\mathbf{1.3750\times}$ (+10% compounding).
+  * **5 Players**: $\mathbf{1.4438\times}$ (+5% compounding, Duo Cap).
+* **The Cenarion Twins Virtual Duo (Silithus)**:
+  * Challenged at Cenarion Hold, **Jarund Stoutstrider & Layo Starstrike** command an authentic 8-companion joint roster (Spirit Wolf, War Kodo, Thunder Lizard, Ancients, Nightsaber, Lunar Owl, Sprite Darter), each built strictly to the 100-Point Budget Law.
+  * **Dual-Line Druid Ecliptic Meter**: Jarund generates Solar (☀️) and Layo generates Lunar (🌙). Both *Solar Bloom* (+12% Max HP HoT) and *Lunar Brambles* (40% thorns reflect) can be active simultaneously.
+  * **Sympathetic Buffing & 50% Sympathetic Healing**: Beneficial buffs or shields cast by either Twin replicate across both active companions and decay only every 2 enemy turns. Furthermore, if either pet heals through a primary or secondary effect (direct heals, drains, regeneration HoT), 50% of that healing is sympathetically transferred to the other active companion.
+* **Pre-Battle Pet Designation & Squad Quotas**:
+  * Before combat begins, check the `DeployCheck` checkboxes on your `ForeverSafariPlayerParty` slots to select which companions enter battle.
+  * **Squad Limits**: 4–5 players = 2 pets; 3 players = 3 pets; 1–2 players = 4 pets.
+  * Upon turn 1, your squad locks permanently (`combatStarted = true`). Benched pets are labeled `[BENCH]` and cannot be swapped in.
+* **15-Second Action Timeout**:
+  * An animated countdown bar monitors player turns. If 15 seconds expire without an action, the engine auto-commits Move 1.
+* **Boss AoE Cleave**:
+  * Boss-tier abilities deal full damage to your active companion and strike all conscious reserve companions for 50% collateral damage, evaluated against each pet's individual Defense and resistance layers.
+
 ---
 
 ## 7. The Safari Token Economy & Real Quest Rewards
@@ -312,28 +331,26 @@ Interact with any town **Innkeeper**:
 * **Squad Restoration**: Fully revives fainted companions and heals all squad and reserve companions to 100% HP.
 * **Exclusive Medical Sanctuary**: Innkeepers strictly handle squad recuperation and resting; they do not sell supplies or manage bank vaults.
 
-### 🎯 2. Pet Trainers (Outpost Battles & Nesingwary Safari Outfitter)
+### 🎯 2. Pet Trainers (Outfitters, Healers & Capital City Breeders)
 Interact with any **Pet Trainer** in any major city or settlement (accessible to **all classes**, not just Hunters):
-* **Junior Safari League: Challenge Outpost Leader**: Issue an official battle challenge against the Outpost Leader right from the dialogue window.
-* **Junior Safari League: Visit Outfitter**: Opens the Nesingwary Safari Outfitter shop (`/fsshop`).
-* **Capture Gear**: Purchase Copper Snares (1 Token), Iron Nets (5 Tokens), Mithril Traps (10 Tokens), and Thorium Cages (25 Tokens).
-* **Transport Crates**: Stock up on Copper, Iron, Mithril, and Thorium Crates.
-* **Diets & Treats**: Buy Safari Treats, Grand Feasts, and 11 dietary sustenance items.
-* **Medicine**: Purchase Healing Salves and Revival Crystals for field emergencies.
+* **Junior Safari League: Visit Outfitter**: Opens the Nesingwary Safari Outfitter shop (`/fsshop`) with Capture Gear, Transport Crates, Diets, and Medicine.
+* **Early-Game Companion Breeding**: Pet Trainers in Capital Cities facilitate early-game breeding (offspring hatches at Rank I: Untamed).
+* **Companion Rest & Healing**: Revives and fully heals party companions.
 
-### 🌿 3. Cenarion Keepers (Moonglade Co-Op Breeding Nursery)
+### 🏇 3. Stable Masters (Outpost Leaders & Regional Circuit)
+Interact with regional **Stable Masters**:
+* **Specialized Interaction HUD**: Because Stable Masters on *WoW: Forever* terminate gossip sessions for non-Hunters via server-side class validation, Forever Safari provides a dedicated on-target specialized interaction HUD to challenge Outpost Leaders across regional circuits.
+
+### 🌿 4. Cenarion Keepers (Moonglade Sacred Grove Sanctuary)
 Interact with any Cenarion Keeper in Moonglade (Nighthaven):
-* **Junior Safari League: Breed My Pet**: Opens the Cenarion Nursery interface (`/fsnursery`) to breed compatible companions and discover egg offspring with inherited moves and stats.
+* **Junior Safari League: Breed My Pet**: Opens the Sacred Grove Nursery interface (`/fsnursery`) to breed companions (offspring hatches at Rank III: Attuned with 100 base stat points and 0% disobedience).
 
-### 🏦 4. Bankers (Junior Safari Reserve Tab on BankFrame)
+### 🏦 5. Bankers (Kennelers & Companion Reserve)
 Interact with any town **Banker** (or open any Bank Vault):
-* **Integrated Bank Tab**: Adds a dedicated **Junior Safari Reserve** tab directly to Blizzard's `BankFrame`.
-* **On-Demand Companion Vault**: Clicking the tab opens the companion vault docked alongside `BankFrame`.
-* **Active Squad (4 Slots)**: Your active adventuring party.
-* **Storage Enclosure Boxes**: Deposit, withdraw, and organize up to 100 captured companions across 5 bank boxes.
-* **Clean Cleanup**: Closes cleanly whenever `BankFrame` closes.
+* **On-Demand Companion Vault**: Opens the companion reserve (`/fskennel`) managing active squad slots and up to 1,000 banked companions across 50 storage enclosures.
+* **Clean Cleanup**: Closes cleanly whenever the banker interaction terminates.
 
-### 📮 5. Mailboxes (Nesingwary Safari Dispatch Hub)
+### 📮 6. Mailboxes (Nesingwary Safari Dispatch Hub)
 Interact with any physical **Mailbox** in town:
 * Click the custom **[Safari]** tab docked to Blizzard's `MailFrame`.
 * View received letters, bounty assignments, and unbox parcels containing earned token grants and supplies.
@@ -455,9 +472,11 @@ For Druid characters, turn-based combat features an active celestial pendulum ab
 
 ---
 
-## 13. Moonglade Cenarion Nursery & Endgame Breeding
+## 13. Tiered Companion Breeding & Nursery Sanctuaries
 
-The **Moonglade Cenarion Nursery** (`/fsnursery`) provides an endgame co-op breeding program hosted by the Cenarion Circle in Moonglade (Nighthaven).
+Breeding in *Forever Safari* is split into two distinct tiers:
+1. **Capital City Nurseries (Pet Trainers)**: Available early in your journey across Stormwind, Orgrimmar, Ironforge, Thunder Bluff, Darnassus, and Undercity. Offspring hatches at **Rank I: Untamed** (0 Attunement points).
+2. **Moonglade Cenarion Nursery (Sacred Grove)**: The premier endgame co-op breeding sanctuary (`/fsnursery`) hosted by the Cenarion Circle in Moonglade (Nighthaven). Offspring hatches at **Rank III: Attuned** (100 base stat points, 0% disobedience, immediate battle readiness).
 
 ```
 +-----------------------------------------------------------------------+

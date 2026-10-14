@@ -2823,6 +2823,238 @@ OutpostDB.BY_ZONE = {}
 OutpostDB.BY_TIER = {}
 OutpostDB.LIST = {}
 
+-- =========================================================================
+-- VIRTUAL PARTIES & THE "OPPOSING PARTY" ARCHITECTURE (SILITHUS VIRTUAL DUO)
+-- =========================================================================
+OutpostDB.VIRTUAL_PARTIES = {
+    ["cenarion_silithus_duo"] = {
+        id = "guide_duo_cenarion_silithus",
+        name = "Cenarion Guardians",
+        title = "Cenarion Circle Guides",
+        zone = "Silithus",
+        location = "Cenarion Hold",
+        npcIds = { 11805, 13220 },
+        npcCount = 2,
+        tier = 5,
+        rank = 5,
+        rankRoman = "V",
+        rankTitle = "Grandmaster / Transcendent",
+        isElite = true,
+        tokenReward = 50,
+        trainerClass = "DRUID",
+        introQuote = "The balance of Kalimdor shall not be broken! Let the roots and stars test your resolve!",
+        defeatQuote = "Astonishing harmony! You and your companions fight with the very spirit of the earth!",
+        members = {
+            [11805] = { name = "Jarund Stoutstrider", race = "Tauren", class = "DRUID", focus = "Solar / Earth" },
+            [13220] = { name = "Layo Starstrike",     race = "Night Elf", class = "DRUID", focus = "Lunar / Resto" },
+        },
+        badge = {
+            id = "badge_cenarion_duo",
+            name = "Cenarion Harmony Crest",
+            icon = "Interface\\Icons\\INV_Misc_AhnQirajTrinket_03",
+            desc = "Proof of triumph over the Cenarion Guardians at Cenarion Hold in Silithus.",
+        },
+        teams = {
+            -- Jarund Stoutstrider's Squad (Tank Druid — Tenacity Focus / 100 Base Points Budget)
+            jarund = {
+                { name = "The Plains Vision", customNickname = "Spirit Wolf", npcId = 2983, displayId = 1236,
+                  family = "Canine", element = "Nature", rank = 5,
+                  baseStats = { hp = 36, atk = 22, def = 24, spd = 18 }, moves = { 101, 103, 105, 1021 } },
+                { name = "War Party Kodo", customNickname = "Cenarion War Kodo", npcId = 5523, displayId = 6269,
+                  family = "Kodo", element = "Beast", rank = 5,
+                  baseStats = { hp = 44, atk = 20, def = 26, spd = 10 }, moves = { 101, 110, 112, 1022 } },
+                { name = "Elder Thunder Lizard", customNickname = "Thunder Lizard", npcId = 4727, displayId = 2764,
+                  family = "ThunderLizard", element = "Nature", rank = 5,
+                  baseStats = { hp = 38, atk = 22, def = 26, spd = 14 }, moves = { 101, 114, 115, 1023 } },
+                { name = "Crazed Ancient", customNickname = "Ancient of War", npcId = 3834, displayId = 2077,
+                  family = "Elemental", element = "Nature", rank = 5,
+                  baseStats = { hp = 46, atk = 18, def = 28, spd = 8 }, moves = { 101, 112, 119, 1024 } },
+            },
+            -- Layo Starstrike's Squad (DPS Druid — Cunning Focus / 100 Base Points Budget)
+            layo = {
+                { name = "Elder Nightsaber", customNickname = "Starfall Nightsaber", npcId = 2033, displayId = 3030,
+                  family = "Feline", element = "Arcane", rank = 5,
+                  baseStats = { hp = 22, atk = 32, def = 16, spd = 30 }, moves = { 101, 103, 104, 1025 } },
+                { name = "Olm the Wise", customNickname = "Ironbeak Lunar Owl", npcId = 14343, displayId = 6212,
+                  family = "Avian", element = "Flying", rank = 5,
+                  baseStats = { hp = 20, atk = 28, def = 18, spd = 34 }, moves = { 101, 701, 702, 1026 } },
+                { name = "Sprite Darter", customNickname = "Sprite Darter", npcId = 5278, displayId = 736,
+                  family = "Dragonkin", element = "Arcane", rank = 5,
+                  baseStats = { hp = 18, atk = 34, def = 16, spd = 32 }, moves = { 101, 801, 802, 1027 } },
+                { name = "Withered Ancient", customNickname = "Ancient of Wind", npcId = 3919, displayId = 9593,
+                  family = "Elemental", element = "Flying", rank = 5,
+                  baseStats = { hp = 24, atk = 30, def = 18, spd = 28 }, moves = { 101, 705, 706, 1028 } },
+            },
+        },
+    },
+}
+
+-- =========================================================================
+-- ⚔️ DISPARITY-BASED PARTY SCALING
+-- Δ = max(0, PlayerCount - NPCCount)
+-- =========================================================================
+local DISPARITY_MULTIPLIERS = {
+    [0] = 1.0,                             -- Even match / solo vs solo / 2 vs duo
+    [1] = 1.0 * 1.25,                      -- Disparity +1: +25% (1.2500)
+    [2] = 1.0 * 1.25 * 1.10,               -- Disparity +2: additional +10% (1.3750)
+    [3] = 1.0 * 1.25 * 1.10 * 1.05,        -- Disparity +3: additional +5%  (1.44375 - Duo Cap!)
+    [4] = 1.0 * 1.25 * 1.10 * 1.05 * 1.01, -- Disparity +4: additional +1%  (1.4581875 - Solo Guides Only)
+}
+OutpostDB.DISPARITY_MULTIPLIERS = DISPARITY_MULTIPLIERS
+
+function OutpostDB:GetPartyScalingMultiplier(playerCount, npcCount)
+    playerCount = math.max(1, math.min(5, tonumber(playerCount) or 1))
+    npcCount = math.max(1, tonumber(npcCount) or 1)
+    local disparity = math.max(0, math.min(4, playerCount - npcCount))
+    -- For Silithus Duo (npcCount == 2), max disparity is 5 - 2 = 3. Final +1% is shaved off.
+    local mult = DISPARITY_MULTIPLIERS[disparity] or 1.0
+    return mult, disparity
+end
+
+function OutpostDB:ApplyDisparityScaling(companion, disparity)
+    if not companion then return companion end
+    local mult = DISPARITY_MULTIPLIERS[disparity] or 1.0
+    if mult <= 1.0 then return companion end
+
+    companion.maxHP = math.floor((companion.maxHP or companion.hp or 100) * mult)
+    companion.currentHP = companion.maxHP
+    companion.hp = companion.maxHP
+    companion.atk = math.floor((companion.atk or companion.attack or 20) * mult)
+    companion.attack = companion.atk
+    companion.def = math.floor((companion.def or companion.defense or 20) * mult)
+    companion.defense = companion.def
+    companion.spd = math.floor((companion.spd or companion.speed or 20) * mult)
+    companion.speed = companion.spd
+
+    if companion.resistances then
+        for elem, val in pairs(companion.resistances) do
+            if type(val) == "number" then
+                companion.resistances[elem] = math.floor(val * mult)
+            end
+        end
+    end
+
+    companion.isPartyScaled = true
+    companion.partyScaleMultiplier = mult
+    return companion
+end
+
+function OutpostDB:BuildVirtualDuoMatch(duoKey, playerCount)
+    duoKey = duoKey or "cenarion_silithus_duo"
+    local duoData = self.VIRTUAL_PARTIES and self.VIRTUAL_PARTIES[duoKey]
+    if not duoData then return nil end
+
+    playerCount = playerCount or (GetNumGroupMembers and GetNumGroupMembers() > 0 and GetNumGroupMembers() or 1)
+    local mult, disparity = self:GetPartyScalingMultiplier(playerCount, duoData.npcCount or 2)
+    local SE = ns.StatEngine
+    local rankPoints = TIER_MIN_POINTS[duoData.tier or 5] or 1600
+
+    local team = {}
+    local jarundTeam = duoData.teams and duoData.teams.jarund or {}
+    local layoTeam = duoData.teams and duoData.teams.layo or {}
+
+    -- Build interleaved boss squad: Jarund #1, Layo #1, Jarund #2, Layo #2...
+    local maxPets = math.max(#jarundTeam, #layoTeam)
+    for i = 1, maxPets do
+        if jarundTeam[i] then
+            local pTpl = jarundTeam[i]
+            local baseStats = pTpl.baseStats or { hp = 40, atk = 22, def = 18, spd = 20 }
+            local stats = SE and SE.CalculateStats and SE:CalculateStats(pTpl.element or "Nature", rankPoints, duoData.isElite, baseStats) or { maxHP = 160, atk = 35, def = 30, spd = 20 }
+            local companion = {
+                id = string.format("duo_jarund_pet_%d", i),
+                ownerNpcId = 11805,
+                ownerName = "Jarund Stoutstrider",
+                name = pTpl.name,
+                nickname = pTpl.customNickname or pTpl.name,
+                customNickname = pTpl.customNickname or pTpl.name,
+                family = pTpl.family or "Beast",
+                element = pTpl.element or "Nature",
+                creatureType = pTpl.element or "Nature",
+                displayId = pTpl.displayId or 1236,
+                attunementRank = duoData.tier or 5,
+                rank = duoData.tier or 5,
+                rankRoman = duoData.rankRoman or "V",
+                rankTitle = duoData.rankTitle or "Grandmaster",
+                maxHP = stats.maxHP,
+                currentHP = stats.maxHP,
+                hp = stats.maxHP,
+                attack = stats.atk,
+                atk = stats.atk,
+                defense = stats.def,
+                def = stats.def,
+                speed = stats.spd,
+                spd = stats.spd,
+                moves = pTpl.moves or { 101, 102 },
+                isTrainerPet = true,
+                isOutpostPet = true,
+                isDuoPet = true,
+                duoGuide = "jarund",
+            }
+            self:ApplyDisparityScaling(companion, disparity)
+            table.insert(team, companion)
+        end
+
+        if layoTeam[i] then
+            local pTpl = layoTeam[i]
+            local baseStats = pTpl.baseStats or { hp = 40, atk = 22, def = 18, spd = 20 }
+            local stats = SE and SE.CalculateStats and SE:CalculateStats(pTpl.element or "Arcane", rankPoints, duoData.isElite, baseStats) or { maxHP = 130, atk = 42, def = 24, spd = 32 }
+            local companion = {
+                id = string.format("duo_layo_pet_%d", i),
+                ownerNpcId = 13220,
+                ownerName = "Layo Starstrike",
+                name = pTpl.name,
+                nickname = pTpl.customNickname or pTpl.name,
+                customNickname = pTpl.customNickname or pTpl.name,
+                family = pTpl.family or "Feline",
+                element = pTpl.element or "Arcane",
+                creatureType = pTpl.element or "Arcane",
+                displayId = pTpl.displayId or 3030,
+                attunementRank = duoData.tier or 5,
+                rank = duoData.tier or 5,
+                rankRoman = duoData.rankRoman or "V",
+                rankTitle = duoData.rankTitle or "Grandmaster",
+                maxHP = stats.maxHP,
+                currentHP = stats.maxHP,
+                hp = stats.maxHP,
+                attack = stats.atk,
+                atk = stats.atk,
+                defense = stats.def,
+                def = stats.def,
+                speed = stats.spd,
+                spd = stats.spd,
+                moves = pTpl.moves or { 101, 102 },
+                isTrainerPet = true,
+                isOutpostPet = true,
+                isDuoPet = true,
+                duoGuide = "layo",
+            }
+            self:ApplyDisparityScaling(companion, disparity)
+            table.insert(team, companion)
+        end
+    end
+
+    return {
+        isTrainer = true,
+        isOutpost = true,
+        isVirtualDuo = true,
+        duoKey = duoKey,
+        outpostId = duoData.id,
+        outpostData = duoData,
+        trainerName = duoData.name,
+        trainerTitle = duoData.title,
+        trainerClass = "DRUID",
+        badge = duoData.badge,
+        introQuote = duoData.introQuote,
+        defeatQuote = duoData.defeatQuote,
+        tokenReward = duoData.tokenReward or 50,
+        team = team,
+        activeSlot = 1,
+        activeSecondarySlot = 2,
+        disparity = disparity,
+        partyMultiplier = mult,
+    }
+end
+
 function OutpostDB:InitializeIndexes()
     self.BY_NPC_ID = {}
     self.BY_ID = {}
@@ -2845,6 +3077,33 @@ function OutpostDB:InitializeIndexes()
         self.BY_TIER[tier] = self.BY_TIER[tier] or {}
         table.insert(self.BY_TIER[tier], outpost)
         table.insert(self.LIST, outpost)
+    end
+
+    -- Index Virtual Parties (e.g. Cenarion Twins Duo)
+    if self.VIRTUAL_PARTIES then
+        for duoKey, duo in pairs(self.VIRTUAL_PARTIES) do
+            duo.duoKey = duoKey
+            duo.isVirtualDuo = true
+            if duo.npcIds then
+                for _, npcId in ipairs(duo.npcIds) do
+                    self.BY_NPC_ID[npcId] = duo
+                end
+            end
+            if duo.id then
+                self.BY_ID[duo.id] = duo
+            end
+            if duo.name then
+                self.BY_NAME[duo.name] = duo
+            end
+            if duo.zone then
+                self.BY_ZONE[duo.zone] = self.BY_ZONE[duo.zone] or {}
+                table.insert(self.BY_ZONE[duo.zone], duo)
+            end
+            local tier = duo.tier or 5
+            self.BY_TIER[tier] = self.BY_TIER[tier] or {}
+            table.insert(self.BY_TIER[tier], duo)
+            table.insert(self.LIST, duo)
+        end
     end
 end
 
@@ -2953,8 +3212,15 @@ end
 
 local TIER_MIN_POINTS = { [1] = 0, [2] = 250, [3] = 600, [4] = 1050, [5] = 1600 }
 
-function OutpostDB:GenerateOutpostMatch(outpost)
+function OutpostDB:GenerateOutpostMatch(outpost, playerCount)
     if not outpost then return nil end
+
+    -- Route Virtual Duo encounters (e.g. Cenarion Guardians Jarund & Layo) to multi-companion scaling engine
+    if outpost.isVirtualDuo or outpost.teams then
+        local pCount = playerCount or (GetNumGroupMembers and GetNumGroupMembers() > 0 and GetNumGroupMembers() or 1)
+        return self:BuildVirtualDuoMatch(outpost.duoKey or outpost.id, pCount)
+    end
+
     local SE = ns.StatEngine
     local team = {}
     local tplTeam = outpost.team or {}
