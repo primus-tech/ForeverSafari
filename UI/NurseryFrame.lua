@@ -76,6 +76,7 @@ function Nursery:Initialize()
     local headerSub = frame:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
     headerSub:SetPoint("TOP", headerTitle, "BOTTOM", 0, -3)
     headerSub:SetText("|cff88ddaaEndgame Co-op Breeding Program & Sacred Rebirth Sanctuary|r")
+    frame.HeaderSub = headerSub
 
     -- Close Button
     local closeBtn = CreateFrame("Button", nil, frame, "UIPanelCloseButton")
@@ -653,8 +654,8 @@ function Nursery:HatchEgg(eggItemId, itemData)
         family = famTitle,
         creatureType = cType,
         level = 1,
-        attunement = 0,
-        attunementRank = 1,
+        attunement = (Nursery.currentTier == "SACRED") and 100 or 0,
+        attunementRank = (Nursery.currentTier == "SACRED") and 3 or 1,
         anatomy = newbornAnatomy,
         isPurebred = true,
         hp = 75,
@@ -834,8 +835,18 @@ end
 -- =========================================================================
 -- 🖥️ 9. OPEN / CLOSE / SLASH COMMANDS
 -- =========================================================================
-function Nursery:Show()
+function Nursery:Show(tierMode)
+    Nursery.currentTier = tierMode or "SACRED"
     if not frame then Nursery:Initialize() end
+    if frame.HeaderTitle and frame.HeaderSub then
+        if Nursery.currentTier == "CITY" then
+            frame.HeaderTitle:SetText("|cffffd100🌿 Junior Safari League: City Nursery|r")
+            frame.HeaderSub:SetText("|cff88ddaaEarly Companion Breeding Program (Rank I Untamed Offspring)|r")
+        else
+            frame.HeaderTitle:SetText("|cffffd100🌿 Moonglade Cenarion Nursery|r")
+            frame.HeaderSub:SetText("|cff88ddaaEndgame Co-op Breeding Program & Sacred Rebirth Sanctuary|r")
+        end
+    end
     frame:Show()
     Nursery:UpdateUI()
     PlaySound(844) -- SOUNDKIT.IG_SPELLBOOK_OPEN

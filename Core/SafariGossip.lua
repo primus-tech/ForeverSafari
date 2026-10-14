@@ -62,7 +62,9 @@ end
 -- 🔍 NPC CLASSIFICATION HELPERS
 -- =========================================================================
 local function GetGossipUnit()
-    return UnitExists("npc") and "npc" or (UnitExists("target") and "target" or nil)
+    if UnitExists("target") then return "target" end
+    if UnitExists("npc") then return "npc" end
+    return nil
 end
 
 local function MatchesKeyword(text, keywords)
@@ -76,44 +78,90 @@ local function MatchesKeyword(text, keywords)
     return false
 end
 
-local function ScanUnitTooltipForKeywords(unit, keywords)
-    if not unit or not UnitExists(unit) then return false end
-    scanTooltip:ClearLines()
-    local ok = pcall(scanTooltip.SetUnit, scanTooltip, unit)
-    if not ok then return false end
+-- Reads all text lines from the unit's tooltip cleanly without failing on plain strings
+local function GetNPCLines(unit)
+    unit = unit or GetGossipUnit()
+    if not unit or not UnitExists(unit) then return {} end
+    local lines = {}
 
-    for i = 1, scanTooltip:NumLines() do
-        local fontString = _G["ForeverSafariGossipScanTooltipTextLeft" .. i]
-        local text = fontString and fontString:GetText()
-        if text and MatchesKeyword(text, keywords) then
-            return true
+    -- 1. Modern WoW Tooltip API (C_TooltipInfo)
+    if C_TooltipInfo and C_TooltipInfo.GetUnit then
+        local ok, data = pcall(C_TooltipInfo.GetUnit, unit)
+        if ok and data and data.lines then
+            for _, l in ipairs(data.lines) do
+                if l.leftText and l.leftText ~= "" then
+                    table.insert(lines, l.leftText)
+                end
+            end
+            if #lines > 0 then return lines end
         end
     end
-    return false
-end
 
-function SG:IsPetTrainer(unit)
-    unit = unit or GetGossipUnit()
-    local keywords = { "pet trainer", "beast trainer", "pet master", "hunter trainer" }
-
-    -- 1. Tooltip line scanning (catches <Pet Trainer> subtitle)
-    if unit and ScanUnitTooltipForKeywords(unit, keywords) then
-        return true
-    end
-
-    -- 2. C_TooltipInfo scan
-    if unit and C_TooltipInfo and C_TooltipInfo.GetUnit then
-        local ok, info = pcall(C_TooltipInfo.GetUnit, unit)
-        if ok and info and info.lines then
-            for _, line in ipairs(info.lines) do
-                if line.leftText and MatchesKeyword(line.leftText, keywords) then
-                    return true
-                end
+    -- 2. Fallback: GameTooltip line scanner
+    scanTooltip:SetOwner(WorldFrame, "ANCHOR_NONE")
+    scanTooltip:ClearLines()
+    local ok = pcall(scanTooltip.SetUnit, scanTooltip, unit)
+    if ok then
+        for i = 1, scanTooltip:NumLines() do
+            local fontString = _G["ForeverSafariGossipScanTooltipTextLeft" .. i]
+            local text = fontString and fontString:GetText()
+            if text and text ~= "" then
+                table.insert(lines, text)
             end
         end
     end
 
-    -- 3. Unit Name
+    return lines
+end
+
+-- Strict Guard Disqualification: Guards only give directions and have ZERO safari functionality
+function SG:IsGuard(unit)
+    unit = unit or GetGossipUnit()
+    local guardKeywords = {
+        "guard", "grunt", "sentinel", "watchman", "sentry",
+        "peacekeeper", "bruiser", "bodyguard", "bluffwatcher", "infantry",
+        "enforcer", "protector", "patrol", "city watch"
+    }
+
+    local lines = GetNPCLines(unit)
+    for _, line in ipairs(lines) do
+        if MatchesKeyword(line, guardKeywords) then
+            return true
+        end
+    end
+
+    if unit then
+        local name = UnitName(unit)
+        if name and MatchesKeyword(name, guardKeywords) then
+            return true
+        end
+    end
+
+    if GossipFrameTitleText and GossipFrameTitleText:GetText() then
+        if MatchesKeyword(GossipFrameTitleText:GetText(), guardKeywords) then
+            return true
+        end
+    end
+
+    return false
+end
+
+function SG:IsPetTrainer(unit)
+    if self:IsGuard(unit) then return false end
+    unit = unit or GetGossipUnit()
+    local keywords = { "pet trainer", "beast trainer", "pet master" }
+
+    local lines = GetNPCLines(unit)
+    for _, line in ipairs(lines) do
+        -- Exclude hunter class trainers (Hunter Trainers have no connection to Forever Safari)
+        if string.find(string.lower(line), "hunter trainer", 1, true) then
+            return false
+        end
+        if MatchesKeyword(line, keywords) then
+            return true
+        end
+    end
+
     if unit then
         local name = UnitName(unit)
         if name and MatchesKeyword(name, keywords) then
@@ -125,27 +173,19 @@ function SG:IsPetTrainer(unit)
 end
 
 function SG:IsInnkeeper(unit)
+    if self:IsGuard(unit) then return false end
     unit = unit or GetGossipUnit()
-    local keywords = { "innkeeper", "tavern", "bartender" }
+    local keywords = { "innkeeper", "tavernkeeper", "bartender" }
 
-    -- 1. Tooltip line scanning (catches <Innkeeper> subtitle with 100% reliability in Classic)
-    if unit and ScanUnitTooltipForKeywords(unit, keywords) then
-        return true
-    end
-
-    -- 2. C_TooltipInfo scan
-    if unit and C_TooltipInfo and C_TooltipInfo.GetUnit then
-        local ok, info = pcall(C_TooltipInfo.GetUnit, unit)
-        if ok and info and info.lines then
-            for _, line in ipairs(info.lines) do
-                if line.leftText and MatchesKeyword(line.leftText, keywords) then
-                    return true
-                end
-            end
+    -- 1. Tooltip lines check (<Innkeeper>)
+    local lines = GetNPCLines(unit)
+    for _, line in ipairs(lines) do
+        if MatchesKeyword(line, keywords) then
+            return true
         end
     end
 
-    -- 3. Unit Name & Title Text
+    -- 2. Unit Name check
     if unit then
         local name = UnitName(unit)
         if name and MatchesKeyword(name, keywords) then
@@ -156,16 +196,17 @@ function SG:IsInnkeeper(unit)
         return true
     end
 
-    -- 4. Native Gossip Options check (Every Innkeeper in WoW offers "Make this inn your home")
+    -- 3. Native Gossip Options check: ONLY authentic hearthstone binder options (Guards NEVER offer this)
     if C_GossipInfo and C_GossipInfo.GetOptions then
         local ok, opts = pcall(C_GossipInfo.GetOptions)
         if ok and opts then
             for _, opt in ipairs(opts) do
                 local name = opt.name or opt.title
-                if name and MatchesKeyword(name, { "home", "hearth", "inn" }) then
+                if name and MatchesKeyword(name, { "make this inn your home", "bind your soul", "hearthstone" }) then
                     return true
                 end
-                if opt.icon == 132057 or opt.type == "binder" then
+                -- Modern enum check (Enum.GossipOptionRecType.Binder = 6) or legacy string
+                if opt.type == "binder" or opt.type == 6 then
                     return true
                 end
             end
@@ -177,7 +218,63 @@ function SG:IsInnkeeper(unit)
             for i = 1, #opts, 2 do
                 local title = opts[i]
                 local gType = opts[i+1]
-                if gType == "binder" or (title and MatchesKeyword(title, { "home", "hearth", "inn" })) then
+                if gType == "binder" or (title and MatchesKeyword(title, { "make this inn your home", "bind your soul", "hearthstone" })) then
+                    return true
+                end
+            end
+        end
+    end
+
+    return false
+end
+
+function SG:IsBanker(unit)
+    if self:IsGuard(unit) then return false end
+    unit = unit or GetGossipUnit()
+    local keywords = { "banker", "vault keeper" }
+
+    -- 1. Tooltip lines check (<Banker>)
+    local lines = GetNPCLines(unit)
+    for _, line in ipairs(lines) do
+        if MatchesKeyword(line, keywords) then
+            return true
+        end
+    end
+
+    -- 2. Unit Name check
+    if unit then
+        local name = UnitName(unit)
+        if name and MatchesKeyword(name, keywords) then
+            return true
+        end
+    end
+    if GossipFrameTitleText and GossipFrameTitleText:GetText() and MatchesKeyword(GossipFrameTitleText:GetText(), keywords) then
+        return true
+    end
+
+    -- 3. Native Gossip Options check: authentic deposit box inquiry (Guards NEVER offer "deposit box")
+    if C_GossipInfo and C_GossipInfo.GetOptions then
+        local ok, opts = pcall(C_GossipInfo.GetOptions)
+        if ok and opts then
+            for _, opt in ipairs(opts) do
+                local name = opt.name or opt.title
+                if name and MatchesKeyword(name, { "deposit box", "check my deposit", "access the bank" }) then
+                    return true
+                end
+                -- Modern enum check (Enum.GossipOptionRecType.Banker = 7) or legacy string
+                if opt.type == "banker" or opt.type == 7 then
+                    return true
+                end
+            end
+        end
+    end
+    if GetGossipOptions then
+        local ok, opts = pcall(function() return { GetGossipOptions() } end)
+        if ok and opts then
+            for i = 1, #opts, 2 do
+                local title = opts[i]
+                local gType = opts[i+1]
+                if gType == "banker" or (title and MatchesKeyword(title, { "deposit box", "check my deposit", "access the bank" })) then
                     return true
                 end
             end
@@ -188,6 +285,7 @@ function SG:IsInnkeeper(unit)
 end
 
 function SG:IsCenarionKeeper(unit)
+    if self:IsGuard(unit) then return false end
     local zone = GetZoneText and GetZoneText()
     local subzone = GetSubZoneText and GetSubZoneText()
     local inMoonglade = false
@@ -201,90 +299,19 @@ function SG:IsCenarionKeeper(unit)
     unit = unit or GetGossipUnit()
     if not unit then return inMoonglade end
 
-    local keywords = { "cenarion", "keeper", "remulos", "loganaar", "nursery", "druid" }
+    local keywords = { "cenarion", "keeper", "remulos", "loganaar", "nursery", "keeper of the grove", "dryad" }
     if inMoonglade then return true end
 
-    if ScanUnitTooltipForKeywords(unit, keywords) then
-        return true
-    end
-
-    if C_TooltipInfo and C_TooltipInfo.GetUnit then
-        local ok, info = pcall(C_TooltipInfo.GetUnit, unit)
-        if ok and info and info.lines then
-            for _, line in ipairs(info.lines) do
-                if line.leftText and MatchesKeyword(line.leftText, keywords) then
-                    return true
-                end
-            end
+    local lines = GetNPCLines(unit)
+    for _, line in ipairs(lines) do
+        if MatchesKeyword(line, keywords) then
+            return true
         end
     end
 
     local name = UnitName(unit)
     if name and MatchesKeyword(name, keywords) then
         return true
-    end
-
-    return false
-end
-
-function SG:IsBanker(unit)
-    unit = unit or GetGossipUnit()
-    local keywords = { "banker", "vault", "bank", "deposit box", "teller" }
-
-    -- 1. Tooltip line scanning (catches <Banker> subtitle with 100% reliability)
-    if unit and ScanUnitTooltipForKeywords(unit, keywords) then
-        return true
-    end
-
-    -- 2. C_TooltipInfo scan
-    if unit and C_TooltipInfo and C_TooltipInfo.GetUnit then
-        local ok, info = pcall(C_TooltipInfo.GetUnit, unit)
-        if ok and info and info.lines then
-            for _, line in ipairs(info.lines) do
-                if line.leftText and MatchesKeyword(line.leftText, keywords) then
-                    return true
-                end
-            end
-        end
-    end
-
-    -- 3. Unit Name & Title Text
-    if unit then
-        local name = UnitName(unit)
-        if name and MatchesKeyword(name, keywords) then
-            return true
-        end
-    end
-    if GossipFrameTitleText and GossipFrameTitleText:GetText() and MatchesKeyword(GossipFrameTitleText:GetText(), keywords) then
-        return true
-    end
-
-    -- 4. Native Gossip Options check (banker options)
-    if C_GossipInfo and C_GossipInfo.GetOptions then
-        local ok, opts = pcall(C_GossipInfo.GetOptions)
-        if ok and opts then
-            for _, opt in ipairs(opts) do
-                local name = opt.name or opt.title
-                if name and MatchesKeyword(name, { "bank", "deposit", "vault" }) then
-                    return true
-                end
-                if opt.icon == 132058 or opt.type == "banker" then
-                    return true
-                end
-            end
-        end
-    end
-    if GetGossipOptions then
-        local ok, opts = pcall(function() return { GetGossipOptions() } end)
-        if ok and opts then
-            for i = 1, #opts, 2 do
-                local title = opts[i]
-                local gType = opts[i+1]
-                if gType == "banker" or (title and MatchesKeyword(title, { "bank", "deposit", "vault" })) then
-                    return true
-                end
-            end
-        end
     end
 
     return false
@@ -430,29 +457,13 @@ function SG:BuildOptionsForCurrentNPC()
     local unit = GetGossipUnit()
     local options = {}
 
-    local outpost = ns.OutpostDB and ns.OutpostDB:GetOutpostByUnit(unit)
-    if outpost then
-        local isDefeated = ns.OutpostDB:IsOutpostDefeated(outpost.id)
-        local badge = outpost.badge or {}
-        local badgeName = badge.name or "Outpost Badge"
-        local challengeText = isDefeated
-            and string.format("Junior Safari League: Rematch %s [Cleared: %s]", outpost.name, badgeName)
-            or string.format("Junior Safari League: Challenge Outpost Leader %s [%s]", outpost.name, badgeName)
+    -- Strict Guard Disqualification: Guards have zero gameplay interaction in Forever Safari
+    if self:IsGuard(unit) then
+        return options
+    end
 
-        table.insert(options, {
-            text = challengeText,
-            icon = badge.icon or SG.ICON_LEAGUE,
-            onClick = function()
-                CloseGossipWindow()
-                C_Timer.After(0.05, function()
-                    local trainerUnit = UnitExists("npc") and "npc" or (UnitExists("target") and "target" or "npc")
-                    if ns.BattleEngine and ns.BattleEngine.StartOutpostBattle then
-                        ns.BattleEngine:StartOutpostBattle(trainerUnit, outpost)
-                    end
-                end)
-            end,
-        })
-
+    -- 1. Pet Trainers: Outfitters, Healers & City Breeders (Rank I Untamed)
+    if self:IsPetTrainer(unit) then
         table.insert(options, {
             text = "Junior Safari League: Visit Outfitter",
             icon = SG.ICON_SHOP,
@@ -465,36 +476,6 @@ function SG:BuildOptionsForCurrentNPC()
                 end)
             end,
         })
-    elseif self:IsPetTrainer(unit) then
-        -- 1. Challenge Outpost Leader
-        table.insert(options, {
-            text = "Junior Safari League: Challenge Outpost Leader",
-            icon = SG.ICON_LEAGUE,
-            onClick = function()
-                CloseGossipWindow()
-                C_Timer.After(0.05, function()
-                    local trainerUnit = UnitExists("npc") and "npc" or "target"
-                    if ns.BattleEngine and ns.BattleEngine.StartWildBattle then
-                        ns.BattleEngine:StartWildBattle(trainerUnit)
-                    end
-                end)
-            end,
-        })
-        -- 2. Visit Outfitter
-        table.insert(options, {
-            text = "Junior Safari League: Visit Outfitter",
-            icon = SG.ICON_SHOP,
-            onClick = function()
-                CloseGossipWindow()
-                C_Timer.After(0.05, function()
-                    if ns.Shop and ns.Shop.ShowShop then
-                        ns.Shop:ShowShop(true)
-                    end
-                end)
-            end,
-        })
-    elseif self:IsInnkeeper(unit) then
-        -- 3. Rest and Revive Squad
         table.insert(options, {
             text = "Junior Safari League: Rest and Revive Squad",
             icon = SG.ICON_HEAL,
@@ -505,22 +486,35 @@ function SG:BuildOptionsForCurrentNPC()
                 CloseGossipWindow()
             end,
         })
-    elseif self:IsCenarionKeeper(unit) then
-        -- 4. Breed My Pet
         table.insert(options, {
-            text = "Junior Safari League: Breed My Pet",
+            text = "Junior Safari League: Breed Companions (City Nursery)",
             icon = SG.ICON_BREED,
             onClick = function()
                 CloseGossipWindow()
                 C_Timer.After(0.05, function()
-                    if ns.Nursery and ns.Nursery.Show then
-                        ns.Nursery:Show()
+                    local nursery = ns.NurseryFrame or ns.Nursery
+                    if nursery and nursery.Show then
+                        nursery:Show("CITY")
                     end
                 end)
             end,
         })
+
+    -- 2. Innkeepers: Merely Healers
+    elseif self:IsInnkeeper(unit) then
+        table.insert(options, {
+            text = "Junior Safari League: Rest and Revive Squad",
+            icon = SG.ICON_HEAL,
+            onClick = function()
+                if DB and DB.HealAllPets then
+                    DB:HealAllPets(false)
+                end
+                CloseGossipWindow()
+            end,
+        })
+
+    -- 3. Bankers: Kennelers (Companion Reserve)
     elseif self:IsBanker(unit) then
-        -- 5. Access Companion Reserve
         table.insert(options, {
             text = "Junior Safari League: Access Companion Reserve",
             icon = SG.ICON_SHOP,
@@ -534,7 +528,27 @@ function SG:BuildOptionsForCurrentNPC()
                 end)
             end,
         })
+
+    -- 4. Cenarion Keepers: Sacred Sanctuary Breeders (Moonglade Sacred Grove - Rank III Attuned)
+    elseif self:IsCenarionKeeper(unit) then
+        table.insert(options, {
+            text = "Junior Safari League: Sacred Breeding Ritual",
+            icon = SG.ICON_BREED,
+            onClick = function()
+                CloseGossipWindow()
+                C_Timer.After(0.05, function()
+                    local nursery = ns.NurseryFrame or ns.Nursery
+                    if nursery and nursery.Show then
+                        nursery:Show("SACRED")
+                    end
+                end)
+            end,
+        })
     end
+
+    -- Note: Stable Masters (Outpost Leaders) receive ZERO native gossip injection.
+    -- The WoW: Forever server kills gossip on Stable Masters for non-Hunters.
+    -- All Outpost battles are launched cleanly through CaptureHUD ("⚔️ BATTLE").
 
     return options
 end

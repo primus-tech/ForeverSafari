@@ -240,7 +240,7 @@ function DB:ClaimStarterKit()
 
     local starterMob = {
         name = data.name,
-        customNickname = "Starter " .. data.name,
+        customNickname = "",
         family = data.family,
         element = data.element,
         creatureType = data.element or data.type,
