@@ -49,7 +49,7 @@ Every playable race receives an authentic wild companion indigenous to their hom
 
 ## 🌟 Core Features
 
-### 1. Modular 3D Field Guide Journal (`/safari`)
+### 1. Modular 3D Field Guide Journal (`/fs`)
 Deconstructed into decoupled, high-performance UI views and components:
 * **View 1: 3D Squad Spotlight (`ROSTER`)**: A single-companion high-definition 3D pedestal stage featuring fluid 360° mouse drag rotation, zoom, instant animation triggers (`[ ⚔ Attack ]`, `[ 🦁 Roar ]`, `[ 🏆 Victory ]`, `[ 🐾 Idle ]`), real-time nickname editing, attunement gauge, stat radar, 4-move cards, and an interactive nourishment feeding tray.
 * **View 2: 3D Menagerie Gallery (`GRID`)**: Browse your entire captured collection in a 6-card 3D paperdoll grid with 8-type filter ribbon, pagination, real-time HP bars, and squad leader toggles.
@@ -266,20 +266,22 @@ Companions progress through bonding, feeding, and battlefield survival rather th
 
 ## 🎮 Slash Commands
 
-* `/safari` or `/fs` — Open the Forever Safari 3D Field Guide & Squad Manager
-* `/safari kennel` or `/fskennel` — Open the Safari Kennel (Requires Banker interaction)
-* `/safari nursery` or `/fsnursery`, `/fsbreed` — Open Moonglade Cenarion Breeding Nursery
-* `/safari bounties` — View Active Field Directives & Quest Tracker (Tab 4)
-* `/safari observe` or `/fsnet` — Channel field observation to stalk target and discover new moves
-* `/safari abandon` or `/safari release` — Release active companion back into the wild (with confirmation)
-* `/fsbag` or `/safari bag` — Open the Virtual Safari Bag container
-* `/fsmail` or `/safari mail` — Open Nesingwary Safari Correspondence (Turn in at Mailbox)
-* `/fsshop` — Open Nesingwary Safari Outfitter (Requires Pet Trainer interaction)
-* `/fsbattle` — Engage targeted creature in turn-based combat
-* `/fsduel` — Challenge targeted player to a companion duel
-* `/safari tokens` — Check your current Safari Token balance
-* `/fstaint` — Run live Blizzard UI taint diagnostics on gossip, bags, and secure frames
-* `/safari reset` — Reset all progress back to a fresh new recruit
+* `/fs` — Open the Forever Safari 3D Field Guide & Squad Manager
+* `/fs bag` (or `/fsbag`) — Open the Virtual Safari Bag container
+* `/fs kennel` (or `/fskennel`) — Open the Safari Kennel (Requires Banker interaction)
+* `/fs shop` (or `/fsshop`) — Open Nesingwary Safari Outfitter (Requires Pet Trainer interaction)
+* `/fs mail` (or `/fsmail`) — Open Nesingwary Safari Correspondence (Turn in at Mailbox)
+* `/fs nursery` (or `/fsnursery`, `/fsbreed`) — Open Moonglade Cenarion Breeding Nursery
+* `/fs bounties` — View Active Field Directives & Quest Tracker (Tab 4)
+* `/fs observe` (or `/fsnet`) — Channel field observation to stalk target and discover new moves
+* `/fs battle` (or `/fsbattle`) — Engage targeted creature in turn-based combat
+* `/fs duel [target]` (or `/fsduel`) — Challenge targeted player to a companion duel
+* `/fs war` (or `/fswar`) — Raid Territory War commands (`setnode`, `setbase`, `start`, `stop`, `bridge`)
+* `/fs tokens` — Check your current Safari Token balance
+* `/fs taint` (or `/fstaint`) — Run live Blizzard UI taint diagnostics on gossip, bags, and secure frames
+* `/fs abandon` (or `/fs release`) — Release active companion back into the wild (with confirmation)
+* `/fs reset` — Reset all progress back to a fresh new recruit
+* `/fs benchmark` — Profile cryptographic persistence and vault deserialization
 
 ---
 

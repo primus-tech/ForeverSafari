@@ -627,7 +627,7 @@ function Journal:BuildBestiaryView(parent)
     adviceText:SetPoint("BOTTOMLEFT", 10, 8)
     adviceText:SetPoint("BOTTOMRIGHT", -10, 8)
     adviceText:SetJustifyH("LEFT")
-    adviceText:SetText("🔭 Stalk wild quarry in the field with /safari observe or engage in battle to record full research data.")
+    adviceText:SetText("🔭 Stalk wild quarry in the field with /fs observe or engage in battle to record full research data.")
     rightPanel.AdviceText = adviceText
 end
 
@@ -925,7 +925,7 @@ function Journal:UpdateBestiaryDossier()
         end
 
         rPanel.HabitatText:SetText("|cff777777Known to inhabit unexplored regions of Azeroth.|r")
-        rPanel.DescText:SetText("|cff777777No research data recorded. Stalk this species with /safari observe or engage it in combat to unlock its full dossier and movepool.|r")
+        rPanel.DescText:SetText("|cff777777No research data recorded. Stalk this species with /fs observe or engage it in combat to unlock its full dossier and movepool.|r")
         rPanel.DietText:SetText("|cff666666Favorite Sustenance: ???|r")
         rPanel.BaseStatsText:SetText("Base Stats: HP [ |cff666666??|r ] | ATK [ |cff666666??|r ] | DEF [ |cff666666??|r ] | SPD [ |cff666666??|r ]")
         rPanel.MovesList:SetText("|cff666666Movepool data classified until observed in the field.|r")

@@ -12,7 +12,7 @@
 
 1. [Welcome to the Junior Safari League](#1-welcome-to-the-junior-safari-league)
 2. [Racial Starter Companions](#2-racial-starter-companions)
-3. [The 3D Field Guide Journal (`/safari`)](#3-the-3d-field-guide-journal-safari)
+3. [The 3D Field Guide Journal (`/fs`)](#3-the-3d-field-guide-journal-fs)
 4. [Field Stalking & Creature Observation (0% Mob Damage)](#4-field-stalking--creature-observation-0-mob-damage)
 5. [Attunement Loyalty, Diets & Move Training](#5-attunement-loyalty-diets--move-training)
 6. [Turn-Based Combat & Roaming AI Rival Battlers](#6-turn-based-combat--roaming-ai-rival-battlers)
@@ -63,9 +63,9 @@ Unlike common wild beasts caught in the wild that start untamed, your racial sta
 
 ---
 
-## 3. The 3D Field Guide Journal (`/safari`)
+## 3. The 3D Field Guide Journal (`/fs`)
 
-Type `/safari` or `/fs` to open your interactive 3D Field Guide. The journal is organized into 4 specialized views:
+Type `/fs` to open your interactive 3D Field Guide. The journal is organized into 4 specialized views:
 
 ```
 +-----------------------------------------------------------------------+
@@ -142,7 +142,7 @@ Target any eligible wild creature in the world. The **Observation HUD** (`Captur
 
 ### Channeled Observation Sequence
 1. Target an eligible wild creature in the open world.
-2. Type `/safari observe`, `/fsnet`, or click the `[ 🔭 Observe Quarry ]` button on the Observation HUD.
+2. Type `/fs observe`, `/fsnet`, or click the `[ 🔭 Observe Quarry ]` button on the Observation HUD.
 3. A **3.0 to 5.0-second channeled cast** begins ("Field Study"). Maintain line-of-sight and stay within 28 yards.
 4. Upon completion:
    * **Move Discovery**: The quarry's natural moves are unlocked into your Trainer Grimoire.
@@ -152,7 +152,7 @@ Target any eligible wild creature in the world. The **Observation HUD** (`Captur
 
 > [!NOTE]
 > **Observation vs. In-Battle Capturing**:
-> - **Field Observation (`/safari observe` / HUD)** is used peacefully in the open world to study wild creatures, record Bestiary sightings, and learn new abilities into your Grimoire from a distance.
+> - **Field Observation (`/fs observe` / HUD)** is used peacefully in the open world to study wild creatures, record Bestiary sightings, and learn new abilities into your Grimoire from a distance.
 > - **Capturing with Snares, Nets, Traps & Cages** takes place during **Turn-Based Battle (`/fsbattle`)** by opening `[ BAG ] ➔ [ CAPTURE ]` and deploying physical capture gear against the wild foe.
 
 ### 📦 In-Battle Capture & Transport Crate Logistics
@@ -394,7 +394,7 @@ Certain creature types require specialized field research permits before they ca
 
 ## 10. Virtual Safari Bag & Gear Progression
 
-Type `/fsbag` or `/safari bag` to open your 20-slot Virtual Safari Bag.
+Type `/fs bag` or `/fsbag` to open your 20-slot Virtual Safari Bag.
 
 ### 🕸️ 4-Tier Capture Gear
 
@@ -519,20 +519,22 @@ Breeding in *Forever Safari* is split into two distinct tiers:
 
 | Command | Shorthand | Description |
 | :--- | :--- | :--- |
-| `/safari` | `/fs` | Opens the 3D Field Guide Journal & Squad Manager. |
-| `/safari bag` | `/fsbag` | Opens the 20-slot Virtual Safari Bag container. |
-| `/safari kennel` | `/fskennel` | Opens the Safari Kennel (Requires Banker interaction). |
-| `/safari shop` | `/fsshop` | Opens the Nesingwary Safari Outfitter (Requires Pet Trainer). |
-| `/safari mail` | `/fsmail` | Opens Nesingwary Safari Correspondence at a Mailbox. |
-| `/safari nursery` | `/fsnursery`, `/fsbreed` | Opens Moonglade Cenarion Nursery Breeding Sanctuary. |
-| `/safari bounties` | — | Opens Tab 4: Field Directives & Research Quest Log. |
-| `/safari observe` | `/fsnet` | Starts field observation channel on your targeted quarry. |
-| `/safari battle` | `/fsbattle` | Engages targeted creature or humanoid in turn-based combat. |
-| `/safari duel` | `/fsduel` | Challenges targeted player to a companion duel. |
-| `/safari tokens` | — | Displays current Safari Token balance in chat. |
-| `/safari abandon` | `/safari release` | Releases active companion back to the wild (with confirmation). |
-| `/safari reset` | — | Resets all addon data back to a fresh recruit state. |
-| `/fstaint` | — | Runs live Blizzard UI taint diagnostics on gossip, bags, and secure frames. |
+| `/fs` | — | Opens the 3D Field Guide Journal & Squad Manager. |
+| `/fs bag` | `/fsbag` | Opens the 20-slot Virtual Safari Bag container. |
+| `/fs kennel` | `/fskennel` | Opens the Safari Kennel (Requires Banker interaction). |
+| `/fs shop` | `/fsshop` | Opens the Nesingwary Safari Outfitter (Requires Pet Trainer). |
+| `/fs mail` | `/fsmail` | Opens Nesingwary Safari Correspondence at a Mailbox. |
+| `/fs nursery` | `/fsnursery`, `/fsbreed` | Opens Moonglade Cenarion Nursery Breeding Sanctuary. |
+| `/fs bounties` | — | Opens Tab 4: Field Directives & Research Quest Log. |
+| `/fs observe` | `/fsnet` | Starts field observation channel on your targeted quarry. |
+| `/fs battle` | `/fsbattle` | Engages targeted creature or humanoid in turn-based combat. |
+| `/fs duel [player]` | `/fsduel` | Challenges targeted player to a companion duel. |
+| `/fs war` | `/fswar` | Territory War commands (`setnode`, `setbase`, `start`, `stop`, `bridge`). |
+| `/fs tokens` | — | Displays current Safari Token balance in chat. |
+| `/fs abandon` | `/fs release` | Releases active companion back to the wild (with confirmation). |
+| `/fs reset` | — | Resets all addon data back to a fresh recruit state. |
+| `/fs taint` | `/fstaint` | Runs live Blizzard UI taint diagnostics on gossip, bags, and secure frames. |
+| `/fs benchmark` | — | Profiles cryptographic persistence and vault deserialization. |
 
 ---
 

@@ -304,6 +304,9 @@ function DB:DeserializeState(str)
     return state
 end
 
+DB.JSONEncode = json_encode
+DB.JSONDecode = json_decode
+
 -- =========================================================================
 -- 🐾 MINIMAL AUTHORITATIVE STATE & DYNAMIC HYDRATION (Zero-Stat-Trust)
 -- =========================================================================
@@ -885,7 +888,7 @@ function DB:ResetDB()
 end
 
 -- =========================================================================
--- ⏱️ VAULT PERFORMANCE & INTEGRITY BENCHMARK (/safari benchmark)
+-- ⏱️ VAULT PERFORMANCE & INTEGRITY BENCHMARK (/fs benchmark)
 -- =========================================================================
 function DB:RunBenchmark()
     DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffffcc00[Vault Benchmark]|r Running persistence pipeline profiling...")

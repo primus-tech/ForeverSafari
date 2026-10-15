@@ -47,6 +47,9 @@ eventFrame:SetScript("OnEvent", function(self, event, arg1)
         -- Initialize Systems
         QH:Initialize()
         Comms:Initialize()
+        if ForeverSafari.WarBridge and ForeverSafari.WarBridge.Initialize then
+            ForeverSafari.WarBridge:Initialize()
+        end
         
         -- Initialize UI Components
         HUD:Initialize()
@@ -89,13 +92,12 @@ eventFrame:SetScript("OnEvent", function(self, event, arg1)
             end)
         end
 
-        DEFAULT_CHAT_FRAME:AddMessage(string.format("%sLoaded successfully! Type |cffffd100/safari|r, |cffffd100/fsbag|r, |cffffd100/fsmail|r, or click the minimap icon.", C.PREFIX))
+        DEFAULT_CHAT_FRAME:AddMessage(string.format("%sLoaded successfully! Type |cffffd100/fs|r, |cffffd100/fs duel|r, |cffffd100/fs war|r, or click the minimap icon.", C.PREFIX))
     end
 end)
 
--- Slash Commands (Canonical Zero-Alias Registrations)
-SLASH_SAFARI1 = "/safari"
-SLASH_SAFARI2 = "/fs"
+-- Slash Commands (Canonical Zero-Alias Registrations — Strictly /fs)
+SLASH_FS1 = "/fs"
 SLASH_FSBAG1 = "/fsbag"
 SLASH_FSMAIL1 = "/fsmail"
 SLASH_FSKENNEL1 = "/fskennel"
@@ -104,6 +106,7 @@ SLASH_FSNET1 = "/fsnet"
 SLASH_FSBATTLE1 = "/fsbattle"
 SLASH_FSDUEL1 = "/fsduel"
 SLASH_FSRESET1 = "/fsreset"
+SLASH_FSWAR1 = "/fswar"
 
 local function HandleSlash(msg)
     local cmd, arg = strsplit(" ", msg or "", 2)
@@ -111,8 +114,28 @@ local function HandleSlash(msg)
 
     if cmd == "" or cmd == "journal" then
         Journal:Toggle()
+    elseif cmd == "bag" then
+        if SlashCmdList["FSBAG"] then SlashCmdList["FSBAG"]() end
+    elseif cmd == "mail" then
+        if SlashCmdList["FSMAIL"] then SlashCmdList["FSMAIL"]() end
     elseif cmd == "kennel" or cmd == "reserve" then
-        SlashCmdList["FSKENNEL"]()
+        if SlashCmdList["FSKENNEL"] then SlashCmdList["FSKENNEL"]() end
+    elseif cmd == "shop" then
+        if SlashCmdList["FSSHOP"] then SlashCmdList["FSSHOP"]() end
+    elseif cmd == "net" or cmd == "capture" then
+        if SlashCmdList["FSNET"] then SlashCmdList["FSNET"]() end
+    elseif cmd == "battle" then
+        if SlashCmdList["FSBATTLE"] then SlashCmdList["FSBATTLE"]() end
+    elseif cmd == "duel" then
+        ForeverSafari.Comms:ChallengeTarget(arg)
+    elseif cmd == "nursery" or cmd == "breed" then
+        if ForeverSafari.NurseryFrame then ForeverSafari.NurseryFrame:Toggle() end
+    elseif cmd == "errors" or cmd == "bugs" then
+        if SlashCmdList["FSERRORS"] then SlashCmdList["FSERRORS"]() end
+    elseif cmd == "taint" or cmd == "diag" then
+        if SlashCmdList["FSTAINT"] then SlashCmdList["FSTAINT"]() end
+    elseif cmd == "war" then
+        if ForeverSafari.WarBridge then ForeverSafari.WarBridge:HandleSlash(arg) end
     elseif cmd == "bounties" then
         if ForeverSafari.JournalFrame then
             ForeverSafari.JournalFrame:ShowTab("BOUNTIES")
@@ -137,29 +160,31 @@ local function HandleSlash(msg)
     elseif cmd == "benchmark" or cmd == "testvault" then
         DB:RunBenchmark()
     elseif cmd == "help" then
-        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cff00ff99Available Slash Commands:|r")
-        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/safari|r - Toggle Safari Journal (Field Guide)")
-        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/safari bounties|r - Open Bounties & Research Directives")
-        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/safari tokens|r - Display current Safari Token balance")
-        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/safari syncquests|r - Retroactively claim tokens for completed quests")
-        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/safari abandon|r - Release active companion back into the wild")
-        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/safari reset|r - Reset all progress back to a fresh recruit")
-        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/safari benchmark|r - Run persistence vault performance & integrity tests")
-        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsbag|r - Toggle Virtual Safari Bag")
-        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsmail|r - Open Safari Mail tab at any town mailbox")
-        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fskennel|r - Open Safari Kennel at any town Banker")
-        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsshop|r - Open Safari Outfitter at any Pet Trainer")
-        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsnet|r - Attempt live field observation/capture on target")
-        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsbattle|r - Engage targeted wild creature in battle")
-        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsduel|r - Challenge targeted player to a companion duel")
-        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fserrors|r - View session Lua bug tracker & identify culprit addons")
-        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fstaint|r - Inspect combat taint & action block events")
+        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cff00ff99Available Slash Commands (Strictly /fs):|r")
+        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fs|r - Toggle Safari Journal (Field Guide & Menagerie)")
+        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fs duel [2v2]|r - Challenge target to 1v1 or 2v2 companion duel")
+        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fs war|r - Open Territory War / Node Control match controls")
+        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fs battle|r - Engage targeted wild creature in battle")
+        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fs net|r - Attempt live field observation/capture on target")
+        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fs bag|r - Toggle Virtual Safari Bag")
+        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fs mail|r - Open Safari Mail tab at any town mailbox")
+        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fs kennel|r - Open Safari Kennel at any town Banker")
+        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fs shop|r - Open Safari Outfitter at any Pet Trainer")
+        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fs nursery|r - Open 2-Player Co-op Nursery breeding chamber")
+        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fs bounties|r - Open Bounties & Research Directives")
+        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fs tokens|r - Display current Safari Token balance")
+        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fs syncquests|r - Retroactively claim tokens for completed quests")
+        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fs abandon|r - Release active companion back into the wild")
+        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fs reset|r - Reset all progress back to a fresh recruit")
+        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fs benchmark|r - Run persistence vault crypto performance tests")
+        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fs errors|r - View session Lua bug tracker modal (/fserrors)")
+        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fs taint|r - Inspect combat taint & action block events (/fstaint)")
     else
         Journal:Toggle()
     end
 end
 
-SlashCmdList["SAFARI"] = HandleSlash
+SlashCmdList["FS"] = HandleSlash
 SlashCmdList["FSBAG"] = function() if ForeverSafari.SafariBagFrame then ForeverSafari.SafariBagFrame:Toggle() end end
 SlashCmdList["FSKENNEL"] = function()
     if ForeverSafari.KennelFrame and ForeverSafari.KennelFrame.IsAtBanker and ForeverSafari.KennelFrame:IsAtBanker() then
@@ -195,7 +220,8 @@ SlashCmdList["FSMAIL"] = function()
 end
 SlashCmdList["FSNET"] = function() ForeverSafari.CaptureEngine:AttemptCapture("target") end
 SlashCmdList["FSBATTLE"] = function() ForeverSafari.BattleEngine:StartWildBattle("target") end
-SlashCmdList["FSDUEL"] = function() ForeverSafari.Comms:ChallengeTarget() end
+SlashCmdList["FSDUEL"] = function(msg) ForeverSafari.Comms:ChallengeTarget(msg) end
 SlashCmdList["FSRESET"] = function() DB:ResetDB() end
+SlashCmdList["FSWAR"] = function(msg) if ForeverSafari.WarBridge then ForeverSafari.WarBridge:HandleSlash(msg) end end
 
 -- Innkeeper healing is handled on-demand via Junior Safari League gossip button (SafariGossip.lua)

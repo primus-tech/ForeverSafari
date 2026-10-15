@@ -880,7 +880,6 @@ end
 -- Slash Commands
 SLASH_FSNURSERY1 = "/fsnursery"
 SLASH_FSNURSERY2 = "/fsbreed"
-SLASH_FSNURSERY3 = "/safarinursery"
 SlashCmdList["FSNURSERY"] = function()
     Nursery:Toggle()
 end

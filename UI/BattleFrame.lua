@@ -44,6 +44,11 @@ function BF:Initialize()
 
     frame:SetScript("OnDragStart", function(self) self:StartMoving() end)
     frame:SetScript("OnDragStop", function(self) self:StopMovingOrSizing() end)
+    frame:SetScript("OnHide", function(self)
+        if BE and BE.State and BE.State.inBattle and BE.State.isPvP then
+            BE:ForfeitPvP("WINDOW_CLOSED")
+        end
+    end)
 
     Theme:CreateCloseButton(frame)
 
@@ -643,6 +648,10 @@ function BF:UpdateTurnTimer(remaining, total)
         bar:SetStatusBarColor(0.9, 0.2, 0.2)
     end
     bar.Text:SetText(string.format("Turn Timer: %ds", math.max(0, math.ceil(remaining))))
+end
+
+function BF:UpdateTimerBar(remaining, total)
+    BF:UpdateTurnTimer(remaining, total or 15)
 end
 
 function BF:HideTurnTimer()

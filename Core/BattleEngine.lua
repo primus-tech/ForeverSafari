@@ -1155,9 +1155,13 @@ function BE:SelectTarget(index)
     end
 end
 
--- Execute Player Selected Move
 function BE:ExecutePlayerMove(moveKey)
-    if not BE.State.inBattle or BE.State.turn ~= "player" then return end
+    if not BE.State.inBattle then return end
+    if BE.State.isPvP then
+        BE:CommitPvPAction("MOVE", moveKey)
+        return
+    end
+    if BE.State.turn ~= "player" then return end
 
     BE:CancelTurnTimer()
     BE.State.combatStarted = true
@@ -2039,9 +2043,12 @@ function BE:UseBagItem(itemId)
     end)
 end
 
--- Switch active companion mid-battle
 function BE:SwitchPlayerMob(mobId)
     if not BE.State.inBattle then return end
+    if BE.State.isPvP and not BE.State.forcedSwitch then
+        BE:CommitPvPAction("SWITCH", mobId)
+        return
+    end
     if BE.State.turn ~= "player" and not BE.State.forcedSwitch then return end
 
     BE:CancelTurnTimer()
@@ -2266,9 +2273,12 @@ function BE:HandleDefeat()
     end
 end
 
--- Forfeit / Run away
 function BE:RunAway()
     if not BE.State.inBattle then return end
+    if BE.State.isPvP then
+        BE:ForfeitPvP("RUN_AWAY")
+        return
+    end
     BE:CancelTurnTimer()
     BE.State.dialogueText = "Got away safely!"
     BE:AddLog("|cffffaa00Escaped safely from battle!|r")
@@ -2314,3 +2324,438 @@ function BE:UseDivineGrace()
     end)
     return true
 end
+
+-- =========================================================================
+-- ⚔️ DETERMINISTIC PVP BATTLE ENGINE (Zero-Trust Simulation Protocol)
+-- =========================================================================
+
+-- Deterministic PRNG Initialization (Seeded by SHA-256 MatchSeed)
+function BE:InitBattleRNG(seedStr)
+    seedStr = tostring(seedStr or "00000000")
+    local h1 = string.sub(seedStr, 1, 8)
+    local s1 = tonumber(h1, 16) or 123456789
+    if s1 <= 0 then s1 = 123456789 end
+    BE.State.rngState = s1 % 2147483647
+    BE.State.rngIndex = 0
+end
+
+-- Deterministic PRNG Generator (Lehmer LCG: X_{n+1} = (16807 * X_n) % 2147483647)
+function BE:NextRNG()
+    BE.State.rngState = (BE.State.rngState * 16807) % 2147483647
+    BE.State.rngIndex = (BE.State.rngIndex or 0) + 1
+    return (BE.State.rngState - 1) / 2147483646
+end
+
+-- Start PvP Companion Duel
+function BE:StartPvPDuel(opponentName, opponentTeam, ruleset, matchSeed, isAttacker, opts)
+    local activeMob = DB:GetActiveMob()
+    if not activeMob or (activeMob.currentHP or 0) <= 0 then
+        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444No active companion ready for battle!|r")
+        return false
+    end
+
+    if not opponentTeam or #opponentTeam == 0 then
+        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Opponent team is empty!|r")
+        return false
+    end
+
+    BE.State.inBattle = true
+    BE.State.isPvP = true
+    BE.State.isTrainerBattle = false
+    BE.State.isOutpostBattle = false
+    BE.State.opponentName = opponentName
+    BE.State.ruleset = ruleset or "1v1"
+    BE.State.isDoubles = (ruleset == "2v2" or ruleset == "2v2_sympathy")
+    BE.State.sympathy = (ruleset == "2v2_sympathy")
+    BE.State.matchSeed = matchSeed
+    BE.State.isAttacker = isAttacker
+    BE.State.ambushOpts = opts or {}
+    BE.State.round = 1
+    BE.State.turnCount = 0
+    BE.State.turn = "player"
+    BE.State.combatStarted = true
+    BE.State.dialogueText = string.format("PvP Duel against %s! Choose your move!", opponentName)
+    BE.State.logs = {}
+
+    -- Initialize deterministic PRNG
+    BE:InitBattleRNG(matchSeed)
+
+    -- Setup Combatants
+    BE.State.playerMob = activeMob
+    BE.State.enemyMob = opponentTeam[1]
+    BE.State.enemyTeam = opponentTeam
+    BE.State.enemyActiveSlot = 1
+
+    -- Reset Buffs, Cooldowns & Passives
+    BE.State.buffs.player = {}
+    BE.State.buffs.enemy = {}
+    BE.State.passives.dragonkinEnraged = { player = false, enemy = false }
+    BE.State.passives.mechanicalRevived = { player = false, enemy = false }
+    BE.State.passives.undeadImmortal = { player = 0, enemy = 0 }
+    BE.State.passives.undeadTriggered = { player = false, enemy = false }
+
+    BE:InitMoveStates(activeMob, "player")
+    BE:InitMoveStates(opponentTeam[1], "enemy")
+
+    -- Reset Commit-Reveal state
+    BE.State.myActionType = nil
+    BE.State.myActionParam = nil
+    BE.State.myActionStr = nil
+    BE.State.myCommitTag = nil
+    BE.State.myRevealed = false
+    BE.State.peerCommitTag = nil
+    BE.State.peerActionStr = nil
+    BE.State.pvpActionTimer = 15.0
+
+    BE:AddLog(string.format("|cffffd100[PvP Duel Initiated]|r Facing |cffff6666%s|r (%s)! Seed: |cff00e5ff%s...|r", opponentName, ruleset, string.sub(matchSeed, 1, 8)))
+
+    -- Open Battle Frame
+    if ForeverSafari.BattleFrame and ForeverSafari.BattleFrame.OpenBattle then
+        ForeverSafari.BattleFrame:OpenBattle(opponentTeam[1], false)
+    elseif ForeverSafari.BattleFrame then
+        ForeverSafari.BattleFrame:UpdateModels()
+        ForeverSafari.BattleFrame:UpdateUI()
+    end
+
+    -- Start 15s Action Countdown & Tether Monitor
+    BE:StartPvPActionTimer()
+    return true
+end
+
+-- 15-Second Action Countdown & Spatial Tether Monitor
+function BE:StartPvPActionTimer()
+    if BE.pvpTimerTicker and BE.pvpTimerTicker.Cancel then
+        BE.pvpTimerTicker:Cancel()
+    end
+
+    BE.State.pvpActionTimer = 15.0
+    if ForeverSafari.BattleFrame and ForeverSafari.BattleFrame.StartTurnCountdown then
+        ForeverSafari.BattleFrame:StartTurnCountdown(15)
+    end
+
+    BE.pvpTimerTicker = C_Timer.NewTicker(1.0, function()
+        if not BE.State.inBattle or not BE.State.isPvP then
+            if BE.pvpTimerTicker and BE.pvpTimerTicker.Cancel then
+                BE.pvpTimerTicker:Cancel()
+            end
+            return
+        end
+
+        -- Check Ambush Spatial Tethers if active
+        if BE.State.ambushOpts and BE.State.ambushOpts.isAmbush then
+            BE:CheckPvPAmbushTether()
+        end
+
+        -- Decrement action timer if awaiting local player action
+        if not BE.State.myActionCommit then
+            BE.State.pvpActionTimer = BE.State.pvpActionTimer - 1.0
+            if BE.State.pvpActionTimer <= 0 then
+                BE:ForfeitPvP("ACTION_TIMEOUT")
+            end
+        end
+
+        if ForeverSafari.BattleFrame and ForeverSafari.BattleFrame.UpdateTimerBar then
+            ForeverSafari.BattleFrame:UpdateTimerBar(BE.State.pvpActionTimer)
+        end
+    end)
+end
+
+-- Check Ambush Spatial Tether
+function BE:CheckPvPAmbushTether()
+    local opts = BE.State.ambushOpts
+    if not opts or not opts.originX or not opts.originY then return end
+
+    local mapID = C_Map.GetBestMapForUnit("player")
+    local pos = mapID and C_Map.GetPlayerMapPosition(mapID, "player")
+    if not pos then return end
+    local x, y = pos:GetXY()
+
+    local dx = (x - opts.originX) * 1000
+    local dy = (y - opts.originY) * 1000
+    local distSq = dx*dx + dy*dy
+
+    if BE.State.isAttacker then
+        -- Attacker must remain within ~25 yards (625 units)
+        if distSq > 625 then
+            BE:ForfeitPvP("ABANDONED_AMBUSH_PERIMETER")
+        end
+    else
+        -- Defender must be within ~30 yards (900 units) when timer hits 0
+        if distSq > 900 and BE.State.pvpActionTimer <= 1.0 then
+            BE:ForfeitPvP("FLED_AMBUSH_PERIMETER")
+        end
+    end
+end
+
+-- Commit Player Action (Move or Switch)
+function BE:CommitPvPAction(actionType, param)
+    if not BE.State.inBattle or not BE.State.isPvP then return end
+    if BE.State.myActionCommit then return end -- Already committed
+
+    local actionStr = string.format("%s,%s", actionType, tostring(param))
+    local salt = tostring(math.random(100000, 999999))
+    local commitTag = Crypto:SHA256(actionStr .. ";" .. salt)
+
+    BE.State.myActionType = actionType
+    BE.State.myActionParam = param
+    BE.State.myActionStr = actionStr
+    BE.State.mySalt = salt
+    BE.State.myActionCommit = commitTag
+
+    -- Transmit Commit to Opponent
+    if ForeverSafari.Comms and BE.State.opponentName then
+        ForeverSafari.Comms:SendTurnCommit(BE.State.opponentName, commitTag)
+    end
+
+    BE.State.dialogueText = "Action locked! Awaiting opponent..."
+    BE:AddLog("|cff00e5ff[Action Committed]|r Awaiting opponent move selection...|r")
+
+    if ForeverSafari.BattleFrame then
+        ForeverSafari.BattleFrame:UpdateUI()
+    end
+
+    -- If opponent commit already received, automatically reveal
+    if BE.State.peerCommitTag and not BE.State.myRevealed then
+        BE.State.myRevealed = true
+        if ForeverSafari.Comms and BE.State.opponentName then
+            ForeverSafari.Comms:SendTurnReveal(BE.State.opponentName, actionStr, salt)
+        end
+    end
+end
+
+-- Receive Peer Commit
+function BE:OnPeerTurnCommit(sender, commitTag)
+    if not BE.State.inBattle or not BE.State.isPvP or sender ~= BE.State.opponentName then return end
+    BE.State.peerCommitTag = commitTag
+
+    -- If player already committed, reveal now
+    if BE.State.myActionStr and not BE.State.myRevealed then
+        BE.State.myRevealed = true
+        if ForeverSafari.Comms and BE.State.opponentName then
+            ForeverSafari.Comms:SendTurnReveal(BE.State.opponentName, BE.State.myActionStr, BE.State.mySalt)
+        end
+    end
+end
+
+-- Receive Peer Reveal
+function BE:OnPeerTurnReveal(sender, data)
+    if not BE.State.inBattle or not BE.State.isPvP or sender ~= BE.State.opponentName then return end
+
+    local actionStr, salt = strsplit(";", data, 2)
+    local computedHash = Crypto:SHA256(actionStr .. ";" .. salt)
+
+    if computedHash ~= BE.State.peerCommitTag then
+        BE:AddLog("|cffff4444[DESYNC ALERT]|r Opponent action hash mismatch! Verification failed.|r")
+        return
+    end
+
+    BE.State.peerActionStr = actionStr
+
+    -- Both revealed: execute turn resolution
+    if BE.State.myRevealed and BE.State.peerActionStr then
+        BE:ResolvePvPTurn()
+    end
+end
+
+-- Deterministic Turn Resolution
+function BE:ResolvePvPTurn()
+    local myAction = BE.State.myActionStr
+    local peerAction = BE.State.peerActionStr
+    if not myAction or not peerAction then return end
+
+    local myType, myParam = strsplit(",", myAction)
+    local peerType, peerParam = strsplit(",", peerAction)
+
+    local player = BE.State.playerMob
+    local enemy = BE.State.enemyMob
+
+    -- 1. Handle Switches First (Switches always have top priority)
+    if myType == "SWITCH" then
+        local newMob = DB:GetMobById(myParam)
+        if newMob and (newMob.currentHP or 0) > 0 then
+            BE.State.playerMob = newMob
+            BE:InitMoveStates(newMob, "player")
+            BE:AddLog(string.format("|cff00ff00[Player Switch]|r Sent out %s!|r", newMob.name))
+        end
+    end
+
+    if peerType == "SWITCH" then
+        -- Find in enemy team
+        for _, pet in ipairs(BE.State.enemyTeam or {}) do
+            if tostring(pet.id) == peerParam and (pet.currentHP or 0) > 0 then
+                BE.State.enemyMob = pet
+                BE:InitMoveStates(pet, "enemy")
+                BE:AddLog(string.format("|cffff6666[Opponent Switch]|r Opponent sent out %s!|r", pet.name))
+                break
+            end
+        end
+    end
+
+    -- 2. Determine Action Speed Priority
+    local playerSpd = BE:GetEffectiveSpeed(BE.State.playerMob, "player")
+    local enemySpd = BE:GetEffectiveSpeed(BE.State.enemyMob, "enemy")
+    local playerFirst = (playerSpd >= enemySpd)
+
+    local function executeAction(isPlayer, aType, aParam)
+        if aType == "MOVE" then
+            local moveKey = tonumber(aParam) or aParam
+            local attacker = isPlayer and BE.State.playerMob or BE.State.enemyMob
+            local defender = isPlayer and BE.State.enemyMob or BE.State.playerMob
+            local side = isPlayer and "player" or "enemy"
+            if attacker and (attacker.currentHP or 0) > 0 and defender and (defender.currentHP or 0) > 0 then
+                BE:ExecutePvPMove(attacker, defender, side, moveKey)
+            end
+        end
+    end
+
+    if playerFirst then
+        executeAction(true, myType, myParam)
+        executeAction(false, peerType, peerParam)
+    else
+        executeAction(false, peerType, peerParam)
+        executeAction(true, myType, myParam)
+    end
+
+    -- 3. End-of-Turn Checks & Ticking
+    BE:TickRoundBuffsAndHoTs()
+    BE.State.turnCount = BE.State.turnCount + 1
+
+    -- Periodic Checkpoint (Every 5 turns)
+    if (BE.State.turnCount % 5) == 0 then
+        local stateStr = string.format("%d:%d:%d:%d", BE.State.turnCount, BE.State.playerMob.currentHP or 0, BE.State.enemyMob.currentHP or 0, BE.State.rngIndex or 0)
+        local stateHash = Crypto:SHA256(stateStr)
+        if ForeverSafari.Comms and BE.State.opponentName then
+            ForeverSafari.Comms:SendStateCheckpoint(BE.State.opponentName, BE.State.turnCount, stateHash)
+        end
+    end
+
+    -- Reset Commit-Reveal state for next turn
+    BE.State.myActionType = nil
+    BE.State.myActionParam = nil
+    BE.State.myActionStr = nil
+    BE.State.myCommitTag = nil
+    BE.State.myRevealed = false
+    BE.State.peerCommitTag = nil
+    BE.State.peerActionStr = nil
+    BE.State.pvpActionTimer = 15.0
+    if ForeverSafari.BattleFrame and ForeverSafari.BattleFrame.StartTurnCountdown then
+        ForeverSafari.BattleFrame:StartTurnCountdown(15)
+    end
+
+    if ForeverSafari.BattleFrame then
+        ForeverSafari.BattleFrame:UpdateModels()
+        ForeverSafari.BattleFrame:UpdateUI()
+    end
+end
+
+-- Deterministic PvP Move Execution
+function BE:ExecutePvPMove(attacker, defender, side, moveKey)
+    local move = BE:GetMoveData(moveKey)
+    if not move then return end
+
+    local aName = attacker.nickname ~= "" and attacker.nickname or attacker.name
+    local dName = defender.nickname ~= "" and defender.nickname or defender.name
+
+    -- 1. Accuracy Roll (PRNG Step 1)
+    local accRoll = (BE:NextRNG() * 100)
+    local accuracy = move.accuracy or 100
+    if accRoll > accuracy then
+        BE:AddLog(string.format("%s used %s, but it MISSED!", aName, move.name))
+        return
+    end
+
+    -- 2. Critical Roll (PRNG Step 2)
+    local critRoll = (BE:NextRNG() * 100)
+    local critChance = (attacker.resists and attacker.resists.crit) or 5
+    local isCrit = (critRoll <= critChance)
+    local critMult = isCrit and 1.5 or 1.0
+
+    -- 3. Damage Variance (PRNG Step 3: 85% to 100%)
+    local varRoll = 0.85 + (BE:NextRNG() * 0.15)
+
+    -- 4. Status Proc (PRNG Step 4)
+    local statusProc = (BE:NextRNG() * 100)
+
+    -- 5. Secondary Mechanic (PRNG Step 5)
+    local secondaryRoll = (BE:NextRNG() * 100)
+
+    -- Base Damage Calculation
+    local atkStat = attacker.attack or attacker.atk or 20
+    local defStat = defender.defense or defender.def or 15
+    local movePower = move.power or 15
+    local typeAdv = C.GetDamageMultiplier and C.GetDamageMultiplier(move.element or attacker.element or "Beast", defender.element or defender.creatureType or "Beast") or 1.0
+
+    local rawDmg = ((2 * 20 / 5 + 2) * movePower * (atkStat / math.max(1, defStat)) / 50 + 2)
+    local finalDmg = math.max(1, math.floor(rawDmg * typeAdv * critMult * varRoll))
+
+    defender.currentHP = math.max(0, (defender.currentHP or defender.maxHP) - finalDmg)
+    defender.hp = defender.currentHP
+
+    local critStr = isCrit and " |cffff0000[CRITICAL HIT!]|r" or ""
+    BE:AddLog(string.format("%s used |cffffd100%s|r on %s for |cffff4444%d damage|r!%s", aName, move.name, dName, finalDmg, critStr))
+
+    -- Check Faint
+    if defender.currentHP <= 0 then
+        if side == "player" then
+            BE:HandleEnemyFaint()
+        else
+            BE:HandlePlayerFaint()
+        end
+    end
+end
+
+-- Peer State Checkpoint Verification
+function BE:OnPeerCheckpoint(sender, data)
+    if not BE.State.inBattle or not BE.State.isPvP or sender ~= BE.State.opponentName then return end
+    local turnIndex, peerHash = strsplit(";", data, 2)
+    local myStateStr = string.format("%d:%d:%d:%d", tonumber(turnIndex) or 0, BE.State.playerMob.currentHP or 0, BE.State.enemyMob.currentHP or 0, BE.State.rngIndex or 0)
+    local myHash = Crypto:SHA256(myStateStr)
+
+    if myHash ~= peerHash then
+        DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cffff4444[DESYNC DETECTED]|r Battle simulation diverged at Turn %s! Please resync.|r", C.PREFIX, turnIndex or "5"))
+    end
+end
+
+-- Forfeit Battle (15s timeout, window closed, or runaway)
+function BE:ForfeitPvP(reason)
+    if not BE.State.inBattle or not BE.State.isPvP then return end
+
+    if BE.pvpTimerTicker and BE.pvpTimerTicker.Cancel then
+        BE.pvpTimerTicker:Cancel()
+        BE.pvpTimerTicker = nil
+    end
+    if ForeverSafari.BattleFrame and ForeverSafari.BattleFrame.HideTurnTimer then
+        ForeverSafari.BattleFrame:HideTurnTimer()
+    end
+
+    local player = BE.State.playerMob
+    if player then
+        player.currentHP = 0
+        player.hp = 0
+        player.isFainted = true
+    end
+
+    if ForeverSafari.Comms and BE.State.opponentName then
+        ForeverSafari.Comms:SendForfeit(BE.State.opponentName, reason)
+    end
+
+    BE:AddLog(string.format("|cffff4444[FORFEIT: %s]|r You forfeited the match! Your companion has fainted.|r", reason or "FORFEIT"))
+    BE:HandleDefeat()
+end
+
+-- Peer Forfeited Match
+function BE:OnPeerForfeit(sender, reason)
+    if not BE.State.inBattle or not BE.State.isPvP or sender ~= BE.State.opponentName then return end
+
+    if BE.pvpTimerTicker and BE.pvpTimerTicker.Cancel then
+        BE.pvpTimerTicker:Cancel()
+        BE.pvpTimerTicker = nil
+    end
+    if ForeverSafari.BattleFrame and ForeverSafari.BattleFrame.HideTurnTimer then
+        ForeverSafari.BattleFrame:HideTurnTimer()
+    end
+
+    BE:AddLog(string.format("|cff00ff00[OPPONENT FORFEIT]|r %s forfeited the duel (%s)! Victory!|r", sender, reason or "Disconnected"))
+    BE:HandleVictory()
+end
+

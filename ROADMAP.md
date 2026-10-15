@@ -51,7 +51,7 @@
   * Mutations flag dirty with 5.0-second idle debounce and 60-second hard ceiling.
   * Synchronous vault flush on `PLAYER_LOGOUT` / `/reload`; clears in-memory global `ForeverSafariDB = nil` before disk write so only the encrypted vault is persisted.
 * [x] **Schema Migration & Benchmarking Suite**:
-  * Static structural validation completed; in-game benchmarking suite (`/safari benchmark`) profiles JSON serialization, XXTEA encryption, HMAC-SHA256 hashing, and decryption across collection brackets.
+  * Static structural validation completed; in-game benchmarking suite (`/fs benchmark`) profiles JSON serialization, XXTEA encryption, HMAC-SHA256 hashing, and decryption across collection brackets.
 
 ---
 
@@ -99,7 +99,7 @@
     * 🧬 **Evolution Catalysts**: Dungeon boss drops (Shadowfang Essence, Hydra Bile, Venomous Gland, Overclocked Core, Volcanic Core).
     * 🍖 **Consumables**: Treats (+50 Attunement), Feasts (+100 Attunement team-wide), Salves (100% Heal), and Revival Crystals.
   * **Context-Sensitive Actions**: Right-Clicking uses/equips items, feeds or heals active companion, or initiates Metamorphosis in the Field Guide. Shift-Clicking inserts item links into chat.
-  * **Integration & Access**: Quick access buttons in Journal header, Minimap button middle/shift-click, Capture HUD, and `/fsbag` or `/safari bag` slash commands.
+  * **Integration & Access**: Quick access buttons in Journal header, Minimap button middle/shift-click, Capture HUD, and `/fs bag` or `/fsbag` slash commands.
 
 ---
 
@@ -132,7 +132,7 @@
 ---
 
 ## 📍 Phase 9: Physical Mailbox Hub & Journal Field Directives (Completed ✅)
-* [x] **Safari Journal Field Directives (Tab 4 — `/safari` / `/safari bounties`)**:
+* [x] **Safari Journal Field Directives (Tab 4 — `/fs` / `/fs bounties`)**:
   * Live field tracker for all Nesingwary research directives, target quotas, progress bars, and objective dossiers.
   * Allows players to check requirements anywhere in the wild while exploring.
 * [x] **Blizzard MailFrame Custom Tab ("Safari") & Authentic Two-Window Architecture**:
@@ -222,7 +222,7 @@
 * [x] **"Current Zone Only" Localized Tracking**:
   * Real-time zone detection checkbox filtering the Pokédex to the player's current map with localized completion progress counters.
 * [x] **3-Tier Pokédex Discovery Lifecycle (`Core/Database.lua`)**:
-  * `[ ??? Undiscovered ]` ➔ `[ 🔭 Seen / Sighted ]` (stalked via `/safari observe` or encountered in combat) ➔ `[ 🐾 Captured ]` (caged into active squad or kennel).
+  * `[ ??? Undiscovered ]` ➔ `[ 🔭 Seen / Sighted ]` (stalked via `/fs observe` or encountered in combat) ➔ `[ 🐾 Captured ]` (caged into active squad or kennel).
   * Pokédex completion progress bar with live seen/caught percentage counters.
 * [x] **Dynamic Type & Family Filter Dropdown (`UI/JournalFrame.lua`)**:
   * Dropdown selector supporting instant 1-click filtering by *All Types, Beast, Mechanical, Undead, Elemental, Dragonkin, Aquatic, Flying, Magic*, stacked with real-time text searching.
@@ -376,7 +376,7 @@
   * Added canonical Barrens and Desolace species (*Thunder Lizard*, *Lightning Hide*, *Stormsnout*, *Stormhide*, and rare apex *Thunderhead*) to both `Data/CreatureDB.lua` and `Data/BestiaryDB.lua` with verified 3D display IDs, 100/110 base stat distributions, and thematic lightning movepools (*Shock Blast*, *Static Charge*, *Tail Sweep*, *Storm Surge*).
 * [x] **Spawn-Instance GUID Anti-Farm Lockouts (`UnitGUID`)**:
   * Track individual world spawn instances via `UnitGUID("target")` to eliminate duplicate engagements on the same living NPC.
-  * **Observation / Scanning Lockout**: Successfully completing a field observation channel (`/safari observe`) marks the entity's GUID in `ForeverSafariDB.scannedGuids`, preventing redundant channels against that same wild specimen for 24 hours.
+  * **Observation / Scanning Lockout**: Successfully completing a field observation channel (`/fs observe`) marks the entity's GUID in `ForeverSafariDB.scannedGuids`, preventing redundant channels against that same wild specimen for 24 hours.
   * **Roaming AI Trainer Lockout**: Defeating a humanoid NPC in turn-based combat records their spawn GUID in `ForeverSafariDB.defeatedTrainers`, preventing players from repeatedly battling the same living humanoid for infinite Safari Tokens.
   * **Automated Expiration & Pruning (`DB:PruneExpiredGuids`)**: Automatic daily / 24-hour timestamp pruning on login to prevent SavedVariables bloat while allowing respawned world encounters.
 
