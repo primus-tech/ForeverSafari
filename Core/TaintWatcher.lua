@@ -203,6 +203,152 @@ if seterrorhandler then
     end)
 end
 
+-- =========================================================================
+-- 📋 COPY-PASTE ERROR INSPECTOR POPUP MODAL (ForeverSafariErrorViewerFrame)
+-- =========================================================================
+local errorFrame = nil
+
+local function CreateErrorViewerFrame()
+    if errorFrame then return errorFrame end
+
+    local f = CreateFrame("Frame", "ForeverSafariErrorViewerFrame", UIParent, BackdropTemplateMixin and "BackdropTemplate" or nil)
+    f:SetSize(580, 420)
+    f:SetPoint("CENTER", UIParent, "CENTER", 0, 40)
+    f:SetMovable(true)
+    f:EnableMouse(true)
+    f:RegisterForDrag("LeftButton")
+    f:SetScript("OnDragStart", f.StartMoving)
+    f:SetScript("OnDragStop", f.StopMovingOrSizing)
+    f:SetFrameStrata("DIALOG")
+    f:SetClampedToScreen(true)
+
+    f:SetBackdrop({
+        bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
+        edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border",
+        tile = true, tileSize = 32, edgeSize = 32,
+        insets = { left = 8, right = 8, top = 8, bottom = 8 },
+    })
+    f:SetBackdropColor(0.08, 0.08, 0.12, 0.95)
+
+    -- Title
+    local title = f:CreateFontString(nil, "OVERLAY", "GameFontHighlightLarge")
+    title:SetPoint("TOP", f, "TOP", 0, -14)
+    title:SetText("|cffffd100Forever Safari: Bug & Error Inspector|r")
+    f.title = title
+
+    -- Subtitle / Status
+    local info = f:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    info:SetPoint("TOP", title, "BOTTOM", 0, -4)
+    info:SetText("No errors recorded.")
+    f.info = info
+
+    -- Close Button (Top right X)
+    local closeBtn = CreateFrame("Button", nil, f, "UIPanelCloseButton")
+    closeBtn:SetPoint("TOPRIGHT", f, "TOPRIGHT", -5, -5)
+
+    -- Multi-line Scrollable EditBox
+    local scrollFrame = CreateFrame("ScrollFrame", "ForeverSafariErrorScrollFrame", f, "UIPanelScrollFrameTemplate")
+    scrollFrame:SetPoint("TOPLEFT", f, "TOPLEFT", 18, -62)
+    scrollFrame:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -38, 52)
+
+    local editBox = CreateFrame("EditBox", "ForeverSafariErrorEditBox", scrollFrame)
+    editBox:SetMultiLine(true)
+    editBox:SetMaxLetters(999999)
+    editBox:EnableMouse(true)
+    editBox:SetAutoFocus(false)
+    editBox:SetFontObject("GameFontHighlightSmall")
+    editBox:SetWidth(510)
+    editBox:SetScript("OnEscapePressed", function() f:Hide() end)
+    scrollFrame:SetScrollChild(editBox)
+    f.editBox = editBox
+
+    -- Navigation: Prev Button
+    local prevBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
+    prevBtn:SetSize(80, 24)
+    prevBtn:SetPoint("BOTTOMLEFT", f, "BOTTOMLEFT", 18, 14)
+    prevBtn:SetText("< Previous")
+    f.prevBtn = prevBtn
+
+    -- Navigation: Next Button
+    local nextBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
+    nextBtn:SetSize(80, 24)
+    nextBtn:SetPoint("LEFT", prevBtn, "RIGHT", 6, 0)
+    nextBtn:SetText("Next >")
+    f.nextBtn = nextBtn
+
+    -- Select All Button
+    local copyBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
+    copyBtn:SetSize(90, 24)
+    copyBtn:SetPoint("LEFT", nextBtn, "RIGHT", 8, 0)
+    copyBtn:SetText("Select All")
+    copyBtn:SetScript("OnClick", function()
+        editBox:SetFocus()
+        editBox:HighlightText()
+    end)
+
+    -- Clear All Button
+    local clearBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
+    clearBtn:SetSize(80, 24)
+    clearBtn:SetPoint("LEFT", copyBtn, "RIGHT", 6, 0)
+    clearBtn:SetText("Clear All")
+    clearBtn:SetScript("OnClick", function()
+        ForeverSafari_SessionErrors = {}
+        f:DisplayError(1)
+        print("|cff00ff00[Forever Safari Bug Tracker]|r All session errors cleared.")
+    end)
+
+    -- Close Button (Bottom right)
+    local dismissBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
+    dismissBtn:SetSize(80, 24)
+    dismissBtn:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -18, 14)
+    dismissBtn:SetText("Close")
+    dismissBtn:SetScript("OnClick", function() f:Hide() end)
+
+    f.currentIndex = 1
+
+    function f:DisplayError(index)
+        local count = #ForeverSafari_SessionErrors
+        if count == 0 then
+            self.info:SetText("|cff00ff00Zero errors recorded this session.|r")
+            self.editBox:SetText("No Lua errors have occurred in this game session. All addons running cleanly!\n\n(Tip: When an error happens, open this window and press Ctrl+C to copy-paste the full report.)")
+            self.prevBtn:Disable()
+            self.nextBtn:Disable()
+            return
+        end
+
+        index = math.max(1, math.min(count, index or count))
+        self.currentIndex = index
+        local rec = ForeverSafari_SessionErrors[index]
+
+        local culpritColor = rec.isOurs and "|cffff4444" or (rec.culprit == "Blizzard UI" and "|cff3399ff" or "|cffffaa00")
+        self.info:SetText(string.format("Error %d of %d  •  Culprit: %s%s|r  •  Time: %s", index, count, culpritColor, rec.culprit, rec.time))
+
+        local text = string.format("Time: %s\nCulprit Addon: %s\nError Message:\n%s\n\nCall Stack:\n%s", 
+            rec.time, rec.culprit, rec.msg, rec.stack)
+        self.editBox:SetText(text)
+        self.editBox:SetCursorPosition(0)
+        self.editBox:SetFocus()
+        self.editBox:HighlightText() -- Auto-highlight so user just presses Ctrl+C!
+
+        if index > 1 then self.prevBtn:Enable() else self.prevBtn:Disable() end
+        if index < count then self.nextBtn:Enable() else self.nextBtn:Disable() end
+    end
+
+    prevBtn:SetScript("OnClick", function()
+        f:DisplayError(f.currentIndex - 1)
+    end)
+    nextBtn:SetScript("OnClick", function()
+        f:DisplayError(f.currentIndex + 1)
+    end)
+
+    if UISpecialFrames then
+        table.insert(UISpecialFrames, "ForeverSafariErrorViewerFrame")
+    end
+
+    errorFrame = f
+    return f
+end
+
 -- Slash Command: /fserrors /fsbugs
 SLASH_FSERRORS1 = "/fserrors"
 SLASH_FSERRORS2 = "/fsbugs"
@@ -211,55 +357,23 @@ SlashCmdList["FSERRORS"] = function(msg)
 
     if msg == "clear" or msg == "reset" then
         ForeverSafari_SessionErrors = {}
+        if errorFrame and errorFrame:IsShown() then
+            errorFrame:DisplayError(1)
+        end
         print("|cff00ff00[Forever Safari Bug Tracker]|r Session error log cleared.")
         return
     end
 
+    -- Open the copy-paste modal window!
+    local frame = CreateErrorViewerFrame()
+    frame:Show()
+
     local targetIdx = tonumber(msg)
     if targetIdx then
-        local found = nil
-        for _, rec in ipairs(ForeverSafari_SessionErrors) do
-            if rec.id == targetIdx then
-                found = rec
-                break
-            end
-        end
-        if not found and ForeverSafari_SessionErrors[targetIdx] then
-            found = ForeverSafari_SessionErrors[targetIdx]
-        end
-
-        if found then
-            local headerColor = found.isOurs and "|cffff4444" or (found.culprit == "Blizzard UI" and "|cff3399ff" or "|cffffaa00")
-            print(string.format("%s=== Error #%d [%s] at %s ===|r", headerColor, found.id, found.culprit, found.time))
-            print("|cffffffffMessage:|r " .. found.msg)
-            print("|cffffaa00Call Stack:|r\n" .. found.stack)
-        else
-            print(string.format("|cffff4444[Bug Tracker]|r No error found with ID #%d. Type |cffffd100/fserrors|r to list all.", targetIdx))
-        end
-        return
+        frame:DisplayError(targetIdx)
+    else
+        frame:DisplayError(#ForeverSafari_SessionErrors)
     end
-
-    local count = #ForeverSafari_SessionErrors
-    print(string.format("|cffffd100=== Forever Safari Bug Tracker (%d error(s) this session) ===|r", count))
-    if count == 0 then
-        print("|cff00ff00✓ Zero Lua errors recorded this session! All addons running cleanly.|r")
-        return
-    end
-
-    for _, rec in ipairs(ForeverSafari_SessionErrors) do
-        local tag
-        if rec.isOurs then
-            tag = "|cffff4444[ForeverSafari]|r"
-        elseif rec.culprit == "Blizzard UI" then
-            tag = "|cff3399ff[Blizzard UI]|r"
-        else
-            tag = string.format("|cffffaa00[%s]|r", rec.culprit)
-        end
-
-        local lineMsg = rec.msg:match("([^\r\n]+)") or rec.msg
-        if #lineMsg > 75 then lineMsg = lineMsg:sub(1, 72) .. "..." end
-        print(string.format("  #%d |cff888888[%s]|r %s %s", rec.id, rec.time, tag, lineMsg))
-    end
-    print("|cff00ffccType |cffffd100/fserrors <#ID>|r |cff00ffccto view the full call stack, or |cffffd100/fserrors clear|r|r")
 end
+
 
