@@ -25,9 +25,9 @@ C.IsSecret = isSecret
 
 -- Addon Branding
 C.ADDON_NAME = "Forever Safari"
-C.VERSION = "0.1a"
+C.VERSION = "0.2a"
 C.ADDON_COLOR = "ffd100"
-C.PREFIX = "|cffffd100[Forever Safari v0.1a]|r "
+C.PREFIX = "|cffffd100[Forever Safari v0.2a]|r "
 
 -- The 9 Official Pet Types & Passives (4 Core Stats: HP, ATK, DEF, SPD)
 C.CREATURE_TYPES = {

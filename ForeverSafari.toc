@@ -2,7 +2,7 @@
 ## Title: |cffffd100Forever Safari|r
 ## Notes: Hemet Nesingwary's Junior Safari League! Capture wild beasts, discover movepools, evolve companions, and battle across Azeroth!
 ## Author: Forever Safari Team
-## Version: 0.1a
+## Version: 0.2a
 ## SavedVariables: ForeverSafariVault, ForeverSafariDB, ForeverSafariSettings
 ## IconTexture: Interface\Icons\Ability_Hunter_BeastTaming
 ## Category: Minigames
