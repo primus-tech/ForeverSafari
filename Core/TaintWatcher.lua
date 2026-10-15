@@ -112,3 +112,154 @@ SlashCmdList["FSTAINT"] = function(msg)
     end
     print("|cff888888Commands: |cffffffff/fstaint log|r (enable Logs/taint.log) | |cffffffff/fstaint off|r|r")
 end
+
+-- =========================================================================
+-- 🪲 SESSION LUA ERROR & BUG TRACKER (/fserrors /fsbugs)
+-- =========================================================================
+ForeverSafari_SessionErrors = ForeverSafari_SessionErrors or {}
+local MAX_ERRORS = 30
+
+local function RecordLuaError(msg)
+    local safeMsg = "Unknown error"
+    if msg ~= nil then
+        local ok, str = pcall(function() return tostring(msg) end)
+        if ok and str then
+            safeMsg = str
+        else
+            safeMsg = "[Secret Value / Tainted Error Message]"
+        end
+    end
+
+    local stack = ""
+    if debugstack then
+        local ok, s = pcall(function() return debugstack(3, 14, 14) end)
+        if ok and s then stack = s end
+    end
+    local timeStr = date and date("%H:%M:%S") or "Just now"
+
+    local fullText = safeMsg .. "\n" .. stack
+    local culprit = "Unknown"
+
+    -- 1. Check for explicit Blizzard execution taint annotation first
+    local taintedBy = string.match(safeMsg, "execution tainted by '([^']+)'")
+    if taintedBy then
+        culprit = taintedBy
+    else
+        -- 2. Line-by-line inspection, ignoring our own TaintWatcher error interceptor
+        for line in string.gmatch(fullText, "([^\r\n]+)") do
+            if not string.find(line, "ForeverSafari[/\\]Core[/\\]TaintWatcher") then
+                local addon = string.match(line, "Interface[/\\]AddOns[/\\]([^/\\:%.]+)")
+                if addon then
+                    culprit = addon
+                    break
+                elseif string.find(line, "Interface[/\\]FrameXML") or string.find(line, "Interface[/\\]SharedXML") then
+                    culprit = "Blizzard UI"
+                    break
+                end
+            end
+        end
+    end
+
+    local rec = {
+        id = #ForeverSafari_SessionErrors + 1,
+        time = timeStr,
+        msg = safeMsg,
+        stack = stack,
+        culprit = culprit,
+        isOurs = (culprit == "ForeverSafari"),
+    }
+
+    table.insert(ForeverSafari_SessionErrors, rec)
+    if #ForeverSafari_SessionErrors > MAX_ERRORS then
+        table.remove(ForeverSafari_SessionErrors, 1)
+    end
+end
+
+-- Hook global error handler without interfering with Blizzard or existing error catchers
+local origErrorHandler = geterrorhandler and geterrorhandler()
+if seterrorhandler then
+    seterrorhandler(function(msg)
+        pcall(RecordLuaError, msg)
+
+        -- 🛡️ Tank & Combat Protection: Suppress modal popups during combat lockdown!
+        -- Prevents screen-blocking windows from stealing mouse clicks during boss/trash pulls.
+        if InCombatLockdown and InCombatLockdown() then
+            if C_Timer and C_Timer.After then
+                C_Timer.After(0.01, function()
+                    if ScriptErrorsFrame and ScriptErrorsFrame.Hide and ScriptErrorsFrame:IsShown() then
+                        ScriptErrorsFrame:Hide()
+                    end
+                end)
+            end
+            if DEFAULT_CHAT_FRAME then
+                DEFAULT_CHAT_FRAME:AddMessage("|cffff4444[Error Suppressed in Combat]|r Type |cffffd100/fserrors|r after combat to inspect.")
+            end
+            return
+        end
+
+        if origErrorHandler and origErrorHandler ~= RecordLuaError then
+            return origErrorHandler(msg)
+        end
+    end)
+end
+
+-- Slash Command: /fserrors /fsbugs
+SLASH_FSERRORS1 = "/fserrors"
+SLASH_FSERRORS2 = "/fsbugs"
+SlashCmdList["FSERRORS"] = function(msg)
+    msg = string.lower(strtrim(msg or ""))
+
+    if msg == "clear" or msg == "reset" then
+        ForeverSafari_SessionErrors = {}
+        print("|cff00ff00[Forever Safari Bug Tracker]|r Session error log cleared.")
+        return
+    end
+
+    local targetIdx = tonumber(msg)
+    if targetIdx then
+        local found = nil
+        for _, rec in ipairs(ForeverSafari_SessionErrors) do
+            if rec.id == targetIdx then
+                found = rec
+                break
+            end
+        end
+        if not found and ForeverSafari_SessionErrors[targetIdx] then
+            found = ForeverSafari_SessionErrors[targetIdx]
+        end
+
+        if found then
+            local headerColor = found.isOurs and "|cffff4444" or (found.culprit == "Blizzard UI" and "|cff3399ff" or "|cffffaa00")
+            print(string.format("%s=== Error #%d [%s] at %s ===|r", headerColor, found.id, found.culprit, found.time))
+            print("|cffffffffMessage:|r " .. found.msg)
+            print("|cffffaa00Call Stack:|r\n" .. found.stack)
+        else
+            print(string.format("|cffff4444[Bug Tracker]|r No error found with ID #%d. Type |cffffd100/fserrors|r to list all.", targetIdx))
+        end
+        return
+    end
+
+    local count = #ForeverSafari_SessionErrors
+    print(string.format("|cffffd100=== Forever Safari Bug Tracker (%d error(s) this session) ===|r", count))
+    if count == 0 then
+        print("|cff00ff00✓ Zero Lua errors recorded this session! All addons running cleanly.|r")
+        return
+    end
+
+    for _, rec in ipairs(ForeverSafari_SessionErrors) do
+        local tag
+        if rec.isOurs then
+            tag = "|cffff4444[ForeverSafari]|r"
+        elseif rec.culprit == "Blizzard UI" then
+            tag = "|cff3399ff[Blizzard UI]|r"
+        else
+            tag = string.format("|cffffaa00[%s]|r", rec.culprit)
+        end
+
+        local lineMsg = rec.msg:match("([^\r\n]+)") or rec.msg
+        if #lineMsg > 75 then lineMsg = lineMsg:sub(1, 72) .. "..." end
+        print(string.format("  #%d |cff888888[%s]|r %s %s", rec.id, rec.time, tag, lineMsg))
+    end
+    print("|cff00ffccType |cffffd100/fserrors <#ID>|r |cff00ffccto view the full call stack, or |cffffd100/fserrors clear|r|r")
+end
+

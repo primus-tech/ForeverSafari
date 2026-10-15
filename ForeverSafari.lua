@@ -23,8 +23,23 @@ local Mail = ns.SafariMailFrame
 local eventFrame = CreateFrame("Frame", "ForeverSafariMainEventFrame")
 eventFrame:RegisterEvent("ADDON_LOADED")
 eventFrame:RegisterEvent("PLAYER_LOGIN")
+eventFrame:RegisterEvent("PLAYER_LOGOUT")
+eventFrame:RegisterEvent("PLAYER_LEAVING_WORLD")
 
 eventFrame:SetScript("OnEvent", function(self, event, arg1)
+    if event == "PLAYER_LOGOUT" then
+        if DB and DB.FlushVault then
+            DB:FlushVault()
+            ForeverSafariDB = nil -- Ensure plaintext is never written to SavedVariables on disk
+        end
+        return
+    elseif event == "PLAYER_LEAVING_WORLD" then
+        if DB and DB.FlushVault then
+            DB:FlushVault() -- Pre-emptively serialize vault before loading screen, keeping in-memory state alive
+        end
+        return
+    end
+
     if event == "ADDON_LOADED" and arg1 == "ForeverSafari" then
         -- Initialize Persistence Layer
         DB:Initialize()
@@ -88,6 +103,7 @@ SLASH_FSSHOP1 = "/fsshop"
 SLASH_FSNET1 = "/fsnet"
 SLASH_FSBATTLE1 = "/fsbattle"
 SLASH_FSDUEL1 = "/fsduel"
+SLASH_FSRESET1 = "/fsreset"
 
 local function HandleSlash(msg)
     local cmd, arg = strsplit(" ", msg or "", 2)
@@ -118,6 +134,8 @@ local function HandleSlash(msg)
         end
     elseif cmd == "reset" then
         DB:ResetDB()
+    elseif cmd == "benchmark" or cmd == "testvault" then
+        DB:RunBenchmark()
     elseif cmd == "help" then
         DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cff00ff99Available Slash Commands:|r")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/safari|r - Toggle Safari Journal (Field Guide)")
@@ -126,6 +144,7 @@ local function HandleSlash(msg)
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/safari syncquests|r - Retroactively claim tokens for completed quests")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/safari abandon|r - Release active companion back into the wild")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/safari reset|r - Reset all progress back to a fresh recruit")
+        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/safari benchmark|r - Run persistence vault performance & integrity tests")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsbag|r - Toggle Virtual Safari Bag")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsmail|r - Open Safari Mail tab at any town mailbox")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fskennel|r - Open Safari Kennel at any town Banker")
@@ -133,6 +152,8 @@ local function HandleSlash(msg)
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsnet|r - Attempt live field observation/capture on target")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsbattle|r - Engage targeted wild creature in battle")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fsduel|r - Challenge targeted player to a companion duel")
+        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fserrors|r - View session Lua bug tracker & identify culprit addons")
+        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fstaint|r - Inspect combat taint & action block events")
     else
         Journal:Toggle()
     end
@@ -175,5 +196,6 @@ end
 SlashCmdList["FSNET"] = function() ForeverSafari.CaptureEngine:AttemptCapture("target") end
 SlashCmdList["FSBATTLE"] = function() ForeverSafari.BattleEngine:StartWildBattle("target") end
 SlashCmdList["FSDUEL"] = function() ForeverSafari.Comms:ChallengeTarget() end
+SlashCmdList["FSRESET"] = function() DB:ResetDB() end
 
 -- Innkeeper healing is handled on-demand via Junior Safari League gossip button (SafariGossip.lua)

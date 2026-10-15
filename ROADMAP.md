@@ -34,15 +34,24 @@
 
 ---
 
-## 📍 Phase 3: Database Security & Signed DNA Architecture (Completed ✅)
-* [x] **Salted Cryptographic Signature (`sig`)**:
-  * Every companion generates an authentic signature: `sig = Hash(id, name, level, hp, atk, def, spd, displayId, SECRET_SALT)`.
-  * Protects against manual Notepad tampering of levels, stats, or illegal abilities.
-  * Integrity auto-validation on load; safely repairs or flags tampered entries.
-* [x] **Pure-Lua Base64 Serializer (`Core/Database.lua`)**:
-  * Encodes and decodes companion DNA strings (`!FS:...`) for external and cross-player sharing.
-* [x] **Token Vault Protection**:
-  * Account-bound protection for Safari Tokens to prevent currency spoofing.
+## 📍 Phase 3: Anti-Tamper Vault & Minimal-State Persistence Engine (Completed ✅)
+* [x] **Minimal Authoritative State (Zero-Stat-Trust Model)**:
+  * Never persists mutable combat stats (`hp`, `atk`, `def`, `spd`) to disk; stores minimal seed tuples `{ speciesId, attunementPoints, anatomy, nickname, moves, isRare, ivSeed }`.
+  * Evaluates the **100/110-Point Budget Law (Hamilton-Hare Algorithm)** dynamically at runtime upon load; impossible injected stats are ignored.
+* [x] **Logically Atomic Dual-Generation Vault (`ForeverSafariVault`)**:
+  * Dual-generation architecture (`active` and `backup`) with monotonic generation counter as the sole ordering authority.
+  * Candidate snapshot verification before rotation: old active becomes backup only after candidate envelope successfully verifies.
+  * Automated recovery from Alt+F4 crashes / save truncation, falling back safely to backup generation.
+* [x] **Pure-Lua Cryptographic Vault Engine (`Core/Crypto.lua`)**:
+  * Pure-Lua SHA-256 and HMAC-SHA256 (RFC 2104) with native WoW `bit` library acceleration.
+  * Context-separated Key Derivation (KDF) deriving separate subkeys: `K_encrypt` (XXTEA) and `K_mac` (HMAC envelope).
+  * Lightweight XXTEA 32-bit word block cipher + Base64 ASCII armoring for Blizzard SavedVariables compatibility.
+  * Encrypt-then-MAC Authenticated Envelope binding: `IntegrityTag = HMAC(K_mac, schemaVersion || generation || playerGUID || payload)`. Detects accidental corruption, save truncation, and unauthorized edits by users who do not reproduce the addon’s integrity-generation logic.
+* [x] **Debounced Dirty-Flag Pipeline & Zero-Plaintext Logout**:
+  * Mutations flag dirty with 5.0-second idle debounce and 60-second hard ceiling.
+  * Synchronous vault flush on `PLAYER_LOGOUT` / `/reload`; clears in-memory global `ForeverSafariDB = nil` before disk write so only the encrypted vault is persisted.
+* [x] **Schema Migration & Benchmarking Suite**:
+  * Static structural validation completed; in-game benchmarking suite (`/safari benchmark`) profiles JSON serialization, XXTEA encryption, HMAC-SHA256 hashing, and decryption across collection brackets.
 
 ---
 

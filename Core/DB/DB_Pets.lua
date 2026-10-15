@@ -59,6 +59,7 @@ function DB:SetMobNickname(mobId, newNickname)
 
     mob.customNickname = string.sub(newNickname, 1, 16)
     if Crypto then Crypto:SignMob(mob) end
+    self:MarkDirty()
     return true, "Nickname updated!"
 end
 
@@ -88,6 +89,7 @@ function DB:AddMob(mobData, toSquad)
         self:DiscoverSpecies(mobData.speciesId or mobData.name, "caught")
     end
 
+    self:MarkDirty()
     return mobData
 end
 
@@ -98,6 +100,7 @@ function DB:RemoveMob(id)
             -- Remove from team if present
             self:RemoveTeamSlot(id)
             table.remove(ForeverSafariDB.collection, i)
+            self:MarkDirty()
             return true
         end
     end
@@ -142,6 +145,7 @@ function DB:AddAttunement(mobId, points, reason)
     end
 
     if Crypto then Crypto:SignMob(mob) end
+    self:MarkDirty()
 end
 
 function DB:FeedCompanion(mobId, foodKey)
@@ -217,6 +221,7 @@ function DB:SetTeamSlot(slotIndex, mobId)
     if not ForeverSafariDB then return end
     ForeverSafariDB.team = ForeverSafariDB.team or {}
     ForeverSafariDB.team[slotIndex] = mobId
+    self:MarkDirty()
 end
 
 function DB:SwapTeamSlots(slot1, slot2)
@@ -224,6 +229,7 @@ function DB:SwapTeamSlots(slot1, slot2)
     local temp = ForeverSafariDB.team[slot1]
     ForeverSafariDB.team[slot1] = ForeverSafariDB.team[slot2]
     ForeverSafariDB.team[slot2] = temp
+    self:MarkDirty()
 end
 
 function DB:RemoveTeamSlot(slotIndexOrMobId)
@@ -238,6 +244,7 @@ function DB:RemoveTeamSlot(slotIndexOrMobId)
             end
         end
     end
+    self:MarkDirty()
 end
 
 function DB:ValidateTeam()
@@ -261,6 +268,7 @@ function DB:UnlockAbility(moveKey, sourceMobName, silent)
     local key = tostring(moveKey)
     if not ForeverSafariDB.unlockedAbilities[key] then
         ForeverSafariDB.unlockedAbilities[key] = true
+        self:MarkDirty()
         if not silent and ns.Toast and ns.Toast.ShowMoveLearned then
             ns.Toast:ShowMoveLearned(moveKey, sourceMobName)
         end
@@ -285,6 +293,7 @@ function DB:SetMobAbility(mobId, slotIndex, moveKey)
     mob.moves = mob.moves or { 101 }
     mob.moves[slotIndex] = moveKey
     if Crypto then Crypto:SignMob(mob) end
+    self:MarkDirty()
     return true
 end
 
@@ -322,6 +331,7 @@ function DB:HealMob(mobId, silent)
     mob.isFainted = false
 
     if Crypto then Crypto:SignMob(mob) end
+    self:MarkDirty()
     return true
 end
 

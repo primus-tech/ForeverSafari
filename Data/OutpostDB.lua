@@ -3279,5 +3279,23 @@ function OutpostDB:GenerateOutpostMatch(outpost, playerCount)
     }
 end
 
+-- =========================================================================
+-- 🔍 STATIC DATABASE AUDIT & INTEGRITY VERIFICATION
+-- =========================================================================
+function OutpostDB:AuditIntegrity()
+    local count = 0
+    local invalid = 0
+    for npcId, op in pairs(self.OUTPOSTS) do
+        count = count + 1
+        if not op.id or not op.tier or op.tier < 1 or op.tier > 5 or not op.team or #op.team == 0 then
+            invalid = invalid + 1
+        end
+    end
+    if count < 55 or invalid > 0 then
+        return false, string.format("OutpostDB integrity mismatch: %d total (%d invalid)", count, invalid)
+    end
+    return true, count
+end
+
 -- Initialize on file load
 OutpostDB:InitializeIndexes()

@@ -97,6 +97,7 @@ function DB:DiscoverSpecies(nameOrId, status)
         -- Keep both pointers in sync
         bestiary[spec.id] = existing
         bestiary[string.lower(spec.name)] = existing
+        self:MarkDirty()
         return existing, wasNew, spec
     end
 end

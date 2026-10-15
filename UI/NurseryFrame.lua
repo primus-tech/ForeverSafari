@@ -723,15 +723,24 @@ function Nursery:ReceivePartnerCandidate(sender, payload)
     if not isCoopMode or sender ~= partnerName then return end
 
     local name, fam, anatomy, rank, lvl, hp, dispId, isRare = strsplit(";", payload)
+    fam = (C.CREATURE_TYPES and C.CREATURE_TYPES[fam]) and fam or "Beast"
+    anatomy = (anatomy == "Sire" or anatomy == "Dam") and anatomy or "Dam"
+    local aRank = math.max(1, math.min(5, tonumber(rank) or 1))
+    local rare = (tonumber(isRare) == 1)
+
+    local SE = ns.StatEngine
+    local minPts = (C.ATTUNEMENT_RANKS and C.ATTUNEMENT_RANKS[aRank] and C.ATTUNEMENT_RANKS[aRank].minPoints) or 0
+    local calc = SE and SE:CalculateStats(fam, minPts, rare)
+
     cand2 = {
-        name = name or "Partner Mate",
-        family = fam or "Beast",
-        anatomy = anatomy or "Dam",
-        attunementRank = tonumber(rank) or 1,
-        level = tonumber(lvl) or 1,
-        hp = tonumber(hp) or 10,
+        name = tostring(name or "Partner Mate"):sub(1, 24),
+        family = fam,
+        anatomy = anatomy,
+        attunementRank = aRank,
+        level = 1,
+        hp = calc and calc.maxHP or 40,
         displayId = tonumber(dispId) or 903,
-        isRare = (tonumber(isRare) == 1),
+        isRare = rare,
     }
 
     DEFAULT_CHAT_FRAME:AddMessage(string.format("%sPartner |cffffd100%s|r placed Candidate: |cffffd100%s|r (%s - %s) on the breeding pedestal.",

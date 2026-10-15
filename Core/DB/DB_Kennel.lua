@@ -54,6 +54,7 @@ function DB:MoveToSquad(mobId, targetSlot)
     else
         table.insert(team, mobId)
     end
+    self:MarkDirty()
     return true
 end
 
@@ -68,6 +69,7 @@ function DB:MoveToKennel(mobId, targetBox)
 
     self:RemoveTeamSlot(mobId)
     mob.boxId = targetBox or 1
+    self:MarkDirty()
     return true
 end
 
@@ -86,6 +88,7 @@ function DB:SwapSquadAndKennel(squadSlot, kennelMobId)
     end
 
     team[squadSlot] = kennelMobId
+    self:MarkDirty()
     return true
 end
 

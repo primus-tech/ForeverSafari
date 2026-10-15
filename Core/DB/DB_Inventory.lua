@@ -26,6 +26,7 @@ function DB:AddTokens(amount, reason)
     ForeverSafariDB.tokens = (ForeverSafariDB.tokens or 0) + amount
     ForeverSafariDB.stats = ForeverSafariDB.stats or {}
     ForeverSafariDB.stats.totalTokensEarned = (ForeverSafariDB.stats.totalTokensEarned or 0) + amount
+    self:MarkDirty()
 
     if ns.Toast and ns.Toast.ShowTokenGain then
         ns.Toast:ShowTokenGain(amount, reason)
@@ -40,6 +41,7 @@ function DB:SpendTokens(amount)
     local current = ForeverSafariDB.tokens or 0
     if current >= amount then
         ForeverSafariDB.tokens = current - amount
+        self:MarkDirty()
         return true
     end
     return false
@@ -63,6 +65,7 @@ function DB:AddItem(itemId, count)
     ForeverSafariDB.inventory = ForeverSafariDB.inventory or {}
     count = count or 1
     ForeverSafariDB.inventory[itemId] = (ForeverSafariDB.inventory[itemId] or 0) + count
+    self:MarkDirty()
 
     if ns.Toast and ns.Toast.ShowItemGain then
         ns.Toast:ShowItemGain(itemId, count)
@@ -79,6 +82,7 @@ function DB:RemoveItem(itemId, count)
     local cur = ForeverSafariDB.inventory[itemId] or 0
     if cur >= count then
         ForeverSafariDB.inventory[itemId] = cur - count
+        self:MarkDirty()
         return true
     end
     return false
