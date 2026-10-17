@@ -10,47 +10,72 @@
 
 ## 🧭 Table of Contents
 
-1. [Welcome to the Junior Safari League](#1-welcome-to-the-junior-safari-league)
-2. [Racial Starter Companions](#2-racial-starter-companions)
-3. [The 3D Field Guide Journal (`/fs`)](#3-the-3d-field-guide-journal-fs)
-4. [Field Stalking & Creature Observation (0% Mob Damage)](#4-field-stalking--creature-observation-0-mob-damage)
-5. [Attunement Loyalty, Diets & Move Training](#5-attunement-loyalty-diets--move-training)
-6. [Turn-Based Combat & Roaming AI Rival Battlers](#6-turn-based-combat--roaming-ai-rival-battlers)
-7. [The Safari Token Economy & Real Quest Rewards](#7-the-safari-token-economy--real-quest-rewards)
-8. [Town Facilities & Logistics (Kennel, Outfitter, Mailbox)](#8-town-facilities--logistics-kennel-outfitter-mailbox)
-9. [Dungeons, Boss Permits & Evolution Catalysts](#9-dungeons-boss-permits--evolution-catalysts)
-10. [Virtual Safari Bag & Gear Progression](#10-virtual-safari-bag--gear-progression)
-11. [Multiplayer Duels & 3D Companion Sharing](#11-multiplayer-duels--3d-companion-sharing)
-12. [Player Class Passives & Combat Mechanics](#12-player-class-passives--combat-mechanics)
-13. [Moonglade Cenarion Nursery & Endgame Breeding](#13-moonglade-cenarion-nursery--endgame-breeding)
-14. [Complete Slash Command Reference](#14-complete-slash-command-reference)
-15. [Troubleshooting & FAQ](#15-troubleshooting--faq)
+1. [The Junior Safari League Creed & Induction](#1-the-junior-safari-league-creed--induction)
+2. [Controls, Navigation & The Golden Minimap Compass](#2-controls-navigation--the-golden-minimap-compass)
+3. [Racial Starter Companions & Heritage](#3-racial-starter-companions--heritage)
+4. [The 3D Field Guide Journal (`/fs`) & Bestiary Masking](#4-the-3d-field-guide-journal-fs--bestiary-masking)
+5. [Field Stalking & Creature Observation (0% Mob Damage)](#5-field-stalking--creature-observation-0-mob-damage)
+6. [Attunement Loyalty, Diets & Move Training](#6-attunement-loyalty-diets--move-training)
+7. [The Virtual Arena & 120s World Combat Suspension](#7-the-virtual-arena--120s-world-combat-suspension)
+8. [The Safari Token Economy & Real Quest Rewards](#8-the-safari-token-economy--real-quest-rewards)
+9. [Town Facilities & Logistics (101-Enclosure Banker Vault)](#9-town-facilities--logistics-101-enclosure-banker-vault)
+10. [Dungeons, Boss Permits & Evolution Catalysts](#10-dungeons-boss-permits--evolution-catalysts)
+11. [Virtual Safari Bag & Gear Progression](#11-virtual-safari-bag--gear-progression)
+12. [Multiplayer Duels & 3D Companion Sharing](#12-multiplayer-duels--3d-companion-sharing)
+13. [Player Class Passives & Combat Mechanics](#13-player-class-passives--combat-mechanics)
+14. [Tiered Companion Breeding & Nursery Sanctuaries](#14-tiered-companion-breeding--nursery-sanctuaries)
+15. [Cryptic Whispers & Expedition Legends](#15-cryptic-whispers--expedition-legends)
+16. [Complete Slash Command Reference](#16-complete-slash-command-reference)
+17. [Appendix: Field Diagnostics & Troubleshooting FAQ](#17-appendix-field-diagnostics--troubleshooting-faq)
 
 ---
 
-## 1. Welcome to the Junior Safari League
+## 1. The Junior Safari League Creed & Induction
 
-Upon stepping into Azeroth for the first time with **Forever Safari** installed, an antique parchment dispatch will appear on your screen bearing the official seal of **Hemet Nesingwary Sr.**
+> *"Greetings, adventurer! If you are reading this dispatch, the wilderness has called you. For too long, the hunters and scholars of Azeroth have merely felled beasts for pelt and meat. The Nesingwary Junior Safari League was founded upon a grander pursuit: to observe, study, attune, and stand shoulder-to-shoulder with the finest creatures this world has ever known. Tread with respect, keep your snares oiled, and make the League proud!"*  
+> — **Hemet Nesingwary Sr., Expedition Leader**
 
-### 📦 The Welcome Package
-Every recruit is supplied with an official onboarding kit delivered directly to their **Virtual Safari Bag**:
-1. **[Caged Starter Companion]** — An authentic wild companion native to your race's starting region, already bonded at **Rank III: Trusting**.
-2. **[Copper Snares x 10]** — Hemp rope slip-nooses used to capture wild creatures during turn-based combat.
-3. **[Copper Transport Crates x 3]** — Reinforced wooden crates to safely transport excess captures to the town Kennel when your 4-member battle squad is full.
-4. **[Safari Healing Salves x 5]** — Soothing remedies to fully restore a wounded companion's health.
+### 📮 The Town Mailbox Dispatch
+Upon entering Azeroth for the first time with **Forever Safari** installed, an official parchment dispatch arrives from Hemet Nesingwary. To collect your induction supplies, head to **any physical town mailbox** and click the custom **[Safari]** tab docked to Blizzard's mail interface:
+
+1. **[Caged Starter Companion]** — An authentic wild companion native to your race's homeland, already bonded at **Rank III: Trusting**.
+2. **[Copper Snares x 10]** — Essential hemp rope slip-nooses used to capture wild creatures during turn-based combat.
+3. **[Copper Transport Crates x 3]** — Reinforced wooden crates to safely ship excess captures to your town Kennel when your 4-member active squad is full.
+4. **[Safari Healing Salves x 5]** — Soothing herbal salves to restore wounded companions to full health between battles.
 5. **[Revival Crystal x 1]** — A charged crystal shard capable of reviving a fainted companion in emergencies.
-6. **[Virtual Safari Bag]** — A dedicated 20-slot container that stores all your Safari gear without consuming your regular inventory bag slots.
+6. **[Virtual Safari Bag]** — A dedicated 20-slot zero-weight container storing all your safari gear without consuming regular inventory bag slots.
 
-> [!TIP]
-> Access your Virtual Safari Bag at any time by typing `/fsbag` or clicking the backpack icon in your Field Guide Journal header.
+### 🎖️ The Veteran Safari Research Grant
+Existing heroes of Azeroth do not start empty-handed! Installing Forever Safari on an established character automatically audits all lifetime quests completed across Azeroth (`C_QuestLog.GetAllCompletedQuestIDs`). The League calculates your career service and grants an immediate lump-sum **Veteran Research Grant** of Safari Tokens delivered directly inside your welcome mailbox parcel!
 
 ---
 
-## 2. Racial Starter Companions
+## 2. Controls, Navigation & The Golden Minimap Compass
 
-Unlike common wild beasts caught in the wild that start untamed, your racial starter companion is a specially trained partner provided by Hemet Nesingwary. It begins at **Rank III: Trusting** (600 Attunement Points), with full **1.00x True Baseline Stats (100/100 points)**, **5% Disobedience**, and **Slot 3 Unlocked for Training**.
+Forever Safari provides both intuitive mouse-driven controls and rapid slash commands designed to blend seamlessly into your World of Warcraft interface.
 
-| Race | Starting Zone | Starter Companion | Family | Display ID | Thematic Lore |
+### 🧭 The Golden Minimap Compass
+A customized golden compass button anchors to your minimap bezel:
+
+* **Left-Click**: Toggles the 3D Safari Field Guide Journal (`/fs`).
+* **Right-Click**: Toggles your Virtual Safari Bag (`/fsbag`).
+* **Shift-Click**: Opens your Field Directives & Research Bounties log (`/fs bounties`).
+* **Click & Drag**: Freely orbit the compass around round or modern square minimap bezels. The compass automatically remembers your chosen position across sessions.
+* **Repositioning Recovery**: If an interface reset or screen resolution change moves the compass off-screen, type `/fs minimap reset` to re-anchor it to default coordinates.
+
+### 🛡️ Zero-Taint Design Guarantee
+Forever Safari is engineered with strict adherence to modern Blizzard interface architecture:
+* All frames operate as non-secure sidecars that never taint action bars, target frames, or secure combat code paths.
+* Safe `pcall` error wrappers protect all native game interactions (`MailFrame`, `GossipFrame`, `BankFrame`).
+* Every window is registered under Blizzard's `UISpecialFrames`, allowing clean, instant dismissal with the **Escape** key without UI taint.
+
+---
+
+## 3. Racial Starter Companions & Heritage
+
+Unlike common wild beasts caught in the field that start untamed, your racial starter companion is a hand-picked partner provided by Hemet Nesingwary. It begins at **Rank III: Trusting** (600 Attunement Points), with **1.00x True Baseline Stats (100/100 points)**, **5% Disobedience**, and **Slot 3 Unlocked for Training**.
+
+| Race | Starting Homeland | Starter Companion | Family | Display ID | Thematic Heritage |
 | :--- | :--- | :--- | :--- | :---: | :--- |
 | 🛡️ **Human** | Elwynn Forest | **Mangy Wolf** | Canine | `903` | Scruffy predator of the Northshire foothills |
 | ⛏️ **Dwarf** | Dun Morogh | **Young Black Bear** | Bear | `8843` | Homage to the iconic 2004 cinematic Hunter bear |
@@ -63,7 +88,7 @@ Unlike common wild beasts caught in the wild that start untamed, your racial sta
 
 ---
 
-## 3. The 3D Field Guide Journal (`/fs`)
+## 4. The 3D Field Guide Journal (`/fs`) & Bestiary Masking
 
 Type `/fs` to open your interactive 3D Field Guide. The journal is organized into 4 specialized views:
 
@@ -100,23 +125,27 @@ Type `/fs` to open your interactive 3D Field Guide. The journal is organized int
 * Filter instantly by any of the 8 creature types (*Beast, Mechanical, Undead, Elemental, Dragonkin, Aquatic, Flying, Magic*).
 * View real-time health gauges, attunement rank stars, and click `[ Set Active Leader ]` to swap your lead battle companion.
 
-### View 3: Azeroth Bestiary (`BESTIARY`)
-* The authentic 2,006-species field Pokédex tracking all 2,008 world creature entities across Classic Azeroth.
-* **3 Discovery Tiers**:
-  * `[ ??? Undiscovered ]` — Unseen in the wild.
-  * `[ 🔭 Seen / Sighted ]` — Observed through field stalking or encountered in combat.
-  * `[ 🐾 Captured ]` — Snared or hatched into your squad or kennel.
-* Displays verified 3D models, native zone habitats, base stat distributions, Nesingwary lore dossiers, and natural family movepools.
-* Real-time search bar and completion percentage progress bar.
+### View 3: Azeroth Bestiary (`BESTIARY`) & Discovery Masking
+The authentic 2,006-species field Pokédex tracks every wild creature entity across Classic Azeroth with 3 progressive discovery stages:
+
+1. **`[ ??? Undiscovered ]`**:
+   * The creature's canonical species name is listed in the scrollable checklist so hunters know what exists to seek out in the wild.
+   * However, its **3D display model**, **base stat radar distribution**, and **movepool** remain completely shrouded behind `???` until observed or caught!
+2. **`[ 🔭 Seen / Sighted ]`**:
+   * Achieved by completing a peaceful field observation (`/fs observe`) or engaging the creature in combat.
+   * Unveils the full 3D interactive model, base stat distribution radar, native zone habitats, and natural abilities in the grimoire!
+3. **`[ 🐾 Captured ]`**:
+   * Achieved when a specimen is snared or hatched into your squad or kennel vault.
+   * Unlocks full ownership dossiers, breeding lineage records, and mastery tracking.
 
 ### View 4: Field Directives & Research Quest Log (`BOUNTIES`)
 * Track active Nesingwary research directives, target quotas, and kill/capture bounties directly while exploring out in the field.
 
 ---
 
-## 4. Field Stalking & Creature Observation (0% Mob Damage)
+## 5. Field Stalking & Creature Observation (0% Mob Damage)
 
-Forever Safari uses a revolutionary **0% Mob Damage Field Observation Architecture**. You never have to damage, whittle down, or kill wild animals to study them. The wild creature remains **100% untouched, un-tagged, and at full health** in the world for hunters and questing adventurers!
+Forever Safari uses an innovative **0% Mob Damage Field Observation Architecture**. You never have to damage, whittle down, or kill wild animals to study them. The wild creature remains **100% untouched, un-tagged, and at full health** in the world for hunters and questing adventurers!
 
 ```
          [ Quarry Target: Elder Timber Wolf (Lv 10) ]
@@ -152,15 +181,13 @@ Because sex is bound to the creature's entity GUID, the observed sex in the fiel
 2. Type `/fs observe`, `/fsnet`, or click the `[ 🔭 Observe Quarry ]` button on the Observation HUD.
 3. A **3.0 to 5.0-second channeled cast** begins ("Field Study"). Maintain line-of-sight and stay within 28 yards.
 4. Upon completion:
-   * **Move Discovery**: The quarry's natural moves are unlocked into your Trainer Grimoire.
-   * **Bestiary Sighting**: The species is registered as `[ 🔭 Seen / Sighted ]` in your 2,006-entry Bestiary Pokédex.
+   * **Move Discovery**: Unlocks the creature's specialized techniques into your Trainer Grimoire for that family.
+   * **Bestiary Sighting**: Registers the species as `[ 🔭 Seen / Sighted ]` in your Bestiary, revealing its 3D model and stat radar.
    * **Field Loyalty**: Awards **+15 Attunement** to your active companion.
    * The wild creature remains completely unharmed and untouched in the game world!
 
-> [!NOTE]
-> **Observation vs. In-Battle Capturing**:
-> - **Field Observation (`/fs observe` / HUD)** is used peacefully in the open world to study wild creatures, record Bestiary sightings, and learn new abilities into your Grimoire from a distance.
-> - **Capturing with Snares, Nets, Traps & Cages** takes place during **Turn-Based Battle (`/fsbattle`)** by opening `[ BAG ] ➔ [ CAPTURE ]` and deploying physical capture gear against the wild foe.
+> [!WARNING]
+> **The Ambush Hazard**: If a roaming hostile mob attacks you while channeling `/fs observe`, real-world combat immediately interrupts your field study with `[Ambushed!]` and forces you to defend yourself. Always scout the perimeter for aggressive predators before commencing observation!
 
 ### 📦 In-Battle Capture & Transport Crate Logistics
 When capturing a wild beast during turn-based battle (`/fsbattle`):
@@ -169,7 +196,7 @@ When capturing a wild beast during turn-based battle (`/fsbattle`):
 
 ---
 
-## 5. Attunement Loyalty, Diets & Move Training
+## 6. Attunement Loyalty, Diets & Move Training
 
 Companions in Forever Safari do not gain numerical levels through grinding. Instead, they progress through a deep **5-Rank Attunement Loyalty System** based on care, feeding, survival, and shared adventures.
 
@@ -207,24 +234,25 @@ Companions in Forever Safari do not gain numerical levels through grinding. Inst
 | **Safari Runes** | Dragonkin (Whelps, Drakes, Fey Dragons) | Carved draconic stone tablets |
 
 > [!IMPORTANT]
-> **Anti-Cannibalism Safeguard**: Companions will reject incompatible food with friendly dialogue (e.g. *"A Wolf refuses to eat Gears!"*). Incompatible food is never consumed or wasted.
+> **Anti-Cannibalism Safeguard**: Companions reject incompatible food with friendly dialogue (e.g. *"A Wolf refuses to eat Gears!"*). Incompatible food is never consumed or wasted.
 
-### 📜 Beast Training Grimoire, Move Teaching & 4-Role Taxonomy
-* All creatures within the same family (e.g. all Felines) share a universal **Family Grimoire**.
-* Capturing new wild beasts automatically discovers and unlocks their natural abilities into your Grimoire.
-* Open the **Training Drawer** in your Field Guide to assign moves to unlocked Slots (Slot 1–4 unlock as Attunement Rank increases).
-* Choose from 94 lore-authentic abilities categorized into a structured **4-Role Taxonomy**:
+### 📜 Beast Training Grimoire & Move Teaching
+
+Companions learn and equip abilities through their family Grimoire:
+
+* **Baseline Instincts (`C.BASELINE_MOVES`)**: Fundamental natural attacks (`Bite`, `Claw`, `Smack`, `Strike`, `Peck`, etc.) are universally known from birth. Any companion with an unlocked slot can equip baseline moves immediately.
+* **Specialized & Advanced Moves (`🔒 Requires Observation`)**: Specialized techniques (such as `Venom Spit`, `Prowl`, `Shell Shield`, `Thunderstorm`, or `King's Roar`) cannot be taught until you have personally observed a wild specimen performing that technique in the field or faced it in combat. Until observed, these moves are locked in your Grimoire with **`🔒 Requires Observation`**.
+* **4-Role Ability Taxonomy**:
   * ⚔️ **Offensive** (63 Moves): All damaging attacks (`power > 0`). In turn-based combat, advances the Druid Ecliptic Tides pendulum toward **Solar** power.
   * 🛡️ **Defensive** (8 Moves): Protective barriers, evasion, recovery, and shields (`Cower`, `Shell Shield`, `Frenzied Regeneration`, `Burrow`, `Prowl`, `Hardened Carapace`, `Stone Form`, `Barkskin`). Advances Ecliptic Tides toward **Lunar** power.
   * ⚠️ **Field Hazard** (11 Moves): Ground traps, debuffs, status effects, and control moves (`Screech`, `Faerie Fire`, `Web Wrap`, `Alarm Bark`, `Hyena Cackle`, `Slumbering Venom`, `Sticky Web`, `Spore Cloud`, `Intimidating Roar`, `Stun Needle`, `Dust Cloud`). Advances Ecliptic Tides toward **Lunar** power.
   * 🌦️ **Weather** (12 Moves): Atmospheric environmental shifts and domain conditions (`Rain Dance`, `Sunny Day`, `Sandstorm`, `Blizzard`, `Moonlight`, `Thunderstorm`, `Shadow Mist`, `Toxic Fog`, `Clear Skies`, `Nature's Wrath`, `Volcanic Ash`, `Arcane Winds`). Advances Ecliptic Tides toward **Lunar** power.
-* Includes legendary Apex Signatures (**Hyper Velocity**, **King's Roar**, **Void Stream**, **Shadowfang Rend**, **Crushing Clamp**).
 
 ---
 
-## 6. Turn-Based Combat & Roaming AI Rival Battlers
+## 7. The Virtual Arena & 120s World Combat Suspension
 
-Target any creature or rival NPC and type `/fsbattle` (or click `[ BATTLE ]` on your Capture HUD) to engage in retro turn-based combat!
+Target any eligible creature or rival NPC and type `/fsbattle` (or click `[ BATTLE ]` on your Capture HUD) to enter turn-based tactical combat!
 
 ```
 +-------------------------------------------------------------+
@@ -244,6 +272,20 @@ Target any creature or rival NPC and type `/fsbattle` (or click `[ BATTLE ]` on 
 |  [ 🐾 TEAM ]                 |  [ 🏃 RUN ]                  |
 +------------------------------+------------------------------+
 ```
+
+### The 4 Core Combat Stats
+Every companion's combat potential is governed by 4 pure attributes:
+* **HP (Durability)**: The companion's total health pool. When reduced to 0, the companion faints.
+* **ATK (Power)**: Determines raw physical and elemental damage dealt with offensive abilities.
+* **DEF (Mitigation)**: Absorbs and reduces incoming strike damage before resistance layers.
+* **SPD (Turn Initiative)**: Drives the continuous Action Meter to determine turn frequency and speed lapping.
+
+### ⏱️ Action-Gauge Speed Lapping System (0 to 100 Meters)
+Combat abandons rigid turn ping-pong in favor of an **Active Action Meter** ($0$ to $100$):
+* Each tick, both active companions gain meter equal to their **Effective Speed**.
+* When a companion reaches **100 Meter**, it immediately executes an action and deducts 100 from its meter.
+* **2:1 Speed Lapping**: A swift companion with 20 Speed facing a 10 Speed opponent will take **two turns** before the slower foe can act once.
+* **Speed Scarcity Philosophy**: High speed is an organic, earned physical trait of specific wild species (e.g. Broken Tooth, Cheetahs, Dragonhawks) rather than a cheap, spammable stat. Spammable blanket haste buffs are pruned to ensure tactical counterplay and distinct combat tempo.
 
 ### 🌀 The 8-Element 150% Advantage Matrix
 
@@ -265,7 +307,6 @@ Each of the 8 playable creature types deals **150% Super Effective Damage (+50%)
 
 ### 🤺 Roaming Humanoid AI Trainers (14 Faction Archetypes)
 Targeting any roaming Humanoid NPC across Azeroth (e.g. *Defias Cutthroats, Kobold Miners, Murloc Tidecallers, Riverpaw Gnolls, Kolkar Centaurs, Scarlet Crusaders, Dark Iron Dwarves, Syndicate Rogues, Southsea Pirates, Ogres, Twilight Cultists, or Nesingwary Safari Trackers*) triggers an **AI Trainer Battle**:
-
 * **Roster Scaling**:
   * **Level 1–15**: 1 Companion.
   * **Level 16–35**: 2 Companions.
@@ -274,43 +315,29 @@ Targeting any roaming Humanoid NPC across Azeroth (e.g. *Defias Cutthroats, Kobo
 * **Hunter Protection**: Snares and cages cannot be thrown at trainer-owned pets (`"You cannot capture another hunter's companion!"`).
 * **Token Bounties**: Defeating AI Trainers is the primary open-world source of **Safari Tokens** (**6 to 18+ Tokens** per victory).
 
-### ⏱️ Action-Gauge Speed Lapping System (0 to 100 Meters)
-Combat abandons rigid turn ping-pong in favor of an **Active Action Meter** ($0$ to $100$):
-* Each tick, both active companions gain meter equal to their **Effective Speed**.
-* When a companion reaches **100 Meter**, it immediately executes an action and deducts 100 from its meter.
-* **2:1 Speed Lapping**: A swift companion with 20 Speed facing a 10 Speed opponent will take **two turns** before the slower foe can act once.
-* **Speed Scarcity & Anti-Friction Philosophy**: High speed is an organic, earned physical trait of specific wild species (e.g. Broken Tooth, Cheetahs, Dragonhawks) rather than a cheap, spammable stat. Spammable blanket haste buffs are pruned to ensure tactical counterplay and distinct combat tempo.
+### ⚔️ The 120-Second World Combat Suspension Engine
+One of the greatest dangers of virtual battles in open-world Azeroth is aggressive monster patrols wandering into the player while engrossed in a pet duel. Forever Safari solves this with an automatic, zero-taint **World Combat Suspension Engine**:
 
-### 🛡️ 5-Layer Elemental Resistance Architecture
-All companions possess innate elemental resistance ratings across all **6 Schools of Magic** (and Physical Armor):
-1. **Layer 1: Universal Baseline**: Every creature starts with a flat **5% Base Resistance** across all damage schools.
-2. **Layer 2: Native Element Affinity (+10% clean or +15% / -5% with Weakness)**: Creatures without an elemental weakness gain **+10% Native Resistance**. Creatures with an elemental weakness gain **+15% Native Resistance** and **-5% Weakness School Resistance** (e.g. Undead +15% Shadow / -5% Holy; Mechanical +15% Physical / -5% Nature; Fire +15% Fire / -5% Frost). Dragonkin and Magical species gain **+5% to All Elemental Resistances**.
-3. **Layer 3: Archetype Category (+5%, +5% Symmetrical)**: Tenacity (+5% Physical, +5% All Magic); Ferocity (+5% Crit, +5% Direct Damage); Cunning (+5% Dodge, +5% Spell Deflection).
-4. **Layer 4: Attunement Rank Growth**: Scales with companion loyalty (+0% at Rank I, +2% at Rank II, +4% at Rank III, +6% at Rank IV, **+10% at Rank V**).
-5. **Layer 5: Player Class Defenses**: Distinct player aura providing either permanent **Static Slices** or reactive **Procced Wards** (detailed in Section 12).
+```mermaid
+graph TD
+    A["Virtual Battle in Progress"] -->|"Hostile Mob Aggroes Player"| B["PLAYER_REGEN_DISABLED"]
+    B --> C["Arena Frame Auto-Tucks to Safety"]
+    C --> D["Top-Right Virtual Debuff Appears (120s Countdown)"]
+    D --> E["Player Fights World Mob in Real WoW Combat"]
+    E -->|"Mob Slain / Out of Combat"| F["PLAYER_REGEN_ENABLED"]
+    F --> G["Arena Frame Auto-Restores Instantly"]
+    G --> H["Turn Timer Resets to Fresh 15.0s (No Penalty)"]
+```
 
-### 👥 Cooperative Party Battles & Virtual Duos
-* **Disparity Compounding Scaling**: Multi-player team battles scale automatically against party disparity: $\Delta = \max(0, \text{Players} - \text{NPCs})$. In 2-NPC Virtual Duo encounters:
-  * **1–2 Players**: $1.0000\times$ (Baseline).
-  * **3 Players**: $\mathbf{1.2500\times}$ (+25% Max HP & damage).
-  * **4 Players**: $\mathbf{1.3750\times}$ (+10% compounding).
-  * **5 Players**: $\mathbf{1.4438\times}$ (+5% compounding, Duo Cap).
-* **The Cenarion Twins Virtual Duo (Silithus)**:
-  * Challenged at Cenarion Hold, **Jarund Stoutstrider & Layo Starstrike** command an authentic 8-companion joint roster (Spirit Wolf, War Kodo, Thunder Lizard, Ancients, Nightsaber, Lunar Owl, Sprite Darter), each built strictly to the 100-Point Budget Law.
-  * **Dual-Line Druid Ecliptic Meter**: Jarund generates Solar (☀️) and Layo generates Lunar (🌙). Both *Solar Bloom* (+12% Max HP HoT) and *Lunar Brambles* (40% thorns reflect) can be active simultaneously.
-  * **Sympathetic Buffing & 50% Sympathetic Healing**: Beneficial buffs or shields cast by either Twin replicate across both active companions and decay only every 2 enemy turns. Furthermore, if either pet heals through a primary or secondary effect (direct heals, drains, regeneration HoT), 50% of that healing is sympathetically transferred to the other active companion.
-* **Pre-Battle Pet Designation & Squad Quotas**:
-  * Before combat begins, check the `DeployCheck` checkboxes on your `ForeverSafariPlayerParty` slots to select which companions enter battle.
-  * **Squad Limits**: 4–5 players = 2 pets; 3 players = 3 pets; 1–2 players = 4 pets.
-  * Upon turn 1, your squad locks permanently (`combatStarted = true`). Benched pets are labeled `[BENCH]` and cannot be swapped in.
-* **15-Second Action Timeout**:
-  * An animated countdown bar monitors player turns. If 15 seconds expire without an action, the engine auto-commits Move 1.
-* **Boss AoE Cleave**:
-  * Boss-tier abilities deal full damage to your active companion and strike all conscious reserve companions for 50% collateral damage, evaluated against each pet's individual Defense and resistance layers.
+1. **Automatic Auto-Tuck**: The moment a real mob strikes you or puts you in combat (`PLAYER_REGEN_DISABLED`), the turn-based battle frame auto-tucks into memory, instantly clearing your screen and controls so you can defend your character in real WoW combat.
+2. **Top-Right Standalone Virtual Debuff**: A lightweight, non-intrusive status debuff icon appears in the upper-right corner of your screen showing `Ambush Hazard: Return to Battle` with a live 120-second countdown.
+3. **Seamless Resumption**: Slaying the attacking mob or escaping aggro (`PLAYER_REGEN_ENABLED`) immediately untucks the battle frame. Both companions retain their exact HP and status, and the active turn timer resets to a **fresh 15.0 seconds**, ensuring you suffer zero turn penalties from real-world interruptions!
+4. **120-Second Corpse Run Grace**: If you fall to the attacking mob in the open world, you have a full 120-second grace window to release spirit, run back to your corpse, resurrect, and step back into your suspended pet battle!
+5. **Clean Forfeit on Logout**: Logging out or letting the 120-second timer expire safely forfeits the virtual match with zero UI errors or stuck frames.
 
 ---
 
-## 7. The Safari Token Economy & Real Quest Rewards
+## 8. The Safari Token Economy & Real Quest Rewards
 
 Safari Tokens (`[INV_Misc_Coin_02]`) are the official currency of the Nesingwary Safari League.
 
@@ -324,12 +351,11 @@ Safari Tokens (`[INV_Misc_Coin_02]`) are the official currency of the Nesingwary
 
 ---
 
-## 8. Town Facilities & Logistics (Junior Safari League Gossip & Vault)
+## 9. Town Facilities & Logistics (Junior Safari League Gossip & Vault)
 
 Forever Safari operates with **Zero Out-of-World Cheat Access** and **Zero Automatic Frame Intrusions**. Services are accessed strictly on demand through Blizzard's native NPC dialogue and banking interfaces.
 
 > [!NOTE]
-> **Silence on Non-Service NPCs**: Interacting with generic world NPCs (guards, vendors, flight masters, quest givers) will never trigger addon popups or HUD elements.
 > **Universal Row-Stacking**: On any NPC dialogue with third-party addon modifications (e.g. Olympus's *Bones!: Teach me Bones*, Questie), Forever Safari dynamically anchors directly beneath the lowest external element, guaranteed to sit at the bottom without overlapping.
 
 ### 🏨 1. Innkeepers (Junior Safari League: Rest & Revive Squad)
@@ -355,7 +381,8 @@ Interact with any Cenarion Keeper in Moonglade (Nighthaven):
 ### 🏦 5. Bankers (Kennelers & Companion Reserve)
 Interact with any town **Banker** (or open any Bank Vault):
 * **On-Demand Companion Vault**: Opens the companion reserve (`/fskennel` or `/fs kennel`) featuring a massive **2,006-slot vault** organized into **101 Enclosures** — providing exactly 1 slot for every unique species in Azeroth under the **Highlander Law**.
-* **Enclosure Switcher & Shift-Click Skipping**: Fast navigation with `[ ◀ Prev ]` / `[ Next ▶ ]` buttons (Click: $\pm 1$ enclosure; Shift-Click: $\pm 10$ enclosures).
+* **The Highlander Law**: To foster biodiversity and prevent specimen hoarding, active kennel storage permits exactly **one companion per species ID**. To store a duplicate species, you must first withdraw or release the existing occupant!
+* **Enclosure Navigation & Shift-Click Skipping**: Fast navigation with `[ ◀ Prev ]` / `[ Next ▶ ]` buttons (Click: $\pm 1$ enclosure; Shift-Click: $\pm 10$ enclosures).
 * **Scrollable Jump Menu & Direct Numeric Entry**: Click `[ Jump ▼ ]` to open a scrollable list of all 101 enclosures showing live counts and capacities (e.g. `101. Enclosure 101 (6/6)`), or enter any enclosure number (1–101) directly and press `[ Go ]`.
 * **Custom Enclosure Renaming**: Click `[ 🏷 Rename ]` to label enclosures (e.g. *'PvP Squad'*, *'Breeding Dams'*, *'Apex Vault'*).
 * **Safari Journal Filter Ribbon**: Real-time name search, creature type/family dropdown, biological sex filter (`♂ Sire`, `♀ Dam`, `⚙ Genderless`), and rarity filter (`👑 Apex`).
@@ -369,7 +396,7 @@ Interact with any physical **Mailbox** in town:
 
 ---
 
-## 9. Dungeons, Boss Permits & Evolution Catalysts
+## 10. Dungeons, Boss Permits & Evolution Catalysts
 
 ### 🗝️ Dungeon Boss Research Permits
 Certain creature types require specialized field research permits before they can be snared in the wild. Defeating iconic dungeon bosses synchronizes permits across your entire party:
@@ -404,7 +431,7 @@ Certain creature types require specialized field research permits before they ca
 
 ---
 
-## 10. Virtual Safari Bag & Gear Progression
+## 11. Virtual Safari Bag & Gear Progression
 
 Type `/fs bag` or `/fsbag` to open your 20-slot Virtual Safari Bag.
 
@@ -440,15 +467,17 @@ Capturing a wild creature requires engaging them in turn-based combat (`/fsbattl
 
 ---
 
-## 11. Multiplayer Duels & 3D Companion Sharing
+## 12. Multiplayer Duels & 3D Companion Sharing
 
 * **Shift-Click 3D Chat Links**: Shift-Click any companion in your Field Guide to share an interactive link in chat: `[Safari: Mangy Wolf (3D)]`.
 * **3D Inspector Popup**: Clicking any companion link in chat opens an interactive 3D paperdoll showing that player's companion, custom nickname, stats, and active 4-move loadout.
 * **Player Duels (`/fsduel`)**: Target another player with Forever Safari and type `/fsduel` to engage in turn-based multiplayer companion duels over wireless addon comms.
+* **15-Second Action Countdown**: An animated countdown bar enforces turn pacing. If a player fails to act within 15 seconds, Move 1 is automatically executed.
+* **Spatial Leash**: Duels take place within a 40-yard spatial radius. Wandering beyond the arena bounds triggers a warning countdown before forfeiting the match.
 
 ---
 
-## 12. Player Class Passives & Combat Mechanics
+## 13. Player Class Passives & Combat Mechanics
 
 Every character class in World of Warcraft grants an authentic tactical identity and defense layer to all active companions owned by that character. **Bonuses scale dynamically based on the active companion's Attunement Rank (I–V)** using strict `math.ceil()` arithmetic.
 
@@ -484,7 +513,7 @@ For Druid characters, turn-based combat features an active celestial pendulum ab
 
 ---
 
-## 13. Tiered Companion Breeding & Nursery Sanctuaries
+## 14. Tiered Companion Breeding & Nursery Sanctuaries
 
 Breeding in *Forever Safari* is split into two distinct tiers:
 1. **Capital City Nurseries (Pet Trainers)**: Available early in your journey across Stormwind, Orgrimmar, Ironforge, Thunder Bluff, Darnassus, and Undercity. Offspring hatches at **Rank I: Untamed** (0 Attunement points).
@@ -517,24 +546,39 @@ Breeding in *Forever Safari* is split into two distinct tiers:
 * **Anatomy**: Biological companions possess deterministic wild anatomy as either **Sire (♂)** or **Dam (♀)**, cryptographically signed into their League DNA signature.
 * **Genderless Constructs**: `Mechanical` and `Elemental` companions are categorized as **Genderless (⚙)** and can undergo **Construct Matrix Re-forging** in the Nursery when paired with a matching construct and a slotted **Family Catalyst**.
 * **Exact Same Family**: Both candidates must belong to the same species family (e.g. Canine + Canine, Feline + Feline, Bear + Bear).
-* **Rank V (Bestial Symbiosis)**: Both candidates must be fully attuned at Rank V (1000 Loyalty).
+* **Rank V (Bestial Symbiosis)**: Both candidates must be fully attuned at Rank V (2,000 Loyalty).
 * **Compatible Pair**: Requires either **1x Sire (♂) + 1x Dam (♀)** or **2x Genderless Constructs (⚙) + Slotted Catalyst**.
 
 ### 💀 The Ultimate Sacrifice & Egg Payout
 * Breeding requires both parents to merge their life forces: **both candidates are PERMANENTLY consumed from your vault/collection**.
 * **Guaranteed Eggs**: Each trainer receives **1 purebred Safari Egg** stored in their Safari Bag (`/fsbag`).
 * **20% Bonus 3rd Egg Roll**: Exactly a 20% chance to produce a 3rd bonus egg! In co-op, the bonus egg is awarded via a 50/50 roll between the two trainers. In solo breeding, the trainer receives all 3 eggs.
-* **Incubation**: Open your Safari Bag (`/fsbag`) and **Right-Click** any Safari Egg to hatch a purebred level 1 newborn with superior inherited IV baseline stats and learned family moves!
+* **Incubation**: Open your Safari Bag (`/fsbag`) and **Right-Click** any Safari Egg to hatch a purebred newborn with superior inherited IV baseline stats and learned family moves!
 
 ---
 
-## 14. Complete Slash Command Reference
+## 15. Cryptic Whispers & Expedition Legends
+
+While the League maintains verified catalogs for thousands of beasts across Azeroth, veteran trackers trade rumors by the campfire of encounters that defy conventional taxonomy. These entries remain unverified by Nesingwary headquarters:
+
+### 🌙 The Celestial Wardens of Moonglade
+> *"Old night elf sentinels resting in Nighthaven speak in hushed tones of two ancient druidic wardens who walk beneath the boughs of Moonglade. They say neither guardian ever battles alone—they fight as a synchronized pair, moving to the rhythm of the solar dawn and lunar twilight. When one is struck, the other retaliates; when one falters, the other's touch mends the wound. The League advises: unless you command an attuned squad capable of withstanding the twin tides of nature, do not provoke the grove's masters."*
+
+### 👑 The Colossi of Azeroth
+> *"Faint journal entries left by deceased cartographers speak of apex world colossi wandering the untamed corners of Kalimdor and the Eastern Kingdoms—beasts that have roamed since the Sundering. Their vital reserves are rumored to dwarf normal creatures ten times over, and their strikes shatter rock and steel. The League has authorized no official hunting tags for these entities. Those who seek them do so at their own peril."*
+
+### 🕊️ The Consecrated Watcher of the Eastern Fields
+> *"A wandering hermit once swore that beyond the blighted trees of the Plaguelands, where the consecrated ground of Light's Hope Chapel stands undefiled, an ethereal maiden watches over the fallen. Rumor has it that beasts slain in her presence refuse to stay dead, revived by divine providence from the backline with their wounds sealed. Most dismiss it as chapel madness or ghost stories told to comfort the grieving. Yet seasoned safari masters still remind their squires: tread with holy reverence near consecrated soil, for the spirits of the fallen do not rest quietly."*
+
+---
+
+## 16. Complete Slash Command Reference
 
 | Command | Shorthand | Description |
 | :--- | :--- | :--- |
 | `/fs` | — | Opens the 3D Field Guide Journal & Squad Manager. |
 | `/fs bag` | `/fsbag` | Opens the 20-slot Virtual Safari Bag container. |
-| `/fs kennel` | `/fskennel` | Opens the Safari Kennel (Requires Banker interaction). |
+| `/fs kennel` | `/fskennel` | Opens the 101-Enclosure Safari Kennel (Requires Banker interaction). |
 | `/fs shop` | `/fsshop` | Opens the Nesingwary Safari Outfitter (Requires Pet Trainer). |
 | `/fs mail` | `/fsmail` | Opens Nesingwary Safari Correspondence at a Mailbox. |
 | `/fs nursery` | `/fsnursery`, `/fsbreed` | Opens Moonglade Cenarion Nursery Breeding Sanctuary. |
@@ -545,25 +589,38 @@ Breeding in *Forever Safari* is split into two distinct tiers:
 | `/fs war` | `/fswar` | Territory War commands (`setnode`, `setbase`, `start`, `stop`, `bridge`). |
 | `/fs tokens` | — | Displays current Safari Token balance in chat. |
 | `/fs abandon` | `/fs release` | Releases active companion back to the wild (with confirmation). |
-| `/fs reset` | — | Resets all addon data back to a fresh recruit state. |
+| `/fs minimap reset` | — | Resets the golden minimap compass button back to default position. |
+| `/fs reset` | — | Resets all addon data back to a fresh recruit state (with confirmation). |
 | `/fs taint` | `/fstaint` | Runs live Blizzard UI taint diagnostics on gossip, bags, and secure frames. |
-| `/fs benchmark` | — | Profiles cryptographic persistence and vault deserialization. |
+| `/fs benchmark` | — | Profiles cryptographic persistence and vault deserialization speed. |
 
 ---
 
-## 15. Troubleshooting & FAQ
+## 17. Appendix: Field Diagnostics & Troubleshooting FAQ
 
 ### Q: Why can't I catch Humanoids, Centaurs, or Murlocs with snares?
-**A**: Under the Nesingwary Safari Code, sapient and civilized humanoids cannot be captured into cages. Instead, targeting humanoids initiates a **Rival Battler AI Trainer Battle**, rewarding you with Safari Tokens!
+**A**: Under the Nesingwary Safari Code, sapient and civilized humanoids cannot be captured into cages. Instead, targeting humanoids initiates a **Rival Battler AI Trainer Battle**, rewarding you with Safari Tokens and battle experience!
 
 ### Q: Do I need to be a Hunter to play Forever Safari?
-**A**: No! Forever Safari is built for **all classes** (Warriors, Mages, Rogues, Priests, Warlocks, Paladins, Shamans, Druids, and Hunters). All classes can capture, train, battle, feed, and evolve companions.
+**A**: No! Forever Safari is built for **all classes** (Warriors, Mages, Rogues, Priests, Warlocks, Paladins, Shamans, Druids, and Hunters). All classes can capture, train, battle, feed, breed, and evolve companions.
 
-### Q: Where are my captured pets if my party is full?
-**A**: When your 4-member active squad is full, new captures are crated and shipped directly to the **Safari Kennel**. Visit any **Banker** in town to view and withdraw your banked companions across 5 storage boxes.
+### Q: Where are my captured pets if my squad is full?
+**A**: When your 4-member active squad is full, new captures are crated and shipped directly to the **Safari Kennel**. Visit any **Banker** in town to view and withdraw your banked companions across **101 Enclosures (2,006 slots)** under the **Highlander Law**.
+
+### Q: Why are some abilities locked with `🔒 Requires Observation` in my Grimoire?
+**A**: While baseline universal instincts (`Bite`, `Claw`, `Smack`, etc.) are known from birth, advanced and specialized abilities require observing wild creatures in their natural habitat. Target a wild creature that commands that ability and channel `/fs observe` (or face it in battle) to discover the technique!
+
+### Q: Why do some creatures in the Bestiary show names but have `???` stats and model?
+**A**: The Bestiary displays names so you can track your journey across all 2,006 species in Azeroth. However, to uncover their 3D display model, native habitats, and stat radar distributions, you must locate and study them in the wild using `/fs observe` or encounter them in combat.
+
+### Q: What happens if a wild mob attacks me during a pet battle?
+**A**: The **World Combat Suspension Engine** immediately auto-tucks your battle arena and displays a standalone 120-second debuff in the upper-right corner. Fight and slay the attacking mob in real WoW combat; once out of combat, your battle frame instantly restores with full HP and a fresh 15.0-second turn timer!
+
+### Q: My minimap compass disappeared or got stuck off-screen!
+**A**: Type `/fs minimap reset`. This immediately snaps the golden compass button back to its canonical anchor coordinates on your minimap bezel.
 
 ### Q: Does Forever Safari cause UI taint in dungeons or raids?
-**A**: Zero taint! Forever Safari features full `pcall`-guarded secret value inspection compatible with modern anti-automation systems in dungeons, raids, and active combat. All windows operate as standalone sidecars without modifying Blizzard's secure execution paths.
+**A**: Zero taint! Forever Safari features full `pcall`-guarded inspection compatible with modern anti-automation systems in dungeons, raids, and active combat. All windows operate as standalone sidecars without modifying Blizzard's secure execution paths.
 
 ---
 
