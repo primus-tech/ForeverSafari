@@ -334,6 +334,14 @@ function Comms:SendForfeit(targetName, reason)
     Comms:SendMessage("DUEL_FORFEIT", reason or "FORFEIT", targetName)
 end
 
+function Comms:SendDuelSuspend(targetName, reason)
+    Comms:SendMessage("DUEL_SUSPEND", reason or "COMBAT", targetName)
+end
+
+function Comms:SendDuelResume(targetName)
+    Comms:SendMessage("DUEL_RESUME", "RESUME", targetName)
+end
+
 -------------------------------------------------------------------------------
 -- 📥 Inbound Message Router
 -------------------------------------------------------------------------------
@@ -361,6 +369,14 @@ function Comms:OnMessageReceived(text, channel, sender)
     elseif msgType == "CHECKPOINT" then
         if ns.BattleEngine and ns.BattleEngine.OnPeerCheckpoint then
             ns.BattleEngine:OnPeerCheckpoint(senderName, data)
+        end
+    elseif msgType == "DUEL_SUSPEND" then
+        if ns.BattleEngine and ns.BattleEngine.OnPeerDuelSuspend then
+            ns.BattleEngine:OnPeerDuelSuspend(senderName, data)
+        end
+    elseif msgType == "DUEL_RESUME" then
+        if ns.BattleEngine and ns.BattleEngine.OnPeerDuelResume then
+            ns.BattleEngine:OnPeerDuelResume(senderName)
         end
     elseif msgType == "DUEL_FORFEIT" then
         if ns.BattleEngine and ns.BattleEngine.OnPeerForfeit then

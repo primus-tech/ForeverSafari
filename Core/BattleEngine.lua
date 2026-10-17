@@ -76,6 +76,11 @@ BE.State = {
     combatStarted = false,
     turnTimerRemaining = 15,
     turnTimerActive = false,
+    isPausedForWorldCombat = false,
+    isPeerPausedForWorldCombat = false,
+    worldCombatPauseRemaining = 0,
+    worldCombatPauseReason = nil,
+    peerPauseReason = nil,
     logs = {},
     dialogueText = "What will you do?",
 }
@@ -2441,6 +2446,11 @@ function BE:StartPvPActionTimer()
             return
         end
 
+        -- If suspended for world combat, halt action timer and spatial leash checks
+        if BE.State.isPausedForWorldCombat or BE.State.isPeerPausedForWorldCombat then
+            return
+        end
+
         -- Check Ambush Spatial Tethers if active
         if BE.State.ambushOpts and BE.State.ambushOpts.isAmbush then
             BE:CheckPvPAmbushTether()
@@ -2739,6 +2749,12 @@ function BE:ForfeitPvP(reason)
         ForeverSafari.Comms:SendForfeit(BE.State.opponentName, reason)
     end
 
+    if ForeverSafari.Toast and ForeverSafari.Toast.HideSuspensionCountdown then
+        ForeverSafari.Toast:HideSuspensionCountdown()
+    end
+    BE.State.isPausedForWorldCombat = false
+    BE.State.isPeerPausedForWorldCombat = false
+
     BE:AddLog(string.format("|cffff4444[FORFEIT: %s]|r You forfeited the match! Your companion has fainted.|r", reason or "FORFEIT"))
     BE:HandleDefeat()
 end
@@ -2754,8 +2770,206 @@ function BE:OnPeerForfeit(sender, reason)
     if ForeverSafari.BattleFrame and ForeverSafari.BattleFrame.HideTurnTimer then
         ForeverSafari.BattleFrame:HideTurnTimer()
     end
+    if ForeverSafari.Toast and ForeverSafari.Toast.HideSuspensionCountdown then
+        ForeverSafari.Toast:HideSuspensionCountdown()
+    end
+    BE.State.isPausedForWorldCombat = false
+    BE.State.isPeerPausedForWorldCombat = false
 
     BE:AddLog(string.format("|cff00ff00[OPPONENT FORFEIT]|r %s forfeited the duel (%s)! Victory!|r", sender, reason or "Disconnected"))
     BE:HandleVictory()
 end
+
+-------------------------------------------------------------------------------
+-- ⚔️ World Combat Ambush & Battle Suspension Engine
+-------------------------------------------------------------------------------
+function BE:SuspendBattleForWorldCombat(reason)
+    if not BE.State.inBattle or BE.State.isPausedForWorldCombat then return end
+
+    BE.State.isPausedForWorldCombat = true
+    BE.State.worldCombatPauseReason = reason or "COMBAT"
+
+    -- 1. Cancel / Pause active action timers
+    BE:CancelTurnTimer()
+    if BE.pvpTimerTicker and BE.pvpTimerTicker.Cancel then
+        BE.pvpTimerTicker:Cancel()
+        BE.pvpTimerTicker = nil
+    end
+
+    -- 2. If PvP, notify opponent via comms
+    if BE.State.isPvP and ForeverSafari.Comms and BE.State.opponentName then
+        ForeverSafari.Comms:SendDuelSuspend(BE.State.opponentName, reason or "COMBAT")
+    end
+
+    -- 3. Hide BattleFrame so player can target and fight the world mob
+    if ForeverSafari.BattleFrame and ForeverSafari.BattleFrame.frame and ForeverSafari.BattleFrame.frame:IsShown() then
+        ForeverSafari.BattleFrame.frame:Hide()
+    end
+
+    -- 4. Start 120s Safety Pause Window
+    local pauseTimeout = C.BATTLE_COMBAT_PAUSE_TIMEOUT or 120.0
+    BE.State.worldCombatPauseRemaining = pauseTimeout
+
+    BE:AddLog(string.format("|cffffaa00[Battle Suspended]|r World combat initiated (%s)! Battle frozen (%ds max).|r", reason or "Combat", math.floor(pauseTimeout)))
+
+    -- 5. Show Live Countdown Toast
+    if ForeverSafari.Toast and ForeverSafari.Toast.ShowSuspensionCountdown then
+        local title = BE.State.isPvP and "|cffffaa00[Duel Suspended]|r" or "|cffffaa00[Battle Suspended]|r"
+        local sub = "World combat engaged! Resuming in |cffffffff%ds|r (Max %ds)"
+        ForeverSafari.Toast:ShowSuspensionCountdown(title, sub, pauseTimeout, function()
+            BE:OnWorldCombatPauseTimeout()
+        end)
+    end
+end
+
+function BE:ResumeBattleFromWorldCombat()
+    if not BE.State.inBattle or not BE.State.isPausedForWorldCombat then return end
+
+    BE.State.isPausedForWorldCombat = false
+    BE.State.worldCombatPauseReason = nil
+
+    -- 1. Hide Countdown Toast with Green Resumption Toast
+    if ForeverSafari.Toast and ForeverSafari.Toast.HideSuspensionCountdown then
+        local title = BE.State.isPvP and "|cff00ff00[Duel Resumed]|r" or "|cff00ff00[Battle Resumed]|r"
+        local sub = BE.State.isPvP and "World combat cleared! 15s turn timer reset." or "World combat cleared! Battle resumed."
+        ForeverSafari.Toast:HideSuspensionCountdown(title, sub)
+    end
+
+    -- 2. Audio Chime
+    PlaySound(844) -- SOUNDKIT.IG_SPELLBOOK_OPEN
+
+    -- 3. If PvP, transmit DUEL_RESUME to peer and reset 15s timer
+    if BE.State.isPvP then
+        if ForeverSafari.Comms and BE.State.opponentName then
+            ForeverSafari.Comms:SendDuelResume(BE.State.opponentName)
+        end
+        -- Reset 15s Action Countdown!
+        BE:StartPvPActionTimer()
+    else
+        -- PvE: Resume turn timer if player turn
+        if BE.State.turn == "player" then
+            BE:StartTurnTimer()
+        end
+    end
+
+    -- 4. Re-open BattleFrame
+    if ForeverSafari.BattleFrame then
+        if ForeverSafari.BattleFrame.frame then
+            ForeverSafari.BattleFrame.frame:Show()
+        end
+        ForeverSafari.BattleFrame:UpdateUI()
+    end
+
+    BE:AddLog("|cff00ff00[Battle Resumed]|r World combat cleared. Resuming battle!|r")
+end
+
+function BE:OnPeerDuelSuspend(sender, reason)
+    if not BE.State.inBattle or not BE.State.isPvP or sender ~= BE.State.opponentName then return end
+
+    BE.State.isPeerPausedForWorldCombat = true
+    BE.State.peerPauseReason = reason or "COMBAT"
+
+    -- Pause 15s timer
+    if BE.pvpTimerTicker and BE.pvpTimerTicker.Cancel then
+        BE.pvpTimerTicker:Cancel()
+        BE.pvpTimerTicker = nil
+    end
+
+    local pauseTimeout = C.BATTLE_COMBAT_PAUSE_TIMEOUT or 120.0
+    BE:AddLog(string.format("|cffffaa00[Duel Suspended]|r %s was ambushed by a creature (%s)! Duel paused (%ds max).|r", sender, reason or "Combat", math.floor(pauseTimeout)))
+
+    if ForeverSafari.BattleFrame then
+        BE.State.dialogueText = string.format("Opponent %s was ambushed! Waiting for them to clear combat...", sender)
+        ForeverSafari.BattleFrame:UpdateUI()
+    end
+
+    -- Show Live Countdown Toast on Opponent side
+    if ForeverSafari.Toast and ForeverSafari.Toast.ShowSuspensionCountdown then
+        local title = "|cffffaa00[Opponent Ambushed]|r"
+        local sub = string.format("%s in combat • Resuming in |cffffffff%%ds|r (Max %%ds)", sender)
+        ForeverSafari.Toast:ShowSuspensionCountdown(title, sub, pauseTimeout, function()
+            BE:OnPeerPauseTimeout()
+        end)
+    end
+end
+
+function BE:OnPeerDuelResume(sender)
+    if not BE.State.inBattle or not BE.State.isPvP or sender ~= BE.State.opponentName then return end
+
+    BE.State.isPeerPausedForWorldCombat = false
+    BE.State.peerPauseReason = nil
+
+    if ForeverSafari.Toast and ForeverSafari.Toast.HideSuspensionCountdown then
+        ForeverSafari.Toast:HideSuspensionCountdown("|cff00ff00[Duel Resumed]|r", string.format("%s cleared combat! 15s turn timer reset.", sender))
+    end
+
+    PlaySound(844)
+    BE:AddLog(string.format("|cff00ff00[Duel Resumed]|r %s cleared combat. Duel resumed!|r", sender))
+
+    -- Reset 15s action timer!
+    BE:StartPvPActionTimer()
+
+    if ForeverSafari.BattleFrame then
+        BE.State.dialogueText = "Duel resumed! Choose your move!"
+        ForeverSafari.BattleFrame:UpdateUI()
+    end
+end
+
+function BE:OnWorldCombatPauseTimeout()
+    if not BE.State.inBattle or not BE.State.isPausedForWorldCombat then return end
+
+    if BE.State.isPvP then
+        BE:ForfeitPvP("PAUSE_TIMEOUT")
+    else
+        BE.State.isPausedForWorldCombat = false
+        BE.State.inBattle = false
+        BE:AddLog("|cffffaa00[Battle Aborted]|r Combat pause exceeded 120s. Battle ended safely.|r")
+        if ForeverSafari.BattleFrame and ForeverSafari.BattleFrame.frame then
+            ForeverSafari.BattleFrame.frame:Hide()
+        end
+    end
+end
+
+function BE:OnPeerPauseTimeout()
+    if not BE.State.inBattle or not BE.State.isPvP or not BE.State.isPeerPausedForWorldCombat then return end
+
+    BE:AddLog(string.format("|cff00ff00[OPPONENT FORFEIT]|r %s failed to return from world combat within 120s! Victory!|r", BE.State.opponentName or "Opponent"))
+    BE:HandleVictory()
+end
+
+-------------------------------------------------------------------------------
+-- 📡 Global Combat & Death Event Listener for Battle Suspension
+-------------------------------------------------------------------------------
+local beEventFrame = CreateFrame("Frame", "ForeverSafariBattleEventFrame")
+beEventFrame:RegisterEvent("PLAYER_REGEN_DISABLED")
+beEventFrame:RegisterEvent("PLAYER_REGEN_ENABLED")
+beEventFrame:RegisterEvent("PLAYER_DEAD")
+beEventFrame:RegisterEvent("PLAYER_ALIVE")
+beEventFrame:RegisterEvent("PLAYER_UNGHOST")
+
+beEventFrame:SetScript("OnEvent", function(self, event)
+    if event == "PLAYER_REGEN_DISABLED" then
+        if BE.State and BE.State.inBattle and not BE.State.isPausedForWorldCombat then
+            BE:SuspendBattleForWorldCombat("COMBAT")
+        end
+    elseif event == "PLAYER_DEAD" then
+        if BE.State and BE.State.inBattle and not BE.State.isPausedForWorldCombat then
+            BE:SuspendBattleForWorldCombat("DEAD")
+        end
+    elseif event == "PLAYER_REGEN_ENABLED" then
+        if BE.State and BE.State.inBattle and BE.State.isPausedForWorldCombat then
+            if not UnitIsDeadOrGhost("player") then
+                BE:ResumeBattleFromWorldCombat()
+            end
+        end
+    elseif event == "PLAYER_ALIVE" or event == "PLAYER_UNGHOST" then
+        if BE.State and BE.State.inBattle and BE.State.isPausedForWorldCombat then
+            local inCombat = (InCombatLockdown and InCombatLockdown()) or (UnitAffectingCombat and UnitAffectingCombat("player"))
+            if not inCombat and not UnitIsDeadOrGhost("player") then
+                BE:ResumeBattleFromWorldCombat()
+            end
+        end
+    end
+end)
+
 

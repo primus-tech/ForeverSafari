@@ -25,9 +25,13 @@ C.IsSecret = isSecret
 
 -- Addon Branding
 C.ADDON_NAME = "Forever Safari"
-C.VERSION = "0.3a"
+C.VERSION = "1.0.0"
 C.ADDON_COLOR = "ffd100"
-C.PREFIX = "|cffffd100[Forever Safari v0.3a]|r "
+C.PREFIX = "|cffffd100[Forever Safari v1.0.0]|r "
+
+-- World Combat & Battle Suspension Configuration
+C.BATTLE_COMBAT_PAUSE_TIMEOUT = 120.0 -- Maximum pause window for multi-mob pulls & corpse runs (120s)
+C.PVP_TURN_TIMEOUT = 15.0             -- Turn action countdown in PvP duels (15s)
 
 -- The 9 Official Pet Types & Passives (4 Core Stats: HP, ATK, DEF, SPD)
 C.CREATURE_TYPES = {

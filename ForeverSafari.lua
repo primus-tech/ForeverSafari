@@ -28,6 +28,9 @@ eventFrame:RegisterEvent("PLAYER_LEAVING_WORLD")
 
 eventFrame:SetScript("OnEvent", function(self, event, arg1)
     if event == "PLAYER_LOGOUT" then
+        if ns.BattleEngine and ns.BattleEngine.State and ns.BattleEngine.State.inBattle and ns.BattleEngine.State.isPvP then
+            ns.BattleEngine:ForfeitPvP("LOGGED_OUT")
+        end
         if DB and DB.FlushVault then
             DB:FlushVault()
             ForeverSafariDB = nil -- Ensure plaintext is never written to SavedVariables on disk

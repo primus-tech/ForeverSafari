@@ -339,8 +339,12 @@ function HUD:Initialize()
         if event == "PLAYER_TARGET_CHANGED" then
             HUD:OnTargetChanged()
         elseif event == "PLAYER_REGEN_DISABLED" then
-            if CE:IsChanneling() then
-                CE:CancelSnareChannel("Combat interrupted stalking focus.")
+            local wasObserving = (CE and CE:IsChanneling()) or (frame and frame:IsShown() and UnitExists("target"))
+            if CE and CE:IsChanneling() then
+                CE:CancelSnareChannel("World combat interrupted stalking focus.")
+            end
+            if wasObserving and ForeverSafari.Toast and ForeverSafari.Toast.ShowAlert then
+                ForeverSafari.Toast:ShowAlert("Ambushed!", "World combat broke stalking focus! Observation lost.")
             end
             if frame and frame:IsShown() then
                 frame:Hide()

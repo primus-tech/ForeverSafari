@@ -46,7 +46,9 @@ function BF:Initialize()
     frame:SetScript("OnDragStop", function(self) self:StopMovingOrSizing() end)
     frame:SetScript("OnHide", function(self)
         if BE and BE.State and BE.State.inBattle and BE.State.isPvP then
-            BE:ForfeitPvP("WINDOW_CLOSED")
+            if not BE.State.isPausedForWorldCombat then
+                BE:ForfeitPvP("WINDOW_CLOSED")
+            end
         end
     end)
 
