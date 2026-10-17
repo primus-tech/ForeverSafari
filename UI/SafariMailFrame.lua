@@ -260,29 +260,45 @@ function Mail:UpdateTabVisuals(isSelected)
     -- Maintained for API compatibility
 end
 
+local SPECIMEN_MAP = {
+    ["Mechanical"] = "quest_grinded_gears",
+    ["Elemental"]  = "quest_puddle_mud",
+    ["Undead"]     = "quest_cold_bones",
+    ["Dragonkin"]  = "quest_poisonous_scales",
+}
+
 function Mail:UpdateTabBadge()
     local hasUnclaimedOrUnread = false
     if not DB:IsStarterClaimed() then
         hasUnclaimedOrUnread = true
     end
 
-    local allDispatches = ns.BountyDB and ns.BountyDB:GetAllDispatches() or {}
-    for _, dispatch in ipairs(allDispatches) do
+    local unlocked = ns.BountyDB and ns.BountyDB:GetUnlockedDispatches() or {}
+    for _, dispatch in ipairs(unlocked) do
         if not DB:IsLetterRead(dispatch.id) then
             hasUnclaimedOrUnread = true
             break
         end
         if not dispatch.isStarter then
-            local progress = DB:GetQuestProgress(dispatch.questType)
-            if dispatch.targetCount and progress >= dispatch.targetCount and not DB:IsQuestClaimed(dispatch.id) then
-                hasUnclaimedOrUnread = true
-                break
+            if dispatch.unlocksType then
+                local specKey = SPECIMEN_MAP[dispatch.unlocksType]
+                local hasSpec = specKey and (DB:GetItemCount(specKey) > 0)
+                if hasSpec and not DB:IsQuestClaimed(dispatch.id) then
+                    hasUnclaimedOrUnread = true
+                    break
+                end
+            else
+                local progress = DB:GetQuestProgress(dispatch.questType)
+                if dispatch.targetCount and progress >= dispatch.targetCount and not DB:IsQuestClaimed(dispatch.id) then
+                    hasUnclaimedOrUnread = true
+                    break
+                end
             end
         end
     end
 
     if mailFrame and mailFrame.CountText then
-        local count = #allDispatches
+        local count = #unlocked
         if hasUnclaimedOrUnread then
             mailFrame.CountText:SetText(string.format("|cff00ff00Dispatches: %d (!)|r", count))
         else
@@ -446,12 +462,29 @@ end
 function Mail:UpdateUI()
     if not mailFrame or not mailFrame:IsShown() then return end
 
-    local dispatches = ns.BountyDB and ns.BountyDB:GetAllDispatches() or {}
-    local currentDispatch = dispatches[selectedLetterId] or dispatches[1]
+    local unlocked = ns.BountyDB and ns.BountyDB:GetUnlockedDispatches() or {}
+    local currentDispatch = nil
+    for _, d in ipairs(unlocked) do
+        if d.id == selectedLetterId then
+            currentDispatch = d
+            break
+        end
+    end
+    if not currentDispatch and #unlocked > 0 then
+        currentDispatch = unlocked[1]
+        selectedLetterId = currentDispatch.id
+    end
 
     for i, btn in ipairs(listButtons) do
-        local dispatch = dispatches[i]
+        local dispatch = unlocked[i]
         if dispatch then
+            btn:Show()
+            btn:SetPoint("TOPLEFT", mailFrame.ScrollChild, "TOPLEFT", 0, -((i - 1) * 56))
+            btn.letterId = dispatch.id
+            btn.Sender:SetText("|cffffd100" .. (dispatch.sender or "Expedition") .. "|r")
+            btn.Title:SetText(dispatch.title or "Safari Dispatch")
+            btn.Icon:SetTexture(dispatch.icon or "Interface\\Icons\\INV_Box_01")
+
             local isRead = DB:IsLetterRead(dispatch.id)
 
             if dispatch.isStarter then
@@ -459,6 +492,21 @@ function Mail:UpdateUI()
                     btn.StatusText:SetText("|cff888888[Archived]|r")
                 else
                     btn.StatusText:SetText("|cffffd100[ 📦 Unopened Parcel ]|r")
+                end
+            elseif dispatch.unlocksType then
+                local isClaimed = DB:IsQuestClaimed(dispatch.id)
+                local isPermitUnlocked = DB:IsTypeUnlocked(dispatch.unlocksType)
+                local specKey = SPECIMEN_MAP[dispatch.unlocksType]
+                local hasSpec = specKey and (DB:GetItemCount(specKey) > 0)
+
+                if isClaimed or isPermitUnlocked then
+                    btn.StatusText:SetText("|cff888888[License Granted]|r")
+                elseif hasSpec then
+                    btn.StatusText:SetText("|cff00ff99[ 📦 Specimen In Bag! ]|r")
+                elseif not isRead then
+                    btn.StatusText:SetText("|cffffd100[ ✉️ Priority ]|r")
+                else
+                    btn.StatusText:SetText("|cffffcc00[ Hunt Boss for Specimen ]|r")
                 end
             else
                 local progress = DB:GetQuestProgress(dispatch.questType)
@@ -483,7 +531,13 @@ function Mail:UpdateUI()
                 btn:SetBackdropBorderColor(0.2, 0.28, 0.38, 0.7)
                 btn:SetBackdropColor(0.08, 0.10, 0.14, 0.85)
             end
+        else
+            btn:Hide()
         end
+    end
+
+    if mailFrame.ScrollChild then
+        mailFrame.ScrollChild:SetHeight(math.max(1, #unlocked * 56 + 10))
     end
 
     if openMailFrame and openMailFrame:IsShown() and currentDispatch then
@@ -543,6 +597,48 @@ function Mail:UpdateUI()
                     Mail:UpdateUI()
                     Mail:UpdateTabBadge()
                 end)
+            end
+        elseif currentDispatch.unlocksType then
+            local isClaimed = DB:IsQuestClaimed(currentDispatch.id)
+            local isPermitUnlocked = DB:IsTypeUnlocked(currentDispatch.unlocksType)
+            local specKey = SPECIMEN_MAP[currentDispatch.unlocksType]
+            local specObj = specKey and ns.ItemDB and ns.ItemDB:GetItem(specKey)
+            local specName = specObj and specObj.name or "Specimen"
+            local hasSpec = specKey and (DB:GetItemCount(specKey) > 0)
+
+            tray.Header:SetText(string.format("|cffffd100Research License Directive:|r %s", currentDispatch.title))
+
+            if isClaimed or isPermitUnlocked then
+                tray.Summary:SetText(string.format("|cff00ff00✔ Official %s Research License Certified & Active!|r", currentDispatch.unlocksType))
+                tray.ActionBtn:Disable()
+                tray.ActionBtn:SetText("✔ LICENSE ACTIVE")
+            elseif hasSpec then
+                tray.Summary:SetText(string.format("|cff00ff99Specimen in Bag: [%s] (Ready to dispatch to Nesingwary!)|r", specName))
+                tray.ActionBtn:Enable()
+                tray.ActionBtn:SetText("📦 DISPATCH SPECIMEN & CLAIM LICENSE")
+                tray.ActionBtn:SetScript("OnClick", function()
+                    if specKey then
+                        DB:AddItem(specKey, -1)
+                    end
+                    DB:ClaimQuestReward(currentDispatch.id)
+                    DB:UnlockType(currentDispatch.unlocksType)
+                    if ForeverSafari.Toast then
+                        ForeverSafari.Toast:ShowReward(
+                            string.format("%s License Granted!", currentDispatch.unlocksType),
+                            string.format("Dispatched [%s]! Official license certified by Hemet Nesingwary.", specName)
+                        )
+                    end
+                    DEFAULT_CHAT_FRAME:AddMessage(string.format(
+                        "%s|cff00ff00[License Certified]|r You dispatched |cff0070dd[%s]|r to Hemet Nesingwary! You can now stalk and capture |cffffd100%s|r creatures!",
+                        C.PREFIX, specName, currentDispatch.unlocksType
+                    ))
+                    Mail:UpdateUI()
+                    Mail:UpdateTabBadge()
+                end)
+            else
+                tray.Summary:SetText(string.format("|cffff4444Required Specimen: Slay dungeon boss to recover [%s]|r", specName))
+                tray.ActionBtn:Disable()
+                tray.ActionBtn:SetText("SPECIMEN REQUIRED")
             end
         else
             local progress = DB:GetQuestProgress(currentDispatch.questType)

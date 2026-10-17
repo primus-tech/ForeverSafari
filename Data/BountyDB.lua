@@ -186,3 +186,51 @@ end
 function BountyDB:GetCount()
     return #self.DISPATCHES
 end
+
+function BountyDB:IsDispatchUnlocked(id)
+    id = tonumber(id)
+    if not id then return false end
+    local DB = ns.Database
+    if not DB then return true end
+
+    -- Dispatches #1 (Welcome) and #2 (Field Stalking 101) are always available initially
+    if id == 1 or id == 2 then
+        return true
+    elseif id == 3 then
+        -- Requires Starter Claimed and Dispatch #2 Claimed
+        return DB:IsStarterClaimed() and DB:IsQuestClaimed(2)
+    elseif id == 4 then
+        -- Requires Dispatch #3 Claimed
+        return DB:IsQuestClaimed(3)
+    elseif id == 5 then
+        -- Requires Dispatch #4 Claimed
+        return DB:IsQuestClaimed(4)
+    elseif id >= 6 and id <= 9 then
+        -- Permit Directives unlock after Dispatch #5 is claimed,
+        -- OR if the player holds that boss's quest specimen in their bag,
+        -- OR if the creature type is already unlocked!
+        local specimenKeys = {
+            [6] = "quest_grinded_gears",
+            [7] = "quest_puddle_mud",
+            [8] = "quest_cold_bones",
+            [9] = "quest_poisonous_scales",
+        }
+        local itemKey = specimenKeys[id]
+        local hasItem = itemKey and (DB:GetItemCount(itemKey) > 0)
+        local dispatch = self.DISPATCHES[id]
+        local isTypeUnlocked = dispatch and dispatch.unlocksType and DB:IsTypeUnlocked(dispatch.unlocksType)
+        return DB:IsQuestClaimed(5) or hasItem or isTypeUnlocked
+    end
+    return false
+end
+
+function BountyDB:GetUnlockedDispatches()
+    local unlocked = {}
+    for _, dispatch in ipairs(self.DISPATCHES) do
+        if self:IsDispatchUnlocked(dispatch.id) then
+            table.insert(unlocked, dispatch)
+        end
+    end
+    return unlocked
+end
+

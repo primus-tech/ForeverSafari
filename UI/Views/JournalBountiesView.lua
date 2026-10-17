@@ -183,17 +183,38 @@ function Journal:BuildBountiesView(parent)
     noticeDesc:SetText("|cffaaaaaaCompleted bounties and newly delivered dispatches are unboxed at an authentic Mailbox in town. Visit any town inn to collect your rewards!|r")
 end
 
+local SPECIMEN_MAP = {
+    ["Mechanical"] = "quest_grinded_gears",
+    ["Elemental"]  = "quest_puddle_mud",
+    ["Undead"]     = "quest_cold_bones",
+    ["Dragonkin"]  = "quest_poisonous_scales",
+}
+
 function Journal:UpdateBountiesView()
-    local dispatches = ns.BountyDB and ns.BountyDB:GetAllDispatches() or {}
-    local currentDispatch = dispatches[selectedBountyId] or dispatches[1]
+    local unlocked = ns.BountyDB and ns.BountyDB:GetUnlockedDispatches() or {}
+    local currentDispatch = nil
+    for _, d in ipairs(unlocked) do
+        if d.id == selectedBountyId then
+            currentDispatch = d
+            break
+        end
+    end
+    if not currentDispatch and #unlocked > 0 then
+        currentDispatch = unlocked[1]
+        selectedBountyId = currentDispatch.id
+    end
 
     -- Update List Cards
     for i, btn in ipairs(bountyButtons) do
-        local dispatch = dispatches[i]
+        local dispatch = unlocked[i]
         if dispatch then
+            btn:Show()
+            btn:SetPoint("TOPLEFT", 4, -((i - 1) * 74))
+            btn.bountyId = dispatch.id
+            btn.Title:SetText(dispatch.title)
+            btn.Icon:SetTexture(dispatch.icon or "Interface\\Icons\\INV_Box_01")
+
             local isClaimed = DB:IsQuestClaimed(dispatch.id)
-            local progress = DB:GetQuestProgress(dispatch.questType)
-            local target = dispatch.targetCount or 1
 
             if dispatch.isStarter then
                 if DB:IsStarterClaimed() then
@@ -201,7 +222,22 @@ function Journal:UpdateBountiesView()
                 else
                     btn.Status:SetText("|cffffd100[Mailbox Parcel Waiting]|r")
                 end
+            elseif dispatch.unlocksType then
+                local isPermitUnlocked = DB:IsTypeUnlocked(dispatch.unlocksType)
+                local specKey = SPECIMEN_MAP[dispatch.unlocksType]
+                local hasSpec = specKey and (DB:GetItemCount(specKey) > 0)
+
+                if isClaimed or isPermitUnlocked then
+                    btn.Status:SetText("|cff00ff00[License Certified]|r")
+                elseif hasSpec then
+                    btn.Status:SetText("|cff00ff99[✔ Specimen Ready to Dispatch]|r")
+                else
+                    btn.Status:SetText("|cffffcc00[Slay Boss for Specimen]|r")
+                end
             else
+                local progress = DB:GetQuestProgress(dispatch.questType)
+                local target = dispatch.targetCount or 1
+
                 if isClaimed then
                     btn.Status:SetText("|cffaaaaaa[Bounty Completed]|r")
                 elseif progress >= target then
@@ -218,7 +254,14 @@ function Journal:UpdateBountiesView()
                 btn:SetBackdropBorderColor(0.2, 0.3, 0.4, 0.6)
                 btn:SetBackdropColor(0.08, 0.10, 0.14, 0.8)
             end
+        else
+            btn:Hide()
         end
+    end
+
+    local listContent = self.BountiesContainer and self.BountiesContainer.ListContent
+    if listContent then
+        listContent:SetHeight(math.max(1, #unlocked * 74 + 10))
     end
 
     -- Update Dossier Content
@@ -247,6 +290,32 @@ function Journal:UpdateBountiesView()
             objCard.ProgressBar:SetStatusBarColor(1.0, 0.6, 0.0)
             objCard.ProgressText:SetText("0 / 1 — Parcel Waiting at Town Mailbox")
             objCard.RewardText:SetText("|cffffd100Rewards Waiting:|r Racial Starter Companion + 10x Copper Snares")
+        end
+    elseif currentDispatch.unlocksType then
+        local specKey = SPECIMEN_MAP[currentDispatch.unlocksType]
+        local specObj = specKey and ns.ItemDB and ns.ItemDB:GetItem(specKey)
+        local specName = specObj and specObj.name or "Specimen"
+        local hasSpec = specKey and (DB:GetItemCount(specKey) > 0)
+        local isPermitUnlocked = DB:IsTypeUnlocked(currentDispatch.unlocksType)
+        local isClaimed = DB:IsQuestClaimed(currentDispatch.id)
+
+        objCard.ProgressBar:SetMinMaxValues(0, 1)
+
+        if isClaimed or isPermitUnlocked then
+            objCard.ProgressBar:SetValue(1)
+            objCard.ProgressBar:SetStatusBarColor(0.0, 0.8, 0.4)
+            objCard.ProgressText:SetText(string.format("Official %s License Active & Certified", currentDispatch.unlocksType))
+            objCard.RewardText:SetText(string.format("|cff00ff00Stalking and capture of wild %s creatures authorized!|r", currentDispatch.unlocksType))
+        elseif hasSpec then
+            objCard.ProgressBar:SetValue(1)
+            objCard.ProgressBar:SetStatusBarColor(0.0, 1.0, 0.6)
+            objCard.ProgressText:SetText(string.format("Specimen in Bag: [%s] — Ready to Dispatch!", specName))
+            objCard.RewardText:SetText("|cff00ff99Visit any town mailbox to dispatch specimen to Hemet Nesingwary.|r")
+        else
+            objCard.ProgressBar:SetValue(0)
+            objCard.ProgressBar:SetStatusBarColor(1.0, 0.4, 0.2)
+            objCard.ProgressText:SetText(string.format("0 / 1 — Defeat dungeon boss to recover [%s]", specName))
+            objCard.RewardText:SetText(string.format("|cffffcc00Turn-In Reward:|r Official %s License + 50 Safari Tokens", currentDispatch.unlocksType))
         end
     else
         local progress = DB:GetQuestProgress(currentDispatch.questType)

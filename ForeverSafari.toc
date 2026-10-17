@@ -109,6 +109,7 @@ UI\Views\JournalRosterView.lua
 UI\Views\JournalGridView.lua
 UI\Views\JournalBestiaryView.lua
 UI\Views\JournalBountiesView.lua
+UI\Views\JournalBadgesView.lua
 UI\JournalFrame.lua
 
 # Battle Arena & Bootstrap

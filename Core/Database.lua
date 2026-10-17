@@ -1113,6 +1113,33 @@ function DB:IsQuestClaimed(letterId)
     return self.state.mail.claimedQuests[letterId] == true
 end
 
+function DB:ClaimQuestReward(letterId)
+    if not self.state or self:IsQuestClaimed(letterId) then return false end
+    self.state.mail = self.state.mail or {}
+    self.state.mail.claimedQuests = self.state.mail.claimedQuests or {}
+    self.state.mail.claimedQuests[letterId] = true
+
+    local dispatch = ns.BountyDB and ns.BountyDB:GetDispatch(letterId)
+    if dispatch and dispatch.rewards then
+        if dispatch.rewards.tokens and dispatch.rewards.tokens > 0 then
+            self:AddTokens(dispatch.rewards.tokens, dispatch.title or "Dispatch Completed")
+        end
+        if dispatch.rewards.items then
+            for _, itm in ipairs(dispatch.rewards.items) do
+                self:AddItem(itm.id, itm.count or 1)
+            end
+        end
+    end
+
+    if dispatch and dispatch.unlocksType then
+        self:UnlockType(dispatch.unlocksType)
+    end
+
+    self:MarkDirty()
+    PlaySound(1195)
+    return true
+end
+
 function DB:GetQuestProgress(questType)
     if not self.state or not self.state.mail or not self.state.mail.questProgress then return 0 end
     return self.state.mail.questProgress[questType] or 0

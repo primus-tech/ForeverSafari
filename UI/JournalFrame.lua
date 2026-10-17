@@ -140,17 +140,21 @@ function Journal:Initialize()
     frame.TabContainer = tabContainer
 
     local tabs = {
-        { id = "ROSTER",   text = "3D Spotlight" },
-        { id = "GRID",     text = "3D Gallery" },
-        { id = "BESTIARY", text = "Azeroth Bestiary" },
-        { id = "BOUNTIES", text = "Field Directives" },
+        { id = "ROSTER",   text = "3D Spotlight", width = 116 },
+        { id = "GRID",     text = "3D Gallery",   width = 116 },
+        { id = "BESTIARY", text = "Bestiary",     width = 116 },
+        { id = "BOUNTIES", text = "Directives",   width = 116 },
+        { id = "BADGES",   text = "Badges & Licenses", width = 138 },
     }
 
     frame.TabButtons = {}
+    local currentLeft = 0
     for i, tabInfo in ipairs(tabs) do
+        local btnWidth = tabInfo.width or 120
         local btn = CreateFrame("Button", nil, tabContainer, "BackdropTemplate")
-        btn:SetSize(126, 24)
-        btn:SetPoint("LEFT", tabContainer, "LEFT", (i - 1) * 130, 0)
+        btn:SetSize(btnWidth, 24)
+        btn:SetPoint("LEFT", tabContainer, "LEFT", currentLeft, 0)
+        currentLeft = currentLeft + btnWidth + 4
         btn.tabId = tabInfo.id
 
         btn:SetBackdrop({
@@ -172,10 +176,10 @@ function Journal:Initialize()
         frame.TabButtons[tabInfo.id] = btn
     end
 
-    -- Top Right Quick Access Buttons
+    -- Top Right Quick Access Button (Safari Bag)
     local bagBtn = CreateFrame("Button", "ForeverSafariJournalBagBtn", frame, "BackdropTemplate")
-    bagBtn:SetSize(110, 24)
-    bagBtn:SetPoint("TOPRIGHT", frame, "TOPRIGHT", -134, -38)
+    bagBtn:SetSize(114, 24)
+    bagBtn:SetPoint("TOPRIGHT", frame, "TOPRIGHT", -16, -38)
     bagBtn:SetBackdrop({
         bgFile = "Interface\\Buttons\\WHITE8X8",
         edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
@@ -205,39 +209,6 @@ function Journal:Initialize()
     end)
     bagBtn:SetScript("OnLeave", function() GameTooltip:Hide() end)
     frame.BagBtn = bagBtn
-
-    local bountiesBtn = CreateFrame("Button", "ForeverSafariJournalBountiesBtn", frame, "BackdropTemplate")
-    bountiesBtn:SetSize(114, 24)
-    bountiesBtn:SetPoint("TOPRIGHT", frame, "TOPRIGHT", -16, -38)
-    bountiesBtn:SetBackdrop({
-        bgFile = "Interface\\Buttons\\WHITE8X8",
-        edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
-        edgeSize = 8,
-    })
-    bountiesBtn:SetBackdropColor(0.12, 0.16, 0.22, 0.9)
-    bountiesBtn:SetBackdropBorderColor(1.0, 0.82, 0.0, 0.8)
-
-    local bIcon = bountiesBtn:CreateTexture(nil, "ARTWORK")
-    bIcon:SetSize(16, 16)
-    bIcon:SetPoint("LEFT", bountiesBtn, "LEFT", 6, 0)
-    bIcon:SetTexture("Interface\\Icons\\INV_Letter_15")
-    bIcon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
-
-    local bText = bountiesBtn:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
-    bText:SetPoint("LEFT", bIcon, "RIGHT", 4, 0)
-    bText:SetText("|cffffd100Directives|r")
-
-    bountiesBtn:SetScript("OnClick", function()
-        Journal:SetTab("BOUNTIES")
-    end)
-    bountiesBtn:SetScript("OnEnter", function(self)
-        GameTooltip:SetOwner(self, "ANCHOR_TOP")
-        GameTooltip:AddLine("|cffffd100Field Directives & Bounties|r", 1, 1, 1)
-        GameTooltip:AddLine("Track your active Nesingwary research directives and hunt objectives in the field.", 0.8, 0.8, 0.8, true)
-        GameTooltip:Show()
-    end)
-    bountiesBtn:SetScript("OnLeave", function() GameTooltip:Hide() end)
-    frame.BountiesBtn = bountiesBtn
 
     -- View 1: 3D Spotlight Roster Container
     local rosterContainer = CreateFrame("Frame", "ForeverSafariRosterContainer", frame)
@@ -283,6 +254,17 @@ function Journal:Initialize()
         Journal:BuildBountiesView(bountiesContainer)
     end
 
+    -- View 5: Badges & Credentials Showcase Container
+    local badgesContainer = CreateFrame("Frame", "ForeverSafariBadgesContainer", frame)
+    badgesContainer:SetPoint("TOPLEFT", frame, "TOPLEFT", 12, -68)
+    badgesContainer:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -12, 60)
+    frame.BadgesContainer = badgesContainer
+    self.BadgesContainer = badgesContainer
+
+    if Journal.BuildBadgesView then
+        Journal:BuildBadgesView(badgesContainer)
+    end
+
     -- Bottom Team Roster Dock with 3D Mini-Paperdolls
     if Journal.BuildTeamDock then
         Journal:BuildTeamDock(frame)
@@ -323,6 +305,7 @@ function Journal:SetTab(tabId)
         if frame.GridContainer then frame.GridContainer:SetShown(tabId == "GRID") end
         if frame.BestiaryContainer then frame.BestiaryContainer:SetShown(tabId == "BESTIARY") end
         if frame.BountiesContainer then frame.BountiesContainer:SetShown(tabId == "BOUNTIES") end
+        if frame.BadgesContainer then frame.BadgesContainer:SetShown(tabId == "BADGES") end
     end
 
     Journal:UpdateUI()
@@ -340,6 +323,8 @@ function Journal:UpdateUI()
         if Journal.UpdateBestiaryView then Journal:UpdateBestiaryView() end
     elseif currentTab == "BOUNTIES" then
         if Journal.UpdateBountiesView then Journal:UpdateBountiesView() end
+    elseif currentTab == "BADGES" then
+        if Journal.UpdateBadgesView then Journal:UpdateBadgesView() end
     end
 
     if Journal.UpdateTeamDock then

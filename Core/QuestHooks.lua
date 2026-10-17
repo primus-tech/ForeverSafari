@@ -307,6 +307,13 @@ function QH:OnBattleVictory(enemyMob)
     QH:OnBossDefeated(name)
 end
 
+local SPECIMEN_MAP = {
+    ["Mechanical"] = "quest_grinded_gears",
+    ["Elemental"]  = "quest_puddle_mud",
+    ["Undead"]     = "quest_cold_bones",
+    ["Dragonkin"]  = "quest_poisonous_scales",
+}
+
 function QH:HandlePermitUnlock(cType, bossName, questTypeKey)
     local now = GetTime()
     local key = cType .. ":" .. (bossName or "")
@@ -321,19 +328,23 @@ function QH:HandlePermitUnlock(cType, bossName, questTypeKey)
     DB:AddTokens(25, bossName .. " Defeated")
 
     local wasUnlocked = DB:IsTypeUnlocked(cType)
+    local specimenId = SPECIMEN_MAP[cType]
+    local itemObj = specimenId and ns.ItemDB and ns.ItemDB:GetItem(specimenId)
+    local itemName = itemObj and itemObj.name or "Research Specimen"
+    local hasItem = specimenId and (DB:GetItemCount(specimenId) > 0)
     local inCombat = InCombatLockdown and InCombatLockdown()
 
-    if not wasUnlocked then
-        DB:UnlockType(cType, true) -- silent during combat
+    if not wasUnlocked and not hasItem and specimenId then
+        DB:AddItem(specimenId, 1)
         if inCombat then
             table.insert(pendingToasts, {
-                title = cType .. " Permit Unlocked!",
-                desc = string.format("Defeated %s! %s research unlocked.", bossName, cType),
+                title = "Quest Specimen Recovered!",
+                desc = string.format("[%s] recovered from %s! Dispatch via town mailbox.", itemName, bossName),
             })
         else
-            DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00[%s Defeated]|r +25 Safari Tokens! You unlocked |cffffd100%s|r pets!", C.PREFIX, bossName, cType))
+            DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00[%s Defeated]|r +25 Safari Tokens! Recovered |cff0070dd[%s]|r! Bring to any town mailbox to dispatch to Nesingwary.", C.PREFIX, bossName, itemName))
             if ForeverSafari.Toast then
-                ForeverSafari.Toast:ShowReward(cType .. " Permit Unlocked!", string.format("Defeated %s! %s research unlocked.", bossName, cType))
+                ForeverSafari.Toast:ShowReward("Quest Specimen Recovered!", string.format("[%s] recovered from %s! Dispatch via town mailbox.", itemName, bossName))
             end
             PlaySound(1195)
         end
@@ -341,7 +352,7 @@ function QH:HandlePermitUnlock(cType, bossName, questTypeKey)
         DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cff00ff00[%s Defeated]|r +25 Safari Tokens awarded!", C.PREFIX, bossName))
     end
 
-    -- Broadcast to entire party/raid so everyone receives the token & unlock
+    -- Broadcast to entire party/raid so everyone receives the token & unlock progress
     if ns.Comms and ns.Comms.SendMessage then
         ns.Comms:SendMessage("PERMIT_UNLOCK", cType .. ":" .. bossName)
     end
