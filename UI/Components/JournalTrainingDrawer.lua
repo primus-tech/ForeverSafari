@@ -73,8 +73,15 @@ function Journal:OpenTrainingDrawer(slotIndex)
 
     for moveId, move in pairs(MoveDB) do
         if type(move) == "table" and move.name then
-            local isUnlocked = unlocked[tostring(moveId)] or (move.family == mob.family) or (move.element == mob.element) or (move.family == "Beast")
-            if isUnlocked then
+            local isCompatible = (move.family == mob.family) or (move.element == mob.element) or (move.family == "Beast")
+            if isCompatible then
+                local isMastered = false
+                if C.BASELINE_MOVES and (C.BASELINE_MOVES[moveId] or C.BASELINE_MOVES[tostring(moveId)] or (move.name and C.BASELINE_MOVES[move.name])) then
+                    isMastered = true
+                elseif unlocked[tostring(moveId)] or (move.name and unlocked[move.name]) then
+                    isMastered = true
+                end
+
                 local btn = drawer.MoveButtons[btnIdx]
                 if not btn then
                     btn = CreateFrame("Button", nil, content, "BackdropTemplate")
@@ -100,6 +107,14 @@ function Journal:OpenTrainingDrawer(slotIndex)
                     btn.Sub = sub
 
                     btn:SetScript("OnClick", function(self)
+                        if not self.isMastered then
+                            PlaySound(847) -- Muted error thud
+                            DEFAULT_CHAT_FRAME:AddMessage(string.format("%s|cffff4444Technique Locked:|r You must observe a wild creature using |cffffd100[%s]|r in the field before your companion can learn it!", C.PREFIX, self.moveName or "this technique"))
+                            if ForeverSafari.Toast then
+                                ForeverSafari.Toast:ShowAlert("Technique Locked", string.format("Observe [%s] in the wild to unlock!", self.moveName or "Ability"))
+                            end
+                            return
+                        end
                         DB:SetMobAbility(mob.id, drawer.targetSlot, self.moveId)
                         drawer:Hide()
                         Journal:UpdateRosterView()
@@ -107,13 +122,26 @@ function Journal:OpenTrainingDrawer(slotIndex)
                     end)
 
                     btn:SetScript("OnEnter", function(self)
-                        self:SetBackdropBorderColor(1.0, 0.82, 0.0, 1.0)
+                        if self.isMastered then
+                            self:SetBackdropBorderColor(1.0, 0.82, 0.0, 1.0)
+                        else
+                            self:SetBackdropBorderColor(0.8, 0.2, 0.2, 1.0)
+                        end
                         if self.moveId then
                             Theme:ShowAbilityTooltip(self, self.moveId, "ANCHOR_LEFT")
+                            if not self.isMastered then
+                                GameTooltip:AddLine(" ")
+                                GameTooltip:AddLine("|cffff4444<Locked: Requires Field Observation>|r", 1, 0.3, 0.3)
+                                GameTooltip:Show()
+                            end
                         end
                     end)
                     btn:SetScript("OnLeave", function(self)
-                        self:SetBackdropBorderColor(0.2, 0.3, 0.4, 0.8)
+                        if self.isMastered then
+                            self:SetBackdropBorderColor(0.2, 0.3, 0.4, 0.8)
+                        else
+                            self:SetBackdropBorderColor(0.45, 0.15, 0.15, 0.8)
+                        end
                         Theme:HideAbilityTooltip()
                     end)
 
@@ -122,11 +150,29 @@ function Journal:OpenTrainingDrawer(slotIndex)
 
                 btn:SetPoint("TOPLEFT", content, "TOPLEFT", 2, yOffset)
                 btn.moveId = moveId
+                btn.moveName = move.name
+                btn.isMastered = isMastered
                 btn.Icon:SetTexture(move.icon or "Interface\\Icons\\Ability_GhoulFrenzy")
-                btn.Title:SetText(string.format("%s |cffffd100[%s]|r", move.name, move.element or "Physical"))
-                local pwrText = (move.power and move.power > 0) and string.format("Pwr: %d | ", move.power) or ""
-                local cdText = (move.cooldown and move.cooldown > 0) and string.format("%dt CD", move.cooldown) or "Instant"
-                btn.Sub:SetText(pwrText .. cdText)
+
+                if isMastered then
+                    btn.Icon:SetVertexColor(1, 1, 1)
+                    if btn.Icon.SetDesaturated then btn.Icon:SetDesaturated(false) end
+                    btn.Title:SetText(string.format("%s |cffffd100[%s]|r", move.name, move.element or "Physical"))
+                    local pwrText = (move.power and move.power > 0) and string.format("Pwr: %d | ", move.power) or ""
+                    local cdText = (move.cooldown and move.cooldown > 0) and string.format("%dt CD", move.cooldown) or "Instant"
+                    btn.Sub:SetText(pwrText .. cdText)
+                    btn.Sub:SetTextColor(0.8, 0.85, 0.9)
+                    btn:SetBackdropBorderColor(0.2, 0.3, 0.4, 0.8)
+                    btn:SetBackdropColor(Theme.Colors.CardBg.r, Theme.Colors.CardBg.g, Theme.Colors.CardBg.b, Theme.Colors.CardBg.a)
+                else
+                    btn.Icon:SetVertexColor(0.4, 0.4, 0.4)
+                    if btn.Icon.SetDesaturated then btn.Icon:SetDesaturated(true) end
+                    btn.Title:SetText(string.format("|cff888888%s|r |cff666666[%s]|r", move.name, move.element or "Physical"))
+                    btn.Sub:SetText("|cffff5555🔒 Requires Observation|r")
+                    btn.Sub:SetTextColor(1.0, 0.35, 0.35)
+                    btn:SetBackdropBorderColor(0.45, 0.15, 0.15, 0.8)
+                    btn:SetBackdropColor(0.12, 0.08, 0.08, 0.85)
+                end
 
                 btn:Show()
                 yOffset = yOffset - 48

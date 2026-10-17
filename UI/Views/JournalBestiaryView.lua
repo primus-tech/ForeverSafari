@@ -883,8 +883,8 @@ function Journal:RenderVisibleBestiaryRows(scrollOffset)
             else
                 btn.Icon:SetTexture("Interface\\Icons\\INV_Misc_QuestionMark")
                 btn.Icon:SetVertexColor(0.5, 0.5, 0.5)
-                btn.Title:SetText(string.format("#%04d ???", spec.id))
-                btn.Sub:SetText("|cff666666[Undiscovered Quarry]|r")
+                btn.Title:SetText(string.format("#%04d %s", spec.id, spec.name))
+                btn.Sub:SetText("|cff888888[Unobserved Quarry]|r")
             end
 
             if spec.id == selectedBestiaryId then
@@ -915,8 +915,10 @@ function Journal:UpdateBestiaryDossier()
     local status = entry and entry.status or "unseen"
 
     if status == "unseen" then
-        rPanel.NameText:SetText(string.format("|cff888888#%04d ??? (Undiscovered Quarry)|r", spec.id))
-        rPanel.TypeText:SetText("|cff666666Family: Unknown | Element: Unknown|r")
+        local apexTag = spec.isApexRare and " |cffff3333[👑 Apex World Rare]|r" or (spec.isBoss and " |cffff1111[💀 World Boss]|r" or "")
+        rPanel.NameText:SetText(string.format("|cffaaaaaa#%04d %s|r%s", spec.id, spec.name, apexTag))
+        rPanel.TypeText:SetText(string.format("Family: |cff888888%s (%s)|r  |  Element: |cff888888%s|r  |  Rarity: |cff888888%s|r",
+            spec.family or "Beast", spec.subFamily or spec.family or "Beast", spec.element or "Physical", spec.rarity or "Common"))
         rPanel.StatusText:SetText("|cffff5555[Unobserved Wild Beast]|r")
 
         if rPanel.Model3D then
@@ -924,10 +926,11 @@ function Journal:UpdateBestiaryDossier()
             rPanel.Model3D:Hide()
         end
 
-        rPanel.HabitatText:SetText("|cff777777Known to inhabit unexplored regions of Azeroth.|r")
-        rPanel.DescText:SetText("|cff777777No research data recorded. Stalk this species with /fs observe or engage it in combat to unlock its full dossier and movepool.|r")
+        local habitatsStr = spec.habitats and table.concat(spec.habitats, ", ") or "Wilds of Azeroth"
+        rPanel.HabitatText:SetText(string.format("|cff888888Known Regions: %s|r", habitatsStr))
+        rPanel.DescText:SetText("|cff777777No field research recorded. Stalk this species with /fs observe or engage it in combat to unlock its full 3D model, stats, and technique roster.|r")
         rPanel.DietText:SetText("|cff666666Favorite Sustenance: ???|r")
-        rPanel.BaseStatsText:SetText("Base Stats: HP [ |cff666666??|r ] | ATK [ |cff666666??|r ] | DEF [ |cff666666??|r ] | SPD [ |cff666666??|r ]")
+        rPanel.BaseStatsText:SetText("Base Stats: HP [ |cff666666??|r ] | ATK [ |cff666666??|r ] | DEF [ |cff666666??|r ] | SPD [ |cff666666??|r ]  |  Total: |cff666666???|r")
         rPanel.MovesList:SetText("|cff666666Movepool data classified until observed in the field.|r")
 
     else

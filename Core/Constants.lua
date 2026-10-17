@@ -33,6 +33,16 @@ C.PREFIX = "|cffffd100[Forever Safari v1.0.0]|r "
 C.BATTLE_COMBAT_PAUSE_TIMEOUT = 120.0 -- Maximum pause window for multi-mob pulls & corpse runs (120s)
 C.PVP_TURN_TIMEOUT = 15.0             -- Turn action countdown in PvP duels (15s)
 
+-- Core Baseline Abilities (Universally accessible without field observation)
+C.BASELINE_MOVES = {
+    [101] = true, ["101"] = true, ["Bite"] = true,
+    [102] = true, ["102"] = true, ["Growl"] = true,
+    [103] = true, ["103"] = true, ["Claw Frenzy"] = true,
+    [117] = true, ["117"] = true, ["Dash"] = true,
+    [118] = true, ["118"] = true, ["Cower"] = true,
+    ["Tackle"] = true, ["Claw"] = true, ["Scratch"] = true,
+}
+
 -- The 9 Official Pet Types & Passives (4 Core Stats: HP, ATK, DEF, SPD)
 C.CREATURE_TYPES = {
     ["Aquatic"] = {
