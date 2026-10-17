@@ -168,7 +168,7 @@ function Kennel:Initialize()
 
     local subTitle = header:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
     subTitle:SetPoint("LEFT", title, "RIGHT", 10, 0)
-    subTitle:SetText("|cff00ff99[ Banked Companion Vault • 400 Slots ]|r")
+    subTitle:SetText("|cff00ff99[ Banked Companion Vault • 2,006 Slots (101 Enclosures) ]|r")
 
     -- =========================================================================
     -- LEFT COLUMN: ACTIVE SQUAD (4 Slots)
@@ -264,12 +264,21 @@ function Kennel:Initialize()
     prevBtn:SetPoint("LEFT", 4, 0)
     prevBtn:SetText("◀")
     prevBtn:SetScript("OnClick", function()
-        currentBox = currentBox - 1
-        if currentBox < 1 then currentBox = C.MAX_KENNEL_BOXES or 20 end
+        local maxB = (C and C.MAX_KENNEL_BOXES) or 101
+        local step = IsShiftKeyDown() and 10 or 1
+        currentBox = currentBox - step
+        while currentBox < 1 do currentBox = currentBox + maxB end
         selectedKennelMobId = nil
         PlaySound(844)
         Kennel:UpdateUI()
     end)
+    prevBtn:SetScript("OnEnter", function(self)
+        GameTooltip:SetOwner(self, "ANCHOR_TOP")
+        GameTooltip:AddLine("Previous Enclosure", 1, 0.82, 0)
+        GameTooltip:AddLine("|cffffffffClick:|r -1 Enclosure\n|cffffffffShift-Click:|r -10 Enclosures", 0.7, 0.7, 0.7)
+        GameTooltip:Show()
+    end)
+    prevBtn:SetScript("OnLeave", function() GameTooltip:Hide() end)
     switcherBar.PrevBtn = prevBtn
 
     -- Next Box Button
@@ -278,12 +287,21 @@ function Kennel:Initialize()
     nextBtn:SetPoint("LEFT", prevBtn, "RIGHT", 2, 0)
     nextBtn:SetText("▶")
     nextBtn:SetScript("OnClick", function()
-        currentBox = currentBox + 1
-        if currentBox > (C.MAX_KENNEL_BOXES or 20) then currentBox = 1 end
+        local maxB = (C and C.MAX_KENNEL_BOXES) or 101
+        local step = IsShiftKeyDown() and 10 or 1
+        currentBox = currentBox + step
+        while currentBox > maxB do currentBox = currentBox - maxB end
         selectedKennelMobId = nil
         PlaySound(844)
         Kennel:UpdateUI()
     end)
+    nextBtn:SetScript("OnEnter", function(self)
+        GameTooltip:SetOwner(self, "ANCHOR_TOP")
+        GameTooltip:AddLine("Next Enclosure", 1, 0.82, 0)
+        GameTooltip:AddLine("|cffffffffClick:|r +1 Enclosure\n|cffffffffShift-Click:|r +10 Enclosures", 0.7, 0.7, 0.7)
+        GameTooltip:Show()
+    end)
+    nextBtn:SetScript("OnLeave", function() GameTooltip:Hide() end)
     switcherBar.NextBtn = nextBtn
 
     -- Box Title & Slot Count
@@ -415,9 +433,9 @@ function Kennel:Initialize()
     -- =========================================================================
     -- POPUP MENUS (Jump, Type, Sex, Rarity)
     -- =========================================================================
-    -- 1. Jump Menu (2 Columns of 10 Boxes)
+    -- 1. Jump Menu (Scrollable List & Direct Numeric Entry for 101 Enclosures)
     local jumpMenu = CreateFrame("Frame", "ForeverSafariKennelJumpMenu", frame, "BackdropTemplate")
-    jumpMenu:SetSize(320, 216)
+    jumpMenu:SetSize(320, 260)
     jumpMenu:SetPoint("TOPRIGHT", switcherBar, "BOTTOMRIGHT", 0, -2)
     jumpMenu:SetFrameStrata("DIALOG")
     Theme:ApplyCardBackdrop(jumpMenu)
@@ -426,35 +444,107 @@ function Kennel:Initialize()
     jumpMenu:Hide()
     frame.JumpMenu = jumpMenu
 
-    jumpMenu.Items = {}
-    for b = 1, (C.MAX_KENNEL_BOXES or 20) do
-        local col = (b <= 10) and 1 or 2
-        local row = (b <= 10) and b or (b - 10)
-        local itemBtn = CreateFrame("Button", nil, jumpMenu, "BackdropTemplate")
-        itemBtn:SetSize(150, 18)
-        itemBtn:SetPoint("TOPLEFT", jumpMenu, "TOPLEFT", 6 + ((col - 1) * 154), -6 - ((row - 1) * 20))
+    local jumpPrompt = jumpMenu:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    jumpPrompt:SetPoint("TOPLEFT", 10, -10)
+    jumpPrompt:SetText("Jump to Enclosure #:")
 
-        local itemText = itemBtn:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
-        itemText:SetPoint("LEFT", 4, 0)
-        itemText:SetPoint("RIGHT", -4, 0)
-        itemText:SetJustifyH("LEFT")
-        itemBtn.Text = itemText
+    local jumpInput = CreateFrame("EditBox", nil, jumpMenu, "InputBoxTemplate")
+    jumpInput:SetSize(44, 18)
+    jumpInput:SetPoint("LEFT", jumpPrompt, "RIGHT", 6, 0)
+    jumpInput:SetAutoFocus(false)
+    jumpInput:SetNumeric(true)
+    jumpInput:SetMaxLetters(3)
 
-        itemBtn:SetScript("OnClick", function()
-            currentBox = b
+    local function doDirectJump()
+        local val = tonumber(jumpInput:GetText())
+        local maxB = (C and C.MAX_KENNEL_BOXES) or 101
+        if val and val >= 1 and val <= maxB then
+            currentBox = math.floor(val)
             selectedKennelMobId = nil
             jumpMenu:Hide()
             PlaySound(844)
             Kennel:UpdateUI()
+        else
+            DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Please enter an enclosure number between 1 and " .. maxB .. ".|r")
+        end
+    end
+    jumpInput:SetScript("OnEnterPressed", doDirectJump)
+
+    local goBtn = CreateFrame("Button", nil, jumpMenu, "UIPanelButtonTemplate")
+    goBtn:SetSize(34, 20)
+    goBtn:SetPoint("LEFT", jumpInput, "RIGHT", 4, 0)
+    goBtn:SetText("Go")
+    goBtn:SetScript("OnClick", doDirectJump)
+
+    -- ScrollFrame for 101 items
+    local scrollFrame = CreateFrame("ScrollFrame", "ForeverSafariKennelJumpScroll", jumpMenu, "FauxScrollFrameTemplate")
+    scrollFrame:SetSize(280, 200)
+    scrollFrame:SetPoint("TOPLEFT", 10, -36)
+
+    local MAX_VISIBLE_ROWS = 10
+    local ROW_HEIGHT = 20
+    jumpMenu.Rows = {}
+
+    local function UpdateJumpRows()
+        local maxB = (C and C.MAX_KENNEL_BOXES) or 101
+        FauxScrollFrame_Update(scrollFrame, maxB, MAX_VISIBLE_ROWS, ROW_HEIGHT)
+        local offset = FauxScrollFrame_GetOffset(scrollFrame)
+
+        for i = 1, MAX_VISIBLE_ROWS do
+            local row = jumpMenu.Rows[i]
+            local b = offset + i
+            if b <= maxB then
+                row.boxId = b
+                local bName = DB and DB.GetBoxName and DB:GetBoxName(b) or ("Enclosure " .. b)
+                local count = DB and DB.GetKennelMobs and #DB:GetKennelMobs(b) or 0
+                local cap = DB and DB.GetBoxCapacity and DB:GetBoxCapacity(b) or 20
+                local prefix = (b == currentBox) and "|cffffd100▶ |r" or ""
+                row.Text:SetText(string.format("%s%d. %s (|cff00ff99%d/%d|r)", prefix, b, bName, count, cap))
+                row:Show()
+            else
+                row:Hide()
+            end
+        end
+    end
+
+    scrollFrame:SetScript("OnVerticalScroll", function(self, offset)
+        FauxScrollFrame_OnVerticalScroll(self, offset, ROW_HEIGHT, UpdateJumpRows)
+    end)
+    jumpMenu:EnableMouseWheel(true)
+    jumpMenu:SetScript("OnMouseWheel", function(self, delta)
+        local cur = FauxScrollFrame_GetOffset(scrollFrame)
+        local maxB = (C and C.MAX_KENNEL_BOXES) or 101
+        local newOffset = math.max(0, math.min(maxB - MAX_VISIBLE_ROWS, cur - (delta * 3)))
+        FauxScrollFrame_SetOffset(scrollFrame, newOffset)
+        UpdateJumpRows()
+    end)
+
+    for i = 1, MAX_VISIBLE_ROWS do
+        local row = CreateFrame("Button", nil, jumpMenu, "BackdropTemplate")
+        row:SetSize(276, ROW_HEIGHT)
+        row:SetPoint("TOPLEFT", scrollFrame, "TOPLEFT", 0, -((i - 1) * ROW_HEIGHT))
+
+        local rowText = row:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+        rowText:SetPoint("LEFT", 4, 0)
+        rowText:SetPoint("RIGHT", -4, 0)
+        rowText:SetJustifyH("LEFT")
+        row.Text = rowText
+
+        row:SetScript("OnClick", function(self)
+            if self.boxId then
+                currentBox = self.boxId
+                selectedKennelMobId = nil
+                jumpMenu:Hide()
+                PlaySound(844)
+                Kennel:UpdateUI()
+            end
         end)
-        itemBtn:SetScript("OnEnter", function(self)
+        row:SetScript("OnEnter", function(self)
             self:SetBackdrop({ bgFile = "Interface\\Buttons\\WHITE8X8" })
             self:SetBackdropColor(1.0, 0.82, 0.0, 0.25)
         end)
-        itemBtn:SetScript("OnLeave", function(self)
-            self:SetBackdrop(nil)
-        end)
-        jumpMenu.Items[b] = itemBtn
+        row:SetScript("OnLeave", function(self) self:SetBackdrop(nil) end)
+        jumpMenu.Rows[i] = row
     end
 
     jumpBtn:SetScript("OnClick", function()
@@ -464,13 +554,11 @@ function Kennel:Initialize()
         if jumpMenu:IsShown() then
             jumpMenu:Hide()
         else
-            -- Refresh jump menu labels with current counts and box names
-            for b = 1, (C.MAX_KENNEL_BOXES or 20) do
-                local bName = DB and DB.GetBoxName and DB:GetBoxName(b) or ("Enclosure " .. b)
-                local count = DB and DB.GetKennelMobs and #DB:GetKennelMobs(b) or 0
-                local prefix = (b == currentBox) and "|cffffd100▶ |r" or ""
-                jumpMenu.Items[b].Text:SetText(string.format("%s%d. %s (|cff00ff99%d|r)", prefix, b, bName, count))
-            end
+            jumpInput:SetText(tostring(currentBox))
+            local maxB = (C and C.MAX_KENNEL_BOXES) or 101
+            local offset = math.max(0, math.min(maxB - MAX_VISIBLE_ROWS, currentBox - 5))
+            FauxScrollFrame_SetOffset(scrollFrame, offset)
+            UpdateJumpRows()
             jumpMenu:Show()
         end
         PlaySound(856)
@@ -791,65 +879,72 @@ function Kennel:UpdateUI()
     end
 
     -- Update Enclosure 20 Tiles (Filtered Query)
+    local boxCap = DB and DB.GetBoxCapacity and DB:GetBoxCapacity(currentBox) or 20
     local displayedMobs = DB and DB.GetFilteredKennelMobs and DB:GetFilteredKennelMobs(currentBox, searchQuery, filterType, filterSex, filterRarity) or allBoxMobs
     for idx = 1, 20 do
         local tile = kennelTiles[idx]
-        local mob = displayedMobs[idx]
-
-        if mob then
-            tile.mobId = mob.id
-            local iconTex = mob.icon or "Interface\\Icons\\INV_Box_PetCarrier_01"
-            tile.Icon:SetTexture(iconTex)
-            tile.Icon:Show()
-
-            -- Micro Sex Badge (Top-Right)
-            local anat = mob.anatomy or "Sire"
-            if anat == "Dam" then
-                tile.SexBadge:SetText("|cffff99cc♀|r")
-            elseif anat == "Genderless" then
-                tile.SexBadge:SetText("|cffa0a0a0⚙|r")
-            else
-                tile.SexBadge:SetText("|cff66ccff♂|r")
-            end
-            tile.SexBadge:Show()
-
-            -- Micro Apex Crown (Top-Left)
-            if mob.isRare or mob.isElite then
-                tile.CrownBadge:Show()
-            else
-                tile.CrownBadge:Hide()
-            end
-
-            local name = mob.nickname ~= "" and mob.nickname or mob.name
-            if string.len(name) > 10 then
-                name = string.sub(name, 1, 9) .. "…"
-            end
-            local rankData = SE:GetAttunementRank(mob.attunement or mob.attunementPoints or 0)
-            tile.Label:SetText(string.format("|cff%s%s|r\n|cffaaaaaaRank %s|r", rankData.color or "ffffff", name, rankData.roman))
-
-            if selectedKennelMobId == mob.id then
-                tile.SelGlow:Show()
-                tile:SetBackdropBorderColor(1, 0.82, 0, 1)
-            else
-                tile.SelGlow:Hide()
-                tile:SetBackdropBorderColor(0.25, 0.35, 0.45, 0.8)
-            end
+        if idx > boxCap then
+            tile:Hide()
         else
-            tile.mobId = nil
-            tile.Icon:Hide()
-            tile.SexBadge:Hide()
-            tile.CrownBadge:Hide()
-            tile.Label:SetText("")
-            tile.SelGlow:Hide()
-            tile:SetBackdropBorderColor(0.15, 0.15, 0.15, 0.5)
+            tile:Show()
+            local mob = displayedMobs[idx]
+
+            if mob then
+                tile.mobId = mob.id
+                local iconTex = mob.icon or "Interface\\Icons\\INV_Box_PetCarrier_01"
+                tile.Icon:SetTexture(iconTex)
+                tile.Icon:Show()
+
+                -- Micro Sex Badge (Top-Right)
+                local anat = mob.anatomy or "Sire"
+                if anat == "Dam" then
+                    tile.SexBadge:SetText("|cffff99cc♀|r")
+                elseif anat == "Genderless" then
+                    tile.SexBadge:SetText("|cffa0a0a0⚙|r")
+                else
+                    tile.SexBadge:SetText("|cff66ccff♂|r")
+                end
+                tile.SexBadge:Show()
+
+                -- Micro Apex Crown (Top-Left)
+                if mob.isRare or mob.isElite then
+                    tile.CrownBadge:Show()
+                else
+                    tile.CrownBadge:Hide()
+                end
+
+                local name = mob.nickname ~= "" and mob.nickname or mob.name
+                if string.len(name) > 10 then
+                    name = string.sub(name, 1, 9) .. "…"
+                end
+                local rankData = SE:GetAttunementRank(mob.attunement or mob.attunementPoints or 0)
+                tile.Label:SetText(string.format("|cff%s%s|r\n|cffaaaaaaRank %s|r", rankData.color or "ffffff", name, rankData.roman))
+
+                if selectedKennelMobId == mob.id then
+                    tile.SelGlow:Show()
+                    tile:SetBackdropBorderColor(1, 0.82, 0, 1)
+                else
+                    tile.SelGlow:Hide()
+                    tile:SetBackdropBorderColor(0.25, 0.35, 0.45, 0.8)
+                end
+            else
+                tile.mobId = nil
+                tile.Icon:Hide()
+                tile.SexBadge:Hide()
+                tile.CrownBadge:Hide()
+                tile.Label:SetText("")
+                tile.SelGlow:Hide()
+                tile:SetBackdropBorderColor(0.15, 0.15, 0.15, 0.5)
+            end
         end
     end
 
     local totalBanked = DB and DB.GetKennelMobs and #DB:GetKennelMobs() or 0
-    local totalCapacity = (C.TOTAL_KENNEL_CAPACITY or 400)
+    local totalCapacity = (C.TOTAL_KENNEL_CAPACITY or 2006)
     local filterNotice = (#displayedMobs ~= boxCount) and string.format("  |cffffcc00[Showing %d / %d]|r", #displayedMobs, boxCount) or ""
-    frame.StatusText:SetText(string.format("Reserved: |cffffd100%d / %d companions|r across %d Enclosures%s",
-        totalBanked, totalCapacity, (C.MAX_KENNEL_BOXES or 20), filterNotice))
+    frame.SwitcherBar.BoxTitleText:SetText(string.format("%s (%d/%d)%s", boxName, boxCount, boxCap, filterNotice))
+    frame.StatusText:SetText(string.format("Reserved: |cffffd100%d / %d unique species|r across %d Enclosures%s",
+        totalBanked, totalCapacity, (C.MAX_KENNEL_BOXES or 101), filterNotice))
 end
 
 function Kennel:ShowKennel()

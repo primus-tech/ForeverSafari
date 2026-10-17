@@ -343,10 +343,10 @@ C.TYPE_RESEARCH_PERMITS = {
     },
 }
 
--- Kennel Storage Enclosures & Capacity (400 Slots)
-C.MAX_KENNEL_BOXES = 20
+-- Kennel Storage Enclosures & Capacity (2,006 Slots — 1 Slot per Unique Species across 101 Enclosures)
+C.MAX_KENNEL_BOXES = 101
 C.SLOTS_PER_BOX = 20
-C.TOTAL_KENNEL_CAPACITY = C.MAX_KENNEL_BOXES * C.SLOTS_PER_BOX
+C.TOTAL_KENNEL_CAPACITY = 2006
 
 -- Biological Sex & Anatomy Classifications
 C.GENDERLESS_TYPES = {

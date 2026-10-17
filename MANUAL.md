@@ -101,7 +101,7 @@ Type `/fs` to open your interactive 3D Field Guide. The journal is organized int
 * View real-time health gauges, attunement rank stars, and click `[ Set Active Leader ]` to swap your lead battle companion.
 
 ### View 3: Azeroth Bestiary (`BESTIARY`)
-* The authentic 215-species field Pokédex tracking all species across Classic Azeroth.
+* The authentic 2,006-species field Pokédex tracking all 2,008 world creature entities across Classic Azeroth.
 * **3 Discovery Tiers**:
   * `[ ??? Undiscovered ]` — Unseen in the wild.
   * `[ 🔭 Seen / Sighted ]` — Observed through field stalking or encountered in combat.
@@ -153,7 +153,7 @@ Because sex is bound to the creature's entity GUID, the observed sex in the fiel
 3. A **3.0 to 5.0-second channeled cast** begins ("Field Study"). Maintain line-of-sight and stay within 28 yards.
 4. Upon completion:
    * **Move Discovery**: The quarry's natural moves are unlocked into your Trainer Grimoire.
-   * **Bestiary Sighting**: The species is registered as `[ 🔭 Seen / Sighted ]` in your 215-entry Bestiary Pokédex.
+   * **Bestiary Sighting**: The species is registered as `[ 🔭 Seen / Sighted ]` in your 2,006-entry Bestiary Pokédex.
    * **Field Loyalty**: Awards **+15 Attunement** to your active companion.
    * The wild creature remains completely unharmed and untouched in the game world!
 
@@ -354,8 +354,9 @@ Interact with any Cenarion Keeper in Moonglade (Nighthaven):
 
 ### 🏦 5. Bankers (Kennelers & Companion Reserve)
 Interact with any town **Banker** (or open any Bank Vault):
-* **On-Demand Companion Vault**: Opens the companion reserve (`/fskennel` or `/fs kennel`) featuring a massive **400-slot vault** organized into **20 Enclosures** (20 slots per enclosure).
-* **Enclosure Switcher & 1-Click Jump**: Fast navigation with `[ ◀ Prev ]` / `[ Next ▶ ]` buttons and a 2-column `[ Jump ▼ ]` menu showing real-time occupant counts (e.g. `Enclosure 4: Winterspring Apex (18/20)`).
+* **On-Demand Companion Vault**: Opens the companion reserve (`/fskennel` or `/fs kennel`) featuring a massive **2,006-slot vault** organized into **101 Enclosures** — providing exactly 1 slot for every unique species in Azeroth under the **Highlander Law**.
+* **Enclosure Switcher & Shift-Click Skipping**: Fast navigation with `[ ◀ Prev ]` / `[ Next ▶ ]` buttons (Click: $\pm 1$ enclosure; Shift-Click: $\pm 10$ enclosures).
+* **Scrollable Jump Menu & Direct Numeric Entry**: Click `[ Jump ▼ ]` to open a scrollable list of all 101 enclosures showing live counts and capacities (e.g. `101. Enclosure 101 (6/6)`), or enter any enclosure number (1–101) directly and press `[ Go ]`.
 * **Custom Enclosure Renaming**: Click `[ 🏷 Rename ]` to label enclosures (e.g. *'PvP Squad'*, *'Breeding Dams'*, *'Apex Vault'*).
 * **Safari Journal Filter Ribbon**: Real-time name search, creature type/family dropdown, biological sex filter (`♂ Sire`, `♀ Dam`, `⚙ Genderless`), and rarity filter (`👑 Apex`).
 * **Transport Crate Logistics**: Wild captures beyond your 4-member squad consume a transport crate and automatically route to the next available enclosure with open space.

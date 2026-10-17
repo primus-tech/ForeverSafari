@@ -53,13 +53,13 @@ Every playable race receives an authentic wild companion indigenous to their hom
 Deconstructed into decoupled, high-performance UI views and components:
 * **View 1: 3D Squad Spotlight (`ROSTER`)**: A single-companion high-definition 3D pedestal stage featuring fluid 360° mouse drag rotation, zoom, instant animation triggers (`[ ⚔ Attack ]`, `[ 🦁 Roar ]`, `[ 🏆 Victory ]`, `[ 🐾 Idle ]`), real-time nickname editing, attunement gauge, stat radar, 4-move cards, and an interactive nourishment feeding tray.
 * **View 2: 3D Menagerie Gallery (`GRID`)**: Browse your entire captured collection in a 6-card 3D paperdoll grid with 8-type filter ribbon, pagination, real-time HP bars, and squad leader toggles.
-* **View 3: Azeroth Bestiary (`BESTIARY`)**: Complete 215-species field Pokédex tracking discoveries (`seen`, `caught`), 8-element filter menu, search box, live 3D species stage with animations, native habitats, base stats, Nesingwary lore notes, and natural family movepools.
+* **View 3: Azeroth Bestiary (`BESTIARY`)**: Complete 2,006-species field Pokédex tracking discoveries (`seen`, `caught`), 8-element filter menu, search box, live 3D species stage with animations, native habitats, base stats, Nesingwary lore notes, and natural family movepools.
 * **View 4: Field Directives & Quest Log (`BOUNTIES`)**: Track active Nesingwary research directives, target objectives, kill/tame quotas, progress bars, and lore dossiers directly from the field.
 * **Active Party Dock (`JournalTeamDock.lua`)**: Bottom 4-slot party dock with live mini 3D pedestals and health gauges.
 * **Beast Training Grimoire Drawer (`JournalTrainingDrawer.lua`)**: Popout grimoire drawer for slot ability training and move customisation.
 
-### 2. 215-Species Azeroth Bestiary (Authentic Field Pokédex)
-A curated, lore-accurate field catalog spanning all 8 playable creature types of Classic Azeroth:
+### 2. 2,006-Species Azeroth Bestiary (Authentic Field Pokédex)
+A comprehensive, lore-accurate field catalog spanning all 2,008 world creature entities (2,006 unique species) across Classic Azeroth:
 * 🐾 **Beasts**: Wolves, Cats, Bears, Boars, Raptors, Spiders, Crocolisks, Kodos, Bats, Wind Serpents, Scorpids, Hyenas, Tallstriders, Gorillas, Carrion Birds, Crabs, Turtles.
 * ⚙️ **Mechanicals**: Harvest Watchers, Clockwork Gnomes, Mechano-Striders, Peacekeeper Units, Compact Harvesters.
 * 💀 **Undead**: Plague Rats, Skittering Spiders, Scourge Ghouls, Ghost Claws, Spectral Wolves.
@@ -177,7 +177,7 @@ Companions progress through bonding, feeding, and battlefield survival rather th
 * **🌿 Cenarion Keepers in Moonglade (Sacred Sanctuary Breeders)**:
   * **Sacred Grove Nursery**: Custodians of the Sacred Grove in Moonglade (Nighthaven) accessed via gossip or `/fsnursery`, facilitating advanced endgame co-op breeding (offspring hatches at Rank III: Attuned).
 * **🏦 Bankers (Kennelers & Companion Reserve)**:
-  * **On-Demand Companion Vault**: Interacting with any town Banker provides access to the Junior Safari Reserve vault (`/fskennel`), managing active squad slots and reserve enclosures (up to 1,000 banked companions).
+  * **On-Demand Companion Vault**: Interacting with any town Banker provides access to the Junior Safari Reserve vault (`/fskennel`), managing active squad slots and 2,006 banked reserve slots across 101 enclosures (1 slot for every unique species under the Highlander Law).
 * **Universal Gossip Row-Stacking Guarantee**:
   * On any NPC with gossip integration, Forever Safari dynamically evaluates all third-party addon rows on `GossipFrame.GreetingPanel` (e.g. Olympus's `Bones!: Teach me Bones`, Questie, etc.) and anchors directly beneath the lowest external row.
   * Forever Safari options are guaranteed to always be the bottom-most choices on screen with zero hardcoded strings or addon flags.
@@ -306,8 +306,8 @@ ForeverSafari/
 ├── Data/                              # Canonical Data Registries
 │   ├── ItemDB.lua                     # Snares, Traps, Cages, Crates, 11 Diets, Eggs & Consumables
 │   ├── MoveDB.lua                     # 94 Moves (Feral Druid, Utility, Boss Signatures)
-│   ├── CreatureDB.lua                 # 1,910 Normalized Species & 715 3D Displays
-│   ├── BestiaryDB.lua                 # 215 Curated Classic Species across 9 Families
+│   ├── CreatureDB.lua                 # 2,008 Master World Creature Entities across 35 Partitions
+│   ├── BestiaryDB.lua                 # 2,006 Unique Species Bestiary Pokédex across 9 Families
 │   ├── EvolutionDB.lua                # Metamorphosis Recipes & Boss Drops
 │   └── TrainerDB.lua                  # 14 Humanoid Rival Factions, Quotes & Rosters
 │
@@ -340,7 +340,7 @@ ForeverSafari/
     ├── CatalystLootFrame.lua          # Greed-Only Secondary Boss Loot Window
     ├── CaptureHUD.lua                 # Real-Time Proximity & Move Discovery HUD
     ├── ShopFrame.lua                  # Pet Trainer Outfitter (Tabs & Below-Card Layout)
-    ├── KennelFrame.lua                # Banker Companion Vault (4 Squad + 5 Enclosures)
+    ├── KennelFrame.lua                # Banker Companion Vault (4 Squad + 2,006 Slots in 101 Enclosures)
     ├── SafariBagFrame.lua             # Virtual Safari Bag 20-Slot Authentic Container
     ├── BattleFrame.lua                # Retro 3D Combat Arena & Command Menu
     │
@@ -351,7 +351,7 @@ ForeverSafari/
     └── Views/                         # Modular Journal Views
         ├── JournalRosterView.lua      # View 1: 3D Companion Spotlight & Dossier
         ├── JournalGridView.lua        # View 2: 3D Menagerie Gallery Grid (6-Card)
-        ├── JournalBestiaryView.lua    # View 3: 215-Species Azeroth Bestiary Pokédex
+        ├── JournalBestiaryView.lua    # View 3: 2,006-Species Azeroth Bestiary Pokédex
         └── JournalBountiesView.lua    # View 4: Field Directives & Research Quest Log
 ```
 

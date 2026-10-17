@@ -212,9 +212,9 @@
 ---
 
 ## 📍 Phase 13: Authentic Azeroth Bestiary & Field Pokédex (Completed ✅)
-* [x] **Dynamic 1,960+ Species Pokédex (`Data/BestiaryDB.lua`, `UI/Views/JournalBestiaryView.lua`)**:
+* [x] **Dynamic 2,006-Species Pokédex (2,008 World Creatures) (`Data/BestiaryDB.lua`, `UI/Views/JournalBestiaryView.lua`)**:
   * Complete coverage across all 9 pet types: Beasts, Canines, Felines, Bears, Boars, Raptors, Avians, Bats, Crocolisks, Crabs, Turtles, Spiders, Scorpids, Hydras, Wind Serpents, Gorillas, Kodos, Tallstriders, Dragon Whelps, **Mechanicals (Harvest Reapers, Mech-Chickens, War Golems, Alarm-o-Bots)**, **Undead (Skeletal Raptors, Plaguebats, Ghostly Crabs, Bone Golems)**, and **Elementals (Blazing Elementals, Tide Walkers, Rock Rumblers, Tar Beasts, Dust Devils)**.
-  * 1,960+ species database with verified 3D display IDs for 100% accurate paperdoll rendering.
+  * 2,006 unique species database (2,008 world creature entities) with verified 3D display IDs for 100% accurate paperdoll rendering.
   * High-performance 60 FPS virtual scrolling list with multi-mode sorting (Name, ID, Rank, Family).
   * Native regional habitats, favorite sustenance diets, base stats, and natural 4-move thematic movepools.
 * [x] **Dedicated 30-Family Beast Subfamily Filtering**:
@@ -247,7 +247,7 @@
   * Partitioned DB operations into domain-specific modules:
     * `Core/Database.lua` — Core initialization, SavedVariables migration, schema upgrades, starter kit.
     * `Core/DB/DB_Pets.lua` — Pet collection CRUD, active party, level/XP, moves, feeding logic.
-    * `Core/DB/DB_Kennel.lua` — Storage boxes (1–10), crate transfer logic, kennel slots.
+    * `Core/DB/DB_Kennel.lua` — Storage boxes (1–101, 2,006 total slots), crate transfer logic, kennel slots.
     * `Core/DB/DB_Bestiary.lua` — Pokédex discovery tracking, stats, and collection backfill.
     * `Core/DB/DB_Inventory.lua` — Safari Bag items, tokens, and consumables.
 * [x] **Canonical Data Consolidation (`Data/MoveDB.lua` & `Data/ItemDB.lua`)**:
@@ -334,7 +334,9 @@
   * Dual-pass execution (Frame 0 immediate render + Frame 2 re-anchor) to cleanly handle event loop timings across different addons.
 * [x] **Junior Safari Reserve Bank Tab (`UI/KennelFrame.lua`)**:
   * Replaced intrusive auto-open behavior with an integrated **Junior Safari Reserve** tab mounted on Blizzard's `BankFrame`.
+  * Expanded vault capacity to **2,006 slots across 101 enclosures** — providing exactly 1 slot for every unique species in Azeroth under the **Highlander Law**.
   * Multi-template discovery (`PanelTabButtonTemplate`, `CharacterFrameTabButtonTemplate`, `UIPanelButtonTemplate`, and fallback) to support both legacy and modern `PortraitFrameTemplate` BankFrame architectures without Lua errors.
+  * Features Shift-click $\pm 10$ enclosure skipping, a scrollable Jump menu with direct numeric entry, and real-time Journal search and filtering.
   * Toggles the companion vault docked alongside `BankFrame` and cleans up automatically on `BANKFRAME_CLOSED`.
 * [x] **Druid Class Passive: Ecliptic Tides & 4-Role Ability Taxonomy**:
   * **Ecliptic Tides**: In-combat celestial pendulum tracking Solar vs. Lunar power up to companion Attunement Rank (1-5).

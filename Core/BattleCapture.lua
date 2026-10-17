@@ -31,6 +31,16 @@ function BattleCapture:CanCapture(enemy, isTrainerBattle)
         return false, "Humanoids and civilized targets cannot be captured!"
     end
 
+    -- Highlander Law: Exactly 1 active instance of each species per trainer
+    if DB and DB.HasSpecies and DB:HasSpecies(enemy.name or enemy.speciesId) then
+        return false, string.format("Highlander Law: You already own a %s! You may only bond with one of each species.", enemy.name or "this species")
+    end
+
+    -- Total Vault Capacity Limit (2,006 unique species)
+    if DB and DB.GetCollection and #DB:GetCollection() >= ((C and C.TOTAL_KENNEL_CAPACITY) or 2006) then
+        return false, "Safari Reserve Vault is completely full (2,006/2,006 species captured)!"
+    end
+
     if DB and not DB:IsTypeUnlocked(enemy.creatureType) then
         local permit = C.TYPE_RESEARCH_PERMITS and C.TYPE_RESEARCH_PERMITS[enemy.creatureType]
         local permitName = permit and permit.name or (enemy.creatureType .. " Research Permit")

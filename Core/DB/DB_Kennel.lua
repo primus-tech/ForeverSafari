@@ -50,20 +50,33 @@ function DB:SetBoxName(boxId, name)
     self:MarkDirty()
 end
 
-function DB:GetNextAvailableBox(preferredBox)
-    local maxBoxes = (C and C.MAX_KENNEL_BOXES) or 20
+function DB:GetBoxCapacity(boxId)
+    boxId = tonumber(boxId) or 1
+    local maxBoxes = (C and C.MAX_KENNEL_BOXES) or 101
     local maxPerBox = (C and C.SLOTS_PER_BOX) or 20
+    local totalCap = (C and C.TOTAL_KENNEL_CAPACITY) or 2006
+    if boxId >= maxBoxes then
+        local remainder = totalCap - ((maxBoxes - 1) * maxPerBox)
+        return (remainder > 0) and remainder or maxPerBox
+    end
+    return maxPerBox
+end
+
+function DB:GetNextAvailableBox(preferredBox)
+    local maxBoxes = (C and C.MAX_KENNEL_BOXES) or 101
 
     if preferredBox and preferredBox >= 1 and preferredBox <= maxBoxes then
         local count = #self:GetKennelMobs(preferredBox)
-        if count < maxPerBox then
+        local cap = self:GetBoxCapacity(preferredBox)
+        if count < cap then
             return preferredBox
         end
     end
 
     for b = 1, maxBoxes do
         local count = #self:GetKennelMobs(b)
-        if count < maxPerBox then
+        local cap = self:GetBoxCapacity(b)
+        if count < cap then
             return b
         end
     end

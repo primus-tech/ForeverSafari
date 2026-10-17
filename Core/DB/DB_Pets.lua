@@ -31,6 +31,23 @@ function DB:GetMobById(id)
     return nil
 end
 
+-- Highlander Law: Check if the player already owns an instance of this species
+function DB:HasSpecies(nameOrId)
+    if not nameOrId or not ForeverSafariDB or not ForeverSafariDB.collection then return false end
+    local query = string.lower(strtrim(tostring(nameOrId)))
+    for _, mob in ipairs(ForeverSafariDB.collection) do
+        if mob.speciesId and string.lower(tostring(mob.speciesId)) == query then
+            return true, mob
+        end
+        if mob.name and string.lower(strtrim(mob.name)) == query then
+            return true, mob
+        end
+        if mob.species and string.lower(strtrim(mob.species)) == query then
+            return true, mob
+        end
+    end
+end
+
 function DB:IsReservedRareName(name)
     if not name or not C.RESERVED_RARE_NAMES then return false end
     local lowerName = string.lower(strtrim(name))

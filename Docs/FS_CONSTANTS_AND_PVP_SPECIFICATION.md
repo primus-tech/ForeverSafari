@@ -36,10 +36,10 @@ C.VERSION = "0.3a"
 C.ADDON_COLOR = "ffd100"
 C.PREFIX = "|cffffd100[Forever Safari v0.3a]|r "
 
--- Storage Enclosure Capacity (400 Slots Total)
-C.MAX_KENNEL_BOXES = 20
+-- Storage Enclosure Capacity (2,006 Slots Total — 1 Slot per Unique Species across 101 Enclosures)
+C.MAX_KENNEL_BOXES = 101
 C.SLOTS_PER_BOX = 20
-C.TOTAL_KENNEL_CAPACITY = C.MAX_KENNEL_BOXES * C.SLOTS_PER_BOX -- 400
+C.TOTAL_KENNEL_CAPACITY = 2006
 
 -- Biological Sexing & Construct Designation
 C.GENDERLESS_TYPES = {
@@ -73,9 +73,10 @@ C.CREATURE_TYPES = {
 }
 ```
 
-### Kennel Vault & Enclosure Architecture
-* **Total Capacity**: 400 specimens partitioned across 20 distinct Enclosures (20 slots per enclosure).
-* **Navigation**: Box Switcher with Prev/Next buttons and a 2-column Jump menu showing occupancy counts per enclosure.
+### Kennel Vault & Enclosure Architecture (Highlander Law)
+* **Total Capacity**: 2,006 specimens partitioned across 101 distinct Enclosures (Boxes 1–100 have 20 slots each; Box 101 holds the final 6 slots to equal the exact 2,006 unique species in Azeroth).
+* **Navigation**: Box Switcher with Prev/Next buttons (Click $\pm 1$, Shift-Click $\pm 10$ enclosure skipping) and a scrollable Jump menu with direct numeric entry (1–101) showing occupancy counts per enclosure.
+* **Highlander Unique Ownership**: Players may bond with only 1 active instance of each creature species. Attempting to snare an already owned species is prevented by the Highlander Law.
 * **Custom Naming**: Players can rename any enclosure via a native Blizzard popup dialog (`FOREVER_SAFARI_RENAME_ENCLOSURE`).
 * **Journal Design Language**: Search editbox, type/family dropdown, biological sex filter (`♂`, `♀`, `⚙`), and rarity filter (`👑 Apex`).
 * **Auto-Overflow**: Catches beyond the 4-member squad consume a transport crate and automatically route to `DB:GetNextAvailableBox()`.
