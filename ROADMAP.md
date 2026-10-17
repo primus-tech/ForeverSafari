@@ -432,8 +432,35 @@
 
 ---
 
-## 📍 Phase 25: Future Expansions & Social Leagues (Pending ⏳)
-* [ ] **3D Field Guide Badge Case**: 3D interactive showcase tab in the Safari Journal displaying earned regional outpost badges and pins (`Docs/SAFARI_OUTPOST_SYSTEM.md`).
+## 📍 Phase 25: Research Licenses, Progressive Directives & Badge Cabinet (Completed ✅)
+* [x] **Dungeon Boss Specimen Quest Drops (`Core/QuestHooks.lua`, `Data/ItemDB.lua`)**:
+  * Dungeon bosses drop authentic virtual quest items directly into `/fsbag` instead of instant auto-unlocking creature families:
+    * ⚙️ **Grinded Gears** (`quest_grinded_gears`) from Crowd Pummeler 9-60 in Gnomeregan (Mechanical).
+    * 🌋 **Puddle of Mud** (`quest_puddle_mud`) from Lord Incendius in Blackrock Depths (Elemental).
+    * 💀 **Cold Bones** (`quest_cold_bones`) from Baron Rivendare in Stratholme (Undead).
+    * 🐉 **Poisonous Scales** (`quest_poisonous_scales`) from Shade of Eranikus in Sunken Temple (Dragonkin).
+  * Slaying these dungeon bosses triggers fanfare celebration toasts, sound alerts, and raid team comms.
+* [x] **Town Mailbox Specimen Exchange & License Certification (`UI/SafariMailFrame.lua`)**:
+  * Implemented an interactive turn-in exchange on the town mailbox `[Safari]` tab: **`[ 📦 DISPATCH SPECIMEN & CLAIM LICENSE ]`**.
+  * Players transport the specimen to any physical town mailbox, consume the virtual item from `/fsbag`, and dispatch it to Hemet Nesingwary.
+  * Hemet returns an official certified Research Permit, unlocks stalking/capture for that creature family (`DB:UnlockType`), and grants **50 Safari Tokens** plus field supplies.
+  * Added `DB:ClaimQuestReward` in `Core/Database.lua` to record claims and manage reward payouts.
+* [x] **Progressive Dispatch Gating (`Data/BountyDB.lua`)**:
+  * Implemented `BountyDB:IsDispatchUnlocked(id)` and `BountyDB:GetUnlockedDispatches()`.
+  * New recruits are presented with only **Dispatch #1** (*First Steps*) and **Dispatch #2** (*Outpost Reconnaissance*).
+  * Subsequent directives (#3 *First Attunement*, #4 *Dungeon Scouting*, #5 *Regional Mastery*, and creature license directives) unlock sequentially upon claiming prior directives or obtaining the required specimen.
+  * Synchronized across both the town mailbox `[Safari]` tab and the Journal's **`[DIRECTIVES]`** view (`JournalBountiesView.lua`).
+* [x] **Journal Badges & Credentials Cabinet (`UI/Views/JournalBadgesView.lua`, `UI/JournalFrame.lua`)**:
+  * Added Tab 5 **`[BADGES]`** ("Badges & Licenses") to the Safari Journal header.
+  * **Top Shelf (Research Permits)**: 4 large ornate credential plaques for *Clockwork Engineering*, *Primal Attunement*, *Necrotic Containment*, and *Draconic Sanctuary* with locked darkened brass vs. certified gold styling.
+  * **Velvet Trophy Grid (Regional Badges)**: 4-column scrollable showcase displaying all **54 Regional Outpost Badges** from `Data/OutpostDB.lua`. Unearned badges render dark metallic silhouettes with zone and leader challenge details; earned badges display full-color icons, victory timestamps, and the leader's authentic defeat quote.
+  * **Progress Tracker**: Header counter tracks total badges collected (e.g. `Badges Collected: 12 / 54 (22%)`).
+  * Registered in `ForeverSafari.toc` load sequence.
+
+---
+
+## 📍 Phase 26: Future Expansions & Social Leagues (Pending ⏳)
 * [ ] **PvP Safari Tournaments & Guild Ladders**: Cross-faction companion duel tournaments, bracket scheduling, and guild ladders.
 * [ ] **Safari Attunement Master Quests**: Epic class- and race-specific questlines to earn Master attunement and legendary expedition traps.
 * [ ] **World Boss Safari Raids**: Instanced raid encounter mechanics for legendary apex creatures.
+

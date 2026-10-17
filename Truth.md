@@ -89,6 +89,28 @@ Breeding availability is tiered to provide early access while preserving sacred 
 * **Boss AoE Cleave:**
   * Boss-tier AoE cleaves strike the active primary target for full damage and hit all conscious reserve party companions for 50% collateral damage, evaluated against each individual pet's defense and resistances.
 
+---
 
+## 9. Research Licenses, Dungeon Boss Specimen Drops & Mailbox Dispatch
+* **Authentic RPG Quest Loop (No Magic Auto-Unlocks):**
+  * Slaying dungeon bosses (Crowd Pummeler 9-60, Lord Incendius, Baron Rivendare, Shade of Eranikus) does **not** silently auto-unlock creature categories in the background.
+  * Instead, the boss drops an authentic physical specimen directly into the player's virtual Safari Bag (`/fsbag`):
+    * ⚙️ **Grinded Gears** (`quest_grinded_gears`) $\rightarrow$ Mechanical
+    * 🌋 **Puddle of Mud** (`quest_puddle_mud`) $\rightarrow$ Elemental
+    * 💀 **Cold Bones** (`quest_cold_bones`) $\rightarrow$ Undead
+    * 🐉 **Poisonous Scales** (`quest_poisonous_scales`) $\rightarrow$ Dragonkin
+* **Town Mailbox Delivery to Hemet Nesingwary:**
+  * To certify a Research Permit, players must visit any physical town mailbox in an inn or capital city, open the `[Safari]` tab, and click **`[ 📦 DISPATCH SPECIMEN & CLAIM LICENSE ]`**.
+  * The specimen is safely dispatched to Hemet Nesingwary, who returns an official certified license, permanently unlocks stalking/capture for that creature family, and awards **50 Safari Tokens** plus field supplies.
 
+---
 
+## 10. Progressive Dispatch Flow & Badges Showcase
+* **Sequential Mailbox Directives:**
+  * To avoid overwhelming recruits on Day 1, only **Dispatch #1** (*First Steps*) and **Dispatch #2** (*Outpost Reconnaissance*) appear initially in the town mailbox and Journal.
+  * As players complete and claim each directive, the subsequent directive reveals itself sequentially (#3 $\rightarrow$ #4 $\rightarrow$ #5 $\rightarrow$ Permit Directives).
+* **The 3D Field Guide Badges Cabinet (Tab 5):**
+  * Tab 5 (`[BADGES]`) provides a permanent trophy showcase in the Safari Journal:
+    * **Top Shelf**: 4 large ornate Research License plaques (locked darkened brass vs. certified gold).
+    * **Velvet Grid**: Scrollable showcase of all 54 Regional Outpost Badges with unearned mystery silhouettes and earned victory timestamps/defeat quotes.
+    * **Live Tally**: Real-time progress tracking (`Badges Collected: X / 54 (Y%)`).

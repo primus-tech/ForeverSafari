@@ -35,7 +35,7 @@
 > *"Greetings, adventurer! If you are reading this dispatch, the wilderness has called you. For too long, the hunters and scholars of Azeroth have merely felled beasts for pelt and meat. The Nesingwary Junior Safari League was founded upon a grander pursuit: to observe, study, attune, and stand shoulder-to-shoulder with the finest creatures this world has ever known. Tread with respect, keep your snares oiled, and make the League proud!"*  
 > — **Hemet Nesingwary Sr., Expedition Leader**
 
-### 📮 The Town Mailbox Dispatch
+### 📮 The Town Mailbox Dispatch & Progressive Directives
 Upon entering Azeroth for the first time with **Forever Safari** installed, an official parchment dispatch arrives from Hemet Nesingwary. To collect your induction supplies, head to **any physical town mailbox** and click the custom **[Safari]** tab docked to Blizzard's mail interface:
 
 1. **[Caged Starter Companion]** — An authentic wild companion native to your race's homeland, already bonded at **Rank III: Trusting**.
@@ -44,6 +44,20 @@ Upon entering Azeroth for the first time with **Forever Safari** installed, an o
 4. **[Safari Healing Salves x 5]** — Soothing herbal salves to restore wounded companions to full health between battles.
 5. **[Revival Crystal x 1]** — A charged crystal shard capable of reviving a fainted companion in emergencies.
 6. **[Virtual Safari Bag]** — A dedicated 20-slot zero-weight container storing all your safari gear without consuming regular inventory bag slots.
+
+#### 📜 Sequential Directive Progression
+To keep your journal clean and focused, Hemet issues research dispatches sequentially:
+* **Initial Directives**: Only **Dispatch #1** (*First Steps*) and **Dispatch #2** (*Outpost Reconnaissance*) appear when you first open your mailbox and Journal.
+* **Progressive Unlocks**: As you complete and claim rewards for active dispatches, subsequent directives reveal themselves (#3 *First Attunement*, #4 *Dungeon Scouting*, #5 *Regional Mastery*).
+
+#### 📦 Dungeon Specimen Dispatch & License Certification
+Specialized creature families (*Mechanical, Elemental, Undead, Dragonkin*) cannot be captured without an official **League Research Permit**.
+* When you defeat the designated dungeon boss, an authentic physical specimen drops into your `/fsbag`:
+  * ⚙️ **Grinded Gears** (Crowd Pummeler 9-60 in Gnomeregan) $\rightarrow$ Clockwork Engineering Permit
+  * 🌋 **Puddle of Mud** (Lord Incendius in Blackrock Depths) $\rightarrow$ Primal Attunement Permit
+  * 💀 **Cold Bones** (Baron Rivendare in Stratholme) $\rightarrow$ Necrotic Containment Permit
+  * 🐉 **Poisonous Scales** (Shade of Eranikus in Sunken Temple) $\rightarrow$ Draconic Sanctuary Permit
+* Bring the specimen to any town mailbox, select the directive, and click **`[ 📦 DISPATCH SPECIMEN & CLAIM LICENSE ]`**. Hemet verifies the sample, grants your official Research License, unlocks capture authorization for that family, and delivers **50 Safari Tokens** plus field gear!
 
 ### 🎖️ The Veteran Safari Research Grant
 Existing heroes of Azeroth do not start empty-handed! Installing Forever Safari on an established character automatically audits all lifetime quests completed across Azeroth (`C_QuestLog.GetAllCompletedQuestIDs`). The League calculates your career service and grants an immediate lump-sum **Veteran Research Grant** of Safari Tokens delivered directly inside your welcome mailbox parcel!
@@ -90,27 +104,27 @@ Unlike common wild beasts caught in the field that start untamed, your racial st
 
 ## 4. The 3D Field Guide Journal (`/fs`) & Bestiary Masking
 
-Type `/fs` to open your interactive 3D Field Guide. The journal is organized into 4 specialized views:
+Type `/fs` to open your interactive 3D Field Guide. The journal is organized into 5 specialized views:
 
 ```
-+-----------------------------------------------------------------------+
-|  [ROSTER]  |  [MENAGERIE]  |  [BESTIARY]  |  [BOUNTIES]     [BAG] [X] |
-+-----------------------------------------------------------------------+
-|                                                                       |
-|   +-----------------------+   +-----------------------------------+   |
-|   |                       |   | Name: [ Mangy Wolf          ] [✏️]|   |
-|   |                       |   | Type: [Beast]   Rank: III (Trust) |   |
-|   |     3D PEDESTAL       |   | HP:  32/32      ATK: 24   DEF: 20 |   |
-|   |   (Rotate & Zoom)     |   | SPD: 24         Attunement: 600   |   |
-|   |                       |   +-----------------------------------+   |
-|   | [⚔Atk][🦁Roar][🏆Win] |   | Active Moves:                     |   |
-|   +-----------------------+   | [1: Bite]        [2: Furious Howl]|   |
-|                               | [3: Dash]        [4: (Empty)]     |   |
-|   Diet Feeding Tray:          +-----------------------------------+   |
-|   [🥩 Meat: 5] [🐟 Fish: 0]   | [ 📜 Open Training Grimoire ]     |   |
-+-----------------------------------------------------------------------+
-| Active Squad: [ 1: Wolf ] [ 2: Bear ] [ 3: (Empty) ] [ 4: (Empty) ]  |
-+-----------------------------------------------------------------------+
++----------------------------------------------------------------------------------+
+|  [ROSTER]  |  [MENAGERIE]  |  [BESTIARY]  |  [BOUNTIES]  |  [BADGES]   [BAG] [X] |
++----------------------------------------------------------------------------------+
+|                                                                                  |
+|   +-----------------------+   +----------------------------------------------+   |
+|   |                       |   | Name: [ Mangy Wolf                     ] [✏️]|   |
+|   |                       |   | Type: [Beast]              Rank: III (Trust) |   |
+|   |     3D PEDESTAL       |   | HP:   32/32                ATK: 24   DEF: 20 |   |
+|   |   (Rotate & Zoom)     |   | SPD:  24                   Attunement: 600   |   |
+|   |                       |   +----------------------------------------------+   |
+|   | [⚔Atk][🦁Roar][🏆Win] |   | Active Moves:                                |   |
+|   +-----------------------+   | [1: Bite]                   [2: Furious Howl]|   |
+|                               | [3: Dash]                   [4: (Empty)]     |   |
+|   Diet Feeding Tray:          +----------------------------------------------+   |
+|   [🥩 Meat: 5] [🐟 Fish: 0]   | [ 📜 Open Training Grimoire ]                |   |
++----------------------------------------------------------------------------------+
+| Active Squad: [ 1: Wolf ] [ 2: Bear ] [ 3: (Empty) ] [ 4: (Empty) ]             |
++----------------------------------------------------------------------------------+
 ```
 
 ### View 1: 3D Squad Spotlight (`ROSTER`)
@@ -139,7 +153,23 @@ The authentic 2,006-species field Pokédex tracks every wild creature entity acr
    * Unlocks full ownership dossiers, breeding lineage records, and mastery tracking.
 
 ### View 4: Field Directives & Research Quest Log (`BOUNTIES`)
-* Track active Nesingwary research directives, target quotas, and kill/capture bounties directly while exploring out in the field.
+* **Progressive Directives**: Track active Nesingwary research directives, target quotas, and kill/capture bounties directly while exploring out in the field.
+* **Gated Delivery**: Shows only your currently unlocked dispatches (#1 and #2 at start, sequentially revealing #3, #4, #5, and permit directives as prior directives are claimed).
+* **Specimen Status**: Real-time progress bars highlight whether a required dungeon specimen is still awaiting recovery in the field, ready in `/fsbag` to be dispatched at a mailbox, or certified as an active license.
+
+### View 5: Badges & Credentials Showcase (`BADGES`)
+* **The Top Shelf (Research Licenses)**:
+  * ⚙️ **Clockwork Engineering Permit**: Mechanical stalking and snaring certification.
+  * 🌋 **Primal Attunement Permit**: Elemental stalking and snaring certification.
+  * 💀 **Necrotic Containment Permit**: Undead stalking and snaring certification.
+  * 🐉 **Draconic Sanctuary Permit**: Dragonkin stalking and snaring certification.
+  * *Locked*: Darkened brass casing with an embossed padlock; tooltip details required dungeon boss and specimen item.
+  * *Certified*: Polished golden filigree border, radiant family icon, green checkmark, and certification status.
+* **The Velvet Trophy Cabinet (Regional Outpost Badges)**:
+  * Scrollable 4-column cabinet displaying all **54 Regional Outpost Badges** across Azeroth.
+  * *Unearned Badges*: Dark metallic silhouettes. Hovering reveals the outpost zone and challenger name (e.g., `Challenger: Outpost Leader Granis Swiftaxe`).
+  * *Earned Badges*: Vibrant full-color badge, gold foil border, date of victory, and the leader's authentic defeat quote!
+* **League Completion Tracker**: Header displays live total badges collected with completion percentage (e.g. `Badges Collected: 12 / 54 (22%)`).
 
 ---
 
