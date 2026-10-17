@@ -601,7 +601,13 @@ function DB:LoadKennelFromChunks()
                     if hydrated then
                         hydrated.id = hydrated.id or (#restoredCollection + 1)
                         local globalSlot = C.GetGlobalIndexFromChunkAndSlot and C.GetGlobalIndexFromChunkAndSlot(c, slot) or (c < 20 and ((c - 1) * 100 + slot) or (1900 + slot))
-                        local boxId, boxSlot = C.GetBoxAndSlotForGlobalIndex and C.GetBoxAndSlotForGlobalIndex(globalSlot) or (math.floor((globalSlot - 1) / 20) + 1, ((globalSlot - 1) % 20) + 1)
+                        local boxId, boxSlot
+                        if C.GetBoxAndSlotForGlobalIndex then
+                            boxId, boxSlot = C.GetBoxAndSlotForGlobalIndex(globalSlot)
+                        else
+                            boxId = math.floor((globalSlot - 1) / 20) + 1
+                            boxSlot = ((globalSlot - 1) % 20) + 1
+                        end
                         hydrated.boxId = hydrated.boxId or boxId
                         hydrated.boxSlot = hydrated.boxSlot or boxSlot
                         table.insert(restoredCollection, hydrated)
