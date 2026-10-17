@@ -25,9 +25,9 @@ C.IsSecret = isSecret
 
 -- Addon Branding
 C.ADDON_NAME = "Forever Safari"
-C.VERSION = "1.0.0"
+C.VERSION = "1.0.1"
 C.ADDON_COLOR = "ffd100"
-C.PREFIX = "|cffffd100[Forever Safari v1.0.0]|r "
+C.PREFIX = "|cffffd100[Forever Safari v1.0.1]|r "
 
 -- World Combat & Battle Suspension Configuration
 C.BATTLE_COMBAT_PAUSE_TIMEOUT = 120.0 -- Maximum pause window for multi-mob pulls & corpse runs (120s)
