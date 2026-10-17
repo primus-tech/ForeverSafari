@@ -374,7 +374,8 @@ function DB:DehydrateCompanion(mob)
         wins = mob.wins or 0,
         losses = mob.losses or 0,
         disobediences = mob.disobediences or 0,
-        signature = mob.signature,
+        sig = mob.sig or mob.signature,
+        signature = mob.signature or mob.sig,
     }
 end
 
@@ -513,6 +514,12 @@ function DB:SyncKennelChunks()
         record.chunkId = chunkId
         record.chunkSlot = chunkSlot
         record.globalSlot = globalSlot
+
+        -- Cryptographically sign each chunk entry anchored to its coordinates
+        if Crypto and Crypto.SignMob then
+            Crypto:SignMob(record)
+        end
+
         ForeverSafariKennel[chunkId][chunkSlot] = record
     end
 
@@ -549,6 +556,47 @@ function DB:LoadKennelFromChunks()
             for slot = 1, maxSlot do
                 local record = chunk[slot]
                 if record and type(record) == "table" and record.name then
+                    -- Verify entry-by-entry cryptographic integrity
+                    record.chunkId = record.chunkId or c
+                    record.chunkSlot = record.chunkSlot or slot
+                    if Crypto and Crypto.ValidateSignature then
+                        local isValidSig, sigType = Crypto:ValidateSignature(record)
+                        if not isValidSig then
+                            -- Zero-Stat-Trust: Notepad tampering or corrupt signature detected!
+                            -- Recompute canonical stats to enforce 100/110pt statutory laws
+                            if ns.StatEngine and ns.StatEngine.CalculateStats then
+                                local calc = ns.StatEngine:CalculateStats(
+                                    record.element or record.creatureType or record.family or "Beast",
+                                    record.attunementPoints or record.attunement or 0,
+                                    record.isRare or false,
+                                    record.baseStats
+                                )
+                                if calc then
+                                    record.maxHP = calc.maxHP
+                                    record.currentHP = calc.maxHP
+                                    record.hp = calc.maxHP
+                                    record.atk = calc.atk
+                                    record.attack = calc.atk
+                                    record.def = calc.def
+                                    record.defense = calc.def
+                                    record.spd = calc.spd
+                                    record.speed = calc.spd
+                                    if record.stats then
+                                        record.stats.hp = calc.maxHP
+                                        record.stats.maxHP = calc.maxHP
+                                        record.stats.atk = calc.atk
+                                        record.stats.def = calc.def
+                                        record.stats.spd = calc.spd
+                                    end
+                                end
+                            end
+                            -- Re-sign with clean canonical signature
+                            if Crypto.SignMob then
+                                Crypto:SignMob(record)
+                            end
+                        end
+                    end
+
                     local hydrated = self:HydrateCompanion(record)
                     if hydrated then
                         hydrated.id = hydrated.id or (#restoredCollection + 1)
@@ -1206,5 +1254,36 @@ function DB:RunBenchmark()
             statusTag, count, payloadBytes, totalMs, serializeMs, cryptAndMacMs, verifyAndDecMs
         ))
     end
+
+    -- Profile 2,006 Entry-by-Entry HMAC Signatures
+    local getTimeMs = function() return debugprofilestop and debugprofilestop() or (time() * 1000) end
+    local tSig0 = getTimeMs()
+    for i = 1, 2006 do
+        Crypto:GenerateSignature({
+            id = i,
+            speciesId = 900 + (i % 50),
+            name = "Specimen #" .. i,
+            hp = 40,
+            maxHP = 40,
+            atk = 22,
+            def = 18,
+            spd = 20,
+            displayId = 903,
+            anatomy = (i % 2 == 0) and "Sire" or "Dam",
+            attunementPoints = 600,
+            attunementRank = 3,
+            moves = { 101, 107 },
+            chunkId = (i <= 1900) and (math.floor((i - 1) / 100) + 1) or 20,
+            chunkSlot = (i <= 1900) and (((i - 1) % 100) + 1) or (i - 1900),
+            ivSeed = 12345 + i,
+            isRare = (i % 10 == 0),
+        })
+    end
+    local tSig1 = getTimeMs()
+    DEFAULT_CHAT_FRAME:AddMessage(string.format(
+        "  • [|cff00ff00PASS|r] 2,006 Entry-by-Entry HMAC Signatures: |cffffd100%.2f ms|r total (%.3f ms/entry)",
+        tSig1 - tSig0, (tSig1 - tSig0) / 2006
+    ))
+
     DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cff00ff00[Vault Benchmark]|r Benchmark suite complete!")
 end

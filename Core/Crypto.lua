@@ -441,7 +441,7 @@ function Crypto:Hash(str)
     return self:HMAC_SHA256(SECRET_SALT, tostring(str or "")):sub(1, 16)
 end
 
-function Crypto:GenerateSignature(mob)
+function Crypto:GenerateLegacySignature(mob)
     if not mob then return "" end
     local str = string.format("%s:%s:%d:%d:%d:%d:%d:%s:%s",
         tostring(mob.id or 0),
@@ -457,21 +457,75 @@ function Crypto:GenerateSignature(mob)
     return self:HMAC_SHA256(SECRET_SALT, str):sub(1, 16)
 end
 
+function Crypto:GenerateSignature(mob)
+    if not mob then return "" end
+    local movesCSV = ""
+    if mob.moves and type(mob.moves) == "table" then
+        movesCSV = table.concat(mob.moves, ",")
+    elseif mob.abilities and type(mob.abilities) == "table" then
+        movesCSV = table.concat(mob.abilities, ",")
+    end
+
+    local str = string.format("%s:%s:%s:%s:%d:%d:%d:%d:%s:%d:%d:%d:%d:%d:%d",
+        tostring(mob.id or 0),
+        tostring(mob.speciesId or mob.displayId or 0),
+        tostring(mob.name or ""),
+        tostring(mob.anatomy or mob.gender or "Sire"),
+        tonumber(mob.maxHP or mob.hp or 40),
+        tonumber(mob.atk or mob.attack or 22),
+        tonumber(mob.def or mob.defense or 18),
+        tonumber(mob.spd or mob.speed or 20),
+        movesCSV,
+        tonumber(mob.attunementPoints or mob.attunement or 0),
+        tonumber(mob.attunementRank or 1),
+        tonumber(mob.chunkId or 0),
+        tonumber(mob.chunkSlot or 0),
+        tonumber(mob.ivSeed or 0),
+        mob.isRare and 1 or 0
+    )
+    return self:HMAC_SHA256(SECRET_SALT, str):sub(1, 16)
+end
+
 function Crypto:SignMob(mob)
     if not mob then return end
-    local isGenderless = (mob.creatureType and C.GENDERLESS_TYPES and C.GENDERLESS_TYPES[mob.creatureType]) or (mob.anatomy == "Genderless")
+    local C = ns.Constants
+    local isGenderless = (mob.creatureType and C and C.GENDERLESS_TYPES and C.GENDERLESS_TYPES[mob.creatureType]) or (mob.anatomy == "Genderless")
     if isGenderless then
         mob.anatomy = "Genderless"
     elseif not mob.anatomy or (mob.anatomy ~= "Sire" and mob.anatomy ~= "Dam") then
         mob.anatomy = (math.random(1, 2) == 1 and "Sire" or "Dam")
     end
-    mob.sig = self:GenerateSignature(mob)
+    mob.gender = mob.anatomy
+    local sig = self:GenerateSignature(mob)
+    mob.sig = sig
+    mob.signature = sig
     return mob
 end
 
 function Crypto:ValidateSignature(mob)
-    if not mob or not mob.sig then return false end
-    return mob.sig == self:GenerateSignature(mob)
+    if not mob then return false end
+    local testSig = mob.sig or mob.signature
+    if not testSig or testSig == "" then return false end
+
+    -- 1. Test against canonical coordinate-bound exhaustive signature
+    if testSig == self:GenerateSignature(mob) then
+        return true, "canonical"
+    end
+
+    -- 2. Test without chunk coordinates (for active squad companions in transit)
+    local unanchored = CopyTable(mob)
+    unanchored.chunkId = 0
+    unanchored.chunkSlot = 0
+    if testSig == self:GenerateSignature(unanchored) then
+        return true, "unanchored"
+    end
+
+    -- 3. Fallback test against legacy 9-field signature
+    if testSig == self:GenerateLegacySignature(mob) then
+        return true, "legacy"
+    end
+
+    return false, "mismatch"
 end
 
 function Crypto:ValidateAndRepairSignatures(collection)
