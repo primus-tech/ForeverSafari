@@ -41,6 +41,20 @@ eventFrame:SetScript("OnEvent", function(self, event, arg1)
             DB:FlushVault() -- Pre-emptively serialize vault before loading screen, keeping in-memory state alive
         end
         return
+    elseif event == "PLAYER_LOGIN" then
+        if MB and MB.Initialize then
+            MB:Initialize()
+        end
+        if MB and MB.UpdatePosition then
+            MB:UpdatePosition()
+        end
+        C_Timer.After(0.5, function()
+            if MB and MB.UpdatePosition then MB:UpdatePosition() end
+        end)
+        C_Timer.After(2.0, function()
+            if MB and MB.UpdatePosition then MB:UpdatePosition() end
+        end)
+        return
     end
 
     if event == "ADDON_LOADED" and arg1 == "ForeverSafari" then
@@ -143,6 +157,14 @@ local function HandleSlash(msg)
         if ForeverSafari.JournalFrame then
             ForeverSafari.JournalFrame:ShowTab("BOUNTIES")
         end
+    elseif cmd == "minimap" or cmd == "icon" then
+        if ForeverSafari.MinimapButton then
+            if arg == "reset" then
+                ForeverSafari.MinimapButton:ResetPosition()
+            else
+                ForeverSafari.MinimapButton:Toggle()
+            end
+        end
     elseif cmd == "tokens" then
         DEFAULT_CHAT_FRAME:AddMessage(string.format("%sYou currently have |cffffd100%d Safari Tokens|r.", C.PREFIX, DB:GetTokens()))
     elseif cmd == "syncquests" then
@@ -179,6 +201,7 @@ local function HandleSlash(msg)
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fs syncquests|r - Retroactively claim tokens for completed quests")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fs abandon|r - Release active companion back into the wild")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fs reset|r - Reset all progress back to a fresh recruit")
+        DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fs minimap [reset]|r - Toggle or reset minimap icon to default position")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fs benchmark|r - Run persistence vault crypto performance tests")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fs errors|r - View session Lua bug tracker modal (/fserrors)")
         DEFAULT_CHAT_FRAME:AddMessage("  |cffffd100/fs taint|r - Inspect combat taint & action block events (/fstaint)")
@@ -226,5 +249,17 @@ SlashCmdList["FSBATTLE"] = function() ForeverSafari.BattleEngine:StartWildBattle
 SlashCmdList["FSDUEL"] = function(msg) ForeverSafari.Comms:ChallengeTarget(msg) end
 SlashCmdList["FSRESET"] = function() DB:ResetDB() end
 SlashCmdList["FSWAR"] = function(msg) if ForeverSafari.WarBridge then ForeverSafari.WarBridge:HandleSlash(msg) end end
+SLASH_FSMINIMAP1 = "/fsminimap"
+SLASH_FSICON1 = "/fsicon"
+SlashCmdList["FSMINIMAP"] = function(msg)
+    if ForeverSafari.MinimapButton then
+        if msg == "reset" then
+            ForeverSafari.MinimapButton:ResetPosition()
+        else
+            ForeverSafari.MinimapButton:Toggle()
+        end
+    end
+end
+SlashCmdList["FSICON"] = SlashCmdList["FSMINIMAP"]
 
 -- Innkeeper healing is handled on-demand via Junior Safari League gossip button (SafariGossip.lua)
