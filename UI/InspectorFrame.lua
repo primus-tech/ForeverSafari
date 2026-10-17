@@ -224,7 +224,7 @@ function Inspector:InspectCompanion(companionData)
 
     local rankData = ForeverSafari.StatEngine:GetAttunementRank(companionData.attunement or 0)
 
-    local anatBadge = companionData.anatomy == "Dam" and "|cffff99cc♀ Dam|r" or "|cff66ccff♂ Sire|r"
+    local anatBadge = (companionData.anatomy == "Dam" and "|cffff99cc♀ Dam|r") or (companionData.anatomy == "Genderless" and "|cffa0a0a0⚙ Genderless|r") or "|cff66ccff♂ Sire|r"
     if isRare then
         frame.rareBadge:Show()
         frame.nameText:SetText(string.format("|cffffd100★ %s ★|r", companionData.nickname or companionData.name or "Rare Spawn"))

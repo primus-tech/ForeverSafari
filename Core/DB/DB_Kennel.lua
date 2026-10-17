@@ -34,6 +34,99 @@ function DB:GetKennelMobs(boxId)
     return kennelMobs
 end
 
+function DB:GetBoxName(boxId)
+    boxId = tonumber(boxId) or 1
+    if ForeverSafariDB and ForeverSafariDB.boxNames and ForeverSafariDB.boxNames[boxId] then
+        return ForeverSafariDB.boxNames[boxId]
+    end
+    return string.format("Enclosure %d", boxId)
+end
+
+function DB:SetBoxName(boxId, name)
+    boxId = tonumber(boxId) or 1
+    if not ForeverSafariDB then return end
+    ForeverSafariDB.boxNames = ForeverSafariDB.boxNames or {}
+    ForeverSafariDB.boxNames[boxId] = (name and name ~= "") and name or nil
+    self:MarkDirty()
+end
+
+function DB:GetNextAvailableBox(preferredBox)
+    local maxBoxes = (C and C.MAX_KENNEL_BOXES) or 20
+    local maxPerBox = (C and C.SLOTS_PER_BOX) or 20
+
+    if preferredBox and preferredBox >= 1 and preferredBox <= maxBoxes then
+        local count = #self:GetKennelMobs(preferredBox)
+        if count < maxPerBox then
+            return preferredBox
+        end
+    end
+
+    for b = 1, maxBoxes do
+        local count = #self:GetKennelMobs(b)
+        if count < maxPerBox then
+            return b
+        end
+    end
+
+    return 1
+end
+
+function DB:GetFilteredKennelMobs(boxId, searchQuery, familyFilter, sexFilter, rarityFilter)
+    local mobs = self:GetKennelMobs(boxId)
+    local hasQuery = searchQuery and searchQuery ~= ""
+    local hasFam = familyFilter and familyFilter ~= "ALL"
+    local hasSex = sexFilter and sexFilter ~= "ALL"
+    local hasRare = rarityFilter and rarityFilter ~= "ALL"
+
+    if not hasQuery and not hasFam and not hasSex and not hasRare then
+        return mobs
+    end
+
+    local filtered = {}
+    local q = hasQuery and string.lower(strtrim(searchQuery)) or ""
+
+    for _, mob in ipairs(mobs) do
+        local pass = true
+
+        if q ~= "" then
+            local nameMatch = mob.name and string.find(string.lower(mob.name), q, 1, true)
+            local nickMatch = mob.nickname and string.find(string.lower(mob.nickname), q, 1, true)
+            if not nameMatch and not nickMatch then
+                pass = false
+            end
+        end
+
+        if pass and hasFam then
+            local matchType = (mob.creatureType == familyFilter)
+            local matchFam = (mob.family == familyFilter)
+            if not matchType and not matchFam then
+                pass = false
+            end
+        end
+
+        if pass and hasSex then
+            local anat = mob.anatomy or "Sire"
+            if anat ~= sexFilter then
+                pass = false
+            end
+        end
+
+        if pass and hasRare then
+            if rarityFilter == "RARE" and not mob.isRare and not mob.isElite then
+                pass = false
+            elseif rarityFilter == "COMMON" and (mob.isRare or mob.isElite) then
+                pass = false
+            end
+        end
+
+        if pass then
+            table.insert(filtered, mob)
+        end
+    end
+
+    return filtered
+end
+
 DB.GetKennelBox = DB.GetKennelMobs
 
 function DB:MoveToSquad(mobId, targetSlot)

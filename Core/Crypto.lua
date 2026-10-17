@@ -459,7 +459,10 @@ end
 
 function Crypto:SignMob(mob)
     if not mob then return end
-    if not mob.anatomy or (mob.anatomy ~= "Sire" and mob.anatomy ~= "Dam") then
+    local isGenderless = (mob.creatureType and C.GENDERLESS_TYPES and C.GENDERLESS_TYPES[mob.creatureType]) or (mob.anatomy == "Genderless")
+    if isGenderless then
+        mob.anatomy = "Genderless"
+    elseif not mob.anatomy or (mob.anatomy ~= "Sire" and mob.anatomy ~= "Dam") then
         mob.anatomy = (math.random(1, 2) == 1 and "Sire" or "Dam")
     end
     mob.sig = self:GenerateSignature(mob)
@@ -475,7 +478,10 @@ function Crypto:ValidateAndRepairSignatures(collection)
     if not collection then return end
 
     for _, mob in ipairs(collection) do
-        if not mob.anatomy or (mob.anatomy ~= "Sire" and mob.anatomy ~= "Dam") then
+        local isGenderless = (mob.creatureType and C.GENDERLESS_TYPES and C.GENDERLESS_TYPES[mob.creatureType]) or (mob.anatomy == "Genderless")
+        if isGenderless then
+            mob.anatomy = "Genderless"
+        elseif not mob.anatomy or (mob.anatomy ~= "Sire" and mob.anatomy ~= "Dam") then
             local hashVal = self:Hash(tostring(mob.id or math.random(1, 1000)))
             local lastChar = string.byte(hashVal, #hashVal) or 0
             mob.anatomy = (lastChar % 2 == 0) and "Sire" or "Dam"

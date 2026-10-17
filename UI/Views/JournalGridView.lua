@@ -117,6 +117,7 @@ function Journal:BuildGridView(parent)
                     local mob = DB:GetMobById(card.mobId)
                     if mob and ChatEdit_InsertLink then
                         local rankRoman = (mob.attunementRank and C.ATTUNEMENT_RANKS[mob.attunementRank] and C.ATTUNEMENT_RANKS[mob.attunementRank].roman) or "I"
+                        local dna = mob.dna or (mob.signature and mob.signature.dna) or ""
                         local link = string.format("|cffffd100|Hsafari:%s|h[Safari: %s Rank %s (3D)]|h|r",
                             dna, mob.nickname ~= "" and mob.nickname or mob.name, rankRoman)
                         if not ChatEdit_InsertLink(link) then
@@ -245,8 +246,9 @@ function Journal:UpdateGridView()
             local rankRoman = (mob.attunementRank and C.ATTUNEMENT_RANKS[mob.attunementRank] and C.ATTUNEMENT_RANKS[mob.attunementRank].roman) or "I"
             local rankColor = (mob.attunementRank and C.ATTUNEMENT_RANKS[mob.attunementRank] and C.ATTUNEMENT_RANKS[mob.attunementRank].color) or "ffd100"
             card.LvlText:SetText(string.format("|cff%sRank %s|r", rankColor, rankRoman))
-            card.NameText:SetText(string.format("|cff00ff99%s|r", mob.nickname ~= "" and mob.nickname or mob.name))
-            card.TypeText:SetText(string.format("|cff%s[%s]|r", typeInfo.color or "ffffff", mob.creatureType))
+            local sexGlyph = (mob.anatomy == "Dam" and " |cffff99cc♀|r") or (mob.anatomy == "Genderless" and " |cffa0a0a0⚙|r") or " |cff66ccff♂|r"
+            local apexCrown = mob.isApex and " |cffffd100👑|r" or ""
+            card.TypeText:SetText(string.format("|cff%s[%s]|r%s%s", typeInfo.color or "ffffff", mob.creatureType, sexGlyph, apexCrown))
 
             -- 3D Model
             local displayId = (mob.displayId and mob.displayId > 0) and mob.displayId or C.GetDefaultDisplayId(mob.creatureType, mob.name)

@@ -36,6 +36,17 @@ C.VERSION = "0.3a"
 C.ADDON_COLOR = "ffd100"
 C.PREFIX = "|cffffd100[Forever Safari v0.3a]|r "
 
+-- Storage Enclosure Capacity (400 Slots Total)
+C.MAX_KENNEL_BOXES = 20
+C.SLOTS_PER_BOX = 20
+C.TOTAL_KENNEL_CAPACITY = C.MAX_KENNEL_BOXES * C.SLOTS_PER_BOX -- 400
+
+-- Biological Sexing & Construct Designation
+C.GENDERLESS_TYPES = {
+    ["Mechanical"] = true,
+    ["Elemental"] = true,
+}
+
 -- The 9 Official Pet Types & Passives (4 Core Stats: HP, ATK, DEF, SPD)
 C.CREATURE_TYPES = {
     ["Aquatic"] = {
@@ -61,6 +72,13 @@ C.CREATURE_TYPES = {
     -- [Remaining Types: Critter, Dragonkin, Elemental, Flying, Humanoid (NPC Rivals only), Mechanical, Undead]
 }
 ```
+
+### Kennel Vault & Enclosure Architecture
+* **Total Capacity**: 400 specimens partitioned across 20 distinct Enclosures (20 slots per enclosure).
+* **Navigation**: Box Switcher with Prev/Next buttons and a 2-column Jump menu showing occupancy counts per enclosure.
+* **Custom Naming**: Players can rename any enclosure via a native Blizzard popup dialog (`FOREVER_SAFARI_RENAME_ENCLOSURE`).
+* **Journal Design Language**: Search editbox, type/family dropdown, biological sex filter (`♂`, `♀`, `⚙`), and rarity filter (`👑 Apex`).
+* **Auto-Overflow**: Catches beyond the 4-member squad consume a transport crate and automatically route to `DB:GetNextAvailableBox()`.
 
 ---
 

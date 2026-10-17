@@ -643,7 +643,26 @@ function HUD:UpdateUI()
     local typeInfo = C.CREATURE_TYPES[creatureType] or C.CREATURE_TYPES["Beast"]
     local typeColor = typeInfo.color or "ffffff"
 
-    frame.TargetText:SetText(string.format("|cffffffff%s|r  |cff%s[%s]|r", name, typeColor, creatureType))
+    local guid = UnitGUID("target")
+    local isScanned = guid and ForeverSafariDB and ForeverSafariDB.scannedGuids and ForeverSafariDB.scannedGuids[guid]
+    local isDiscovered = DB and DB.IsSpeciesDiscovered and DB:IsSpeciesDiscovered(name)
+    local SE = ns.StatEngine
+    local sex = SE and SE.GetBiologicalSex and SE:GetBiologicalSex(creatureType, "target") or "Sire"
+    local sexBadge = ""
+
+    if creatureType == "Mechanical" or creatureType == "Elemental" or sex == "Genderless" then
+        sexBadge = " |cffa0a0a0[⚙ Genderless]|r"
+    elseif isScanned or isDiscovered then
+        if sex == "Dam" then
+            sexBadge = " |cffff99cc[♀ Dam]|r"
+        else
+            sexBadge = " |cff66ccff[♂ Sire]|r"
+        end
+    else
+        sexBadge = " |cff888888[❓ Sex: Unknown]|r"
+    end
+
+    frame.TargetText:SetText(string.format("|cffffffff%s|r  |cff%s[%s]|r%s", name, typeColor, creatureType, sexBadge))
 
     -- Distance & Radar Gauge
     if not CE:IsChanneling() then

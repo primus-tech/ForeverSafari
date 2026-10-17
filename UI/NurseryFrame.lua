@@ -328,10 +328,12 @@ function Nursery:ValidatePair()
     local r2 = cand2.attunementRank or (StatEngine and StatEngine:GetAttunementRank(cand2.attunement or 0).rank) or 1
     local rankMatch = (r1 >= 5 and r2 >= 5)
 
-    -- 3. One Sire and One Dam
+    -- 3. One Sire and One Dam (or Genderless construct with slotted catalyst)
     local a1 = cand1.anatomy or "Sire"
     local a2 = cand2.anatomy or "Dam"
-    local anatomyMatch = ((a1 == "Sire" and a2 == "Dam") or (a1 == "Dam" and a2 == "Sire"))
+    local isConstructPair = (a1 == "Genderless" and a2 == "Genderless")
+    local slottedCatalyst = Nursery.slottedCatalyst or (frame and frame.CatalystSlot and frame.CatalystSlot.catalystId)
+    local anatomyMatch = ((a1 == "Sire" and a2 == "Dam") or (a1 == "Dam" and a2 == "Sire")) or (isConstructPair and slottedCatalyst ~= nil)
 
     local allPass = (familyMatch and rankMatch and anatomyMatch)
     return allPass, familyMatch, rankMatch, anatomyMatch
@@ -420,11 +422,20 @@ function Nursery:UpdateUI()
     end
 
     if anatOk == true then
-        frame.CheckCard.Line3:SetText("3. Biological Designation: |cff00ff00✔ Compatible Pair (1x Sire ♂ + 1x Dam ♀)|r")
+        local a1 = cand1 and (cand1.anatomy or "Sire")
+        if a1 == "Genderless" then
+            frame.CheckCard.Line3:SetText("3. Biological Designation: |cff00ff00✔ Construct Matrix Re-forging (Slotted Core)|r")
+        else
+            frame.CheckCard.Line3:SetText("3. Biological Designation: |cff00ff00✔ Compatible Pair (1x Sire ♂ + 1x Dam ♀)|r")
+        end
     elseif anatOk == false then
         local a1 = cand1 and (cand1.anatomy or "Sire") or "?"
         local a2 = cand2 and (cand2.anatomy or "Sire") or "?"
-        frame.CheckCard.Line3:SetText(string.format("3. Biological Designation: |cffff4444✘ Incompatible (%s + %s; Need 1 Sire & 1 Dam)|r", a1, a2))
+        if a1 == "Genderless" or a2 == "Genderless" then
+            frame.CheckCard.Line3:SetText("3. Biological Designation: |cffff4444✘ Genderless construct requires matching construct + Slotted Catalyst|r")
+        else
+            frame.CheckCard.Line3:SetText(string.format("3. Biological Designation: |cffff4444✘ Incompatible (%s + %s; Need 1 Sire & 1 Dam)|r", a1, a2))
+        end
     else
         frame.CheckCard.Line3:SetText("3. Biological Designation: |cffffaa00⏳ Requires 1x Sire (♂) and 1x Dam (♀)|r")
     end
@@ -645,8 +656,9 @@ function Nursery:HatchEgg(eggItemId, itemData)
     elseif famTitle == "Dragonkin" then cType = "Dragonkin"
     end
 
-    -- Assign Anatomy (50% Sire, 50% Dam)
-    local newbornAnatomy = (math.random(1, 2) == 1) and "Sire" or "Dam"
+    -- Assign Anatomy (Genderless if construct, else 50% Sire / 50% Dam)
+    local isConstruct = (cand1 and cand1.anatomy == "Genderless") or (cand2 and cand2.anatomy == "Genderless")
+    local newbornAnatomy = isConstruct and "Genderless" or ((math.random(1, 2) == 1) and "Sire" or "Dam")
 
     -- High-pedigree purebred stats
     local newborn = {

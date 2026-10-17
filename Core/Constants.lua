@@ -25,9 +25,9 @@ C.IsSecret = isSecret
 
 -- Addon Branding
 C.ADDON_NAME = "Forever Safari"
-C.VERSION = "0.2a"
+C.VERSION = "0.3a"
 C.ADDON_COLOR = "ffd100"
-C.PREFIX = "|cffffd100[Forever Safari v0.2a]|r "
+C.PREFIX = "|cffffd100[Forever Safari v0.3a]|r "
 
 -- The 9 Official Pet Types & Passives (4 Core Stats: HP, ATK, DEF, SPD)
 C.CREATURE_TYPES = {
@@ -341,4 +341,15 @@ C.TYPE_RESEARCH_PERMITS = {
         icon = "Interface\\Icons\\INV_Misc_Head_Dragon_01",
         desc = "Authorizes tracking, research, and capture of dragonkin whelps and drakes.",
     },
+}
+
+-- Kennel Storage Enclosures & Capacity (400 Slots)
+C.MAX_KENNEL_BOXES = 20
+C.SLOTS_PER_BOX = 20
+C.TOTAL_KENNEL_CAPACITY = C.MAX_KENNEL_BOXES * C.SLOTS_PER_BOX
+
+-- Biological Sex & Anatomy Classifications
+C.GENDERLESS_TYPES = {
+    ["Mechanical"] = true,
+    ["Elemental"]  = true,
 }

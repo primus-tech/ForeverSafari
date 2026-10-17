@@ -872,7 +872,7 @@ function BE:StartWildBattle(unit)
 
     local displayId = C.GetDefaultDisplayId(rawType, name)
 
-    local enemyMob = SE:CreateMobInstance(name, rawType, level, isElite, displayId)
+    local enemyMob = SE:CreateMobInstance(name, rawType, level, isElite, displayId, nil, unit)
 
     BE:CancelTurnTimer()
 

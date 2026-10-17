@@ -75,6 +75,11 @@ function DB:AddMob(mobData, toSquad)
     mobData.attunementPoints = mobData.attunementPoints or 0
     mobData.acclimationZones = mobData.acclimationZones or {}
 
+    -- Auto-assign to an enclosure with available space if not assigned to squad
+    if not mobData.boxId and not toSquad and #self:GetSquad() >= 4 then
+        mobData.boxId = self.GetNextAvailableBox and self:GetNextAvailableBox() or 1
+    end
+
     -- Sign companion DNA
     if Crypto then Crypto:SignMob(mobData) end
     table.insert(ForeverSafariDB.collection, mobData)

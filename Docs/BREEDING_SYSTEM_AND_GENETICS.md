@@ -23,25 +23,31 @@ flowchart TD
 
 ---
 
-## 2. Biological Sex & Single-Sex Generation (The Asymmetry Rule)
+## 2. Biological Sexing, Pre-Capture Stalking & Construct Matrix Re-forging
 
-To prevent solitary alt-farming and guarantee social collaboration:
+To support organic field hunting and co-op social collaboration:
 
-### A. The 50/50 Player Seed
-* Every creature in the game has a biological sex: **Male (♂)** or **Female (♀)**.
-* When a player character first encounters, captures, or unboxes a specific creature species (e.g. *Stonetusk Boar*), the game rolls a persistent **50/50 seed**:
-  - The species is permanently designated as either **Male** or **Female** for that player character.
-* **Result**: Every copy of that species this character ever encounters or owns will always be of that same sex.
+### A. Deterministic Wild Anatomy & Pre-Capture Scouting
+* Every wild creature in Azeroth possesses a deterministic biological designation derived from its unique world entity ID (`UnitGUID`):
+  - **Genderless Constructs**: `Mechanical` and `Elemental` species are categorized as `Genderless` (`⚙`).
+  - **Biological Organisms**: Determined by the ASCII character sum of the creature's `UnitGUID`:
+    $$\text{Sex} = \begin{cases} \text{Sire (♂)} & \text{if } \sum \text{byte}(c) \pmod 2 = 1 \\ \text{Dam (♀)} & \text{if } \sum \text{byte}(c) \pmod 2 = 0 \end{cases}$$
+* **Field Scouting HUD**: When targeting any wild creature, the Observation HUD (`CaptureHUD`) displays its anatomy:
+  - `[ ❓ Sex: Unknown ]` before field study.
+  - `[ ♀ Dam ]`, `[ ♂ Sire ]`, or `[ ⚙ Genderless ]` once observed or captured.
+* This guarantees that a creature's biological sex remains 100% consistent from field stalking, channeled observation, and turn-based battle through capture and vault banking.
 
-### B. Self-Breeding Impossibility
-* Because a player can only access one sex per species, **a player can never breed with themselves**.
-* Solo alt-breeding is strictly blocked. Breeding always requires another player.
+### B. Genderless Construct Matrix Re-forging
+* Mechanicals and Elementals lack biological sex (`anatomy = "Genderless"`).
+* In the **Cenarion Nursery (`/fs nursery`)**, two matching Genderless constructs can re-forge an artificial matrix when paired with a **slotted Family Catalyst** (e.g. *[Gnomeregan Gyro-Core]* or *[Molten Core Catalyst]*).
+* Matrix re-forging yields a new high-pedigree construct offspring carrying purebred IV stat inheritances.
 
 ### C. Cryptographic HMAC Signing
-* In [Core/Crypto.lua](file:///home/primustech/.steam/debian-installation/steamapps/compatdata/4226358677/pfx/drive_c/Program%20Files%20%28x86%29/World%20of%20Warcraft/_classic_beta_/Interface/AddOns/ForeverSafari/Core/Crypto.lua), the companion's biological sex (`anatomy = "Sire"` / `"Dam"`) is incorporated into the signed serialization payload (`Crypto:SignMob(mob)`), preventing local client tampering.
-* Renders distinct visual badges in the Safari Journal and Inspector:
+* In [Core/Crypto.lua](file:///home/primustech/.steam/debian-installation/steamapps/compatdata/4226358677/pfx/drive_c/Program%20Files%20%28x86%29/World%20of%20Warcraft/_classic_beta_/Interface/AddOns/ForeverSafari/Core/Crypto.lua), the companion's biological anatomy (`Sire`, `Dam`, or `Genderless`) is signed into the serialization envelope (`Crypto:SignMob(mob)`), preventing local tampering or desync.
+* Renders distinct visual badges across the Safari Journal, Grid View, and Inspector:
   - `|cff66ccff♂ Male (Sire)|r` (Cyan / Blue)
   - `|cffff99cc♀ Female (Dam)|r` (Pink / Magenta)
+  - `|cffa0a0a0⚙ Genderless|r` (Silver / Chrome)
 
 ---
 

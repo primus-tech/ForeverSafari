@@ -140,6 +140,13 @@ Target any eligible wild creature in the world. The **Observation HUD** (`Captur
 3. **Beyond Perimeter (>28 Yards / Out of Range)**:
    * Quarry is too far; close the distance to begin observation.
 
+### 🔬 Pre-Capture Biological Sex Scouting
+When targeting any wild creature in Azeroth, the Observation HUD provides real-time biological telemetry:
+* **`[ ❓ Sex: Unknown ]`**: Displayed prior to conducting field observation or battle.
+* **`[ ♀ Dam ]` / `[ ♂ Sire ]`**: Unlocked once the quarry is studied or encountered in combat, derived deterministically from the creature's world GUID.
+* **`[ ⚙ Genderless ]`**: Displayed for all inorganic constructs (`Mechanical` and `Elemental` species).
+Because sex is bound to the creature's entity GUID, the observed sex in the field is guaranteed to match the companion you capture into your squad or kennel!
+
 ### Channeled Observation Sequence
 1. Target an eligible wild creature in the open world.
 2. Type `/fs observe`, `/fsnet`, or click the `[ 🔭 Observe Quarry ]` button on the Observation HUD.
@@ -158,7 +165,7 @@ Target any eligible wild creature in the world. The **Observation HUD** (`Captur
 ### 📦 In-Battle Capture & Transport Crate Logistics
 When capturing a wild beast during turn-based battle (`/fsbattle`):
 * **Open Squad Slot (< 4 members)**: The captured creature joins your active 4-member party immediately with **0 crates consumed**.
-* **Full Squad (4/4 members)**: The capture automatically consumes **1 matching (or higher tier) Transport Crate** from your Safari Bag and safely ships the specimen directly to the **Safari Kennel** at the Banker.
+* **Full Squad (4/4 members)**: The capture automatically consumes **1 matching (or higher tier) Transport Crate** from your Safari Bag and safely ships the specimen directly to the **Safari Kennel** at the Banker, landing in the first available enclosure with open space.
 
 ---
 
@@ -347,7 +354,11 @@ Interact with any Cenarion Keeper in Moonglade (Nighthaven):
 
 ### 🏦 5. Bankers (Kennelers & Companion Reserve)
 Interact with any town **Banker** (or open any Bank Vault):
-* **On-Demand Companion Vault**: Opens the companion reserve (`/fskennel`) managing active squad slots and up to 1,000 banked companions across 50 storage enclosures.
+* **On-Demand Companion Vault**: Opens the companion reserve (`/fskennel` or `/fs kennel`) featuring a massive **400-slot vault** organized into **20 Enclosures** (20 slots per enclosure).
+* **Enclosure Switcher & 1-Click Jump**: Fast navigation with `[ ◀ Prev ]` / `[ Next ▶ ]` buttons and a 2-column `[ Jump ▼ ]` menu showing real-time occupant counts (e.g. `Enclosure 4: Winterspring Apex (18/20)`).
+* **Custom Enclosure Renaming**: Click `[ 🏷 Rename ]` to label enclosures (e.g. *'PvP Squad'*, *'Breeding Dams'*, *'Apex Vault'*).
+* **Safari Journal Filter Ribbon**: Real-time name search, creature type/family dropdown, biological sex filter (`♂ Sire`, `♀ Dam`, `⚙ Genderless`), and rarity filter (`👑 Apex`).
+* **Transport Crate Logistics**: Wild captures beyond your 4-member squad consume a transport crate and automatically route to the next available enclosure with open space.
 * **Clean Cleanup**: Closes cleanly whenever the banker interaction terminates.
 
 ### 📮 6. Mailboxes (Nesingwary Safari Dispatch Hub)
@@ -502,10 +513,11 @@ Breeding in *Forever Safari* is split into two distinct tiers:
 ```
 
 ### 🧬 Biological Designation & Requirements
-* **Anatomy**: Every companion is born or captured as either **Sire (♂)** or **Dam (♀)** (50/50 distribution), cryptographically signed into their League DNA signature.
+* **Anatomy**: Biological companions possess deterministic wild anatomy as either **Sire (♂)** or **Dam (♀)**, cryptographically signed into their League DNA signature.
+* **Genderless Constructs**: `Mechanical` and `Elemental` companions are categorized as **Genderless (⚙)** and can undergo **Construct Matrix Re-forging** in the Nursery when paired with a matching construct and a slotted **Family Catalyst**.
 * **Exact Same Family**: Both candidates must belong to the same species family (e.g. Canine + Canine, Feline + Feline, Bear + Bear).
 * **Rank V (Bestial Symbiosis)**: Both candidates must be fully attuned at Rank V (1000 Loyalty).
-* **Compatible Pair**: Must pair exactly **1x Sire (♂)** and **1x Dam (♀)**.
+* **Compatible Pair**: Requires either **1x Sire (♂) + 1x Dam (♀)** or **2x Genderless Constructs (⚙) + Slotted Catalyst**.
 
 ### 💀 The Ultimate Sacrifice & Egg Payout
 * Breeding requires both parents to merge their life forces: **both candidates are PERMANENTLY consumed from your vault/collection**.

@@ -347,8 +347,35 @@ function SE:GenerateAbilities(creatureType, family, signatureAbilities, speciesM
     return { basicMove, familyMove }
 end
 
+-- Determine biological sex deterministically from unit GUID (or Genderless for Mechanicals/Elementals)
+function SE:GetBiologicalSex(rawCreatureType, unitOrGuid)
+    local cType = C.NormalizeCreatureType and C.NormalizeCreatureType(rawCreatureType) or rawCreatureType
+    if cType and C.GENDERLESS_TYPES and C.GENDERLESS_TYPES[cType] then
+        return "Genderless"
+    end
+
+    local guid = nil
+    if unitOrGuid then
+        if type(unitOrGuid) == "string" and string.find(unitOrGuid, "-") then
+            guid = unitOrGuid
+        elseif type(unitOrGuid) == "string" and UnitExists(unitOrGuid) then
+            guid = UnitGUID(unitOrGuid)
+        end
+    end
+
+    if guid then
+        local sum = 0
+        for i = 1, #guid do
+            sum = sum + string.byte(guid, i)
+        end
+        return (sum % 2 == 0) and "Dam" or "Sire"
+    end
+
+    return (math.random(1, 2) == 1 and "Sire" or "Dam")
+end
+
 -- Create a newly captured companion instance (Rank I: Wild / Unbroken)
-function SE:CreateMobInstance(name, rawCreatureType, initialAttunement, isElite, displayId, family)
+function SE:CreateMobInstance(name, rawCreatureType, initialAttunement, isElite, displayId, family, unit)
     local creatureType = C.NormalizeCreatureType(rawCreatureType, name)
     local attunement = initialAttunement or 0
     family = family or "Beast"
@@ -380,7 +407,7 @@ function SE:CreateMobInstance(name, rawCreatureType, initialAttunement, isElite,
         nickname = "",
         creatureType = creatureType,
         family = family,
-        anatomy = (math.random(1, 2) == 1 and "Sire" or "Dam"),
+        anatomy = SE:GetBiologicalSex(creatureType, unit),
         attunement = attunement,
         rank = stats.rankData.rank,
         isElite = isElite or false,

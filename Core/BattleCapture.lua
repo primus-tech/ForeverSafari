@@ -150,12 +150,15 @@ function BattleCapture:ExecuteCapture(cageId)
 
             if isSquadFull then
                 local ok, crateId, crateData = DB:ConsumeBestTransportCrate(enemyQuality)
+                local targetBox = DB.GetNextAvailableBox and DB:GetNextAvailableBox() or 1
+                enemy.boxId = targetBox
                 DB:AddMob(enemy, false)
+                local boxName = DB.GetBoxName and DB:GetBoxName(targetBox) or ("Enclosure " .. targetBox)
                 local cName = crateData and crateData.name or "Transport Crate"
                 BE.State.dialogueText = string.format("Gotcha! %s was caught & crated in %s!", enemy.name, cName)
-                BE:AddLog(string.format("|cff00ff00Gotcha! Wild %s was captured, crated in [%s], and sent to the Safari Kennel!|r", enemy.name, cName))
+                BE:AddLog(string.format("|cff00ff00Gotcha! Wild %s was captured, crated in [%s], and sent to %s!|r", enemy.name, cName, boxName))
                 if ForeverSafari.Toast then
-                    ForeverSafari.Toast:ShowAlert("Captured & Banked", string.format("%s was crated & sent to Banker's Kennel!", enemy.name))
+                    ForeverSafari.Toast:ShowAlert("Captured & Banked", string.format("%s crated & sent to %s!", enemy.name, boxName))
                 end
             else
                 DB:AddMob(enemy, true)
