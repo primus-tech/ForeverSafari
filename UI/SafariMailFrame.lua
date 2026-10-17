@@ -35,10 +35,21 @@ function Mail:Initialize()
     mailFrame:RegisterForDrag("LeftButton")
     mailFrame:SetClampedToScreen(true)
 
+    -- Register in UISpecialFrames for Escape key closing
+    tinsert(UISpecialFrames, "ForeverSafariMailSidecarFrame")
+
     Theme:ApplyFrameBackdrop(mailFrame, true)
 
     mailFrame:SetScript("OnDragStart", function(self) self:StartMoving() end)
     mailFrame:SetScript("OnDragStop", function(self) self:StopMovingOrSizing() end)
+    mailFrame:SetScript("OnHide", function()
+        if openMailFrame then openMailFrame:Hide() end
+        if ns.DispatchFrame and ns.DispatchFrame.Hide then
+            ns.DispatchFrame:Hide()
+        elseif _G["ForeverSafariDispatchFrame"] then
+            _G["ForeverSafariDispatchFrame"]:Hide()
+        end
+    end)
 
     -- Header Title & Icon
     local headIcon = mailFrame:CreateTexture(nil, "ARTWORK")
@@ -59,8 +70,7 @@ function Mail:Initialize()
     local closeBtn = CreateFrame("Button", nil, mailFrame, "UIPanelCloseButton")
     closeBtn:SetPoint("TOPRIGHT", -2, -2)
     closeBtn:SetScript("OnClick", function()
-        mailFrame:Hide()
-        if openMailFrame then openMailFrame:Hide() end
+        Mail:OnMailboxClose()
     end)
 
     -- Subheader
@@ -166,12 +176,23 @@ function Mail:Initialize()
     Mail:BuildOpenMailFrame()
 
     -- 3. Register Blizzard Mailbox Events (Zero Taint Event Handlers)
+    local function HookMailFrame()
+        if MailFrame and MailFrame.HookScript and not MailFrame._fsMailSidecarHooked then
+            MailFrame._fsMailSidecarHooked = true
+            MailFrame:HookScript("OnHide", function()
+                Mail:OnMailboxClose()
+            end)
+        end
+    end
+    HookMailFrame()
+
     local eventFrame = CreateFrame("Frame", "ForeverSafariMailEventFrame")
     eventFrame:RegisterEvent("MAIL_SHOW")
     eventFrame:RegisterEvent("MAIL_CLOSED")
 
     eventFrame:SetScript("OnEvent", function(self, event)
         if event == "MAIL_SHOW" then
+            HookMailFrame()
             Mail:OnMailboxOpen()
         elseif event == "MAIL_CLOSED" then
             Mail:OnMailboxClose()
@@ -181,6 +202,12 @@ end
 
 function Mail:OnMailboxOpen()
     if not mailFrame then Mail:Initialize() end
+    if MailFrame and MailFrame.HookScript and not MailFrame._fsMailSidecarHooked then
+        MailFrame._fsMailSidecarHooked = true
+        MailFrame:HookScript("OnHide", function()
+            Mail:OnMailboxClose()
+        end)
+    end
 
     -- Dock cleanly to the right of MailFrame if MailFrame exists
     if MailFrame and MailFrame:IsShown() then
@@ -211,6 +238,11 @@ function Mail:OnMailboxClose()
     end
     if openMailFrame then
         openMailFrame:Hide()
+    end
+    if ns.DispatchFrame and ns.DispatchFrame.Hide then
+        ns.DispatchFrame:Hide()
+    elseif _G["ForeverSafariDispatchFrame"] then
+        _G["ForeverSafariDispatchFrame"]:Hide()
     end
 end
 
@@ -272,6 +304,8 @@ function Mail:BuildOpenMailFrame()
     openMailFrame:EnableMouse(true)
     openMailFrame:RegisterForDrag("LeftButton")
     openMailFrame:SetClampedToScreen(true)
+
+    tinsert(UISpecialFrames, "ForeverSafariOpenMailFrame")
 
     Theme:ApplyFrameBackdrop(openMailFrame, true)
 

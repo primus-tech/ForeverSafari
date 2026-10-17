@@ -105,6 +105,35 @@ function Dispatch:Initialize()
         DB:ClaimStarterKit()
         frame:Hide()
     end)
+    -- Register in UISpecialFrames for Escape key closing
+    tinsert(UISpecialFrames, "ForeverSafariDispatchFrame")
+
+    -- Close Button
+    local closeBtn = CreateFrame("Button", nil, frame, "UIPanelCloseButton")
+    closeBtn:SetPoint("TOPRIGHT", -2, -2)
+    closeBtn:SetScript("OnClick", function()
+        Dispatch:Hide()
+    end)
+
+    -- Auto-close when mailbox closes
+    local evt = CreateFrame("Frame", nil, frame)
+    evt:RegisterEvent("MAIL_CLOSED")
+    evt:SetScript("OnEvent", function()
+        Dispatch:Hide()
+    end)
+
+    if MailFrame and MailFrame.HookScript and not MailFrame._fsDispatchHooked then
+        MailFrame._fsDispatchHooked = true
+        MailFrame:HookScript("OnHide", function()
+            Dispatch:Hide()
+        end)
+    end
+end
+
+function Dispatch:Hide()
+    if frame then
+        frame:Hide()
+    end
 end
 
 function Dispatch:ShowDispatch()
@@ -126,7 +155,6 @@ function Dispatch:ShowDispatch()
     local letterText = "Greetings, recruit!\n\n"
         .. "Hemet Nesingwary here. Slaying beasts is fine and dandy, but any amateur with a blunderbuss can shoot a raptor. The REAL test of a true outdoorsman is taming the wild beasts of Azeroth, raising 'em from cubs, and testing their mettle in battle!\n\n"
         .. "I had my boys ship a hardy wild companion native to your homeland along with a set of my patent hunting snares, transport crates, and your official 3D Field Guide.\n\n"
-
     if grantCount > 0 then
         local grantTokens = grantCount * 5
         letterText = letterText .. string.format("I see by your expedition records that you've already completed |cff006600%d quests|r across Azeroth! As an experienced veteran, the Safari League has authorized a Veteran Research Grant of |cff884400+%d Safari Tokens|r enclosed within this parcel!\n\n", grantCount, grantTokens)
