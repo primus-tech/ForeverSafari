@@ -238,3 +238,35 @@ function DB:RestAllPets()
     end
     return healedCount
 end
+
+-- =========================================================================
+-- 🗄️ 20-CHUNK KENNEL STORAGE INTERFACE (19 x 100 + 1 x 106 = 2,006 SLOTS)
+-- =========================================================================
+function DB:GetKennelChunk(chunkId)
+    chunkId = tonumber(chunkId) or 1
+    if ForeverSafariKennel and ForeverSafariKennel[chunkId] then
+        return ForeverSafariKennel[chunkId]
+    end
+    if ForeverSafariDB and ForeverSafariDB.kennelChunks and ForeverSafariDB.kennelChunks[chunkId] then
+        return ForeverSafariDB.kennelChunks[chunkId]
+    end
+    return {}
+end
+
+function DB:GetKennelChunkCount()
+    return (C and C.KENNEL_CHUNKS_COUNT) or 20
+end
+
+function DB:GetKennelChunkCapacity(chunkId)
+    chunkId = tonumber(chunkId) or 1
+    if chunkId == 20 then
+        return (C and C.KENNEL_FINAL_CHUNK_SIZE) or 106
+    end
+    return (C and C.KENNEL_CHUNK_SIZE) or 100
+end
+
+function DB:GetKennelChunkMob(chunkId, slot)
+    local chunk = self:GetKennelChunk(chunkId)
+    return chunk and chunk[slot] or nil
+end
+

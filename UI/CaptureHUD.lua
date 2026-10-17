@@ -663,7 +663,7 @@ function HUD:UpdateUI()
     end
 
     local isOwned = DB and DB.HasSpecies and DB:HasSpecies(name)
-    local ownedBadge = isOwned and " |cffffd100[🐾 Owned]|r" or ""
+    local ownedBadge = isOwned and " |cffffd100[🐾 Owned • Replaceable]|r" or ""
 
     frame.TargetText:SetText(string.format("|cffffffff%s|r  |cff%s[%s]|r%s%s", name, typeColor, creatureType, sexBadge, ownedBadge))
 

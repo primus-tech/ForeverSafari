@@ -5,6 +5,7 @@
     - Permit verification for locked creature types (Mechanical, Elemental, Undead, Dragonkin)
     - Transport Crate gating when active squad is at capacity (4/4)
     - Species catalog auto-discovery and kennel shipping
+    - Highlander Law: Player chooses whether to replace existing owned companion or release wild quarry
 ]]
 
 local addonName, ns = ...
@@ -16,6 +17,31 @@ local BattleCapture = ns.BattleCapture
 local C = ns.Constants
 local DB = ns.Database
 local ItemDB = ns.ItemDB
+
+-- =========================================================================
+-- ⚖️ HIGHLANDER LAW: SPECIES REPLACEMENT CONFIRMATION DIALOG
+-- =========================================================================
+StaticPopupDialogs["FOREVER_SAFARI_REPLACE_SPECIES"] = {
+    text = "%s",
+    button1 = "Replace Existing",
+    button2 = "Release Wild",
+    OnAccept = function(self, data)
+        local d = data or self.data
+        if d and d.oldMob and d.newMob then
+            BattleCapture:ConfirmReplaceSpecies(d.oldMob, d.newMob)
+        end
+    end,
+    OnCancel = function(self, data)
+        local d = data or self.data
+        if d and d.oldMob and d.newMob then
+            BattleCapture:DeclineReplaceSpecies(d.oldMob, d.newMob)
+        end
+    end,
+    timeout = 0,
+    whileDead = true,
+    hideOnEscape = true,
+    preferredIndex = 3,
+}
 
 -- Checks whether an enemy can be legally snared/captured
 function BattleCapture:CanCapture(enemy, isTrainerBattle)
@@ -31,14 +57,17 @@ function BattleCapture:CanCapture(enemy, isTrainerBattle)
         return false, "Humanoids and civilized targets cannot be captured!"
     end
 
-    -- Highlander Law: Exactly 1 active instance of each species per trainer
-    if DB and DB.HasSpecies and DB:HasSpecies(enemy.name or enemy.speciesId) then
-        return false, string.format("Highlander Law: You already own a %s! You may only bond with one of each species.", enemy.name or "this species")
+    -- Check if species is already owned (Highlander Law allows capturing to prompt replacement)
+    local isOwned, existingMob = false, nil
+    if DB and DB.HasSpecies then
+        isOwned, existingMob = DB:HasSpecies(enemy.name or enemy.speciesId)
     end
 
     -- Total Vault Capacity Limit (2,006 unique species)
-    if DB and DB.GetCollection and #DB:GetCollection() >= ((C and C.TOTAL_KENNEL_CAPACITY) or 2006) then
-        return false, "Safari Reserve Vault is completely full (2,006/2,006 species captured)!"
+    -- If already owned, replacing will not increase total collection count
+    local totalCap = (C and C.TOTAL_KENNEL_CAPACITY) or 2006
+    if not isOwned and DB and DB.GetCollection and #DB:GetCollection() >= totalCap then
+        return false, string.format("Safari Reserve Vault is completely full (%d/%d species captured)!", totalCap, totalCap)
     end
 
     if DB and not DB:IsTypeUnlocked(enemy.creatureType) then
@@ -56,8 +85,11 @@ function BattleCapture:CanCapture(enemy, isTrainerBattle)
     end
 
     local isSquadFull = (DB and DB:GetSquadCount() >= 4)
+    local isOwnedInSquad = isOwned and existingMob and DB and DB:IsMobInSquad(existingMob.id)
     local enemyQuality = enemy.quality or (enemy.isBoss and 4) or (enemy.isRareSpawn and 3) or (enemy.isElite and 2) or 1
-    if isSquadFull and DB and not DB:HasTransportCrate(enemyQuality) then
+
+    -- If replacing an owned squad companion, no transport crate is needed!
+    if isSquadFull and not isOwnedInSquad and DB and not DB:HasTransportCrate(enemyQuality) then
         local crateKey = enemyQuality == 4 and "crate_thorium" or enemyQuality == 3 and "crate_mithril" or enemyQuality == 2 and "crate_iron" or "crate_copper"
         local crateData = ItemDB and ItemDB:GetCrate(crateKey)
         local crateName = crateData and crateData.name or "Transport Crate"
@@ -155,6 +187,22 @@ function BattleCapture:ExecuteCapture(cageId)
                 DB:DiscoverSpecies(enemy.name, "caught")
             end
 
+            -- Check if species is already owned: Highlander Law Prompt
+            local isOwned, existingMob = false, nil
+            if DB and DB.HasSpecies then
+                isOwned, existingMob = DB:HasSpecies(enemy.name or enemy.speciesId)
+            end
+
+            if isOwned and existingMob then
+                BE.State.inBattle = false
+                BE.State.dialogueText = string.format("Captured wild %s! Choose whether to replace your existing companion.", enemy.name)
+                BE:AddLog(string.format("|cffffcc00Captured wild %s! You already have an attuned %s. Choose whether to replace or release.|r", enemy.name, existingMob.customNickname or existingMob.name))
+                if ForeverSafari.BattleFrame then ForeverSafari.BattleFrame:UpdateUI() end
+
+                BattleCapture:PromptSpeciesReplacement(existingMob, enemy)
+                return
+            end
+
             local isSquadFull = (DB and DB:GetSquadCount() >= 4)
             local enemyQuality = enemy.quality or (enemy.isBoss and 4) or (enemy.isRareSpawn and 3) or (enemy.isElite and 2) or 1
 
@@ -192,4 +240,119 @@ function BattleCapture:ExecuteCapture(cageId)
             end)
         end
     end)
+end
+
+-- =========================================================================
+-- 🐾 HIGHLANDER LAW: SPECIES COMPARISON & REPLACEMENT PROMPT
+-- =========================================================================
+
+function BattleCapture:PromptSpeciesReplacement(oldMob, newMob)
+    local SE = ns.StatEngine
+    local oldSex = oldMob.anatomy or oldMob.gender or "Sire"
+    local newSex = newMob.anatomy or newMob.gender or (SE and SE.GetBiologicalSex and SE:GetBiologicalSex(newMob.creatureType or newMob.family)) or "Sire"
+    newMob.anatomy = newSex
+    newMob.gender = newSex
+
+    local function formatSex(s)
+        if s == "Dam" then return "|cffff99cc♀ Dam (Female)|r"
+        elseif s == "Sire" then return "|cff66ccff♂ Sire (Male)|r"
+        else return "|cffa0a0a0⚙ Genderless|r" end
+    end
+
+    local function formatAttunement(mob)
+        local pts = tonumber(mob.attunementPoints or mob.attunement) or 0
+        local rank = tonumber(mob.attunementRank) or 1
+        local title = mob.rank or (C.ATTUNEMENT_RANKS and C.ATTUNEMENT_RANKS[rank] and C.ATTUNEMENT_RANKS[rank].title) or "Untamed"
+        return string.format("Rank %d %s (%d pts)", rank, title, pts)
+    end
+
+    local function formatMoves(mob)
+        local moves = mob.moves or mob.abilities or { 101 }
+        local names = {}
+        for _, mId in ipairs(moves) do
+            local mData = ns.MoveDB and ns.MoveDB:GetMove(mId)
+            local mName = mData and mData.name or ("Move #" .. tostring(mId))
+            table.insert(names, mName)
+        end
+        return (#names > 0) and table.concat(names, ", ") or "Basic Attacks"
+    end
+
+    local oldName = oldMob.customNickname and string.format("%s (\"%s\")", oldMob.name, oldMob.customNickname) or oldMob.name
+    local newName = newMob.name or "Wild Specimen"
+
+    local oldStatsStr = string.format("HP: %d | ATK: %d | DEF: %d | SPD: %d", oldMob.maxHP or oldMob.hp or 0, oldMob.atk or oldMob.attack or 0, oldMob.def or oldMob.defense or 0, oldMob.spd or oldMob.speed or 0)
+    local newStatsStr = string.format("HP: %d | ATK: %d | DEF: %d | SPD: %d", newMob.maxHP or newMob.hp or 0, newMob.atk or newMob.attack or 0, newMob.def or newMob.defense or 0, newMob.spd or newMob.speed or 0)
+
+    local promptText = string.format(
+        "|cffffd100[HIGHLANDER LAW: DUPLICATE SPECIES]|r\n\n" ..
+        "You captured a wild |cffffffff%s|r, but you already own one!\n\n" ..
+        "|cffff9900[CURRENT COMPANION]|r\n" ..
+        "• Specimen: |cffffffff%s|r\n" ..
+        "• Gender: %s\n" ..
+        "• Attunement: |cff00ff99%s|r\n" ..
+        "• Stats: |cffffffff%s|r\n" ..
+        "• Attacks: |cff00ccff%s|r\n\n" ..
+        "|cff00ff00[NEW WILD CAPTURE]|r\n" ..
+        "• Specimen: |cffffffff%s|r\n" ..
+        "• Gender: %s\n" ..
+        "• Attunement: |cff00ff99%s|r\n" ..
+        "• Stats: |cffffffff%s|r\n" ..
+        "• Attacks: |cff00ccff%s|r\n\n" ..
+        "Do you want to |cffff4444REPLACE|r your existing companion with this new specimen?",
+        newMob.name,
+        oldName, formatSex(oldSex), formatAttunement(oldMob), oldStatsStr, formatMoves(oldMob),
+        newName, formatSex(newSex), formatAttunement(newMob), newStatsStr, formatMoves(newMob)
+    )
+
+    local dialog = StaticPopup_Show("FOREVER_SAFARI_REPLACE_SPECIES", promptText)
+    if dialog then
+        dialog.data = { oldMob = oldMob, newMob = newMob }
+    end
+end
+
+function BattleCapture:ConfirmReplaceSpecies(oldMob, newMob)
+    if not oldMob or not newMob then return end
+    local BE = ns.BattleEngine
+
+    -- If existing mob was in kennel and squad is full, consume transport crate
+    local isSquadFull = (DB and DB:GetSquadCount() >= 4)
+    local wasInSquad = DB and DB:IsMobInSquad(oldMob.id)
+    if isSquadFull and not wasInSquad and DB and DB.ConsumeBestTransportCrate then
+        local enemyQuality = newMob.quality or (newMob.isBoss and 4) or (newMob.isRareSpawn and 3) or (newMob.isElite and 2) or 1
+        DB:ConsumeBestTransportCrate(enemyQuality)
+    end
+
+    local ok, replaced = DB:ReplaceMob(oldMob.id, newMob)
+    if ok then
+        local oldDispName = oldMob.customNickname and string.format("%s (\"%s\")", oldMob.name, oldMob.customNickname) or oldMob.name
+        local msg = string.format("%s|cff00ff00[Highlander Replacement]|r Replaced |cffffd100%s|r with wild |cff00ff99%s|r!", C.PREFIX, oldDispName, newMob.name)
+        DEFAULT_CHAT_FRAME:AddMessage(msg)
+
+        if BE and BE.State then
+            BE.State.dialogueText = string.format("Replaced %s with wild %s!", oldDispName, newMob.name)
+            BE:AddLog(string.format("|cff00ff00[Highlander Replacement]|r Replaced %s with wild %s!|r", oldDispName, newMob.name))
+        end
+
+        if ForeverSafari.Toast and ForeverSafari.Toast.ShowReward then
+            ForeverSafari.Toast:ShowReward("Species Replaced", string.format("Swapped %s for %s", oldMob.name, newMob.name))
+        end
+    end
+
+    if ForeverSafari.BattleFrame then ForeverSafari.BattleFrame:UpdateUI() end
+end
+
+function BattleCapture:DeclineReplaceSpecies(oldMob, newMob)
+    if not oldMob or not newMob then return end
+    local BE = ns.BattleEngine
+    local oldDispName = oldMob.customNickname and string.format("%s (\"%s\")", oldMob.name, oldMob.customNickname) or oldMob.name
+
+    local msg = string.format("%s|cffffcc00[Highlander Retained]|r Retained existing |cffffd100%s|r. Wild |cffffffff%s|r was released back into the wild.", C.PREFIX, oldDispName, newMob.name)
+    DEFAULT_CHAT_FRAME:AddMessage(msg)
+
+    if BE and BE.State then
+        BE.State.dialogueText = string.format("Released wild %s back into the wild. Kept %s.", newMob.name, oldDispName)
+        BE:AddLog(string.format("|cffffcc00[Highlander Retained]|r Kept existing %s. Released wild %s.|r", oldDispName, newMob.name))
+    end
+
+    if ForeverSafari.BattleFrame then ForeverSafari.BattleFrame:UpdateUI() end
 end

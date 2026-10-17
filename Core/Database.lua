@@ -46,6 +46,7 @@ local DEFAULT_DB = {
         ["revival_crystal"] = 0,
     },
     collection = {}, -- Array of minimal companion seed tuples
+    kennelChunks = {}, -- 20-chunk SavedVariable lots (19 x 100 + 1 x 106 = 2,006 slots)
     team = {},       -- Array of up to 4 active squad companion IDs
     activeSlot = 1,  -- Currently active deployed companion slot (1-4)
     discovered = {}, -- Legacy discovered table
@@ -313,16 +314,52 @@ DB.JSONDecode = json_decode
 
 function DB:DehydrateCompanion(mob)
     if not mob then return nil end
+    local anat = mob.anatomy or mob.gender or "Sire"
+    local moves = CopyTable(mob.moves or mob.abilities or { 101, 107 })
+    local attPts = tonumber(mob.attunementPoints or mob.attunement) or 0
+    local attRk = tonumber(mob.attunementRank or (mob.rankData and mob.rankData.rank)) or 1
+    local maxHP = tonumber(mob.maxHP or mob.hp) or 40
+    local curHP = tonumber(mob.currentHP or mob.hp or maxHP) or maxHP
+    local atk = tonumber(mob.atk or mob.attack) or 22
+    local def = tonumber(mob.def or mob.defense) or 18
+    local spd = tonumber(mob.spd or mob.speed) or 20
+
     return {
         id = mob.id,
         speciesId = mob.speciesId or mob.displayId,
         name = mob.name,
         customNickname = mob.customNickname,
-        attunementPoints = mob.attunementPoints or mob.attunement or 0,
-        attunementRank = mob.attunementRank or 1,
-        anatomy = mob.anatomy or "Sire",
-        moves = mob.moves or { 101, 107 },
+        nickname = mob.nickname or mob.customNickname,
+        anatomy = anat,
+        gender = anat,
+        attunementPoints = attPts,
+        attunement = attPts,
+        attunementRank = attRk,
+        rank = mob.rank or "Untamed",
+        acclimationZones = mob.acclimationZones and CopyTable(mob.acclimationZones) or {},
+        moves = moves,
+        abilities = moves,
+        stats = {
+            hp = maxHP,
+            maxHP = maxHP,
+            atk = atk,
+            def = def,
+            spd = spd,
+        },
+        hp = curHP,
+        maxHP = maxHP,
+        currentHP = curHP,
+        atk = atk,
+        attack = atk,
+        def = def,
+        defense = def,
+        spd = spd,
+        speed = spd,
+        baseStats = mob.baseStats and CopyTable(mob.baseStats) or nil,
+        dodge = mob.dodge,
+        resistances = mob.resistances and CopyTable(mob.resistances) or nil,
         isRare = mob.isRare or false,
+        isElite = mob.isElite or false,
         ivSeed = mob.ivSeed or math.random(1, 65535),
         isStarter = mob.isStarter or false,
         family = mob.family or "Canine",
@@ -330,9 +367,14 @@ function DB:DehydrateCompanion(mob)
         creatureType = mob.creatureType or "Beast",
         displayId = mob.displayId,
         boxId = mob.boxId or 1,
+        boxSlot = mob.boxSlot,
         isFainted = mob.isFainted or false,
-        currentHP = (mob.currentHP and mob.maxHP and mob.currentHP < mob.maxHP and mob.currentHP > 0) and mob.currentHP or nil,
-        baseStats = mob.baseStats,
+        caughtZone = mob.caughtZone,
+        caughtTime = mob.caughtTime,
+        wins = mob.wins or 0,
+        losses = mob.losses or 0,
+        disobediences = mob.disobediences or 0,
+        signature = mob.signature,
     }
 end
 
@@ -341,14 +383,22 @@ function DB:HydrateCompanion(minimal)
     local mob = CopyTable(minimal)
     local SE = ns.StatEngine
 
-    -- Determine rank and title dynamically from attunement points
-    local rankInfo = SE and SE:GetAttunementRank(mob.attunementPoints or 0) or C.ATTUNEMENT_RANKS[1]
-    mob.attunementRank = rankInfo.rank or mob.attunementRank or 1
-    mob.rank = rankInfo.title or "Untamed"
-    mob.attunement = mob.attunementPoints or 0
+    -- Biological Sex & Anatomy
+    mob.anatomy = mob.anatomy or mob.gender or "Sire"
+    mob.gender = mob.anatomy
+
+    -- Known Attacks / Movepool
+    mob.moves = mob.moves or mob.abilities or { 101, 107 }
+    mob.abilities = mob.moves
+
+    -- Attunement progression
+    local rankInfo = SE and SE:GetAttunementRank(mob.attunementPoints or mob.attunement or 0) or C.ATTUNEMENT_RANKS[1]
+    mob.attunementRank = tonumber(mob.attunementRank or rankInfo.rank) or 1
+    mob.rank = rankInfo.title or mob.rank or "Untamed"
+    mob.attunement = tonumber(mob.attunementPoints or mob.attunement) or 0
+    mob.attunementPoints = mob.attunement
 
     -- Canonical Stat Calculation (Hamilton-Hare 100/110 Budget Law)
-    -- Mutable stat values in files are completely overwritten with species canon!
     if SE and SE.CalculateStats then
         local calc = SE:CalculateStats(
             mob.element or mob.creatureType or mob.family or "Beast",
@@ -366,13 +416,185 @@ function DB:HydrateCompanion(minimal)
             mob.defense = calc.def
             mob.spd = calc.spd
             mob.speed = calc.spd
+            mob.stats = {
+                hp = calc.maxHP,
+                maxHP = calc.maxHP,
+                atk = calc.atk,
+                def = calc.def,
+                spd = calc.spd,
+            }
         end
+    else
+        local s = minimal.stats or {}
+        mob.maxHP = s.maxHP or minimal.maxHP or minimal.hp or 40
+        mob.currentHP = minimal.currentHP or minimal.hp or mob.maxHP
+        mob.hp = mob.currentHP
+        mob.atk = s.atk or minimal.atk or minimal.attack or 22
+        mob.attack = mob.atk
+        mob.def = s.def or minimal.def or minimal.defense or 18
+        mob.defense = mob.def
+        mob.spd = s.spd or minimal.spd or minimal.speed or 20
+        mob.speed = mob.spd
+        mob.stats = {
+            hp = mob.maxHP,
+            maxHP = mob.maxHP,
+            atk = mob.atk,
+            def = mob.def,
+            spd = mob.spd,
+        }
     end
 
     if Crypto and Crypto.SignMob then
         Crypto:SignMob(mob)
     end
     return mob
+end
+
+-- =========================================================================
+-- 📦 20-CHUNK KENNEL SAVEDVARIABLE STORAGE (19 x 100 + 1 x 106 = 2,006 SLOTS)
+-- =========================================================================
+
+function DB:SyncKennelChunks()
+    if not ForeverSafariKennel then
+        ForeverSafariKennel = {}
+    end
+    for c = 1, (C and C.KENNEL_CHUNKS_COUNT or 20) do
+        ForeverSafariKennel[c] = ForeverSafariKennel[c] or {}
+    end
+
+    -- Clear chunk tables for clean sync
+    for c = 1, 20 do
+        wipe(ForeverSafariKennel[c])
+    end
+
+    local collection = self:GetCollection()
+    local boxSlotUsage = {}
+
+    for _, mob in ipairs(collection) do
+        local boxId = tonumber(mob.boxId) or 1
+        boxId = math.max(1, math.min((C and C.MAX_KENNEL_BOXES or 101), boxId))
+        local boxCap = (self.GetBoxCapacity and self:GetBoxCapacity(boxId)) or (boxId == 101 and 6 or 20)
+
+        boxSlotUsage[boxId] = boxSlotUsage[boxId] or {}
+        local slotInBox = tonumber(mob.boxSlot)
+        if not slotInBox or slotInBox < 1 or slotInBox > boxCap or boxSlotUsage[boxId][slotInBox] then
+            slotInBox = 1
+            while slotInBox <= boxCap and boxSlotUsage[boxId][slotInBox] do
+                slotInBox = slotInBox + 1
+            end
+            if slotInBox > boxCap then
+                boxId = self.GetNextAvailableBox and self:GetNextAvailableBox(boxId) or 1
+                boxCap = (self.GetBoxCapacity and self:GetBoxCapacity(boxId)) or (boxId == 101 and 6 or 20)
+                boxSlotUsage[boxId] = boxSlotUsage[boxId] or {}
+                slotInBox = 1
+                while slotInBox <= boxCap and boxSlotUsage[boxId][slotInBox] do
+                    slotInBox = slotInBox + 1
+                end
+            end
+        end
+
+        boxSlotUsage[boxId][slotInBox] = true
+        mob.boxId = boxId
+        mob.boxSlot = slotInBox
+
+        local globalSlot = C.GetGlobalIndexForBoxAndSlot and C.GetGlobalIndexForBoxAndSlot(boxId, slotInBox) or ((boxId - 1) * 20 + slotInBox)
+        local chunkId, chunkSlot = C.GetChunkAndSlotForGlobalIndex and C.GetChunkAndSlotForGlobalIndex(globalSlot)
+        if not chunkId or not chunkSlot then
+            if globalSlot <= 1900 then
+                chunkId = math.floor((globalSlot - 1) / 100) + 1
+                chunkSlot = ((globalSlot - 1) % 100) + 1
+            else
+                chunkId = 20
+                chunkSlot = globalSlot - 1900
+            end
+        end
+
+        local record = self:DehydrateCompanion(mob)
+        record.chunkId = chunkId
+        record.chunkSlot = chunkSlot
+        record.globalSlot = globalSlot
+        ForeverSafariKennel[chunkId][chunkSlot] = record
+    end
+
+    if self.state then
+        self.state.kennelChunks = ForeverSafariKennel
+    end
+    if ForeverSafariDB then
+        ForeverSafariDB.kennelChunks = ForeverSafariKennel
+    end
+    return ForeverSafariKennel
+end
+
+function DB:HasChunkedKennelData()
+    local source = ForeverSafariKennel or (ForeverSafariDB and ForeverSafariDB.kennelChunks) or (self.state and self.state.kennelChunks)
+    if not source or type(source) ~= "table" then return false end
+    for c = 1, 20 do
+        if source[c] and type(source[c]) == "table" and next(source[c]) ~= nil then
+            return true
+        end
+    end
+    return false
+end
+
+function DB:LoadKennelFromChunks()
+    local sourceChunks = ForeverSafariKennel or (ForeverSafariDB and ForeverSafariDB.kennelChunks) or (self.state and self.state.kennelChunks)
+    if not sourceChunks or type(sourceChunks) ~= "table" then return false end
+
+    local restoredCollection = {}
+
+    for c = 1, 20 do
+        local chunk = sourceChunks[c]
+        if chunk and type(chunk) == "table" then
+            local maxSlot = (c == 20) and 106 or 100
+            for slot = 1, maxSlot do
+                local record = chunk[slot]
+                if record and type(record) == "table" and record.name then
+                    local hydrated = self:HydrateCompanion(record)
+                    if hydrated then
+                        hydrated.id = hydrated.id or (#restoredCollection + 1)
+                        local globalSlot = C.GetGlobalIndexFromChunkAndSlot and C.GetGlobalIndexFromChunkAndSlot(c, slot) or (c < 20 and ((c - 1) * 100 + slot) or (1900 + slot))
+                        local boxId, boxSlot = C.GetBoxAndSlotForGlobalIndex and C.GetBoxAndSlotForGlobalIndex(globalSlot) or (math.floor((globalSlot - 1) / 20) + 1, ((globalSlot - 1) % 20) + 1)
+                        hydrated.boxId = hydrated.boxId or boxId
+                        hydrated.boxSlot = hydrated.boxSlot or boxSlot
+                        table.insert(restoredCollection, hydrated)
+                    end
+                end
+            end
+        end
+    end
+
+    if #restoredCollection > 0 then
+        self.state = self.state or CopyTable(DEFAULT_DB)
+        self.state.collection = restoredCollection
+        ForeverSafariDB = self.state
+        ForeverSafariDB.collection = restoredCollection
+        self:SyncKennelChunks()
+        return true
+    end
+    return false
+end
+
+function DB:GetKennelChunk(chunkId)
+    chunkId = tonumber(chunkId) or 1
+    if ForeverSafariKennel and ForeverSafariKennel[chunkId] then
+        return ForeverSafariKennel[chunkId]
+    end
+    if ForeverSafariDB and ForeverSafariDB.kennelChunks and ForeverSafariDB.kennelChunks[chunkId] then
+        return ForeverSafariDB.kennelChunks[chunkId]
+    end
+    return {}
+end
+
+function DB:GetKennelChunkCount()
+    return (C and C.KENNEL_CHUNKS_COUNT) or 20
+end
+
+function DB:GetKennelChunkCapacity(chunkId)
+    chunkId = tonumber(chunkId) or 1
+    if chunkId == 20 then
+        return (C and C.KENNEL_FINAL_CHUNK_SIZE) or 106
+    end
+    return (C and C.KENNEL_CHUNK_SIZE) or 100
 end
 
 -- =========================================================================
@@ -416,6 +638,9 @@ function DB:PersistVaultSnapshot()
     local playerGUID = UnitGUID("player") or "Player"
     local currentActive = ForeverSafariVault and ForeverSafariVault.active
     local nextGen = (currentActive and currentActive.generation or 0) + 1
+
+    -- Synchronize 20-chunk kennel SavedVariable storage before serializing state
+    self:SyncKennelChunks()
 
     -- 1. Serialize in-memory state to minimal string
     local serialized = self:SerializeState(self.state)
@@ -588,8 +813,23 @@ function DB:Initialize()
         ForeverSafari:BuildDatabaseIndexes()
     end
 
+    -- Ensure ForeverSafariKennel global SavedVariable exists (20 Lots)
+    if not ForeverSafariKennel then
+        ForeverSafariKennel = {}
+        for c = 1, (C and C.KENNEL_CHUNKS_COUNT or 20) do
+            ForeverSafariKennel[c] = {}
+        end
+    end
+
     -- Load or initialize encrypted vault
     self:LoadVault()
+
+    -- Synchronize or restore chunked kennel storage
+    if self:HasChunkedKennelData() and (not self.state.collection or #self.state.collection == 0) then
+        self:LoadKennelFromChunks()
+    else
+        self:SyncKennelChunks()
+    end
 
     -- Ensure all default structures exist in runtime state
     for k, v in pairs(DEFAULT_DB) do
@@ -867,7 +1107,12 @@ function DB:GetRewardedQuestCount()
 end
 
 function DB:ResetDB()
+    ForeverSafariKennel = {}
+    for c = 1, (C and C.KENNEL_CHUNKS_COUNT or 20) do
+        ForeverSafariKennel[c] = {}
+    end
     self.state = CopyTable(DEFAULT_DB)
+    self.state.kennelChunks = ForeverSafariKennel
     ForeverSafariDB = self.state
     ForeverSafariVault = nil
     ForeverSafariVault_Quarantine = nil

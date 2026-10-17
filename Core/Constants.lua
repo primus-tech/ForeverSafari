@@ -348,6 +348,47 @@ C.MAX_KENNEL_BOXES = 101
 C.SLOTS_PER_BOX = 20
 C.TOTAL_KENNEL_CAPACITY = 2006
 
+-- Kennel Chunked SavedVariable Storage Configuration (20 Lots: 19 x 100 + 1 x 106 = 2,006 Slots)
+C.KENNEL_CHUNKS_COUNT = 20
+C.KENNEL_CHUNK_SIZE = 100
+C.KENNEL_FINAL_CHUNK_SIZE = 106
+
+function C.GetChunkAndSlotForGlobalIndex(globalSlot)
+    globalSlot = math.max(1, math.min(C.TOTAL_KENNEL_CAPACITY or 2006, tonumber(globalSlot) or 1))
+    if globalSlot <= 1900 then
+        local chunkId = math.floor((globalSlot - 1) / 100) + 1
+        local chunkSlot = ((globalSlot - 1) % 100) + 1
+        return chunkId, chunkSlot
+    else
+        return 20, globalSlot - 1900
+    end
+end
+
+function C.GetGlobalIndexFromChunkAndSlot(chunkId, chunkSlot)
+    chunkId = math.max(1, math.min(20, tonumber(chunkId) or 1))
+    if chunkId < 20 then
+        chunkSlot = math.max(1, math.min(100, tonumber(chunkSlot) or 1))
+        return (chunkId - 1) * 100 + chunkSlot
+    else
+        chunkSlot = math.max(1, math.min(106, tonumber(chunkSlot) or 1))
+        return 1900 + chunkSlot
+    end
+end
+
+function C.GetBoxAndSlotForGlobalIndex(globalSlot)
+    globalSlot = math.max(1, math.min(C.TOTAL_KENNEL_CAPACITY or 2006, tonumber(globalSlot) or 1))
+    local boxId = math.floor((globalSlot - 1) / 20) + 1
+    local slotInBox = ((globalSlot - 1) % 20) + 1
+    return boxId, slotInBox
+end
+
+function C.GetGlobalIndexForBoxAndSlot(boxId, slotInBox)
+    boxId = math.max(1, math.min(C.MAX_KENNEL_BOXES or 101, tonumber(boxId) or 1))
+    slotInBox = math.max(1, tonumber(slotInBox) or 1)
+    local globalIndex = (boxId - 1) * 20 + slotInBox
+    return math.min(C.TOTAL_KENNEL_CAPACITY or 2006, globalIndex)
+end
+
 -- Biological Sex & Anatomy Classifications
 C.GENDERLESS_TYPES = {
     ["Mechanical"] = true,

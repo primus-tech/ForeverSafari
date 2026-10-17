@@ -111,8 +111,117 @@ function DB:AddMob(mobData, toSquad)
         self:DiscoverSpecies(mobData.speciesId or mobData.name, "caught")
     end
 
+    -- Synchronize 20-chunk kennel storage
+    if self.SyncKennelChunks then
+        self:SyncKennelChunks()
+    end
+
     self:MarkDirty()
     return mobData
+end
+
+function DB:ReplaceMob(oldMobId, newMobData)
+    if not ForeverSafariDB or not ForeverSafariDB.collection then return false, "No collection" end
+    if not oldMobId or not newMobData then return false, "Invalid parameters" end
+
+    local targetId = (type(oldMobId) == "table") and oldMobId.id or oldMobId
+    local oldIndex = nil
+    local oldMob = nil
+
+    for i, mob in ipairs(ForeverSafariDB.collection) do
+        if mob.id == targetId then
+            oldIndex = i
+            oldMob = mob
+            break
+        end
+    end
+
+    if not oldIndex or not oldMob then
+        return false, "Existing companion not found."
+    end
+
+    -- Retain identity ID and kennel/box placement
+    newMobData.id = targetId
+    newMobData.boxId = oldMob.boxId or 1
+    newMobData.boxSlot = oldMob.boxSlot or 1
+
+    -- Ensure attunement and stats defaults
+    newMobData.attunementRank = newMobData.attunementRank or 1
+    newMobData.attunementPoints = newMobData.attunementPoints or 0
+    newMobData.moves = newMobData.moves or newMobData.abilities or { 101, 107 }
+    newMobData.abilities = newMobData.moves
+    newMobData.anatomy = newMobData.anatomy or newMobData.gender or "Sire"
+    newMobData.gender = newMobData.anatomy
+
+    -- Calculate canonical stats
+    local SE = ns.StatEngine
+    if SE and SE.CalculateStats then
+        local calc = SE:CalculateStats(
+            newMobData.element or newMobData.creatureType or newMobData.family or "Beast",
+            newMobData.attunementPoints or 0,
+            newMobData.isRare or false,
+            newMobData.baseStats
+        )
+        if calc then
+            newMobData.maxHP = calc.maxHP
+            newMobData.hp = calc.maxHP
+            newMobData.currentHP = calc.maxHP
+            newMobData.atk = calc.atk
+            newMobData.attack = calc.atk
+            newMobData.def = calc.def
+            newMobData.defense = calc.def
+            newMobData.spd = calc.spd
+            newMobData.speed = calc.spd
+            newMobData.stats = {
+                hp = calc.maxHP,
+                maxHP = calc.maxHP,
+                atk = calc.atk,
+                def = calc.def,
+                spd = calc.spd,
+            }
+        end
+    end
+
+    -- Cryptographically re-sign DNA
+    if Crypto and Crypto.SignMob then
+        Crypto:SignMob(newMobData)
+    end
+
+    -- Replace in collection
+    ForeverSafariDB.collection[oldIndex] = newMobData
+
+    -- Validate team in case squad status was impacted
+    self:ValidateTeam()
+
+    -- Automatically discover in Bestiary
+    if self.DiscoverSpecies then
+        self:DiscoverSpecies(newMobData.speciesId or newMobData.name, "caught")
+    end
+
+    -- Synchronize 20-chunk kennel storage
+    if self.SyncKennelChunks then
+        self:SyncKennelChunks()
+    end
+
+    self:MarkDirty()
+
+    -- Refresh UI components
+    if ns.JournalTeamDock and ns.JournalTeamDock.UpdateDock then
+        ns.JournalTeamDock:UpdateDock()
+    end
+    if ns.JournalRosterView and ns.JournalRosterView.UpdateUI then
+        ns.JournalRosterView:UpdateUI()
+    end
+    if ns.KennelFrame and ns.KennelFrame.UpdateUI then
+        ns.KennelFrame:UpdateUI()
+    end
+    if ns.InspectorFrame and ns.InspectorFrame.IsShown and ns.InspectorFrame:IsShown() then
+        if ns.InspectorFrame.currentMob and ns.InspectorFrame.currentMob.id == targetId then
+            ns.InspectorFrame:InspectMob(newMobData)
+        end
+    end
+
+    return true, newMobData
 end
 
 function DB:RemoveMob(id)
@@ -122,6 +231,9 @@ function DB:RemoveMob(id)
             -- Remove from team if present
             self:RemoveTeamSlot(id)
             table.remove(ForeverSafariDB.collection, i)
+            if self.SyncKennelChunks then
+                self:SyncKennelChunks()
+            end
             self:MarkDirty()
             return true
         end
