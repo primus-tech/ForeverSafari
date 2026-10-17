@@ -90,6 +90,7 @@ Core\WarBridge.lua
 # Base UI Framework
 UI\Theme.lua
 UI\Toast.lua
+UI\VirtualDebuff.lua
 UI\MinimapButton.lua
 UI\SafariMailFrame.lua
 UI\DispatchLetterFrame.lua

@@ -2749,8 +2749,8 @@ function BE:ForfeitPvP(reason)
         ForeverSafari.Comms:SendForfeit(BE.State.opponentName, reason)
     end
 
-    if ForeverSafari.Toast and ForeverSafari.Toast.HideSuspensionCountdown then
-        ForeverSafari.Toast:HideSuspensionCountdown()
+    if ForeverSafari.VirtualDebuff and ForeverSafari.VirtualDebuff.HideSuspension then
+        ForeverSafari.VirtualDebuff:HideSuspension()
     end
     BE.State.isPausedForWorldCombat = false
     BE.State.isPeerPausedForWorldCombat = false
@@ -2770,8 +2770,8 @@ function BE:OnPeerForfeit(sender, reason)
     if ForeverSafari.BattleFrame and ForeverSafari.BattleFrame.HideTurnTimer then
         ForeverSafari.BattleFrame:HideTurnTimer()
     end
-    if ForeverSafari.Toast and ForeverSafari.Toast.HideSuspensionCountdown then
-        ForeverSafari.Toast:HideSuspensionCountdown()
+    if ForeverSafari.VirtualDebuff and ForeverSafari.VirtualDebuff.HideSuspension then
+        ForeverSafari.VirtualDebuff:HideSuspension()
     end
     BE.State.isPausedForWorldCombat = false
     BE.State.isPeerPausedForWorldCombat = false
@@ -2812,11 +2812,9 @@ function BE:SuspendBattleForWorldCombat(reason)
 
     BE:AddLog(string.format("|cffffaa00[Battle Suspended]|r World combat initiated (%s)! Battle frozen (%ds max).|r", reason or "Combat", math.floor(pauseTimeout)))
 
-    -- 5. Show Live Countdown Toast
-    if ForeverSafari.Toast and ForeverSafari.Toast.ShowSuspensionCountdown then
-        local title = BE.State.isPvP and "|cffffaa00[Duel Suspended]|r" or "|cffffaa00[Battle Suspended]|r"
-        local sub = "World combat engaged! Resuming in |cffffffff%ds|r (Max %ds)"
-        ForeverSafari.Toast:ShowSuspensionCountdown(title, sub, pauseTimeout, function()
+    -- 5. Show Virtual Aura Debuff
+    if ForeverSafari.VirtualDebuff and ForeverSafari.VirtualDebuff.ShowSuspension then
+        ForeverSafari.VirtualDebuff:ShowSuspension(pauseTimeout, function()
             BE:OnWorldCombatPauseTimeout()
         end)
     end
@@ -2828,11 +2826,9 @@ function BE:ResumeBattleFromWorldCombat()
     BE.State.isPausedForWorldCombat = false
     BE.State.worldCombatPauseReason = nil
 
-    -- 1. Hide Countdown Toast with Green Resumption Toast
-    if ForeverSafari.Toast and ForeverSafari.Toast.HideSuspensionCountdown then
-        local title = BE.State.isPvP and "|cff00ff00[Duel Resumed]|r" or "|cff00ff00[Battle Resumed]|r"
-        local sub = BE.State.isPvP and "World combat cleared! 15s turn timer reset." or "World combat cleared! Battle resumed."
-        ForeverSafari.Toast:HideSuspensionCountdown(title, sub)
+    -- 1. Hide Virtual Aura Debuff
+    if ForeverSafari.VirtualDebuff and ForeverSafari.VirtualDebuff.HideSuspension then
+        ForeverSafari.VirtualDebuff:HideSuspension()
     end
 
     -- 2. Audio Chime
@@ -2883,11 +2879,9 @@ function BE:OnPeerDuelSuspend(sender, reason)
         ForeverSafari.BattleFrame:UpdateUI()
     end
 
-    -- Show Live Countdown Toast on Opponent side
-    if ForeverSafari.Toast and ForeverSafari.Toast.ShowSuspensionCountdown then
-        local title = "|cffffaa00[Opponent Ambushed]|r"
-        local sub = string.format("%s in combat • Resuming in |cffffffff%%ds|r (Max %%ds)", sender)
-        ForeverSafari.Toast:ShowSuspensionCountdown(title, sub, pauseTimeout, function()
+    -- Show Virtual Aura Debuff on Opponent side
+    if ForeverSafari.VirtualDebuff and ForeverSafari.VirtualDebuff.ShowSuspension then
+        ForeverSafari.VirtualDebuff:ShowSuspension(pauseTimeout, function()
             BE:OnPeerPauseTimeout()
         end)
     end
@@ -2899,8 +2893,8 @@ function BE:OnPeerDuelResume(sender)
     BE.State.isPeerPausedForWorldCombat = false
     BE.State.peerPauseReason = nil
 
-    if ForeverSafari.Toast and ForeverSafari.Toast.HideSuspensionCountdown then
-        ForeverSafari.Toast:HideSuspensionCountdown("|cff00ff00[Duel Resumed]|r", string.format("%s cleared combat! 15s turn timer reset.", sender))
+    if ForeverSafari.VirtualDebuff and ForeverSafari.VirtualDebuff.HideSuspension then
+        ForeverSafari.VirtualDebuff:HideSuspension()
     end
 
     PlaySound(844)
