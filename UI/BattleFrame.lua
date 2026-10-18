@@ -1234,8 +1234,6 @@ function BF:UpdateModels()
             pcall(frame.EnemyModel.SetCreatureByDisplayID, frame.EnemyModel, enemyDisplay)
         end
         pcall(function()
-            if frame.EnemyModel.SetCustomCamera then frame.EnemyModel:SetCustomCamera(0) end
-            if frame.EnemyModel.SetPortraitZoom then frame.EnemyModel:SetPortraitZoom(0) end
             if frame.EnemyModel.SetCamDistanceScale then frame.EnemyModel:SetCamDistanceScale(1.0) end
             frame.EnemyModel:SetRotation(math.rad(-35))
             frame.EnemyModel:SetAnimation(0)
@@ -1253,10 +1251,8 @@ function BF:UpdateModels()
             pcall(frame.PlayerModel.SetCreatureByDisplayID, frame.PlayerModel, playerDisplay)
         end
         pcall(function()
-            if frame.PlayerModel.SetCustomCamera then frame.PlayerModel:SetCustomCamera(0) end
-            if frame.PlayerModel.SetPortraitZoom then frame.PlayerModel:SetPortraitZoom(0) end
             if frame.PlayerModel.SetCamDistanceScale then frame.PlayerModel:SetCamDistanceScale(1.0) end
-            frame.PlayerModel:SetRotation(math.rad(145))
+            frame.PlayerModel:SetRotation(math.rad(45))
             frame.PlayerModel:SetAnimation(0)
         end)
         frame.PlayerModel:Show()

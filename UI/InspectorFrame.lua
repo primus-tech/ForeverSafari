@@ -245,8 +245,6 @@ function Inspector:InspectCompanion(companionData)
         pcall(frame.model.SetCreatureByDisplayID, frame.model, dispId)
     end
     pcall(function()
-        if frame.model.SetCustomCamera then frame.model:SetCustomCamera(0) end
-        if frame.model.SetPortraitZoom then frame.model:SetPortraitZoom(0) end
         if frame.model.SetCamDistanceScale then frame.model:SetCamDistanceScale(1.0) end
         if frame.model.SetRotation then frame.model:SetRotation(0.3) end
         if frame.model.SetAnimation then frame.model:SetAnimation(0) end

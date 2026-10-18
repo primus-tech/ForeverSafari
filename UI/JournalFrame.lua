@@ -47,8 +47,6 @@ function Journal:SetModelCreature(modelFrame, displayId, npcId)
 
     local function applyModelTransforms(mf)
         pcall(function()
-            if mf.SetCustomCamera then mf:SetCustomCamera(0) end
-            if mf.SetPortraitZoom then mf:SetPortraitZoom(0) end
             if mf.SetCamDistanceScale then mf:SetCamDistanceScale(1.0) end
             if mf.SetModelScale then mf:SetModelScale(mf.zoom or 1.0) end
             if mf.SetRotation then mf:SetRotation(mf.rotation or math.rad(25)) end
@@ -105,8 +103,8 @@ function Journal:Setup3DModelInteractions(modelFrame)
         self.zoom = math.max(0.5, math.min(2.5, (self.zoom or 1.0) + (delta * 0.1)))
         if self.SetModelScale then
             self:SetModelScale(self.zoom)
-        elseif self.SetPortraitZoom then
-            self:SetPortraitZoom(self.zoom)
+        elseif self.SetCamDistanceScale then
+            self:SetCamDistanceScale(1.0 / self.zoom)
         end
     end)
 end

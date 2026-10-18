@@ -126,16 +126,24 @@ function Journal:BuildRosterView(parent)
             local currentX = GetCursorPosition()
             local delta = (currentX - prevMouseX) * 0.015
             prevMouseX = currentX
-            local facing = self:GetFacing() or 0
-            self:SetFacing(facing + delta)
+            local facing = (self.rotation or self:GetFacing() or 0) + delta
+            self.rotation = facing
+            if self.SetRotation then
+                self:SetRotation(facing)
+            elseif self.SetFacing then
+                self:SetFacing(facing)
+            end
         end
     end)
     mainModel:SetScript("OnMouseWheel", function(self, delta)
         local curScale = self.modelScale or 1.0
         curScale = math.max(0.5, math.min(2.5, curScale + (delta * 0.1)))
         self.modelScale = curScale
+        self.zoom = curScale
         if self.SetModelScale then
             self:SetModelScale(curScale)
+        elseif self.SetCamDistanceScale then
+            self:SetCamDistanceScale(1.0 / curScale)
         end
     end)
     centerStage.Model3D = mainModel
@@ -147,16 +155,20 @@ function Journal:BuildRosterView(parent)
     local btnRotL = Theme:CreateButton(animCard, "◄", 32, 22)
     btnRotL:SetPoint("LEFT", 6, 0)
     btnRotL:SetScript("OnClick", function()
-        local facing = mainModel:GetFacing() or 0
-        mainModel:SetFacing(facing - 0.4)
+        local facing = (mainModel.rotation or mainModel:GetFacing() or 0) - 0.4
+        mainModel.rotation = facing
+        if mainModel.SetRotation then mainModel:SetRotation(facing)
+        elseif mainModel.SetFacing then mainModel:SetFacing(facing) end
         PlaySound(856)
     end)
 
     local btnRotR = Theme:CreateButton(animCard, "►", 32, 22)
     btnRotR:SetPoint("LEFT", btnRotL, "RIGHT", 4, 0)
     btnRotR:SetScript("OnClick", function()
-        local facing = mainModel:GetFacing() or 0
-        mainModel:SetFacing(facing + 0.4)
+        local facing = (mainModel.rotation or mainModel:GetFacing() or 0) + 0.4
+        mainModel.rotation = facing
+        if mainModel.SetRotation then mainModel:SetRotation(facing)
+        elseif mainModel.SetFacing then mainModel:SetFacing(facing) end
         PlaySound(856)
     end)
 
