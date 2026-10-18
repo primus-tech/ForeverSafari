@@ -1,10 +1,11 @@
 # Truth
 
-## 1. Platform & Vision
+## 1. Platform & Runtime Architecture
 We are programming for **WoW: Forever**.
 
-* **WoW: Forever** is a unique experience built on the framework of classic plus that is **horizontal rather than vertically progressive**.
-* However, it is **not** Classic, Classic+, Vanilla, nor Vanilla+. It is its own distinct world and system: **WoW Forever**.
+* **The World & Experience**: **WoW: Forever** is a unique, official Blizzard product featuring a horizontal progression world rather than a vertical treadmill.
+* **The Engine & API Runtime (CRITICAL)**: **WoW: Forever runs on the Modern Retail WoW Engine (API 11.x/12.x)**.
+* **NOT Classic/Vanilla**: It is **not** Classic, Classic+, Vanilla 1.12, nor TBC. Under no circumstances should legacy 1.12 APIs, obsolete Classic snippets, or deprecated frame methods be introduced into this codebase. All Lua code must target modern Retail client standards.
 
 ---
 
@@ -51,9 +52,30 @@ Breeding availability is tiered to provide early access while preserving sacred 
 
 ---
 
-## 7. Codebase Integrity: No Aliases, No Shims
-* **Straightforward Code Only:** We do not write aliases, compatibility shims, proxy tables, wrapper polyfills, or indirect bridge layers.
-* **Direct & Explicit:** Code must be direct and unambiguous. If a function or table exists, it has a single canonical name and implementation. Do not construct fallback cascades or masquerades for missing APIs. Write clean, native, straightforward code.
+## 7. Codebase Integrity, Technical Invariants & Prohibited APIs
+
+### Straightforward Architecture
+* **No Aliases, No Shims**: We do not write aliases, compatibility shims, proxy tables, wrapper polyfills, or indirect bridge layers.
+* **Direct & Explicit**: Code must be direct and unambiguous. If a function or table exists, it has a single canonical name and implementation.
+
+### 3D Paperdoll Models (`PlayerModel`) Invariants
+* ⛔ **STRICTLY PROHIBITED: `SetCustomCamera(0)` and `SetPortraitZoom()`**:
+  - In Blizzard's M2 model system, **Camera 0 is hardcoded for 2D circular unit-frame headshot portraits**. It anchors point-blank to the skull/jawbone.
+  - Calling `SetCustomCamera(0)` locks the camera onto the face at extreme close-up. Rotating the model then swings the head out of frame, cutting off the entire body and displaying only tails, hindquarters, or a mouth full of teeth.
+  - **NEVER** call `SetCustomCamera(0)` or `SetPortraitZoom()` anywhere in this addon.
+* ✅ **MANDATED: Engine Bounding-Box Perspective**:
+  - Full-body 3D models (Arena, Journal Spotlight, Gallery Grid, Inspection) rely solely on canonical `:SetDisplayInfo(displayId)` or `:SetCreature(npcId)`.
+  - The modern Retail client automatically calculates the model's bounding sphere and places the perspective camera to cleanly frame the whole beast centered on its pedestal.
+* **Rotation**: Use canonical `:SetRotation(radians)` consistently. In battle, player faces diagonally toward enemy (`math.rad(45)`), enemy faces diagonally toward player (`math.rad(-35)`).
+* **Zooming**: Use `:SetModelScale(scale)` or `:SetCamDistanceScale(scale)`.
+
+### ScrollingMessageFrame Invariants
+* ⛔ **DO NOT USE `:IsAtBottom()`**: Does not exist in modern Retail.
+* ✅ **USE `:AtBottom()` and `:ScrollToBottom()`**: Canonical modern scrolling API.
+
+### SavedVariables Lifecycle & Persistence
+* ⛔ **NEVER WIPE ON LOGOUT**: Never write `ForeverSafariDB = nil` or overwrite saved tables in `PLAYER_LOGOUT` or reload events.
+* ✅ **AUTHORITATIVE PERSISTENCE**: `ForeverSafariDB`, `ForeverSafariKennel`, and `ForeverSafariVault` are authoritative and must cleanly persist across sessions, reloads, and character swaps.
 
 ---
 
@@ -105,12 +127,34 @@ Breeding availability is tiered to provide early access while preserving sacred 
 
 ---
 
-## 10. Progressive Dispatch Flow & Badges Showcase
-* **Sequential Mailbox Directives:**
-  * To avoid overwhelming recruits on Day 1, only **Dispatch #1** (*First Steps*) and **Dispatch #2** (*Outpost Reconnaissance*) appear initially in the town mailbox and Journal.
-  * As players complete and claim each directive, the subsequent directive reveals itself sequentially (#3 $\rightarrow$ #4 $\rightarrow$ #5 $\rightarrow$ Permit Directives).
-* **The 3D Field Guide Badges Cabinet (Tab 5):**
-  * Tab 5 (`[BADGES]`) provides a permanent trophy showcase in the Safari Journal:
-    * **Top Shelf**: 4 large ornate Research License plaques (locked darkened brass vs. certified gold).
-    * **Velvet Grid**: Scrollable showcase of all 54 Regional Outpost Badges with unearned mystery silhouettes and earned victory timestamps/defeat quotes.
-    * **Live Tally**: Real-time progress tracking (`Badges Collected: X / 54 (Y%)`).
+## 10. Progressive Dispatch Directives & Quest Flow
+The League's mailbox correspondence unfolds sequentially to ensure recruits build their naturalistic skills organically:
+
+1. **Dispatch #1: Welcome to the Safari League!**
+   - *Sender*: Hemet Nesingwary Sr.
+   - *Action*: Unbox initial starter companion, 10 Copper Snares, 3 Transport Crates, 5 Healing Salves, and 1 Revival Crystal.
+2. **Dispatch #2: Field Observation 101 (STRICTLY OBSERVE ONLY)**
+   - *Sender*: Hemet Nesingwary Sr.
+   - *Objective*: Study 3 wild creatures in their natural habitat using the field research lens / binoculars.
+   - ⛔ **NO CAPTURES**: True naturalists do not immediately obliterate or snare wildlife. This directive is 100% non-invasive field study.
+   - *Reward*: +20 Safari Tokens, 3 Iron Cages, 2 Safari Treats. Unlocks Dispatch #3.
+3. **Dispatch #3: The Wild Nourishment**
+   - *Sender*: Barnil Stonepot.
+   - *Objective*: Feed companion twice with preferred family diets or Safari Treats to build Attunement.
+   - *Reward*: +25 Safari Tokens, 1 Feast, 3 Healing Salves. Unlocks Dispatch #4.
+4. **Dispatch #4: Sighting of Apex Rares**
+   - *Sender*: Hemet Nesingwary Jr.
+   - *Objective*: Track down and catalog an authentic rare apex beast in the wild.
+   - *Reward*: +40 Safari Tokens, 2 Mithril Cages, 2 Feasts. Unlocks Dispatch #5.
+5. **Dispatch #5: Deep Dungeon Expedition**
+   - *Sender*: Ajeck Rouack.
+   - *Objective*: Slay a dungeon boss with an expedition party to recover an Evolution Catalyst.
+   - *Reward*: +50 Safari Tokens, 1 Arcanite Capsule, 3 Feasts. Unlocks Permit Directives (#6–#9).
+
+---
+
+## 11. The 3D Field Guide Badges Cabinet (Tab 5)
+* Tab 5 (`[BADGES]`) provides a permanent trophy showcase in the Safari Journal:
+  * **Top Shelf**: 4 large ornate Research License plaques (locked darkened brass vs. certified gold).
+  * **Velvet Grid**: Scrollable showcase of all 54 Regional Outpost Badges with unearned mystery silhouettes and earned victory timestamps/defeat quotes.
+  * **Live Tally**: Real-time progress tracking (`Badges Collected: X / 54 (Y%)`).
