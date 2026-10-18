@@ -33,7 +33,6 @@ eventFrame:SetScript("OnEvent", function(self, event, arg1)
         end
         if DB and DB.FlushVault then
             DB:FlushVault()
-            ForeverSafariDB = nil -- Ensure plaintext is never written to SavedVariables on disk
         end
         return
     elseif event == "PLAYER_LEAVING_WORLD" then

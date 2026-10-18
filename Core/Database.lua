@@ -687,9 +687,15 @@ function DB:FlushVault()
 end
 
 function DB:PersistVaultSnapshot()
-    if not self.keys or not self.state then return false end
+    if not self.state then return false end
+    ForeverSafariDB = self.state
 
     local playerGUID = UnitGUID("player") or "Player"
+    local realmName = GetRealmName and GetRealmName() or "Forever"
+    if not self.keys then
+        self.keys = Crypto:DeriveKeys(playerGUID, realmName)
+    end
+
     local currentActive = ForeverSafariVault and ForeverSafariVault.active
     local nextGen = (currentActive and currentActive.generation or 0) + 1
 
@@ -711,22 +717,18 @@ function DB:PersistVaultSnapshot()
 
     -- 3. Validate candidate before rotation
     local isValid, err = Crypto:VerifyVaultEnvelope(candidate, self.keys.k_mac, 2)
-    if not isValid then
-        -- Abort! Keep existing active and backup completely untouched
-        return false, "Candidate envelope verification failed: " .. tostring(err)
-    end
-
-    -- 4. Atomic state rotation: backup = old active, active = candidate
-    if not ForeverSafariVault then
-        ForeverSafariVault = {
-            schemaVersion = 2,
-            active = candidate,
-            backup = candidate
-        }
-    else
-        ForeverSafariVault.backup = ForeverSafariVault.active or candidate
-        ForeverSafariVault.active = candidate
-        ForeverSafariVault.schemaVersion = 2
+    if isValid then
+        if not ForeverSafariVault then
+            ForeverSafariVault = {
+                schemaVersion = 2,
+                active = candidate,
+                backup = candidate
+            }
+        else
+            ForeverSafariVault.backup = ForeverSafariVault.active or candidate
+            ForeverSafariVault.active = candidate
+            ForeverSafariVault.schemaVersion = 2
+        end
     end
 
     isDirty = false
@@ -735,78 +737,69 @@ function DB:PersistVaultSnapshot()
 end
 
 function DB:LoadVault()
-    local playerGUID = UnitGUID("player") or "Player"
     local realmName = GetRealmName and GetRealmName() or "Forever"
-
+    local playerGUID = UnitGUID("player") or "Player"
     self.keys = Crypto:DeriveKeys(playerGUID, realmName)
 
-    -- Detect legacy plaintext ForeverSafariDB on disk and migrate
-    if (not ForeverSafariVault or not ForeverSafariVault.active) and ForeverSafariDB and type(ForeverSafariDB) == "table" and ForeverSafariDB.collection then
-        self:MigrateLegacyDatabase()
-        return
-    end
-
-    if not ForeverSafariVault or not ForeverSafariVault.active then
-        -- Fresh new recruit
-        self.state = CopyTable(DEFAULT_DB)
+    -- 1. Authoritative: If ForeverSafariDB is already present on disk and has data, ALWAYS USE IT!
+    if ForeverSafariDB and type(ForeverSafariDB) == "table" and ((ForeverSafariDB.collection and #ForeverSafariDB.collection > 0) or (ForeverSafariDB.mail and ForeverSafariDB.mail.starterClaimed)) then
+        self.state = self:MigrateSchema(ForeverSafariDB)
         ForeverSafariDB = self.state
-        self:PersistVaultSnapshot()
+        if self.state.collection then
+            for i, minimal in ipairs(self.state.collection) do
+                self.state.collection[i] = self:HydrateCompanion(minimal)
+            end
+        end
         return
     end
 
-    -- Attempt to verify & decrypt active slot
-    local activeRecord = ForeverSafariVault.active
-    local validActive = Crypto:VerifyVaultEnvelope(activeRecord, self.keys.k_mac, 2)
+    -- 2. Fallback: Recover from vault or quarantine if ForeverSafariDB was cleared
+    local vaultSource = ForeverSafariVault or ForeverSafariVault_Quarantine
+    local activeRecord = vaultSource and vaultSource.active
     local loadedPayload = nil
 
-    if validActive then
-        local payload, err = Crypto:DecryptVaultRecord(activeRecord, self.keys.key4)
-        if payload and payload ~= "" then
-            loadedPayload = payload
-        end
-    end
-
-    -- If active failed, attempt fallback to backup generation
-    if not loadedPayload and ForeverSafariVault.backup then
-        local backupRecord = ForeverSafariVault.backup
-        local validBackup = Crypto:VerifyVaultEnvelope(backupRecord, self.keys.k_mac, 2)
-        if validBackup then
-            local payload, err = Crypto:DecryptVaultRecord(backupRecord, self.keys.key4)
+    if activeRecord and activeRecord.playerGUID then
+        local vaultKeys = Crypto:DeriveKeys(activeRecord.playerGUID, realmName)
+        local validActive = Crypto:VerifyVaultEnvelope(activeRecord, vaultKeys.k_mac, 2)
+        if validActive then
+            local payload, err = Crypto:DecryptVaultRecord(activeRecord, vaultKeys.key4)
             if payload and payload ~= "" then
                 loadedPayload = payload
-                C_Timer.After(2.0, function()
-                    DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffffcc00[Vault Recovery]|r An interrupted save was detected from your last session. State safely restored from backup generation!")
-                    if ns.Toast and ns.Toast.ShowAlert then
-                        ns.Toast:ShowAlert("Vault Recovered", "Restored from clean backup generation")
-                    end
-                end)
             end
         end
     end
 
-    -- If both failed: Hard quarantine
-    if not loadedPayload then
-        ForeverSafariVault_Quarantine = CopyTable(ForeverSafariVault)
-        ForeverSafariVault = nil
-        self.state = CopyTable(DEFAULT_DB)
+    if not loadedPayload and vaultSource and vaultSource.backup and vaultSource.backup.playerGUID then
+        local backupRecord = vaultSource.backup
+        local backupKeys = Crypto:DeriveKeys(backupRecord.playerGUID, realmName)
+        local validBackup = Crypto:VerifyVaultEnvelope(backupRecord, backupKeys.k_mac, 2)
+        if validBackup then
+            local payload, err = Crypto:DecryptVaultRecord(backupRecord, backupKeys.key4)
+            if payload and payload ~= "" then
+                loadedPayload = payload
+            end
+        end
+    end
+
+    if loadedPayload then
+        local rawState = self:DeserializeState(loadedPayload)
+        self.state = self:MigrateSchema(rawState)
         ForeverSafariDB = self.state
-        self:PersistVaultSnapshot()
-        C_Timer.After(2.0, function()
-            DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444[Security Alert]|r Vault integrity could not be verified. A clean profile has been initialized and corrupt data was quarantined.")
-        end)
+        if self.state.collection then
+            for i, minimal in ipairs(self.state.collection) do
+                self.state.collection[i] = self:HydrateCompanion(minimal)
+            end
+        end
         return
     end
 
-    -- Deserialization & dynamic hydration
-    local rawState = self:DeserializeState(loadedPayload)
-    self.state = self:MigrateSchema(rawState)
-    ForeverSafariDB = self.state
-
-    -- Hydrate all collection companions with canonical stats
-    if self.state.collection then
-        for i, minimal in ipairs(self.state.collection) do
-            self.state.collection[i] = self:HydrateCompanion(minimal)
-        end
+    -- 3. If ForeverSafariDB already exists as an initialized table, retain it
+    if ForeverSafariDB and type(ForeverSafariDB) == "table" then
+        self.state = self:MigrateSchema(ForeverSafariDB)
+        ForeverSafariDB = self.state
+    else
+        self.state = CopyTable(DEFAULT_DB)
+        ForeverSafariDB = self.state
     end
 end
 
