@@ -317,6 +317,25 @@ function HUD:Initialize()
         end
 
         GameTooltip:SetOwner(self, "ANCHOR_TOP")
+        local activeMob = DB and DB.GetActiveMob and DB:GetActiveMob()
+        if not activeMob then
+            GameTooltip:AddLine("⚔️ Engage in Wild Battle (No Squad)", 1, 0.4, 0.4)
+            GameTooltip:AddLine("You have no active companion ready for battle!", 1, 1, 1, true)
+            GameTooltip:AddLine(" ")
+            GameTooltip:AddLine("🔒 To Begin Battling:", 1, 0.2, 0.2)
+            GameTooltip:AddLine("• Claim your Starter Companion Parcel at any town mailbox ([Safari] tab), or open /fs to assign a companion to Slot 1.", 1, 0.82, 0, true)
+            GameTooltip:Show()
+            return
+        elseif (activeMob.currentHP or 0) <= 0 then
+            GameTooltip:AddLine("⚔️ Engage in Wild Battle (Squad Fainted)", 1, 0.4, 0.4)
+            GameTooltip:AddLine("Your active companion has fainted!", 1, 1, 1, true)
+            GameTooltip:AddLine(" ")
+            GameTooltip:AddLine("💔 To Recover:", 1, 0.2, 0.2)
+            GameTooltip:AddLine("• Speak with an Innkeeper to rest and revive your squad, or use a Revival Crystal / Healing Salve from /fsbag.", 1, 0.82, 0, true)
+            GameTooltip:Show()
+            return
+        end
+
         GameTooltip:AddLine("⚔️ Engage in Wild Battle", 1, 0.82, 0)
         GameTooltip:AddLine("Challenge this wild creature to a turn-based battle with your active companion.", 1, 1, 1, true)
         GameTooltip:AddLine(" ")

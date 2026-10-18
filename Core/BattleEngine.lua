@@ -750,13 +750,15 @@ function BE:StartWildBattle(unit)
 
     local inInstance, instanceType = IsInInstance()
     if inInstance and instanceType and instanceType ~= "none" then
+        UIErrorsFrame:AddMessage("Safari battles cannot be initiated inside instances or raids!", 1.0, 0.2, 0.2, 1.0)
         DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Safari battles cannot be initiated inside instances, raids, or battlegrounds! Defeat mobs here for a chance at companion pup drops.|r")
         return false
     end
 
     local activeMob = DB:GetActiveMob()
     if not activeMob then
-        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444You have no active companion ready for battle! Open your Field Guide to set one.|r")
+        UIErrorsFrame:AddMessage("No active companion ready! Visit a mailbox or open /fs.", 1.0, 0.2, 0.2, 1.0)
+        DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444You have no active companion ready for battle! Open your Field Guide to set one, or claim your starter companion at any town mailbox.|r")
         return false
     end
 
@@ -774,6 +776,7 @@ function BE:StartWildBattle(unit)
             end
         end
         if not foundConscious then
+            UIErrorsFrame:AddMessage("All companions have fainted! Visit an Innkeeper to revive.", 1.0, 0.2, 0.2, 1.0)
             DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444All companions in your party have fainted! Visit an Innkeeper to revive and heal your squad, or use a Revival Crystal.|r")
             return false
         end

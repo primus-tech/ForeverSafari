@@ -432,6 +432,9 @@ function DB:SetMobAbility(mobId, slotIndex, moveKey)
 end
 
 function DB:IsTypeUnlocked(creatureType)
+    if not creatureType or creatureType == "Beast" or creatureType == "Flying" or creatureType == "Aquatic" or creatureType == "Critter" or creatureType == "Magic" then
+        return true
+    end
     if not ForeverSafariDB or not ForeverSafariDB.unlockedTypes then return false end
     return ForeverSafariDB.unlockedTypes[creatureType] == true
 end
