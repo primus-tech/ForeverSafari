@@ -9,7 +9,15 @@ We are programming for **WoW: Forever**.
 
 ---
 
-## 2. Canonical NPC Roles in Forever Safari
+## 2. Core Protocol: Zero "Off-Roading" & Strict Developer Adherence
+* **No Unsolicited Design Alterations**: Never modify, add to, or second-guess the gameplay loops, quest objectives, mechanics, or vision defined by the Lead Developer.
+* **Zero "Creative Liberties"**: Do not "improve", expand, or alter a quest or mechanic on your own initiative (e.g. changing an observation task into a capture task). If a quest is defined as **Observe**, it is strictly **Observe**.
+* **Direct Execution Only**: Implement exactly what is asked. Do not assume you know better than the developer. Unapproved "off-roading" breaks player trust, compromises live releases on platforms like CurseForge, and introduces severe game-breaking regressions.
+* **Verify Scope Before Touching**: If a change feels necessary, ask explicitly first. Never write unsolicited gameplay or design changes directly into the codebase.
+
+---
+
+## 3. Canonical NPC Roles in Forever Safari
 In *Forever Safari*, NPCs have strict, dedicated roles within our minigame ecosystem. No generic fallbacks, no accidental cross-contamination with class trainers, guards, flight masters, or profession trainers.
 
 | NPC Archetype | In-Game Subtitle | Forever Safari Role | Description |
@@ -22,7 +30,7 @@ In *Forever Safari*, NPCs have strict, dedicated roles within our minigame ecosy
 
 ---
 
-## 3. Exclusion Rules
+## 4. Exclusion Rules
 * **Guards & Sentries:** Have no gameplay function in *Forever Safari*. Any directional dialogue pointing to an inn or bank must never trigger safari interactions.
 * **Flight Masters:** Have no gameplay function in *Forever Safari*.
 * **Class Trainers (including Hunter Trainers):** Have no connection to *Forever Safari*.
@@ -30,13 +38,13 @@ In *Forever Safari*, NPCs have strict, dedicated roles within our minigame ecosy
 
 ---
 
-## 4. Stable Master Interaction & The Specialized HUD
+## 5. Stable Master Interaction & The Specialized HUD
 * **Server-Side Class Check:** In WoW: Forever, **Stable Masters do not offer gossip options to non-Hunters**. The server checks the player's class immediately upon interaction and terminates the gossip session if the player is not a Hunter.
 * **The Specialized HUD Requirement:** Because native Blizzard Gossip cannot be used by non-Hunters at Stable Masters, **Forever Safari uses our specialized HUD** (targeting / world interaction HUD) to challenge Outpost Leaders and engage in Outpost Battles. Native gossip injection is never relied upon for Outpost challenges at Stable Masters.
 
 ---
 
-## 5. Tiered Breeding Sanctuaries: Capital Cities vs. Sacred Grove
+## 6. Tiered Breeding Sanctuaries: Capital Cities vs. Sacred Grove
 Breeding availability is tiered to provide early access while preserving sacred endgame progression:
 
 | Breeding Sanctuary | NPC Host | Availability | Offspring Starting Rank | Gameplay Advantage |
@@ -46,13 +54,13 @@ Breeding availability is tiered to provide early access while preserving sacred 
 
 ---
 
-## 6. The "King of the Hill" Naming Principle
+## 7. The "King of the Hill" Naming Principle
 * **Authentic Beast Names:** Companions never receive synthetic "Starter" prefixes attached to their names (e.g. **no** `"Starter Mangy Wolf"`).
 * **True Champions from Day One:** An initial bonded companion is an authentic wild beast of Azeroth (**"Mangy Wolf"**, **"Young Black Bear"**, **"Crag Boar"**, **"Young Nightsaber"**). Players can nurture and climb all the way to the top of the Safari League with their very first companion.
 
 ---
 
-## 7. Codebase Integrity, Technical Invariants & Prohibited APIs
+## 8. Codebase Integrity, Technical Invariants & Prohibited APIs
 
 ### Straightforward Architecture
 * **No Aliases, No Shims**: We do not write aliases, compatibility shims, proxy tables, wrapper polyfills, or indirect bridge layers.
@@ -79,7 +87,7 @@ Breeding availability is tiered to provide early access while preserving sacred 
 
 ---
 
-## 8. Virtual Duo Outposts, Party Scaling & Pre-Battle Squad Designation
+## 9. Virtual Duo Outposts, Party Scaling & Pre-Battle Squad Designation
 * **Virtual Duo Encounter Architecture (The Cenarion Twins):**
   * Exemplified by **Jarund Stoutstrider & Layo Starstrike** at Cenarion Hold in Silithus.
   * Virtual Duos field a joint roster (e.g. 8 authentic companions total, 4 per Twin) and command active pets under coordinated AI.
@@ -113,7 +121,7 @@ Breeding availability is tiered to provide early access while preserving sacred 
 
 ---
 
-## 9. Research Licenses, Dungeon Boss Specimen Drops & Mailbox Dispatch
+## 10. Research Licenses, Dungeon Boss Specimen Drops & Mailbox Dispatch
 * **Authentic RPG Quest Loop (No Magic Auto-Unlocks):**
   * Slaying dungeon bosses (Crowd Pummeler 9-60, Lord Incendius, Baron Rivendare, Shade of Eranikus) does **not** silently auto-unlock creature categories in the background.
   * Instead, the boss drops an authentic physical specimen directly into the player's virtual Safari Bag (`/fsbag`):
@@ -127,7 +135,7 @@ Breeding availability is tiered to provide early access while preserving sacred 
 
 ---
 
-## 10. Progressive Dispatch Directives & Quest Flow
+## 11. Progressive Dispatch Directives & Quest Flow
 The League's mailbox correspondence unfolds sequentially to ensure recruits build their naturalistic skills organically:
 
 1. **Dispatch #1: Welcome to the Safari League!**
@@ -153,7 +161,7 @@ The League's mailbox correspondence unfolds sequentially to ensure recruits buil
 
 ---
 
-## 11. The 3D Field Guide Badges Cabinet (Tab 5)
+## 12. The 3D Field Guide Badges Cabinet (Tab 5)
 * Tab 5 (`[BADGES]`) provides a permanent trophy showcase in the Safari Journal:
   * **Top Shelf**: 4 large ornate Research License plaques (locked darkened brass vs. certified gold).
   * **Velvet Grid**: Scrollable showcase of all 54 Regional Outpost Badges with unearned mystery silhouettes and earned victory timestamps/defeat quotes.
