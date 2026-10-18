@@ -1,5 +1,6 @@
 # 🗺️ Forever Safari — Master Development Roadmap
 **Target Client:** World of Warcraft: Forever Beta (`_classic_beta_` / `dataEnv: 16` / `1.60.1`)  
+**Target Engine:** Modern Retail WoW Engine (API 11.x/12.x)  
 **Addon:** Forever Safari (`ForeverSafari`)  
 **Organization:** Nesingwary Junior Safari League  
 
@@ -447,8 +448,8 @@
   * Added `DB:ClaimQuestReward` in `Core/Database.lua` to record claims and manage reward payouts.
 * [x] **Progressive Dispatch Gating (`Data/BountyDB.lua`)**:
   * Implemented `BountyDB:IsDispatchUnlocked(id)` and `BountyDB:GetUnlockedDispatches()`.
-  * New recruits are presented with only **Dispatch #1** (*First Steps*) and **Dispatch #2** (*Outpost Reconnaissance*).
-  * Subsequent directives (#3 *First Attunement*, #4 *Dungeon Scouting*, #5 *Regional Mastery*, and creature license directives) unlock sequentially upon claiming prior directives or obtaining the required specimen.
+  * New recruits are presented with only **Dispatch #1** (*Welcome to the Safari League!*) and **Dispatch #2** (*Field Observation 101*).
+  * Subsequent directives (#3 *The Wild Nourishment*, #4 *Sighting of Apex Rares*, #5 *Deep Dungeon Expedition*, and creature license directives) unlock sequentially upon claiming prior directives or obtaining the required specimen.
   * Synchronized across both the town mailbox `[Safari]` tab and the Journal's **`[DIRECTIVES]`** view (`JournalBountiesView.lua`).
 * [x] **Journal Badges & Credentials Cabinet (`UI/Views/JournalBadgesView.lua`, `UI/JournalFrame.lua`)**:
   * Added Tab 5 **`[BADGES]`** ("Badges & Licenses") to the Safari Journal header.
@@ -459,7 +460,25 @@
 
 ---
 
-## 📍 Phase 26: Future Expansions & Social Leagues (Pending ⏳)
+## 📍 Phase 26: Release v1.0.2 Critical Bug Fixes & Architecture Fortification (Completed ✅)
+* [x] **Combat Engine & UI Stability (`UI/BattleFrame.lua`)**:
+  * Resolved runtime crash on battle turn start by replacing obsolete `:IsAtBottom()` with canonical modern Retail ScrollingMessageFrame method `:AtBottom()`.
+* [x] **SavedVariables Session Persistence (`ForeverSafari.lua`)**:
+  * Purged destructive `ForeverSafariDB = nil` on `PLAYER_LOGOUT`, guaranteeing full persistence of unboxed companions, catches, and inventories across client reloads and logouts.
+* [x] **3D Paperdoll Model Framing & Camera Lock Purge**:
+  * Stripped hardcoded `SetCustomCamera(0)` and `SetPortraitZoom(0)` across `UI/BattleFrame.lua`, `UI/JournalFrame.lua`, `UI/InspectorFrame.lua`, and `UI/Views/JournalRosterView.lua`.
+  * Fully migrated to Retail engine bounding-box perspective rendering via `:SetDisplayInfo(displayId)` with clean diagonal arena facing angles (`math.rad(45)` player, `math.rad(-35)` enemy).
+  * Unified Journal Spotlight rotation controls using `:SetRotation()`.
+* [x] **Field Directive Observation Enforcement (`Data/BountyDB.lua`, `Core/CaptureEngine.lua`)**:
+  * Reverted Dispatch #2 (*Field Observation 101*) strictly to non-invasive field study (`OBSERVE`), removing all capture requirements.
+  * Wired field binoculars/lens channel completion directly to `DB:UpdateQuestProgress("OBSERVE", 1)`.
+  * Verified town mailbox turn-in and reward claim pipeline.
+* [x] **Truth.md Governance & Zero Off-Roading Mandate**:
+  * Enshrined Section 2 in `Truth.md` enforcing zero unapproved design alterations, strict adherence to developer specifications, and modern Retail engine API standards.
+
+---
+
+## 📍 Phase 27: Future Expansions & Social Leagues (Pending ⏳)
 * [ ] **PvP Safari Tournaments & Guild Ladders**: Cross-faction companion duel tournaments, bracket scheduling, and guild ladders.
 * [ ] **Safari Attunement Master Quests**: Epic class- and race-specific questlines to earn Master attunement and legendary expedition traps.
 * [ ] **World Boss Safari Raids**: Instanced raid encounter mechanics for legendary apex creatures.
