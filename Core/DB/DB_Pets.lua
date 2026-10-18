@@ -23,6 +23,13 @@ end
 
 function DB:GetMobById(id)
     if not ForeverSafariDB or not ForeverSafariDB.collection then return nil end
+    if type(id) == "table" then
+        if id.id then
+            id = id.id
+        else
+            return id
+        end
+    end
     for _, mob in ipairs(ForeverSafariDB.collection) do
         if mob.id == id then
             return mob
@@ -338,12 +345,30 @@ end
 
 function DB:GetActiveMob()
     local team = self:GetTeam()
+    if not team or #team == 0 then
+        if ForeverSafariDB and ForeverSafariDB.collection and #ForeverSafariDB.collection > 0 then
+            ForeverSafariDB.team = ForeverSafariDB.team or {}
+            table.insert(ForeverSafariDB.team, ForeverSafariDB.collection[1].id)
+            team = ForeverSafariDB.team
+        else
+            return nil
+        end
+    end
+
     local slot = ForeverSafariDB and ForeverSafariDB.activeSlot or 1
     local mobId = team[slot]
-    if mobId then
-        return self:GetMobById(mobId)
+    local mob = mobId and (type(mobId) == "table" and mobId or self:GetMobById(mobId))
+
+    if not mob then
+        for i, id in ipairs(team) do
+            mob = type(id) == "table" and id or self:GetMobById(id)
+            if mob then
+                if ForeverSafariDB then ForeverSafariDB.activeSlot = i end
+                break
+            end
+        end
     end
-    return nil
+    return mob
 end
 
 function DB:SetActiveSlot(slot)

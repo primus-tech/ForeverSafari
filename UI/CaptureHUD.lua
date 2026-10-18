@@ -733,15 +733,26 @@ function HUD:UpdateUI()
         if not activeMob then
             frame.BattleBtn:Disable()
             frame.BattleBtn:SetText("NO SQUAD")
-        elseif (activeMob.currentHP or 0) <= 0 then
-            frame.BattleBtn:Disable()
-            frame.BattleBtn:SetText("FAINTED")
-        elseif CE:IsChanneling() then
-            frame.BattleBtn:Disable()
-            frame.BattleBtn:SetText("⚔️ BATTLE")
         else
-            frame.BattleBtn:Enable()
-            frame.BattleBtn:SetText("⚔️ BATTLE")
+            local hasConscious = (activeMob.currentHP or 0) > 0
+            if not hasConscious then
+                local team = DB:GetTeam()
+                for _, mobId in ipairs(team) do
+                    local mob = type(mobId) == "table" and mobId or DB:GetMobById(mobId)
+                    if mob and (mob.currentHP or 0) > 0 then
+                        hasConscious = true
+                        break
+                    end
+                end
+            end
+
+            if not hasConscious then
+                frame.BattleBtn:Disable()
+                frame.BattleBtn:SetText("FAINTED")
+            else
+                frame.BattleBtn:Enable()
+                frame.BattleBtn:SetText("⚔️ BATTLE")
+            end
         end
     end
 end

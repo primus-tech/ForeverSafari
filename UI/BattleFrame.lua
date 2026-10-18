@@ -284,9 +284,21 @@ function BF:BuildScrollingBattleLog(console)
     end)
 end
 
+local function IsLogAtBottom(logFrame)
+    if not logFrame then return true end
+    if logFrame.AtBottom then
+        local ok, val = pcall(logFrame.AtBottom, logFrame)
+        if ok then return val end
+    elseif logFrame.IsAtBottom then
+        local ok, val = pcall(logFrame.IsAtBottom, logFrame)
+        if ok then return val end
+    end
+    return true
+end
+
 function BF:UpdateLogScrollControls()
     if not frame or not frame.LogFrame then return end
-    local isAtBottom = frame.LogFrame:IsAtBottom()
+    local isAtBottom = IsLogAtBottom(frame.LogFrame)
     if frame.LogBtmBtn then
         if isAtBottom then
             frame.LogBtmBtn:SetAlpha(0.3)
@@ -298,10 +310,10 @@ end
 
 function BF:AddLogMessage(msg)
     if not frame or not frame.LogFrame then return end
-    local wasAtBottom = frame.LogFrame:IsAtBottom()
+    local wasAtBottom = IsLogAtBottom(frame.LogFrame)
     frame.LogFrame:AddMessage(msg)
-    if wasAtBottom then
-        frame.LogFrame:ScrollToBottom()
+    if wasAtBottom and frame.LogFrame.ScrollToBottom then
+        pcall(frame.LogFrame.ScrollToBottom, frame.LogFrame)
     end
     BF:UpdateLogScrollControls()
 end
