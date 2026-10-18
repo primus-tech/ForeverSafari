@@ -176,3 +176,55 @@ The League's mailbox correspondence unfolds sequentially to ensure recruits buil
   * **Top Shelf**: 4 large ornate Research License plaques (locked darkened brass vs. certified gold).
   * **Velvet Grid**: Scrollable showcase of all 54 Regional Outpost Badges with unearned mystery silhouettes and earned victory timestamps/defeat quotes.
   * **Live Tally**: Real-time progress tracking (`Badges Collected: X / 54 (Y%)`).
+
+---
+
+## 13. Attunement & Loyalty Progression vs. Traditional Leveling
+* ⛔ **NO TRADITIONAL 1–60 LEVELING**: Companions in *Forever Safari* do **not** gain standard character levels (1–60) or experience points. There are no level-up dings or arbitrary stat inflations.
+* ✅ **THE 5-RANK ATTUNEMENT & LOYALTY SYSTEM**: Progression is driven purely by building Attunement with your companions:
+
+| Rank | Roman | Loyalty Title | Min Points | Max Points | Stat Mult | Disobedience | Active Move Slots | Key Perks |
+| :---: | :---: | :--- | :---: | :---: | :---: | :---: | :---: | :--- |
+| **1** | **I** | **Wild / Unbroken** | 0 | 250 | **0.85x** | **15%** | **1 Slot** | Baseline captured wild state. High disobedience in battle. |
+| **2** | **II** | **Rebellious** | 250 | 600 | **0.90x** | **10%** | **2 Slots** | Second ability slot unlocked. |
+| **3** | **III** | **Trusting** | 600 | 1,200 | **1.00x** | **5%** | **3 Slots** | **True Baseline Stats** (Zero stat penalties/bonuses). Starter companions begin here. |
+| **4** | **IV** | **Devoted** | 1,200 | 2,500 | **1.10x** | **0%** | **4 Slots** | Full 4-ability movepool unlocked. 100% obedience guaranteed. |
+| **5** | **V** | **Apex Companion** | 2,500 | 2,500 | **1.25x** | **0%** | **4 Slots** | Maximum power threshold. Enables **Rank V Metamorphosis** evolution via dungeon catalysts. |
+
+---
+
+## 14. Global Stat Law: The 100-Point Budget & Creature Type Scaling
+* **The 100-Point Universal Budget**:
+  * Every standard wild creature distributes **exactly 100 raw base points** across its 4 core attributes: `{ hp, atk, def, spd }`.
+  * Rare and Elite species distribute **110 raw base points** (or receive an `eliteMod = 1.20x`).
+* **Creature Type Multipliers (Family Scaling)**:
+  * Raw base stats are multiplied by the creature's native **Creature Type** (`C.CREATURE_TYPES`):
+    * **Beast**: `hp: 1.05x`, `atk: 1.15x`, `def: 0.95x`, `spd: 1.15x` (+10% Nature Resist, *Enrage* passive).
+    * **Aquatic**: `hp: 1.15x`, `atk: 1.00x`, `def: 1.05x`, `spd: 1.00x` (+10% Frost Resist, -50% DoT duration).
+    * **Dragonkin**: `hp: 1.20x`, `atk: 1.25x`, `def: 1.15x`, `spd: 0.90x` (+5% Omni-Magic Resist, *Draconic Fury*).
+    * **Elemental**: `hp: 0.95x`, `atk: 1.20x`, `def: 0.95x`, `spd: 1.05x` (Weather/debuff immunity).
+    * **Flying**: `hp: 0.90x`, `atk: 1.10x`, `def: 0.85x`, `spd: 1.45x` (+50% SPD when above 50% HP).
+    * **Magic**: `hp: 1.00x`, `atk: 1.20x`, `def: 1.00x`, `spd: 0.95x` (Cannot take >35% max HP in one hit).
+    * **Mechanical**: `hp: 1.10x`, `atk: 1.05x`, `def: 1.25x`, `spd: 0.85x` (+15% Phys/-5% Nat, 1x 20% Reboot).
+    * **Undead**: `hp: 1.20x`, `atk: 1.00x`, `def: 0.90x`, `spd: 0.85x` (+15% Shad/-5% Holy, 1 round Immortality).
+* **Sub-Family Role (Canine, Wolf, Bear, Boar, etc.)**:
+  * Sub-families grant **zero direct numerical stat bonuses**.
+  * Sub-families strictly determine: **Movepool trees** (which moves can be learned/unlocked), **Diet preferences**, and **Metamorphosis branching**.
+
+---
+
+## 15. Wild World Encounters, Observation & 120s Real-Combat Suspension
+* **Authentic World Targets**: Safari encounters do not spawn synthetic dummy NPCs. Players interact directly with genuine wild Blizzard world creatures by targeting them.
+* **Non-Invasive Field Study (Binoculars / Lens)**: Channelling observation studies creatures without engaging in combat or pulling threat.
+* **120-Second Real-Combat Suspension (`C.BATTLE_COMBAT_PAUSE_TIMEOUT`)**:
+  * Safari battles are client-side turn-based duels. If an unrelated world mob aggros the player during a battle, or if the player dies and must corpse-run, the Safari battle **automatically suspends for up to 120 seconds**.
+  * The match state remains frozen in memory until the player leaves real WoW combat, allowing them to resume seamlessly without losing their companion or battle progress.
+
+---
+
+## 16. Universal Diet Matrix & Attunement Feeding
+Companions build Attunement points outside of combat through nutritious virtual feeding (`ItemDB.FAMILY_DIETS`):
+* **Favorite Diet Item**: **+25 Attunement Points** (e.g. *Safari Meat* for Canines/Wolves/Felines, *Safari Fish* for Bears/Aquatic, *Safari Fungus* for Boars/Spiders).
+* **Accepted Diet Item**: **+15 Attunement Points** (secondary compatible food categories).
+* **Safari Treats**: **+50 Attunement Points** (universal treat accepted by all living species).
+* **Safari Feast**: **+100 Attunement Points** (grand universal banquet for instant squad attunement).
