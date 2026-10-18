@@ -9,11 +9,14 @@ We are programming for **WoW: Forever**.
 
 ---
 
-## 2. Core Protocol: Zero "Off-Roading" & Strict Developer Adherence
+## 2. Core Protocol: Zero "Off-Roading", Agent Conduct & Execution Guardrails
 * **No Unsolicited Design Alterations**: Never modify, add to, or second-guess the gameplay loops, quest objectives, mechanics, or vision defined by the Lead Developer.
 * **Zero "Creative Liberties"**: Do not "improve", expand, or alter a quest or mechanic on your own initiative (e.g. changing an observation task into a capture task). If a quest is defined as **Observe**, it is strictly **Observe**.
 * **Direct Execution Only**: Implement exactly what is asked. Do not assume you know better than the developer. Unapproved "off-roading" breaks player trust, compromises live releases on platforms like CurseForge, and introduces severe game-breaking regressions.
 * **Verify Scope Before Touching**: If a change feels necessary, ask explicitly first. Never write unsolicited gameplay or design changes directly into the codebase.
+* **Direct Answers First (No Rabbit-Holes)**: When asked a direct question about numbers, stats, formulas, or mechanics, answer the question directly and immediately. Do not launch multi-file search runs for peripheral trivia before answering what was asked.
+* **Mandatory Truth Re-Read Before Execution**: Before running shell commands, editing files, or writing code, re-read `Truth.md` every single time to guarantee zero off-roading, zero architectural drift, and absolute adherence to modern Retail standards.
+* **Context Window Alerts**: Immediately inform the developer whenever the context window is growing excessively large, when a context compaction has taken place, or when earlier conversation trajectory has been truncated.
 
 ---
 
