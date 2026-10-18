@@ -6,6 +6,12 @@ We are programming for **WoW: Forever**.
 * **The World & Experience**: **WoW: Forever** is a unique, official Blizzard product featuring a horizontal progression world rather than a vertical treadmill.
 * **The Engine & API Runtime (CRITICAL)**: **WoW: Forever runs on the Modern Retail WoW Engine (API 11.x/12.x)**.
 * **NOT Classic/Vanilla**: It is **not** Classic, Classic+, Vanilla 1.12, nor TBC. Under no circumstances should legacy 1.12 APIs, obsolete Classic snippets, or deprecated frame methods be introduced into this codebase. All Lua code must target modern Retail client standards.
+* **100% Client-Side Minigame Architecture (CRITICAL)**:
+  * **Zero Server-Side Authority**: *Forever Safari* is entirely an in-client addon minigame. There is **no** custom game server, **no** backend database, and **no** Blizzard server-side C++ logic. Blizzard's servers do not recognize Safari pets, Attunement, or Safari battles.
+  * **Complete Local Simulation**: 100% of gameplay—combat calculations, turns, AI decision trees, capture RNG, breeding inheritance, and dispatch progression—executes strictly within the player's local Lua environment.
+  * **Persistence is Purely `SavedVariables`**: All pet collections, levels, kennels, and licenses reside exclusively in the client's `SavedVariables` tables (`ForeverSafariDB`, `ForeverSafariKennel`, `ForeverSafariVault`) written to the user's `WTF` directory.
+  * **Multiplayer & PvP via P2P Addon Messaging**: Duels and co-op breeding do not run on server instances; they synchronize directly between players using Blizzard's addon chat channels (`C_ChatInfo.SendAddOnMessage`).
+  * **World Interactivity via Client Overlays**: We cannot command the server to spawn custom mobs or inject server-authoritative dialogue. All interactions hook client-side unit events (`PLAYER_TARGET_CHANGED`, `GOSSIP_SHOW`, `NAME_PLATE_UNIT_ADDED`) and render custom HUDs and 3D overlays on top of authentic world entities.
 
 ---
 
