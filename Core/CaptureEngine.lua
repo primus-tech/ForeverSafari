@@ -369,6 +369,11 @@ function CE:CompleteSnareChannel()
         end
     end
 
+    -- Update observation quest progress
+    if DB and DB.UpdateQuestProgress then
+        DB:UpdateQuestProgress("OBSERVE", 1)
+    end
+
     -- 🔒 Record observation timestamp for entity GUID (24h anti-farm lockout)
     local guid = UnitGUID("target")
     if guid and ForeverSafariDB then

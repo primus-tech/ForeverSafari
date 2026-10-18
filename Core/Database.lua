@@ -83,6 +83,7 @@ local DEFAULT_DB = {
         readLetters = {},
         claimedQuests = {},
         questProgress = {
+            ["OBSERVE"] = 0,
             ["CAPTURE_TOTAL"] = 0,
             ["FEED"] = 0,
             ["CAPTURE_RARE"] = 0,
