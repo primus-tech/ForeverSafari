@@ -4,6 +4,22 @@ All notable changes to the Forever Safari addon are documented in this file.
 
 ---
 
+## [v1.0.3] — 2026-10-18
+
+### 🐛 Critical Bug Fixes & Improvements
+
+#### 1. 3D Model Pedestal Arena Rendering & Viewport Synchronization
+- **Fixed Blank Battle Arena Pedestals**: Resolved an issue where neither the player's companion nor the opposing trainer's beast appeared on the 3D model pedestals in the battle window.
+- **Asynchronous Viewport Layout Binding**: Added deferred model rendering ticks (`C_Timer.After`) and an `OnShow` frame script hook in [UI/BattleFrame.lua](file:///home/primustech/.steam/debian-installation/steamapps/compatdata/4226358677/pfx/drive_c/Program%20Files%20%28x86%29/World%20of%20Warcraft/_classic_beta_/Interface/AddOns/ForeverSafari/UI/BattleFrame.lua) so that the DirectX/OpenGL viewport completes its layout pass before binding model display IDs.
+- **Eliminated Asynchronous `ClearModel` Race Condition**: Replaced unconditional `ClearModel()` calls with display ID caching (`_currentDisplayId`), preventing the model unmount queue from destroying newly loaded display meshes.
+- **Asynchronous `OnModelLoaded` Hook**: Registered `OnModelLoaded` script hooks on `PlayerModel` widgets to cleanly apply rotation (`math.rad(45)` for player, `math.rad(-35)` for enemy), camera distance scale (`1.0`), and idle animation (`0`) once mesh streaming completes.
+
+#### 2. Moonkin / Wildkin Humanoid Rival Trainer Archetype
+- **Humanoid NPC Trainer Classification**: Ensured all Moonkin, Wildkin, and Owlbeast mobs (such as those around Auberdine / Darkshore) are strictly recognized as Humanoid NPC Trainers fielding their own companion rosters, never as catchable wild beasts.
+- **Thematic Wildkin Roster**: Added the `"Moonkin"` archetype (`Wildkin Moon-Watcher`) to [Data/TrainerDB.lua](file:///home/primustech/.steam/debian-installation/steamapps/compatdata/4226358677/pfx/drive_c/Program%20Files%20%28x86%29/World%20of%20Warcraft/_classic_beta_/Interface/AddOns/ForeverSafari/Data/TrainerDB.lua) and [Core/TrainerEngine.lua](file:///home/primustech/.steam/debian-installation/steamapps/compatdata/4226358677/pfx/drive_c/Program%20Files%20%28x86%29/World%20of%20Warcraft/_classic_beta_/Interface/AddOns/ForeverSafari/Core/TrainerEngine.lua), giving them authentic nature/forest beasts (Sprite Darter, Darkshore Thistle Bear, Moonstalker Cub, Darkshore Strider).
+
+---
+
 ## [v1.0.2] — 2026-10-17
 
 ### 🐛 Critical Bug Fixes

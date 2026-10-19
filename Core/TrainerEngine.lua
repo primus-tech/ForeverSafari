@@ -45,7 +45,8 @@ function TE:IsHumanoidTrainer(unit)
         if string.find(lower, "defias") or string.find(lower, "murloc") or string.find(lower, "kobold")
             or string.find(lower, "gnoll") or string.find(lower, "centaur") or string.find(lower, "scarlet")
             or string.find(lower, "dark iron") or string.find(lower, "pirate") or string.find(lower, "syndicate")
-            or string.find(lower, "trogg") or string.find(lower, "cultist") or string.find(lower, "ogre") then
+            or string.find(lower, "trogg") or string.find(lower, "cultist") or string.find(lower, "ogre")
+            or string.find(lower, "moonkin") or string.find(lower, "wildkin") or string.find(lower, "owlbeast") then
             return true
         end
     end

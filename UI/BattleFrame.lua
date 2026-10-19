@@ -51,6 +51,9 @@ function BF:Initialize()
             end
         end
     end)
+    frame:HookScript("OnShow", function(self)
+        BF:UpdateModels()
+    end)
 
     Theme:CreateCloseButton(frame)
 
@@ -110,7 +113,7 @@ function BF:Initialize()
     local playerModel = CreateFrame("PlayerModel", "ForeverSafariPlayer3DModel", stage)
     playerModel:SetSize(210, 210)
     playerModel:SetPoint("BOTTOM", playerPedestal, "CENTER", 0, -15)
-    playerModel:SetRotation(math.rad(145))
+    playerModel:SetRotation(math.rad(45))
     frame.PlayerModel = playerModel
     BF:SetupModelOverlay(playerModel)
 
@@ -1220,42 +1223,69 @@ function BF:SetMenuMode(mode)
     PlaySound(856)
 end
 
+-- Helper: Safely apply companion 3D model, camera bounds, and rotations
+function BF:ApplyCompanionModel(modelFrame, mob, defaultRotation)
+    if not modelFrame then return end
+    modelFrame:Show()
+    modelFrame:SetAlpha(1.0)
+    modelFrame.targetRotation = defaultRotation
+
+    local function applyTransforms()
+        pcall(function()
+            if modelFrame.SetCamDistanceScale then modelFrame:SetCamDistanceScale(1.0) end
+            if modelFrame.SetRotation then modelFrame:SetRotation(defaultRotation) end
+            if modelFrame.SetAnimation then modelFrame:SetAnimation(0) end
+        end)
+    end
+
+    if modelFrame.SetScript and not modelFrame._hasModelLoadedHook then
+        modelFrame._hasModelLoadedHook = true
+        modelFrame:HookScript("OnModelLoaded", function(self)
+            self._loadedDisplayId = self._currentDisplayId
+            applyTransforms()
+        end)
+    end
+
+    if not mob then
+        if modelFrame.ClearModel then pcall(modelFrame.ClearModel, modelFrame) end
+        modelFrame._currentDisplayId = nil
+        return
+    end
+
+    local disp = tonumber(mob.displayId)
+    if not disp or disp <= 0 then
+        disp = C.GetDefaultDisplayId(mob.creatureType or mob.family, mob.name)
+    end
+    disp = tonumber(disp) or 903
+
+    if modelFrame._currentDisplayId ~= disp then
+        modelFrame._currentDisplayId = disp
+        local ok = false
+        if modelFrame.SetDisplayInfo then
+            ok = pcall(modelFrame.SetDisplayInfo, modelFrame, disp)
+        end
+        if not ok and modelFrame.SetCreatureByDisplayID then
+            ok = pcall(modelFrame.SetCreatureByDisplayID, modelFrame, disp)
+        end
+        if not ok and mob.npcId and tonumber(mob.npcId) and modelFrame.SetCreature then
+            pcall(modelFrame.SetCreature, modelFrame, tonumber(mob.npcId))
+        end
+    end
+    applyTransforms()
+end
+
 -- Update 3D Models and Paperdoll Views
 function BF:UpdateModels()
     if not frame or not frame:IsShown() then return end
 
-    local enemy = BE.State.enemyMob
-    if enemy and frame.EnemyModel then
-        local enemyDisplay = (enemy.displayId and enemy.displayId > 0) and enemy.displayId or C.GetDefaultDisplayId(enemy.creatureType, enemy.name)
-        if frame.EnemyModel.ClearModel then pcall(frame.EnemyModel.ClearModel, frame.EnemyModel) end
-        if frame.EnemyModel.SetDisplayInfo then
-            pcall(frame.EnemyModel.SetDisplayInfo, frame.EnemyModel, enemyDisplay)
-        elseif frame.EnemyModel.SetCreatureByDisplayID then
-            pcall(frame.EnemyModel.SetCreatureByDisplayID, frame.EnemyModel, enemyDisplay)
-        end
-        pcall(function()
-            if frame.EnemyModel.SetCamDistanceScale then frame.EnemyModel:SetCamDistanceScale(1.0) end
-            frame.EnemyModel:SetRotation(math.rad(-35))
-            frame.EnemyModel:SetAnimation(0)
-        end)
-        frame.EnemyModel:Show()
+    local enemy = BE.State and BE.State.enemyMob
+    if frame.EnemyModel then
+        BF:ApplyCompanionModel(frame.EnemyModel, enemy, math.rad(-35))
     end
 
-    local player = BE.State.playerMob
-    if player and frame.PlayerModel then
-        local playerDisplay = (player.displayId and player.displayId > 0) and player.displayId or C.GetDefaultDisplayId(player.creatureType, player.name)
-        if frame.PlayerModel.ClearModel then pcall(frame.PlayerModel.ClearModel, frame.PlayerModel) end
-        if frame.PlayerModel.SetDisplayInfo then
-            pcall(frame.PlayerModel.SetDisplayInfo, frame.PlayerModel, playerDisplay)
-        elseif frame.PlayerModel.SetCreatureByDisplayID then
-            pcall(frame.PlayerModel.SetCreatureByDisplayID, frame.PlayerModel, playerDisplay)
-        end
-        pcall(function()
-            if frame.PlayerModel.SetCamDistanceScale then frame.PlayerModel:SetCamDistanceScale(1.0) end
-            frame.PlayerModel:SetRotation(math.rad(45))
-            frame.PlayerModel:SetAnimation(0)
-        end)
-        frame.PlayerModel:Show()
+    local player = BE.State and BE.State.playerMob
+    if frame.PlayerModel then
+        BF:ApplyCompanionModel(frame.PlayerModel, player, math.rad(45))
     end
 end
 
@@ -1384,6 +1414,11 @@ function BF:UpdateUI()
 
     local player = BE.State.playerMob
     local enemy = BE.State.enemyMob
+
+    -- Verify 3D models are initialized and populated
+    if (frame.EnemyModel and not frame.EnemyModel._currentDisplayId) or (frame.PlayerModel and not frame.PlayerModel._currentDisplayId) then
+        BF:UpdateModels()
+    end
 
     -- Update Header Banner Text
     if frame.HeaderText then
@@ -1617,6 +1652,8 @@ function BF:ShowBattle()
     BF:UpdateModels()
     BF:UpdateUI()
     BF:UpdatePartyFramesVisibility()
+    C_Timer.After(0.05, function() BF:UpdateModels() end)
+    C_Timer.After(0.2, function() BF:UpdateModels() end)
     PlaySound(1194)
 end
 

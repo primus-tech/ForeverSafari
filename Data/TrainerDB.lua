@@ -159,6 +159,18 @@ TrainerDB.ARCHETYPES = {
             { name = "Apex River Crocolisk", family = "Crocolisk", element = "Aquatic", displayId = 1386, baseStats = { hp = 46, atk = 22, def = 22, spd = 10 }, moves = { 401, 1005 } },
         }
     },
+    ["Moonkin"] = {
+        title = "Wildkin Moon-Watcher",
+        intro = "Hoooot! The sacred forest spirits answer the moon's call!",
+        defeat = "Hoo-oo... Elune watches over your journey...",
+        tokenReward = 12,
+        pool = {
+            { name = "Sprite Darter", family = "Dragonkin", element = "Dragonkin", displayId = 2769, baseStats = { hp = 38, atk = 24, def = 18, spd = 20 }, moves = { 901, 902 } },
+            { name = "Darkshore Thistle Bear", family = "Bear", element = "Beast", displayId = 742, baseStats = { hp = 46, atk = 20, def = 22, spd = 12 }, moves = { 101, 102 } },
+            { name = "Moonstalker Cub", family = "Feline", element = "Beast", displayId = 775, baseStats = { hp = 36, atk = 26, def = 16, spd = 22 }, moves = { 103, 107 } },
+            { name = "Darkshore Strider", family = "Tallstrider", element = "Beast", displayId = 1068, baseStats = { hp = 40, atk = 20, def = 16, spd = 24 }, moves = { 101, 202 } },
+        }
+    },
     ["Default"] = {
         title = "Wandering Safari Rival",
         intro = "A companion duel? Let's see whose beasts are stronger!",
@@ -213,6 +225,8 @@ function TrainerDB:GetArchetypeForUnit(unitName, unitType, zoneName)
         return self.ARCHETYPES["Ogre"]
     elseif string.find(lower, "nesingwary") or string.find(lower, "huntsman") or string.find(lower, "poacher") or string.find(lower, "tracker") then
         return self.ARCHETYPES["Nesingwary"]
+    elseif string.find(lower, "moonkin") or string.find(lower, "wildkin") or string.find(lower, "owlbeast") then
+        return self.ARCHETYPES["Moonkin"]
     end
 
     return self.ARCHETYPES["Default"]
