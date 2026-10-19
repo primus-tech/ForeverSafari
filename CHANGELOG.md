@@ -6,17 +6,30 @@ All notable changes to the Forever Safari addon are documented in this file.
 
 ## [v1.0.3] — 2026-10-18
 
-### 🐛 Critical Bug Fixes & Improvements
+### 🐛 Critical Bug Fixes & System Improvements
 
 #### 1. 3D Model Pedestal Arena Rendering & Viewport Synchronization
-- **Fixed Blank Battle Arena Pedestals**: Resolved an issue where neither the player's companion nor the opposing trainer's beast appeared on the 3D model pedestals in the battle window.
-- **Asynchronous Viewport Layout Binding**: Added deferred model rendering ticks (`C_Timer.After`) and an `OnShow` frame script hook in [UI/BattleFrame.lua](file:///home/primustech/.steam/debian-installation/steamapps/compatdata/4226358677/pfx/drive_c/Program%20Files%20%28x86%29/World%20of%20Warcraft/_classic_beta_/Interface/AddOns/ForeverSafari/UI/BattleFrame.lua) so that the DirectX/OpenGL viewport completes its layout pass before binding model display IDs.
-- **Eliminated Asynchronous `ClearModel` Race Condition**: Replaced unconditional `ClearModel()` calls with display ID caching (`_currentDisplayId`), preventing the model unmount queue from destroying newly loaded display meshes.
-- **Asynchronous `OnModelLoaded` Hook**: Registered `OnModelLoaded` script hooks on `PlayerModel` widgets to cleanly apply rotation (`math.rad(45)` for player, `math.rad(-35)` for enemy), camera distance scale (`1.0`), and idle animation (`0`) once mesh streaming completes.
+- **Fixed Blank Battle Arena Pedestals**: Resolved a critical issue where neither the player's companion nor the opposing trainer's beast appeared on the 3D model pedestals upon initiating battle.
+- **Asynchronous Viewport Layout Synchronization**: Identified and resolved modern Retail client engine (`_classic_beta_` / `dataEnv: 16`) viewport layout race conditions where invoking `:SetDisplayInfo()` synchronously in the same call stack as `frame:Show()` failed due to uninitialized 0×0 native Direct3D/OpenGL canvas dimensions.
+- **Multi-Pass Deferred Render Ticks**: Added deferred synchronization ticks via `C_Timer.After(0.05)` and `C_Timer.After(0.2)` in `BF:ShowBattle()`, combined with an `OnShow` frame script hook on `ForeverSafariBattleFrame` in [UI/BattleFrame.lua](file:///home/primustech/.steam/debian-installation/steamapps/compatdata/4226358677/pfx/drive_c/Program%20Files%20%28x86%29/World%20of%20Warcraft/_classic_beta_/Interface/AddOns/ForeverSafari/UI/BattleFrame.lua).
+- **Eliminated Asynchronous `ClearModel()` Race Condition**: Replaced unconditional `ClearModel()` calls with display ID caching (`_currentDisplayId`), preventing the engine's asynchronous unmount queue from destroying newly requested model display meshes.
+- **Asynchronous `OnModelLoaded` Script Hook**: Registered `OnModelLoaded` event handlers on `PlayerModel` widgets to ensure rotation, camera distance scale (`1.0`), and idle animation (`0`) are cleanly applied after CASC streaming completes.
+- **Corrected Player Model Initialization Facing**: Fixed the initial player companion rotation in `BF:Initialize()` from `math.rad(145)` to the canonical `math.rad(45)` facing diagonally forward toward the opponent.
+- **Dynamic Turn Desync Auto-Recovery**: Added automatic state verification in `BF:UpdateUI()` so that if 3D model frames ever lose attachment, they immediately re-mount without requiring UI reloads.
+- **Type-Safe Display ID Parsing**: Wrapped display IDs with `tonumber()` to guard against stringified SavedVariables causing Lua 5.1 comparison errors.
 
-#### 2. Moonkin / Wildkin Humanoid Rival Trainer Archetype
-- **Humanoid NPC Trainer Classification**: Ensured all Moonkin, Wildkin, and Owlbeast mobs (such as those around Auberdine / Darkshore) are strictly recognized as Humanoid NPC Trainers fielding their own companion rosters, never as catchable wild beasts.
-- **Thematic Wildkin Roster**: Added the `"Moonkin"` archetype (`Wildkin Moon-Watcher`) to [Data/TrainerDB.lua](file:///home/primustech/.steam/debian-installation/steamapps/compatdata/4226358677/pfx/drive_c/Program%20Files%20%28x86%29/World%20of%20Warcraft/_classic_beta_/Interface/AddOns/ForeverSafari/Data/TrainerDB.lua) and [Core/TrainerEngine.lua](file:///home/primustech/.steam/debian-installation/steamapps/compatdata/4226358677/pfx/drive_c/Program%20Files%20%28x86%29/World%20of%20Warcraft/_classic_beta_/Interface/AddOns/ForeverSafari/Core/TrainerEngine.lua), giving them authentic nature/forest beasts (Sprite Darter, Darkshore Thistle Bear, Moonstalker Cub, Darkshore Strider).
+#### 2. Moonkin / Wildkin Humanoid Rival Battler & AI Trainer Archetype
+- **Humanoid Mob Rule Enforcement**: Ensured all Moonkin, Wildkin, and Owlbeast mobs (such as Young Moonkin, Moonkin, and Raging Moonkin in Darkshore near Auberdine) are strictly recognized as Humanoid NPC Trainers fielding their own companion rosters, never as catchable wild beasts.
+- **Dedicated `"Moonkin"` Archetype**: Added the `Wildkin Moon-Watcher` archetype to [Data/TrainerDB.lua](file:///home/primustech/.steam/debian-installation/steamapps/compatdata/4226358677/pfx/drive_c/Program%20Files%20%28x86%29/World%20of%20Warcraft/_classic_beta_/Interface/AddOns/ForeverSafari/Data/TrainerDB.lua) with authentic lore quotes:
+  - *Intro*: "Hoooot! The sacred forest spirits answer the moon's call!"
+  - *Defeat*: "Hoo-oo... Elune watches over your journey..."
+  - *Bounty*: +12 Safari Tokens base reward.
+- **Thematic Companion Beast Roster**: Configured an authentic nature/druidic companion squad for Wildkin trainers:
+  - **Sprite Darter** (Dragonkin, Display ID: 2769, Moves: 901, 902)
+  - **Darkshore Thistle Bear** (Beast, Display ID: 742, Moves: 101, 102)
+  - **Moonstalker Cub** (Beast, Display ID: 775, Moves: 103, 107)
+  - **Darkshore Strider** (Tallstrider, Display ID: 1068, Moves: 101, 202)
+- **Robust Name & Creature Type Resolution**: Extended `TrainerDB:GetArchetypeForUnit` and `TE:IsHumanoidTrainer` ([Core/TrainerEngine.lua](file:///home/primustech/.steam/debian-installation/steamapps/compatdata/4226358677/pfx/drive_c/Program%20Files%20%28x86%29/World%20of%20Warcraft/_classic_beta_/Interface/AddOns/ForeverSafari/Core/TrainerEngine.lua)) with fallback string matching for `"moonkin"`, `"wildkin"`, and `"owlbeast"`.
 
 ---
 
