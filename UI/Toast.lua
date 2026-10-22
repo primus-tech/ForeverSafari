@@ -150,3 +150,87 @@ function Toast:ShowAlert(title, sub)
     })
 end
 
+function Toast:ShowTokenGain(amount, reason)
+    Toast:Enqueue({
+        title = string.format("+%d Safari Tokens", amount or 0),
+        sub = reason or "Safari League Expedition Reward",
+        icon = "Interface\\Icons\\INV_Misc_Coin_02",
+        titleColor = { r = 1.0, g = 0.85, b = 0.0 },
+        borderColor = { r = 1.0, g = 0.85, b = 0.0 },
+    })
+end
+
+function Toast:ShowItemGain(itemId, count)
+    local item = ns.ItemDB and ns.ItemDB:GetItem(itemId)
+    local itemName = item and item.name or itemId or "Item"
+    local itemIcon = item and item.icon or "Interface\\Icons\\INV_Misc_Bag_08"
+    Toast:Enqueue({
+        title = string.format("+%d %s", count or 1, itemName),
+        sub = "Added to Safari Expedition Bag",
+        icon = itemIcon,
+        titleColor = { r = 0.2, g = 1.0, b = 0.6 },
+        borderColor = { r = 0.2, g = 0.8, b = 0.4 },
+    })
+end
+
+function Toast:ShowBestiaryDiscovery(spec, status)
+    local sName = (spec and (spec.nickname ~= "" and spec.nickname or spec.name)) or "Unknown Specimen"
+    local cType = (spec and (spec.creatureType or spec.family)) or "Beast"
+    local typeInfo = C.CREATURE_TYPES and C.CREATURE_TYPES[cType]
+    local icon = (typeInfo and typeInfo.icon) or "Interface\\Icons\\Ability_Hunter_BeastCall01"
+    local isCaught = (status == "caught")
+
+    Toast:Enqueue({
+        title = isCaught and "Species Cataloged!" or "Field Sighting Recorded!",
+        sub = string.format("[%s] registered in Safari Bestiary", sName),
+        icon = icon,
+        titleColor = isCaught and { r = 1.0, g = 0.82, b = 0.0 } or { r = 0.4, g = 0.8, b = 1.0 },
+        borderColor = isCaught and { r = 1.0, g = 0.82, b = 0.0 } or { r = 0.2, g = 0.6, b = 0.9 },
+    })
+end
+
+function Toast:ShowAttunementUp(mob, newRank)
+    local mName = (mob and (mob.customNickname or mob.nickname or mob.name)) or "Companion"
+    local rankIdx = tonumber(newRank) or (mob and mob.attunementRank) or 1
+    local rankInfo = C.ATTUNEMENT_RANKS and C.ATTUNEMENT_RANKS[rankIdx] or {}
+    local roman = rankInfo.roman or tostring(rankIdx)
+    local title = rankInfo.title or "Attuned"
+
+    Toast:Enqueue({
+        title = "Attunement Rank Up!",
+        sub = string.format("%s achieved Rank %s (%s)!", mName, roman, title),
+        icon = "Interface\\Icons\\Spell_Holy_BlessingOfAgility",
+        titleColor = { r = 0.3, g = 1.0, b = 0.5 },
+        borderColor = { r = 0.2, g = 0.9, b = 0.4 },
+    })
+end
+
+function Toast:ShowMoveLearned(moveKey, sourceMobName)
+    local MoveDB = ns.MoveDB or {}
+    local mData = MoveDB[moveKey] or (tonumber(moveKey) and MoveDB[tonumber(moveKey)])
+    local mName = mData and mData.name or tostring(moveKey)
+    local mIcon = mData and mData.icon or "Interface\\Icons\\Ability_Hunter_BeastTraining"
+
+    Toast:Enqueue({
+        title = "Technique Mastered!",
+        sub = string.format("%s mastered [%s]!", sourceMobName or "Companion", mName),
+        icon = mIcon,
+        titleColor = { r = 1.0, g = 0.7, b = 0.1 },
+        borderColor = { r = 0.9, g = 0.6, b = 0.1 },
+    })
+end
+
+function Toast:ShowPermitUnlocked(creatureType)
+    local typeInfo = C.CREATURE_TYPES and C.CREATURE_TYPES[creatureType]
+    local icon = (typeInfo and typeInfo.icon) or "Interface\\Icons\\INV_Misc_Note_02"
+
+    Toast:Enqueue({
+        title = "Research Permit Certified!",
+        sub = string.format("Stalking & Capture authorized: %s", creatureType or "Exotic"),
+        icon = icon,
+        titleColor = { r = 1.0, g = 0.84, b = 0.0 },
+        borderColor = { r = 0.8, g = 0.65, b = 0.0 },
+    })
+end
+
+

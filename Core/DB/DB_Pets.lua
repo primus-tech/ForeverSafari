@@ -213,11 +213,8 @@ function DB:ReplaceMob(oldMobId, newMobData)
     self:MarkDirty()
 
     -- Refresh UI components
-    if ns.JournalTeamDock and ns.JournalTeamDock.UpdateDock then
-        ns.JournalTeamDock:UpdateDock()
-    end
-    if ns.JournalRosterView and ns.JournalRosterView.UpdateUI then
-        ns.JournalRosterView:UpdateUI()
+    if ns.JournalFrame and ns.JournalFrame.UpdateUI then
+        ns.JournalFrame:UpdateUI()
     end
     if ns.KennelFrame and ns.KennelFrame.UpdateUI then
         ns.KennelFrame:UpdateUI()
@@ -517,11 +514,8 @@ function DB:HealTeam(silent)
     end
 
     -- Refresh UI frames if open
-    if ns.JournalTeamDock and ns.JournalTeamDock.UpdateDock then
-        ns.JournalTeamDock:UpdateDock()
-    end
-    if ns.JournalRosterView and ns.JournalRosterView.UpdateUI then
-        ns.JournalRosterView:UpdateUI()
+    if ns.JournalFrame and ns.JournalFrame.UpdateUI then
+        ns.JournalFrame:UpdateUI()
     end
     if ns.KennelFrame and ns.KennelFrame.UpdateUI then
         ns.KennelFrame:UpdateUI()
@@ -547,11 +541,8 @@ function DB:HealAllPets(silent)
     end
 
     -- Refresh UI frames if open
-    if ns.JournalTeamDock and ns.JournalTeamDock.UpdateDock then
-        ns.JournalTeamDock:UpdateDock()
-    end
-    if ns.JournalRosterView and ns.JournalRosterView.UpdateUI then
-        ns.JournalRosterView:UpdateUI()
+    if ns.JournalFrame and ns.JournalFrame.UpdateUI then
+        ns.JournalFrame:UpdateUI()
     end
     if ns.KennelFrame and ns.KennelFrame.UpdateUI then
         ns.KennelFrame:UpdateUI()

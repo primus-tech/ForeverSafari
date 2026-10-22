@@ -201,9 +201,13 @@ function Loot:RollGreed()
         C.PREFIX, rollVal, activeRoll.evo.name))
 
     -- If in party/raid, broadcast roll
-    if IsInGroup() and ForeverSafari.Comms and ForeverSafari.Comms.SendCommMessage then
-        local msg = string.format("CATALYST_ROLL:%d:%d", activeRoll.catalystId, rollVal)
-        ForeverSafari.Comms:SendCommMessage(msg, IsInRaid() and "RAID" or "PARTY")
+    if IsInGroup() and ForeverSafari.Comms then
+        local data = string.format("%d:%d", activeRoll.catalystId, rollVal)
+        if ForeverSafari.Comms.SendMessage then
+            ForeverSafari.Comms:SendMessage("CATALYST_ROLL", data)
+        elseif ForeverSafari.Comms.SendCommMessage then
+            ForeverSafari.Comms:SendCommMessage("CATALYST_ROLL:" .. data, IsInRaid() and "RAID" or "PARTY")
+        end
     else
         -- Solo play: instant win!
         Loot:ResolveRoll()

@@ -572,8 +572,13 @@ function Bag:UseItem(itemId, itemData)
             PlaySound(847)
             return
         end
-        local currentHP = activeMob.hp or activeMob.currentHP or activeMob.maxHP or 10
-        local maxHP = activeMob.maxHP or 10
+        local currentHP = tonumber(activeMob.currentHP) or tonumber(activeMob.hp) or tonumber(activeMob.maxHP) or 10
+        local maxHP = tonumber(activeMob.maxHP) or 10
+        if currentHP <= 0 or activeMob.isFainted then
+            DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffff4444Your active companion has fainted! Use a Revival Crystal or visit an Innkeeper.|r")
+            PlaySound(847)
+            return
+        end
         if currentHP >= maxHP then
             DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffffd100Your active companion is already at full health.|r")
             return
@@ -581,6 +586,7 @@ function Bag:UseItem(itemId, itemData)
         if DB:RemoveItem("healing_salve", 1) then
             activeMob.hp = maxHP
             activeMob.currentHP = maxHP
+            activeMob.isFainted = false
             if Crypto then Crypto:SignMob(activeMob) end
             PlaySound(895)
             local pName = activeMob.nickname ~= "" and activeMob.nickname or activeMob.name
@@ -597,14 +603,17 @@ function Bag:UseItem(itemId, itemData)
             PlaySound(847)
             return
         end
-        local currentHP = activeMob.hp or activeMob.currentHP or activeMob.maxHP or 10
-        if currentHP > 0 then
+        local currentHP = tonumber(activeMob.currentHP) or tonumber(activeMob.hp) or tonumber(activeMob.maxHP) or 10
+        local isFainted = activeMob.isFainted or (currentHP <= 0)
+        if not isFainted then
             DEFAULT_CHAT_FRAME:AddMessage(C.PREFIX .. "|cffffd100Your active companion is not fainted.|r")
             return
         end
+        local maxHP = tonumber(activeMob.maxHP) or 10
         if DB:RemoveItem("revival_crystal", 1) then
-            activeMob.hp = activeMob.maxHP
-            activeMob.currentHP = activeMob.maxHP
+            activeMob.hp = maxHP
+            activeMob.currentHP = maxHP
+            activeMob.isFainted = false
             if Crypto then Crypto:SignMob(activeMob) end
             PlaySound(1195)
             local pName = activeMob.nickname ~= "" and activeMob.nickname or activeMob.name

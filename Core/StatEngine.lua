@@ -430,6 +430,7 @@ function SE:CreateMobInstance(name, rawCreatureType, initialAttunement, isElite,
         
         -- Active Moves Loadout (Rank 1 capacity = 1 move)
         abilities = abilities,
+        moves = abilities,
         
         -- Battle statistics
         wins = 0,

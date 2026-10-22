@@ -37,10 +37,22 @@ To support organic field hunting and co-op social collaboration:
   - `[ ♀ Dam ]`, `[ ♂ Sire ]`, or `[ ⚙ Genderless ]` once observed or captured.
 * This guarantees that a creature's biological sex remains 100% consistent from field stalking, channeled observation, and turn-based battle through capture and vault banking.
 
-### B. Genderless Construct Matrix Re-forging
-* Mechanicals and Elementals lack biological sex (`anatomy = "Genderless"`).
-* In the **Cenarion Nursery (`/fs nursery`)**, two matching Genderless constructs can re-forge an artificial matrix when paired with a **slotted Family Catalyst** (e.g. *[Gnomeregan Gyro-Core]* or *[Molten Core Catalyst]*).
-* Matrix re-forging yields a new high-pedigree construct offspring carrying purebred IV stat inheritances.
+### B. The Divergence: Elemental Synthesis vs. Mechanical Combobulation
+* **Genderless Classifications**: Both `Mechanical` and `Elemental` species lack biological sex (`anatomy = "Genderless"`), but their progression paths are fundamentally different:
+* **Elemental Matrix Synthesis (Spiritual Fusion)**:
+  * Elementals (Sparks, Cores, Motes) can be synthesized in the **Sacred Grove Sanctuary** using an Elemental Catalyst (e.g., *[Molten Core Catalyst]* or *[Aquatic Mote]*). This yields a new purebred elemental spark/mote.
+* **Mechanical Constructs: The "No Egg" Invariant & Master Tinker Combobulation**:
+  * ⛔ **Mechanicals DO NOT Lay Eggs**: Mechanicals are synthetic engineering marvels (cogs, gyros, plating, boilers, pneumatic pistons). They cannot mate, cannot gestate, and **never produce eggs**.
+  * ⛔ **Excluded from Nurseries**: Cenarion Druids and Capital Pet Trainers have no expertise in clockwork engineering; mechanicals cannot be placed into biological breeding pens.
+  * ⚙️ **Master Tinkers & The Specialized Pop-Up HUD**:
+    * Mechanical re-assembly and modular calibration is conducted exclusively by **Master Tinkers & Engineers** in **Booty Bay** (Goblin Tinkers), **Ironforge** (Tinker Town), **Orgrimmar** (Goblin Workshop), and **Gadgetzan**.
+    * Targeting or interacting with a Master Tinker summons **our specialized Pop-Up HUD**, opening the **Combobulation Interface (`UI/CombobulationFrame.lua`)**.
+  * 🔌 **Catalyst-Driven Modular Move Socketing**:
+    * Mechanicals do not inherit "egg moves." Instead, their advanced Slots 3 & 4 are unlocked by socketing **Dungeon & Raid Catalysts** directly into their chassis:
+      * **Shadowfang Keep (SFK) Catalyst**: Installs dark-tech Shadow / Undead modules: **`Shadow Shock`** (direct shadow discharge) and **`Unholy Overdrive`** (speed/attack burst at cost of structural wear).
+      * **Gnomeregan Catalyst (Viscous Fallout)**: Installs industrial coolant modules: **`Cryo Freeze`** (chilling cryo blast) and **`Supercoolant Vent`** (defensive thermal shield + chill aura).
+      * **Blackrock Depths (BRD) Catalyst**: Installs magma/thermal combustion modules (**`Thermal Flare`**, **`Magma Exhaust`**).
+  * 📦 **Combobulation Output**: Combining two mechanical frames with a Tinker yields an assembled **Prototype Chassis / Schematic Blueprint**, never an egg.
 
 ### C. Cryptographic HMAC Signing
 * In [Core/Crypto.lua](file:///home/primustech/.steam/debian-installation/steamapps/compatdata/4226358677/pfx/drive_c/Program%20Files%20%28x86%29/World%20of%20Warcraft/_classic_beta_/Interface/AddOns/ForeverSafari/Core/Crypto.lua), the companion's biological anatomy (`Sire`, `Dam`, or `Genderless`) is signed into the serialization envelope (`Crypto:SignMob(mob)`), preventing local tampering or desync.
@@ -55,7 +67,7 @@ To support organic field hunting and co-op social collaboration:
 
 * A player character can own **only one active instance of each creature species** at any time.
 * Eliminates box hoarding and keeps kennel management clean and strategic.
-* If a player hatches a new offspring of a species they already own, they must decide whether to keep the newborn (releasing or storing the existing parent) or trade/gift the egg.
+* If a player hatches a new biological offspring (or constructs a new chassis) of a species they already own, they must decide whether to keep the newcomer (releasing or vaulting the existing parent) or trade/gift the egg or blueprint.
 
 ---
 
@@ -157,6 +169,9 @@ $$\mathbf{\text{Rare Chance \%} = (\text{Male Attunement Rank} + \text{Female At
 ## 8. Egg Tiers, Yields & Highlander Dynamics
 
 Under the **Highlander Unique Ownership Rule** (maximum 1 active instance per species per player), multiple eggs create high-stakes rarity decisions and an active social economy.
+
+> [!IMPORTANT]
+> **Biological Exclusivity**: Safari Eggs apply strictly to biological wildlife (Beasts, Dragonkin, and spiritual Elemental motes). Mechanical constructs are manufactured via **Tinker Combobulation** and yield **Prototype Chassis / Blueprints**, never eggs.
 
 ### A. The Two Egg Tiers
 

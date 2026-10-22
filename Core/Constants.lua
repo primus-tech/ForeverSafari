@@ -25,9 +25,9 @@ C.IsSecret = isSecret
 
 -- Addon Branding
 C.ADDON_NAME = "Forever Safari"
-C.VERSION = "1.0.2"
+C.VERSION = "1.0.5"
 C.ADDON_COLOR = "ffd100"
-C.PREFIX = "|cffffd100[Forever Safari v1.0.2]|r "
+C.PREFIX = "|cffffd100[Forever Safari v1.0.5]|r "
 
 -- World Combat & Battle Suspension Configuration
 C.BATTLE_COMBAT_PAUSE_TIMEOUT = 120.0 -- Maximum pause window for multi-mob pulls & corpse runs (120s)
@@ -300,6 +300,17 @@ function C.GetDefaultDisplayId(creatureType, mobName)
         if string.find(nameLower, "serpent") or string.find(nameLower, "snake") or string.find(nameLower, "viper") or string.find(nameLower, "cobra") then return 1039 end
     end
     return C.DEFAULT_DISPLAY_IDS[cType] or 181
+end
+
+function C.GetDefaultIcon(creatureType, mobName)
+    local cType = C.NormalizeCreatureType(creatureType, mobName)
+    if C.CREATURE_TYPES and C.CREATURE_TYPES[cType] and C.CREATURE_TYPES[cType].icon then
+        return C.CREATURE_TYPES[cType].icon
+    end
+    if creatureType and C.CREATURE_TYPES and C.CREATURE_TYPES[creatureType] and C.CREATURE_TYPES[creatureType].icon then
+        return C.CREATURE_TYPES[creatureType].icon
+    end
+    return "Interface\\Icons\\Ability_Hunter_Pet_Cat"
 end
 
 -- Eligible Wild Creature Types for Field Snaring (Humanoids are strictly prohibited)

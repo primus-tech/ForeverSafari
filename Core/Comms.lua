@@ -76,8 +76,23 @@ function Comms:SendMessage(msgType, data, targetPlayer)
             C_ChatInfo.SendAddonMessage(COMM_PREFIX, payload, "WHISPER", targetPlayer)
         end
     else
+        local channel = IsInRaid() and "RAID" or "PARTY"
         if C_ChatInfo and C_ChatInfo.SendAddonMessage then
-            C_ChatInfo.SendAddonMessage(COMM_PREFIX, payload, "PARTY")
+            C_ChatInfo.SendAddonMessage(COMM_PREFIX, payload, channel)
+        end
+    end
+end
+
+function Comms:SendCommMessage(msg, channel, targetPlayer)
+    if not msg then return end
+    channel = channel or (IsInRaid() and "RAID" or "PARTY")
+    if targetPlayer and targetPlayer ~= "" then
+        if C_ChatInfo and C_ChatInfo.SendAddonMessage then
+            C_ChatInfo.SendAddonMessage(COMM_PREFIX, msg, "WHISPER", targetPlayer)
+        end
+    else
+        if C_ChatInfo and C_ChatInfo.SendAddonMessage then
+            C_ChatInfo.SendAddonMessage(COMM_PREFIX, msg, channel)
         end
     end
 end
@@ -398,5 +413,12 @@ function Comms:OnMessageReceived(text, channel, sender)
         if ForeverSafari.NurseryFrame then ForeverSafari.NurseryFrame:ReceivePartnerSacrifice(senderName, data) end
     elseif msgType == "NURSERY_CANCEL" then
         if ForeverSafari.NurseryFrame then ForeverSafari.NurseryFrame:ReceivePartnerCancel(senderName) end
+    elseif msgType == "CATALYST_ROLL" then
+        local catId, rollVal = strsplit(":", data or "", 2)
+        catId = tonumber(catId)
+        rollVal = tonumber(rollVal)
+        if catId and rollVal and ForeverSafari.CatalystLootFrame and ForeverSafari.CatalystLootFrame.ReceivePeerRoll then
+            ForeverSafari.CatalystLootFrame:ReceivePeerRoll(senderName, catId, rollVal)
+        end
     end
 end

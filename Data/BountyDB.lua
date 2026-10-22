@@ -26,7 +26,7 @@ BountyDB.DISPATCHES = {
             tokens = 0,
             items = {
                 { id = "copper_cage", count = 10 },
-                { id = "crate_copper", count = 3 },
+                { id = "copper_crate", count = 3 },
                 { id = "healing_salve", count = 5 },
                 { id = "revival_crystal", count = 1 },
             },

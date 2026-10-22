@@ -242,7 +242,27 @@ ItemDB.ITEMS = {
         desc = "Sweet glazed tidbits that instantly grant +50 Attunement points to your active companion.",
         useText = "Right-Click to grant +50 Attunement to companion.",
     },
+    ["az_treat"] = {
+        name = "Azsharan Safari Treats",
+        category = "Treats & Diets",
+        icon = "Interface\\Icons\\INV_Misc_Food_23",
+        quality = 2,
+        color = "1eff00",
+        tokenCost = 3,
+        desc = "Sweet glazed tidbits that instantly grant +50 Attunement points to your active companion.",
+        useText = "Right-Click to grant +50 Attunement to companion.",
+    },
     ["grand_safari_feast"] = {
+        name = "Grand Safari Feast",
+        category = "Treats & Diets",
+        icon = "Interface\\Icons\\INV_Misc_Food_64",
+        quality = 3,
+        color = "0070dd",
+        tokenCost = 10,
+        desc = "Sumptuous safari feast that awards +100 Attunement points across your entire active 4-member squad.",
+        useText = "Right-Click to grant +100 Attunement to all 4 squad pets.",
+    },
+    ["az_feast"] = {
         name = "Grand Safari Feast",
         category = "Treats & Diets",
         icon = "Interface\\Icons\\INV_Misc_Food_64",
@@ -344,7 +364,11 @@ function ItemDB:GetCage(id)
 end
 
 function ItemDB:GetCrate(id)
-    return self.TRANSPORT_CRATES[id]
+    if not id then return nil end
+    if self.TRANSPORT_CRATES[id] then return self.TRANSPORT_CRATES[id] end
+    local alias = id:gsub("^crate_", "") .. "_crate"
+    if self.TRANSPORT_CRATES[alias] then return self.TRANSPORT_CRATES[alias] end
+    return nil
 end
 
 function ItemDB:GetDiet(id)
@@ -357,6 +381,8 @@ function ItemDB:GetItem(id)
     if self.DIET_ITEMS[id] then return self.DIET_ITEMS[id] end
     if self.CAGES[id] then return self.CAGES[id] end
     if self.TRANSPORT_CRATES[id] then return self.TRANSPORT_CRATES[id] end
+    local crateAlias = id:gsub("^crate_", "") .. "_crate"
+    if self.TRANSPORT_CRATES[crateAlias] then return self.TRANSPORT_CRATES[crateAlias] end
 
     if id == "safari_egg" or string.find(id, "^safari_egg_") then
         local isCatalyzed = string.find(id, "_catalyzed$")

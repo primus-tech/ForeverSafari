@@ -712,7 +712,7 @@ function BF:UpdatePartyFrames()
                 slot.HPBar:SetStatusBarColor(0.90, 0.20, 0.20)
             end
 
-            local iconPath = mob.icon or C.GetDefaultIcon(mob.family or mob.creatureType) or "Interface\\Icons\\INV_Box_PetCarrier_01"
+            local iconPath = mob.icon or (C and C.GetDefaultIcon and C.GetDefaultIcon(mob.family or mob.creatureType)) or (C and C.CREATURE_TYPES and C.CREATURE_TYPES[mob.creatureType or "Beast"] and C.CREATURE_TYPES[mob.creatureType or "Beast"].icon) or "Interface\\Icons\\INV_Box_PetCarrier_01"
             slot.Icon:SetTexture(iconPath)
 
             local isDesignated = (not BE.State.designatedSquad) or BE.State.designatedSquad[mob.id]
@@ -820,7 +820,7 @@ function BF:UpdatePartyFrames()
                 slot.HPBar:SetStatusBarColor(0.90, 0.20, 0.20)
             end
 
-            local iconPath = eMob.icon or C.GetDefaultIcon(eMob.family or eMob.creatureType) or "Interface\\Icons\\INV_Box_PetCarrier_01"
+            local iconPath = eMob.icon or (C and C.GetDefaultIcon and C.GetDefaultIcon(eMob.family or eMob.creatureType)) or (C and C.CREATURE_TYPES and C.CREATURE_TYPES[eMob.creatureType or "Beast"] and C.CREATURE_TYPES[eMob.creatureType or "Beast"].icon) or "Interface\\Icons\\INV_Box_PetCarrier_01"
             slot.Icon:SetTexture(iconPath)
 
             if curHP <= 0 then
@@ -938,7 +938,7 @@ function BF:CreateRetroStatusBox(parent, width, height, isPlayer)
 
         local expLabel = box:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
         expLabel:SetPoint("TOPLEFT", 8, -50)
-        expLabel:SetText("|cffaa44ffXP:|r")
+        expLabel:SetText("|cffaa44ffATN:|r")
 
         local expBar = CreateFrame("StatusBar", nil, box)
         expBar:SetSize(width - 45, 6)
@@ -1293,9 +1293,9 @@ end
 function BF:TriggerAttackAnimation(isPlayer)
     local model = isPlayer and frame.PlayerModel or frame.EnemyModel
     if model and model:IsShown() then
-        model:SetAnimation(4)
+        pcall(model.SetAnimation, model, 4)
         C_Timer.After(0.8, function()
-            if model:IsShown() then model:SetAnimation(0) end
+            if model:IsShown() then pcall(model.SetAnimation, model, 0) end
         end)
     end
 end
@@ -1304,7 +1304,7 @@ function BF:TriggerHitAnimation(isPlayer)
     local model = isPlayer and frame.PlayerModel or frame.EnemyModel
     if not model or not model:IsShown() then return end
 
-    model:SetAnimation(13)
+    pcall(model.SetAnimation, model, 13)
     PlaySound(847)
 
     -- Model horizontal jolt / shake
@@ -1500,8 +1500,14 @@ function BF:UpdateUI()
             frame.PlayerHUD.HPBar:SetStatusBarColor(0.90, 0.20, 0.20)
         end
 
-        frame.PlayerHUD.ExpBar:SetMinMaxValues(0, player.maxXP or 100)
-        frame.PlayerHUD.ExpBar:SetValue(player.xp or 0)
+        local pAttune = player.attunement or player.attunementPoints or 0
+        local pRank = player.attunementRank or (ns.StatEngine and ns.StatEngine.GetAttunementRank and ns.StatEngine:GetAttunementRank(pAttune).rank) or 1
+        local rInfo = C.ATTUNEMENT_RANKS and C.ATTUNEMENT_RANKS[pRank]
+        local minP = rInfo and rInfo.minPoints or 0
+        local maxP = rInfo and rInfo.maxPoints or 250
+        if minP >= maxP then maxP = minP + 1 end
+        frame.PlayerHUD.ExpBar:SetMinMaxValues(minP, maxP)
+        frame.PlayerHUD.ExpBar:SetValue(math.min(maxP, math.max(minP, pAttune)))
 
         -- Update Fight Menu Move Buttons (Uses: X/Y & CD status)
         local isPlayerTurn = (BE.State.turn == "player" and BE.State.inBattle)
@@ -1636,7 +1642,7 @@ function BF:UpdateUI()
         end
     end
 
-    BF:UpdatePartyFramesVisibility()
+    pcall(BF.UpdatePartyFramesVisibility, BF)
 end
 
 function BF:ShowBattle()

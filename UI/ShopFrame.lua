@@ -258,7 +258,7 @@ function Shop:BuildShopItems()
 
     elseif currentCategory == "crates" then
         frame.BannerText:SetText("|cff00ff99📦 Transport Crates: Secure cages used to auto-board excess captures into Kennels.|r")
-        local crateKeys = { "crate_copper", "crate_iron", "crate_mithril", "crate_thorium" }
+        local crateKeys = { "copper_crate", "iron_crate", "mithril_crate", "thorium_crate" }
         for _, id in ipairs(crateKeys) do
             local itemData = ItemDB and ((ItemDB.TRANSPORT_CRATES and ItemDB.TRANSPORT_CRATES[id]) or (ItemDB.ITEMS and ItemDB.ITEMS[id]))
             if itemData then

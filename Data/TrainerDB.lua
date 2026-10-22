@@ -18,10 +18,10 @@ TrainerDB.ARCHETYPES = {
         defeat = "Blast it! My cutthroats were bested...",
         tokenReward = 8,
         pool = {
-            { name = "Mangy Wolf", family = "Canine", element = "Beast", displayId = 903, baseStats = { hp = 40, atk = 22, def = 18, spd = 20 }, moves = { 101, 104 } },
+            { name = "Coyote", family = "Canine", element = "Beast", displayId = 643, baseStats = { hp = 40, atk = 22, def = 18, spd = 20 }, moves = { 101, 104 } },
             { name = "Harvest Golem", family = "Mechanical", element = "Mechanical", displayId = 378, baseStats = { hp = 44, atk = 20, def = 24, spd = 12 }, moves = { 601, 602 } },
-            { name = "Mine Spider", family = "Spider", element = "Beast", displayId = 382, baseStats = { hp = 38, atk = 20, def = 18, spd = 24 }, moves = { 501, 502 } },
-            { name = "Goretusk Boar", family = "Boar", element = "Beast", displayId = 138623, baseStats = { hp = 42, atk = 20, def = 22, spd = 16 }, moves = { 108, 107 } },
+            { name = "Greater Fleshripper", family = "Carrion Bird", element = "Beast", displayId = 1105, baseStats = { hp = 38, atk = 24, def = 16, spd = 24 }, moves = { 202, 709 } },
+            { name = "Goretusk", family = "Boar", element = "Beast", displayId = 3027, baseStats = { hp = 42, atk = 20, def = 22, spd = 16 }, moves = { 108, 107 } },
         }
     },
     ["Kobold"] = {
@@ -78,7 +78,7 @@ TrainerDB.ARCHETYPES = {
         tokenReward = 12,
         pool = {
             { name = "Scarlet Warhound", family = "Canine", element = "Beast", displayId = 1531, baseStats = { hp = 42, atk = 24, def = 18, spd = 16 }, moves = { 101, 104 } },
-            { name = "Scarlet Hawk", family = "Flying", element = "Flying", displayId = 1629, baseStats = { hp = 35, atk = 24, def = 14, spd = 27 }, moves = { 202, 709 } },
+            { name = "Plagued Bat", family = "Bat", element = "Flying", displayId = 9535, baseStats = { hp = 35, atk = 24, def = 14, spd = 27 }, moves = { 202, 709 } },
             { name = "Monastery War Bear", family = "Bear", element = "Beast", displayId = 8843, baseStats = { hp = 46, atk = 20, def = 22, spd = 12 }, moves = { 101, 102 } },
         }
     },
@@ -121,7 +121,7 @@ TrainerDB.ARCHETYPES = {
         defeat = "Shiver me timbers... my crew is down!",
         tokenReward = 10,
         pool = {
-            { name = "Tropical Parrot", family = "Flying", element = "Flying", displayId = 1629, baseStats = { hp = 35, atk = 24, def = 14, spd = 27 }, moves = { 202, 709 } },
+            { name = "Bloodsail Parrot", family = "Flying", element = "Flying", displayId = 2768, baseStats = { hp = 35, atk = 24, def = 14, spd = 27 }, moves = { 202, 709 } },
             { name = "Shore Crab", family = "Crab", element = "Aquatic", displayId = 724, baseStats = { hp = 42, atk = 18, def = 26, spd = 14 }, moves = { 401, 402 } },
             { name = "Saltwater Crocolisk", family = "Crocolisk", element = "Aquatic", displayId = 1386, baseStats = { hp = 46, atk = 20, def = 22, spd = 12 }, moves = { 401, 1005 } },
         }
@@ -177,9 +177,9 @@ TrainerDB.ARCHETYPES = {
         defeat = "Good match! Your companion has great attunement.",
         tokenReward = 8,
         pool = {
-            { name = "Prowler Wolf", family = "Canine", element = "Beast", displayId = 903, baseStats = { hp = 40, atk = 22, def = 18, spd = 20 }, moves = { 101, 104 } },
-            { name = "Prairie Hawk", family = "Flying", element = "Flying", displayId = 1629, baseStats = { hp = 35, atk = 22, def = 15, spd = 28 }, moves = { 202, 709 } },
-            { name = "River Snapjaw", family = "Turtle", element = "Aquatic", displayId = 1386, baseStats = { hp = 48, atk = 16, def = 26, spd = 10 }, moves = { 401, 402 } },
+            { name = "Coyote", family = "Canine", element = "Beast", displayId = 643, baseStats = { hp = 40, atk = 22, def = 18, spd = 20 }, moves = { 101, 104 } },
+            { name = "Greater Fleshripper", family = "Carrion Bird", element = "Beast", displayId = 1105, baseStats = { hp = 35, atk = 24, def = 16, spd = 26 }, moves = { 202, 709 } },
+            { name = "Shore Crawler", family = "Crab", element = "Aquatic", displayId = 9570, baseStats = { hp = 48, atk = 18, def = 26, spd = 12 }, moves = { 401, 402 } },
         }
     }
 }

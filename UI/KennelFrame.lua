@@ -184,11 +184,11 @@ function Kennel:Initialize()
         Theme:ApplyCardBackdrop(card)
         card.slotIndex = i
 
-        -- 3D Model
+        -- 3D Model (Modern Retail Engine Clean Perspective Pedestal)
         local model = CreateFrame("PlayerModel", nil, card)
         model:SetSize(52, 52)
         model:SetPoint("LEFT", 6, 0)
-        if model.SetPortraitZoom then model:SetPortraitZoom(0.85) end
+        model:EnableMouse(false)
         if model.SetRotation then model:SetRotation(math.rad(25)) end
         card.Model = model
 
@@ -863,6 +863,7 @@ function Kennel:UpdateUI()
                 card.Model:Show()
                 local displayId = mob.displayId or 903
                 pcall(card.Model.SetDisplayInfo, card.Model, displayId)
+                if card.Model.SetRotation then card.Model:SetRotation(math.rad(25)) end
             end
 
             card.DepositBtn:Show()
@@ -872,7 +873,10 @@ function Kennel:UpdateUI()
             card.NameText:SetText("|cff888888Empty Slot|r")
             card.InfoText:SetText("")
             card.HPBar:SetValue(0)
-            if card.Model then card.Model:Hide() end
+            if card.Model then
+                if card.Model.ClearModel then card.Model:ClearModel() end
+                card.Model:Hide()
+            end
             card.DepositBtn:Hide()
             card:SetBackdropBorderColor(0.2, 0.2, 0.2, 0.5)
         end

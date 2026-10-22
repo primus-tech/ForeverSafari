@@ -4,6 +4,59 @@ All notable changes to the Forever Safari addon are documented in this file.
 
 ---
 
+## [v1.0.5] — 2026-10-18
+
+### 🐛 Critical Hotfixes: Trainer Battle Turn Execution & Item Healing Precedence
+
+#### 1. Trainer Battle Turn Execution & Combat Freeze Fix
+- **Implemented Missing `C.GetDefaultIcon`**: Added `C.GetDefaultIcon(creatureType, mobName)` in `Core/Constants.lua`, resolving a fatal `attempt to call a nil value` crash in `UI/BattleFrame.lua:715` and `823`.
+- **Restored Attack Turn Completion**: In trainer and multi-pet battles (`isTrainerBattle = true`), party frame updates invoked during log output (`BF:UpdateLog()`) previously caused `BE:ExecutePlayerMove` to halt at line 1251, preventing move effects, damage calculations, and enemy retaliation turns from ever executing.
+- **Fail-Safe UI Isolation**: Wrapped `BF:UpdatePartyFramesVisibility()` in `pcall` within `BF:UpdateUI()` to isolate auxiliary frame rendering from core combat logic.
+- **Defensive 3D Animation Triggers**: Safeguarded `model:SetAnimation(4)` and `model:SetAnimation(13)` in `TriggerAttackAnimation` and `TriggerHitAnimation` with `pcall` to ensure model animation playback never halts combat rounds.
+
+#### 2. Companion Healing Salve & Revival Precedence
+- **Corrected HP Attribute Precedence**: Fixed `UI/SafariBagFrame.lua:575` and `600` to prioritize live battle health (`activeMob.currentHP`) over static baseline maximums (`activeMob.hp`), allowing companions at reduced health (e.g., 9 HP) to be healed with Healing Salves.
+- **Added Faint Status Verification**: Ensured Healing Salves warn players if an active companion has fainted, directing them to use a Revival Crystal or visit an Innkeeper.
+- **In-Combat Consumable Full-Health Guard**: Added a full-health check to `BE:UseBagItem` in `Core/BattleEngine.lua` and synchronized `player.hp = player.currentHP` on damage and healing resolution.
+
+#### 3. Canonical Creature Taxonomy & Humanoid Dwarf Display ID (1629) Purge
+- **Replaced Fabricated Creature Names**: Replaced mock placeholder names in `Data/TrainerDB.lua` (`Prairie Hawk`, `Prowler Wolf`, `River Snapjaw`, `Mangy Wolf`, `Mine Spider`, `Goretusk Boar`) with authentic scraped Westfall (Zone 40) creatures from `Data/Creatures/`: `Coyote` (display 643), `Harvest Golem` (display 378), `Greater Fleshripper` (display 1105), `Shore Crawler` (display 9570), and `Goretusk` (display 3027).
+- **Purged Dwarf Display ID (1629) Collisions**: In `CreatureDisplayInfo.dbc`, ID 1629 is Mountaineer Gravelgaw (an Ironforge Dwarf). Replaced dummy 1629 assignments across `TrainerDB.lua` and `OutpostDB.lua` with authentic beast models (`1219`/`1220` for Tallstriders, `1105` for Carrion Birds, `2768` for Parrots, `4877` for Birds of Prey).
+- **Preserved Zephras Sky Elf Canon**: Retained all authentic WoW Forever Beta Sky Elf zone lore and names (`Zephras Reef Strider`, Genn Fairweather on Zephras Isle), repairing the model display mapping from 1629 to 1219 without altering zone identity.
+
+---
+
+## [v1.0.4] — 2026-10-18
+
+### 🐛 Critical Hotfixes & Architecture Defect Remediation
+
+#### 1. Prohibited Model API Purge & Kennel Frame Modernization
+- **Purged `SetPortraitZoom(0.85)` in Kennel Frame**: Completely eliminated the last remaining prohibited legacy camera call in `UI/KennelFrame.lua:191`, ensuring 100% adherence to `Truth.md` Section 8 invariants.
+- **Added `EnableMouse(false)` to Card Models**: Disabled mouse interaction on child `PlayerModel` frames, ensuring all clicks and tooltips register smoothly across companion card buttons.
+- **Proper Rotation and Slot Reset**: Applied `SetRotation(math.rad(25))` on display and clean `ClearModel()` unmounting on empty slots.
+
+#### 2. NPC Gossip Outfitter Access
+- **Fixed Outfitter Shop Trigger**: Corrected Pet Trainer dialogue callback in `Core/SafariGossip.lua:473` from `ns.Shop` to `ns.ShopFrame`, restoring player access to the Nesingwary Safari Outfitter.
+
+#### 3. Item & Economy Key Reconciliations
+- **Restored Shop Transport Crates Tab**: Reconciled crate keys in `UI/ShopFrame.lua`, `Data/BountyDB.lua`, and `Core/BattleCapture.lua` to `copper_crate`, `iron_crate`, `mithril_crate`, and `thorium_crate`, repopulating the previously empty Crates shop tab and fixing Dispatch #1 reward items.
+- **Safari Treats & Feasts Compatibility**: Added alias registrations in `Data/ItemDB.lua` for `az_treat` and `az_feast`, fixing blank, unclickable battle bag buttons in `UI/BattleFrame.lua` and missing icons in `UI/SafariBagFrame.lua`.
+- **Bidirectional Crate Lookup Aliases**: Implemented automatic prefix-reversal fallback in `ItemDB:GetCrate()` and `ItemDB:GetItem()`.
+
+#### 4. Notification System & UI State Synchronization
+- **Implemented 6 Missing Toast Channels**: Added `ShowTokenGain`, `ShowItemGain`, `ShowBestiaryDiscovery`, `ShowAttunementUp`, `ShowMoveLearned`, and `ShowPermitUnlocked` to `UI/Toast.lua`, restoring full visual celebration feedback.
+- **Corrected Journal Refresh Hooks**: Replaced calls to nonexistent modules in `Core/DB/DB_Pets.lua` with direct `ns.JournalFrame:UpdateUI()` calls, ensuring squad re-ordering and innkeeper rest actions refresh open Journal docks and rosters.
+- **P2P Multiplayer Catalyst Loot Sync**: Fixed `Comms:SendMessage("CATALYST_ROLL", ...)` in `UI/CatalystLootFrame.lua` and registered the `CATALYST_ROLL` listener in `Core/Comms.lua` to enable party-wide loot rolling.
+- **Capture HUD Sex Badge Resolution**: Implemented `DB:IsSpeciesDiscovered(nameOrId)` in `Core/DB/DB_Bestiary.lua` to display Dam/Sire sex badges for previously studied or cataloged species.
+- **Companion Move Card Resolution**: Guaranteed dual assignment of `moves = abilities, abilities = abilities` in `Core/StatEngine.lua` and added fallback lookups in `UI/Views/JournalRosterView.lua`.
+
+#### 5. TOC Load Order & Combat HUD Attunement
+- **Early Constants Initialization**: Moved `Core\Constants.lua` before `Data\CreatureDB.lua` and `Data\BestiaryDB.lua` in `ForeverSafari.toc` so fallback display IDs resolve during static bestiary initialization.
+- **Combat Attunement Meter**: Replaced legacy RPG `player.xp` binding on `PlayerHUD.ExpBar` in `UI/BattleFrame.lua` with the 5-Rank Attunement curve (`C.ATTUNEMENT_RANKS`) and updated label to `ATN`.
+- **Version Tag Synchronization**: Synchronized `C.PREFIX` and TOC version to `v1.0.4`.
+
+---
+
 ## [v1.0.3] — 2026-10-18
 
 ### 🐛 Critical Bug Fixes & System Improvements

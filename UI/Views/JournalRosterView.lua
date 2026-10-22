@@ -567,7 +567,7 @@ function Journal:UpdateRosterView()
 
     for i = 1, 4 do
         local mCard = rPanel.MoveCards[i]
-        local moveId = mob.moves and mob.moves[i]
+        local moveId = (mob.moves and mob.moves[i]) or (mob.abilities and mob.abilities[i])
         local move = moveId and (MoveDB[moveId] or (tonumber(moveId) and MoveDB[tonumber(moveId)]))
 
         if move then

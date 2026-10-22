@@ -6,6 +6,13 @@
 
 ---
 
+> [!IMPORTANT]
+> ### 🚨 ACTIVE TOP PRIORITY: How We Get Our Creatures & Master Ingestion Architecture
+> **The primary focus of development is strictly centered on [HOW_WE_GET_OUR_CREATURES.md](file:///home/primustech/.steam/debian-installation/steamapps/compatdata/4226358677/pfx/drive_c/Program%20Files%20%28x86%29/World%20of%20Warcraft/_classic_beta_/Interface/AddOns/ForeverSafari/HOW_WE_GET_OUR_CREATURES.md).**  
+> All ingestion scripts, zone censuses, and taxonomy compilers are gated behind resolving the 6 architectural holes identified in the master specification (Display IDs, Orphaned Beasts, Runtime Race Tagging, Channeled Observation, World Boss Drops, and Tinker Combobulation). **Zero code execution until architectural alignment is complete.**
+
+---
+
 ## 📍 Phase 1: Core Foundation & Branding (Completed ✅)
 * [x] **Universal Addon Architecture**: Pure `ForeverSafari` namespace across all core and UI modules with zero legacy shims.
 * [x] **3D Paperdoll Field Guide**:
@@ -478,8 +485,81 @@
 
 ---
 
-## 📍 Phase 27: Future Expansions & Social Leagues (Pending ⏳)
+## 📍 Immediate Priorities: v1.0.4 Integrity & Hotfix Patch (Completed ✅)
+* [x] **Eliminate Prohibited Model APIs (`UI/KennelFrame.lua`)**:
+  * Purged remaining `model:SetPortraitZoom(0.85)` call from `KennelFrame.lua:191`, added `model:EnableMouse(false)`, and enforced complete adherence to `Truth.md` Section 8 camera invariants.
+* [x] **Fix NPC Gossip Shop Access (`Core/SafariGossip.lua`)**:
+  * Corrected namespace binding in Pet Trainer gossip dialogue from `ns.Shop` to `ns.ShopFrame`, restoring player access to the Nesingwary Safari Outfitter.
+* [x] **Reconcile Transport Crate Keys & Empty Shop Category (`UI/ShopFrame.lua`, `Data/BountyDB.lua`, `Core/BattleCapture.lua`, `Data/ItemDB.lua`)**:
+  * Unified crate keys across the shop, dispatches, and capture handlers to `copper_crate`, `iron_crate`, `mithril_crate`, `thorium_crate`, repopulating the Shop Crates tab and adding alias compatibility in `ItemDB.lua`.
+* [x] **Reconcile Safari Treats & Feasts (`Data/ItemDB.lua`, `Core/BattleEngine.lua`, `UI/BattleFrame.lua`, `UI/SafariBagFrame.lua`)**:
+  * Added aliases for `az_treat` and `az_feast` in `ItemDB.lua` to fix blank battle bag buttons and untextured bag items.
+* [x] **Implement Missing Toast Notification Methods (`UI/Toast.lua`)**:
+  * Added definitions for `ShowTokenGain`, `ShowItemGain`, `ShowBestiaryDiscovery`, `ShowAttunementUp`, `ShowMoveLearned`, and `ShowPermitUnlocked` to restore visual celebration popups.
+* [x] **Re-link Journal Frame UI Updaters (`Core/DB/DB_Pets.lua`)**:
+  * Rerouted calls from nonexistent `ns.JournalTeamDock` and `ns.JournalRosterView` directly to `ns.JournalFrame:UpdateUI()`.
+* [x] **Restore Multiplayer Catalyst Loot Rolling (`UI/CatalystLootFrame.lua`, `Core/Comms.lua`)**:
+  * Fixed message dispatch to use `Comms:SendMessage("CATALYST_ROLL", ...)` and added `CATALYST_ROLL` receiver router in `Comms:OnMessageReceived`.
+* [x] **Restore Bestiary Discovery Check in Target HUD (`UI/CaptureHUD.lua`, `Core/DB/DB_Bestiary.lua`)**:
+  * Implemented `DB:IsSpeciesDiscovered(nameOrId)` in `DB_Bestiary.lua` so studied/caught wild specimens render authentic Dam/Sire sex badges rather than `[❓ Sex: Unknown]`.
+* [x] **Ensure Active Companion Move Synchronization (`Core/StatEngine.lua`, `UI/Views/JournalRosterView.lua`)**:
+  * Populated `mob.moves` alongside `mob.abilities` upon companion creation and added a fallback in `JournalRosterView.lua` so move cards render correctly.
+* [x] **Correct TOC Load Order for Base Constants (`ForeverSafari.toc`)**:
+  * Moved `Core\Constants.lua` above `Data\CreatureDB.lua` and `Data\BestiaryDB.lua` so default display ID helpers resolve during static bestiary initialization.
+* [x] **Bind Battle HUD ExpBar to 5-Rank Attunement Curve (`UI/BattleFrame.lua`)**:
+  * Updated `PlayerHUD.ExpBar` min/max and value bindings to track `player.attunement` against `C.ATTUNEMENT_RANKS` with `|cffaa44ffATN:|r` label.
+* [x] **Synchronize Chat Prefix Version Tag (`Core/Constants.lua`, `ForeverSafari.toc`)**:
+  * Bumped `C.PREFIX` and TOC version to `v1.0.4`.
+
+## 📍 Phase 27: Master Census Ingestion, Creature Acquisition & Hole Remediation (Active Top Priority 🎯)
+Governed directly by [HOW_WE_GET_OUR_CREATURES.md](file:///home/primustech/.steam/debian-installation/steamapps/compatdata/4226358677/pfx/drive_c/Program%20Files%20%28x86%29/World%20of%20Warcraft/_classic_beta_/Interface/AddOns/ForeverSafari/HOW_WE_GET_OUR_CREATURES.md). Resolves the 6 core architectural gaps before executing the dual-pass scraper:
+
+* [ ] **Hole 1 Remediation: Two-Stage Display ID Extraction Engine**:
+  * Solve Wowhead listview JSON omitting `displayId`.
+  * **Stage 1**: Pre-index returning Classic creatures (~95%) from local DBC client tables (`Data/CreatureDisplays.lua`).
+  * **Stage 2**: Route individual page scrapes (`/forever/npc={id}`) strictly to newly added Beta 1.60.1 mobs (`firstseenpatch: 16001`) with atomic disk caching.
+* [ ] **Hole 2 Remediation: Extended Wildlife & Orphaned Beast Taxonomy Mapping**:
+  * Prevent dropped beasts during the Pass 1 $\bowtie$ Pass 2 join by mapping all WoW `type: 1` wildlife outside the 19 primary slugs into canonical families:
+    * *Devilsaurs* ➔ Raptor subfamily (Ferocity)
+    * *Basilisks* ➔ Scalehide / Crocolisk subfamily (Tenacity)
+    * *Chimaeras* ➔ Wind Serpent subfamily (Ferocity)
+    * *Silithid Wasps & Crawlers* ➔ Scorpid / Spider subfamily
+    * *Stags, Gazelles, Rams* ➔ Scalehide / Tallstrider subfamily
+    * *Carrion Grubs & Worms* ➔ Scorpid / Beast subfamily
+* [ ] **Hole 3 Remediation: Pre-Compiled AI Trainer Race Tagging (Offline Keyword Tokenizer)**:
+  * Overcome the engine limitation where `UnitRace("target")` returns `nil` for NPCs.
+  * Implement offline name and title keyword tokenizer in the census scraper to identify races (*Centaur*, *Quilboar*, *Harpy*, *Murloc*, *Gnoll*, *Dwarf*, *Trogg*, etc.).
+  * Bake authoritative `race = "X"` keys directly into `Zone_{id}_Humanoids.lua`.
+* [ ] **Hole 4 Remediation: Reconcile Field Observation vs. Channeled Binoculars**:
+  * Eliminate the conflict between non-invasive out-of-combat Binoculars study and in-combat spell cast triggers.
+  * Codify the channeled Field Lens progress bar (6-second peaceful study) to unlock observed signature moves in Nesingwary's Field Guide.
+* [ ] **Hole 5 Remediation: Open-World World Bosses & Apex Rare Elites Gating**:
+  * Formally segregate open-world World Bosses and high-tier Elites (`classification >= 2`, e.g. Azuregos, Teremus the Devourer, Lord Kazzak, King Bangalash).
+  * Exclude world bosses from standard turn-based net captures; gate their companion offspring to **`PUP_DROP`** on world slay (or specialized League Expedition Permits).
+* [ ] **Hole 6 Remediation: Master Tinker Combobulation Lifecycle & Component Economy**:
+  * Codify the 2-player co-op Combobulation handshake protocol at Master Tinkers (Booty Bay, Ironforge, Orgrimmar) via Pop-Up HUD.
+* [ ] **Starter Pet Attunement Re-baseline (Rank I Wild / Untamed)**:
+  * Revise initial unboxed starter pet from Rank III (600 ATN) down to **Attunement Rank 1 (0 ATN points)** (`Core/Database.lua`).
+  * Enforces organic progression: the starter companion begins unbroken (15% disobedience, 1 active ability slot) and bonds with the trainer as they work through the initial dispatches.
+* [ ] **7-Stage Progressive Dispatches Pipeline (`Data/BountyDB.lua`)**:
+  * Expand the initial recruitment directives to insert dedicated capture and healing onboarding stages before nourishment:
+    1. **Dispatch #1**: Welcome to the Safari League! (Unbox starter at Rank I).
+    2. **Dispatch #2**: Field Observation 101 (`OBSERVE`, 3 beasts).
+    3. **Dispatch #3**: The First Snare (`CAPTURE`, 1 wild beast in the field).
+    4. **Dispatch #4**: Field Care & Recovery (`HEAL`, 1 companion via salve, bandage, or innkeeper).
+    5. **Dispatch #5**: The Wild Nourishment (`FEED`, 2 treats/diets).
+    6. **Dispatch #6**: Sighting of Apex Rares (`CAPTURE_RARE`, 1 rare beast).
+    7. **Dispatch #7**: Deep Dungeon Expedition (`BOSS_KILL`, 1 catalyst boss).
+* [ ] **Dual Zone Census Ingestion & Database Emission**:
+  * Execute Pass 1 (`npcs?filter=6;{zoneId};0`) across all ~60 zones at a polite 5.0s throttle (~5 minutes total) with atomic caching.
+  * Execute Pass 2 across the 19 Beast subfamilies + 3 non-beast families.
+  * Compile clean, partitioned registries into `Data/Creatures/Zones/` and master index into `Data/CreatureDB.lua`.
+
+---
+
+## 📍 Phase 28: Future Expansions & Social Leagues (Pending ⏳)
 * [ ] **PvP Safari Tournaments & Guild Ladders**: Cross-faction companion duel tournaments, bracket scheduling, and guild ladders.
 * [ ] **Safari Attunement Master Quests**: Epic class- and race-specific questlines to earn Master attunement and legendary expedition traps.
 * [ ] **World Boss Safari Raids**: Instanced raid encounter mechanics for legendary apex creatures.
+
 

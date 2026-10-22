@@ -90,7 +90,7 @@ function BattleCapture:CanCapture(enemy, isTrainerBattle)
 
     -- If replacing an owned squad companion, no transport crate is needed!
     if isSquadFull and not isOwnedInSquad and DB and not DB:HasTransportCrate(enemyQuality) then
-        local crateKey = enemyQuality == 4 and "crate_thorium" or enemyQuality == 3 and "crate_mithril" or enemyQuality == 2 and "crate_iron" or "crate_copper"
+        local crateKey = enemyQuality == 4 and "thorium_crate" or enemyQuality == 3 and "mithril_crate" or enemyQuality == 2 and "iron_crate" or "copper_crate"
         local crateData = ItemDB and ItemDB:GetCrate(crateKey)
         local crateName = crateData and crateData.name or "Transport Crate"
         return false, string.format("Active squad is full (4/4)! You need a %s (or higher) to ship wild catches to the Safari Kennel!", crateName)

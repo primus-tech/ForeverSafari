@@ -470,8 +470,8 @@ function SG:BuildOptionsForCurrentNPC()
             onClick = function()
                 CloseGossipWindow()
                 C_Timer.After(0.05, function()
-                    if ns.Shop and ns.Shop.ShowShop then
-                        ns.Shop:ShowShop(true)
+                    if ns.ShopFrame and ns.ShopFrame.ShowShop then
+                        ns.ShopFrame:ShowShop(true)
                     end
                 end)
             end,

@@ -50,6 +50,12 @@ function DB:GetBestiaryEntry(nameOrId)
     return nil
 end
 
+function DB:IsSpeciesDiscovered(nameOrId)
+    if not nameOrId then return false end
+    local entry = self:GetBestiaryEntry(nameOrId)
+    return entry ~= nil
+end
+
 function DB:DiscoverSpecies(nameOrId, status)
     if not nameOrId then return nil end
     local BestiaryDB = ns.BestiaryDB

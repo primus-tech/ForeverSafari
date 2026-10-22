@@ -47,8 +47,15 @@ Upon entering Azeroth for the first time with **Forever Safari** installed, an o
 
 #### 📜 Sequential Directive Progression
 To keep your journal clean and focused, Hemet issues research dispatches sequentially:
-* **Initial Directives**: Only **Dispatch #1** (*First Steps*) and **Dispatch #2** (*Outpost Reconnaissance*) appear when you first open your mailbox and Journal.
-* **Progressive Unlocks**: As you complete and claim rewards for active dispatches, subsequent directives reveal themselves (#3 *First Attunement*, #4 *Dungeon Scouting*, #5 *Regional Mastery*).
+* **Initial Directives**: Only **Dispatch #1** (*Welcome to the Safari League!*) and **Dispatch #2** (*Field Observation 101*) appear when you first open your mailbox and Journal.
+* **Progressive Onboarding**: As you complete and claim rewards for active dispatches, subsequent directives reveal themselves:
+  - **#1 Welcome to the Safari League**: Unbox your homeland starter companion (starting at Attunement Rank I: Wild / Untamed) and expedition gear.
+  - **#2 Field Observation 101**: Study 3 wild creatures in their natural habitat with the research lens.
+  - **#3 The First Snare**: Capture your first wild creature in the field using a Safari Net.
+  - **#4 Field Care & Recovery**: Restore the health of an injured companion using a salve, bandage, or town healer.
+  - **#5 The Wild Nourishment**: Feed your companion twice with favorite diets or Safari Treats to build Attunement.
+  - **#6 Sighting of Apex Rares**: Track down and catalog an authentic wild rare beast.
+  - **#7 Deep Dungeon Expedition**: Down a dungeon boss to recover an Evolution Catalyst.
 
 #### 📦 Dungeon Specimen Dispatch & License Certification
 Specialized creature families (*Mechanical, Elemental, Undead, Dragonkin*) cannot be captured without an official **League Research Permit**.

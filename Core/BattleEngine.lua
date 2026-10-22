@@ -1914,6 +1914,7 @@ function BE:ApplyMoveEffects(move, attacker, defender, side)
         else
             defender.currentHP = math.max(0, defender.currentHP - finalDmg)
         end
+        defender.hp = defender.currentHP
 
         -- ⚡ Shaman: Primal Rebirth (10% to 50% chance to revive at 50% max HP)
         if targetSide == "player" and defender.currentHP <= 0 and defenderClass == "SHAMAN" and not BE.State.shamanRevived then
@@ -1922,6 +1923,7 @@ function BE:ApplyMoveEffects(move, attacker, defender, side)
                 BE.State.shamanRevived = true
                 local reviveHP = math.ceil(defender.maxHP * 0.5)
                 defender.currentHP = reviveHP
+                defender.hp = reviveHP
                 defender.isFainted = false
                 PlaySound(1195)
                 BE:AddLog(string.format("|cff0070dd[Primal Rebirth]|r %s's spirit returned with %d HP (50%%)!|r", defender.name, reviveHP))
@@ -2029,9 +2031,15 @@ function BE:UseBagItem(itemId)
     end
 
     if itemId == "healing_salve" then
+        if player.currentHP >= player.maxHP then
+            BE.State.dialogueText = "Already at full health!"
+            if ForeverSafari.BattleFrame then ForeverSafari.BattleFrame:UpdateUI() end
+            return
+        end
         DB:RemoveItem("healing_salve", 1)
-        local healAmt = math.floor(player.maxHP * 0.5)
+        local healAmt = math.max(1, math.floor(player.maxHP * 0.5))
         player.currentHP = math.min(player.maxHP, player.currentHP + healAmt)
+        player.hp = player.currentHP
         BE.State.dialogueText = string.format("Used Healing Salve! +%d HP", healAmt)
         BE:AddLog(string.format("|cff00ff00Used Healing Salve! Restored %d HP.|r", healAmt))
     elseif itemId == "az_treat" then

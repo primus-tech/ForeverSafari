@@ -21,9 +21,13 @@ This specification details the data architecture to classify, compile, and provi
      - **NO wild Safari battles** in dungeons, raids, or battlegrounds.
      - **NO Field Observation** in dungeons, raids, or battlegrounds.
      - **Pup Drop Mechanic**: When players slay a mob in an instance, raid, or BG, there is a proc/drop chance to create/obtain a **"Pup"** (companion pup, hatchling, juvenile offspring, whelp, scrap-bot, or minion spark).
-     - **Universal Applicability**: This pup drop mechanic applies across **all creature types** (Beasts, Dragonkin, Elementals, Mechanicals, Undead, Uncategorized).
+     - **Applicability**: Applies across **all valid companion families** (Beasts, Dragonkin, Elementals, Mechanicals).
+     - **Sentient Undead Reclassified**: Skeletons, Ghouls, Zombies, and Ghosts are strictly **AI Rival Trainers** and never drop companion pups. Plagued beasts (e.g. Shadowfang wolves) drop as Beast pups.
 3. **Beast Taxonomy Subcategory Resolution**:
-   - Overcome Wowhead's 1,000-entry listing truncation by extracting all 17 authentic Hunter Pet subcategories (`bat`, `bear`, `bird-of-prey`, `boar`, `carrion-bird`, `cat`, `crab`, `crocolisk`, `gorilla`, `hyena`, `raptor`, `scorpid`, `spider`, `tallstrider`, `turtle`, `wind-serpent`, `wolf`).
+   - Overcome Wowhead's 1,000-entry listing truncation by extracting all 19 authentic Hunter Pet subcategories (`bat`, `bear`, `bird-of-prey`, `boar`, `carrion-bird`, `cat`, `crab`, `crocolisk`, `gorilla`, `hyena`, `raptor`, `scorpid`, `spider`, `tallstrider`, `turtle`, `wind-serpent`, `wolf`, `hydra`, `scalehide`).
+   - **Scalehide**: Unifies **Kodos**, **Thunder Lizards**, and **Stegodons** under an armor-plated Tenacity spec.
+   - **Hydra**: Distinct apex multi-headed Ferocity family.
+   - **Purely Aquatic Exclusion**: Water-bound swimming fauna (**Threshers**, **Sharks**, **Frenzy Fish**, **Eels**) are strictly untamable and excluded from Safari battles. Only amphibious species with land locomotion (**Crabs**, **Crocolisks**, **Turtles**) are capturable.
    - Automatically assign authentic Hunter Family and Spec Archetype (**Tenacity**, **Ferocity**, **Cunning**).
 4. **Starter Move Provisioning (Hunter Pet Model)**:
    - Exactly 2 starter abilities per companion: **1 Base Offensive + 1 Base Defensive**.
@@ -63,7 +67,7 @@ This specification details the data architecture to classify, compile, and provi
   - *Dragonkin*: Whelps, Hatchlings, Broodlings.
   - *Elementals*: Sparks, Motes, Cores, Splinters.
   - *Mechanicals*: Micro-Golems, Scrap-Bots, Clockwork Chicks.
-  - *Undead*: Bone Pups, Ghoul Pups, Spectral Wisps.
+  - *Sentient Undead / Humanoids*: ⛔ Excluded (Rival Trainers only; zero companion pup drops).
 
 ---
 
@@ -84,36 +88,48 @@ Parse all zone endpoints to construct the complete zone lookup registry:
 
 ---
 
-### Phase 2: NPC Extraction & Categorization
+### Phase 2: NPC Extraction & The Two-Pass Cross-Check Pipeline
 
-#### A. Beast Extraction via 17 Hunter Subcategories
-To prevent the 1,000-item query limit from cutting off 700+ beasts, we extract every subcategory individually:
-1. `bat` (Cunning)
-2. `bear` (Tenacity)
-3. `bird-of-prey` (Cunning)
-4. `boar` (Tenacity)
-5. `carrion-bird` (Ferocity)
-6. `cat` (Ferocity)
-7. `crab` (Tenacity)
-8. `crocolisk` (Tenacity)
-9. `gorilla` (Tenacity)
-10. `hyena` (Ferocity)
-11. `raptor` (Ferocity)
-12. `scorpid` (Tenacity)
-13. `spider` (Cunning)
-14. `tallstrider` (Ferocity)
-15. `turtle` (Tenacity)
-16. `wind-serpent` (Ferocity)
-17. `wolf` (Ferocity)
+To defeat Wowhead's 1,000-entity query truncation while maintaining 100% accurate zone-by-zone ecological alignment and subfamily attribution, ingestion executes across two complementary passes:
 
-#### B. Additional Creature Families
-- **Dragonkin** (`/forever/npcs/dragonkin` - 305 NPCs)
-- **Elementals** (`/forever/npcs/elementals` - 551 NPCs)
-- **Mechanicals** (`/forever/npcs/mechanicals` - 214 NPCs)
-- **Undead** (`/forever/npcs/undead` - 983 NPCs)
-- **Uncategorized** (`/forever/npcs/uncategorized` - Filtered wildlife/critters)
+#### Pass 1: Zone Census (`npcs?filter=6;{zoneId};0`)
+* Scrapes all mobs per zone (~60 zones total, polite 5.0s throttle, ~5 minutes total).
+* Captures all zone wildlife (`type: 1, 2, 4, 9`) and AI trainer candidates (`type: 7, 6`).
+* Single zones rarely exceed 200–400 total NPCs, so Pass 1 never triggers Wowhead's 1,000-item truncation cap.
 
-#### C. Cross-Referencing Location & Acquisition Flagging
+#### Pass 2: Family & Subfamily Taxonomy
+* **19 Hunter Pet Subfamilies (`/forever/npcs/beasts/{subfamily}`)**: To prevent the 1,000-item query limit from cutting off 700+ beasts, extract all 19 subfamilies individually using Wowhead's verified slug structure:
+  1. `bat` (ID 24 - Cunning) ➔ `https://www.wowhead.com/forever/npcs/beasts/bat`
+  2. `bear` (ID 4 - Tenacity) ➔ `https://www.wowhead.com/forever/npcs/beasts/bear`
+  3. `bird-of-prey` (ID 26 - Cunning) ➔ `https://www.wowhead.com/forever/npcs/beasts/bird-of-prey`
+  4. `boar` (ID 5 - Tenacity) ➔ `https://www.wowhead.com/forever/npcs/beasts/boar`
+  5. `carrion-bird` (ID 7 - Ferocity) ➔ `https://www.wowhead.com/forever/npcs/beasts/carrion-bird`
+  6. `cat` (ID 2 - Ferocity) ➔ `https://www.wowhead.com/forever/npcs/beasts/cat`
+  7. `crab` (ID 8 - Tenacity) ➔ `https://www.wowhead.com/forever/npcs/beasts/crab`
+  8. `crocolisk` (ID 6 - Tenacity) ➔ `https://www.wowhead.com/forever/npcs/beasts/crocolisk`
+  9. `gorilla` (ID 9 - Tenacity) ➔ `https://www.wowhead.com/forever/npcs/beasts/gorilla`
+  10. `hyena` (ID 25 - Ferocity) ➔ `https://www.wowhead.com/forever/npcs/beasts/hyena`
+  11. `raptor` (ID 11 - Ferocity) ➔ `https://www.wowhead.com/forever/npcs/beasts/raptor`
+  12. `scorpid` (ID 20 - Tenacity) ➔ `https://www.wowhead.com/forever/npcs/beasts/scorpid`
+  13. `spider` (ID 3 - Cunning) ➔ `https://www.wowhead.com/forever/npcs/beasts/spider`
+  14. `tallstrider` (ID 12 - Ferocity) ➔ `https://www.wowhead.com/forever/npcs/beasts/tallstrider`
+  15. `turtle` (ID 21 - Tenacity) ➔ `https://www.wowhead.com/forever/npcs/beasts/turtle`
+  16. `wind-serpent` (ID 27 - Ferocity) ➔ `https://www.wowhead.com/forever/npcs/beasts/wind-serpent`
+  17. `wolf` (ID 1 - Ferocity) ➔ `https://www.wowhead.com/forever/npcs/beasts/wolf`
+  18. `hydra` (Ferocity) ➔ `https://www.wowhead.com/forever/npcs/beasts/hydra`
+  19. `scalehide` (Tenacity) ➔ `https://www.wowhead.com/forever/npcs/beasts/scalehide` *(Consolidates Kodos, Thunder Lizards, Stegodons)*
+* **Non-Beast Companion Families**:
+  - **Dragonkin** (ID 2) ➔ `https://www.wowhead.com/forever/npcs/dragonkin` (~305 NPCs)
+  - **Elementals** (ID 4) ➔ `https://www.wowhead.com/forever/npcs/elementals` (~551 NPCs)
+  - **Mechanicals** (ID 9) ➔ `https://www.wowhead.com/forever/npcs/mechanicals` (~214 NPCs)
+
+#### The Cross-Check & Join Resolution
+* Cross-references Pass 1 with Pass 2 using `npcId`:
+  $$\text{FinalZoneCreature} = \text{ZoneCensus}(npcId) \bowtie \text{TaxonomyRegistry}(npcId)$$
+* Every zone spawn is enriched with authentic subfamily classification, spec archetype, diet, and verified 3D `displayId`.
+* ⛔ **Purely Aquatic Exclusion Filter**: Water-bound swimming fauna (**Threshers**, **Sharks**, **Frenzy Fish**, **Eels**) are filtered out and excluded from the capturable wildlife pool. Only terrestrial or amphibious species (**Crabs**, **Crocolisks**, **Turtles**) are compiled.
+
+#### Location Cross-Referencing & Acquisition Flagging
 For every creature:
 ```python
 is_world = any(zid in world_zones for zid in npc.location)
@@ -138,18 +154,19 @@ else: # Dual spawns (e.g. world bosses or dungeon trash with open world equivale
 ---
 
 ### Phase 3: Sentience & Non-Sentient Sanitizer
-* **Excluded**:
-  - Humanoid NPC dialogue actors / quest givers / merchants / trainers (`tag` contains `<Merchant>`, `<Trainer>`, `<Quest>`).
-  - Forsaken citizens, death knights, humanoid dragonkin officers/drakonids with polearms, sentient humanoid boss models.
-* **Retained**:
-  - Mindless undead (Ghouls, Skeletal Warhorses, Plaguespiders, Skeletons).
-  - Wild dragons, drakes, whelps, faerie dragons.
-  - Elemental spirits, tar beasts, water/fire elementals.
-  - Autonomous mechs, harvest golems, alarm-o-bots, clockwork spiders.
+* **Routed to AI Battle Trainer Registry (`type: 7` Humanoids & `type: 6` Sentient Undead)**:
+  * Humanoid NPC actors, bandits, cultists, quest givers, merchants, and rival hunters.
+  * Sentient and humanoid undead: Skeletons, Ghouls, Zombies, Wraiths, Banshees, Death Knights, Liches, and Necromancers.
+  * ⛔ Neither humanoids nor sentient undead can ever be captured, kept as pets, or placed in breeding sanctuaries.
+* **Retained for Capturable Companion Pool (`type: 1, 2, 4, 9`)**:
+  * Wild beasts across all subfamilies (including animalistic plagued wolves, bears, bats with `Undead`/`Shadow` element typing).
+  * Wild dragons, drakes, whelps, faerie dragons (`Dragonkin`).
+  * Elemental spirits, tar beasts, water/fire elementals (`Elemental`).
+  * Autonomous mechs, harvest golems, alarm-o-bots, clockwork spiders (`Mechanical`).
 
 ---
 
-### Phase 4: Starter Move Provisioning (2 Instincts)
+### Phase 4: Starter Move Provisioning & Advanced Slot Unlocks
 
 Every companion receives exactly 2 baseline abilities based on its archetype and family:
 
@@ -161,19 +178,20 @@ Every companion receives exactly 2 baseline abilities based on its archetype and
 | **Dragonkin** | Magic / Breath | `Breath` (Elemental Dmg 40) | `Scales of Iron` (Magic Resist / Shield) | `nil` | `nil` |
 | **Elemental** | Elemental Spells | `Elemental Blast` (Power 40) | `Elemental Barrier` (Shield / Ward) | `nil` | `nil` |
 | **Mechanical** | Precision / Tech | `Tinker Spark` (Power 40) | `Armor Plating` (Armor Boost) | `nil` | `nil` |
-| **Undead** | Shadow / Plague | `Bone Bite` or `Rot` (Power 40) | `Unholy Fortitude` (Life Drain / Ward) | `nil` | `nil` |
 
-*Note: Slots 3 and 4 are strictly empty (`nil`), reserved for unlocks via Open-World Field Observation or Companion Pup Nurturing.*
+*Note on Advanced Slots 3 & 4:*
+- **Beasts & Living Wildlife**: Unlocked via Open-World Field Observation.
+- **Mechanical Constructs**: Unlocked via **Catalyst Combobulation** at Master Tinkers (e.g., SFK Catalyst $\rightarrow$ Shadow/Undead modules `Shadow Shock` / `Unholy Overdrive`; Gnomeregan Catalyst $\rightarrow$ Cryo-Coolant modules `Cryo Freeze` / `Supercoolant Vent`). Constructs do NOT lay eggs.
 
 ---
 
 ### Phase 5: Codebase Emission & Lua Integration
 
-1. **`Data/Creatures/Creatures_Beasts.lua`**: All 17 Hunter families, tagged with `spec`, `family`, `acquisition`, `location`.
+1. **`Data/Creatures/Creatures_Beasts.lua`**: All 17 Hunter families (including plagued variants), tagged with `spec`, `family`, `acquisition`, `location`.
 2. **`Data/Creatures/Creatures_Dragonkin.lua`**: Dragonkin entries with whelp/pup drop mechanics.
 3. **`Data/Creatures/Creatures_Elementals.lua`**: Elemental spirits and spark drops.
 4. **`Data/Creatures/Creatures_Mechanicals.lua`**: Constructs and scrap-bot drops.
-5. **`Data/Creatures/Creatures_Undead.lua`**: Skeletal companions and minion pup drops.
+5. **`Data/Creatures/Zones/`**: Partitioned Zone Registries (`Zone_{id}_Creatures.lua` and `Zone_{id}_Humanoids.lua`).
 6. **`Data/CreatureDB.lua`**: Master lookup registry with query helpers:
    - `CreatureDB:GetCreaturesByZone(zoneID)`
    - `CreatureDB:IsInstanceOnly(creatureID)`

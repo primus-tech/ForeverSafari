@@ -2,7 +2,7 @@
 ## Title: |cffffd100Forever Safari|r
 ## Notes: Hemet Nesingwary's Junior Safari League! Capture wild beasts, discover movepools, evolve companions, and battle across Azeroth!
 ## Author: Forever Safari Team
-## Version: 1.0.3
+## Version: 1.0.5
 ## SavedVariables: ForeverSafariVault, ForeverSafariDB, ForeverSafariSettings, ForeverSafariKennel
 ## IconTexture: Interface\Icons\Ability_Hunter_BeastTaming
 ## Category: Minigames
@@ -18,8 +18,9 @@
 ## Category-zhCN: 迷你游戏
 ## Category-zhTW: 迷你遊戲
 
-# Diagnostic Taint Watcher (Load First)
+# Diagnostic Taint Watcher & Constants (Load First)
 Core\TaintWatcher.lua
+Core\Constants.lua
 
 # Canonical Data Registries
 Data\ItemDB.lua
@@ -69,7 +70,6 @@ Data\TrainerDB.lua
 Data\OutpostDB.lua
 
 # Core Engine & Database
-Core\Constants.lua
 Core\ClassPassives.lua
 Core\Crypto.lua
 Core\Database.lua
